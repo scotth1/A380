@@ -1,0 +1,11 @@
+<?xml version="1.0"?> 
+<PropertyList> 
+<sim> 
+<model> 
+<livery> 
+<name type="string">Emirates</name> 
+<texture>A380ek.rgb</texture> 
+</livery> 
+</model> 
+</sim> 
+</PropertyList> 

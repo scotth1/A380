@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+	<path>../../../Models/FlightDeck/FrontPanel/nd.ac</path> 
+	<texture-path>../../../Textures/Common</texture-path>
+	
+       <!-- panel>
+        <path>Aircraft/A380/XML/Instruments/MFD/mfdtext-panel.xml</path>
+        <bottom-left>
+            <x-m>0.005</x-m>
+            <y-m>-0.090</y-m>
+            <z-m>-0.087</z-m>
+        </bottom-left>
+        <bottom-right>
+            <x-m>0.005</x-m>
+            <y-m>0.090</y-m>
+            <z-m>-0.087</z-m>
+        </bottom-right>
+        <top-left>
+            <x-m>0.005</x-m>
+            <y-m>-0.090</y-m>
+            <z-m>0.094</z-m>
+        </top-left>
+    </panel -->
+
+</PropertyList> 
+ 

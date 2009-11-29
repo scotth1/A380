@@ -1,0 +1,217 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+	<path>../../../Models/FlightDeck/FrontPanel/frontpanel.3ds</path> 
+	<!--<offsets>
+		<x-m>0.90597</x-m>
+		<z-m>0.49453</z-m>-->
+		<!--<x-m>0.84885</x-m>
+		<z-m>0.68447</z-m>-->
+		<!--<x-m>0.83692</x-m>
+		<z-m>0.67036</z-m>
+		<pitch-deg>73.0</pitch-deg>
+	</offsets>-->
+	
+
+
+
+    <animation>
+        <type>material</type>
+        <object-name>PANEL</object-name>
+        <emission>
+            <red>0.31</red>
+            <green>0.47</green>
+            <blue>0.47</blue>
+            <factor-prop>controls/lighting/panel-norm[0]</factor-prop>	
+
+        </emission>
+    </animation>
+
+
+
+	<!-- Load flight displays. -->
+	<model>
+		<path>Aircraft/A380/XML/FlightDeck/FrontPanel/default.xml</path>
+		<name>pfd_fo</name>   <!-- was pfd_cb  SAH 2009-05-27 -->
+		<offsets>
+			<x-m>-0.015</x-m>
+			<y-m>-0.63</y-m>
+			<z-m>-0.0075</z-m>
+		</offsets>
+	</model>
+	<model>
+		<path>Aircraft/A380/XML/FlightDeck/FrontPanel/nd_fo.xml</path>
+		<name>nd_cb</name>
+		<offsets>
+			<!--  uncommented SAH 2009-05-27 -->
+			<x-m>-0.015</x-m>
+			<y-m>-0.42625</y-m>
+			<z-m>-0.0075</z-m>
+			<!--   Commented SAH 2009-05-27
+			<x-m>-0.015</x-m>
+			<y-m>-0.44125</y-m>
+			<z-m>-0.0075</z-m>
+			-->
+		</offsets>
+	</model>
+	<model>
+		<name>pdf_fob</name>
+		<path>Aircraft/A380/XML/FlightDeck/FrontPanel/pfd_fo.xml</path>
+		<offsets>
+			<!-- uncomment SAH 2009-05-27 -->
+			<x-m>-0.015</x-m>
+			<y-m>0.45625</y-m>
+			<z-m>-0.0075</z-m>
+			<!-- commented SAH 2009-05-27
+			<x-m>-0.015</x-m>
+			<y-m>-0.08</y-m>
+			<z-m>-0.0075</z-m>
+			-->
+		</offsets>
+	</model>
+	<model>
+		<name>nd_fob</name>
+		<path>Aircraft/A380/XML/FlightDeck/FrontPanel/default.xml</path>
+		<offsets>
+			<!--
+			<x-m>-0.015</x-m>
+			<y-m>0.2775</y-m>
+			<z-m>-0.0075</z-m>
+			-->
+			<x-m>-0.015</x-m>
+			<y-m>0.2825</y-m>
+			<z-m>-0.0075</z-m>
+		</offsets>
+	</model>
+	<model>
+		<name>ecamb</name>
+		<path>Aircraft/A380/XML/FlightDeck/FrontPanel/default.xml</path>
+		<offsets>
+			<!--
+			<x-m>-0.015</x-m>
+			<y-m>-0.075</y-m>
+			<z-m>-0.0075</z-m>
+			-->
+			<x-m>-0.015</x-m>
+			<y-m>0.47125</y-m>
+			<z-m>-0.0075</z-m>
+		</offsets>
+	</model>
+
+	<model>
+		<name>eicas</name>
+		<path>Aircraft/A380/XML/FlightDeck/FrontPanel/eicas.xml</path>
+		<offsets>
+		<x-m>-0.015</x-m>
+			<y-m>-0.08</y-m>
+			<z-m>-0.0075</z-m>
+		</offsets>
+	</model>
+	
+	<model>
+		<path>Aircraft/A380/XML/FlightDeck/FrontPanel/pfd_c.xml</path>
+		<name>pfd_c</name>
+		<offsets>
+			<x-m>-0.015</x-m>
+			<y-m>-0.63</y-m>
+			<z-m>-0.0075</z-m>
+		</offsets>
+
+	</model>
+	<model>
+		<path>Aircraft/A380/XML/FlightDeck/FrontPanel/nd_c.xml</path>
+		<name>nd_c</name>
+		<offsets>
+			<x-m>-0.015</x-m>
+			<y-m>-0.44125</y-m>
+			<z-m>-0.0075</z-m>
+		</offsets>
+	</model>
+
+	
+	<!-- Load glare shield. -->
+	<model>
+		<name>fcu</name>
+		<path>Aircraft/A380/XML/FlightDeck/Glareshield/fcu.xml</path>
+		<offsets>
+			<x-m>-0.26</x-m>
+			<pitch-deg>357</pitch-deg>
+		</offsets>
+	</model>
+	<model>
+		<name>efis_c</name>
+		<path>Aircraft/A380/XML/FlightDeck/Glareshield/efis_c.xml</path>
+		<offsets>
+			<x-m>-0.26</x-m>
+			<y-m>-0.289</y-m>
+			<pitch-deg>357</pitch-deg>
+		</offsets>
+	</model>
+	<model>
+		<name>efis_fo</name>
+		<path>Aircraft/A380/XML/FlightDeck/Glareshield/efis_fo.xml</path>
+		<offsets>
+			<x-m>-0.26</x-m>
+			<y-m>0.289</y-m>
+			<pitch-deg>357</pitch-deg>
+		</offsets>
+	</model>
+	<model>
+		<name>wing_c</name>
+		<path>Aircraft/A380/XML/FlightDeck/Glareshield/wing_c.xml</path>
+		<offsets>
+			<x-m>-0.26</x-m>
+			<y-m>-0.594</y-m>
+			<pitch-deg>357</pitch-deg>
+		</offsets>
+	</model>
+	<model>
+		<name>wing_fo</name>
+		<path>Aircraft/A380/XML/FlightDeck/Glareshield/wing_fo.xml</path>
+		<offsets>
+			<x-m>-0.26</x-m>
+			<y-m>0.594</y-m>
+			<pitch-deg>357</pitch-deg>
+		</offsets>
+	</model>
+	<model>
+		<name>end_c</name>
+		<path>Aircraft/A380/XML/FlightDeck/Glareshield/end_c.xml</path>
+		<offsets>
+			<x-m>-0.26</x-m>
+			<y-m>-0.60</y-m>
+			<pitch-deg>357</pitch-deg>
+		</offsets>
+	</model>
+	<model>
+		<name>end_fo</name>
+		<path>Aircraft/A380/XML/FlightDeck/Glareshield/end_fo.xml</path>
+		<offsets>
+			<x-m>-0.26</x-m>
+			<y-m>0.60</y-m>
+			<pitch-deg>357</pitch-deg>
+		</offsets>
+	</model>
+	
+	<!-- Disable shadows -->
+	<animation>
+	<type>noshadow</type>
+		<object-name>PANEL</object-name>
+		<object-name>Void</object-name>
+		
+		<object-name>pfd_c</object-name>
+		<object-name>nd_c</object-name>
+		<object-name>ecam</object-name>
+		<object-name>nd_fo</object-name>
+		<object-name>pfd_fo</object-name>
+		
+		<object-name>wing_c</object-name>
+		<object-name>efis_c</object-name>
+		<object-name>fcu</object-name>
+		<object-name>efis_fo</object-name>
+		<object-name>wing_fo</object-name>
+	</animation>
+	
+
+</PropertyList> 

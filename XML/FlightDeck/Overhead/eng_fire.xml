@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+	<path>../../../Models/FlightDeck/Overhead/eng_fire.ac</path> 
+	<texture-path>../../../Textures/Common</texture-path>
+
+<animation>
+        <type>material</type>
+        <object-name>ENG_FIRE</object-name>
+        <emission>
+<red>1</red>
+            <green>1</green>
+            <blue>1</blue>
+    <factor-prop>controls/lighting/panel-norm[0]</factor-prop>	
+
+        </emission>
+    </animation>
+
+</PropertyList> 
+ 

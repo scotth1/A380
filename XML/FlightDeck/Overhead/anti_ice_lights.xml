@@ -1,0 +1,578 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+	<path>../../../Models/FlightDeck/Overhead/anti_ice_lights.ac</path> 
+	<texture-path>../../../Textures/Common</texture-path>
+
+    <animation>
+      <type>pick</type>
+      <object-name>eng start</object-name>
+      <action>
+        <button>0</button>
+	<repeatable>false</repeatable>
+	<binding>
+          <command>property-adjust</command>
+          <property>/controls/engines/ign-start</property>
+	  <step>1</step>
+	  <min>-1</min>
+	  <max>1</max>
+	  <wrap>false</wrap>
+        </binding>
+	<binding>
+        <command>property-toggle</command>
+        <property>/sim/sound/switch</property>
+       </binding>
+      </action>
+      <action>
+        <button>1</button>
+	<repeatable>false</repeatable>
+	<binding>
+          <command>property-adjust</command>
+          <property>/controls/engines/ign-start</property>
+	  <step>-1</step>
+	  <min>-1</min>
+	  <max>1</max>
+	  <wrap>false</wrap>
+        </binding>
+	<binding>
+        <command>property-toggle</command>
+        <property>/sim/sound/switch</property>
+       </binding>
+      </action>
+      <action>
+        <button>3</button>
+	<repeatable>false</repeatable>
+	<binding>
+          <command>property-adjust</command>
+          <property>/controls/engines/ign-start</property>
+	  <step>1</step>
+	  <min>-1</min>
+	  <max>1</max>
+	  <wrap>false</wrap>
+        </binding>
+	<binding>
+        <command>property-toggle</command>
+        <property>/sim/sound/switch</property>
+       </binding>
+      </action>
+      <action>
+        <button>4</button>
+	<repeatable>false</repeatable>
+	<binding>
+          <command>property-adjust</command>
+          <property>/controls/engines/ign-start</property>
+	  <step>-1</step>
+	  <min>-1</min>
+	  <max>1</max>
+	  <wrap>false</wrap>
+        </binding>
+	<binding>
+        <command>property-toggle</command>
+        <property>/sim/sound/switch</property>
+       </binding>
+      </action>
+    </animation>
+
+    <animation>
+      <type>rotate</type>
+      <object-name>eng start</object-name>
+      <property>/controls/engines/ign-start</property>
+      <interpolation>
+        <entry><ind>-1</ind><dep>-10</dep></entry>
+        <entry><ind>0</ind><dep>0</dep></entry>
+        <entry><ind>1</ind><dep>10</dep></entry>
+      </interpolation>
+      <center>
+        <x-m>-0.222900</x-m>
+        <y-m>0.007700</y-m>
+        <z-m>-0.183100</z-m>
+      </center>
+
+      <axis>
+        <x>0.000000</x>
+        <y>-1.000000</y>
+        <z>0.000000</z>
+      </axis>
+
+      <!-- center>
+        <x-m>-0.239000</x-m>
+        <y-m>0.007900</y-m>
+        <z-m>-0.160900</z-m>
+      </center>
+
+      <axis>
+        <x>0.000000</x>
+        <y>-1.000000</y>
+        <z>0.000000</z>
+      </axis -->
+
+      <!-- axis>
+        <x>0</x>
+        <y>0</y>
+        <z>1.0</z>
+      </axis>
+      <center>
+        <x-m>-0.1085</x-m>
+        <y-m>0.0066</y-m>
+        <z-m>-0.1559</z-m>
+      </center -->
+      <!--axis>
+        <x1-m>-0.109</x1-m>
+        <y1-m>-0.10</y1-m>
+        <z1-m>-0.155</z1-m>
+        <x2-m>-0.109</x2-m>
+        <y2-m>0.10</y2-m>
+        <z2-m>-0.155</z2-m>
+      </axis -->
+    </animation>
+    
+    
+    <animation>
+      <type>pick</type>
+      <object-name>APU Sw</object-name>
+      <action>
+        <button>0</button>
+	<binding>
+          <command>property-toggle</command>
+          <property>/controls/APU/run</property>
+        </binding>
+	<binding>
+        <command>property-toggle</command>
+        <property>/sim/sound/switch</property>
+       </binding>
+      </action>
+    </animation>
+
+    <animation>
+      <type>select</type>
+      <object-name>apu on</object-name>
+      <condition>
+        <greater-than>
+	  <property>/engines/engine[4]/off-start-run</property>
+	  <value>0</value>
+	</greater-than>
+      </condition>
+    </animation>
+
+   <animation>
+     <type>pick</type>
+     <object-name>OH Land Lt group</object-name>
+     <action>
+       <button>0</button>
+       <binding>
+         <command>property-toggle</command>
+	 <property>/controls/switches/landing-light</property>
+	 <step>1.0</step>
+         <min>0</min>
+         <max>1</max>
+         <wrap>false</wrap>
+       </binding>
+       <binding>
+        <command>property-toggle</command>
+        <property>/sim/sound/switch</property>
+       </binding>
+     </action>
+     <action>
+       <button>1</button>
+       <binding>
+         <command>property-adjust</command>
+	 <property>/controls/switches/landing-light</property>
+	 <step>-1.0</step>
+	 <min>0</min>
+	 <max>1</max>
+	 <wrap>false</wrap>
+       </binding>
+       <binding>
+        <command>property-toggle</command>
+        <property>/sim/sound/switch</property>
+       </binding>
+     </action>
+   </animation>
+   <animation>
+     <type>rotate</type>
+     <object-name>OH Land Lt group</object-name>
+     <property>/controls/switches/landing-light</property>
+     <interpolation>
+        <entry><ind>0</ind><dep>0</dep></entry>
+        <entry><ind>1</ind><dep>-3</dep></entry>
+      </interpolation>
+      <!-- axis>
+        <x>0</x>
+        <y>1</y>
+        <z>0</z>
+      </axis>
+      <center>
+        <x-m>-0.0531</x-m>
+        <y-m>0.0001</y-m>
+        <z-m>-0.2001</z-m>
+      </center -->
+      <center>
+ <x-m>-0.160150</x-m>
+ <y-m>0.001000</y-m>
+ <z-m>-0.091600</z-m>
+</center>
+
+<axis>
+ <x>-1.000000</x>
+ <y>0.000000</y>
+ <z>0.000000</z>
+</axis>
+
+   </animation>
+   
+   <!-- SIGNS -->
+   <animation>
+     <type>pick</type>
+     <object-name>OH No Smoke Lt Sw</object-name>
+     <action>
+       <button>0</button>
+       <binding>
+         <command>property-adjust</command>
+	 <property>/controls/switches/no-smoking</property>
+	 <step>1.0</step>
+         <min>0</min>
+         <max>2</max>
+         <wrap>false</wrap>
+       </binding>
+       <binding>
+        <command>property-toggle</command>
+        <property>/sim/sound/switch</property>
+       </binding>
+     </action>
+     <action>
+       <button>1</button>
+       <binding>
+         <command>property-adjust</command>
+	 <property>/controls/switches/no-smoking</property>
+	 <step>-1.0</step>
+	 <min>0</min>
+	 <max>2</max>
+	 <wrap>false</wrap>
+       </binding>
+       <binding>
+        <command>property-toggle</command>
+        <property>/sim/sound/switch</property>
+       </binding>
+     </action>
+   </animation>
+   <animation>
+     <type>rotate</type>
+     <object-name>OH No Smoke Lt Sw</object-name>
+     <property>/controls/switches/no-smoking</property>
+     <interpolation>
+        <entry><ind>0</ind><dep>0</dep></entry>
+        <entry><ind>1</ind><dep>1.5</dep></entry>
+	<entry><ind>2</ind><dep>3</dep></entry>
+      </interpolation>
+      <!-- axis>
+        <x1-m>-0.0235</x1-m>
+        <y1-m>0.0010</y1-m>
+        <z1-m>-0.2169</z1-m>
+        <x2-m>-0.0235</x2-m>
+        <y2-m>0.0010</y2-m>
+        <z2-m>-0.2054</z2-m>
+      </axis -->
+      <center>
+ <x-m>-0.160650</x-m>
+ <y-m>0.001000</y-m>
+ <z-m>-0.223300</z-m>
+</center>
+
+<axis>
+ <x>-1.000000</x>
+ <y>0.000000</y>
+ <z>0.000000</z>
+</axis>
+
+      <!-- axis>
+        <x>0</x>
+        <y>1</y>
+        <z>0</z>
+      </axis>
+      <center>
+        <x-m>-0.0225</x-m>
+        <y-m>-0.0013</y-m>
+        <z-m>-0.2117</z-m>
+      </center -->
+   </animation>
+
+<animation>
+     <type>pick</type>
+     <object-name>OH Seat Belt Lt Sw</object-name>
+     <action>
+       <button>0</button>
+       <binding>
+         <command>property-adjust</command>
+	 <property>/controls/switches/seat-belt</property>
+	 <step>1.0</step>
+         <min>0</min>
+         <max>2</max>
+         <wrap>false</wrap>
+       </binding>
+       <binding>
+        <command>property-toggle</command>
+        <property>/sim/sound/switch</property>
+       </binding>
+     </action>
+     <action>
+       <button>1</button>
+       <binding>
+         <command>property-adjust</command>
+	 <property>/controls/switches/seat-belt</property>
+	 <step>-1.0</step>
+	 <min>0</min>
+	 <max>2</max>
+	 <wrap>false</wrap>
+       </binding>
+       <binding>
+        <command>property-toggle</command>
+        <property>/sim/sound/switch</property>
+       </binding>
+     </action>
+   </animation>
+   <animation>
+     <type>rotate</type>
+     <object-name>OH Seat Belt Lt Sw</object-name>
+     <property>/controls/switches/seat-belt</property>
+     <interpolation>
+        <entry><ind>0</ind><dep>0</dep></entry>
+        <entry><ind>1</ind><dep>1.5</dep></entry>
+	<entry><ind>2</ind><dep>3</dep></entry>
+      </interpolation>
+      <!-- axis>
+        <x1-m>-0.0235</x1-m>
+        <y1-m>0.0010</y1-m>
+        <z1-m>-0.2169</z1-m>
+        <x2-m>-0.0235</x2-m>
+        <y2-m>0.0010</y2-m>
+        <z2-m>-0.2054</z2-m>
+      </axis -->
+      <!-- axis>
+        <x>0</x>
+        <y>-1</y>
+        <z>0</z>
+      </axis>
+      <center>
+        <x-m>-0.0225</x-m>
+        <y-m>-0.0010</y-m>
+        <z-m>-0.1828</z-m>
+      </center -->
+      <center>
+ <x-m>-0.161000</x-m>
+ <y-m>0.001000</y-m>
+ <z-m>-0.196600</z-m>
+</center>
+
+<axis>
+ <x>-1.000000</x>
+ <y>0.000000</y>
+ <z>0.000000</z>
+</axis>
+
+   </animation>
+
+
+<animation>
+     <type>pick</type>
+     <object-name>OH Beacon Lt Sw</object-name>
+     <action>
+       <button>0</button>
+       <binding>
+         <command>property-adjust</command>
+	 <property>/controls/switches/beacon</property>
+	 <step>1.0</step>
+         <min>0</min>
+         <max>1</max>
+         <wrap>false</wrap>
+       </binding>
+       <binding>
+        <command>property-toggle</command>
+        <property>/sim/sound/switch</property>
+       </binding>
+     </action>
+     <action>
+       <button>1</button>
+       <binding>
+         <command>property-adjust</command>
+	 <property>/controls/switches/beacon</property>
+	 <step>-1.0</step>
+	 <min>0</min>
+	 <max>1</max>
+	 <wrap>false</wrap>
+       </binding>
+       <binding>
+        <command>property-toggle</command>
+        <property>/sim/sound/switch</property>
+       </binding>
+     </action>
+   </animation>
+   <animation>
+     <type>rotate</type>
+     <object-name>OH Beacon Lt Sw</object-name>
+     <property>/controls/switches/beacon</property>
+     <interpolation>
+        <entry><ind>0</ind><dep>0</dep></entry>
+        <entry><ind>1</ind><dep>-3</dep></entry>
+      </interpolation>
+      
+      <!-- axis>
+        <x>0</x>
+        <y>-1</y>
+        <z>0</z>
+      </axis>
+      <center>
+        <x-m>-0.0225</x-m>
+        <y-m>-0.0010</y-m>
+        <z-m>-0.1828</z-m>
+      </center -->
+
+      <center>
+        <x-m>-0.196500</x-m>
+        <y-m>0.002800</y-m>
+        <z-m>-0.049550</z-m>
+      </center>
+
+      <axis>
+        <x>0.999783</x>
+        <y>0.000000</y>
+        <z>0.020829</z>
+      </axis>
+   </animation>
+   
+
+<animation>
+     <type>pick</type>
+     <object-name>OH Strobe Lt Sw</object-name>
+     <action>
+       <button>0</button>
+       <binding>
+         <command>property-adjust</command>
+	 <property>/controls/switches/strobe</property>
+	 <step>1.0</step>
+         <min>0</min>
+         <max>1</max>
+         <wrap>false</wrap>
+       </binding>
+       <binding>
+        <command>property-toggle</command>
+        <property>/sim/sound/switch</property>
+       </binding>
+     </action>
+     <action>
+       <button>1</button>
+       <binding>
+         <command>property-adjust</command>
+	 <property>/controls/switches/strobe</property>
+	 <step>-1.0</step>
+	 <min>0</min>
+	 <max>1</max>
+	 <wrap>false</wrap>
+       </binding>
+       <binding>
+        <command>property-toggle</command>
+        <property>/sim/sound/switch</property>
+       </binding>
+     </action>
+   </animation>
+   <animation>
+     <type>rotate</type>
+     <object-name>OH Strobe Lt Sw</object-name>
+     <property>/controls/switches/strobe</property>
+     <interpolation>
+        <entry><ind>0</ind><dep>0</dep></entry>
+        <entry><ind>1</ind><dep>-3</dep></entry>
+      </interpolation>
+      <!-- axis>
+        <x>0</x>
+        <y>-1</y>
+        <z>0</z>
+      </axis>
+      <center>
+        <x-m>-0.0225</x-m>
+        <y-m>-0.0010</y-m>
+        <z-m>-0.1828</z-m>
+      </center -->
+      <center>
+ <x-m>-0.197550</x-m>
+ <y-m>0.001000</y-m>
+ <z-m>-0.027300</z-m>
+</center>
+
+<axis>
+ <x>0.999472</x>
+ <y>0.000000</y>
+ <z>-0.032503</z>
+</axis>
+
+   </animation>
+
+<animation>
+     <type>pick</type>
+     <object-name>OH NAV Logo Lt Sw</object-name>
+     <action>
+       <button>0</button>
+       <binding>
+         <command>property-adjust</command>
+	 <property>/controls/switches/nav-logo-lights</property>
+	 <step>1.0</step>
+         <min>0</min>
+         <max>2</max>
+         <wrap>false</wrap>
+       </binding>
+       <binding>
+        <command>property-toggle</command>
+        <property>/sim/sound/switch</property>
+       </binding>
+     </action>
+     <action>
+       <button>1</button>
+       <binding>
+         <command>property-adjust</command>
+	 <property>/controls/switches/nav-logo-lights</property>
+	 <step>-1.0</step>
+	 <min>0</min>
+	 <max>2</max>
+	 <wrap>false</wrap>
+       </binding>
+       <binding>
+        <command>property-toggle</command>
+        <property>/sim/sound/switch</property>
+       </binding>
+     </action>
+   </animation>
+   <animation>
+     <type>rotate</type>
+     <object-name>OH NAV Logo Lt Sw</object-name>
+     <property>/controls/switches/nav-logo-lights</property>
+     <interpolation>
+        <entry><ind>0</ind><dep>0</dep></entry>
+        <entry><ind>1</ind><dep>5</dep></entry>
+	<entry><ind>2</ind><dep>10</dep></entry>
+      </interpolation>
+      <!-- axis>
+        <x>0</x>
+        <y>-1</y>
+        <z>0</z>
+      </axis>
+      <center>
+        <x-m>-0.0225</x-m>
+        <y-m>-0.0010</y-m>
+        <z-m>-0.1828</z-m>
+      </center -->
+      <center>
+ <x-m>-0.196150</x-m>
+ <y-m>0.001000</y-m>
+ <z-m>-0.118050</z-m>
+</center>
+
+<axis>
+ <x>0.997615</x>
+ <y>0.000000</y>
+ <z>-0.069018</z>
+</axis>
+   </animation>
+
+
+</PropertyList> 
+ 
