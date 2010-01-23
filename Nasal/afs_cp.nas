@@ -67,7 +67,7 @@ SPD_THRIDL=7;
 
 
 # working memory
-trace = 0;
+trace = 1;
 
 
 
@@ -564,7 +564,8 @@ toggle_thrust_detent = func(n) {
    ###tracer("A/THR detent repeat time: "~difTime);
    if (difTime > 0.268) {
      var currDetent = int(getprop("/instrumentation/flightdirector/athr"));
-     var currThrottle = int(getprop("/controls/engines/engine[0]/throttle"));
+     #var currThrottle = int(getprop("/controls/engines/engine[0]/throttle"));
+     var currThrottle = int(getprop("/controls/engines/engine[0]/thrust-lever"));
      var currFlexThrottle = int(getprop("/instrumentation/afs/flex-throttle"));
      tracer("[afs] start - currDetent: "~currDetent~", currThrottle: "~currThrottle~", curFlexThrottle: "~currFlexThrottle);
      if (currFlexThrottle == nil or currFlexThrottle == 0) {
@@ -576,14 +577,14 @@ toggle_thrust_detent = func(n) {
          nearDetent = 3;
        }
      }
-     if (currThrottle > currFlexThrottle and currThrottle < throttleRates[3]) {
+     if (currThrottle > throttleRates[2] and currThrottle < throttleRates[3]) {
        if (n == 1) {
          nearDetent = 3;
        } else {
          nearDetent = 2;
        }
      }
-     if (currThrottle > throttleRates[1] and currThrottle < currFlexThrottle) {
+     if (currThrottle > throttleRates[1] and currThrottle < throttleRates[2]) {
        if (n == 1) {
          nearDetent = 2;
        } else {
@@ -657,9 +658,10 @@ toggle_thrust_detent = func(n) {
        setprop("/instrumentation/flightdirector/spd",SPD_THRIDL);
      }
      for(e=0; e <4; e=e+1) {
-       tracer("Set throttle: "~newThrottle~", engine: "~e);
+       ##interpolate("/controls/engines/engine["~e~"]/thrust-lever", throttleRates[currDetent], 1);
        var curTh = getprop("/controls/engines/engine["~e~"]/throttle");
-       if (newThrottle < curTh) {
+       tracer("Current Throttle: "~curTh~", set new throttle: "~newThrottle~", engine: "~e~", throttleRate: "~throttleRates[currDetent]);       
+       if (currDetent == 1 and n == -1) {
          interpolate("/controls/engines/engine["~e~"]/throttle",newThrottle,5);
        } else {
          setprop("/controls/engines/engine["~e~"]/throttle",newThrottle);
@@ -670,12 +672,17 @@ toggle_thrust_detent = func(n) {
 }
 
 adjust_thrust = func(n) {
+  tracer("[afs] adjust thrust: "~n);
   setprop("/instrumentation/flightdirector/at-on",0);
   setprop("/instrumentation/flightdirector/spd",0);
   for(var e=0; e < 4; e=e+1) {
-    var curTh = getprop("/controls/engines/engine["~e~"]/throttle");
+    var curTh = getprop("/controls/engines/engine["~e~"]/thrust-lever");
     var inc = (n/100);
-    setprop("/controls/engines/engine["~e~"]/throttle", (curTh+inc));
+    var newThrust = curTh+inc;
+    if (newThrust < 0.0) newThrust = 0.0;
+    if (newThrust > 1.0) newThrust = 1.0;
+    setprop("/controls/engines/engine["~e~"]/thrust-lever", newThrust);
+    setprop("/controls/engines/engine["~e~"]/throttle", newThrust);
   }
 }
 
