@@ -60,11 +60,12 @@ SPD_THRCLB=3;
 SPD_SPEED=4;
 SPD_MACH=5;
 SPD_CRZ=6;
-SPD_THRIDL=7;
+SPD_THRDES=7;
+SPD_THRIDL=8;
 
 lnavStr = ["off","HDG","TRK","LOC","NAV","RWY"];
 vnavStr = ["off","ALT(s)","V/S","OP CLB","FPA","OP DES","CLB","ALT(m)","DES","G/S","SRS","LEVEL"];
-spdStr  = ["off","TOGA","FLEX","THR CLB","SPEED","MACH","CRZ","THR IDL","THR CLB"];
+spdStr  = ["off","TOGA","FLEX","THR CLB","SPEED","MACH","CRZ","THR DES","THR IDL"];
 
 version="V1.0.1B";
 trace=0;
@@ -598,7 +599,9 @@ setlistener("/instrumentation/flightdirector/at-on", func(n) {
       }
       if (spdMode == SPD_CRZ) {   #CRZ
       }
-      if (spdMode == SPD_THRIDL) {   #THR IDL
+      if (spdMode == SPD_THRDES) {   #THR DES
+      }
+      if (spdMode == SPD_THRIDL) {  #THR IDL
       }
     } else {
       setprop("autopilot/locks/speed","");
@@ -737,8 +740,8 @@ setlistener("/instrumentation/flightdirector/vnav", func(n) {
           tracer("Set DESCENT VNAV #2: "~fmsVS);
           setprop("/autopilot/settings/vertical-speed-fpm",fmsVS);
           setprop("/autopilot/locks/altitude","vertical-speed-hold");
-          if (getprop("/instrumentation/flightdirector/spd") != SPD_THRIDL) {
-            setprop("/instrumentation/flightdirector/spd", SPD_THRIDL);
+          if (getprop("/instrumentation/flightdirector/spd") != SPD_THRDES) {
+            setprop("/instrumentation/flightdirector/spd", SPD_THRDES);
           }
         }
       } else {
@@ -832,7 +835,7 @@ setlistener("/instrumentation/flightdirector/spd", func(n) {
               }
             }    
       }
-      if (spdMode == SPD_THRIDL) {   #THR IDL
+      if (spdMode == SPD_THRDES) {   #THR DES
         var curAlt = getprop("/position/altitude-ft");
         if (curAlt > 15000 and getprop("/autopilot/settings/target-speed-kt") > 270) {
           interpolate("/autopilot/settings/target-speed-kt",270,90);
@@ -1224,15 +1227,15 @@ update_mode = func {
     if (nextWpAlt == descentAlt and vnav != VNAV_DES and managedVert == 1) {
       vnav = VNAV_DES;
       setprop("/instrumentation/flightdirector/vnav",vnav);  # DES
-      if (getprop("/instrumentation/flightdirector/spd") != SPD_THRIDL) {
-        setprop("/instrumentation/flightdirector/spd", SPD_THRIDL);  # THR IDL
+      if (getprop("/instrumentation/flightdirector/spd") != SPD_THRDES) {
+        setprop("/instrumentation/flightdirector/spd", SPD_THRDES);  # THR DES
       }
     }
-    if (vnav == VNAV_DES and nextWpAlt <= 10000 and managedVert == 1 and spd == SPD_THRIDL and spdDesArm3 == 0) {
+    if (vnav == VNAV_DES and nextWpAlt <= 10000 and managedVert == 1 and spd == SPD_THRDES and spdDesArm3 == 0) {
       spdDesArm3 = 1;
       interpolate("/autopilot/settings/target-speed-kt",250,60);
     }
-    if (vnav == VNAV_DES and nextWpAlt <= 4000 and managedVert == 1 and spd == SPD_THRIDL and spdDesArm4 == 0) {
+    if (vnav == VNAV_DES and nextWpAlt <= 4000 and managedVert == 1 and spd == SPD_THRDES and spdDesArm4 == 0) {
       spdDesArm4 = 1;
       interpolate("/autopilot/settings/target-speed-kt",220,60);
     }
@@ -1724,7 +1727,7 @@ update_nav = func () {
             var nextSeq = int(curSeq+1);
             ##setprop("/autopilot/route-manager/input", "@pop");
             setprop("/autopilot/route-manager/current-wp",nextSeq);
-            
+            print("[Guidance] completed turn anticipation #1");
             trk_lck_mode=0;  #next leg - reset track mode
           }
         }
@@ -1739,6 +1742,7 @@ update_nav = func () {
             var nextSeq = int(curSeq+1);
             ##setprop("/autopilot/route-manager/input", "@pop");
             setprop("/autopilot/route-manager/current-wp",nextSeq);
+            print("[Guidance] completed turn anticipation #2");
           }
         }
       }

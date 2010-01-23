@@ -6,7 +6,7 @@
 #  and the Route-Manager plan.
 #
 # Author: Scott Hamilton  - Sept 2009.
-# Version: V1.0.2
+# Version: V1.0.3
 #
 #   Copyright (C) 2009 Scott Hamilton
 #
@@ -16,6 +16,7 @@
 # Modification History:
 # When		Who     Version		What
 # 01-SEP-2009	S.H.	V1.0		Initial version
+# 13-DEC-2009	S.H.	V1.0.3		Calculate descent where more than one WP has unknown altitude
 #
 # 
 
@@ -27,7 +28,7 @@ inputValue = "";
 trace = 0;         ## Set to 0 to turn off all tracing messages
 depDB = nil;
 arvDB = nil;
-version = "V1.0.2C";
+version = "V1.0.4D";
 
 routeClearArm = 0;
 
@@ -106,6 +107,8 @@ init_mcdu = func() {
     setprop("/instrumentation/mcdu[0]/opt-error-display",0);
     setprop("/instrumentation/mcdu[1]/opt-error-display",0);
   
+    setprop("/instrumentation/afs/routeClearArm",0);
+
     var depapt = airportinfo();
     setprop("/instrumentation/afs/FROM",depapt["id"]);
     #setprop("/instrumentation/afs/depart-runway","");
@@ -169,7 +172,7 @@ changePage = func(unit,page) {
   setprop("/instrumentation/mcdu["~unit~"]/opt-error-display",0);
 
   for(r =0; r != 8; r=r+1) {
-      var optAttr = sprintf("/instrumentation/mcdu[%i]opt%02i",unit,r+1);
+      var optAttr = sprintf("/instrumentation/mcdu[%i]/opt%02i",unit,r+1);
       var col1Attr = sprintf("/instrumentation/mcdu[%i]/col01-opt%02i",unit,r+1);
       var col2Attr = sprintf("/instrumentation/mcdu[%i]/col02-opt%02i",unit,r+1);
      
@@ -187,23 +190,21 @@ changePage = func(unit,page) {
     if (size(err)) {
       arvApt = nil;
     }
-    ####var arvApt = airportinfo(getprop("/instrumentation/afs/TO"));
-
     if (depApt != nil and arvApt != nil) {    
-
-    if (routeClearArm == 0) {
-      setprop("/autopilot/route-manager/cruise/flight-level",0);
-      setprop("/autopilot/route-manager/cruise/altitude-ft",0);
-      setprop("/autopilot/route-manager/active",0);
-      setprop("/autopilot/route-manager/input","@clear");
-      var wpIns = sprintf("%s@%i",depApt.id,depApt.elevation);
-      tracer("clear route-manager, add depart airport: "~wpIns);
-      setprop("/autopilot/route-manager/input",wpIns);
-      routeClearArm = 1;
-      ###setprop("/instrumentation/afs/CRZ_FL",crzFl);
-      setprop("/instrumentation/afs/thrust-cruise-alt",crzFl*100);
-      ##print(">>>>>>>>>>>>>> set thrust-cruise-alt: "~(crzFl*100));
-    }
+      if (trace > 0) {
+        debug.dump(arvApt);
+      }
+      if (getprop("/instrumentation/afs/routeClearArm") == 0) {
+        setprop("/autopilot/route-manager/cruise/flight-level",0);
+        setprop("/autopilot/route-manager/cruise/altitude-ft",0);
+        setprop("/autopilot/route-manager/active",0);
+        setprop("/autopilot/route-manager/input","@clear");
+        var wpIns = sprintf("%s@%i",depApt.id,depApt.elevation);
+        tracer("clear route-manager, add depart airport: "~wpIns);
+        setprop("/autopilot/route-manager/input",wpIns);
+        setprop("/instrumentation/afs/routeClearArm",1);
+        setprop("/instrumentation/afs/thrust-cruise-alt",crzFl*100);
+      }
 
     var depCourse = getprop("/instrumentation/afs/dep-course");
     depCourse = calcOrthHeadingDeg(depApt.lat,depApt.lon,arvApt.lat,arvApt.lon);
@@ -257,6 +258,9 @@ changePage = func(unit,page) {
     var rwyScroll = getprop("/instrumentation/mcdu["~unit~"]/opt-scroll");
     var depApt = airportinfo(getprop("/instrumentation/afs/FROM"));
     var arvApt = airportinfo(getprop("/instrumentation/afs/TO"));
+    if (trace > 0) {
+      debug.dump(arvApt);
+    }
     var depCourse = getprop("/instrumentation/afs/dep-course");
     if (depCourse == nil) {
       depCourse = calcOrthHeadingDeg(depApt.lat,depApt.lon,arvApt.lat,arvApt.lon);
@@ -290,7 +294,7 @@ changePage = func(unit,page) {
       var run = runWays[key];
       if (run["length"] > 2000) {
         pos = pos+1;
-        var rwyAttr = sprintf("/instrumentation/mcdu[%i]opt%02i",unit,pos);
+        var rwyAttr = sprintf("/instrumentation/mcdu[%i]/opt%02i",unit,pos);
         var rwyLenAttr = sprintf("/instrumentation/mcdu[%i]/col01-opt%02i",unit,pos);
         var rwyHdgAttr = sprintf("/instrumentation/mcdu[%i]/col02-opt%02i",unit,pos);
         tracer("[MCDU] set attr: "~rwyAttr~", run val: "~key);
@@ -321,7 +325,7 @@ changePage = func(unit,page) {
       var sidList = depDB.getSIDList(getprop("/instrumentation/afs/dep-rwy"));
       setprop("/instrumentation/mcdu["~unit~"]/opt-size",size(sidList));
       for(var pos = 0; pos != size(sidList); pos=pos+1) {
-        var sidAttr = sprintf("/instrumentation/mcdu[%i]opt%02i",unit,pos+1);
+        var sidAttr = sprintf("/instrumentation/mcdu[%i]/opt%02i",unit,pos+1);
         var sidNumWptAttr = sprintf("/instrumentation/mcdu[%i]/col01-opt%02i",unit,pos+1);
         var sidTransAttr = sprintf("/instrumentation/mcdu[%i]/col02-opt%02i",unit,pos+1);
         var proc = sidList[pos];
@@ -367,7 +371,7 @@ changePage = func(unit,page) {
       }
       var pos = 0;
       for(var p = (rwyScroll*8); p != size(starList); p=p+1) {
-        var starAttr = sprintf("/instrumentation/mcdu[%i]opt%02i",unit,pos+1);
+        var starAttr = sprintf("/instrumentation/mcdu[%i]/opt%02i",unit,pos+1);
         var starTransAttr = sprintf("/instrumentation/mcdu[%i]/col02-opt%02i",unit,pos+1);
         var starNumWptAttr = sprintf("/instrumentation/mcdu[%i]/col01-opt%02i",unit,pos+1);
         var proc = starList[p];
@@ -412,7 +416,7 @@ changePage = func(unit,page) {
       var pos = 1;
       foreach(var proc; sid.transitions) {
         if (proc.trans_type == "sid") {
-          var sidAttr = sprintf("/instrumentation/mcdu[%i]opt%02i",unit,pos);
+          var sidAttr = sprintf("/instrumentation/mcdu[%i]/opt%02i",unit,pos);
           var sidNumWptAttr = sprintf("/instrumentation/mcdu[%i]/col01-opt%02i",unit,pos);
           var sidTransAttr = sprintf("/instrumentation/mcdu[%i]/col02-opt%02i",unit,pos);
           setprop(sidAttr, proc.trans_name);
@@ -482,6 +486,21 @@ selectRwyAction = func(rwy, unit) {
   var rwyAttr = sprintf("/instrumentation/afs/%s-rwy",direct);
   var rwyVal = getprop("/instrumentation/mcdu["~unit~"]/"~rwy);
   setprop(rwyAttr,rwyVal);
+  if (direct == "dep") {
+    var apt = airportinfo(getprop("/instrumentation/afs/FROM"));
+    var mhz = getILS(apt,rwyVal);
+    tracer("depart ILS: "~mhz);
+    ##setprop("/instrumentation/nav[0]/selected-mhz",mhz);
+    setprop("/instrumentation/nav[0]/frequencies/selected-mhz",mhz);
+    ##setprop("/instrumentation/nav[0]/frequencies/selected-mhz-fmt",mhz);
+  } else {
+    var apt = airportinfo(getprop("/instrumentation/afs/TO"));
+    var mhz = getILS(apt,rwyVal);
+    tracer("arrive ILS: "~mhz);
+    ##setprop("/instrumentation/nav[0]/standby-mhz",mhz);
+    setprop("/instrumentation/nav[0]/frequencies/standby-mhz",mhz);
+    ##setprop("/instrumentation/nav[0]/frequencies/standby-mhz-fmt",mhz);
+  }
   tracer("[MCDU] set: "~rwyAttr~", runway: "~rwyVal);
 }
 
@@ -719,6 +738,8 @@ selectSidAction = func(opt, unit) {
           }
         }
       }
+    } else {
+      tracer("[MCDU] WARN: found "~size(appr)~" approaches, can't use any!!");
     }
     updateApproachAlts();
     setprop("/autopilot/route-manager/active",1);
@@ -790,18 +811,45 @@ updateApproachAlts = func() {
          var prevLat = getprop("/autopilot/route-manager/route/wp["~(r-1)~"]/latitude-deg");
          var prevLon = getprop("/autopilot/route-manager/route/wp["~(r-1)~"]/longitude-deg");
          var prevAlt = getprop("/autopilot/route-manager/route/wp["~(r-1)~"]/altitude-ft");
-         tracer("[FMS] start - r="~r~", rtId="~rtId~" prev trans lat: "~prevLat~"/lon: "~prevLon~", next lat: "~nextLat~"/lon: "~nextLon~", this lat: "~rtLat~"/lon: "~rtLon);
+         
+         var nextWpLat = 0.0;
+         var nextWpLon = 0.0;
+         var nextWpAlt = 1;
+         if (r+2 <= rtSize) {
+           nextWpAlt = getprop("/autopilot/route-manager/route/wp["~(r+1)~"]/altitude-ft");
+         }
+         
+         tracer("[FMS] start - r="~r~" of "~rtSize~", rtId="~rtId~" prev trans lat: "~prevLat~"/lon: "~prevLon~", next lat: "~nextLat~"/lon: "~nextLon~", this lat: "~rtLat~"/lon: "~rtLon);
          tracer("[FMS] prev trans alt: "~prevAlt~", next alt: "~nextAlt);
          var prevDist = gcd2(prevLat, prevLon, rtLat, rtLon, "nm");
          var nextDist = gcd2(rtLat, rtLon, nextLat, nextLon, "nm");
-         if (nextAlt < 1) {
+         if (nextAlt == -1) {
+           var lastWpLat = nextLat;
+           var lastWpLon = nextLon;
+           tracer("[FMS] begin calc intermediate: nextWpAlt: "~nextWpAlt~", nextDist: "~nextDist);
+           for(var rplus = r+2; rplus <= rtSize and (nextWpAlt == -1); rplus=rplus+1) {
+             nextWpLat = getprop("/autopilot/route-manager/route/wp["~(rplus)~"]/latitude-deg");
+             nextWpLon = getprop("/autopilot/route-manager/route/wp["~(rplus)~"]/longitude-deg");
+             nextWpAlt = getprop("/autopilot/route-manager/route/wp["~(rplus)~"]/altitude-ft");
+             var tmpDist = gcd2(lastWpLat, lastWpLon, nextWpLat, nextWpLon, "nm");
+             tracer("[FMS] add intermediate WP dist: "~tmpDist);
+             nextDist = nextDist+tmpDist;
+             lastWpLat = nextWpLat;
+             lastWpLon = nextWpLon;
+           }
+           #####nextAlt = nextWpAlt;
+           tracer("[FMS] total intermediate distance: "~nextDist~", nextAlt: "~nextAlt);
+           nextAlt = nextWpAlt;
+         }
+
+         if (nextAlt == -1) {
            var angle = 3;
            if ((prevAlt-5000) < 11000) {
              angle = 2;
            }
            var tmpHeight = calcHeightAtAngle(angle,(prevDist+nextDist));
            nextAlt = prevAlt-tmpHeight;
-           tracer("[FMS] invalid nextAlt recalc - nextAlt: "~nextAlt~", tmpHeight: "~tmpHeight);
+           tracer("[FMS] invalid nextAlt recalc - nextAlt: "~nextAlt~", tmpHeight: "~tmpHeight~", angle: "~angle);
          }
          tracer("[FMS] end - prev trans Dist: "~prevDist~"nm, nextDist: "~nextDist~"nm");
          var thisAlt = int(prevAlt-(((prevAlt-nextAlt)/(prevDist+nextDist))*prevDist));
@@ -848,7 +896,7 @@ scrollRwy = func(unit,direct) {
     rwyScroll = 0;
   }
   for(r =0; r != 8; r=r+1) {
-      var rwyAttr = sprintf("/instrumentation/mcdu[%i]opt%02i",unit,r+1);
+      var rwyAttr = sprintf("/instrumentation/mcdu[%i]/opt%02i",unit,r+1);
       var rwyLenAttr = sprintf("/instrumentation/mcdu[%i]/col01-opt%02i",unit,r+1);
       var rwyHdgAttr = sprintf("/instrumentation/mcdu[%i]/col02-opt%02i",unit,r+1);
      
@@ -860,7 +908,19 @@ scrollRwy = func(unit,direct) {
   changePage(unit,getprop("/instrumentation/mcdu["~unit~"]/page"));
 }
 
-
+##############################################
+## get ILS frequency from airportinfo.
+var getILS = func(apt, rwy) {
+   var runways = apt["runways"];
+   var ks = keys(runways);
+   for(var r=0; r != size(runways); r=r+1) {
+     var run = runways[ks[r]];
+     if (run.id == rwy) {
+       var mhz = sprintf("%3.1f",run.ils_frequency_mhz);
+       return mhz;
+     }
+   }
+}
 
 
 #################################################

@@ -46,8 +46,8 @@
        <property>sim/current-view/view-number</property>
        <value>0</value>
       </equals>
-         <property>/instrumentation/nav/has-gs</property>
-         <property>/instrumentation/nav/in-range</property>
+         <!-- property>/instrumentation/nav/has-gs</property -->
+         <property>/instrumentation/nav/gs-in-range</property>
      </and>
    </condition>
  </animation>
@@ -59,7 +59,7 @@
    <interpolation>
      <entry>
        <ind> -10.0</ind>
-       <dep>-0.0308</dep>
+       <dep>-0.05</dep>
      </entry>
      <entry>
        <ind> 0.0</ind>
@@ -67,9 +67,23 @@
      </entry>
      <entry>
        <ind> 10.0</ind>
-       <dep>0.0308</dep>
+       <dep>0.05</dep>
      </entry>
-</interpolation>
+  </interpolation>
+  <!-- interpolation>
+    <entry>
+      <ind></ind>
+      <dep></dep>
+    </entry>
+    <entry>
+      <ind>0.0</ind>
+      <dep>0.0</dep>
+    </entry>
+    <entry>
+      <ind></ind>
+      <dep></dep>
+    </entry>
+  </interpolation -->
   <axis>
    <x>0</x>
    <y>0</y>
@@ -111,7 +125,7 @@
    <type>translate</type>
    <object-name>LOCneedle</object-name>
    <property>/instrumentation/nav/heading-needle-deflection</property>
-<interpolation>
+   <interpolation>
      <entry>
        <ind> -10.0</ind>
        <dep>-0.0253</dep>
@@ -124,7 +138,21 @@
        <ind> 10.0</ind>
        <dep>0.0253</dep>
      </entry>
-</interpolation> 
+  </interpolation> 
+  <!-- interpolation>
+     <entry>
+       <ind> -10.0</ind>
+       <dep>-0.0253</dep>
+     </entry>
+     <entry>
+       <ind> 0.0</ind>
+       <dep>0.0</dep>
+     </entry>
+     <entry>
+       <ind> 10.0</ind>
+       <dep>0.0253</dep>
+     </entry>
+  </interpolation -->
   <axis>
    <x>0</x>
    <y>1</y>
@@ -241,7 +269,7 @@
    </axis>
  </animation>
 
- <animation>
+ <!-- animation>
    <type>translate</type>
    <object-name>VSIneedle</object-name>
    <property>/autopilot/internal/vert-speed-fpm</property>
@@ -269,24 +297,33 @@
      <y-m>0.084</y-m>
      <z-m>0.004</z-m>
    </center>
- </animation>
+ </animation -->
 
  <animation>
    <type>rotate</type>
    <object-name>VSIneedle</object-name>
-   <property>/autopilot/internal/vert-speed-fpm</property>
+   <!-- property>/autopilot/internal/vert-speed-fpm</property -->
+   <property>/instrumentation/vertical-speed-indicator/indicated-speed-fpm</property>
    <interpolation>
      <entry>
        <ind>-6000.0</ind>
-       <dep>-60.0</dep>
+       <dep>-25.0</dep>
+     </entry>
+     <entry>
+       <ind>-1000.0</ind>
+       <dep>-20.0</dep>
      </entry>
      <entry>
        <ind>0.0</ind>
        <dep>0.0</dep>
      </entry>
      <entry>
+       <ind>1000.0</ind>
+       <dep>20.0</dep>
+     </entry>
+     <entry>
        <ind>6000.0</ind>
-       <dep>60.0</dep>
+       <dep>25.0</dep>
      </entry>
    </interpolation>
    <axis>
@@ -310,7 +347,7 @@
     <pitch-deg>-90</pitch-deg>
     <x-m>-0.187</x-m>
     <y-m>0.116</y-m>
-    <z-m>0.005</z-m>
+    <z-m>0.015</z-m>
   </offsets>
   <type>literal</type>
   <text>HDG</text>
@@ -337,7 +374,7 @@
     <pitch-deg>-90</pitch-deg>
     <x-m>-0.187</x-m>
     <y-m>0.116</y-m>
-    <z-m>0.005</z-m>
+    <z-m>0.015</z-m>
   </offsets>
   <type>literal</type>
   <text>TRK</text>
@@ -365,7 +402,7 @@
     <pitch-deg>-90</pitch-deg>
     <x-m>-0.187</x-m>
     <y-m>0.116</y-m>
-    <z-m>0.005</z-m>
+    <z-m>0.015</z-m>
   </offsets>
   <type>literal</type>
   <text>LOC</text>
@@ -392,7 +429,7 @@
     <pitch-deg>-90</pitch-deg>
     <x-m>-0.187</x-m>
     <y-m>0.116</y-m>
-    <z-m>0.005</z-m>
+    <z-m>0.015</z-m>
   </offsets>
   <type>literal</type>
   <text>NAV</text>
@@ -419,7 +456,7 @@
     <pitch-deg>-90</pitch-deg>
     <x-m>-0.187</x-m>
     <y-m>0.116</y-m>
-    <z-m>0.005</z-m>
+    <z-m>0.015</z-m>
   </offsets>
   <type>literal</type>
   <text>RWY</text>
@@ -447,7 +484,7 @@
     <pitch-deg>-90</pitch-deg>
     <x-m>-0.187</x-m>
     <y-m>0.032</y-m>
-    <z-m>0.005</z-m>
+    <z-m>0.015</z-m>
   </offsets>
   <type>literal</type>
   <text>THR TOGA</text>
@@ -474,7 +511,7 @@
     <pitch-deg>-90</pitch-deg>
     <x-m>-0.187</x-m>
     <y-m>0.032</y-m>
-    <z-m>0.005</z-m>
+    <z-m>0.015</z-m>
   </offsets>
   <type type="string">number-value</type>
   <property type="string">/instrumentation/flightdirector/flex-temp</property>
@@ -503,7 +540,7 @@
     <pitch-deg>-90</pitch-deg>
     <x-m>-0.187</x-m>
     <y-m>0.032</y-m>
-    <z-m>0.005</z-m>
+    <z-m>0.015</z-m>
   </offsets>
   <type>literal</type>
   <text>THR CLB</text>
@@ -530,7 +567,7 @@
     <pitch-deg>-90</pitch-deg>
     <x-m>-0.187</x-m>
     <y-m>0.032</y-m>
-    <z-m>0.005</z-m>
+    <z-m>0.015</z-m>
   </offsets>
   <type>literal</type>
   <text>SPEED</text>
@@ -558,7 +595,7 @@
     <pitch-deg>-90</pitch-deg>
     <x-m>-0.187</x-m>
     <y-m>0.032</y-m>
-    <z-m>0.005</z-m>
+    <z-m>0.015</z-m>
   </offsets>
   <type>literal</type>
   <text>MACH</text>
@@ -586,7 +623,7 @@
     <pitch-deg>-90</pitch-deg>
     <x-m>-0.187</x-m>
     <y-m>0.032</y-m>
-    <z-m>0.005</z-m>
+    <z-m>0.015</z-m>
   </offsets>
   <type>literal</type>
   <text>SPEED</text>
@@ -614,7 +651,7 @@
     <pitch-deg>-90</pitch-deg>
     <x-m>-0.187</x-m>
     <y-m>0.032</y-m>
-    <z-m>0.0105</z-m>
+    <z-m>0.015</z-m>
   </offsets>
   <type>literal</type>
   <text>THR IDL</text>
@@ -629,7 +666,7 @@
        <condition>
          <equals>
            <property>instrumentation/flightdirector/spd</property>
-	   <value>7</value>
+	   <value>8</value>
          </equals>
       </condition>
  </animation>
@@ -642,7 +679,7 @@
     <pitch-deg>-90</pitch-deg>
     <x-m>-0.187</x-m>
     <y-m>0.032</y-m>
-    <z-m>0.005</z-m>
+    <z-m>0.015</z-m>
   </offsets>
   <type>literal</type>
   <text>THR DES</text>
@@ -657,7 +694,7 @@
        <condition>
          <equals>
            <property>instrumentation/flightdirector/spd</property>
-	   <value>8</value>
+	   <value>7</value>
          </equals>
       </condition>
  </animation>
@@ -670,7 +707,7 @@
     <pitch-deg>-90</pitch-deg>
     <x-m>-0.177</x-m>
     <y-m>0.032</y-m>
-    <z-m>0.005</z-m>
+    <z-m>0.015</z-m>
   </offsets>
   <type>literal</type>
   <text>THR LVR</text>
@@ -699,7 +736,7 @@
     <pitch-deg>-90</pitch-deg>
     <x-m>-0.187</x-m>
     <y-m>0.0760</y-m>
-    <z-m>0.005</z-m>
+    <z-m>0.015</z-m>
   </offsets>
   <type>literal</type>
   <text>ALT</text>
@@ -715,7 +752,7 @@
     <pitch-deg>-90</pitch-deg>
     <x-m>-0.187</x-m>
     <y-m>0.0760</y-m>
-    <z-m>0.005</z-m>
+    <z-m>0.015</z-m>
   </offsets>
   <type>literal</type>
   <text>ALT CRZ</text>
@@ -753,7 +790,7 @@
     <pitch-deg>-90</pitch-deg>
     <x-m>-0.187</x-m>
     <y-m>0.0760</y-m>
-    <z-m>0.005</z-m>
+    <z-m>0.015</z-m>
   </offsets>
   <type>literal</type>
   <text>V/S</text>
@@ -780,7 +817,7 @@
     <pitch-deg>-90</pitch-deg>
     <x-m>-0.187</x-m>
     <y-m>0.0760</y-m>
-    <z-m>0.005</z-m>
+    <z-m>0.015</z-m>
   </offsets>
   <type>literal</type>
   <text>OP CLB</text>
@@ -807,7 +844,7 @@
     <pitch-deg>-90</pitch-deg>
     <x-m>-0.187</x-m>
     <y-m>0.07860</y-m>
-    <z-m>0.005</z-m>
+    <z-m>0.015</z-m>
   </offsets>
   <type>literal</type>
   <text>FPA</text>
@@ -834,7 +871,7 @@
     <pitch-deg>-90</pitch-deg>
     <x-m>-0.187</x-m>
     <y-m>0.0760</y-m>
-    <z-m>0.005</z-m>
+    <z-m>0.015</z-m>
   </offsets>
   <type>literal</type>
   <text>OP DES</text>
@@ -861,7 +898,7 @@
     <pitch-deg>-90</pitch-deg>
     <x-m>-0.187</x-m>
     <y-m>0.0760</y-m>
-    <z-m>0.005</z-m>
+    <z-m>0.015</z-m>
   </offsets>
   <type>literal</type>
   <text>CLB</text>
@@ -889,7 +926,7 @@
     <pitch-deg>-90</pitch-deg>
     <x-m>-0.187</x-m>
     <y-m>0.0760</y-m>
-    <z-m>0.005</z-m>
+    <z-m>0.015</z-m>
   </offsets>
   <type>literal</type>
   <text>DES</text>
@@ -917,7 +954,7 @@
     <pitch-deg>-90</pitch-deg>
     <x-m>-0.187</x-m>
     <y-m>0.0760</y-m>
-    <z-m>0.005</z-m>
+    <z-m>0.015</z-m>
   </offsets>
   <type>literal</type>
   <text>G/S</text>
@@ -944,7 +981,7 @@
     <pitch-deg>-90</pitch-deg>
     <x-m>-0.187</x-m>
     <y-m>0.0760</y-m>
-    <z-m>0.005</z-m>
+    <z-m>0.015</z-m>
   </offsets>
   <type>literal</type>
   <text>SRS</text>

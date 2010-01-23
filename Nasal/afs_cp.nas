@@ -67,7 +67,7 @@ SPD_THRIDL=7;
 
 
 # working memory
-trace = 1;
+trace = 0;
 
 
 
