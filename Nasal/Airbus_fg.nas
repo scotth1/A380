@@ -269,7 +269,7 @@ setlistener("/sim/signals/fdm-initialized", func {
     setprop("/instrumentation/afs/vertical-vs-display",-1);
     setprop("/instrumentation/afs/vertical-alt-display",-1);
     setprop("/instrumentation/afs/spd-display",-1);
-    setprop("/instrumentation/afs/thrust-reduce-alt",1500);
+    setprop("/instrumentation/afs/thrust-reduce-alt",1300);
     setprop("/instrumentation/afs/thrust-accel-alt",5500);
     ###  should be set from route manager at initalisation.
     setprop("/instrumentation/afs/thrust-cruise-alt",30000);

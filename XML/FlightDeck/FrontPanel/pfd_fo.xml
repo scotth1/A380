@@ -10,14 +10,20 @@
    <object-name>FDbars</object-name>
    <condition>
    <and>
-   <equals>
-    <property>sim/current-view/view-number</property>
-    <value>0</value>
-   </equals>
+     <or>
        <equals>
-         <property>/instrumentation/flightdirector/fd-on</property>
-         <value>1</value>
+         <property>sim/current-view/view-number</property>
+         <value>0</value>
        </equals>
+       <equals>
+         <property>sim/current-view/view-number</property>
+         <value>9</value>
+       </equals>
+     </or>
+     <equals>
+       <property>/instrumentation/flightdirector/fd-on</property>
+       <value>1</value>
+     </equals>
    </and>
    </condition>
  </animation>
@@ -27,12 +33,18 @@
    <object-name>GSscale</object-name>
    <condition>
      <and>
-      <equals>
-       <property>sim/current-view/view-number</property>
-       <value>0</value>
-      </equals>
-         <property>/instrumentation/nav/has-gs</property>
-         <property>/instrumentation/nav/in-range</property>
+       <or>
+         <equals>
+           <property>sim/current-view/view-number</property>
+           <value>0</value>
+         </equals>
+	 <equals>
+           <property>sim/current-view/view-number</property>
+           <value>9</value>
+         </equals>
+       </or>
+       <property>/instrumentation/nav/has-gs</property>
+       <property>/instrumentation/nav/in-range</property>
      </and>
    </condition>
  </animation>
@@ -42,12 +54,18 @@
    <object-name>GSneedle</object-name>
    <condition>
      <and>
-      <equals>
-       <property>sim/current-view/view-number</property>
-       <value>0</value>
-      </equals>
-         <!-- property>/instrumentation/nav/has-gs</property -->
-         <property>/instrumentation/nav/gs-in-range</property>
+       <or>
+         <equals>
+           <property>sim/current-view/view-number</property>
+           <value>0</value>
+         </equals>
+         <equals>
+           <property>sim/current-view/view-number</property>
+           <value>9</value>
+         </equals>
+       </or>
+       <!-- property>/instrumentation/nav/has-gs</property -->
+       <property>/instrumentation/nav/gs-in-range</property>
      </and>
    </condition>
  </animation>
@@ -96,12 +114,18 @@
    <object-name>LOCscale</object-name>
    <condition>
      <and>
-   <equals>
-    <property>sim/current-view/view-number</property>
-    <value>0</value>
-   </equals>
-         <property>/instrumentation/nav/nav-loc</property>
-         <property>/instrumentation/nav/in-range</property>
+       <or>
+         <equals>
+           <property>sim/current-view/view-number</property>
+           <value>0</value>
+         </equals>
+         <equals>
+           <property>sim/current-view/view-number</property>
+           <value>9</value>
+         </equals>
+       </or>
+       <property>/instrumentation/nav/nav-loc</property>
+       <property>/instrumentation/nav/in-range</property>
      </and>
    </condition>
  </animation>
@@ -111,12 +135,18 @@
    <object-name>LOCneedle</object-name>
    <condition>
      <and>
-   <equals>
-    <property>sim/current-view/view-number</property>
-    <value>0</value>
-   </equals>
-         <property>/instrumentation/nav/nav-loc</property>
-         <property>/instrumentation/nav/in-range</property>
+       <or>
+         <equals>
+           <property>sim/current-view/view-number</property>
+           <value>0</value>
+         </equals>
+         <equals>
+           <property>sim/current-view/view-number</property>
+           <value>9</value>
+         </equals>
+       </or>
+       <property>/instrumentation/nav/nav-loc</property>
+       <property>/instrumentation/nav/in-range</property>
      </and>
    </condition>
  </animation>
@@ -200,10 +230,16 @@
    <type>select</type>
    <object-name>VSIneedle</object-name>
    <condition>
-   <equals>
-    <property>sim/current-view/view-number</property>
-    <value>0</value>
-   </equals>
+     <or>
+       <equals>
+         <property>sim/current-view/view-number</property>
+         <value>0</value>
+       </equals>
+       <equals>
+         <property>sim/current-view/view-number</property>
+         <value>9</value>
+       </equals>
+     </or>
   </condition>
  </animation>
 
