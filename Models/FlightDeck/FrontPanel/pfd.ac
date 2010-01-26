@@ -8,7 +8,7 @@ kids 15
 OBJECT poly
 name "VSscale"
 loc -0.122301 0.00433906 -0.0805393
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Instruments/pfd.png"
+texture "Aircraft/A380/Textures/Instruments/pfd.png"
 crease 30.000000
 numvert 4
 -0.0469769 0 -0.063832
@@ -29,7 +29,7 @@ name "ASIribbon"
 loc -0.126789 -0.00114522 -0.0871708
 data 8
 Mesh.059
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Instruments/spd-tape.png"
+texture "Aircraft/A380/Textures/Instruments/spd-tape.png"
 crease 30.000000
 numvert 4
 -0.0463746 0.00539995 0.0544678
@@ -50,7 +50,7 @@ name "maxspeed"
 loc -0.141433 -0.00320818 -0.0927409
 data 9
 Plane.002
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Instruments/ati.png"
+texture "Aircraft/A380/Textures/Instruments/ati.png"
 crease 30.000000
 numvert 4
 0.0476951 0.00819899 0.064759
@@ -71,7 +71,7 @@ name "minspeed"
 loc -0.141496 -0.00295351 -0.0968815
 data 9
 Plane.001
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/747-400/Panels/Instruments/ati.png"
+texture "Aircraft/747-400/Panels/Instruments/ati.png"
 crease 30.000000
 numvert 4
 0.0476951 0.00819899 0.064759
@@ -90,7 +90,7 @@ kids 0
 OBJECT poly
 name "LOCneedle"
 loc -0.129098 0.0137848 -0.0899452
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Instruments/pfd.png"
+texture "Aircraft/A380/Textures/Instruments/pfd.png"
 crease 30.000000
 numvert 4
 0.058128 -0.007566 0.012439
@@ -109,7 +109,7 @@ kids 0
 OBJECT poly
 name "VSIneedle"
 loc -0.123555 0.00547013 -0.0169412
-texture "pfd2.rgb"
+texture "Aircraft/A380/Textures/Common/pfd2.rgb"
 crease 30.000000
 numvert 4
 -0.00485799 0 -0.136305
@@ -128,7 +128,7 @@ kids 0
 OBJECT poly
 name "GSscale"
 loc -0.122191 0.0114466 -0.0859528
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Instruments/pfd.png"
+texture "Aircraft/A380/Textures/Instruments/pfd.png"
 crease 30.000000
 numvert 4
 -0.038962 -0.006949 -0.042486
@@ -147,7 +147,7 @@ kids 0
 OBJECT poly
 name "LOCscale"
 loc -0.128724 0.0105206 -0.090236
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Instruments/pfd.png"
+texture "Aircraft/A380/Textures/Instruments/pfd.png"
 crease 30.000000
 numvert 12
 0.058725 -0.006899 -0.00786498
@@ -188,7 +188,7 @@ kids 0
 OBJECT poly
 name "GSneedle"
 loc -0.122411 0.012906 -0.0855569
-texture "pfd2.rgb"
+texture "Aircraft/A380/Textures/Common/pfd2.rgb"
 crease 30.000000
 numvert 4
 -0.004448 -0.007516 -0.041978
@@ -207,7 +207,7 @@ kids 0
 OBJECT poly
 name "FDbars"
 loc -0.121361 0.0122737 -0.0910165
-texture "pfd2.rgb"
+texture "Aircraft/A380/Textures/Common/pfd2.rgb"
 crease 30.000000
 numvert 6
 -0.000990003 -0.006838 0.03778
@@ -237,7 +237,7 @@ name "Horizon1"
 loc -1.49012e-08 0 -2.23517e-08
 data 5
 Plane
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Instruments/pfd.png"
+texture "Aircraft/A380/Textures/Instruments/pfd.png"
 crease 30.000000
 numvert 4
 -0.173594 0.00361699 -0.102484
@@ -304,7 +304,7 @@ name "PFDMask"
 loc 0.00044933 0.00255404 -0.00064791
 data 17
 glass_2 - Default
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Instruments/pfd3.png"
+texture "Aircraft/A380/Textures/Instruments/pfd3.png"
 crease 30.000000
 numvert 4
 -0.21 0.004231 -0.16

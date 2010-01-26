@@ -658,7 +658,7 @@ toggle_thrust_detent = func(n) {
        setprop("/instrumentation/flightdirector/spd",SPD_THRIDL);
      }
      for(e=0; e <4; e=e+1) {
-       ##interpolate("/controls/engines/engine["~e~"]/thrust-lever", throttleRates[currDetent], 1);
+       interpolate("/controls/engines/engine["~e~"]/thrust-lever", throttleRates[currDetent], 1);
        var curTh = getprop("/controls/engines/engine["~e~"]/throttle");
        tracer("Current Throttle: "~curTh~", set new throttle: "~newThrottle~", engine: "~e~", throttleRate: "~throttleRates[currDetent]);       
        if (currDetent == 1 and n == -1) {

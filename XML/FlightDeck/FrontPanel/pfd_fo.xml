@@ -343,11 +343,11 @@
    <interpolation>
      <entry>
        <ind>-6000.0</ind>
-       <dep>-25.0</dep>
+       <dep>-50.0</dep>
      </entry>
      <entry>
        <ind>-1000.0</ind>
-       <dep>-20.0</dep>
+       <dep>-25.0</dep>
      </entry>
      <entry>
        <ind>0.0</ind>
@@ -355,11 +355,11 @@
      </entry>
      <entry>
        <ind>1000.0</ind>
-       <dep>20.0</dep>
+       <dep>25.0</dep>
      </entry>
      <entry>
        <ind>6000.0</ind>
-       <dep>25.0</dep>
+       <dep>50.0</dep>
      </entry>
    </interpolation>
    <axis>

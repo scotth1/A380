@@ -76,9 +76,9 @@ flapPos       = [0, 0.2424, 0.5151, 0.7878, 1.0];
 
 trace = 0;
 
-strobe_switch = props.globals.getNode("controls/switches/strobe", 1);
+strobe_switch = props.globals.getNode("/controls/switches/strobe", 0);
 aircraft.light.new("sim/model/A380/lighting/strobe", [0.05, 1.2], strobe_switch);
-beacon_switch = props.globals.getNode("controls/lighting/beacon", 1);
+beacon_switch = props.globals.getNode("/controls/lighting/beacon", 0);
 aircraft.light.new("sim/model/A380/lighting/beacon", [0.05, 1.25], beacon_switch);
 
 
@@ -120,6 +120,10 @@ setprop("/controls/engines/engine[0]/master",0);
 setprop("/controls/engines/engine[1]/master",0);
 setprop("/controls/engines/engine[2]/master",0);
 setprop("/controls/engines/engine[3]/master",0);
+setprop("/controls/engines/engine[0]/thrust-lever",0);
+setprop("/controls/engines/engine[1]/thrust-lever",0);
+setprop("/controls/engines/engine[2]/thrust-lever",0);
+setprop("/controls/engines/engine[3]/thrust-lever",0);
 setprop("/environment/turbulence/use-cloud-turbulence","true");
 setprop("/sim/current-view/field-of-view",60.0);
 setprop("/controls/gear/brake-parking",1.0);
@@ -646,6 +650,16 @@ update_sd = func {
   flt_mode = getprop("/instrumentation/ecam/flight-mode");
   setprop("/instrumentation/ecam/flight-mode", flt_mode);
 };
+
+var stepSpeedbrake = func(step) {
+    if(props.globals.getNode("/sim/spoilers") != nil) {
+        stepProps("/controls/flight/speedbrake", "/sim/spoilers", step);
+        return;
+    }
+    # Hard-coded spoilers movement in 4 equal steps:
+    var val = 0.25 * step + getprop("/controls/flight/speedbrake");
+    setprop("/controls/flight/speedbrake", val > 1 ? 1 : val < 0 ? 0 : val);
+}
 
 
 ## FDM init
