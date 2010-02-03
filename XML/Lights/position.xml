@@ -2,19 +2,12 @@
 
 <PropertyList>
 
-  <path>../../Models/Lights/flash.ac</path>
-  <texture-path>../../Textures/Common/</texture-path>  
-
-  <animation>
-    <!-- Objets opaques -->
-
-    <!-- Objets transparents -->
-    <object-name>flash</object-name>
-  </animation>
+    <path>../../Models/Lights/flash.ac</path>
+  <texture-path>../../Textures/Common/</texture-path>
 
   <animation>
     <type>noshadow</type>
-    <object-name>flash</object-name>
+    <object-name>Light</object-name>
   </animation>
 
   <animation>
@@ -24,24 +17,21 @@
 
   <animation>
     <type>billboard</type>
-    <object-name>flash</object-name>
+    <object-name>Light</object-name>
     <spherical type="bool">true</spherical>
   </animation>
 
-<animation>
-<type>select</type>
-<object-name>flash</object-name>
-<condition>
-     <greater-than>
-        <property>/controls/switches/nav-logo-lights</property>
-        <value>0</value>
-      </greater-than>
-</condition>
-</animation>
+  <animation>
+    <type>select</type>
+    <object-name>Light</object-name>
+    <condition>
+      <property>/controls/switches/nav-lights</property>
+    </condition>
+  </animation>
 
   <animation>
     <type>dist-scale</type>
-    <object-name>flash</object-name>
+    <object-name>Light</object-name>
     <interpolation>
       <entry>
         <ind>0</ind>
@@ -57,7 +47,5 @@
       </entry>
     </interpolation>
   </animation>
-
-
 
 </PropertyList>

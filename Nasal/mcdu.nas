@@ -911,6 +911,9 @@ scrollRwy = func(unit,direct) {
 ##############################################
 ## get ILS frequency from airportinfo.
 var getILS = func(apt, rwy) {
+   if (trace > 0) {
+     debug.dump(apt);
+   }
    var runways = apt["runways"];
    var ks = keys(runways);
    for(var r=0; r != size(runways); r=r+1) {

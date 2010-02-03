@@ -1168,7 +1168,7 @@
      <property>/instrumentation/switches/seatbelt-sign</property>
   </condition>
    <volume>
-    <factor>8.0</factor>
+    <factor>1.0</factor>
    </volume>
   </switch>
   
@@ -1182,7 +1182,7 @@
     </not>
   </condition>
    <volume>
-    <factor>8.0</factor>
+    <factor>1.0</factor>
    </volume>
   </switch>
 

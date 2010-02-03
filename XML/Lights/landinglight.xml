@@ -9,17 +9,17 @@
     <!-- Objets opaques -->
 
     <!-- Objets transparents -->
-    <object-name>flash</object-name>
+    <object-name>Light</object-name>
   </animation>
 
   <animation>
     <type>noshadow</type>
-    <object-name>flash</object-name>
+    <object-name>Light</object-name>
   </animation>
 
   <animation>
     <type>flash</type>
-    <object-name>flash</object-name>
+    <object-name>Light</object-name>
     <center>
       <x-m> 0.000 </x-m>
       <y-m> 0.000 </y-m>
@@ -40,7 +40,7 @@
 
 <animation>
 <type>dist-scale</type>
-<object-name>flash</object-name>
+<object-name>Light</object-name>
 <interpolation>
 <entry>
 <ind>0</ind>
@@ -55,7 +55,7 @@
 
 <animation>
 <type>select</type>
-<object-name>flash</object-name>
+<object-name>Light</object-name>
 <condition>
 <property>/controls/switches/landing-light</property>
 </condition>

@@ -1302,4 +1302,6 @@ livery_update.stop();
 			<z>0.09</z>
 		</axis>
 	</animation>
+
+<!--Wing flex-->
 </PropertyList>

@@ -26,7 +26,7 @@
     <object-name>Light</object-name>
     <condition>
      <greater-than>
-        <property>/controls/switches/nav-logo-lights</property>
+        <property>/controls/switches/nav-lights</property>
         <value>0</value>
       </greater-than>
     </condition>

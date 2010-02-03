@@ -6,6 +6,7 @@
      Modification History:
      When	Who		What
      2008	KAmpere		Initial version
+     2008	Innis Cunningham	Fuselage model
      2008	KAmpere		updated model, electrical, hydaulic
      2008	FDalvi		update livery and model
      2009	SHamilton	Added fuel tanks and cockpit interactions
@@ -20,8 +21,8 @@
   <sim>
     <description>Airbus A380</description>
     <aircraft-version>1.0</aircraft-version>
-    <author>Ampere, F.Dalvi, S.Hamilton, et al</author>
-    <status>beta</status>
+    <author>Ampere.K, I.Cunningham, F.Dalvi, S.Hamilton, et al</author>
+    <status>development</status>
     <flight-model>jsb</flight-model>
     <livery>../Textures/Livery/SA</livery>
     <aero>A380</aero>
@@ -35,9 +36,9 @@
      <path>Aircraft/A380/A380-autopilot.xml</path>
     </autopilot>
     	<!--Modified by Ampere-->
-    <electrical>
+    <!-- electrical>
  		<path>Aircraft/A380/Systems/Electrical/electrical.xml</path>
-    </electrical>
+    </electrical -->
     <hydraulical>
  		<path>Aircraft/A380/Systems/Hydraulical/hydraulics.xml</path>
      </hydraulical>
@@ -151,6 +152,14 @@
 	  <setting>1.000</setting>  
   </flaps>
   
+  <spoilers>
+    <setting>0.00</setting>
+    <setting>0.16</setting>
+    <setting>0.30</setting>
+    <setting>0.60</setting>
+    <setting>1.00</setting>
+  </spoilers>
+  
   <limits>
     <max-flap-extension-speed>
       <flaps>0.0001</flaps>
@@ -206,6 +215,14 @@
         <key>
         <name>Ctrl-b</name>
         <desc>toggle speed brakes</desc>
+      </key>
+      <key>
+        <name>k</name>
+	<desc>increase speedbrake</desc>
+      </key>
+      <key>
+        <name>j</name>
+	<desc>decrease speedbrake</desc>
       </key>
       <key>
         <name>Shift-PG UP</name>
@@ -277,13 +294,13 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
             <menu n="10">
                 <label>A380</label>
                 <enabled type="bool">true</enabled>
-                <item>
+                <!-- item>
                     <label>Autostart</label>
                     <binding>
                         <command>property-toggle</command>
                         <property>sim/model/start-idling</property>
                     </binding>
-                </item>
+                </item -->
 
                 <item>
                     <label>Contrails</label>
@@ -292,7 +309,7 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
                         <property>ai/submodels/contrails</property>
                     </binding>
                 </item>
-                         <item>
+                <item>
                     <label>Map Lights</label>
                     <binding>
                         <command>property-toggle</command>
@@ -376,6 +393,7 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
   <engines>
     <engine n="0">
       <running>false</running>
+      <rpm>1000</rpm>
     </engine>
     <engine n="1">
       <running>false</running>
@@ -389,13 +407,15 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
      </engine>
      <engine n="3">
        <running>false</running>
+       <rpm>1000</rpm>
      </engine>
 
     <!--  APU engine -->
     <engine n="4">
-    <running type="bool">false</running>
-    <throttle>0</throttle>
-    <off-start-run type="int">0</off-start-run>
+      <running type="bool">false</running>
+      <throttle>0</throttle>
+      <off-start-run type="int">0</off-start-run>
+      <rpm>1000</rpm>
     </engine>    
   </engines>
 
@@ -409,7 +429,53 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
           <script>reversethrust.togglereverser()</script>
         </binding>
       </key>
+ <!-- key n="40">
+  <name>[</name>
+  <desc>Decrease flaps</desc>
+  <binding>
+   <command>nasal</command>
+   <script>controls.flapsDown(-1)</script>
+  </binding>
+  <mod-up>
+   <binding>
+    <command>nasal</command>
+    <script>controls.flapsDown(0)</script>
+   </binding>
+  </mod-up>
+ </key>
 
+ <key n="41">
+  <name>]</name>
+  <desc>Increase flaps</desc>
+  <binding>
+   <command>nasal</command>
+   <script>controls.flapsDown(1)</script>
+  </binding>
+  <mod-up>
+   <binding>
+    <command>nasal</command>
+    <script>controls.flapsDown(0)</script>
+   </binding>
+  </mod-up>
+ </key -->
+ 
+  <key n="106">
+  <name>j</name>
+  <desc>Decrease spoilers</desc>
+  <binding>
+   <command>nasal</command>
+   <script>A380.stepSpeedbrake(-1)</script>
+  </binding>
+ </key>
+
+ <key n="107">
+  <name>k</name>
+  <desc>Increase spoilers</desc>
+  <binding>
+   <command>nasal</command>
+   <script>A380.stepSpeedbrake(1)</script>
+  </binding>
+ </key>
 
 		<key n="101">
 			<name>e</name>
@@ -562,15 +628,34 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
   </flight>
 
   <switches>
-    <landing-light type = "bool">0</landing-light> 
+    <landing-lights type="bool">0</landing-lights> 
     <taxi-lights type="bool">0</taxi-lights>
+    <wing-lights type="bool">0</wing-lights>
+    <nose-light type="double">0.0</nose-light>
     <beacon type="bool">0</beacon>
-    <strobe type="bool">0</strobe>
-    <nav-logo-lights>0</nav-logo-lights>
+    <strobe type="double">0.0</strobe>
+    <seat-belt type="double">0.0</seat-belt>
+    <smoking type="double">0.0</smoking>
+    <nav-lights type="bool">0</nav-lights>
+    <logo-light type="double">0.0</logo-light>
     <cabin-lights>0.8</cabin-lights>
     <map-lights>0</map-lights>
     <master-panel type="bool">1</master-panel>
   </switches>
+  <engines>
+    <engine n="0">
+      <thrust-lever>0</thrust-lever>
+    </engine>
+    <engine n="1">
+      <thrust-lever>0</thrust-lever>
+    </engine>
+    <engine n="2">
+      <thrust-lever>0</thrust-lever>
+    </engine>
+    <engine n="3">
+      <thrust-lever>0</thrust-lever>
+    </engine>
+  </engines>
 </controls>
 
 <instrumentation>
@@ -628,6 +713,13 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
                 <standby-khz>379</standby-khz>
             </frequencies>
         </adf>
+	<!-- attitude-indicator>
+	  <name>attitude-indicator</name>
+	  <number>0</number> 
+	  <spin type="string">engines/engine[0]/n1</spin>
+	  <suction>/systems/vacuum[1]/suction-inhg</suction>
+	</attitude-indicator -->
+
  <wxradar>
   <serviceable>true</serviceable>
   <range type="int" archive="y">20</range>
@@ -646,6 +738,7 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
       <file>Aircraft/A380/Nasal/system.nas</file>
       <file>Aircraft/A380/Nasal/Airbus_fg.nas</file>
       <file>Aircraft/Generic/limits.nas</file>
+      <file>Nasal/controls.nas</file>
     </A380>
     
     <reversethrust>

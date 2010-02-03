@@ -20,9 +20,9 @@
         <type>material</type>
         <object-name>PANEL</object-name>
         <emission>
-            <red>0.31</red>
-            <green>0.47</green>
-            <blue>0.47</blue>
+            <red>1.0</red>
+            <green>0.96</green>
+            <blue>0.86</blue>
             <factor-prop>controls/lighting/panel-norm[0]</factor-prop>	
 
         </emission>

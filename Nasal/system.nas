@@ -70,6 +70,10 @@ ai_craft="";
 mp_craft="";
 apu_running=0;
 ecamRequestRef=0;
+radarLastCnt=0;
+
+NM2MTRS = 1852;
+METRE2NM = 0.000539956803;
 
 srsFlapTarget = [263.0, 220.0, 210.0, 196.0, 182.0];   # copied from Airbus_fms.nas
 flapPos       = [0, 0.2424, 0.5151, 0.7878, 1.0];
@@ -179,6 +183,8 @@ reset_et = func{
 
 update_radar = func{
   true_heading = getprop("/orientation/heading-deg");
+  var currentPos= geo.Coord.new();
+  currentPos.set_latlon(getprop("/position/latitude-deg"), getprop("/position/longitude-deg"), getprop("/position/altitude-ft"));
   ai_craft = props.globals.getNode("/ai/models").getChildren("aircraft");
   for(i=0; i<size(ai_craft);i=i+1) {
     tgt_offset=getprop("/ai/models/aircraft[" ~ i ~ "]/radar/bearing-deg");
@@ -209,17 +215,34 @@ update_radar = func{
 
   mp_craft = props.globals.getNode("/ai/models").getChildren("multiplayer");
   for(i=0; i<size(mp_craft);i=i+1) {
-    tgt_offset=getprop("/ai/models/multiplayer[" ~ i ~ "]/radar/bearing-deg");
-    if(tgt_offset == nil){
-      tgt_offset = 0.0;
+    tgt_offset = getprop("/ai/models/multiplayer["~i~"]/radar/bearing-deg");
+    
+    var mpLat = getprop("/ai/models/multiplayer["~i~"]/position/latitude-deg");
+    var mpLon = getprop("/ai/models/multiplayer["~i~"]/position/longitude-deg");
+    if (mpLat != nil and mpLon != nil) {
+      ##tracer("[radar] mpLat: "~mpLat~", mpLon: "~mpLon);
+      var mpPos = geo.Coord.new();
+      mpPos.set_latlon(mpLat, mpLon, getprop("/ai/models/multiplayer[" ~ i ~ "]/position/altitude-ft"));
+      var mpCourse = currentPos.course_to(mpPos);
+      tgt_offset = mpCourse + true_heading;
+      #var id = getprop("/ai/models/multiplayer[" ~ i ~ "]/callsign");
+      #if (getprop("/ai[0]/models[0]/multiplayer["~i~"]/valid") == 1) {
+      #print("[radar] mp["~i~"] "~id~" - mpCourse: "~mpCourse~", true_heading: "~true_heading~", tgt_offset: "~tgt_offset);
+      #}
+    } else {
+      if(tgt_offset == nil){
+        tgt_offset = 0.0;
+      }
+      tgt_offset -= true_heading;
     }
-    tgt_offset -= true_heading;
-    if (tgt_offset < -180){
+
+    if (tgt_offset < 0){
       tgt_offset +=360;
     }
-    if (tgt_offset > 180){
+    if (tgt_offset > 360){
       tgt_offset -=360;
     }
+   
     setprop("/instrumentation/radar/mp[" ~ i ~ "]/brg-offset",tgt_offset);
     test_dist=getprop("/instrumentation/radar/range");
     test1_dist = getprop("/ai/models/multiplayer[" ~ i ~ "]/radar/range-nm");
@@ -229,6 +252,60 @@ update_radar = func{
     norm_dist= (1 / test_dist) * test1_dist;
     setprop("/instrumentation/radar/mp[" ~ i ~ "]/norm-dist", norm_dist);
   }
+  var wpCnt = 0;
+  var wp_points = props.globals.getNode("/autopilot/route-manager/route").getChildren("wp");
+  var radarRange = getprop("/instrumentation/radar/range");
+  for(i=0;i <size(wp_points); i=i+1) {
+    var tgt_offset = -9999;
+    var wpDist = 9999;
+    var wpLat = getprop("/autopilot/route-manager/route/wp["~i~"]/latitude-deg");
+    var wpLon = getprop("/autopilot/route-manager/route/wp["~i~"]/longitude-deg");
+    var wpId     = getprop("/autopilot/route-manager/route/wp["~i~"]/id");
+    if (wpLat != nil and wpLon != nil) {
+      var wpPos = geo.Coord.new();
+      wpPos.set_latlon(wpLat, wpLon, 0);
+      var wpCourse = currentPos.course_to(wpPos);
+      wpDistMetre   = currentPos.distance_to(wpPos);
+      wpDist = wpDistMetre*METRE2NM;
+      tgt_offset = wpCourse + true_heading;
+    }
+    
+    
+    if (wpDist <= radarRange) {
+      var base = props.globals.getNode("/instrumentation/radar/wp["~wpCnt~"]",1);
+      wpCnt = wpCnt + 1;
+      var valid = base.getNode("valid",1);
+      valid.setBoolValue(1);
+      var brg = base.getNode("brg-offset",1);
+      brg.setDoubleValue(tgt_offset);
+      var dist = base.getNode("dist-norm", 1);
+      dist.setDoubleValue(wpDist/radarRange);
+      var id = base.getNode("id",1);
+      id.setValue(wpId);
+    } 
+    #else {
+    #  var valid = base.getNode("valid",1);
+    #  valid.setBoolValue(0);
+    #}
+    
+    
+  }
+  if (wpCnt < radarLastCnt) {
+    for(i=wpCnt;i<=radarLastCnt;i=i+1) {
+      var base = props.globals.getNode("/instrumentation/radar/wp["~i~"]",0);
+      if (base != nil) {
+        var valid = base.getNode("valid",1);
+        valid.setBoolValue(0);
+        var brg = base.getNode("brg-offset",1);
+        brg.setDoubleValue(0);
+        var dist = base.getNode("dist-norm", 1);
+        dist.setDoubleValue(0);
+        var id = base.getNode("id",1);
+        id.setValue("");
+      }
+    }
+  }
+  radarLastCnt = wpCnt;
 
   seatCtrl = getprop("/controls/switches/seat-belt");
   if (seatCtrl == 1) {

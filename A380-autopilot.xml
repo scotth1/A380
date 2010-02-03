@@ -709,7 +709,8 @@
       <gamma>0.0</gamma>  <!-- input value weighing factor for -->
                           <!-- unfiltered derivative error -->
       <Ti>30.0</Ti>        <!-- integrator time -->
-      <Td>0.00001</Td>    <!-- derivator time -->
+      <!-- Td>0.00001</Td -->    <!-- derivator time -->
+      <Td>0.01</Td>
       <u_min>-1.0</u_min>   <!-- minimum output clamp -->
       <u_max>20.0</u_max> <!-- maximum output clamp -->
     </config>
@@ -738,7 +739,8 @@
       <gamma>0.0</gamma>  <!-- input value weighing factor for -->
                           <!-- unfiltered derivative error -->
       <Ti>10.0</Ti>        <!-- integrator time -->
-      <Td>0.00001</Td>    <!-- derivator time -->
+      <!-- Td>0.00001</Td -->    <!-- derivator time -->
+      <Td>0.1</Td>
       <u_min>-0.4</u_min> <!-- minimum output clamp  was -1.0 SAH 10-JUN-09 -->
       <u_max>0.25</u_max>  <!-- maximum output clamp  was 1.0 SAH 10-JUN-09 -->
     </config>
