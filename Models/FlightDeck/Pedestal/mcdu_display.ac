@@ -863,7 +863,7 @@ kids 10
 OBJECT poly
 name "menu.rwy-less"
 loc -0.0459059 -7.18711e-05 -0.0156781
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/mcdu_icons.png"
+texture "mcdu_icons.png"
 crease 45.000000
 numvert 4
 0.0807749 0 0.0125427
@@ -1242,7 +1242,7 @@ kids 0
 OBJECT poly
 name "menu.rwy-more"
 loc -0.0601661 0.000311901 -0.0156781
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/mcdu_icons.png"
+texture "mcdu_icons.png"
 crease 45.000000
 numvert 4
 0.0900406 0 0.0268028

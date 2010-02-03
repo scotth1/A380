@@ -21,7 +21,7 @@ kids 3
 OBJECT poly
 name "FCU HDG mesh3"
 loc -0.000944547 0 0.0796739
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/APpanel.png"
+texture "APpanel.png"
 crease 45.000000
 numvert 8
 -0.0067662 0.00995675 -0.00333803
@@ -79,7 +79,7 @@ kids 0
 OBJECT poly
 name "FCU HDG mesh2"
 loc -0.000944547 0 0.0861108
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/APpanel.png"
+texture "APpanel.png"
 crease 45.000000
 numvert 8
 0.00676619 -0.00995675 0.00333803
@@ -137,7 +137,7 @@ kids 0
 OBJECT poly
 name "FCU HDG mesh1"
 loc -0.000944547 0 0.0926864
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/APpanel.png"
+texture "APpanel.png"
 crease 45.000000
 numvert 8
 -0.00676621 0.00995675 -0.00333802
@@ -199,7 +199,7 @@ kids 4
 OBJECT poly
 name "FCU VS mesh1"
 loc -0.000383541 -7.45058e-09 -0.0352564
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/APpanel.png"
+texture "APpanel.png"
 crease 45.000000
 numvert 8
 0.00676621 -0.00995675 0.00333804
@@ -257,7 +257,7 @@ kids 0
 OBJECT poly
 name "FCU VS mesh2"
 loc -0.000284128 -7.45058e-09 -0.0418087
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/APpanel.png"
+texture "APpanel.png"
 crease 45.000000
 numvert 8
 -0.00676621 0.00995676 -0.00333803
@@ -315,7 +315,7 @@ kids 0
 OBJECT poly
 name "FCU VS mesh3"
 loc -0.000284128 -7.45058e-09 -0.0484601
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/APpanel.png"
+texture "APpanel.png"
 crease 45.000000
 numvert 8
 0.00676621 -0.00995675 0.00333803
@@ -373,7 +373,7 @@ kids 0
 OBJECT poly
 name "FCU VS mesh4"
 loc -0.000284128 -7.45058e-09 -0.055013
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/APpanel.png"
+texture "APpanel.png"
 crease 45.000000
 numvert 8
 -0.00676621 0.00995676 -0.00333803
@@ -435,7 +435,7 @@ kids 3
 OBJECT poly
 name "FCU SPD mesh3"
 loc -0.00150723 0 -0.00657447
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/APpanel.png"
+texture "APpanel.png"
 crease 45.000000
 numvert 8
 -0.00676621 0.00995675 -0.00333802
@@ -493,7 +493,7 @@ kids 0
 OBJECT poly
 name "FCU SPD mesh2"
 loc -0.00150722 0 0.000176579
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/APpanel.png"
+texture "APpanel.png"
 crease 45.000000
 numvert 8
 0.00676619 -0.00995675 0.00333802
@@ -551,7 +551,7 @@ kids 0
 OBJECT poly
 name "FCU SPD mesh1"
 loc -0.00150723 0 0.00692764
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/APpanel.png"
+texture "APpanel.png"
 crease 45.000000
 numvert 8
 -0.00676621 0.00995675 -0.00333804
@@ -613,7 +613,7 @@ kids 5
 OBJECT poly
 name "FCU ALT mesh5"
 loc -5.42775e-05 -7.45058e-09 -0.0114933
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/APpanel.png"
+texture "APpanel.png"
 crease 45.000000
 numvert 8
 0.00676621 -0.00995675 0.00333803
@@ -671,7 +671,7 @@ kids 0
 OBJECT poly
 name "FCU ALT mesh4"
 loc 4.41074e-05 0 -0.00483688
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/APpanel.png"
+texture "APpanel.png"
 crease 45.000000
 numvert 8
 -0.00676621 0.00995675 -0.00333803
@@ -729,7 +729,7 @@ kids 0
 OBJECT poly
 name "FCU ALT mesh3"
 loc 4.41074e-05 0 0.00188452
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/APpanel.png"
+texture "APpanel.png"
 crease 45.000000
 numvert 8
 0.00676619 -0.00995675 0.00333803
@@ -787,7 +787,7 @@ kids 0
 OBJECT poly
 name "FCU ALT mesh2"
 loc 4.41074e-05 0 0.00853521
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/APpanel.png"
+texture "APpanel.png"
 crease 45.000000
 numvert 8
 -0.00676621 0.00995675 -0.00333803
@@ -845,7 +845,7 @@ kids 0
 OBJECT poly
 name "FCU ALT mesh1"
 loc 4.41149e-05 0 0.0152062
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/APpanel.png"
+texture "APpanel.png"
 crease 45.000000
 numvert 8
 0.00676619 -0.00995675 0.00333803
@@ -904,7 +904,7 @@ OBJECT poly
 name "A/THR"
 data 8
 Cube.003
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/glareshield.png"
+texture "glareshield.png"
 texrep 1 1
 crease 30.000000
 numvert 10
@@ -966,7 +966,7 @@ OBJECT poly
 name "A/THR.toggle"
 data 8
 Cube.002
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/buttonlight.png"
+texture "buttonlight.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -987,7 +987,7 @@ OBJECT poly
 name "ALT"
 data 8
 Cube.008
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/glareshield.png"
+texture "glareshield.png"
 texrep 1 1
 crease 30.000000
 numvert 10
@@ -1049,7 +1049,7 @@ OBJECT poly
 name "ALT.toggle"
 data 8
 Cube.009
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/buttonlight.png"
+texture "buttonlight.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -1070,7 +1070,7 @@ OBJECT poly
 name "AP1"
 data 8
 Cube.007
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/glareshield.png"
+texture "glareshield.png"
 texrep 1 1
 crease 30.000000
 numvert 10
@@ -1132,7 +1132,7 @@ OBJECT poly
 name "AP1.toggle"
 data 8
 Cube.006
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/buttonlight.png"
+texture "buttonlight.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -1153,7 +1153,7 @@ OBJECT poly
 name "AP2"
 data 8
 Cube.004
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/glareshield.png"
+texture "glareshield.png"
 texrep 1 1
 crease 30.000000
 numvert 10
@@ -1215,7 +1215,7 @@ OBJECT poly
 name "AP2.toggle"
 data 8
 Cube.005
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/buttonlight.png"
+texture "buttonlight.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -1236,7 +1236,7 @@ OBJECT poly
 name "APPR"
 data 8
 Cube.011
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/glareshield.png"
+texture "glareshield.png"
 texrep 1 1
 crease 30.000000
 numvert 10
@@ -1298,7 +1298,7 @@ OBJECT poly
 name "APPR.toggle"
 data 8
 Cube.010
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/buttonlight.png"
+texture "buttonlight.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -1414,7 +1414,7 @@ OBJECT poly
 name "FD"
 data 4
 Cube
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/glareshield.png"
+texture "glareshield.png"
 texrep 1 1
 crease 30.000000
 numvert 10
@@ -1476,7 +1476,7 @@ OBJECT poly
 name "FD.toggle"
 data 8
 Cube.001
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/buttonlight.png"
+texture "buttonlight.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -2479,7 +2479,7 @@ OBJECT poly
 name "LOC"
 data 8
 Cube.013
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/glareshield.png"
+texture "glareshield.png"
 texrep 1 1
 crease 30.000000
 numvert 10
@@ -2541,7 +2541,7 @@ OBJECT poly
 name "LOC.toggle"
 data 8
 Cube.012
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/buttonlight.png"
+texture "buttonlight.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -2718,7 +2718,7 @@ OBJECT poly
 name "Object03"
 data 8
 Object03
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/glareshield.png"
+texture "glareshield.png"
 texrep 1 1
 crease 30.000000
 numvert 24
@@ -4910,7 +4910,7 @@ OBJECT poly
 name "Rectangle0"
 data 6
 Purple
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/glareshield.png"
+texture "glareshield.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -4931,7 +4931,7 @@ OBJECT poly
 name "Rectangle1"
 data 10
 Purple.001
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/glareshield.png"
+texture "glareshield.png"
 texrep 1 1
 crease 30.000000
 numvert 4

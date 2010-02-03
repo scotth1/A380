@@ -7,7 +7,7 @@ kids 31
 OBJECT poly
 name "ENTER"
 loc 0.0262507 0 -0.20158
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/keyboards.png"
+texture "keyboards.png"
 crease 45.000000
 numvert 4
 0.00561455 0 0.0133412
@@ -26,7 +26,7 @@ kids 0
 OBJECT poly
 name "DEL"
 loc 0.0128167 0 -0.208534
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/keyboards.png"
+texture "keyboards.png"
 crease 45.000000
 numvert 4
 -0.00561456 0 0.00760099
@@ -68,7 +68,7 @@ kids 0
 OBJECT poly
 name "P"
 loc 0.0128167 0 -0.189691
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/keyboards.png"
+texture "keyboards.png"
 crease 45.000000
 numvert 4
 0.00561455 0 0.00760099
@@ -105,7 +105,7 @@ kids 0
 OBJECT poly
 name "SLASH"
 loc 0.0398259 0 -0.00858279
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/keyboards.png"
+texture "keyboards.png"
 crease 45.000000
 numvert 4
 0.00561453 0 0.00760099
@@ -124,7 +124,7 @@ kids 0
 OBJECT poly
 name "Z"
 loc 0.0398259 0 -0.0269769
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/keyboards.png"
+texture "keyboards.png"
 crease 45.000000
 numvert 4
 -0.00561455 0 0.00760097
@@ -143,7 +143,7 @@ kids 0
 OBJECT poly
 name "M"
 loc 0.0398259 0 -0.148966
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/keyboards.png"
+texture "keyboards.png"
 crease 45.000000
 numvert 4
 0.00561455 0 0.00760093
@@ -162,7 +162,7 @@ kids 0
 OBJECT poly
 name "N"
 loc 0.0398259 0 -0.128215
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/keyboards.png"
+texture "keyboards.png"
 crease 45.000000
 numvert 4
 -0.00561453 0 0.00760094
@@ -181,7 +181,7 @@ kids 0
 OBJECT poly
 name "B"
 loc 0.0398259 0 -0.107465
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/keyboards.png"
+texture "keyboards.png"
 crease 45.000000
 numvert 4
 0.00561452 0 0.00760096
@@ -200,7 +200,7 @@ kids 0
 OBJECT poly
 name "V"
 loc 0.0398259 0 -0.0867138
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/keyboards.png"
+texture "keyboards.png"
 crease 45.000000
 numvert 4
 -0.00561456 0 0.00760096
@@ -219,7 +219,7 @@ kids 0
 OBJECT poly
 name "C"
 loc 0.0398259 0 -0.0665918
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/keyboards.png"
+texture "keyboards.png"
 crease 45.000000
 numvert 4
 0.00561453 0 0.00760093
@@ -238,7 +238,7 @@ kids 0
 OBJECT poly
 name "X"
 loc 0.0398259 0 -0.0464699
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/keyboards.png"
+texture "keyboards.png"
 crease 45.000000
 numvert 4
 -0.00561455 0 0.00760096
@@ -257,7 +257,7 @@ kids 0
 OBJECT poly
 name "L"
 loc 0.0260319 0 -0.177809
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/keyboards.png"
+texture "keyboards.png"
 crease 45.000000
 numvert 4
 0.00561455 0 0.00760096
@@ -276,7 +276,7 @@ kids 0
 OBJECT poly
 name "K"
 loc 0.0260318 0 -0.158628
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/keyboards.png"
+texture "keyboards.png"
 crease 45.000000
 numvert 4
 -0.00561455 0 0.00760096
@@ -295,7 +295,7 @@ kids 0
 OBJECT poly
 name "A"
 loc 0.0260319 0 -0.0177745
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/keyboards.png"
+texture "keyboards.png"
 crease 45.000000
 numvert 4
 0.00561453 0 0.00760096
@@ -314,7 +314,7 @@ kids 0
 OBJECT poly
 name "J"
 loc 0.0260318 0 -0.139764
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/keyboards.png"
+texture "keyboards.png"
 crease 45.000000
 numvert 4
 -0.00561455 0 0.00760093
@@ -333,7 +333,7 @@ kids 0
 OBJECT poly
 name "H"
 loc 0.0260318 0 -0.119013
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/keyboards.png"
+texture "keyboards.png"
 crease 45.000000
 numvert 4
 0.00561455 0 0.00760097
@@ -352,7 +352,7 @@ kids 0
 OBJECT poly
 name "G"
 loc 0.0260318 0 -0.0982624
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/keyboards.png"
+texture "keyboards.png"
 crease 45.000000
 numvert 4
 -0.00561455 0 0.00760096
@@ -371,7 +371,7 @@ kids 0
 OBJECT poly
 name "F"
 loc 0.0260318 0 -0.0775115
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/keyboards.png"
+texture "keyboards.png"
 crease 45.000000
 numvert 4
 0.00561455 0 0.00760098
@@ -390,7 +390,7 @@ kids 0
 OBJECT poly
 name "D"
 loc 0.0260318 0 -0.0573895
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/keyboards.png"
+texture "keyboards.png"
 crease 45.000000
 numvert 4
 -0.00561455 0 0.00760096
@@ -409,7 +409,7 @@ kids 0
 OBJECT poly
 name "S"
 loc 0.0260319 0 -0.0372676
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/keyboards.png"
+texture "keyboards.png"
 crease 45.000000
 numvert 4
 0.00561453 0 0.00760096
@@ -428,7 +428,7 @@ kids 0
 OBJECT poly
 name "O"
 loc 0.0128167 0 -0.171204
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/keyboards.png"
+texture "keyboards.png"
 crease 45.000000
 numvert 4
 -0.00561456 0 0.00760096
@@ -447,7 +447,7 @@ kids 0
 OBJECT poly
 name "I"
 loc 0.0128167 0 -0.150454
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/keyboards.png"
+texture "keyboards.png"
 crease 45.000000
 numvert 4
 0.00561455 0 0.00760096
@@ -466,7 +466,7 @@ kids 0
 OBJECT poly
 name "Q"
 loc 0.0128167 0 -0.0096001
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/keyboards.png"
+texture "keyboards.png"
 crease 45.000000
 numvert 4
 -0.00561455 0 0.00760096
@@ -485,7 +485,7 @@ kids 0
 OBJECT poly
 name "U"
 loc 0.0128167 0 -0.131589
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/keyboards.png"
+texture "keyboards.png"
 crease 45.000000
 numvert 4
 0.00561455 0 0.007601
@@ -504,7 +504,7 @@ kids 0
 OBJECT poly
 name "Y"
 loc 0.0128167 0 -0.110838
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/keyboards.png"
+texture "keyboards.png"
 crease 45.000000
 numvert 4
 -0.00561455 0 0.00760094
@@ -523,7 +523,7 @@ kids 0
 OBJECT poly
 name "T"
 loc 0.0128167 0 -0.0900877
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/keyboards.png"
+texture "keyboards.png"
 crease 45.000000
 numvert 4
 0.00561456 0 0.00760095
@@ -542,7 +542,7 @@ kids 0
 OBJECT poly
 name "R"
 loc 0.0128167 0 -0.0693369
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/keyboards.png"
+texture "keyboards.png"
 crease 45.000000
 numvert 4
 -0.00561455 0 0.00760096
@@ -561,7 +561,7 @@ kids 0
 OBJECT poly
 name "E"
 loc 0.0128167 0 -0.049215
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/keyboards.png"
+texture "keyboards.png"
 crease 45.000000
 numvert 4
 0.00561455 0 0.00760097
@@ -580,7 +580,7 @@ kids 0
 OBJECT poly
 name "W"
 loc 0.0128167 0 -0.0290931
-texture "/home/scotth/Downloads/FlightGear/CVS-1.0/data/Aircraft/A380/Textures/Common/keyboards.png"
+texture "keyboards.png"
 crease 45.000000
 numvert 4
 -0.00561455 0 0.00760097
