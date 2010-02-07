@@ -442,7 +442,10 @@ changePage = func(unit,page) {
      #  S = wing area M^2
      #  Cl_max = Max Coefficient of Lift
      #  W = weight KG
-     
+     var fltMode    = getprop("/instrumentation/ecam/flight-mode");
+     if (fltMode == 2) {
+       getprop("/instrumentation/ecam/flight-mode", fltMode+1);
+     }
   }
   tracer("**** End changePage("~page~")");
   setprop("/instrumentation/mcdu["~unit~"]/page",page);

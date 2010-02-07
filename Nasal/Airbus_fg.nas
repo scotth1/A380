@@ -47,7 +47,7 @@ VNAV_OPCLB=3;
 VNAV_FPA=4;
 VNAV_OPDES=5;
 VNAV_CLB=6;
-VNAV_ALTm=7;
+VNAV_ALTCRZ=7;
 VNAV_DES=8;
 VNAV_GS=9;
 VNAV_SRS=10;
@@ -64,10 +64,10 @@ SPD_THRDES=7;
 SPD_THRIDL=8;
 
 lnavStr = ["off","HDG","TRK","LOC","NAV","RWY"];
-vnavStr = ["off","ALT(s)","V/S","OP CLB","FPA","OP DES","CLB","ALT(m)","DES","G/S","SRS","LEVEL"];
+vnavStr = ["off","ALT(s)","V/S","OP CLB","FPA","OP DES","CLB","ALT CRZ","DES","G/S","SRS","LEVEL"];
 spdStr  = ["off","TOGA","FLEX","THR CLB","SPEED","MACH","CRZ","THR DES","THR IDL"];
 
-version="V1.0.1B";
+version="V1.0.2A";
 trace=0;
 
 #trigonometric values for glideslope calculations
@@ -687,7 +687,7 @@ setlistener("/instrumentation/flightdirector/vnav", func(n) {
         setprop("/autopilot/locks/altitude","vertical-speed-hold");
       }
     }
-    if(vnav == VNAV_ALTm) {   # ALT (m)
+    if(vnav == VNAV_ALTCRZ) {   # ALT (m)
       setprop("/autopilot/settings/target-alt-hold",getprop("/instrumentation/gps/wp/wp[1]/altitude-ft"));
       setprop("/autopilot/locks/altitude","altitude-hold");
       #setprop("/controls/autoflight/vertical-mode",1);
@@ -1035,6 +1035,7 @@ climb_thrust = func() {
 #
 handle_inputs = func {
   var crzAlt = getprop("/instrumentation/afs/thrust-cruise-alt");
+  var fltMode    = getprop("/instrumentation/ecam/flight-mode");
   ###var crzAlt  = getprop("/instrumentation/mcdu/CRZ_FL");
   var curAlt = getprop("/position/altitude-ft");
   var spdMode = getprop("/instrumentation/flightdirector/spd");
@@ -1094,10 +1095,10 @@ handle_inputs = func {
      }
   }
   
-  if (int(curAlt) > int(crzAlt-100) and spdMode != SPD_CRZ and spdCruiseArm == 0 and getprop("/instrumentation/afs/speed-mode") == -1) {
+  if (fltMode > 6 and int(curAlt) > int(crzAlt-100) and spdMode != SPD_CRZ and spdCruiseArm == 0 and getprop("/instrumentation/afs/speed-mode") == -1) {
         tracer("arm SPD_CRZ");
         settimer(delay_cruise_speed, 30);
-        setprop("/instrumentation/flightdirector/vnav",VNAV_ALTm);
+        setprop("/instrumentation/flightdirector/vnav",VNAV_ALTCRZ);
         spdCruiseArm += 1;
   }
   var vSpd = int(getprop("/autopilot/settings/vertical-speed-fpm"));
@@ -1867,7 +1868,7 @@ update = func {
 #############################################################################
 
 registerTimer = func {
-    settimer(update, 0.1);
+    settimer(update, 0.2);
 }
 registerTimer();
 

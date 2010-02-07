@@ -79,6 +79,7 @@ srsFlapTarget = [263.0, 220.0, 210.0, 196.0, 182.0];   # copied from Airbus_fms.
 flapPos       = [0, 0.2424, 0.5151, 0.7878, 1.0];
 
 trace = 0;
+version = "1.0.4C";
 
 strobe_switch = props.globals.getNode("/controls/switches/strobe", 0);
 aircraft.light.new("sim/model/A380/lighting/strobe", [0.05, 1.2], strobe_switch);
@@ -169,7 +170,7 @@ DOORS.doorsystem.paxLeftLow1Door.open();
 DOORS.doorsystem.paxLeftUp1Door.open();
 
 setprop("/systems/electrical/apu-test",0);
-print("Aircraft systems initialized");
+print("Aircraft systems initialised");
 }
 
 reset_et = func{
@@ -267,7 +268,21 @@ update_radar = func{
       var wpCourse = currentPos.course_to(wpPos);
       wpDistMetre   = currentPos.distance_to(wpPos);
       wpDist = wpDistMetre*METRE2NM;
-      tgt_offset = wpCourse + true_heading;
+      if (true_heading < wpCourse) {
+        tgt_offset = wpCourse-true_heading;
+        #print("[radar] "~wpId~" true_head: "~true_heading~", wpCourse: "~wpCourse~", tgt_offset: "~tgt_offset);
+      } else {
+        tgt_offset = 360-(true_heading-wpCourse);
+        #print("[radar] "~wpId~" true_head: "~true_heading~", wpCourse: "~wpCourse~", tgt_offset: "~tgt_offset);
+      }
+      #tgt_offset = wpCourse;
+      if (tgt_offset < 0) {
+        tgt_offset += 360;
+      }
+      if (tgt_offset > 360) {
+        tgt_offset -= 360;
+      }
+    
     }
     
     
@@ -307,9 +322,30 @@ update_radar = func{
   }
   radarLastCnt = wpCnt;
 
+  var navBrg  = getprop("/instrumentation/gps/ref-navaid/bearing-deg");
+  var navDist = getprop("/instrumentation/gps/ref-navaid/distance-nm");
+  if (navBrg != nil) {
+    var tgt_offset = navBrg;    ##+true_heading;
+    if (tgt_offset < 0) {
+      tgt_offset +=360;
+    }
+    if (tgt_offset > 360) {
+      tgt_offset -=360;
+    }
+    if (navDist < radarRange) {
+      setprop("/instrumentation/radar/navaid-valid",1);
+    } else {
+      setprop("/instrumentation/radar/navaid-valid",0);
+    }
+    setprop("/instrumentation/radar/navaid-brg",tgt_offset);
+    setprop("/instrumentation/radar/navaid-dist-norm",navDist/radarRange);
+    
+  }
+
   seatCtrl = getprop("/controls/switches/seat-belt");
   if (seatCtrl == 1) {
-    curAlt   = getprop("/instrumentation/altimeter/indicated-altitude-ft");
+    ##curAlt   = getprop("/instrumentation/altimeter/indicated-altitude-ft");
+    curAlt   = getprop("/position/altitude-ft");
     seatStat = getprop("/instrumentation/switches/seatbelt-sign");
     if (curAlt > 10000 and seatStat > 0) {
       tracer("SeatCtrl: "~seatCtrl~", curAlt: "~curAlt~", seatStat: "~seatStat);
@@ -347,12 +383,12 @@ update_radar = func{
     if (currFlapPos == 1.0) {
       flapConfig = 4;
     }
-    tracer("flapConfig: "~flapConfig);
+    #tracer("flapConfig: "~flapConfig);
     var iasKt = int(getprop("/instrumentation/airspeed-indicator/indicated-speed-kt"));
     if (iasKt != nil and iasKt != 0) {
       tracer("ias: "~iasKt);
       flapSpd = int(srsFlapTarget[flapConfig])+10;
-      tracer("flapSpd: "~flapSpd);
+      #tracer("flapSpd: "~flapSpd);
       if (iasKt > flapSpd) {
         print("WARN: Flap overspeed, retracting flaps!");
         flapConfig -= 1;

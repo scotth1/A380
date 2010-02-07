@@ -686,6 +686,23 @@ adjust_thrust = func(n) {
   }
 }
 
+change_radar_range = func(n) {
+  var curRange = getprop("/instrumentation/radar/range");
+  var newRange = curRange;
+  if (n == 1) {
+    newRange = curRange*2;
+    if (newRange > 640) {
+      newRange = 640;
+    }
+  } else {
+    newRange = curRange/2;
+    if (newRange < 0) {
+      newRange = 0;
+    }
+  }
+  setprop("/instrumentation/radar/range",newRange);
+}
+
 
 var pow = func(x, y) { 
   math.exp(y * math.ln(x))

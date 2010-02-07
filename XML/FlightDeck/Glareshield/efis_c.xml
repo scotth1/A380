@@ -186,24 +186,28 @@
      <button>0</button>
      <repeatable>false</repeatable>
      <binding>
-      <command>property-adjust</command>
+      <!-- command>property-adjust</command>
       <property>/instrumentation/radar/range</property>
       <step>1.0</step>
       <min>1</min>
       <max>640</max>
-      <wrap>false</wrap>
+      <wrap>false</wrap -->
+      <command>nasal</command>
+      <script>FCU.change_radar_range(1)</script>
      </binding>
    </action>
    <action>
      <button>1</button>
      <repeatable>false</repeatable>
      <binding>
-      <command>property-adjust</command>
+      <!-- command>property-adjust</command>
       <property>/instrumentation/radar/range</property>
       <step>-1.0</step>
       <min>1</min>
       <max>640</max>
-      <wrap>false</wrap>
+      <wrap>false</wrap -->
+      <command>nasal</command>
+      <script>FCU.change_radar_range(-1)</script>
      </binding>
    </action>   
  </animation>
