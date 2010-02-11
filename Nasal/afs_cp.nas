@@ -696,8 +696,8 @@ change_radar_range = func(n) {
     }
   } else {
     newRange = curRange/2;
-    if (newRange < 0) {
-      newRange = 0;
+    if (newRange < 5) {
+      newRange = 5;
     }
   }
   setprop("/instrumentation/radar/range",newRange);
