@@ -362,8 +362,9 @@ update_radar = func{
     thrustMode = getprop("/instrumentation/flightdirector/athr");
     var latMode = getprop("/instrumentation/afs/lateral-mode");
     var vnav    = getprop("/instrumentation/flightdirector/vnav");
+    var ap      = getprop("/instrumentation/flightdirector/autopilot-on");
     ##tracer("fltMode: "~fltMode~", thrustMode: "~thrustMode~", lateral: "~latMode~" vnav: "~vnav);
-    if ((thrustMode == 2 or thrustMode == 3) and vnav != VNAV_SRS) {
+    if ((thrustMode == 2 or thrustMode == 3) and vnav != VNAV_SRS and ap == 1) {
       tracer("Enable SRS mode");
       setprop("/instrumentation/flightdirector/vnav",VNAV_SRS);  #set SRS mode
     }
@@ -406,7 +407,7 @@ update_radar = func{
   var gwcg   = (1629.615473-cgX);
   setprop("/fdm/jsbsim/inertia/gwcg",gwcg);
 
-  settimer(update_radar, 0.8);
+  settimer(update_radar, 1.0);
 } 
 
 # UPDATE CLOCK 
@@ -544,7 +545,7 @@ update_engines = func {
     setprop("/instrumentation/ecam/flight-mode",flt_mode);
   }
 
-settimer(update_engines, 0.65);  
+settimer(update_engines, 0.60);  
 }
 
 
@@ -726,7 +727,7 @@ update_systems = func {
   setprop("/fdm/jsbsim/inertia/weight-kg",grossWgtKg);
 
 
-settimer(update_systems,0.3);
+settimer(update_systems,0.5);
 }
 settimer(update_systems,0);
 

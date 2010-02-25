@@ -429,7 +429,7 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
           <script>reversethrust.togglereverser()</script>
         </binding>
       </key>
- <!-- key n="40">
+ <key n="40">
   <name>[</name>
   <desc>Decrease flaps</desc>
   <binding>
@@ -457,7 +457,7 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
     <script>controls.flapsDown(0)</script>
    </binding>
   </mod-up>
- </key -->
+ </key>
  
   <key n="106">
   <name>j</name>
