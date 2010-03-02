@@ -1,13 +1,13 @@
 AC3Db
 MATERIAL "DefaultWhite" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0.5 0.5 0.5  shi 64  trans 0
-MATERIAL "ac3dmat1" rgb 1 1 1 amb 0.2 0.2 0.2 emis 0 0 0 spec 0.5 0.5 0.5 shi 10 trans 0
+MATERIAL "ac3dmat1" rgb 1 1 1 amb 1 1 1 emis 0 0 0 spec 0.5 0.5 0.5 shi 10 trans 0
 MATERIAL "ac3dmat13" rgb 0.533333 0.533333 0.533333 amb 0.2 0.2 0.2 emis 0 0 0 spec 0.5 0.5 0.5 shi 10 trans 0
-MATERIAL "" rgb 0.996078 0.996078 0.996078 amb 0.2 0.2 0.2 emis 0 0 0 spec 0.5 0.5 0.5 shi 10 trans 0
-MATERIAL "ac3dmat1.001" rgb 1 1 1 amb 0.2 0.2 0.2 emis 0 0 0 spec 0 0 0 shi 10 trans 0
-MATERIAL "ac3dmat1.002" rgb 1 1 1 amb 0.2 0.2 0.2 emis 0 0 0 spec 0.498039 0.498039 0.498039 shi 64 trans 0
-MATERIAL "skin" rgb 1 1 1 amb 0.243379 0.243379 0.243379 emis 0 0 0 spec 0.7 0.7 0.7 shi 48 trans 0
+MATERIAL "" rgb 0.996078 0.996078 0.996078 amb 1 1 1 emis 0 0 0 spec 0.5 0.5 0.5 shi 10 trans 0
+MATERIAL "ac3dmat1.001" rgb 1 1 1 amb 1 1 1 emis 0 0 0 spec 0 0 0 shi 10 trans 0
+MATERIAL "ac3dmat1.002" rgb 1 1 1 amb 1 1 1 emis 0 0 0 spec 0.498039 0.498039 0.498039 shi 64 trans 0
+MATERIAL "skin" rgb 1 1 1 amb 1 1 1 emis 0 0 0 spec 0.7 0.7 0.7 shi 48 trans 0
 MATERIAL "ac3dmat0" rgb 0 0 0 amb 0.2 0.2 0.2 emis 0 0 0 spec 0.5 0.5 0.5 shi 10 trans 0
-MATERIAL "skin.001" rgb 1 1 1 amb 0.243379 0.243379 0.243379 emis 0 0 0 spec 0.7 0.7 0.7 shi 48 trans 0
+MATERIAL "skin.001" rgb 1 1 1 amb 1 1 1 emis 0 0 0 spec 0.7 0.7 0.7 shi 48 trans 0
 OBJECT world
 kids 80
 OBJECT poly
