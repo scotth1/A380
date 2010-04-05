@@ -28,7 +28,7 @@ inputValue = "";
 trace = 0;         ## Set to 0 to turn off all tracing messages
 depDB = nil;
 arvDB = nil;
-version = "V1.0.4D";
+version = "V1.0.5A";
 
 routeClearArm = 0;
 
@@ -492,17 +492,21 @@ selectRwyAction = func(rwy, unit) {
   if (direct == "dep") {
     var apt = airportinfo(getprop("/instrumentation/afs/FROM"));
     var mhz = getILS(apt,rwyVal);
+    if (mhz != nil) {
     tracer("depart ILS: "~mhz);
     ##setprop("/instrumentation/nav[0]/selected-mhz",mhz);
     setprop("/instrumentation/nav[0]/frequencies/selected-mhz",mhz);
     ##setprop("/instrumentation/nav[0]/frequencies/selected-mhz-fmt",mhz);
+    }
   } else {
     var apt = airportinfo(getprop("/instrumentation/afs/TO"));
     var mhz = getILS(apt,rwyVal);
+    if (mhz != nil) {
     tracer("arrive ILS: "~mhz);
     ##setprop("/instrumentation/nav[0]/standby-mhz",mhz);
     setprop("/instrumentation/nav[0]/frequencies/standby-mhz",mhz);
     ##setprop("/instrumentation/nav[0]/frequencies/standby-mhz-fmt",mhz);
+    }
   }
   tracer("[MCDU] set: "~rwyAttr~", runway: "~rwyVal);
 }
@@ -917,15 +921,17 @@ var getILS = func(apt, rwy) {
    if (trace > 0) {
      debug.dump(apt);
    }
+   var mhz = nil;
    var runways = apt["runways"];
    var ks = keys(runways);
    for(var r=0; r != size(runways); r=r+1) {
      var run = runways[ks[r]];
-     if (run.id == rwy) {
-       var mhz = sprintf("%3.1f",run.ils_frequency_mhz);
+     if (run.id == rwy and contains(run, "ils_frequency_mhz")) {
+       mhz = sprintf("%3.1f",run.ils_frequency_mhz);
        return mhz;
      }
    }
+   return mhz;
 }
 
 
