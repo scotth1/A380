@@ -17,6 +17,7 @@
 # When		Who     Version		What
 # 01-SEP-2009	S.H.	V1.0		Initial version
 # 13-DEC-2009	S.H.	V1.0.3		Calculate descent where more than one WP has unknown altitude
+# 28-APR-2010	S.H.	V1.0.6		Roughly calculate Vr and V2 based on Vso
 #
 # 
 
@@ -25,10 +26,10 @@
 currentField = "";
 currentFieldPos = 0;
 inputValue = "";
-trace = 1;         ## Set to 0 to turn off all tracing messages
+trace = 0;         ## Set to 0 to turn off all tracing messages
 depDB = nil;
 arvDB = nil;
-version = "V1.0.5A";
+version = "V1.0.6A";
 
 routeClearArm = 0;
 
