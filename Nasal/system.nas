@@ -79,6 +79,7 @@ FPM2MSEC=0.00508;
 KT2MSEC=0.514;
 MSEC2KMH=3.6;
 KMH2MSEC=0.28;
+CLmax = 2.3;
 
 srsFlapTarget = [263.0, 220.0, 210.0, 196.0, 182.0];   # copied from Airbus_fms.nas
 flapPos       = [0, 0.2424, 0.5151, 0.7878, 1.0];
@@ -411,6 +412,13 @@ update_radar = func{
   var cgX    = getprop("/fdm/jsbsim/inertia/cg-x-in");
   var gwcg   = (1629.615473-cgX);
   setprop("/fdm/jsbsim/inertia/gwcg",gwcg);
+
+   var rho = getprop("/environment/density-slugft3");
+   var S   = getprop("/fdm/jsbsim/metrics/Sw-sqft");
+   var W   = getprop("/fdm/jsbsim/inertia/weight-lbs");
+   var Vsfts = math.sqrt(W*2/(rho * CLmax * S));
+   var Vso = ((Vsfts*60)*FPM2MSEC)*MSEC2KT;
+   setprop("/velocities/Vso",Vso);
   
 
   settimer(update_radar, 1.0);

@@ -60,8 +60,7 @@ KMH2MSEC=0.28;
 NM2MTRS = 1852;
 METRE2NM = 0.000539956803;
 lur_koeff1 = 5.661872017348443498;   #=g*tan(30deg)
-
-CLmax = 2.4;
+CLmax = 2.3;
 
 
 
@@ -449,13 +448,8 @@ changePage = func(unit,page) {
      #  W = weight KG
 
      tracer(" active.to-perf calc Vso, Vr, V2");
-     var rho = getprop("/environment/density-slugft3");
-     var S   = getprop("/fdm/jsbsim/metrics/Sw-sqft");
-     var W   = getprop("/fdm/jsbsim/inertia/weight-lbs");
-     var Vsfts = math.sqrt(W*2/(rho * CLmax * S));
-     var Vso = ((Vsfts*60)*FPM2MSEC)*MSEC2KT;
-     setprop("/velocities/Vso",Vso);
-     var Vr  = (Vso*1.3);
+     var Vso = getprop("/velocities/Vso");
+     var Vr  = (Vso*1.4);
      var V2  = (Vso*1.5)+10;
      setprop("/instrumentation/afs/Vr", Vr);
      setprop("/instrumentation/afs/V2", V2);
