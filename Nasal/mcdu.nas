@@ -25,7 +25,7 @@
 currentField = "";
 currentFieldPos = 0;
 inputValue = "";
-trace = 0;         ## Set to 0 to turn off all tracing messages
+trace = 1;         ## Set to 0 to turn off all tracing messages
 depDB = nil;
 arvDB = nil;
 version = "V1.0.5A";
@@ -59,6 +59,10 @@ KMH2MSEC=0.28;
 NM2MTRS = 1852;
 METRE2NM = 0.000539956803;
 lur_koeff1 = 5.661872017348443498;   #=g*tan(30deg)
+
+CLmax = 2.4;
+
+
 
 CODE_ERR=3;
 CODE_WARN=2;
@@ -432,7 +436,7 @@ changePage = func(unit,page) {
     }
   }
 
-  if (page == "active.to-perf") {
+  if (page == "active.to_perf") {
      #V = √( 2 W g / ρ S Clmax )
      #
      #where:
@@ -442,6 +446,20 @@ changePage = func(unit,page) {
      #  S = wing area M^2
      #  Cl_max = Max Coefficient of Lift
      #  W = weight KG
+
+     tracer(" active.to-perf calc Vso, Vr, V2");
+     var rho = getprop("/environment/density-slugft3");
+     var S   = getprop("/fdm/jsbsim/metrics/Sw-sqft");
+     var W   = getprop("/fdm/jsbsim/inertia/weight-lbs");
+     var Vsfts = math.sqrt(W*2/(rho * CLmax * S));
+     var Vso = ((Vsfts*60)*FPM2MSEC)*MSEC2KT;
+     setprop("/velocities/Vso",Vso);
+     var Vr  = (Vso*1.3);
+     var V2  = (Vso*1.5)+10;
+     setprop("/instrumentation/afs/Vr", Vr);
+     setprop("/instrumentation/afs/V2", V2);
+     tracer("  Vso: "~Vso~", Vr: "~Vr~", V2: "~V2);
+
      var fltMode    = getprop("/instrumentation/ecam/flight-mode");
      if (fltMode == 2) {
        getprop("/instrumentation/ecam/flight-mode", fltMode+1);

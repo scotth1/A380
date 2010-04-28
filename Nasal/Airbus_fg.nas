@@ -256,7 +256,7 @@ setlistener("/sim/signals/fdm-initialized", func {
     setprop("/instrumentation/flightdirector/climb-arm",0.0);
     setprop("/instrumentation/afs/flex-throttle",0.0);
     setprop("/instrumentation/afs/V1",135);
-    setprop("/instrumentation/afs/VR",140);
+    setprop("/instrumentation/afs/Vr",140);
     setprop("/instrumentation/afs/V2",145);
     setprop("/instrumentation/afs/to-F",180);
     setprop("/instrumentation/afs/to-S",220);

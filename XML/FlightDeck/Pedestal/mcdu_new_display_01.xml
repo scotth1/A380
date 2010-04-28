@@ -2161,7 +2161,7 @@
       <z-m>0.002</z-m>
     </offsets>
     <type type="string">number-value</type>
-    <property type="string">/instrumentation/afs/VR</property>
+    <property type="string">/instrumentation/afs/Vr</property>
     <format>%3.0f</format>
     <truncate type="bool">true</truncate>
     <font>helvetica_medium.txf</font>

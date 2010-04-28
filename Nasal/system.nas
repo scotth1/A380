@@ -74,12 +74,17 @@ radarLastCnt=0;
 
 NM2MTRS = 1852;
 METRE2NM = 0.000539956803;
+MSEC2KT=1.946;
+FPM2MSEC=0.00508;
+KT2MSEC=0.514;
+MSEC2KMH=3.6;
+KMH2MSEC=0.28;
 
 srsFlapTarget = [263.0, 220.0, 210.0, 196.0, 182.0];   # copied from Airbus_fms.nas
 flapPos       = [0, 0.2424, 0.5151, 0.7878, 1.0];
 
 trace = 0;
-version = "1.0.4C";
+version = "1.0.5A";
 
 strobe_switch = props.globals.getNode("/controls/switches/strobe", 0);
 aircraft.light.new("sim/model/A380/lighting/strobe", [0.05, 1.2], strobe_switch);
@@ -406,6 +411,7 @@ update_radar = func{
   var cgX    = getprop("/fdm/jsbsim/inertia/cg-x-in");
   var gwcg   = (1629.615473-cgX);
   setprop("/fdm/jsbsim/inertia/gwcg",gwcg);
+  
 
   settimer(update_radar, 1.0);
 } 
