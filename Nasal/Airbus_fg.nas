@@ -554,6 +554,11 @@ setlistener("/instrumentation/flightdirector/autopilot-on", func {
     ap_on = getprop("/instrumentation/flightdirector/autopilot-on");
     if (ap_on == 1) {
       tracer("AP engaged");
+      ### call to evaluate all current modes
+      evaluateSPD();
+      evaluateHDG();
+      evaluateALT();
+      evaluateVS();
     } else {
       tracer("AP dis-engaged");
     };
@@ -1349,7 +1354,7 @@ get_altpitch = func() {
     #metres to feet 
     alt_select=((getprop("/instrumentation/nav[0]/gs-distance")*FD_TAN3DEG) + getprop("/environment/ground-elevation-m"))*3.281;
     #tracer("vbar GS#1 alt select: "~alt_select);
-    # alt_selest = alt_select + getprop("/environment/ground-elevation-m")*3.281;
+    # alt_select = alt_select + getprop("/environment/ground-elevation-m")*3.281;
   }
   if(vnav == VNAV_VS) {
     alt_select = getprop("/autopilot/settings/target-altitude-ft");
@@ -1845,6 +1850,38 @@ update_vbar = func {
 
 }
 
+
+#############################################################################
+# evaluate functions, try to work out each selected/managed mode
+#############################################################################
+
+evaluateSPD = func {
+  var fdMode = getprop("/instrumentation/flightdirector/spd");
+  var afsMode = getprop("instrumentation/afs/speed-mode");
+  var apMode = getprop("/instrumentation/flightdirector/autopilot-on");
+}
+
+
+evaluateHDG = func {
+  var fdMode = getprop("instrumentation/flightdirector/lnav");
+  var afsMode = getprop("instrumentation/afs/lateral-mode");
+  var apMode = getprop("/instrumentation/flightdirector/autopilot-on");
+}
+
+
+evaluateALT = func {
+  var fdMode = getprop("/instrumentation/flightdirector/vnav");
+  var afsMode = getprop("/instrumentation/afs/vertical-alt-mode");
+  var apMode = getprop("/instrumentation/flightdirector/autopilot-on");
+}
+
+
+evaluateVS = func {
+  var fdMode = getprop("instrumentation/flightdirector/vnav");
+  var afsMode = getprop("instrumentation/afs/vertical-vs-mode");
+  var apMode = getprop("/instrumentation/flightdirector/autopilot-on");
+  var altMode = getprop("/instrumentation/afs/vertical-alt-mode");
+}
 
 
 #############################################################################
