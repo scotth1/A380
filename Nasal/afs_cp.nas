@@ -120,6 +120,12 @@ toggle_ap = func(n) {
         setprop("/controls/autoflight/autopilot["~n~"]/engage","true");
 	setprop("/instrumentation/flightdirector/autopilot-on",1);
       }
+      ### called each of the modes to evaluate their current settings ###
+      toggle_spd_select(0);
+      toggle_hdg_select(0);
+      toggle_alt_select(0);
+      toggle_vs_select(0);
+      
 }
 
 toggle_loc = func() {
@@ -283,114 +289,6 @@ setlistener("/autopilot/settings/vertical-speed-fpm", func(n) {
    }
 });
 
-## timers to reset display on AFS CP.
-time_reset_alt = func(attr) {
-  var prop = "/instrumentation/afs/"~attr;
-  var curMode = getprop(prop);
-  if(timer[attr] == 0) {
-    var preProp = "/instrumentation/afs/previous-"~attr;
-    setprop(preProp,curMode);
-  }
-  #tracer("got prop: "~prop~" mode: "~curMode);
-  timer[attr] += 1;
-  settimer(reset_display_alt,10);
-  setprop(prop,0);
-}
-
-reset_display_alt = func() {
-    attr = "vertical-alt-display";
-    timer[attr] -=1;
-    if (timer[attr] == 0) {
-      mode = getprop("/instrumentation/afs/previous-"~attr);
-      if (getprop("/instrumentation/afs/vertical-alt-mode") == 0) {
-        mode = 0;
-      }
-      var prop = "/instrumentation/afs/"~attr;
-      #tracer("set prop: "~prop~", with value: "~mode);
-      setprop(prop,mode);
-    }
-}
-
-time_reset_vs = func(attr) {
-  var prop = "/instrumentation/afs/"~attr;
-  var curMode = getprop(prop);
-  if(timer[attr] == 0) {
-    var preProp = "/instrumentation/afs/previous-"~attr;
-    setprop(preProp,curMode);
-  }
-  #tracer("got prop: "~prop~" mode: "~curMode);
-  timer[attr] += 1;
-  settimer(reset_display_vs,10);
-  setprop(prop,0);
-}
-
-reset_display_vs = func() {
-    attr = "vertical-vs-display";
-    timer[attr] -=1;
-    if (timer[attr] == 0) {
-      mode = getprop("/instrumentation/afs/previous-"~attr);
-      if (getprop("/instrumentation/afs/vertical-vs-mode") == 0) {
-        mode = 0;
-      }
-      var prop = "/instrumentation/afs/"~attr;
-      #tracer("set prop: "~prop~", with value: "~mode);
-      setprop(prop,mode);
-    }
-}
-
-time_reset_hdg = func(attr) {
-  var prop = "/instrumentation/afs/"~attr;
-  var curMode = getprop(prop);
-  if(timer[attr] == 0) {
-    var preProp = "/instrumentation/afs/previous-"~attr;
-    setprop(preProp,curMode);
-  }
-  #tracer("got prop: "~prop~" mode: "~curMode);
-  timer[attr] += 1;
-  settimer(reset_display_hdg,10);
-  setprop(prop,0);
-}
-
-reset_display_hdg = func() {
-    attr = "lateral-display";
-    timer[attr] -=1;
-    if (timer[attr] == 0) {
-      mode = getprop("/instrumentation/afs/previous-"~attr);
-      if (getprop("/instrumentation/afs/lateral-mode") == 0) {
-        mode = 0;
-      }
-      var prop = "/instrumentation/afs/"~attr;
-      #tracer("set prop: "~prop~", with value: "~mode);
-      setprop(prop,mode);
-    }
-}
-
-time_reset_spd = func(attr) {
-  var prop = "/instrumentation/afs/"~attr;
-  var curMode = getprop(prop);
-  if(timer[attr] == 0) {
-    var preProp = "/instrumentation/afs/previous-"~attr;
-    setprop(preProp,curMode);
-  }
-  #tracer("got prop: "~prop~" mode: "~curMode);
-  timer[attr] += 1;
-  settimer(reset_display_spd ,10);
-  setprop(prop,0);
-}
-
-reset_display_spd = func() {
-    attr = "spd-display";
-    timer[attr] -=1;
-    if (timer[attr] == 0) {
-      mode = getprop("/instrumentation/afs/previous-"~attr);
-      if (getprop("/instrumentation/afs/speed-mode") == 0) {
-        mode = 0;
-      }
-      var prop = "/instrumentation/afs/"~attr;
-      #tracer("set prop: "~prop~", with value: "~mode);
-      setprop(prop,mode);
-    }
-}
 
 toggle_vs_select = func(n) {
       mode = getprop("instrumentation/flightdirector/vnav");
@@ -760,6 +658,119 @@ change_radar_range = func(n) {
   }
   setprop("/instrumentation/radar/range",newRange);
 }
+
+###############################################################
+## timers to reset display on AFS CP.
+###############################################################
+
+time_reset_alt = func(attr) {
+  var prop = "/instrumentation/afs/"~attr;
+  var curMode = getprop(prop);
+  if(timer[attr] == 0) {
+    var preProp = "/instrumentation/afs/previous-"~attr;
+    setprop(preProp,curMode);
+  }
+  #tracer("got prop: "~prop~" mode: "~curMode);
+  timer[attr] += 1;
+  settimer(reset_display_alt,10);
+  setprop(prop,0);
+}
+
+reset_display_alt = func() {
+    attr = "vertical-alt-display";
+    timer[attr] -=1;
+    if (timer[attr] == 0) {
+      mode = getprop("/instrumentation/afs/previous-"~attr);
+      if (getprop("/instrumentation/afs/vertical-alt-mode") == 0) {
+        mode = 0;
+      }
+      var prop = "/instrumentation/afs/"~attr;
+      #tracer("set prop: "~prop~", with value: "~mode);
+      setprop(prop,mode);
+    }
+}
+
+time_reset_vs = func(attr) {
+  var prop = "/instrumentation/afs/"~attr;
+  var curMode = getprop(prop);
+  if(timer[attr] == 0) {
+    var preProp = "/instrumentation/afs/previous-"~attr;
+    setprop(preProp,curMode);
+  }
+  #tracer("got prop: "~prop~" mode: "~curMode);
+  timer[attr] += 1;
+  settimer(reset_display_vs,10);
+  setprop(prop,0);
+}
+
+reset_display_vs = func() {
+    attr = "vertical-vs-display";
+    timer[attr] -=1;
+    if (timer[attr] == 0) {
+      mode = getprop("/instrumentation/afs/previous-"~attr);
+      if (getprop("/instrumentation/afs/vertical-vs-mode") == 0) {
+        mode = 0;
+      }
+      var prop = "/instrumentation/afs/"~attr;
+      #tracer("set prop: "~prop~", with value: "~mode);
+      setprop(prop,mode);
+    }
+}
+
+time_reset_hdg = func(attr) {
+  var prop = "/instrumentation/afs/"~attr;
+  var curMode = getprop(prop);
+  if(timer[attr] == 0) {
+    var preProp = "/instrumentation/afs/previous-"~attr;
+    setprop(preProp,curMode);
+  }
+  #tracer("got prop: "~prop~" mode: "~curMode);
+  timer[attr] += 1;
+  settimer(reset_display_hdg,10);
+  setprop(prop,0);
+}
+
+reset_display_hdg = func() {
+    attr = "lateral-display";
+    timer[attr] -=1;
+    if (timer[attr] == 0) {
+      mode = getprop("/instrumentation/afs/previous-"~attr);
+      if (getprop("/instrumentation/afs/lateral-mode") == 0) {
+        mode = 0;
+      }
+      var prop = "/instrumentation/afs/"~attr;
+      #tracer("set prop: "~prop~", with value: "~mode);
+      setprop(prop,mode);
+    }
+}
+
+time_reset_spd = func(attr) {
+  var prop = "/instrumentation/afs/"~attr;
+  var curMode = getprop(prop);
+  if(timer[attr] == 0) {
+    var preProp = "/instrumentation/afs/previous-"~attr;
+    setprop(preProp,curMode);
+  }
+  #tracer("got prop: "~prop~" mode: "~curMode);
+  timer[attr] += 1;
+  settimer(reset_display_spd ,10);
+  setprop(prop,0);
+}
+
+reset_display_spd = func() {
+    attr = "spd-display";
+    timer[attr] -=1;
+    if (timer[attr] == 0) {
+      mode = getprop("/instrumentation/afs/previous-"~attr);
+      if (getprop("/instrumentation/afs/speed-mode") == 0) {
+        mode = 0;
+      }
+      var prop = "/instrumentation/afs/"~attr;
+      #tracer("set prop: "~prop~", with value: "~mode);
+      setprop(prop,mode);
+    }
+}
+
 
 
 var pow = func(x, y) { 
