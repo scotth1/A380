@@ -2442,7 +2442,6 @@
     <object-name>value.to_perf.v1</object-name>
     <object-name>value.to_perf.rwy</object-name>
     <object-name>value.perf.crz</object-name>
-    
     <object-name>value.to_perf.thr_accel</object-name>
     <object-name>value.to_perf.trans_ft</object-name>
     <object-name>value.to_perf.thr_red</object-name>

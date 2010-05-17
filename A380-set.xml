@@ -203,11 +203,11 @@
       </key>
       <key>
         <name>k</name>
-	<desc>increase speedbrake</desc>
+	<desc>increase spoiler</desc>
       </key>
       <key>
         <name>j</name>
-	<desc>decrease speedbrake</desc>
+	<desc>decrease spoilers</desc>
       </key>
       <key>
         <name>Shift-PG UP</name>
@@ -230,20 +230,28 @@
 	<desc>Aft cargo door</desc>
       </key>
       <key>
-	<name>!</name>
+	<name>! (shift+1)</name>
 	<desc>Pax Lower Left door 1</desc>
       </key>
       <key>
-	<name>@</name>
-	<desc>Pax Left Upper door 1</desc>
+	<name>@ (shift+2)</name>
+	<desc>Pax Upper Left door 1</desc>
       </key>
       <key>
-	<name>#</name>
-	<desc>Pax Right Lower door 1</desc>
+	<name># (shift+3)</name>
+	<desc>Pax Lower Right door 1</desc>
       </key>
       <key>
-	<name>$</name>
-	<desc>Pax Right Upper door 1</desc>
+	<name>$ (shift+4)</name>
+	<desc>Pax Upper Right door 1</desc>
+      </key>
+      <key>
+	<name>% (shift+5)</name>
+	<desc>Pax Lower Left door 2</desc>
+      </key>
+      <key>
+	<name>^ (shift+6)</name>
+	<desc>Pax Lower Right door 2</desc>
       </key>
       <text>
 Use the mouse scrollwheel to increment and decrement dial values. Use the tutorial to understand all the major areas of the cockpit.
@@ -543,6 +551,22 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
   <binding>
     <command>nasal</command>
     <script>DOORS.doorsystem.paxRightUp1()</script>
+  </binding>
+</key>
+<key n="37">
+  <name>%</name>
+  <desc>Pax Left Lower door 2</desc>
+  <binding>
+    <command>nasal</command>
+    <script>DOORS.doorsystem.paxLeftLow2()</script>
+  </binding>
+</key>
+<key n="94">
+  <name>^</name>
+  <desc>Pax Right Lower door 2</desc>
+  <binding>
+    <command>nasal</command>
+    <script>DOORS.doorsystem.paxRightLow2()</script>
   </binding>
 </key>
 

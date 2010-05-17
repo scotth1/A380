@@ -148,87 +148,173 @@
   <condition>
      <greater-than>
        <property>/instrumentation/doors/forward-cargo/position-norm</property>
-       <value>0.0</value>
+       <value>0</value>
      </greater-than>
   </condition>
 </animation>
-
 <animation>
   <type>select</type>
+  <object-name>door.cargo.forward.close</object-name>
+  <condition>
+     <less-than>
+       <property>/instrumentation/doors/forward-cargo/position-norm</property>
+       <value>0.001</value>
+     </less-than>
+  </condition>
+</animation>
+
+  <!-- aft cargo door -->
+<animation>
+  <type>select</type>
+  <object-name>door.cargo.aft.open</object-name>
   <condition>
      <greater-than>
        <property>/instrumentation/doors/aft-cargo/position-norm</property>
-       <value>0.0</value>
+       <value>0</value>
      </greater-than>
   </condition>
-  <object-name>door.cargo.aft.open</object-name>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>door.cargo.aft.close</object-name>
+  <condition>
+     <less-than>
+       <property>/instrumentation/doors/aft-cargo/position-norm</property>
+       <value>0.001</value>
+     </less-than>
+  </condition>
 </animation>
 
   <!-- passenger doors -->
 <animation>
   <type>select</type>
+  <object-name>door.paxL.low1.open</object-name>
   <condition>
      <greater-than>
        <property>/instrumentation/doors/lower-left-pax1/position-norm</property>
        <value>0.0</value>
      </greater-than>
   </condition>
-  <object-name>door.paxL.low1.open</object-name>
 </animation>
+<animation>
+  <type>select</type>
+  <object-name>door.paxL.low1.close</object-name>
+  <condition>
+     <less-than>
+       <property>/instrumentation/doors/lower-left-pax1/position-norm</property>
+       <value>0.001</value>
+     </less-than>
+  </condition>
+</animation>
+
 
 <animation>
   <type>select</type>
+  <object-name>door.paxR.low1.open</object-name>
   <condition>
      <greater-than>
        <property>/instrumentation/doors/lower-right-pax1/position-norm</property>
        <value>0.0</value>
      </greater-than>
   </condition>
-  <object-name>door.paxR.low1.open</object-name>
 </animation>
+<animation>
+  <type>select</type>
+  <object-name>door.paxR.low1.close</object-name>
+  <condition>
+     <less-than>
+       <property>/instrumentation/doors/lower-right-pax1/position-norm</property>
+       <value>0.001</value>
+     </less-than>
+  </condition>
+</animation>
+
 
 <animation>
   <type>select</type>
+  <object-name>door.paxL.low2.open</object-name>
   <condition>
      <greater-than>
        <property>/instrumentation/doors/lower-left-pax2/position-norm</property>
        <value>0.0</value>
      </greater-than>
   </condition>
-  <object-name>door.paxL.low2.open</object-name>
 </animation>
+<animation>
+  <type>select</type>
+  <object-name>door.paxL.low2.close</object-name>
+  <condition>
+     <less-than>
+       <property>/instrumentation/doors/lower-left-pax2/position-norm</property>
+       <value>0.001</value>
+     </less-than>
+  </condition>
+</animation>
+
 
 <animation>
   <type>select</type>
+  <object-name>door.paxR.low2.open</object-name>
   <condition>
      <greater-than>
        <property>/instrumentation/doors/lower-right-pax2/position-norm</property>
        <value>0.0</value>
      </greater-than>
   </condition>
-  <object-name>door.paxR.low2.open</object-name>
 </animation>
+<animation>
+  <type>select</type>
+  <object-name>door.paxR.low2.close</object-name>
+  <condition>
+     <less-than>
+       <property>/instrumentation/doors/lower-right-pax2/position-norm</property>
+       <value>0.001</value>
+     </less-than>
+  </condition>
+</animation>
+
 
 <animation>
   <type>select</type>
+  <object-name>door.paxR.up1.open</object-name>
   <condition>
      <greater-than>
        <property>/instrumentation/doors/upper-right-pax1/position-norm</property>
        <value>0.0</value>
      </greater-than>
   </condition>
-  <object-name>door.paxR.up1.open</object-name>
 </animation>
+<animation>
+  <type>select</type>
+  <object-name>door.paxR.up1.close</object-name>
+  <condition>
+     <less-than>
+       <property>/instrumentation/doors/upper-right-pax1/position-norm</property>
+       <value>0.001</value>
+     </less-than>
+  </condition>
+</animation>
+
 
 <animation>
   <type>select</type>
+  <object-name>door.paxL.up1.open</object-name>
   <condition>
      <greater-than>
        <property>/instrumentation/doors/upper-left-pax1/position-norm</property>
        <value>0.0</value>
      </greater-than>
   </condition>
-  <object-name>door.paxL.up1.open</object-name>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>door.paxL.up1.close</object-name>
+  <condition>
+     <less-than>
+       <property>/instrumentation/doors/upper-left-pax1/position-norm</property>
+       <value>0.001</value>
+     </less-than>
+  </condition>
 </animation>
 
 
