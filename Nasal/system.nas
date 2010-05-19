@@ -143,8 +143,6 @@ setprop("/controls/APU/run",0);                  # what should we do with the AP
 setprop("/controls/afs/alt-inc-select",1000);
 setprop("/systems/electrical/apu-test",0);
 setprop("/instrumentation/annunciator/master-caution",0.0);
-setprop("/controls/switches/no-smoking",0.0);
-setprop("/controls/switches/seat-belt",0.0);
 setprop("/instrumentation/switches/seat-belt-sign",0.0);
 setprop("/systems/hydraulic/pump-psi[0]",0.0);
 setprop("/systems/hydraulic/pump-psi[1]",0.0);
