@@ -20,6 +20,7 @@
 #  Who     When        What
 #  SH      1-APR-2009  Initial cut
 #  SH      7-JUN-2009  Added Thrust detents
+#  SH      18-MAY-2010 clean up toggling of various modes and displays
 #
 #
 
@@ -283,7 +284,7 @@ setlistener("/autopilot/settings/target-speed-kt", func(n) {
 
 setlistener("/autopilot/settings/vertical-speed-fpm", func(n) {
    var val = n.getValue();
-   var mode = getprop("instrumentation/afs/vertical-vs-mode");
+   var mode = getprop("/instrumentation/afs/vertical-vs-mode");
    if (mode == 0) {
      setprop("/instrumentation/afs/vertical-speed-fpm",val);
    }
@@ -301,6 +302,7 @@ toggle_vs_select = func(n) {
       if (vs > 0) {
         vs = 0;
       }
+      setprop("/instrumentation/afs/vertical-vs-mode", vs);
       tracer("toggle_vs_select - cur vnav: "~mode~" func: "~n~" vs mode: "~vs);
       if (apMode == 0) {
         setprop("/autopilot/locks/alitutde","");
@@ -345,7 +347,7 @@ toggle_vs_select = func(n) {
           #setprop("/autopilot/locks/altitude","wing-leveler");
         }
       }
-      setprop("/instrumentation/afs/vertical-vs-mode", vs);
+      
       setprop("/instrumentation/afs/vertical-vs-display", vs);
 }
 

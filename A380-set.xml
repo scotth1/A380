@@ -637,19 +637,22 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
   </flight>
 
   <switches>
-    <landing-lights type="bool">0</landing-lights> 
-    <taxi-lights type="bool">0</taxi-lights>
-    <wing-lights type="bool">0</wing-lights>
+    <panel-lights type="bool">false</panel-lights>
+    <landing-lights type="bool">false</landing-lights> 
+    <taxi-lights type="bool">false</taxi-lights>
+    <wing-lights type="bool">false</wing-lights>
     <nose-light type="double">0.0</nose-light>
     <beacon type="bool">0</beacon>
     <strobe type="double">0.0</strobe>
     <seat-belt type="double">0.0</seat-belt>
     <smoking type="double">0.0</smoking>
-    <nav-lights type="bool">0</nav-lights>
+    <nav-lights type="bool">false</nav-lights>
     <logo-light type="double">0.0</logo-light>
-    <cabin-lights>0.8</cabin-lights>
-    <map-lights>0</map-lights>
+    <cabin-lights type="double">0.8</cabin-lights>
+    <map-lights type="double">0.0</map-lights>
     <master-panel type="bool">1</master-panel>
+    <smoking type="double">0</smoking>
+    <seat-belt type="double">0</seat-belt>
   </switches>
   <engines>
     <engine n="0">
