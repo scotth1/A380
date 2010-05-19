@@ -1305,9 +1305,74 @@
 		</axis>
 	</animation>
 
+	<!-- Lights -->
+	<!-- Navigational Lights -->
+
+	<model>
+   	<path>Aircraft/A380/XML/Lights/RedLight.xml</path>
+   	<name>NavLight.L</name>
+        	<offsets>
+             		<x-m>23.347</x-m>
+             		<y-m>-39.183</y-m>
+             		<z-m> 2.667</z-m>
+         	</offsets>
+	</model>
+
+	<model>
+   	<path>Aircraft/A380/XML/Lights/GreenLight.xml</path>
+   	<name>NavLight.R</name>
+        	<offsets>
+             		<x-m>23.347</x-m>
+             		<y-m>39.183</y-m>
+             		<z-m> 2.667</z-m>
+         	</offsets>
+	</model>
+
+	<!-- Positional Lights -->
+	<model>
+		<path>Aircraft/A380/XML/Lights/position.xml</path>
+   		<name>NavLight1.L</name>
+         	<offsets>
+             		<x-m>26.368</x-m>
+             		<y-m>-39.810</y-m>
+             		<z-m>2.819</z-m>
+         	</offsets>
+	</model>
+
+	<model>
+   		<path>Aircraft/A380/XML/Lights/position.xml</path>
+   		<name>NavLight1.R</name>
+         	<offsets>
+            		<x-m>26.368</x-m>
+             		<y-m>39.810</y-m>
+             		<z-m>2.819</z-m>
+        	</offsets>
+	</model>
+
+	<model>
+  		<path>Aircraft/A380/XML/Lights/flash.xml</path>
+  		<name>Strobe.L</name>
+  		<offsets>
+    			<x-m>23.6883</x-m>
+    			<y-m>-39.808</y-m>
+    			<z-m>2.667</z-m>
+  		</offsets>
+	</model>
+
+	<model>
+ 		<path>Aircraft/A380/XML/Lights/flash.xml</path>
+  		<name>Strobe.R</name>
+  		<offsets>
+    			<x-m>23.6883</x-m>
+    			<y-m>39.808</y-m>
+   			<z-m>2.667</z-m>
+  		</offsets>
+	</model>
+
 	<!-- Wing flex -->
 	<!-- Left Wing -->
- 	<animation>
+ 	<!--
+	<animation>
 		<type>rotate</type>
 		<object-name>pylon1</object-name>
 		<object-name>pylon2</object-name>
@@ -1375,7 +1440,8 @@
    			<z>0.0</z>
   		</axis>
  	</animation>
- 
+	-->
+	 
 	<animation>
   		<type>rotate</type>
 		<object-name>pylon1</object-name>
@@ -1415,6 +1481,9 @@
 		<object-name>FTF/S02</object-name>
 		<object-name>tipL</object-name>
 		<object-name>wingletL</object-name>
+		<object-name>NavLight.L</object-name>
+		<object-name>NavLight1.L</object-name>
+		<object-name>Strobe.L</object-name>
   		<property>fdm/jsbsim/aero/coefficient/CLalpha</property>
   		<factor>-0.0000015</factor>
   		<offset-deg>0</offset-deg>   
@@ -1453,6 +1522,9 @@
 		<object-name>FTF/S01</object-name>
 		<object-name>tipL</object-name>
 		<object-name>wingletL</object-name>
+		<object-name>NavLight.L</object-name>
+		<object-name>NavLight1.L</object-name>
+		<object-name>Strobe.L</object-name>
   		<property>fdm/jsbsim/aero/coefficient/CLalpha</property>
   		<factor>-0.0000015</factor>
   		<offset-deg>0</offset-deg>
@@ -1481,6 +1553,9 @@
 		<object-name>aileron03</object-name>
 		<object-name>tipL</object-name>
 		<object-name>wingletL</object-name>
+		<object-name>NavLight.L</object-name>
+		<object-name>NavLight1.L</object-name>
+		<object-name>Strobe.L</object-name>
   		<property>fdm/jsbsim/aero/coefficient/CLalpha</property>
   		<factor>-0.0000015</factor>
   		<offset-deg>0</offset-deg>
@@ -1497,7 +1572,8 @@
 	</animation>
 	
 	<!-- Right Wing -->
- 	<animation>
+ 	<!-- 
+	<animation>
 		<type>rotate</type>
 		<object-name>pylon3</object-name>
 		<object-name>pylon4</object-name>
@@ -1565,7 +1641,7 @@
    			<z>0.0</z>
   		</axis>
  	</animation>
- 
+ 	-->
 	<animation>
   		<type>rotate</type>
 		<object-name>pylon3</object-name>
@@ -1605,6 +1681,9 @@
 		<object-name>FTF/S06</object-name>
 		<object-name>tipR</object-name>
 		<object-name>wingletR</object-name>
+		<object-name>NavLight.R</object-name>
+		<object-name>NavLight1.R</object-name>
+		<object-name>Strobe.R</object-name>
   		<property>fdm/jsbsim/aero/coefficient/CLalpha</property>
   		<factor>-0.0000015</factor>
   		<offset-deg>0</offset-deg>   
@@ -1643,6 +1722,9 @@
 		<object-name>FTF/S06</object-name>
 		<object-name>tipR</object-name>
 		<object-name>wingletR</object-name>
+		<object-name>NavLight.R</object-name>
+		<object-name>NavLight1.R</object-name>
+		<object-name>Strobe.R</object-name>
   		<property>fdm/jsbsim/aero/coefficient/CLalpha</property>
   		<factor>-0.0000015</factor>
   		<offset-deg>0</offset-deg>
@@ -1671,6 +1753,9 @@
 		<object-name>aileron06</object-name>
 		<object-name>tipR</object-name>
 		<object-name>wingletR</object-name>
+		<object-name>NavLight.R</object-name>
+		<object-name>NavLight1.R</object-name>
+		<object-name>Strobe.R</object-name>
   		<property>fdm/jsbsim/aero/coefficient/CLalpha</property>
   		<factor>-0.0000015</factor>
   		<offset-deg>0</offset-deg>
@@ -1685,4 +1770,5 @@
    			<z>0.0</z>
   		</axis>
 	</animation>
+
 </PropertyList>
