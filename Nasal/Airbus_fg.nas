@@ -679,14 +679,18 @@ setlistener("/instrumentation/flightdirector/vnav", func(n) {
       tracer("VNAV_CLB: cur V/S: "~curVS);
       if (curAlt < accAlt and curAlt > redAlt and getprop("/fdm/jsbsim/fcs/flap-cmd-norm") == 0) {
           tracer("adjust V/S");
-          var vSpeed = 2000;  
+          var vSpeed = 1600;  
           # determine vertical-speed during inital climb based on grossWeight.
           setprop("/autopilot/settings/vertical-speed-fpm",vSpeed);
           settimer(climb_flap_adjust, 5);  #was 20 2009-06-30
       }
-      if (curAlt > accAlt and getprop("/instrumentation/flightdirector/climb-arm") == 1) {
-          tracer("Acquire CL speed");
-          setprop("/autopilot/settings/vertical-speed-fpm",1500);
+      if (curAlt > accAlt and curAlt < 15000 and getprop("/instrumentation/flightdirector/climb-arm") == 1) {
+          tracer("Acquire CLIMB speed");
+          setprop("/autopilot/settings/vertical-speed-fpm",2000);
+      }
+      if (curAlt > 15000 and curAlt < 24000) {
+        tracer("Phase 2 CLIMB");
+        setprop("/autopilot/settings/vertical-speed-fpm",1300);
       }
       if (curAlt > redAlt) {
         setprop("/autopilot/locks/altitude","vertical-speed-hold");
@@ -811,10 +815,10 @@ setlistener("/instrumentation/flightdirector/spd", func(n) {
         curAlt = getprop("/position/altitude-ft");
         redAlt = getprop("/instrumentation/afs/thrust-reduce-alt");
         accAlt = getprop("/instrumentation/afs/thrust-accel-alt");
-        if (curAlt > accAlt and getprop("/instrumentation/flightdirector/climb-arm") != 1) {
+        if (curAlt > accAlt and curAlt < 15000 and getprop("/instrumentation/flightdirector/climb-arm") != 1) {
           setprop("/instrumentation/flightdirector/vnav",VNAV_CLB);
           tracer("Acquire CLB CL speed");
-          setprop("/autopilot/settings/vertical-speed-fpm",1500);
+          setprop("/autopilot/settings/vertical-speed-fpm",2500);
           setprop("/autopilot/locks/altitude","vertical-speed-hold");
           settimer(climb_thrust, 30);
           setprop("/instrumentation/flightdirector/climb-arm",1);

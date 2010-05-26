@@ -688,13 +688,13 @@
  <!-- Hold speed by varying pitch (Two stage cascading controller) --> 
  <pid-controller>
     <name>Speed Reference System (vary pitch) Stage #1</name>
-    <debug>false</debug>
+    <debug>true</debug>
     <enable>
       <prop>/autopilot/locks/speed</prop>
       <value>speed-reference-system</value>
     </enable>
     <input>
-      <prop>/autopilot/internal/lookahead-5-sec-airspeed-kt</prop>
+      <prop>/autopilot/internal/lookahead-10-sec-airspeed-kt</prop>
     </input>
     <reference>
       <prop>/autopilot/settings/target-speed-kt</prop>
@@ -703,16 +703,26 @@
       <prop>/autopilot/settings/target-pitch-deg</prop>
     </output>
     <config>
-      <Kp>-1.0</Kp>       <!-- proportional gain -->
+      <Kp>-0.5</Kp>       <!-- proportional gain -->
       <beta>1.0</beta>    <!-- input value weighing factor -->
       <alpha>0.1</alpha>  <!-- low pass filter weighing factor -->
       <gamma>0.0</gamma>  <!-- input value weighing factor for -->
                           <!-- unfiltered derivative error -->
-      <Ti>30.0</Ti>        <!-- integrator time -->
-      <!-- Td>0.00001</Td -->    <!-- derivator time -->
-      <Td>0.01</Td>
-      <u_min>-1.0</u_min>   <!-- minimum output clamp -->
+      <Ti>40.0</Ti>        <!-- integrator time -->
+      <Td>0.00001</Td>    <!-- derivator time -->
+      <u_min>-1.0</u_min><!-- minimum output clamp -->
       <u_max>20.0</u_max> <!-- maximum output clamp -->
+      
+      <!-- Kp>-1.0</Kp -->       <!-- proportional gain -->
+      <!-- beta>1.0</beta -->    <!-- input value weighing factor -->
+      <!-- alpha>0.1</alpha -->  <!-- low pass filter weighing factor -->
+      <!-- gamma>0.0</gamma -->  <!-- input value weighing factor for -->
+                          <!-- unfiltered derivative error -->
+      <!-- Ti>30.0</Ti -->        <!-- integrator time -->
+      <!-- Td>0.00001</Td -->    <!-- derivator time -->
+      <!-- Td>0.01</Td -->
+      <!-- u_min>-1.0</u_min -->   <!-- minimum output clamp -->
+      <!-- u_max>20.0</u_max --> <!-- maximum output clamp -->
     </config>
   </pid-controller>
 
@@ -738,11 +748,21 @@
       <alpha>0.1</alpha>  <!-- low pass filter weighing factor -->
       <gamma>0.0</gamma>  <!-- input value weighing factor for -->
                           <!-- unfiltered derivative error -->
-      <Ti>10.0</Ti>        <!-- integrator time -->
-      <!-- Td>0.00001</Td -->    <!-- derivator time -->
-      <Td>0.1</Td>
+      <Ti>5.0</Ti>        <!-- integrator time -->
+      <Td>0.00001</Td>    <!-- derivator time -->
       <u_min>-0.4</u_min> <!-- minimum output clamp  was -1.0 SAH 10-JUN-09 -->
-      <u_max>0.25</u_max>  <!-- maximum output clamp  was 1.0 SAH 10-JUN-09 -->
+      <u_max>0.2</u_max>  <!-- maximum output clamp  was 1.0 SAH 10-JUN-09 -->
+    
+      <!-- Kp>-0.1</Kp -->      <!-- proportional gain -->
+      <!-- beta>1.0</beta -->    <!-- input value weighing factor -->
+      <!-- alpha>0.1</alpha -->  <!-- low pass filter weighing factor -->
+      <!-- gamma>0.0</gamma -->  <!-- input value weighing factor for -->
+                          <!-- unfiltered derivative error -->
+      <!-- Ti>10.0</Ti -->        <!-- integrator time -->
+      <!-- Td>0.00001</Td -->    <!-- derivator time -->
+      <!-- Td>0.1</Td -->
+      <!-- u_min>-0.4</u_min --> <!-- minimum output clamp  was -1.0 SAH 10-JUN-09 -->
+      <!-- u_max>0.25</u_max -->  <!-- maximum output clamp  was 1.0 SAH 10-JUN-09 -->
     </config>
   </pid-controller>
 
