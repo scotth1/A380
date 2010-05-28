@@ -91,9 +91,9 @@
     <alignment>right-bottom</alignment>
     <offsets>
       <pitch-deg>-90.0</pitch-deg>
-      <x-m>-0.066</x-m>
-      <y-m>0.054</y-m>
-      <z-m>0.01</z-m>
+      <x-m>-0.068</x-m>
+      <y-m>0.06</y-m>
+      <z-m>0.0000</z-m>
     </offsets>
     <type>number-value</type>
     <property type="string">/instrumentation/afs/target-altitude-ft</property>
@@ -104,17 +104,17 @@
   <text>
     <name>FCU.alt.dashes</name>
     <axis-alignment>yz-plane</axis-alignment>
-    <alignment>right-center</alignment>
+    <alignment>right-bottom</alignment>
     <offsets>
       <pitch-deg>-90.0</pitch-deg>
-      <x-m>-0.07</x-m>
-      <y-m>0.054</y-m>
-      <z-m>0.01</z-m>
+      <x-m>-0.068</x-m>
+      <y-m>0.06</y-m>
+      <z-m>0.0000</z-m>
     </offsets>
     <type>literal</type>
     <text type="string">-----</text>
-    <font>lcd.txf</font>
-    <character-size type="double">0.02</character-size>
+    <font>led.txf</font>
+    <character-size type="double">0.009</character-size>
   </text>  
 
 <animation>
@@ -187,9 +187,9 @@
     <alignment>right-bottom</alignment>
     <offsets>
       <pitch-deg>-90.0</pitch-deg>
-      <x-m>-0.066</x-m>
+      <x-m>-0.068</x-m>
       <y-m>-0.08</y-m>
-      <z-m>0.01</z-m>
+      <z-m>0.0000</z-m>
     </offsets>
     <type>number-value</type>
     <property type="string">/instrumentation/afs/target-speed-kt</property>
@@ -200,17 +200,17 @@
   <text>
     <name>FCU.spd.dashes</name>
     <axis-alignment>yz-plane</axis-alignment>
-    <alignment>right-center</alignment>
+    <alignment>right-bottom</alignment>
     <offsets>
       <pitch-deg>-90.0</pitch-deg>
-      <x-m>-0.07</x-m>
+      <x-m>-0.068</x-m>
       <y-m>-0.08</y-m>
-      <z-m>0.01</z-m>
+      <z-m>0.0000</z-m>
     </offsets>
     <type>literal</type>
     <text type="string">---</text>
-    <font>lcd.txf</font>
-    <character-size type="double">0.02</character-size>
+    <font>led.txf</font>
+    <character-size type="double">0.009</character-size>
   </text>
 
 <animation>
@@ -346,9 +346,9 @@
     <alignment>right-bottom</alignment>
     <offsets>
       <pitch-deg>-90.0</pitch-deg>
-      <x-m>-0.066</x-m>
-      <y-m>0.09</y-m>
-      <z-m>0.01</z-m>
+      <x-m>-0.068</x-m>
+      <y-m>0.093</y-m>
+      <z-m>0.0000</z-m>
     </offsets>
     <type>number-value</type>
     <property type="string">/instrumentation/afs/vertical-speed-fpm</property>
@@ -359,17 +359,17 @@
   <text>
     <name>FCU.vs.dashes</name>
     <axis-alignment>yz-plane</axis-alignment>
-    <alignment>right-center</alignment>
+    <alignment>right-bottom</alignment>
     <offsets>
       <pitch-deg>-90.0</pitch-deg>
-      <x-m>-0.07</x-m>
-      <y-m>0.09</y-m>
-      <z-m>0.01</z-m>
+      <x-m>-0.068</x-m>
+      <y-m>0.093</y-m>
+      <z-m>0.0000</z-m>
     </offsets>
     <type>literal</type>
     <text type="string">----</text>
-    <font>lcd.txf</font>
-    <character-size type="double">0.02</character-size>
+    <font>led.txf</font>
+    <character-size type="double">0.009</character-size>
   </text>
 
 <animation>
@@ -518,9 +518,9 @@
     <alignment>right-bottom</alignment>
     <offsets>
       <pitch-deg>-90.0</pitch-deg>
-      <x-m>-0.066</x-m>
-      <y-m>-0.04</y-m>
-      <z-m>0.01</z-m>
+      <x-m>-0.068</x-m>
+      <y-m>-0.035</y-m>
+      <z-m>0.000</z-m>
     </offsets>
     <type>number-value</type>
     <property type="string">/instrumentation/afs/heading-bug-deg</property>
@@ -531,17 +531,17 @@
   <text>
     <name>FCU.hdg.dashes</name>
     <axis-alignment>yz-plane</axis-alignment>
-    <alignment>right-center</alignment>
+    <alignment>right-bottom</alignment>
     <offsets>
       <pitch-deg>-90.0</pitch-deg>
-      <x-m>-0.07</x-m>
-      <y-m>-0.04</y-m>
-      <z-m>0.01</z-m>
+      <x-m>-0.068</x-m>
+      <y-m>-0.035</y-m>
+      <z-m>0.000</z-m>
     </offsets>
     <type>literal</type>
     <text type="string">---</text>
-    <font>lcd.txf</font>
-    <character-size type="double">0.02</character-size>
+    <font>led.txf</font>
+    <character-size type="double">0.009</character-size>
   </text>
 
 <animation>
@@ -694,9 +694,9 @@
     <specular>
       <red>0.0</red>
       <green>0.0</green>
-      <blue>0.663</blue>
+      <blue>0.0</blue>
     </specular>
-    <shininess>128.0</shininess>
+    <shininess>0.0</shininess>
   </animation>
  
 <!--  toggle buttons and illuminations -->

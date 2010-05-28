@@ -12,8 +12,28 @@ MATERIAL "6 - Default" rgb 0.062745 0.062745 0.313726  amb 0.5 0.5 0.5  emis 0 0
 OBJECT world
 kids 32
 OBJECT poly
+name "Rectangle1"
+loc -1.49012e-08 0 9.31323e-10
+data 6
+Purple
+crease 30.000000
+numvert 4
+-0.084248 -0.001 0.0222076
+-0.063928 -0.001 0.0222077
+-0.063928 -0.001 0.102262
+-0.084248 -0.001 0.102262
+numsurf 1
+SURF 0x0
+mat 9
+refs 4
+3 0.54681 0.904794
+2 0.54681 0.858389
+1 0.729629 0.858389
+0 0.729629 0.904794
+kids 0
+OBJECT poly
 name "A/THR"
-loc -7.45058e-09 0 9.31323e-10
+loc -1.49012e-08 0 9.31323e-10
 data 8
 Cube.003
 texture "glareshield.png"
@@ -41,24 +61,24 @@ refs 4
 SURF 0x20
 mat 1
 refs 4
-0 0.437148720026 0.650055885315
-4 0.43438538909 0.652818799019
-5 0.370935797691 0.652818799019
-1 0.368172824383 0.650055885315
+0 0.437149 0.650056
+4 0.434385 0.652819
+5 0.370936 0.652819
+1 0.368173 0.650056
 SURF 0x20
 mat 1
 refs 4
-1 0.368172824383 0.650055885315
-5 0.370935797691 0.652818799019
-6 0.370936214924 0.716268420219
-2 0.368172824383 0.719031691551
+1 0.368173 0.650056
+5 0.370936 0.652819
+6 0.370936 0.716268
+2 0.368173 0.719032
 SURF 0x20
 mat 1
 refs 4
-2 0.368172824383 0.719031691551
-6 0.370936214924 0.716268420219
-7 0.43438538909 0.716268420219
-3 0.437148720026 0.719031691551
+2 0.368173 0.719032
+6 0.370936 0.716268
+7 0.434385 0.716268
+3 0.437149 0.719032
 SURF 0x20
 mat 1
 refs 4
@@ -76,7 +96,7 @@ refs 4
 kids 0
 OBJECT poly
 name "A/THR.toggle"
-loc -7.45058e-09 0 9.31323e-10
+loc -1.49012e-08 0 9.31323e-10
 data 8
 Cube.002
 texture "buttonlight.png"
@@ -98,7 +118,7 @@ refs 4
 kids 0
 OBJECT poly
 name "ALT"
-loc -7.45058e-09 0 9.31323e-10
+loc -1.49012e-08 0 9.31323e-10
 data 8
 Cube.008
 texture "glareshield.png"
@@ -161,7 +181,7 @@ refs 4
 kids 0
 OBJECT poly
 name "ALT.toggle"
-loc -7.45058e-09 0 9.31323e-10
+loc -1.49012e-08 0 9.31323e-10
 data 8
 Cube.009
 texture "buttonlight.png"
@@ -183,7 +203,7 @@ refs 4
 kids 0
 OBJECT poly
 name "AP1"
-loc -7.45058e-09 0 9.31323e-10
+loc -1.49012e-08 0 9.31323e-10
 data 8
 Cube.007
 texture "glareshield.png"
@@ -246,7 +266,7 @@ refs 4
 kids 0
 OBJECT poly
 name "AP1.toggle"
-loc -7.45058e-09 0 9.31323e-10
+loc -1.49012e-08 0 9.31323e-10
 data 8
 Cube.006
 texture "buttonlight.png"
@@ -268,7 +288,7 @@ refs 4
 kids 0
 OBJECT poly
 name "AP2"
-loc -7.45058e-09 0 9.31323e-10
+loc -1.49012e-08 0 9.31323e-10
 data 8
 Cube.004
 texture "glareshield.png"
@@ -331,7 +351,7 @@ refs 4
 kids 0
 OBJECT poly
 name "AP2.toggle"
-loc -7.45058e-09 0 9.31323e-10
+loc -1.49012e-08 0 9.31323e-10
 data 8
 Cube.005
 texture "buttonlight.png"
@@ -353,7 +373,7 @@ refs 4
 kids 0
 OBJECT poly
 name "APPR"
-loc -7.45058e-09 0 9.31323e-10
+loc -1.49012e-08 0 9.31323e-10
 data 8
 Cube.011
 texture "glareshield.png"
@@ -416,7 +436,7 @@ refs 4
 kids 0
 OBJECT poly
 name "APPR.toggle"
-loc -7.45058e-09 0 9.31323e-10
+loc -1.49012e-08 0 9.31323e-10
 data 8
 Cube.010
 texture "buttonlight.png"
@@ -438,7 +458,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Box01"
-loc -7.45058e-09 0 9.31323e-10
+loc -1.49012e-08 0 9.31323e-10
 data 5
 Box01
 crease 30.000000
@@ -490,7 +510,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Box02"
-loc -7.45058e-09 0 9.31323e-10
+loc -1.49012e-08 0 9.31323e-10
 data 5
 Box02
 crease 30.000000
@@ -535,7 +555,7 @@ refs 4
 kids 0
 OBJECT poly
 name "FD"
-loc -7.45058e-09 0 9.31323e-10
+loc -1.49012e-08 0 9.31323e-10
 data 4
 Cube
 texture "glareshield.png"
@@ -598,7 +618,7 @@ refs 4
 kids 0
 OBJECT poly
 name "FD.toggle"
-loc -7.45058e-09 0 9.31323e-10
+loc -1.49012e-08 0 9.31323e-10
 data 8
 Cube.001
 texture "buttonlight.png"
@@ -620,7 +640,7 @@ refs 4
 kids 0
 OBJECT poly
 name "SPD knob"
-loc -7.45058e-09 0 9.31323e-10
+loc -1.49012e-08 0 9.31323e-10
 data 5
 KNOB1
 crease 30.000000
@@ -809,7 +829,7 @@ refs 3
 kids 0
 OBJECT poly
 name "HDG knob"
-loc -7.45058e-09 0 9.31323e-10
+loc -1.49012e-08 0 9.31323e-10
 data 5
 KNOB2
 crease 30.000000
@@ -998,7 +1018,7 @@ refs 3
 kids 0
 OBJECT poly
 name "ALT knob"
-loc -7.45058e-09 0 9.31323e-10
+loc -1.49012e-08 0 9.31323e-10
 data 5
 KNOB3
 crease 30.000000
@@ -1417,7 +1437,7 @@ refs 4
 kids 0
 OBJECT poly
 name "VS knob"
-loc -7.45058e-09 0 9.31323e-10
+loc -1.49012e-08 0 9.31323e-10
 data 5
 KNOB4
 crease 30.000000
@@ -1606,7 +1626,7 @@ refs 3
 kids 0
 OBJECT poly
 name "LOC"
-loc -7.45058e-09 0 9.31323e-10
+loc -1.49012e-08 0 9.31323e-10
 data 8
 Cube.013
 texture "glareshield.png"
@@ -1669,7 +1689,7 @@ refs 4
 kids 0
 OBJECT poly
 name "LOC.toggle"
-loc -7.45058e-09 0 9.31323e-10
+loc -1.49012e-08 0 9.31323e-10
 data 8
 Cube.012
 texture "buttonlight.png"
@@ -1691,7 +1711,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Object02"
-loc -7.45058e-09 0 9.31323e-10
+loc -1.49012e-08 0 9.31323e-10
 data 8
 Object02
 crease 30.000000
@@ -1848,7 +1868,7 @@ refs 3
 kids 0
 OBJECT poly
 name "Object03"
-loc -7.45058e-09 0 9.31323e-10
+loc -1.49012e-08 0 9.31323e-10
 data 8
 Object03
 texture "glareshield.png"
@@ -2037,7 +2057,7 @@ refs 3
 kids 0
 OBJECT poly
 name "Object08"
-loc -7.45058e-09 0 9.31323e-10
+loc -1.49012e-08 0 9.31323e-10
 data 8
 Object08
 crease 30.000000
@@ -2274,7 +2294,7 @@ refs 3
 kids 0
 OBJECT poly
 name "Object09"
-loc -7.45058e-09 0 9.31323e-10
+loc -1.49012e-08 0 9.31323e-10
 data 8
 Object09
 crease 30.000000
@@ -2431,7 +2451,7 @@ refs 3
 kids 0
 OBJECT poly
 name "Object10"
-loc -7.45058e-09 0 9.31323e-10
+loc -1.49012e-08 0 9.31323e-10
 data 8
 Object10
 crease 30.000000
@@ -2588,7 +2608,7 @@ refs 3
 kids 0
 OBJECT poly
 name "Object11"
-loc -7.45058e-09 0 9.31323e-10
+loc -1.49012e-08 0 9.31323e-10
 data 12
 Object11.006
 crease 30.000000
@@ -2767,7 +2787,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Object11.001"
-loc -7.45058e-09 0 9.31323e-10
+loc -1.49012e-08 0 9.31323e-10
 data 12
 Object11.006
 crease 30.000000
@@ -2946,7 +2966,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Object11.002"
-loc -7.45058e-09 0 9.31323e-10
+loc -1.49012e-08 0 9.31323e-10
 data 12
 Object11.006
 crease 30.000000
@@ -3125,7 +3145,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Object11.003"
-loc -7.45058e-09 0 9.31323e-10
+loc -1.49012e-08 0 9.31323e-10
 data 12
 Object11.006
 crease 30.000000
@@ -3304,7 +3324,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Object14"
-loc -7.45058e-09 0 9.31323e-10
+loc -1.49012e-08 0 9.31323e-10
 data 8
 Object14
 crease 30.000000
@@ -4049,7 +4069,7 @@ refs 3
 kids 0
 OBJECT poly
 name "Rectangle0"
-loc -7.45058e-09 0 9.31323e-10
+loc -1.49012e-08 0 9.31323e-10
 data 6
 Purple
 texture "glareshield.png"
@@ -4068,28 +4088,4 @@ refs 4
 1 0.54681 0.858389
 2 0.729629 0.858389
 3 0.729629 0.904794
-kids 0
-OBJECT poly
-name "Rectangle1"
-loc -7.45058e-09 0 9.31323e-10
-data 10
-Purple.001
-texture "glareshield.png"
-texrep 1 1
-crease 30.000000
-numvert 4
--0.084248 -0.001 0.101031
--0.063928 -0.001 0.101031
--0.063928 -0.001 0.025977
--0.084248 -0.001 0.025977
-numsurf 1
-SURF 0x00
-mat 12
-SURF 0x0
-mat 9
-refs 4
-0 0.042545 0.916509
-1 0.0425449 0.870104
-2 0.213946 0.870104
-3 0.213946 0.916509
 kids 0
