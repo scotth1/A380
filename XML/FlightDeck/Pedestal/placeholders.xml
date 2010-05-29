@@ -5,5 +5,171 @@
 	<path>../../../Models/FlightDeck/Pedestal/placeholders.3ds</path> 
 	<texture-path>../../../Textures/Common</texture-path>
 
+ <!--  left hand RAMP display -->
+ 
+  <text>
+    <name>RAMP.vhf1.left.value</name>
+    <axis-alignment>yz-plane</axis-alignment>
+    <alignment>right-bottom</alignment>
+    <offsets>
+      <pitch-deg>-90.0</pitch-deg>
+      <x-m>0.231</x-m>
+      <y-m>0.062</y-m>
+      <z-m>-0.0055</z-m>
+    </offsets>
+    <type>number-value</type>
+    <property type="string">/instrumentation/nav[0]/frequencies/selected-mhz</property>
+    <format type="string">%3.2f</format>
+    <font>helvetica_bold.txf</font>
+    <character-size type="double">0.01</character-size>
+  </text> 
+    <text>
+    <name>RAMP.vhf1.left.label</name>
+    <axis-alignment>yz-plane</axis-alignment>
+    <alignment>right-bottom</alignment>
+    <offsets>
+      <pitch-deg>-90.0</pitch-deg>
+      <x-m>0.231</x-m>
+      <y-m>0.073</y-m>
+      <z-m>-0.0055</z-m>
+    </offsets>
+    <type>literal</type>
+    <text type="string">VHF1</text>
+    <font>helvetica_bold.txf</font>
+    <character-size type="double">0.004</character-size>
+  </text> 
+  
+  <text>
+    <name>RAMP.vhf2.left.value</name>
+    <axis-alignment>yz-plane</axis-alignment>
+    <alignment>right-bottom</alignment>
+    <offsets>
+      <pitch-deg>-90.0</pitch-deg>
+      <x-m>0.244</x-m>
+      <y-m>0.062</y-m>
+      <z-m>-0.0055</z-m>
+    </offsets>
+    <type>number-value</type>
+    <property type="string">/instrumentation/nav[1]/frequencies/selected-mhz</property>
+    <format type="string">%3.2f</format>
+    <font>helvetica_bold.txf</font>
+    <character-size type="double">0.01</character-size>
+  </text> 
+    <text>
+    <name>RAMP.vhf2.left.label</name>
+    <axis-alignment>yz-plane</axis-alignment>
+    <alignment>right-bottom</alignment>
+    <offsets>
+      <pitch-deg>-90.0</pitch-deg>
+      <x-m>0.244</x-m>
+      <y-m>0.073</y-m>
+      <z-m>-0.0055</z-m>
+    </offsets>
+    <type>literal</type>
+    <text type="string">VHF2</text>
+    <font>helvetica_bold.txf</font>
+    <character-size type="double">0.004</character-size>
+  </text> 
+  
+  <!--  right hand RAMP display -->
+  
+  <text>
+    <name>RAMP.vhf1.right.value</name>
+    <axis-alignment>yz-plane</axis-alignment>
+    <alignment>right-bottom</alignment>
+    <offsets>
+      <pitch-deg>-90.0</pitch-deg>
+      <x-m>0.231</x-m>
+      <y-m>0.425</y-m>
+      <z-m>-0.0055</z-m>
+    </offsets>
+    <type>number-value</type>
+    <property type="string">/instrumentation/nav[0]/frequencies/selected-mhz</property>
+    <format type="string">%3.2f</format>
+    <font>helvetica_bold.txf</font>
+    <character-size type="double">0.01</character-size>
+  </text> 
+    <text>
+    <name>RAMP.vhf1.right.label</name>
+    <axis-alignment>yz-plane</axis-alignment>
+    <alignment>right-bottom</alignment>
+    <offsets>
+      <pitch-deg>-90.0</pitch-deg>
+      <x-m>0.231</x-m>
+      <y-m>0.436</y-m>
+      <z-m>-0.0055</z-m>
+    </offsets>
+    <type>literal</type>
+    <text type="string">VHF1</text>
+    <font>helvetica_bold.txf</font>
+    <character-size type="double">0.004</character-size>
+  </text> 
+  
+  <text>
+    <name>RAMP.vhf2.right.value</name>
+    <axis-alignment>yz-plane</axis-alignment>
+    <alignment>right-bottom</alignment>
+    <offsets>
+      <pitch-deg>-90.0</pitch-deg>
+      <x-m>0.244</x-m>
+      <y-m>0.425</y-m>
+      <z-m>-0.0055</z-m>
+    </offsets>
+    <type>number-value</type>
+    <property type="string">/instrumentation/nav[1]/frequencies/selected-mhz</property>
+    <format type="string">%3.2f</format>
+    <font>helvetica_bold.txf</font>
+    <character-size type="double">0.01</character-size>
+  </text> 
+    <text>
+    <name>RAMP.vhf2.right.label</name>
+    <axis-alignment>yz-plane</axis-alignment>
+    <alignment>right-bottom</alignment>
+    <offsets>
+      <pitch-deg>-90.0</pitch-deg>
+      <x-m>0.244</x-m>
+      <y-m>0.436</y-m>
+      <z-m>-0.0055</z-m>
+    </offsets>
+    <type>literal</type>
+    <text type="string">VHF2</text>
+    <font>helvetica_bold.txf</font>
+    <character-size type="double">0.004</character-size>
+  </text> 
+  
+  
+  
+  <animation>
+    <type>material</type>
+    <object-name>RAMP.vhf1.left.value</object-name>
+    <object-name>RAMP.vhf1.left.label</object-name>
+    <object-name>RAMP.vhf2.left.value</object-name>
+    <object-name>RAMP.vhf2.left.label</object-name>
+    <object-name>RAMP.vhf1.right.value</object-name>
+    <object-name>RAMP.vhf1.right.label</object-name>
+    <object-name>RAMP.vhf2.right.value</object-name>
+    <object-name>RAMP.vhf2.right.label</object-name>
+    <diffuse>
+      <red>0.898</red>
+      <green>0.898</green>
+      <blue>1.0</blue>
+    </diffuse>
+    <ambient>
+      <red>0.898</red>
+      <green>0.898</green>
+      <blue>1.0</blue>
+    </ambient>
+    <emission>
+      <red>0.1</red>
+      <green>0.1</green>
+      <blue>0.563</blue>
+    </emission>
+    <specular>
+      <red>0.0</red>
+      <green>0.0</green>
+      <blue>0.0</blue>
+    </specular>
+    <shininess>0.0</shininess>
+  </animation>
 </PropertyList> 
  

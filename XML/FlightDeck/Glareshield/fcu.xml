@@ -93,7 +93,7 @@
       <pitch-deg>-90.0</pitch-deg>
       <x-m>-0.068</x-m>
       <y-m>0.06</y-m>
-      <z-m>0.0000</z-m>
+      <z-m>-0.0009</z-m>
     </offsets>
     <type>number-value</type>
     <property type="string">/instrumentation/afs/target-altitude-ft</property>
@@ -109,7 +109,7 @@
       <pitch-deg>-90.0</pitch-deg>
       <x-m>-0.068</x-m>
       <y-m>0.06</y-m>
-      <z-m>0.0000</z-m>
+      <z-m>-0.0009</z-m>
     </offsets>
     <type>literal</type>
     <text type="string">-----</text>
@@ -189,7 +189,7 @@
       <pitch-deg>-90.0</pitch-deg>
       <x-m>-0.068</x-m>
       <y-m>-0.08</y-m>
-      <z-m>0.0000</z-m>
+      <z-m>-0.0009</z-m>
     </offsets>
     <type>number-value</type>
     <property type="string">/instrumentation/afs/target-speed-kt</property>
@@ -205,7 +205,7 @@
       <pitch-deg>-90.0</pitch-deg>
       <x-m>-0.068</x-m>
       <y-m>-0.08</y-m>
-      <z-m>0.0000</z-m>
+      <z-m>-0.0009</z-m>
     </offsets>
     <type>literal</type>
     <text type="string">---</text>
@@ -348,7 +348,7 @@
       <pitch-deg>-90.0</pitch-deg>
       <x-m>-0.068</x-m>
       <y-m>0.093</y-m>
-      <z-m>0.0000</z-m>
+      <z-m>-0.0009</z-m>
     </offsets>
     <type>number-value</type>
     <property type="string">/instrumentation/afs/vertical-speed-fpm</property>
@@ -364,7 +364,7 @@
       <pitch-deg>-90.0</pitch-deg>
       <x-m>-0.068</x-m>
       <y-m>0.093</y-m>
-      <z-m>0.0000</z-m>
+      <z-m>-0.0009</z-m>
     </offsets>
     <type>literal</type>
     <text type="string">----</text>
@@ -520,7 +520,7 @@
       <pitch-deg>-90.0</pitch-deg>
       <x-m>-0.068</x-m>
       <y-m>-0.035</y-m>
-      <z-m>0.000</z-m>
+      <z-m>-0.0009</z-m>
     </offsets>
     <type>number-value</type>
     <property type="string">/instrumentation/afs/heading-bug-deg</property>
@@ -536,7 +536,7 @@
       <pitch-deg>-90.0</pitch-deg>
       <x-m>-0.068</x-m>
       <y-m>-0.035</y-m>
-      <z-m>0.000</z-m>
+      <z-m>-0.0009</z-m>
     </offsets>
     <type>literal</type>
     <text type="string">---</text>
@@ -698,6 +698,19 @@
     </specular>
     <shininess>0.0</shininess>
   </animation>
+  <!-- 0.898, 0.898. 1.0 / 0.0, 0.0, 0.663  -->
+  
+  <animation>
+    <type>noshadow</type>
+    <object-name>FCU.spd.kts</object-name>
+    <object-name>FCU.spd.dashes</object-name>
+    <object-name>FCU.hdg.degs</object-name>
+    <object-name>FCU.hdg.dashes</object-name>
+    <object-name>FCU.alt.ft</object-name>
+    <object-name>FCU.alt.dashes</object-name>
+    <object-name>FCU.vs.fpm</object-name>
+    <object-name>FCU.vs.dashes</object-name>
+ </animation>
  
 <!--  toggle buttons and illuminations -->
 
