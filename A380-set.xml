@@ -180,6 +180,7 @@
 	      <path>Aircraft/A380/A380-autopilot.xml</path>
       </autopilot>
     </systems>
+    
     <!-- sound>
      <path>Aircraft/A380/Sounds/A380-sound.xml</path>
 	 <switch type = "bool"></switch>
@@ -741,6 +742,15 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
   <lightning type="bool" archive="y">false</lightning>
   <display-mode archive="y">arc</display-mode>
  </wxradar>
+ <nav n="2">
+    <serviceable type="bool">true</serviceable>
+    <operable type="bool">true</operable>
+    <power-btn type="bool">true</power-btn>
+    <frequencies>
+      <selected-mhz>110.1</selected-mhz>
+      <standby-mhz>109.3</standby-mhz>
+    </frequencies>
+ </nav>
 
 </instrumentation>
 

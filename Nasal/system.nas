@@ -111,14 +111,14 @@ setprop("/instrumentation/efis/baro",0.0);
 setprop("/instrumentation/efis/inhg",0);
 setprop("/instrumentation/efis/kpa",0);
 setprop("/instrumentation/efis/stab",0);
-setprop("/instrumentation/efis/baro-mode",0.0);
+setprop("/instrumentation/efis/baro-mode",1);
 setprop("/instrumentation/efis/fixed-temp",0.0);
 setprop("/instrumentation/efis/fixed-stab",0.0);
 setprop("/instrumentation/efis/fixed-pitch",0.0);
 setprop("/instrumentation/efis/fixed-vs",0.0);
 setprop("/instrumentation/efis/alt-mode",0.0);
 setprop("/instrumentation/efis_fo/baro",0.0);
-setprop("/instrumentation/efis_fo/baro-mode",0.0);
+setprop("/instrumentation/efis_fo/baro-mode",1);
 setprop("/instrumentation/efis_fo/alt-mode",0.0);
 setprop("/instrumentation/ecam/flight-mode",1);    # A380 has 12 phases of flight
 setprop("/instrumentation/ecam/synoptic","door");  # the page that should be displayed on SD

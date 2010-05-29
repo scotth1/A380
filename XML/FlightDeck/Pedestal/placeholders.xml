@@ -5,10 +5,10 @@
 	<path>../../../Models/FlightDeck/Pedestal/placeholders.3ds</path> 
 	<texture-path>../../../Textures/Common</texture-path>
 
- <!--  left hand RAMP display -->
+ <!--  left hand RMP display -->
  
   <text>
-    <name>RAMP.vhf1.left.value</name>
+    <name>RMP.vhf1.left.value</name>
     <axis-alignment>yz-plane</axis-alignment>
     <alignment>right-bottom</alignment>
     <offsets>
@@ -24,7 +24,7 @@
     <character-size type="double">0.01</character-size>
   </text> 
     <text>
-    <name>RAMP.vhf1.left.label</name>
+    <name>RMP.vhf1.left.label</name>
     <axis-alignment>yz-plane</axis-alignment>
     <alignment>right-bottom</alignment>
     <offsets>
@@ -40,7 +40,7 @@
   </text> 
   
   <text>
-    <name>RAMP.vhf2.left.value</name>
+    <name>RMP.vhf2.left.value</name>
     <axis-alignment>yz-plane</axis-alignment>
     <alignment>right-bottom</alignment>
     <offsets>
@@ -56,7 +56,7 @@
     <character-size type="double">0.01</character-size>
   </text> 
     <text>
-    <name>RAMP.vhf2.left.label</name>
+    <name>RMP.vhf2.left.label</name>
     <axis-alignment>yz-plane</axis-alignment>
     <alignment>right-bottom</alignment>
     <offsets>
@@ -71,10 +71,10 @@
     <character-size type="double">0.004</character-size>
   </text> 
   
-  <!--  right hand RAMP display -->
+  <!--  right hand RMP display -->
   
   <text>
-    <name>RAMP.vhf1.right.value</name>
+    <name>RMP.vhf1.right.value</name>
     <axis-alignment>yz-plane</axis-alignment>
     <alignment>right-bottom</alignment>
     <offsets>
@@ -90,7 +90,7 @@
     <character-size type="double">0.01</character-size>
   </text> 
     <text>
-    <name>RAMP.vhf1.right.label</name>
+    <name>RMP.vhf1.right.label</name>
     <axis-alignment>yz-plane</axis-alignment>
     <alignment>right-bottom</alignment>
     <offsets>
@@ -106,7 +106,7 @@
   </text> 
   
   <text>
-    <name>RAMP.vhf2.right.value</name>
+    <name>RMP.vhf2.right.value</name>
     <axis-alignment>yz-plane</axis-alignment>
     <alignment>right-bottom</alignment>
     <offsets>
@@ -122,7 +122,7 @@
     <character-size type="double">0.01</character-size>
   </text> 
     <text>
-    <name>RAMP.vhf2.right.label</name>
+    <name>RMP.vhf2.right.label</name>
     <axis-alignment>yz-plane</axis-alignment>
     <alignment>right-bottom</alignment>
     <offsets>
@@ -141,14 +141,14 @@
   
   <animation>
     <type>material</type>
-    <object-name>RAMP.vhf1.left.value</object-name>
-    <object-name>RAMP.vhf1.left.label</object-name>
-    <object-name>RAMP.vhf2.left.value</object-name>
-    <object-name>RAMP.vhf2.left.label</object-name>
-    <object-name>RAMP.vhf1.right.value</object-name>
-    <object-name>RAMP.vhf1.right.label</object-name>
-    <object-name>RAMP.vhf2.right.value</object-name>
-    <object-name>RAMP.vhf2.right.label</object-name>
+    <object-name>RMP.vhf1.left.value</object-name>
+    <object-name>RMP.vhf1.left.label</object-name>
+    <object-name>RMP.vhf2.left.value</object-name>
+    <object-name>RMP.vhf2.left.label</object-name>
+    <object-name>RMP.vhf1.right.value</object-name>
+    <object-name>RMP.vhf1.right.label</object-name>
+    <object-name>RMP.vhf2.right.value</object-name>
+    <object-name>RMP.vhf2.right.label</object-name>
     <diffuse>
       <red>0.898</red>
       <green>0.898</green>
