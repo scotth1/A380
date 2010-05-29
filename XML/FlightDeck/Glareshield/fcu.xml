@@ -20,70 +20,6 @@
 	
 <!-- ALT -->
 <!-- Altitude readout and knob -->
- <!-- animation>
-   <type>textranslate</type>
-   <object-name>FCU ALT mesh1</object-name>
-   <property>/instrumentation/afs/target-altitude-ft</property>
-   <factor>0.00001</factor>
-   <step>10000.0</step>
-   <axis>
-     <x>0</x>
-     <y>1</y>
-     <z>0</z>
-   </axis>
- </animation>
-
- <animation>
-   <type>textranslate</type>
-   <object-name>FCU ALT mesh2</object-name>
-   <property>/instrumentation/afs/target-altitude-ft</property>
-   <factor>0.0001</factor>
-   <step>1000.0</step>
-   <axis>
-     <x>0</x>
-     <y>1</y>
-     <z>0</z>
-   </axis>
- </animation>
-
- <animation>
-   <type>textranslate</type>
-   <object-name>FCU ALT mesh3</object-name>
-   <property>/instrumentation/afs/target-altitude-ft</property>
-   <factor>0.001</factor>
-   <step>100.0</step>
-   <axis>
-     <x>0</x>
-     <y>1</y>
-     <z>0</z>
-   </axis>
- </animation>
-
- <animation>
-   <type>textranslate</type>
-   <object-name>FCU ALT mesh4</object-name>
-   <property>/instrumentation/afs/target-altitude-ft</property>
-   <factor>0.01</factor>
-   <step>10.0</step>
-   <axis>
-     <x>0</x>
-     <y>1</y>
-     <z>0</z>
-   </axis>
- </animation>
-
- <animation>
-   <type>textranslate</type>
-   <object-name>FCU ALT mesh5</object-name>
-   <property>/instrumentation/afs/target-altitude-ft</property>
-   <factor>0.1</factor>
-   <step>1.0</step>
-   <axis>
-     <x>0</x>
-     <y>1</y>
-     <z>0</z>
-   </axis>
- </animation -->
  
   <text>
     <name>FCU.alt.ft</name>
@@ -100,6 +36,10 @@
     <format type="string">%5.0f</format>
     <font>led.txf</font>
     <character-size type="double">0.009</character-size>
+    <font-resolution>
+      <width type="int">32</width>
+      <height type="int">32</height>
+    </font-resolution>
   </text>
   <text>
     <name>FCU.alt.dashes</name>
@@ -115,6 +55,10 @@
     <text type="string">-----</text>
     <font>led.txf</font>
     <character-size type="double">0.009</character-size>
+    <font-resolution>
+      <width type="int">32</width>
+      <height type="int">32</height>
+    </font-resolution>
   </text>  
 
 <animation>
@@ -233,48 +177,6 @@
     </equals>
   </condition>
 </animation>
-
-
-
-<!-- animation>
-   <type>textranslate</type>
-   <object-name>FCU SPD mesh1</object-name>
-   <property>/instrumentation/afs/target-speed-kt</property>
-   <factor>0.001</factor>
-   <step>100.0</step>
-   <axis>
-     <x>0</x>
-     <y>1</y>
-     <z>0</z>
-   </axis>
- </animation>
-
- <animation>
-   <type>textranslate</type>
-   <object-name>FCU SPD mesh2</object-name>
-   <property>/instrumentation/afs/target-speed-kt</property>
-   <factor>0.01</factor>
-   <step>10.0</step>
-   <axis>
-     <x>0</x>
-     <y>1</y>
-     <z>0</z>
-   </axis>
- </animation>
-
- <animation>
-   <type>textranslate</type>
-   <object-name>FCU SPD mesh3</object-name>
-   <property>/instrumentation/afs/target-speed-kt</property>
-   <factor>0.1</factor>
-   <step>1.0</step>
-   <axis>
-     <x>0</x>
-     <y>1</y>
-     <z>0</z>
-   </axis>
- </animation -->
- 
  
  <animation>
   <type>pick</type>
@@ -324,17 +226,6 @@
      <z>0.5</z>
   </axis> 
 </animation>
- 
-<!-- animation>
-  <type>select</type>
-  <object-name>SPD group</object-name>
-  <condition>
-    <equals>   
-      <property>/instrumentation/afs/spd-display</property>
-      <value>0</value>
-    </equals>
-  </condition>
-</animation -->
  
  
 <!-- VS -->
@@ -393,61 +284,6 @@
   </condition>
 </animation>
 
-
- <!-- animation>
-   <type>textranslate</type>
-   <object-name>FCU VS mesh1</object-name>
-   <property>/instrumentation/afs/vertical-speed-fpm</property>
-   <factor>0.0001</factor>
-   <step>1000.0</step>
-   <axis>
-     <x>0</x>
-     <y>1</y>
-     <z>0</z>
-   </axis>
- </animation>
-
- <animation>
-   <type>textranslate</type>
-   <object-name>FCU VS mesh2</object-name>
-   <property>/instrumentation/afs/vertical-speed-fpm</property>
-   <factor>0.001</factor>
-   <step>100.0</step>
-   <axis>
-     <x>0</x>
-     <y>1</y>
-     <z>0</z>
-   </axis>
- </animation>
-
- <animation>
-   <type>textranslate</type>
-   <object-name>FCU VS mesh3</object-name>
-   <property>/instrumentation/afs/vertical-speed-fpm</property>
-   <factor>0.01</factor>
-   <step>10.0</step>
-   <axis>
-     <x>0</x>
-     <y>1</y>
-     <z>0</z>
-   </axis>
-</animation>
-
- <animation>
-   <type>textranslate</type>
-   <object-name>FCU VS mesh4</object-name>
-   <property>/instrumentation/afs/vertical-speed-fpm</property>
-   <factor>0.1</factor>
-   <step>1.0</step>
-   <axis>
-     <x>0</x>
-     <y>1</y>
-     <z>0</z>
-   </axis>
- </animation -->
- 
- 
- 
  <animation>
   <type>pick</type>
   <object-name>VS knob</object-name>
@@ -497,16 +333,6 @@
   </axis>  
 </animation>
 
-<!-- animation>
-  <type>select</type>
-  <object-name>VS group</object-name>
-  <condition>
-    <equals>   
-      <property>/instrumentation/afs/vertical-vs-display</property>
-      <value>0</value>
-    </equals>
-  </condition>
-</animation -->
 
 
 <!-- HDG -->
@@ -564,58 +390,6 @@
     </equals>
   </condition>
 </animation>
-
-
-
-
- <!-- animation>
-   <type>textranslate</type>
-   <object-name>FCU HDG mesh1</object-name>
-   <property>/instrumentation/afs/heading-bug-deg</property>
-   <factor>0.001</factor>
-   <step>100.0</step>
-   <axis>
-     <x>0</x>
-     <y>1</y>
-     <z>0</z>
-   </axis>
- </animation>
- <animation>
-   <type>textranslate</type>
-   <object-name>FCU HDG mesh2</object-name>
-   <property>/instrumentation/afs/heading-bug-deg</property>
-   <factor>0.01</factor>
-   <step>10.0</step>
-   <axis>
-     <x>0</x>
-     <y>1</y>
-     <z>0</z>
-   </axis>
- </animation>
- <animation>
-   <type>textranslate</type>
-   <object-name>FCU HDG mesh3</object-name>
-   <property>/instrumentation/afs/heading-bug-deg</property>
-   <factor>0.1</factor>
-   <step>1.0</step>
-   <axis>
-     <x>0</x>
-     <y>1</y>
-     <z>0</z>
-   </axis>
- </animation -->
-
-<!-- animation>
-  <type>select</type>
-  <object-name>HDG group</object-name>
-  <condition>
-    <equals>   
-      <property>/instrumentation/afs/lateral-display</property>
-      <value>0</value>
-    </equals>
-  </condition>
-</animation -->
-
   <animation>
   <type>pick</type>
   <object-name>HDG knob</object-name>
@@ -665,6 +439,7 @@
   </axis>  
 </animation>
 
+<!--  FCU text display material -->
 
   <animation>
     <type>material</type>
