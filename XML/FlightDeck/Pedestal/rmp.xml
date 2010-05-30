@@ -40,7 +40,7 @@
     <offsets>
       <pitch-deg>-90.0</pitch-deg>
       <x-m>0.231</x-m>
-      <y-m>0.0738</y-m>
+      <y-m>0.078</y-m>
       <z-m>-0.0055</z-m>
     </offsets>
     <type>literal</type>
@@ -73,7 +73,7 @@
     <offsets>
       <pitch-deg>-90.0</pitch-deg>
       <x-m>0.249</x-m>
-      <y-m>0.0738</y-m>
+      <y-m>0.078</y-m>
       <z-m>-0.0055</z-m>
     </offsets>
     <type>literal</type>
@@ -106,7 +106,7 @@
     <offsets>
       <pitch-deg>-90.0</pitch-deg>
       <x-m>0.267</x-m>
-      <y-m>0.0738</y-m>
+      <y-m>0.078</y-m>
       <z-m>-0.0055</z-m>
     </offsets>
     <type>literal</type>

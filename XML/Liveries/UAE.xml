@@ -4,11 +4,11 @@
 	<sim> 
 		<model> 
 			<livery> 
-				<name type="string">Singapore Airlines</name> 
-				<texture>../SA/A380.png</texture> 
+				<name type="string">Emirates</name> 
+				<texture>../UAE/A380.rgb</texture> 
 			</livery> 
 			<cowling>
-				<texture>../SA/cowling.png</texture>
+				<texture>../UAE/cowling.png</texture>
 			</cowling>
 		</model> 
 	</sim> 

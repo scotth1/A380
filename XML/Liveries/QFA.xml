@@ -5,10 +5,10 @@
 		<model> 
 			<livery> 
 				<name type="string">Qantas Airways</name> 
-				<texture>../QF/A380.rgb</texture> 
+				<texture>../QFA/A380.rgb</texture> 
 			</livery> 
 			<cowling>
-				<texture>../QF/cowling.png</texture>
+				<texture>../QFA/cowling.png</texture>
 			</cowling>
 		</model> 
 	</sim> 
