@@ -688,7 +688,7 @@
  <!-- Hold speed by varying pitch (Two stage cascading controller) --> 
  <pid-controller>
     <name>Speed Reference System (vary pitch) Stage #1</name>
-    <debug>true</debug>
+    <debug>false</debug>
     <enable>
       <prop>/autopilot/locks/speed</prop>
       <value>speed-reference-system</value>
@@ -748,10 +748,10 @@
       <alpha>0.1</alpha>  <!-- low pass filter weighing factor -->
       <gamma>0.0</gamma>  <!-- input value weighing factor for -->
                           <!-- unfiltered derivative error -->
-      <Ti>5.0</Ti>        <!-- integrator time -->
+      <Ti>10.0</Ti>        <!-- integrator time -->
       <Td>0.00001</Td>    <!-- derivator time -->
       <u_min>-0.4</u_min> <!-- minimum output clamp  was -1.0 SAH 10-JUN-09 -->
-      <u_max>0.2</u_max>  <!-- maximum output clamp  was 1.0 SAH 10-JUN-09 -->
+      <u_max>0.25</u_max>  <!-- maximum output clamp  was 1.0 SAH 10-JUN-09 -->
     
       <!-- Kp>-0.1</Kp -->      <!-- proportional gain -->
       <!-- beta>1.0</beta -->    <!-- input value weighing factor -->
