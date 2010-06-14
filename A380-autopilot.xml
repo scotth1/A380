@@ -423,7 +423,7 @@
       <alpha>0.1</alpha>  <!-- low pass filter weighing factor -->
       <gamma>0.0</gamma>  <!-- input value weighing factor for -->
                           <!-- unfiltered derivative error -->
-      <Ti>10.0</Ti>       <!-- integrator time -->
+      <Ti>15.0</Ti>       <!-- integrator time -->  <!-- was 10.0 SAH 2010-06-06 -->
       <Td>0.00001</Td>    <!-- derivator time -->
       <u_min>-1.0</u_min> <!-- minimum output clamp -->
       <u_max>1.0</u_max>  <!-- maximum output clamp -->
@@ -612,13 +612,13 @@
       <prop>/controls/engines/engine[3]/throttle</prop>
     </output>
     <config>
-      <Kp>0.1</Kp>        <!-- proportional gain -->
+      <Kp>0.05</Kp>        <!-- proportional gain --> <!-- was 0.1 SAH 2010-06-06 -->
       <beta>1.0</beta>    <!-- input value weighing factor -->
       <alpha>0.1</alpha>  <!-- low pass filter weighing factor -->
       <gamma>0.0</gamma>  <!-- input value weighing factor for -->
                           <!-- unfiltered derivative error -->
-      <Ti>10.0</Ti>       <!-- integrator time -->
-      <Td>0.00001</Td>    <!-- derivator time -->
+      <Ti>25.0</Ti>       <!-- integrator time -->  <!-- was 10.0 SAH 2010-06-06 -->
+      <Td>0.00001</Td>    <!-- derivator time --> <!-- was 0.00001 SAH 2010-06-06 --> 
       <u_min>0.01</u_min>  <!-- minimum output clamp -->
       <u_max>1.0</u_max>  <!-- maximum output clamp -->
     </config>
@@ -708,7 +708,7 @@
       <alpha>0.1</alpha>  <!-- low pass filter weighing factor -->
       <gamma>0.0</gamma>  <!-- input value weighing factor for -->
                           <!-- unfiltered derivative error -->
-      <Ti>40.0</Ti>        <!-- integrator time -->
+      <Ti>30.0</Ti>        <!-- integrator time -->  <!-- was 40.0 SAH 2010-06-06 -->
       <Td>0.00001</Td>    <!-- derivator time -->
       <u_min>-1.0</u_min><!-- minimum output clamp -->
       <u_max>20.0</u_max> <!-- maximum output clamp -->

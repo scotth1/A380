@@ -79,9 +79,10 @@ FPM2MSEC=0.00508;
 KT2MSEC=0.514;
 MSEC2KMH=3.6;
 KMH2MSEC=0.28;
-CLmax = 2.3;
+CLmax = 2.4;
 
-srsFlapTarget = [263.0, 220.0, 210.0, 196.0, 182.0];   # copied from Airbus_fms.nas
+###srsFlapTarget = [263.0, 220.0, 210.0, 196.0, 182.0];   # copied from Airbus_fms.nas
+srsFlapTarget = [250.0, 220.0, 190.0, 170.0, 150.0];   #another copy in system.nas
 flapPos       = [0, 0.2424, 0.5151, 0.7878, 1.0];
 
 trace = 0;
@@ -229,7 +230,9 @@ update_radar = func{
       var mpPos = geo.Coord.new();
       mpPos.set_latlon(mpLat, mpLon, getprop("/ai/models/multiplayer[" ~ i ~ "]/position/altitude-ft"));
       var mpCourse = currentPos.course_to(mpPos);
-      tgt_offset = mpCourse + true_heading;
+      if (mpCourse != nil and true_heading != nil) {
+        tgt_offset = mpCourse + true_heading;
+      }
       #var id = getprop("/ai/models/multiplayer[" ~ i ~ "]/callsign");
       #if (getprop("/ai[0]/models[0]/multiplayer["~i~"]/valid") == 1) {
       #print("[radar] mp["~i~"] "~id~" - mpCourse: "~mpCourse~", true_heading: "~true_heading~", tgt_offset: "~tgt_offset);
