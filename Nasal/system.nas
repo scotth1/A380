@@ -79,6 +79,8 @@ FPM2MSEC=0.00508;
 KT2MSEC=0.514;
 MSEC2KMH=3.6;
 KMH2MSEC=0.28;
+METRE2FT=3.28083989501;
+FT2METRE=0.3048;
 CLmax = 2.4;
 
 ###srsFlapTarget = [263.0, 220.0, 210.0, 196.0, 182.0];   # copied from Airbus_fms.nas
@@ -86,7 +88,7 @@ srsFlapTarget = [250.0, 220.0, 190.0, 170.0, 150.0];   #another copy in system.n
 flapPos       = [0, 0.2424, 0.5151, 0.7878, 1.0];
 
 trace = 0;
-version = "1.0.5A";
+version = "1.0.5B";
 
 strobe_switch = props.globals.getNode("/controls/switches/strobe", 0);
 aircraft.light.new("sim/model/A380/lighting/strobe", [0.05, 1.2], strobe_switch);
@@ -109,6 +111,7 @@ setprop("/engines/engine[4]/fuel-flow_pph",0.0);   # APU
 setprop("/engines/engine[4]/off-start-run",0);     # APU state, 0=OFF, 1=START, 2=RUN
 setprop("/consumables/fuel/total-fuel-kg",0);
 setprop("/instrumentation/efis/baro",0.0);
+setprop("/instrumentation/efis/baro-std-mode",0);
 setprop("/instrumentation/efis/inhg",0);
 setprop("/instrumentation/efis/kpa",0);
 setprop("/instrumentation/efis/stab",0);
@@ -676,17 +679,17 @@ update_systems = func {
   #update_fueltanks();
 
   baro = getprop("/instrumentation/altimeter/setting-inhg");
-  setprop("/instrumentation/efis/inhg",baro * 100);
-  setprop("/instrumentation/efis/kpa",baro * 33.8637526);
+  setprop("/instrumentation/efis/inhg",baro);
+  setprop("/instrumentation/efis/kpa",int(baro * 33.8637526));
   setprop("/instrumentation/efis/stab",getprop("/controls/flight/elevator-trim") * 15);
 
   if(getprop("/instrumentation/efis/baro-mode")== 0){
-    setprop("/instrumentation/efis/baro", baro * 100);
+    setprop("/instrumentation/efis/baro", baro );
   }else{
     setprop("/instrumentation/efis/baro",baro * 33.8637526);
   }
   if(getprop("/instrumentation/efis_fo/baro-mode")== 0){
-    setprop("/instrumentation/efis_fo/baro", baro * 100);
+    setprop("/instrumentation/efis_fo/baro", baro );
   }else{
     setprop("/instrumentation/efis_fo/baro",baro * 33.8637526);
   }
@@ -745,6 +748,14 @@ update_systems = func {
 settimer(update_systems,0.5);
 }
 settimer(update_systems,0);
+
+update_metric = func {
+  var posAltitudeFt = getprop("/position/altitude-ft");
+  var altIndicatedAltFt = getprop("/instrumentation/altimeter/indicated-altitude-ft");
+  setprop("/position/altitude-m",posAltitudeFt*FT2METRE);
+  setprop("/instrumentation/altimeter/indicated-altitude-m",altIndicatedAltFt*FT2METRE);
+  settimer(update_metric, 1.0);
+}
 
 
 increment_flight_mode1 = func {
@@ -810,6 +821,7 @@ setlistener("/sim/signals/fdm-initialized", func {
      setprop("/instrumentation/ecam/synoptic","door");
      setprop("/instrumentation/ecam/page","door");
  update_engines();
+ update_metric();
 });
 
 
@@ -1044,6 +1056,14 @@ setlistener("/controls/switches/seat-belt", func(n) {
   ## seat belt switch set to on
   if (seat == 2) {
     setprop("/instrumentation/switches/seatbelt-sign",1);
+  }
+});
+
+# monitor efis Std baro mode
+setlistener("/instrumentation/efis/baro-std-mode", func(n) {
+  var stdMode = n.getValue();
+  if (stdMode == 1) {
+    setprop("/instrumentation/altimeter/setting-inhg",29.92);
   }
 });
 

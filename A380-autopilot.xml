@@ -465,7 +465,7 @@
 
   <!-- Stage #2 drives the elevator-trim to achieve the desired climb rate. -->
   <pid-controller>
-    <name>Altitude Hold (Altimeter based) Stage 2</name>
+    <name>AGL Hold (Altimeter based) Stage 2</name>
     <debug>false</debug>
     <enable>
       <prop>/autopilot/locks/altitude</prop>
@@ -601,6 +601,7 @@
     </enable>
     <input>
       <prop>/autopilot/internal/lookahead-5-sec-airspeed-kt</prop>
+      <!--prop>/instrumentation/airspeed-indicator/indicated-speed-kt</prop -->
     </input>
     <reference>
       <prop>/autopilot/settings/target-speed-kt</prop>
@@ -634,6 +635,7 @@
     </enable>
     <input>
       <prop>/autopilot/internal/lookahead-5-sec-airspeed-kt</prop>
+      <!-- prop>/instrumentation/airspeed-indicator/indicated-speed-kt</prop -->
     </input>
     <reference>
       <prop>/autopilot/settings/target-speed-kt</prop>
