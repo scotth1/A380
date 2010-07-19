@@ -67,8 +67,8 @@ lnavStr = ["off","HDG","TRK","LOC","NAV","RWY"];
 vnavStr = ["off","ALT(s)","V/S","OP CLB","FPA","OP DES","CLB","ALT CRZ","DES","G/S","SRS","LEVEL"];
 spdStr  = ["off","TOGA","FLEX","THR CLB","SPEED","MACH","CRZ","THR DES","THR IDL"];
 
-version="V1.0.2A";
-trace=0;
+version="V1.0.2B";
+trace=1;
 
 #trigonometric values for glideslope calculations
 FD_TAN3DEG = 0.052407779283;
@@ -819,7 +819,7 @@ setlistener("/instrumentation/flightdirector/spd", func(n) {
         if (curAlt > accAlt and curAlt < 15000 and getprop("/instrumentation/flightdirector/climb-arm") != 1) {
           setprop("/instrumentation/flightdirector/vnav",VNAV_CLB);
           tracer("Acquire CLB CL speed");
-          setprop("/autopilot/settings/vertical-speed-fpm",2500);
+          setprop("/autopilot/settings/vertical-speed-fpm",2300);
           setprop("/autopilot/locks/altitude","vertical-speed-hold");
           settimer(climb_thrust, 30);
           setprop("/instrumentation/flightdirector/climb-arm",1);

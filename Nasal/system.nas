@@ -88,7 +88,7 @@ srsFlapTarget = [250.0, 220.0, 190.0, 170.0, 150.0];   #another copy in system.n
 flapPos       = [0, 0.2424, 0.5151, 0.7878, 1.0];
 
 trace = 0;
-version = "1.0.5B";
+version = "1.0.5C";
 
 strobe_switch = props.globals.getNode("/controls/switches/strobe", 0);
 aircraft.light.new("sim/model/A380/lighting/strobe", [0.05, 1.2], strobe_switch);
@@ -494,7 +494,10 @@ update_engines = func {
          setprop("/controls/engines/engine["~e~"]/ignition",0);
          settimer(check_all_start, 10);
     }
-    eng_egtF = getprop("/engines/engine["~e~"]/egt_degf");
+    var eng_egtF = getprop("/engines/engine["~e~"]/egt_degf");
+    if (eng_egtF == nil) {
+      eng_egtF = getprop("/engines/engine["~e~"]/egt-degf");
+    }
     eng_egtC = (5/9)*(eng_egtF-32);
     setprop("/engines/engine["~e~"]/egt_degc",eng_egtC);
     limit = getprop("/instrumentation/ecam/egt_limit_arm");
@@ -513,7 +516,10 @@ update_engines = func {
     setprop("/engines/engine[4]/off-start-run",0);
     settimer(update_sd, 10);
   }
-  apu_egtF = getprop("/engines/engine[4]/egt_degf");
+  var apu_egtF = getprop("/engines/engine[4]/egt_degf");
+  if (apu_egtF == nil) {
+    apu_egtF = getprop("/engines/engine[4]/egt-degf");
+  }
   apu_egtC = (5/9)*(apu_egtF-32);
   setprop("/engines/engine[4]/egt_degc",apu_egtC);
 

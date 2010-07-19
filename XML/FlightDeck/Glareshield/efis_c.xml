@@ -21,6 +21,12 @@
   </animation>
 
   <animation>
+    <condition>
+      <equals>
+        <property>/instrumentation/efis/baro-std-mode</property>
+        <value>0</value>
+      </equals>
+    </condition>
     <type>pick</type>
     <object-name>baro.knob</object-name>
     <action>
