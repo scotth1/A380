@@ -327,12 +327,18 @@ changePage = func(unit,page) {
     ####   setup the array of SID options to be displayed
     if (depDB != nil) {
       var sidList = depDB.getSIDList(getprop("/instrumentation/afs/dep-rwy"));
+      var rwyScroll = getprop("/instrumentation/mcdu["~unit~"]/opt-scroll");
+      var max = size(sidList);
       setprop("/instrumentation/mcdu["~unit~"]/opt-size",size(sidList));
-      for(var pos = 0; pos != size(sidList); pos=pos+1) {
+      if (max > (rwyScroll*8)+8) {
+        max = (rwyScroll*8)+8;
+      }
+      var pos = 0;
+      for(var p = (rwyScroll*8); p != size(sidList); p=p+1) {
         var sidAttr = sprintf("/instrumentation/mcdu[%i]/opt%02i",unit,pos+1);
         var sidNumWptAttr = sprintf("/instrumentation/mcdu[%i]/col01-opt%02i",unit,pos+1);
         var sidTransAttr = sprintf("/instrumentation/mcdu[%i]/col02-opt%02i",unit,pos+1);
-        var proc = sidList[pos];
+        var proc = sidList[p];
         tracer("[MCDU] found SID procedure: "~proc.wp_name~", with "~size(proc.wpts)~" waypoints and "~size(proc.transitions)~" transitions");
         setprop(sidAttr,proc.wp_name);
         var wptLen = sprintf("%2i",size(proc.wpts));
@@ -349,6 +355,7 @@ changePage = func(unit,page) {
         } else {
           setprop(sidTransAttr, "");
         }
+        pos = pos+1;
       }
       setprop("/autopilot/route-manager/departure/airport",getprop("/instrumentation/afs/FROM"));
       setprop("/autopilot/route-manager/departure/runway",getprop("/instrumentation/afs/dep-rwy"));

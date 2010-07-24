@@ -401,18 +401,22 @@
       <value>8</value>
     </greater-than>
     <or>
-    <equals>
-      <property>/instrumentation/mcdu[0]/page</property>
-      <value>active.departure.dep</value>
-    </equals>
-    <equals>
-      <property>/instrumentation/mcdu[0]/page</property>
-      <value>active.departure.arv</value>
-    </equals>
-    <equals>
-      <property>/instrumentation/mcdu[0]/page</property>
-      <value>active.departure.star</value>
-    </equals>
+      <equals>
+	<property>/instrumentation/mcdu[0]/page</property>
+	<value>active.departure.dep</value>
+      </equals>
+      <equals>
+	<property>/instrumentation/mcdu[0]/page</property>
+	<value>active.departure.arv</value>
+      </equals>
+      <equals>
+	<property>/instrumentation/mcdu[0]/page</property>
+	<value>active.departure.sid</value>
+      </equals>
+      <equals>
+	<property>/instrumentation/mcdu[0]/page</property>
+	<value>active.departure.star</value>
+      </equals>
     </or>
    </and>
   </condition>

@@ -84,7 +84,7 @@ FT2METRE=0.3048;
 CLmax = 2.4;
 
 ###srsFlapTarget = [263.0, 220.0, 210.0, 196.0, 182.0];   # copied from Airbus_fms.nas
-srsFlapTarget = [250.0, 220.0, 190.0, 170.0, 150.0];   #another copy in system.nas
+srsFlapTarget = [263.0, 222.0, 220.0, 196.0, 182.0];   #another copy in system.nas
 flapPos       = [0, 0.2424, 0.5151, 0.7878, 1.0];
 
 trace = 0;
@@ -423,6 +423,17 @@ update_radar = func{
    var Vsfts = math.sqrt(W*2/(rho * CLmax * S));
    var Vso = ((Vsfts*60)*FPM2MSEC)*MSEC2KT;
    setprop("/velocities/Vso",Vso);
+
+   ##############
+   #   update fuel tank KG weight
+   ##############
+   var density = getprop("/consumables/fuel/tank/density-kgpl");
+   var tanks = props.globals.getNode("/consumables/fuel").getChildren("tank");
+   for(i=0; i<size(tanks);i=i+1) {
+     var tank = tanks[i];
+     var levelLbs = tank.getChild("level-lbs").getValue();
+     tank.getChild("level-kg",0,1).setValue(levelLbs*density);
+   }
   
 
   settimer(update_radar, 1.0);
@@ -478,7 +489,6 @@ update_engines = func {
     setprop("/engines/engine["~e~"]/fuel-flow_kgph",(pph1*fuel_density_metric));
     if (ign == 1 and e_start == 1 and e_master == 1) {
       tracer("Engine "~e~" in start phase, N2: "~hpsi);
-      ##if (hpsi > 8 and hpsi < 10) {
       if (hpsi > 20 and hpsi < 22 and getprop("/controls/engines/engine["~e~"]/cutoff") == 1) {
         setprop("/controls/engines/engine["~e~"]/cutoff",0);
       }
