@@ -70,7 +70,7 @@
       <internal type="bool">true</internal>
       <config>
         <x-offset-m type="double">-0.55</x-offset-m>
-        <y-offset-m type="double">-1.55</y-offset-m>
+        <y-offset-m type="double">-1.57</y-offset-m>  <!-- -1.55 -->
         <z-offset-m type="double">-19.50</z-offset-m>
         <pitch-offset-deg>-10</pitch-offset-deg>
         <default-field-of-view-deg type="double">60.0</default-field-of-view-deg>
@@ -100,9 +100,9 @@
       <from-model type="bool">true</from-model>
       <from-model-idx type="int">0</from-model-idx>
       <ground-level-nearplane-m type="double">0.01f</ground-level-nearplane-m>
-      <default-field-of-view-deg type="double">55</default-field-of-view-deg>
+      <default-field-of-view-deg type="double">91.5</default-field-of-view-deg>
       <pitch-offset-deg>-8.0</pitch-offset-deg>
-      <heading-offset-deg type="double">90</heading-offset-deg> <!-- parallel to the panel -->
+      <heading-offset-deg type="double">94.5</heading-offset-deg> <!-- parallel to the panel -->
       <x-offset-m archive="y"> -2.0 </x-offset-m> <!--Left/Right-->
       <y-offset-m archive="y"> 1.31 </y-offset-m> <!--Up/Down-->
       <z-offset-m archive="y"> 9.67 </z-offset-m> <!--Fdw/Back-->
@@ -118,10 +118,11 @@
        <from-model-idx type="int">0</from-model-idx>
        <!-- ground-level-nearplane-m type="double">6f</ground-level-nearplane-m -->
        <x-offset-m type="double">0.55</x-offset-m>  <!-- 0.55 -->
-       <y-offset-m type="double">-1.55</y-offset-m>  <!-- 3.75 -->
+       <y-offset-m type="double">-1.57</y-offset-m>  <!-- 3.75 / -1.55 -->
        <z-offset-m type="double">-19.50</z-offset-m> <!-- -23.15 -->
        <pitch-offset-deg>-10</pitch-offset-deg>   <!-- -15 -->
-       <default-field-of-view-deg type="double">60.0</default-field-of-view-deg>  <!-- 70.0 -->
+       <default-field-of-view-deg type="double">80.0</default-field-of-view-deg>  <!-- 70.0 -->
+       <heading-offset-deg type="double">358.0</heading-offset-deg>
       </config>
       <dynamic>
         <enabled type="bool">false</enabled>
@@ -711,7 +712,28 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
             <range type="double">1.2</range>
         </groundradar>
         <mk-viii>
-            <serviceable>1</serviceable>
+            <serviceable>true</serviceable>
+            
+            <configuration-module>
+              <category-1>  254 </category-1>  <!-- AIRCRAFT_MODE_TYPE_SELECT -->
+              <category-3>   2 </category-3>  <!-- POSITION_INPUT_SELECT -->
+              <category-4>   9 </category-4>  <!-- ALTITUDE_CALLOUTS -->
+              <category-5>   0 </category-5>  <!-- AUDIO_MENU_SELECT -->
+              <category-6>   1 </category-6>  <!-- TERRAIN_DISPLAY_SELECT -->
+              <category-7>   4 </category-7>  <!-- OPTIONS_SELECT_GROUP_1 -->
+              <category-8>   2 </category-8>  <!-- RADIO_ALTITUDE_INPUT_SELECT -->
+              <category-9>   3 </category-9>  <!-- NAVIGATION_INPUT_SELECT -->
+              <category-10>  6 </category-10> <!-- ATTITUDE_INPUT_SELECT -->
+              <category-13>  7 </category-13> <!-- INPUT_OUTPUT_DISCRETE_TYPE_SELECT -->
+              <category-14>  0 </category-14> <!-- AUDIO_OUTPUT_LEVEL -->
+            </configuration-module>
+            
+            <arinc429>
+              <decision-height-ncd> false </decision-height-ncd> 
+              <decision-height> 200 </decision-height>
+            </arinc429>
+
+
             <speaker>
                 <max-dist>2</max-dist>
                 <reference-dist>1</reference-dist>

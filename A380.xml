@@ -646,12 +646,16 @@
                     <time>0.0000</time>
                 </setting>
                 <setting>
-                    <position>15.0000</position>
-                    <time>4.0000</time>
+                    <position>7.3000</position>
+                    <time>3.0000</time>
+                </setting>
+                <setting>
+                    <position>15.5000</position>
+                    <time>2.0000</time>
                 </setting>
                 <setting>
                     <position>30.0000</position>
-                    <time>3.0000</time>
+                    <time>4.0000</time>
                 </setting>
             </traverse>
             <output>fcs/flap-pos-deg</output>
@@ -843,10 +847,17 @@
                           <independentVar>aero/alpha-rad</independentVar>
                           <tableData>
                               -0.2000	-0.6800
+                              0.0000	0.2500
+                              0.0400	0.8500
+                              0.2300	1.3000
+                              0.6000	0.7000
+                          </tableData>
+                          <!-- tableData>
+                              -0.2000	-0.6800
                               0.0000	0.3000
                               0.2300	1.2000
                               0.6000	0.7000
-                          </tableData>
+                          </tableData -->
                           <!-- 0.0000 0.2000
                                0.2300 1.2000
                                0.6000 0.6000  -->
@@ -865,8 +876,8 @@
                       <independentVar>fcs/flap-pos-deg</independentVar>
                       <tableData>
                       00.00	0.000
-                      07.23	0.300  <!-- 0.25  0.29008 -->
-                      15.46	0.400  <!-- 0.53 0.39467 -->
+                      07.23	0.290  <!-- 0.25  0.29008 -->
+                      15.46	0.420  <!-- 0.53 0.39467 -->
                       23.64	0.015  <!-- 0.79 0.0133 -->
                       30.00	0.010  <!-- 1.00 0.01 -->
                       </tableData>

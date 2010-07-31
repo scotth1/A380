@@ -238,7 +238,7 @@ update_radar = func{
       }
       #var id = getprop("/ai/models/multiplayer[" ~ i ~ "]/callsign");
       #if (getprop("/ai[0]/models[0]/multiplayer["~i~"]/valid") == 1) {
-      #print("[radar] mp["~i~"] "~id~" - mpCourse: "~mpCourse~", true_heading: "~true_heading~", tgt_offset: "~tgt_offset);
+      #tracer("[radar] mp["~i~"] "~id~" - mpCourse: "~mpCourse~", true_heading: "~true_heading~", tgt_offset: "~tgt_offset);
       #}
     } else {
       if(tgt_offset == nil){

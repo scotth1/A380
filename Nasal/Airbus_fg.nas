@@ -670,8 +670,13 @@ setlistener("/instrumentation/flightdirector/vnav", func(n) {
       #setprop("/controls/autoflight/vertical-mode",1);
     }
     if(vnav == VNAV_OPCLB) {   # OP CLB  (s)
-      setprop("/autopilot/locks/speed","climb-hold");
+      #setprop("/autopilot/locks/speed","climb-hold");
       #setprop("/controls/autoflight/vertical-mode",2);
+      setprop("/autopilot/locks/altitude","vertical-speed-hold");
+    }
+    if(vnav == VNAV_OPDES) {   # OP DES (s)
+      #setprop("/autopilot/locks/speed","climb-hold");
+      setprop("/autopilot/locks/altitude","vertical-speed-hold");
     }
     if (vnav == VNAV_CLB) {  # CLB  (m)
       curAlt = getprop("/position/altitude-ft");
@@ -699,7 +704,10 @@ setlistener("/instrumentation/flightdirector/vnav", func(n) {
       }
     }
     if(vnav == VNAV_ALTCRZ) {   # ALT (m)
-      setprop("/autopilot/settings/target-alt-hold",getprop("/instrumentation/gps/wp/wp[1]/altitude-ft"));
+      curAlt = getprop("/position/altitude-ft");
+      if (curAlt < getprop("/instrumentation/gps/wp/wp[1]/altitude-ft")) {
+        setprop("/autopilot/settings/target-alt-hold",getprop("/instrumentation/gps/wp/wp[1]/altitude-ft"));
+      }
       setprop("/autopilot/locks/altitude","altitude-hold");
       #setprop("/controls/autoflight/vertical-mode",1);
     }
@@ -731,7 +739,7 @@ setlistener("/instrumentation/flightdirector/vnav", func(n) {
         if (descentAlt < 10000) {
           gap = 25;
         }
-        eta = (etaSec+(etaMin*60))-gap;   #reach point <gap>seconds before.
+        eta = (etaSec+(etaMin*60))-gap;   #reach point <gap> seconds before.
         #tracer("[updateMode] eta: "~eta~", difAlt: "~diffAlt);
         if (eta <= 0) {
           if (getprop("/autopilot/locks/altitude") != "altitude-hold") {
@@ -1320,8 +1328,8 @@ update_mode = func {
         print("WARN: slow vertical speed, "~fpm~" ,use vertical-trim!");
         var newThrottle = 0.7;
         for(e=0; e <4; e=e+1) {
-          #tracer("Set throttle: "~newThrottle~", engine: "~e);
           var curTh = getprop("/controls/engines/engine["~e~"]/throttle");
+          tracer("Set throttle: "~newThrottle~", engine: "~e~", curTh: "~curTh);
           if (newThrottle > curTh) {
             interpolate("/controls/engines/engine["~e~"]/throttle",newThrottle,2);
           } 
