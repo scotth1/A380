@@ -695,8 +695,10 @@ toggle_thrust_detent = func(n) {
        tracer("Current Throttle: "~curTh~", set new throttle: "~newThrottle~", engine: "~e~", throttleRate: "~throttleRates[currDetent]);       
        if (currDetent == 1 and n == -1) {
          interpolate("/controls/engines/engine["~e~"]/throttle",newThrottle,5);
+         tracer("interpolate engine: "~e~" down to newThrottle: "~newThrottle);
        } else {
          setprop("/controls/engines/engine["~e~"]/throttle",newThrottle);
+         tracer("set engine: "~e~" to newThrottle: "~newThrottle);
        }
      }
    }

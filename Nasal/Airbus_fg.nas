@@ -284,6 +284,8 @@ setlistener("/sim/signals/fdm-initialized", func {
     setprop("/instrumentation/afs/vertical-speed-fpm",1000);
     setprop("/instrumentation/afs/heading-bug-deg",0);
     setprop("/instrumentation/afs/target-speed-kt",200);
+    setprop("/instrumentation/afs/limit-min-vs-fps", -16.67);
+    setprop("/instrumentation/afs/limit-max-vs-fps", 33.33);
     setprop("/instrumentation/mcdu/field-select",0);
     setprop("/autopilot/settings/heading-bug-deg",0);
     setprop("/autopilot/settings/target-altitude-ft",0);
@@ -635,6 +637,8 @@ setlistener("/instrumentation/flightdirector/lnav", func(n) {
     if (lnav == LNAV_TRACK) {  #TRACK (s)
     }
     if(lnav == LNAV_LOC) {   #LOC
+      setprop("/instrumentation/afs/limit-min-vs-fps",-13.0);
+      setprop("/instrumentation/afs/limit-max-vs-fps",13.0);
       setprop("/autopilot/locks/heading","nav1-hold");
       setprop("/controls/autoflight/lateral-mode",2);
     }
@@ -662,6 +666,10 @@ setlistener("/instrumentation/flightdirector/vnav", func(n) {
       #setprop("/controls/autoflight/vertical-mode",0);
     }
     if(vnav == VNAV_ALTs) {   # ALT (s)
+      if (getprop("/position/altitude-ft") > 25000) {
+        setprop("/instrumentation/afs/limit-min-vs-fps",-9.0);
+        setprop("/instrumentation/afs/limit-max-vs-fps",13.0);
+      }
       setprop("/autopilot/locks/altitude","altitude-hold");
       #setprop("/controls/autoflight/vertical-mode",1);
     }
@@ -707,6 +715,8 @@ setlistener("/instrumentation/flightdirector/vnav", func(n) {
       curAlt = getprop("/position/altitude-ft");
       if (curAlt < getprop("/instrumentation/gps/wp/wp[1]/altitude-ft")) {
         setprop("/autopilot/settings/target-alt-hold",getprop("/instrumentation/gps/wp/wp[1]/altitude-ft"));
+        setprop("/instrumentation/afs/limit-min-vs-fps",-9.0);
+        setprop("/instrumentation/afs/limit-max-vs-fps",13.0);
       }
       setprop("/autopilot/locks/altitude","altitude-hold");
       #setprop("/controls/autoflight/vertical-mode",1);
@@ -765,6 +775,8 @@ setlistener("/instrumentation/flightdirector/vnav", func(n) {
         }
       } else {
         if (getprop("/autopilot/locks/altitude") != "altitude-hold") {
+          setprop("/instrumentation/afs/limit-min-vs-fps",-9.0);
+          setprop("/instrumentation/afs/limit-max-vs-fps",9.0);
           tracer("descend #2: set altitude-hold");
           setprop("/autopilot/settings/target-alt-hold",descentAlt);
           setprop("/autopilot/locks/altitude","altitude-hold");
@@ -773,6 +785,8 @@ setlistener("/instrumentation/flightdirector/vnav", func(n) {
     }
     if(vnav == VNAV_GS) {   # G/S
       if(getprop("/instrumentation/nav/has-gs") != 0) {
+        setprop("/instrumentation/afs/limit-min-vs-fps",-13.0);
+          setprop("/instrumentation/afs/limit-max-vs-fps",13.0);
         tracer("has GS, enabling gs-hold");
         setprop("/autopilot/locks/altitude","gs1-hold");
         #setprop("/controls/autoflight/vertical-mode",2);

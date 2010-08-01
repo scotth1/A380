@@ -73,7 +73,7 @@
         <y-offset-m type="double">-1.57</y-offset-m>  <!-- -1.55 -->
         <z-offset-m type="double">-19.50</z-offset-m>
         <pitch-offset-deg>-10</pitch-offset-deg>
-        <default-field-of-view-deg type="double">60.0</default-field-of-view-deg>
+        <default-field-of-view-deg type="double">90.0</default-field-of-view-deg>
       </config>
     </view>
     <view n="1">
@@ -100,9 +100,9 @@
       <from-model type="bool">true</from-model>
       <from-model-idx type="int">0</from-model-idx>
       <ground-level-nearplane-m type="double">0.01f</ground-level-nearplane-m>
-      <default-field-of-view-deg type="double">91.5</default-field-of-view-deg>
-      <pitch-offset-deg>-8.0</pitch-offset-deg>
-      <heading-offset-deg type="double">94.5</heading-offset-deg> <!-- parallel to the panel -->
+      <default-field-of-view-deg type="double">107</default-field-of-view-deg>
+      <pitch-offset-deg>-29.8</pitch-offset-deg>
+      <heading-offset-deg type="double">95.1</heading-offset-deg> <!-- parallel to the panel -->
       <x-offset-m archive="y"> -2.0 </x-offset-m> <!--Left/Right-->
       <y-offset-m archive="y"> 1.31 </y-offset-m> <!--Up/Down-->
       <z-offset-m archive="y"> 9.67 </z-offset-m> <!--Fdw/Back-->
@@ -121,7 +121,7 @@
        <y-offset-m type="double">-1.57</y-offset-m>  <!-- 3.75 / -1.55 -->
        <z-offset-m type="double">-19.50</z-offset-m> <!-- -23.15 -->
        <pitch-offset-deg>-10</pitch-offset-deg>   <!-- -15 -->
-       <default-field-of-view-deg type="double">80.0</default-field-of-view-deg>  <!-- 70.0 -->
+       <default-field-of-view-deg type="double">90.0</default-field-of-view-deg>  <!-- 70.0 -->
        <heading-offset-deg type="double">358.0</heading-offset-deg>
       </config>
       <dynamic>
