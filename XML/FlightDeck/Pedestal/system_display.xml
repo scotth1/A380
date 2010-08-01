@@ -1579,8 +1579,8 @@
     <alignment>right-bottom</alignment>
     <offsets>
       <pitch-deg>-90</pitch-deg>
-      <x-m>-0.125</x-m>
-      <y-m>0.040</y-m>
+      <x-m>-0.133</x-m>
+      <y-m>0.042</y-m>
       <z-m>0.0007</z-m>
     </offsets>
     <type>number-value</type>
@@ -1597,7 +1597,7 @@
     <alignment>right-bottom</alignment>
     <offsets>
       <pitch-deg>-90</pitch-deg>
-      <x-m>-0.13</x-m>
+      <x-m>-0.139</x-m>
       <y-m>0.070</y-m>
       <z-m>0.0007</z-m>
     </offsets>
@@ -1615,8 +1615,8 @@
     <alignment>right-bottom</alignment>
     <offsets>
       <pitch-deg>-90</pitch-deg>
-      <x-m>-0.13</x-m>
-      <y-m>0.116</y-m>
+      <x-m>-0.139</x-m>
+      <y-m>0.111</y-m>
       <z-m>0.0007</z-m>
     </offsets>
     <type>number-value</type>
@@ -1633,8 +1633,8 @@
     <alignment>right-bottom</alignment>
     <offsets>
       <pitch-deg>-90</pitch-deg>
-      <x-m>-0.125</x-m>
-      <y-m>0.144</y-m>
+      <x-m>-0.133</x-m>
+      <y-m>0.140</y-m>
       <z-m>0.0007</z-m>
     </offsets>
     <type>number-value</type>
@@ -1651,8 +1651,8 @@
     <alignment>right-bottom</alignment>
     <offsets>
       <pitch-deg>-90</pitch-deg>
-      <x-m>-0.105</x-m>
-      <y-m>0.065</y-m>
+      <x-m>-0.120</x-m>
+      <y-m>0.069</y-m>
       <z-m>0.0007</z-m>
     </offsets>
     <type>number-value</type>
@@ -1669,8 +1669,8 @@
     <alignment>right-bottom</alignment>
     <offsets>
       <pitch-deg>-90</pitch-deg>
-      <x-m>-0.105</x-m>
-      <y-m>0.120</y-m>
+      <x-m>-0.120</x-m>
+      <y-m>0.1095</y-m>
       <z-m>0.0007</z-m>
     </offsets>
     <type>number-value</type>
@@ -1687,8 +1687,8 @@
     <alignment>right-bottom</alignment>
     <offsets>
       <pitch-deg>-90</pitch-deg>
-      <x-m>-0.105</x-m>
-      <y-m>0.045</y-m>
+      <x-m>-0.120</x-m>
+      <y-m>0.050</y-m>
       <z-m>0.0007</z-m>
     </offsets>
     <type>number-value</type>
@@ -1705,8 +1705,8 @@
     <alignment>right-bottom</alignment>
     <offsets>
       <pitch-deg>-90</pitch-deg>
-      <x-m>-0.105</x-m>
-      <y-m>0.140</y-m>
+      <x-m>-0.120</x-m>
+      <y-m>0.130</y-m>
       <z-m>0.0007</z-m>
     </offsets>
     <type>number-value</type>
@@ -1723,8 +1723,8 @@
     <alignment>right-bottom</alignment>
     <offsets>
       <pitch-deg>-90</pitch-deg>
-      <x-m>-0.105</x-m>
-      <y-m>0.028</y-m>
+      <x-m>-0.120</x-m>
+      <y-m>0.031</y-m>
       <z-m>0.0007</z-m>
     </offsets>
     <type>number-value</type>
@@ -1741,8 +1741,8 @@
     <alignment>right-bottom</alignment>
     <offsets>
       <pitch-deg>-90</pitch-deg>
-      <x-m>-0.105</x-m>
-      <y-m>0.152</y-m>
+      <x-m>-0.120</x-m>
+      <y-m>0.149</y-m>
       <z-m>0.0007</z-m>
     </offsets>
     <type>number-value</type>

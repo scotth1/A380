@@ -40,7 +40,7 @@ kids 1
 OBJECT poly
 name "sd_fuel"
 loc 0.0033491 9.31323e-10 0.0298209
-texture "sd_fuel_01_2.png"
+texture "sd_fuel_02.png"
 crease 180.000000
 numvert 4
 -0.0923603 4.65661e-09 0.102857
