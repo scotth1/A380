@@ -397,11 +397,11 @@
       <Ki>0.0</Ki>          <!-- integral gain -->
       <u_min>
         <!-- -16.67 -->
-        <property>/instrumentation/afs/limit-max-vs-fps</property>
+        <prop>/instrumentation/afs/limit-min-vs-fps</prop>
       </u_min> <!-- minimum output clamp -->
       <u_max>
         <!-- 33.33 -->
-        <property>/instrumentation/afs/limit-max-vs-fps</property>
+        <prop>/instrumentation/afs/limit-max-vs-fps</prop>
       </u_max>   <!-- maximum output clamp -->
     </config>
   </pi-simple-controller>

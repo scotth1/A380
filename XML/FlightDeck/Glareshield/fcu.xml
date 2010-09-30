@@ -472,6 +472,7 @@
       <blue>0.0</blue>
     </specular>
     <shininess>128.0</shininess>
+    <transparency><alpha>0.7</alpha></transparency>
   </animation>
   <!-- 0.898, 0.898. 1.0 / 0.0, 0.0, 0.663  -->
   

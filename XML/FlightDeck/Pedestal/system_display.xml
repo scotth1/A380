@@ -13,7 +13,7 @@
 	<!-- path>../../../Models/FlightDeck/FrontPanel/display1.3ds</path -->
 	
 	<!-- path>../../../Models/FlightDeck/Pedestal/ecam/sdisplay.ac</path -->
-	<path>../../../../Textures/Panels/ecam/sdisplay.ac</path>
+	<path>../../../Textures/Panels/ecam/sdisplay.ac</path>
 	<texture-path>../../../Textures/Panels/ecam</texture-path>
 
 

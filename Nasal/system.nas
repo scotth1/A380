@@ -374,7 +374,7 @@ update_radar = func{
     var vnav    = getprop("/instrumentation/flightdirector/vnav");
     var ap      = getprop("/instrumentation/flightdirector/autopilot-on");
     ##tracer("fltMode: "~fltMode~", thrustMode: "~thrustMode~", lateral: "~latMode~" vnav: "~vnav);
-    if ((thrustMode == 2 or thrustMode == 3) and vnav != VNAV_SRS and ap == 1) {
+    if ((thrustMode == 2 or thrustMode == 3) and vnav != VNAV_SRS and vnav != VNAV_VS and ap == 1) {
       tracer("Enable SRS mode");
       setprop("/instrumentation/flightdirector/vnav",VNAV_SRS);  #set SRS mode
     }

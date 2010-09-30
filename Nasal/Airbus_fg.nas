@@ -667,8 +667,8 @@ setlistener("/instrumentation/flightdirector/vnav", func(n) {
     }
     if(vnav == VNAV_ALTs) {   # ALT (s)
       if (getprop("/position/altitude-ft") > 25000) {
-        setprop("/instrumentation/afs/limit-min-vs-fps",-9.0);
-        setprop("/instrumentation/afs/limit-max-vs-fps",13.0);
+        setprop("/instrumentation/afs/limit-min-vs-fps",-12.0);
+        setprop("/instrumentation/afs/limit-max-vs-fps",14.0);
       }
       setprop("/autopilot/locks/altitude","altitude-hold");
       #setprop("/controls/autoflight/vertical-mode",1);
