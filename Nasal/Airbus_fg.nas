@@ -67,7 +67,7 @@ lnavStr = ["off","HDG","TRK","LOC","NAV","RWY"];
 vnavStr = ["off","ALT(s)","V/S","OP CLB","FPA","OP DES","CLB","ALT CRZ","DES","G/S","SRS","LEVEL"];
 spdStr  = ["off","TOGA","FLEX","THR CLB","SPEED","MACH","CRZ","THR DES","THR IDL"];
 
-version="V1.0.2B";
+version="V1.0.3";
 trace=1;
 
 #trigonometric values for glideslope calculations
@@ -232,6 +232,7 @@ setlistener("/sim/signals/fdm-initialized", func {
     setprop("/controls/autoflight/lateral-mode",0.0);
     setprop("/instrumentation/flightdirector/vnav", 0.0);
     setprop("/instrumentation/flightdirector/vnav-arm", 0.0);
+    setprop("/instrumentation/flightdirector/alt-acquire-mode", 0);
     setprop("/controls/autoflight/vertical-mode",0.0);
     setprop("/instrumentation/flightdirector/athr",0);
     setprop("/instrumentation/flightdirector/flex-temp",40);
@@ -280,6 +281,7 @@ setlistener("/sim/signals/fdm-initialized", func {
     setprop("/instrumentation/afs/transition-ft",9000);
     setprop("/instrumentation/afs/CRZ_FL",300);
     setprop("/instrumentation/afs/acquire_cl",0);
+    setprop("/instrumenation/afs/acquire_crz",0);
     setprop("/instrumentation/afs/target-altitude-ft",30000);
     setprop("/instrumentation/afs/vertical-speed-fpm",1000);
     setprop("/instrumentation/afs/heading-bug-deg",0);
@@ -841,6 +843,7 @@ setlistener("/instrumentation/flightdirector/spd", func(n) {
         accAlt = getprop("/instrumentation/afs/thrust-accel-alt");
         if (curAlt > accAlt and curAlt < 15000 and getprop("/instrumentation/flightdirector/climb-arm") != 1) {
           setprop("/instrumentation/flightdirector/vnav",VNAV_CLB);
+          setprop("/instrumentation/flightdirector/vnav-arm", VNAV_OFF);
           tracer("Acquire CLB CL speed");
           setprop("/autopilot/settings/vertical-speed-fpm",2300);
           setprop("/autopilot/locks/altitude","vertical-speed-hold");
@@ -1100,6 +1103,7 @@ handle_inputs = func {
           if (flapPos == 0 and getprop("/instrumentation/flightdirector/accel-arm") != 1) {
             tracer("Flaps retracted, arm elevator and accel..");
             setprop("/instrumentation/flightdirector/vnav",VNAV_CLB);
+            setprop("/instrumentation/flightdirector/vnav-arm",VNAV_OFF);
             setprop("/instrumentation/flightdirector/accel-arm",1);
           }
         }
@@ -1114,6 +1118,7 @@ handle_inputs = func {
         if (curAlt > redAlt and flapPos == 0) {
           tracer("flaps retracted and in climb phase, set vnav CLB");
           setprop("/instrumentation/flightdirector/vnav",VNAV_CLB);
+          setprop("/instrumentation/flightdirector/vnav-arm", VNAV_OFF);
           if (getprop("/controls/flight/elevator") > 0.1) {
             settimer(climb_flap_adjust, 5);
           }
@@ -1132,6 +1137,8 @@ handle_inputs = func {
         tracer("arm SPD_CRZ");
         settimer(delay_cruise_speed, 30);
         setprop("/instrumentation/flightdirector/vnav",VNAV_ALTCRZ);
+        setprop("/instrumenation/afs/acquire_crz",1);
+        setprop("/instrumentation/flightdirector/vnav-arm", VNAV_OFF);
         spdCruiseArm += 1;
   }
   var vSpd = int(getprop("/autopilot/settings/vertical-speed-fpm"));
@@ -1933,7 +1940,7 @@ update = func {
 #############################################################################
 
 registerTimer = func {
-    settimer(update, 0.2);
+    settimer(update, 0.5);
 }
 registerTimer();
 

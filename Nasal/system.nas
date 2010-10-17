@@ -23,7 +23,7 @@ VNAV_OPCLB=3;
 VNAV_FPA=4;
 VNAV_OPDES=5;
 VNAV_CLB=6;
-VNAV_ALT=7;
+VNAV_ALTCRZ=7;
 VNAV_DES=8;
 VNAV_GS=9;
 VNAV_SRS=10;
@@ -87,8 +87,8 @@ CLmax = 2.4;
 srsFlapTarget = [263.0, 222.0, 220.0, 196.0, 182.0];   #another copy in system.nas
 flapPos       = [0, 0.2424, 0.5151, 0.7878, 1.0];
 
-trace = 0;
-version = "1.0.5C";
+trace = 1;
+version = "1.1.0";
 
 strobe_switch = props.globals.getNode("/controls/switches/strobe", 0);
 aircraft.light.new("sim/model/A380/lighting/strobe", [0.05, 1.2], strobe_switch);
@@ -374,9 +374,15 @@ update_radar = func{
     var vnav    = getprop("/instrumentation/flightdirector/vnav");
     var ap      = getprop("/instrumentation/flightdirector/autopilot-on");
     ##tracer("fltMode: "~fltMode~", thrustMode: "~thrustMode~", lateral: "~latMode~" vnav: "~vnav);
+    ## if we are in FLEX or TOGA thrust detent
     if ((thrustMode == 2 or thrustMode == 3) and vnav != VNAV_SRS and vnav != VNAV_VS and ap == 1) {
       tracer("Enable SRS mode");
-      setprop("/instrumentation/flightdirector/vnav",VNAV_SRS);  #set SRS mode
+      if (vnav == VNAV_ALT) {
+          tracer("use SRS and acquire selected ALT");
+          setprop("instrumentation/flightdirector/alt-acquire-mode",1);
+      }
+      setprop("/instrumentation/flightdirector/vnav",VNAV_SRS);
+      setprop("/instrumentation/flightdirector/vnav-arm", VNAV_CLB);
     }
   }
   var currFlapPos = getprop("/fdm/jsbsim/fcs/flap-cmd-norm");
@@ -552,7 +558,7 @@ update_engines = func {
     flt_mode = 4;
     setprop("/instrumentation/ecam/flight-mode",flt_mode);
   }
-  if (flt_mode == 4 and grnd_spd > 120) {
+  if (flt_mode == 4 and grnd_spd > 130) {
     flt_mode = 5;
     setprop("/instrumentation/ecam/flight-mode",flt_mode);
   }
@@ -572,7 +578,7 @@ update_engines = func {
   gear_pos = getprop("/gear/gear[0]/position-norm");
   fpm      = getprop("/instrumentation/vertical-speed-indicator/indicated-speed-fpm");
   #if (flt_mode > 4 and flt_mode < 10 and flt_mode != 8) {
-  #  print("flt_mode: "~flt_mode~", alt: "~alt~", gear: "~gear_pos~", fpm: "~fpm); 
+  #tracer("flt_mode: "~flt_mode~", alt: "~alt~", gear: "~gear_pos~", fpm: "~fpm); 
   #}
   if (flt_mode == 8 and (alt < 800 and gear_pos == 1)) {
     flt_mode = 9;
@@ -580,6 +586,19 @@ update_engines = func {
   }
 
 settimer(update_engines, 0.60);  
+}
+
+check_acquire_mode = func {
+   var acquireMode = getprop("/instrumentation/flightdirector/alt-acquire-mode");
+   if (acquireMode == 1) {
+     var alt = getprop("/position/altitude-ft");
+     var selectAlt = getprop("/instrumentation/afs/target-altitude-ft");
+     if (alt >= (selectAlt-100)) {
+       setprop("/instrumentation/flightdirector/vnav", VNAV_ALT);
+       setprop("/instrumentation/flightdirector/alt-acquire-mode",0);
+       setprop("/instrumentation/flightdirector/vnav-arm", VNAV_OFF);
+     }
+   }
 }
 
 
@@ -693,6 +712,7 @@ update_systems = func {
   update_clock();
   ##update_radar();
   #update_fueltanks();
+  check_acquire_mode();
 
   baro = getprop("/instrumentation/altimeter/setting-inhg");
   setprop("/instrumentation/efis/inhg",baro);
@@ -946,7 +966,7 @@ setlistener("/instrumentation/gear/wow", func(n) {
     if (flt_mode > 7 and flt_mode < 10) {
       flt_mode = 10;
       setprop("/instrumentation/ecam/flight-mode",flt_mode);
-      #print("Gear wow: "~touch~", flt_mode: "~flt_mode~", autospd: "~autospd);
+      tracer("Gear wow: "~touch~", flt_mode: "~flt_mode~", autospd: "~autospd);
       if (autospd == "true" or autospd == 1) {
         print("Enable auto-speedbrakes");
         setprop("/controls/flight/speedbrake",1);
@@ -987,7 +1007,7 @@ setlistener("/instrumentation/ecam/page", func(n) {
 ## manage the System Display according to flt phase here.
 setlistener("/instrumentation/ecam/flight-mode", func(n) {
   flt_mode = n.getValue();
-  print("Flight phase: "~flt_mode);
+  tracer("Flight phase: "~flt_mode);
   if (flt_mode == 1) {
     setprop("/instrumentation/ecam/synoptic","door");
   }

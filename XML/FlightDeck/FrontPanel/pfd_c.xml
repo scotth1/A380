@@ -582,6 +582,63 @@
       </condition>
  </animation>
  
+ 
+ 
+  <text>
+  <name>APlnav.loc.arm</name>
+  <axis-alignment>yz-plane</axis-alignment>
+  <offsets>
+    <pitch-deg>-90</pitch-deg>
+    <x-m>-0.190</x-m>
+    <y-m>0.096</y-m>
+    <z-m>0.005</z-m>
+  </offsets>
+  <type>literal</type>
+  <text>LOC</text>
+  <font>helvetica_bold.txf</font>
+  <character-size type="double">0.007</character-size>
+  <alignment>center-bottom</alignment> 
+</text>
+
+  <animation>
+   <type>select</type>
+     <object-name>APlnav.loc.arm</object-name>
+       <condition>
+         <equals>
+           <property>instrumentation/flightdirector/lnav-arm</property>
+           <value>3</value>
+         </equals>
+      </condition>
+ </animation>
+ 
+ <text>
+  <name>APlnav.nav.arm</name>
+  <axis-alignment>yz-plane</axis-alignment>
+  <offsets>
+    <pitch-deg>-90</pitch-deg>
+    <x-m>-0.190</x-m>
+    <y-m>0.096</y-m>
+    <z-m>0.005</z-m>
+  </offsets>
+  <type>literal</type>
+  <text>NAV</text>
+  <font>helvetica_bold.txf</font>
+  <character-size type="double">0.007</character-size>
+  <alignment>center-bottom</alignment> 
+</text>
+ 
+  <animation>
+   <type>select</type>
+     <object-name>APlnav.nav.arm</object-name>
+       <condition>
+         <equals>
+           <property>instrumentation/flightdirector/lnav-arm</property>
+           <value>4</value>
+         </equals>
+      </condition>
+ </animation>
+
+ 
  <!-- SPD annun -->
  <text>
   <name>APspd.toga</name>
@@ -829,6 +886,87 @@
          <equals>
            <property>/instrumentation/flightdirector/spd-arm</property>
 	   <value>3</value>
+         </equals>
+      </condition>
+ </animation>
+ 
+<text>
+  <name>APspd.thrdes.arm</name>
+  <axis-alignment>yz-plane</axis-alignment>
+  <offsets>
+    <pitch-deg>-90</pitch-deg>
+    <x-m>-0.186</x-m>
+    <y-m>0.026</y-m>
+    <z-m>0.005</z-m>
+  </offsets>
+  <type>literal</type>
+  <text>THR DES</text>
+  <font>helvetica_bold.txf</font>
+  <character-size type="double">0.007</character-size>
+  <alignment>center-bottom</alignment> 
+</text>
+
+  <animation>
+   <type>select</type>
+     <object-name>APspd.thrdes.arm</object-name>
+       <condition>
+         <equals>
+           <property>instrumentation/flightdirector/spd-arm</property>
+	   <value>7</value>
+         </equals>
+      </condition>
+ </animation>
+ 
+<text>
+  <name>APspd.crz.arm</name>
+  <axis-alignment>yz-plane</axis-alignment>
+  <offsets>
+    <pitch-deg>-90</pitch-deg>
+    <x-m>-0.186</x-m>
+    <y-m>0.026</y-m>
+    <z-m>0.005</z-m>
+  </offsets>
+  <type>literal</type>
+  <text>SPEED</text>
+  <font>helvetica_bold.txf</font>
+  <character-size type="double">0.007</character-size>
+  <alignment>center-bottom</alignment> 
+</text>
+
+  <animation>
+   <type>select</type>
+     <object-name>APspd.crz.arm</object-name>
+       <condition>
+         <equals>
+           <property>instrumentation/flightdirector/spd-arm</property>
+           <value>6</value>
+         </equals>
+      </condition>
+ </animation>
+ 
+<text>
+  <name>APspd.thridl.arm</name>
+  <axis-alignment>yz-plane</axis-alignment>
+  <offsets>
+    <pitch-deg>-90</pitch-deg>
+    <x-m>-0.186</x-m>
+    <y-m>0.026</y-m>
+    <z-m>0.005</z-m>
+  </offsets>
+  <type>literal</type>
+  <text>THR IDL</text>
+  <font>helvetica_bold.txf</font>
+  <character-size type="double">0.007</character-size>
+  <alignment>center-bottom</alignment> 
+</text>
+
+  <animation>
+   <type>select</type>
+     <object-name>APspd.thridl.arm</object-name>
+       <condition>
+         <equals>
+           <property>instrumentation/flightdirector/spd-arm</property>
+	   <value>8</value>
          </equals>
       </condition>
  </animation>
@@ -1106,6 +1244,143 @@
          </equals>
       </condition>
  </animation>
+ 
+  <text>
+  <name>APvnav.clb.arm</name>
+  <axis-alignment>yz-plane</axis-alignment>
+  <offsets>
+    <pitch-deg>-90</pitch-deg>
+    <x-m>-0.186</x-m>
+    <y-m>0.0665</y-m>
+    <z-m>0.005</z-m>
+  </offsets>
+  <type>literal</type>
+  <text>CLB</text>
+  <font>helvetica_bold.txf</font>
+  <character-size type="double">0.007</character-size>
+  <alignment>center-bottom</alignment> 
+</text>
+
+  <animation>
+   <type>select</type>
+     <object-name>APvnav.clb.arm</object-name>
+       <condition>
+         <equals>
+           <property>instrumentation/flightdirector/vnav-arm</property>
+           <value>6</value>
+         </equals>
+      </condition>
+ </animation>
+
+  <text>
+  <name>APvnav.des.arm</name>
+  <axis-alignment>yz-plane</axis-alignment>
+  <offsets>
+    <pitch-deg>-90</pitch-deg>
+    <x-m>-0.186</x-m>
+    <y-m>0.0665</y-m>
+    <z-m>0.005</z-m>
+  </offsets>
+  <type>literal</type>
+  <text>DES</text>
+  <font>helvetica_bold.txf</font>
+  <character-size type="double">0.007</character-size>
+  <alignment>center-bottom</alignment> 
+</text>
+
+  <animation>
+   <type>select</type>
+     <object-name>APvnav.des.arm</object-name>
+       <condition>
+         <equals>
+           <property>instrumentation/flightdirector/vnav-arm</property>
+           <value>8</value>
+         </equals>
+      </condition>
+ </animation>
+ 
+ <text>
+  <name>APvnav.alt.arm</name>
+  <axis-alignment>yz-plane</axis-alignment>
+  <offsets>
+    <pitch-deg>-90</pitch-deg>
+    <x-m>-0.186</x-m>
+    <y-m>0.0665</y-m>
+    <z-m>0.005</z-m>
+  </offsets>
+  <type>literal</type>
+  <text>ALT</text>
+  <font>helvetica_bold.txf</font>
+  <character-size type="double">0.007</character-size>
+  <alignment>center-bottom</alignment> 
+</text>
+
+ <text>
+  <name>APvnav.altcrz.arm</name>
+  <axis-alignment>yz-plane</axis-alignment>
+  <offsets>
+    <pitch-deg>-90</pitch-deg>
+    <x-m>-0.186</x-m>
+    <y-m>0.0665</y-m>
+    <z-m>0.005</z-m>
+  </offsets>
+  <type>literal</type>
+  <text>ALT CRZ</text>
+  <font>helvetica_bold.txf</font>
+  <character-size type="double">0.0065</character-size>
+  <alignment>center-bottom</alignment> 
+</text>
+
+  <animation>
+   <type>select</type>
+     <object-name>APvnav.alt.arm</object-name>
+       <condition>
+         <equals>
+           <property>instrumentation/flightdirector/vnav-arm</property>
+           <value>1</value>
+         </equals>
+      </condition>
+ </animation>
+ 
+   <animation>
+   <type>select</type>
+     <object-name>APvnav.altcrz.arm</object-name>
+       <condition>
+	 <equals>
+	   <property>instrumentation/flightdirector/vnav-arm</property>
+           <value>7</value>
+	 </equals>
+      </condition>
+ </animation> 
+ 
+  <text>
+  <name>APvnav.gs.arm</name>
+  <axis-alignment>yz-plane</axis-alignment>
+  <offsets>
+    <pitch-deg>-90</pitch-deg>
+    <x-m>-0.186</x-m>
+    <y-m>0.0665</y-m>
+    <z-m>0.005</z-m>
+  </offsets>
+  <type>literal</type>
+  <text>G/S</text>
+  <font>helvetica_bold.txf</font>
+  <character-size type="double">0.007</character-size>
+  <alignment>center-bottom</alignment> 
+</text>
+
+  <animation>
+   <type>select</type>
+     <object-name>APvnav.gs.arm</object-name>
+       <condition>
+         <equals>
+           <property>instrumentation/flightdirector/vnav-arm</property>
+           <value>9</value>
+         </equals>
+      </condition>
+ </animation>
+ 
+ 
 
 <animation>
    <type>material</type>
@@ -1151,6 +1426,40 @@
     <transparency><alpha>0.7</alpha></transparency>
 </animation>
 
+
+<animation>
+   <type>material</type>>
+   <object-name>APlnav.loc.arm</object-name>
+   <object-name>APlnav.nav.arm</object-name>
+   <!-- object-name>APlnav.rwy.arm</object-name -->
+   <object-name>APspd.crz.arm</object-name>
+   <object-name>APspd.thridl.arm</object-name>
+   <object-name>APspd.thrdes.arm</object-name>
+   <object-name>APvnav.altcrz.arm</object-name>
+   <object-name>APvnav.alt.arm</object-name>
+   <object-name>APvnav.clb.arm</object-name>
+   <object-name>APvnav.des.arm</object-name>
+   <object-name>APvnav.gs.arm</object-name>
+   <emission>
+     <red>0.12</red>
+     <green>0.63</green>
+     <blue>0.94</blue>
+   </emission>
+   <ambient>
+      <red>0.12</red>
+      <green>0.63</green>
+      <blue>0.94</blue>
+   </ambient>
+   <diffuse>
+      <red>0.12</red>
+      <green>0.63</green>
+      <blue>0.94</blue>
+   </diffuse>
+   <shininess>128.0</shininess>
+   <transparency><alpha>0.7</alpha></transparency>
+</animation>
+
+
 <animation>
    <type>material</type>
    <object-name>APspd.thrlvr</object-name>
@@ -1169,6 +1478,8 @@
       <green>0.6</green>
       <blue>0.6</blue>
    </diffuse>
+   <shininess>128.0</shininess>
+   <transparency><alpha>0.7</alpha></transparency>
 </animation>
 
 </PropertyList> 

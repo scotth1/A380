@@ -738,7 +738,7 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
             <speaker>
                 <max-dist>2</max-dist>
                 <reference-dist>1</reference-dist>
-                <volume>0.4</volume>
+                <volume>0.8</volume>
             </speaker>
         </mk-viii>
         <adf n="1">

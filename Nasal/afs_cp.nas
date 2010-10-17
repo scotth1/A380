@@ -21,6 +21,7 @@
 #  SH      1-APR-2009  Initial cut
 #  SH      7-JUN-2009  Added Thrust detents
 #  SH      18-MAY-2010 clean up toggling of various modes and displays
+#  SH      17-OCT-2010 support both alt and v/s in selected mode
 #
 #
 
@@ -296,6 +297,7 @@ toggle_vs_select = func(n) {
       vs = getprop("instrumentation/afs/vertical-vs-mode");
       vs = vs+n;
       apMode = getprop("/instrumentation/flightdirector/autopilot-on");
+      verticalMode = getprop("/instrumentation/afs/vertical-alt-mode");
       if (vs < -1) {
         vs = -1;
       }
@@ -307,7 +309,9 @@ toggle_vs_select = func(n) {
       if (apMode == 0) {
         setprop("/autopilot/locks/alitutde","");
         setprop("/instrumentation/flightdirector/vnav",VNAV_OFF);
+        setprop("instrumentation/flightdirector/alt-acquire-mode",0);
       }
+      ### selected mode
       if (vs == 0) {
         if (apMode == 1) {
           ##setprop("/autopilot/locks/altitude","vertical-speed-hold");
@@ -316,10 +320,23 @@ toggle_vs_select = func(n) {
           var crzAlt = getprop("/instrumentation/afs/thrust-cruise-alt");
           var spdMode = getprop("/instrumentation/afs/speed-mode");
 	  setprop("instrumentation/flightdirector/vnav",VNAV_VS);
+          if (verticalMode == 0) {
+            setprop("instrumentation/flightdirector/alt-acquire-mode",1);
+            setprop("instrumentation/flightdirector/vnav-arm", VNAV_ALTs);
+          }
+          if (mode == VNAV_DES) {
+            setprop("instrumentation/flightdirector/vnav", VNAV_OPDES);
+            setprop("instrumentation/flightdirector/vnav-arm", VNAV_DES);
+          }
+          if (mode == VNAV_CLB) {
+            setprop("instrumentation/flightdirector/vnav", VNAV_OPCLB);
+            setprop("instrumentation/flightdirector/vnav-arm", VNAV_CLB);
+          }
         } else {
           setprop("instrumentation/flightdirector/vnav-arm",VNAV_VS);
         }
       }
+      ### managed mode
       if (vs == -1) {
           ###setprop("/autopilot/locks/altitude","");
           var vsi = getprop("/instrumentation/vertical-speed-indicator/indicated-speed-fpm");
@@ -339,15 +356,22 @@ toggle_vs_select = func(n) {
             }
             if (vsi > 100 and alt < crzAlt-1000) {
               setprop("/instrumentation/flightdirector/vnav",VNAV_CLB);
+              setprop("instrumentation/flightdirector/vnav-arm",VNAV_OFF);
               if (spdMode == -1) {
                 setprop("/instrumentation/flightgear/spd",SPD_THRCLB);
               }
             }
             if (vsi < -100 and alt < (crzAlt-1000)) {
               setprop("/instrumentation/flightdirector/vnav",VNAV_DES);
+              setprop("instrumentation/flightdirector/vnav-arm",VNAV_OFF);
               if (spdMode == -1) {
                 setprop("/instrumentation/flightgear/spd",SPD_THRDES);
               }
+            }
+            if (verticalMode == 0) {
+              setprop("/instrumentation/flightdirector/vnav",VNAV_ALTs);
+              setprop("instrumentation/flightdirector/alt-acquire-mode",0);
+              setprop("instrumentation/flightdirector/vnav-arm",VNAV_OFF);
             }
           } else {
             setprop("instrumentation/flightdirector/vnav-arm",VNAV_VS);
@@ -361,6 +385,7 @@ toggle_alt_select = func(n) {
       vertical = getprop("/instrumentation/afs/vertical-alt-mode");
       vertical = vertical+n;
       apMode = getprop("/instrumentation/flightdirector/autopilot-on");
+      vsMode = getprop("/instrumentation/afs/vertical-vs-mode");
       if (vertical < -1) {
         vertical = -1;
       }
@@ -372,12 +397,14 @@ toggle_alt_select = func(n) {
         setprop("/autopilot/locks/alitutde","");
         setprop("/instrumentation/flightdirector/vnav",0);
       }
+      ### managed mode
       if (vertical == -1) {
         var vsi = getprop("/instrumentation/vertical-speed-indicator/indicated-speed-fpm");
         var alt = getprop("/position/altitude-ft");
         var crzAlt = getprop("/instrumentation/afs/thrust-cruise-alt");
         var spdMode = getprop("/instrumentation/afs/speed-mode");
         var lnavMode = getprop("/instrumentation/flightdirector/lnav");
+        var crzAcquire = getprop("/instrumenation/afs/acquire_crz");
         if (apMode == 1) {
           tracer("Evaluate Alt Managed mode - vsi: "~vsi);
           tracer("Evaluate Alt Managed mode - alt: "~alt);
@@ -389,7 +416,7 @@ toggle_alt_select = func(n) {
               setprop("/instrumentation/flightgear/spd",SPD_CRZ);
             }
           }
-          if (vsi > 100 and alt < crzAlt-1000) {
+          if (crzAcquire == 0 and alt < crzAlt-4000) {
             if (lnavMode == LNAV_FMS) {
               setprop("/instrumentation/flightdirector/vnav",VNAV_CLB);
             }
@@ -400,7 +427,7 @@ toggle_alt_select = func(n) {
               setprop("/instrumentation/flightgear/spd",SPD_THRCLB);
             }
           }
-          if (vsi < -100 and alt < (crzAlt-1000)) {
+          if (crzAcquire == 1 and alt < (crzAlt-4000)) {
             if (lnavMode == LNAV_FMS) {
               setprop("/instrumentation/flightdirector/vnav",VNAV_DES);
             }
@@ -415,10 +442,17 @@ toggle_alt_select = func(n) {
           setprop("/instrumentation/flightdirector/vnav-arm",VNAV_ALTCRZ);
         }
       }
+      ### selected mode
       if (vertical == 0) {
         if (apMode == 1) {
-          setprop("/instrumentation/flightdirector/vnav",VNAV_ALTs);
-          setprop("/autopilot/locks/altitude","altitude-hold");
+          if (vsMode == 0) {
+            setprop("/instrumentation/flightdirector/vnav-arm", VNAV_ALTs);
+            setprop("/instrumentation/flightdirector/alt-acquire-mode", 1);
+          } else {
+            setprop("/instrumentation/flightdirector/vnav",VNAV_ALTs);
+            setprop("/instrumentation/flightdirector/vnav-arm", mode);
+            setprop("/autopilot/locks/altitude","altitude-hold");
+          }
         } else {
           setprop("/instrumentation/flightdirector/vnav-arm",VNAV_ALTs);
         }
