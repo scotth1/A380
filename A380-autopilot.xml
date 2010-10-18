@@ -315,7 +315,7 @@
  <!-- Simple pitch hold --> 
  <pid-controller>
     <name>Pitch hold</name>
-    <debug>false</debug>
+    <debug>true</debug>
     <enable>
       <prop>/autopilot/locks/altitude</prop>
       <value>pitch-hold</value>
@@ -345,7 +345,7 @@
  <!-- Simple angle of attack hold --> 
  <pid-controller>
     <name>AOA hold</name>
-    <debug>false</debug>
+    <debug>true</debug>
     <enable>
       <prop>/autopilot/locks/altitude</prop>
       <value>aoa-hold</value>
@@ -664,7 +664,7 @@
 
  <pid-controller>
     <name>Speed hold (vary pitch) Stage #2</name>
-    <debug>false</debug>
+    <debug>true</debug>
     <enable>
       <prop>/autopilot/locks/speed</prop>
       <value>speed-with-pitch-trim</value>

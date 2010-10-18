@@ -173,6 +173,7 @@ trk_intrcpt_hdg_err = 0.0;
 trk_corr_err = 0.0;
 
 lastNavStatus = 0;
+lastGSStatus  = 0;
 
 
 #waypoint
@@ -281,7 +282,7 @@ setlistener("/sim/signals/fdm-initialized", func {
     setprop("/instrumentation/afs/transition-ft",9000);
     setprop("/instrumentation/afs/CRZ_FL",300);
     setprop("/instrumentation/afs/acquire_cl",0);
-    setprop("/instrumenation/afs/acquire_crz",0);
+    setprop("/instrumentation/afs/acquire_crz",0);
     setprop("/instrumentation/afs/target-altitude-ft",30000);
     setprop("/instrumentation/afs/vertical-speed-fpm",1000);
     setprop("/instrumentation/afs/heading-bug-deg",0);
@@ -993,8 +994,38 @@ setlistener("/instrumentation/nav/in-range", func(n) {
    if (range != lastNavStatus) {
      tracer("[NAV1] NAV1 range status: "~range);
      lastNavStatus = range;
+     var lnavMode = getprop("/instrumentation/flightdirector/lnav");
+     if (range == 1) {
+       if (lnavMode != LNAV_LOC) {
+         setprop("/instrumentation/flightdirector/lnav-arm", LNAV_LOC);
+       } else {
+         if (getprop("/instrumentation/flightdirector/lnav-arm") == LNAV_LOC) {
+           setprop("/instrumentation/flightdirector/lnav-arm", VNAV_OFF);
+         }
+       }
+     }
    }
 });
+
+setlistener("/instrumentation/nav/gs-in-range", func(n) {
+   var range = n.getValue();
+   if (range != lastGSStatus) {
+     tracer("[NAV1] GS range status: "~range);
+     lastGSStatus = range;
+     var vnavMode = getprop("/instrumentation/flightdirector/vnav");
+     if (range == 1) {
+       if (lnavMode != VNAV_GS) {
+         setprop("/instrumentation/flightdirector/vnav-arm", VNAV_GS);
+       } else {
+          if (getprop("/instrumentation/flightdirector/vnav-arm" == VNAV_GS) {
+            setprop("/instrumentation/flightdirector/vnav-arm", VNAV_OFF);
+          }
+       }
+     }
+   }
+});
+
+
 
 #
 # if we add/remove waypoints we might need to update stuff?
@@ -1137,7 +1168,7 @@ handle_inputs = func {
         tracer("arm SPD_CRZ");
         settimer(delay_cruise_speed, 30);
         setprop("/instrumentation/flightdirector/vnav",VNAV_ALTCRZ);
-        setprop("/instrumenation/afs/acquire_crz",1);
+        setprop("/instrumentation/afs/acquire_crz",1);
         setprop("/instrumentation/flightdirector/vnav-arm", VNAV_OFF);
         spdCruiseArm += 1;
   }
@@ -1264,10 +1295,16 @@ update_mode = func {
     if (getprop("/instrumentation/afs/vertical-alt-mode") == -1 and getprop("/instrumentation/afs/vertical-vs-mode") == -1 and getprop("/instrumentation/flightdirector/autopilot-on") == 1) {
         managedVert = 1;
     } 
-    
-    if (nextWpAlt == descentAlt and vnav != VNAV_DES and managedVert == 1) {
+
+    var distToTD = getprop("/autopilot/route-manager/wp[0]/dist");
+    if (nextWpAlt == descentAlt and vnav == VNAV_ALTCRZ and distToTD < 2) {
+      setprop("/instrumentation/flightdirector/vnav-arm", VNAV_DES);
+    }
+
+    if (nextWpAlt == descentAlt and vnav != VNAV_DES and vnav != VNAV_OPDES and managedVert == 1) {
       vnav = VNAV_DES;
       setprop("/instrumentation/flightdirector/vnav",vnav);  # DES
+      setprop("/instrumentation/flightdirector/vnav-arm", VNAV_OFF); 
       if (getprop("/instrumentation/flightdirector/spd") != SPD_THRDES) {
         setprop("/instrumentation/flightdirector/spd", SPD_THRDES);  # THR DES
       }
@@ -1334,7 +1371,7 @@ update_mode = func {
     }
     if (nextWpAlt == cruiseAlt and spd == 8 and getprop("/position/altitude-ft") >= (cruiseAlt-25)) {
       tracer("next WP is cruise alt, set speed");
-      setprop("/instrumenation/flightdirector/spd",SPD_CRZ);   #there is more than one place we test to see if we reached cruise alt...
+      setprop("/instrumentation/flightdirector/spd",SPD_CRZ);   #there is more than one place we test to see if we reached cruise alt...
     }
     if (spd == SPD_THRCLB and vnav == VNAV_CLB and curAlt > getprop("/instrumentation/afs/transition-ft") and getprop("/autopilot/settings/target-speed-kt") < 250 and clbSpdArm2 == 0) {
         tracer("above 10000ft spd constraint and in climb, increase speed!");
