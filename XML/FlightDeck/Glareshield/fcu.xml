@@ -238,7 +238,7 @@
     <offsets>
       <pitch-deg>-90.0</pitch-deg>
       <x-m>-0.068</x-m>
-      <y-m>0.093</y-m>
+      <y-m>0.0935</y-m>
       <z-m>-0.0009</z-m>
     </offsets>
     <type>number-value</type>
@@ -254,7 +254,7 @@
     <offsets>
       <pitch-deg>-90.0</pitch-deg>
       <x-m>-0.068</x-m>
-      <y-m>0.093</y-m>
+      <y-m>0.0935</y-m>
       <z-m>-0.0009</z-m>
     </offsets>
     <type>literal</type>

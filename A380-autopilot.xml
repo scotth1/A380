@@ -315,7 +315,7 @@
  <!-- Simple pitch hold --> 
  <pid-controller>
     <name>Pitch hold</name>
-    <debug>true</debug>
+    <debug>false</debug>
     <enable>
       <prop>/autopilot/locks/altitude</prop>
       <value>pitch-hold</value>
@@ -345,7 +345,7 @@
  <!-- Simple angle of attack hold --> 
  <pid-controller>
     <name>AOA hold</name>
-    <debug>true</debug>
+    <debug>false</debug>
     <enable>
       <prop>/autopilot/locks/altitude</prop>
       <value>aoa-hold</value>
@@ -664,7 +664,7 @@
 
  <pid-controller>
     <name>Speed hold (vary pitch) Stage #2</name>
-    <debug>true</debug>
+    <debug>false</debug>
     <enable>
       <prop>/autopilot/locks/speed</prop>
       <value>speed-with-pitch-trim</value>
@@ -711,12 +711,12 @@
       <prop>/autopilot/settings/target-pitch-deg</prop>
     </output>
     <config>
-      <Kp>-0.5</Kp>       <!-- proportional gain -->
+      <Kp>-0.3</Kp>       <!-- proportional gain  was -0.5 SAH 2010-10-19 -->
       <beta>1.0</beta>    <!-- input value weighing factor -->
-      <alpha>0.1</alpha>  <!-- low pass filter weighing factor -->
+      <alpha>0.3</alpha>  <!-- low pass filter weighing factor was 0.1 SAH 2010-10-19 -->
       <gamma>0.0</gamma>  <!-- input value weighing factor for -->
                           <!-- unfiltered derivative error -->
-      <Ti>30.0</Ti>        <!-- integrator time -->  <!-- was 40.0 SAH 2010-06-06 -->
+      <Ti>40.0</Ti>        <!-- integrator time -->  <!-- was 40.0 SAH 2010-06-06 --> <!-- was 30 SAH 2010-10-19 -->
       <Td>0.00001</Td>    <!-- derivator time -->
       <u_min>-1.0</u_min><!-- minimum output clamp -->
       <u_max>20.0</u_max> <!-- maximum output clamp -->
@@ -776,7 +776,7 @@
 
   <pid-controller>
     <name>THR CL Balance elevator</name>
-    <debug>true</debug>
+    <debug>false</debug>
     <enable>
       <prop>/autopilot/locks/speed</prop>
       <value>acquire_cl_adjust</value>
@@ -804,7 +804,7 @@
 
   <pid-controller>
     <name>THR CL Acquire speed</name>
-    <debug>true</debug>
+    <debug>false</debug>
     <enable>
       <prop>/autopilot/locks/speed</prop>
       <value>acquire_cl_adjust</value>

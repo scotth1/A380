@@ -589,7 +589,7 @@
   <axis-alignment>yz-plane</axis-alignment>
   <offsets>
     <pitch-deg>-90</pitch-deg>
-    <x-m>-0.190</x-m>
+    <x-m>-0.189</x-m>
     <y-m>0.096</y-m>
     <z-m>0.005</z-m>
   </offsets>
@@ -616,7 +616,7 @@
   <axis-alignment>yz-plane</axis-alignment>
   <offsets>
     <pitch-deg>-90</pitch-deg>
-    <x-m>-0.190</x-m>
+    <x-m>-0.189</x-m>
     <y-m>0.096</y-m>
     <z-m>0.005</z-m>
   </offsets>
@@ -895,7 +895,7 @@
   <axis-alignment>yz-plane</axis-alignment>
   <offsets>
     <pitch-deg>-90</pitch-deg>
-    <x-m>-0.186</x-m>
+    <x-m>-0.189</x-m>
     <y-m>0.026</y-m>
     <z-m>0.005</z-m>
   </offsets>
@@ -922,7 +922,7 @@
   <axis-alignment>yz-plane</axis-alignment>
   <offsets>
     <pitch-deg>-90</pitch-deg>
-    <x-m>-0.186</x-m>
+    <x-m>-0.189</x-m>
     <y-m>0.026</y-m>
     <z-m>0.005</z-m>
   </offsets>
@@ -949,7 +949,7 @@
   <axis-alignment>yz-plane</axis-alignment>
   <offsets>
     <pitch-deg>-90</pitch-deg>
-    <x-m>-0.186</x-m>
+    <x-m>-0.189</x-m>
     <y-m>0.026</y-m>
     <z-m>0.005</z-m>
   </offsets>
@@ -1250,7 +1250,7 @@
   <axis-alignment>yz-plane</axis-alignment>
   <offsets>
     <pitch-deg>-90</pitch-deg>
-    <x-m>-0.186</x-m>
+    <x-m>-0.189</x-m>
     <y-m>0.0665</y-m>
     <z-m>0.005</z-m>
   </offsets>
@@ -1277,7 +1277,7 @@
   <axis-alignment>yz-plane</axis-alignment>
   <offsets>
     <pitch-deg>-90</pitch-deg>
-    <x-m>-0.186</x-m>
+    <x-m>-0.189</x-m>
     <y-m>0.0665</y-m>
     <z-m>0.005</z-m>
   </offsets>
@@ -1304,7 +1304,7 @@
   <axis-alignment>yz-plane</axis-alignment>
   <offsets>
     <pitch-deg>-90</pitch-deg>
-    <x-m>-0.186</x-m>
+    <x-m>-0.189</x-m>
     <y-m>0.0665</y-m>
     <z-m>0.005</z-m>
   </offsets>
@@ -1320,7 +1320,7 @@
   <axis-alignment>yz-plane</axis-alignment>
   <offsets>
     <pitch-deg>-90</pitch-deg>
-    <x-m>-0.186</x-m>
+    <x-m>-0.189</x-m>
     <y-m>0.0665</y-m>
     <z-m>0.005</z-m>
   </offsets>
@@ -1358,7 +1358,7 @@
   <axis-alignment>yz-plane</axis-alignment>
   <offsets>
     <pitch-deg>-90</pitch-deg>
-    <x-m>-0.186</x-m>
+    <x-m>-0.189</x-m>
     <y-m>0.0665</y-m>
     <z-m>0.005</z-m>
   </offsets>

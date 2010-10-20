@@ -595,7 +595,7 @@ check_acquire_mode = func {
      var selectAlt = getprop("/instrumentation/afs/target-altitude-ft");
      if (alt >= (selectAlt-100)) {
        setprop("/instrumentation/flightdirector/vnav", VNAV_ALT);
-       setprop("/instrumentation/flightdirector/alt-acquire-mode",0);
+       ##setprop("/instrumentation/flightdirector/alt-acquire-mode",0);
        setprop("/instrumentation/flightdirector/vnav-arm", VNAV_OFF);
      }
    }

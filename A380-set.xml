@@ -800,6 +800,7 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
 
     <FCU>
       <file>Aircraft/A380/Nasal/afs_cp.nas</file>
+      <file>Aircraft/A380/Nasal/AirbusFMS.nas</file>
     </FCU>
     
     <MCDU1>

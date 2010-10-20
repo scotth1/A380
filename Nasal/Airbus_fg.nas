@@ -279,7 +279,7 @@ setlistener("/sim/signals/fdm-initialized", func {
     setprop("/instrumentation/afs/thrust-cruise-alt",30000);
     setprop("/instrumentation/afs/crz_speed", 310);
     #setprop("/instrumentation/afs/thrust-descent-alt",14000);
-    setprop("/instrumentation/afs/transition-ft",9000);
+    setprop("/instrumentation/afs/transition-ft",10000);
     setprop("/instrumentation/afs/CRZ_FL",300);
     setprop("/instrumentation/afs/acquire_cl",0);
     setprop("/instrumentation/afs/acquire_crz",0);
@@ -1003,6 +1003,10 @@ setlistener("/instrumentation/nav/in-range", func(n) {
            setprop("/instrumentation/flightdirector/lnav-arm", VNAV_OFF);
          }
        }
+     } else {
+       if (getprop("/instrumentation/flightdirector/lnav-arm") == LNAV_LOC) {
+         setprop("/instrumentation/flightdirector/lnav-arm", LNAV_OFF);
+       }
      }
    }
 });
@@ -1017,9 +1021,13 @@ setlistener("/instrumentation/nav/gs-in-range", func(n) {
        if (lnavMode != VNAV_GS) {
          setprop("/instrumentation/flightdirector/vnav-arm", VNAV_GS);
        } else {
-          if (getprop("/instrumentation/flightdirector/vnav-arm" == VNAV_GS) {
+          if (getprop("/instrumentation/flightdirector/vnav-arm" == VNAV_GS)) {
             setprop("/instrumentation/flightdirector/vnav-arm", VNAV_OFF);
           }
+       }
+     } else {
+       if (getprop("/instrumentation/flightdirector/vnav-arm") == VNAV_GS) {
+         setprop("/instrumentation/flightdirector/vnav-arm", VNAV_OFF);
        }
      }
    }
@@ -1149,6 +1157,12 @@ handle_inputs = func {
         if (curAlt > redAlt and flapPos == 0) {
           tracer("flaps retracted and in climb phase, set vnav CLB");
           setprop("/instrumentation/flightdirector/vnav",VNAV_CLB);
+          var curSpeed = getprop("/instrumentation/airspeed-indicator/indicated-speed-kt");
+          if (curSpeed < 210) {
+            curSpeed = 210;
+          }
+          setprop("/autopilot/settings/target-speed-kt", curSpeed);
+          setprop("/autopilot/locks/speed","speed-with-throttle");
           setprop("/instrumentation/flightdirector/vnav-arm", VNAV_OFF);
           if (getprop("/controls/flight/elevator") > 0.1) {
             settimer(climb_flap_adjust, 5);
