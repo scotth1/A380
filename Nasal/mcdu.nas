@@ -29,7 +29,7 @@ inputValue = "";
 trace = 1;         ## Set to 0 to turn off all tracing messages
 depDB = nil;
 arvDB = nil;
-version = "V1.0.6A";
+version = "V1.0.7";
 
 routeClearArm = 0;
 
@@ -101,6 +101,7 @@ init_mcdu = func() {
   print("Init FMS "~version);
     setprop("/instrumentation/mcdu[0]/page","active.init");
     setprop("/instrumentation/mcdu[1]/page","active.init");
+    setprop("/instrumentation/afs/current-fpln","primary");
 
     setprop("/instrumentation/mcdu[0]/sid-arm",0);
     setprop("/instrumentation/mcdu[0]/star-arm",0);

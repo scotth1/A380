@@ -413,6 +413,30 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
       <rpm>1000</rpm>
     </engine>    
   </engines>
+  
+
+<aircraft>
+ <jetway-pos>
+  <x-tra>-2</x-tra>
+  <y-rot>2</y-rot>
+  <z-rot>18</z-rot>
+  <hood-rot>0</hood-rot>
+ </jetway-pos>
+ <jetway2-pos>
+  <x-tra>2.5</x-tra>
+  <y-rot>2.5</y-rot>
+  <z-rot>45</z-rot>
+  <hood-rot>0</hood-rot>
+ </jetway2-pos>
+ <jetway3-pos>
+  <x-tra>4</x-tra>
+  <y-rot>5</y-rot>
+  <z-rot>47</z-rot>
+  <hood-rot>3</hood-rot>
+ </jetway3-pos>
+</aircraft>
+
+
 
   <input>
     <keyboard>

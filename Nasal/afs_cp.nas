@@ -308,6 +308,7 @@ toggle_vs_select = func(n) {
         vs = 0;
       }
       setprop("/instrumentation/afs/vertical-vs-mode", vs);
+      setprop("/instrumentation/flightdirector/alt-acquire-mode",0);
       tracer("toggle_vs_select - cur vnav: "~mode~" func: "~n~" vs mode: "~vs);
 
       var aFMS = AirbusFMS.new();
@@ -351,6 +352,7 @@ toggle_alt_select = func(n) {
         vertical = 0;
       }
       setprop("/instrumentation/afs/vertical-alt-mode", vertical);
+      setprop("/instrumentation/flightdirector/alt-acquire-mode",0);
       tracer("toggle_alt_select - cur vnav: "~mode~" func: "~n~" new vertical: "~vertical);
       
       var aFMS = AirbusFMS.new();

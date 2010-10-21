@@ -121,9 +121,9 @@ tracer : func(msg) {
    },
 
    ####
-   # evaluate VNAV
+   # evaluate managed VNAV
    ####
-   evaluateVNAV : func() {
+   evaluateManagedVNAV : func() {
      var retVNAV = VNAV_OFF;
      ##var curAlt = getprop("/instrumentation/altimeter/indicated-altitude-ft");
      var curAlt = getprop("/position/altitude-ft");
@@ -148,7 +148,6 @@ tracer : func(msg) {
        bothSelect = SELECTED_MODE;
      }
 
-     if (apMode == 1) {
        ## managed Speed Reference System mode
        if (curAlt < accAlt and clbArm == 0 and bothSelect == MANAGED_MODE and (spdMode == SPD_FLEX or spdMode == SPD_TOGA) and flapPos > 0 ) {
          retVNAV = VNAV_SRS;
@@ -184,18 +183,45 @@ tracer : func(msg) {
            }
          }
        }
-       ## select alt
+       if (getprop("/position/altitude-agl-ft") < 400 and vnavMode == VNAV_GS and lnavMode == LNAV_LOC) {
+         ## combined LAND mode....
+       }
+     
+     return retVNAV;
+   },
+
+   ##########
+   # evaluate VNAV
+   ##########
+   evaluateVNAV : func() {
+     var retVNAV = VNAV_OFF;
+     var apMode = getprop("/instrumentation/flightdirector/autopilot-on");
+     if (apMode == 1) {
+       retVNAV = me.evaluateManagedVNAV();
+
+       var altSelect = getprop("/instrumentation/afs/vertical-alt-mode");
+       var vsSelect = getprop("/instrumentation/afs/vertical-vs-mode");
        if (altSelect == SELECTED_MODE) {
-         retVNAV= VNAV_ALTs;
+         retVNAV = VNAV_ALTs;
        }
        if (vsSelect == SELECTED_MODE) {
          retVNAV = VNAV_VS;
        }
-       if (getprop("/position/altitude-agl-ft") < 400 and vnavMode == VNAV_GS and lnavMode == LNAV_LOC) {
-         ## combined LAND mode....
-       }
      }
      return retVNAV;
+   },
+
+
+   #############
+   # evaluate managed LNAV
+   #############
+   evaluateManagedLNAV : func() {
+     var retLNAV = LNAV_OFF;
+
+     var agl = getprop("/position/altitude-agl-ft");
+     
+
+     return retLNAV;
    },
 
 

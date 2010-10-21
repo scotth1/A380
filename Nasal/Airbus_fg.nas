@@ -789,7 +789,7 @@ setlistener("/instrumentation/flightdirector/vnav", func(n) {
     if(vnav == VNAV_GS) {   # G/S
       if(getprop("/instrumentation/nav/has-gs") != 0) {
         setprop("/instrumentation/afs/limit-min-vs-fps",-13.0);
-          setprop("/instrumentation/afs/limit-max-vs-fps",13.0);
+        setprop("/instrumentation/afs/limit-max-vs-fps",13.0);
         tracer("has GS, enabling gs-hold");
         setprop("/autopilot/locks/altitude","gs1-hold");
         #setprop("/controls/autoflight/vertical-mode",2);
@@ -995,8 +995,9 @@ setlistener("/instrumentation/nav/in-range", func(n) {
      tracer("[NAV1] NAV1 range status: "~range);
      lastNavStatus = range;
      var lnavMode = getprop("/instrumentation/flightdirector/lnav");
+     var fltMode = getprop("/instrumentation/ecam/flight-mode");
      if (range == 1) {
-       if (lnavMode != LNAV_LOC) {
+       if (lnavMode != LNAV_LOC and fltMode > 8) {
          setprop("/instrumentation/flightdirector/lnav-arm", LNAV_LOC);
        } else {
          if (getprop("/instrumentation/flightdirector/lnav-arm") == LNAV_LOC) {
@@ -1018,7 +1019,7 @@ setlistener("/instrumentation/nav/gs-in-range", func(n) {
      lastGSStatus = range;
      var vnavMode = getprop("/instrumentation/flightdirector/vnav");
      if (range == 1) {
-       if (lnavMode != VNAV_GS) {
+       if (vnavMode != VNAV_GS) {
          setprop("/instrumentation/flightdirector/vnav-arm", VNAV_GS);
        } else {
           if (getprop("/instrumentation/flightdirector/vnav-arm" == VNAV_GS)) {
