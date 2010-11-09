@@ -2,7 +2,7 @@
 
 <PropertyList>
 
-	<path>../../../Models/FlightDeck/FrontPanel/pfd.ac</path> 
+	<path>../../../Models/FlightDeck/FrontPanel/pfd3.ac</path> 
 	<!-- texture-path>../../../Textures/Instruments</texture-path -->
 	<texture-path>../../../Textures/Panels/pfd/</texture-path>
 
@@ -285,6 +285,21 @@
    		</axis>
 	</animation -->
 
+
+
+ <animation>
+   <type>textranslate</type>
+   <object-name>ALTribbon</object-name>
+   <property>/instrumentation/altimeter/indicated-altitude-ft</property>
+   <factor>0.000669</factor>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+
   <animation>
    <type>textranslate</type>
    <object-name>ASIribbon</object-name>
@@ -345,6 +360,69 @@
      <z>0</z>
    </axis>
  </animation>
+ 
+ 
+ 
+ <animation>
+   <type>textranslate</type>
+   <object-name>alt_digit1</object-name>
+   <property>/instrumentation/altimeter/indicated-altitude-ft</property>
+   <factor>0.00001</factor>
+   <step>10000.0</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+ <animation>
+   <type>textranslate</type>
+   <object-name>alt_digit2</object-name>
+   <property>/instrumentation/altimeter/indicated-altitude-ft</property>
+   <factor>0.0001</factor>
+   <step>1000.0</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+ <animation>
+   <type>textranslate</type>
+   <object-name>alt_digit3</object-name>
+   <property>/instrumentation/altimeter/indicated-altitude-ft</property>
+   <factor>0.001</factor>
+   <step>100.0</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+ <animation>
+   <type>textranslate</type>
+   <object-name>alt_digit4</object-name>
+   <property>/instrumentation/altimeter/indicated-altitude-ft</property>
+   <factor>0.01</factor>
+   <step>10.0</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+ <animation>
+   <type>textranslate</type>
+   <object-name>alt_digit5</object-name>
+   <property>/instrumentation/altimeter/indicated-altitude-ft</property>
+   <factor>0.1</factor>
+   <step>1.0</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation> 
  
  
  	<animation>
@@ -789,7 +867,7 @@
     <z-m>0.005</z-m>
   </offsets>
   <type>literal</type>
-  <text>SPEED</text>
+  <text>MACH</text>
   <font>helvetica_bold.txf</font>
   <character-size type="double">0.007</character-size>
   <alignment>center-bottom</alignment> 
@@ -1001,7 +1079,7 @@
   <type>literal</type>
   <text>ALT CRZ</text>
   <font>helvetica_bold.txf</font>
-  <character-size type="double">0.0065</character-size>
+  <character-size type="double">0.007</character-size>
   <alignment>center-bottom</alignment> 
 </text>
 

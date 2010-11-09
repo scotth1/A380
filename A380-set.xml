@@ -804,6 +804,7 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
 <nasal>
     <A380>
       <file>Aircraft/A380/Nasal/electrical.nas</file>
+      <file>Aircraft/A380/Nasal/AirbusFMS.nas</file>
       <file>Aircraft/A380/Nasal/system.nas</file>
       <file>Aircraft/A380/Nasal/Airbus_fg.nas</file>
       <file>Aircraft/Generic/limits.nas</file>

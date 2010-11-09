@@ -166,7 +166,17 @@ increment_alt = func() {
     if (curAlt > 49000) {
       curAlt = 49000;
     }
+    var altSelect = getprop("/instrumentation/afs/vertical-alt-mode");
+    var vsSelect  = getprop("/instrumentation/afs/vertical-vs-mode");
+    if (altSelect == 0 and vsSelect == 0) {
+      setprop("/instrumentation/flightdirector/vnav", VNAV_VS);
+      setprop("/instrumentation/flightdirector/alt-acquire-mode",1);
+      setprop("/instrumentation/flightdirector/vnav-arm", VNAV_ALTs);
+    }
     setprop("/instrumentation/afs/target-altitude-ft",curAlt);
+    if (getprop("/instrumentation/flightdirector/vnav") == VNAV_ALTs) {
+      setprop("/autopilot/settings/target-altitude-ft", curAlt);
+    }
 }
 
 decrement_alt = func() {
@@ -177,7 +187,17 @@ decrement_alt = func() {
     if (curAlt < 0) {
       curAlt = 0;
     }
+    var altSelect = getprop("/instrumentation/afs/vertical-alt-mode");
+    var vsSelect  = getprop("/instrumentation/afs/vertical-vs-mode");
+    if (altSelect == 0 and vsSelect == 0) {
+      setprop("/instrumentation/flightdirector/vnav", VNAV_VS);
+      setprop("/instrumentation/flightdirector/alt-acquire-mode",1);
+      setprop("/instrumentation/flightdirector/vnav-arm", VNAV_ALTs);
+    }
     setprop("/instrumentation/afs/target-altitude-ft",curAlt);
+    if (getprop("/instrumentation/flightdirector/vnav") == VNAV_ALTs) {
+      setprop("/autopilot/settings/target-altitude-ft", curAlt);
+    }
 }
 
 increment_vs = func() {
@@ -191,6 +211,9 @@ increment_vs = func() {
       curr = -9000;
     }
     setprop("/instrumentation/afs/vertical-speed-fpm",curr);
+    if (getprop("/instrumentation/flightdirector/vnav") == VNAV_VS) {
+      setprop("/autopilot/settings/vertical-speed-fpm",curr);
+    }
 }
 
 decrement_vs = func() {
@@ -204,6 +227,9 @@ decrement_vs = func() {
       curr = -9000;
     }
     setprop("/instrumentation/afs/vertical-speed-fpm",curr);
+    if (getprop("/instrumentation/flightdirector/vnav") == VNAV_VS) {
+      setprop("/autopilot/settings/vertical-speed-fpm",curr);
+    }
 }
 
 increment_hdg = func() {
@@ -245,6 +271,9 @@ increment_spd = func() {
       curr = 0;
     }
     setprop("/instrumentation/afs/target-speed-kt",curr);
+    if (getprop("/instrumentation/flightdirector/spd") == SPD_SPEED) {
+      setprop("/autopilot/settings/target-speed-kt", curr);
+    }
 }
 
 decrement_spd = func() {
@@ -258,6 +287,9 @@ decrement_spd = func() {
       curr = 0;
     }
     setprop("/instrumentation/afs/target-speed-kt",curr);
+    if (getprop("/instrumentation/flightdirector/spd") == SPD_SPEED) {
+      setprop("/autopilot/settings/target-speed-kt", curr);
+    }
 }
 
 ###  listeners so we can set AFS values either on the CP or in the AP dialog
@@ -317,15 +349,18 @@ toggle_vs_select = func(n) {
       if (finalVNAVMode == VNAV_SRS) {
         armMode = VNAV_CLB;
       }
-      if (finalVNAVMode == VNAV_VS and vs == 0) {
-        armMode = VNAV_ALTs;
-        setprop("/instrumentation/flightdirector/alt-acquire-mode",1);
+      if (finalVNAVMode == VNAV_VS) {
+        armMode = aFMS.evaluateManagedVNAV();
+        if (verticalMode == 0) {
+          setprop("/autopilot/settings/vertical-speed-fpm",getprop("/instrumentation/afs/vertical-speed-fpm"));
+          setprop("/instrumentation/flightdirector/alt-acquire-mode",1);
+        }
       }
       if (finalVNAVMode == VNAV_OPCLB) {
-        armMode = VNAV_CLB;
+        armMode = aFMS.evaluateManagedVNAV();
       }
       if (finalVNAVMode == VNAV_OPDES) {
-        armMode = VNAV_DES;
+        armMode = aFMS.evaluateManagedVNAV();
       }
       if (apMode == 0) {
         setprop("/autopilot/locks/alitutde","");
@@ -362,6 +397,7 @@ toggle_alt_select = func(n) {
         armMode = VNAV_CLB;
       }
       if (finalVNAVMode == VNAV_VS and vertical == 0) {
+        setprop("/autopilot/settings/vertical-speed-fpm",getprop("/instrumentation/afs/vertical-speed-fpm"));
         armMode = VNAV_ALTs;
         setprop("/instrumentation/flightdirector/alt-acquire-mode",1);
       }
@@ -428,9 +464,10 @@ toggle_spd_select = func(n) {
       }
       if (speed == 0) {
         if (apMode == 1) {
+          setprop("/autopilot/settings/target-speed-kt", getprop("/instrumentation/afs/target-speed-kt"));
           setprop("/instrumentation/flightdirector/spd",SPD_SPEED);
         } else {
-          setprop("/instrumentation/flightdirector/spd-arm",SPD_SPEED);
+          setprop("/instrumentation/flightdirector/spd-arm",SPD_OFF);
         }
       }
       setprop("/instrumentation/afs/speed-mode", speed);

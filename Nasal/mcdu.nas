@@ -200,13 +200,11 @@ changePage = func(unit,page) {
         debug.dump(arvApt);
       }
       if (getprop("/instrumentation/afs/routeClearArm") == 0) {
-        setprop("/autopilot/route-manager/cruise/flight-level",0);
-        setprop("/autopilot/route-manager/cruise/altitude-ft",0);
+        setprop("/autopilot/route-manager/cruise/flight-level",crzFl);
+        setprop("/autopilot/route-manager/cruise/altitude-ft",crzFl*100);
         setprop("/autopilot/route-manager/active",0);
         setprop("/autopilot/route-manager/input","@clear");
-        var wpIns = sprintf("%s@%i",depApt.id,depApt.elevation);
-        tracer("clear route-manager, add depart airport: "~wpIns);
-        setprop("/autopilot/route-manager/input",wpIns);
+        
         setprop("/instrumentation/afs/routeClearArm",1);
         setprop("/instrumentation/afs/thrust-cruise-alt",crzFl*100);
       }
@@ -272,18 +270,7 @@ changePage = func(unit,page) {
       setprop("/instrumentation/afs/dep-course",depCourse);
     }
     ## var routeRoot = props.globals.getNode("autopilot/route-manager/route",1); 
-    var wpLen = getprop("/autopilot/route-manager/route/num");
-    var foundWp = 0;
-    for(w=0; w < wpLen; w=w+1) {
-        var wpName = getprop("/autopilot/route-manager/route/wp["~w~"]/id");
-        if (wpName == arvApt.id) {
-          foundWp = 1;
-        }
-    }
-    if (foundWp == 0) {
-      var wpIns = sprintf("%s@%i",arvApt.id, arvApt.elevation);
-      setprop("/autopilot/route-manager/input", wpIns);
-    }
+    
 
     var runWays = arvApt["runways"];
     tracer("runways len: "~size(runWays));
@@ -953,6 +940,44 @@ var getILS = func(apt, rwy) {
      }
    }
    return mhz;
+}
+
+#####################################################
+# removed from "active.departure.dep"
+addMissingDeparture = func() {
+  var wpLen = getprop("/autopilot/route-manager/route/num");
+  var foundWp = 0;
+  var strLen = size(depApt.id);
+  for(w=0; w < wpLen; w=w+1) {
+    var wpName = substr(getprop("/autopilot/route-manager/route/wp["~w~"]/id"),0,strLen);
+    if (wpName == depApt.id) {
+            foundWp = 1;
+    }
+  }
+  if (foundWp == 0) {
+    var wpIns = sprintf("%s@%i",depApt.id,depApt.elevation);
+    tracer("clear route-manager, add depart airport: "~wpIns);
+    setprop("/autopilot/route-manager/input",wpIns);
+  }
+}
+
+
+########################################################
+#  removed from active.departure.arv
+addMissingArrival = func() {
+var wpLen = getprop("/autopilot/route-manager/route/num");
+    var foundWp = 0;
+    var strLen = size(arvApt.id);
+    for(w=0; w < wpLen; w=w+1) {
+        var wpName = substr(getprop("/autopilot/route-manager/route/wp["~w~"]/id"),0,strLen);
+        if (wpName == arvApt.id) {
+          foundWp = 1;
+        }
+    }
+    if (foundWp == 0) {
+      var wpIns = sprintf("%s@%i",arvApt.id, arvApt.elevation);
+      setprop("/autopilot/route-manager/input", wpIns);
+    }
 }
 
 

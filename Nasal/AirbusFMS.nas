@@ -161,7 +161,7 @@ tracer : func(msg) {
          }
        }
        ## managed cruise alt
-       if (curAlt > (crzAlt-4000) and bothSelect == MANAGED_MODE) {
+       if (curAlt > (crzAlt-1000) and bothSelect == MANAGED_MODE) {
          retVNAV = VNAV_ALTCRZ;
        }
        ## managed descend
@@ -169,7 +169,7 @@ tracer : func(msg) {
        var curWp = getprop("/autopilot/route-manager/current-wp");
        var foundTD = 0;
        if (curWp > 0) {
-         for(w=0; w < curWp-1; w=w+1) {
+         for(w=0; w < curWp; w=w+1) {
            var wpName = getprop("/autopilot/route-manager/route/wp["~w~"]/id");
            if (wpName == "T/D") {
              foundTD = 1;

@@ -711,7 +711,7 @@
       <prop>/autopilot/settings/target-pitch-deg</prop>
     </output>
     <config>
-      <Kp>-0.3</Kp>       <!-- proportional gain  was -0.5 SAH 2010-10-19 -->
+      <Kp>-0.05</Kp>       <!-- proportional gain  was -0.5 SAH 2010-10-19 -->
       <beta>1.0</beta>    <!-- input value weighing factor -->
       <alpha>0.3</alpha>  <!-- low pass filter weighing factor was 0.1 SAH 2010-10-19 -->
       <gamma>0.0</gamma>  <!-- input value weighing factor for -->
@@ -719,7 +719,7 @@
       <Ti>40.0</Ti>        <!-- integrator time -->  <!-- was 40.0 SAH 2010-06-06 --> <!-- was 30 SAH 2010-10-19 -->
       <Td>0.00001</Td>    <!-- derivator time -->
       <u_min>-1.0</u_min><!-- minimum output clamp -->
-      <u_max>20.0</u_max> <!-- maximum output clamp -->
+      <u_max>18.0</u_max> <!-- maximum output clamp -->
       
       <!-- Kp>-1.0</Kp -->       <!-- proportional gain -->
       <!-- beta>1.0</beta -->    <!-- input value weighing factor -->
@@ -733,6 +733,42 @@
       <!-- u_max>20.0</u_max --> <!-- maximum output clamp -->
     </config>
   </pid-controller>
+  
+  
+  <!-- Auto throttle  mach--> 
+ <pid-controller>
+    <name>Auto Throttle (MACH)</name>
+    <debug>false</debug>
+    <enable>
+      <prop>/autopilot/locks/speed</prop>
+      <value>mach-with-throttle</value>
+    </enable>
+    <input>
+      <prop>/instrumentation/airspeed-indicator/indicated-mach</prop>
+    </input>
+    <reference>
+      <prop>/autopilot/settings/target-speed-mach</prop>
+    </reference>
+    <output>
+      <prop>/controls/engines/engine[0]/throttle</prop>
+      <prop>/controls/engines/engine[1]/throttle</prop>
+      <prop>/controls/engines/engine[2]/throttle</prop>
+      <prop>/controls/engines/engine[3]/throttle</prop>
+    </output>
+    <config>
+      <Kp>0.05</Kp>        <!-- proportional gain --> <!-- was 0.1 SAH 2010-06-06 -->
+      <beta>1.0</beta>    <!-- input value weighing factor -->
+      <alpha>0.1</alpha>  <!-- low pass filter weighing factor -->
+      <gamma>0.0</gamma>  <!-- input value weighing factor for -->
+                          <!-- unfiltered derivative error -->
+      <Ti>25.0</Ti>       <!-- integrator time -->  <!-- was 10.0 SAH 2010-06-06 -->
+      <Td>0.00001</Td>    <!-- derivator time --> <!-- was 0.00001 SAH 2010-06-06 --> 
+      <u_min>0.01</u_min>  <!-- minimum output clamp -->
+      <u_max>1.0</u_max>  <!-- maximum output clamp -->
+    </config>
+  </pid-controller>
+
+
 
  <pid-controller>
     <name>Speed Reference System (vary pitch) Stage #2</name>

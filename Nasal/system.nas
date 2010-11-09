@@ -84,7 +84,7 @@ FT2METRE=0.3048;
 CLmax = 2.4;
 
 ###srsFlapTarget = [263.0, 220.0, 210.0, 196.0, 182.0];   # copied from Airbus_fms.nas
-srsFlapTarget = [263.0, 222.0, 220.0, 196.0, 182.0];   #another copy in system.nas
+srsFlapTarget = [263.0, 222.0, 210.0, 196.0, 182.0];   #another copy in system.nas
 flapPos       = [0, 0.2424, 0.5151, 0.7878, 1.0];
 
 trace = 1;
@@ -593,10 +593,11 @@ check_acquire_mode = func {
    if (acquireMode == 1) {
      var alt = getprop("/position/altitude-ft");
      var selectAlt = getprop("/instrumentation/afs/target-altitude-ft");
-     if (alt >= (selectAlt-100)) {
+     if (alt >= (selectAlt-200)) {
        setprop("/instrumentation/flightdirector/vnav", VNAV_ALT);
-       ##setprop("/instrumentation/flightdirector/alt-acquire-mode",0);
-       setprop("/instrumentation/flightdirector/vnav-arm", VNAV_OFF);
+       setprop("/instrumentation/flightdirector/alt-acquire-mode",0);
+       var aFMS = AirbusFMS.new();
+       setprop("/instrumentation/flightdirector/vnav-arm", aFMS.evaluateManagedVNAV());
      }
    }
 }

@@ -48,7 +48,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU2.changePage(1,"active.init")</script>
+      <script>MCDU1.changePage(1,"active.init")</script>
    </binding>
   </action>
 </animation>
@@ -191,7 +191,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU2.changePage(1,"active.irs")</script>
+      <script>MCDU1.changePage(1,"active.irs")</script>
    </binding>
   </action>
 </animation>
@@ -220,7 +220,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU2.changePage(1,"active.departure.dep")</script>
+      <script>MCDU1.changePage(1,"active.departure.dep")</script>
    </binding>
   </action>
 </animation>
@@ -249,7 +249,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU2.changePage(1,"active.navaids")</script>
+      <script>MCDU1.changePage(1,"active.navaids")</script>
    </binding>
   </action>
 </animation>
@@ -278,7 +278,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU2.changePage(1,"active.fuel_load")</script>
+      <script>MCDU1.changePage(1,"active.fuel_load")</script>
    </binding>
   </action>
 </animation>
@@ -307,7 +307,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU2.changePage(1,"active.to_perf")</script>
+      <script>MCDU1.changePage(1,"active.to_perf")</script>
    </binding>
   </action>
 </animation>
@@ -372,7 +372,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU2.changePage(1,"active.departure.sid")</script>
+      <script>MCDU1.changePage(1,"active.departure.sid")</script>
    </binding>
   </action>
 </animation>
@@ -385,7 +385,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU2.changePage(1,"active.departure.star")</script>
+      <script>MCDU1.changePage(1,"active.departure.star")</script>
    </binding>
   </action>
 </animation>
@@ -401,22 +401,22 @@
       <value>8</value>
     </greater-than>
     <or>
-    <equals>
-      <property>/instrumentation/mcdu[1]/page</property>
-      <value>active.departure.dep</value>
-    </equals>
-    <equals>
-      <property>/instrumentation/mcdu[1]/page</property>
-      <value>active.departure.arv</value>
-    </equals>
-    <equals>
-      <property>/instrumentation/mcdu[1]/page</property>
-      <value>active.departure.sid</value>
-    </equals>
-    <equals>
-      <property>/instrumentation/mcdu[1]/page</property>
-      <value>active.departure.star</value>
-    </equals>
+      <equals>
+	<property>/instrumentation/mcdu[1]/page</property>
+	<value>active.departure.dep</value>
+      </equals>
+      <equals>
+	<property>/instrumentation/mcdu[1]/page</property>
+	<value>active.departure.arv</value>
+      </equals>
+      <equals>
+	<property>/instrumentation/mcdu[1]/page</property>
+	<value>active.departure.sid</value>
+      </equals>
+      <equals>
+	<property>/instrumentation/mcdu[1]/page</property>
+	<value>active.departure.star</value>
+      </equals>
     </or>
    </and>
   </condition>
@@ -430,7 +430,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU2.scrollRwy(1,"more")</script>
+      <script>MCDU1.scrollRwy(1,"more")</script>
    </binding>
   </action>
 </animation>
@@ -443,7 +443,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU2.scrollRwy(1,"less")</script>
+      <script>MCDU1.scrollRwy(1,"less")</script>
    </binding>
   </action>
 </animation>
@@ -482,7 +482,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU2.changePage(1,"active.to_perf")</script>
+      <script>MCDU1.changePage(1,"active.to_perf")</script>
    </binding>
   </action>
 </animation>
@@ -495,7 +495,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU2.changePage(1,"active.clb_perf")</script>
+      <script>MCDU1.changePage(1,"active.clb_perf")</script>
    </binding>
   </action>
 </animation>
@@ -508,7 +508,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU2.changePage(1,"active.crz_perf")</script>
+      <script>MCDU1.changePage(1,"active.crz_perf")</script>
    </binding>
   </action>
 </animation>
@@ -521,7 +521,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU2.changePage(1,"active.des_perf")</script>
+      <script>MCDU1.changePage(1,"active.des_perf")</script>
    </binding>
   </action>
 </animation>
@@ -534,7 +534,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU2.changePage(1,"active.appr_perf")</script>
+      <script>MCDU1.changePage(1,"active.appr_perf")</script>
    </binding>
   </action>
 </animation>
@@ -547,7 +547,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU2.changePage(1,"active.ga_perf")</script>
+      <script>MCDU1.changePage(1,"active.ga_perf")</script>
    </binding>
   </action>
 </animation>
@@ -861,6 +861,170 @@
 
 
 
+<!-- active.perf.crz_perf labels -->
+
+<text>
+  <name>label.crz_perf.mode</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.110</x-m>
+      <y-m>0.015</y-m>
+      <z-m>0.002</z-m>
+    </offsets>
+    <type type="string">literal</type>
+    <text>MODE</text>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0044</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+
+<text>
+  <name>label.crz_perf.mach</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.110</x-m>
+      <y-m>0.040</y-m>
+      <z-m>0.002</z-m>
+    </offsets>
+    <type type="string">literal</type>
+    <text>MACH</text>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0044</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+
+<text>
+  <name>label.crz_perf.spd</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.110</x-m>
+      <y-m>0.065</y-m>
+      <z-m>0.002</z-m>
+    </offsets>
+    <type type="string">literal</type>
+    <text>SPD</text>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0044</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+
+<text>
+  <name>label.crz_perf.step_at</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.120</x-m>
+      <y-m>0.100</y-m>
+      <z-m>0.002</z-m>
+    </offsets>
+    <type type="string">literal</type>
+    <text>AT</text>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0044</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+
+<text>
+  <name>label.crz_perf.step_to</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.110</x-m>
+      <y-m>0.095</y-m>
+      <z-m>0.002</z-m>
+    </offsets>
+    <type type="string">literal</type>
+    <text>STEP TO</text>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0044</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+
+<text>
+  <name>label.crz_perf.lrc</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.085</x-m>
+      <y-m>0.039</y-m>
+      <z-m>0.002</z-m>
+    </offsets>
+    <type type="string">literal</type>
+    <text>LRC</text>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0044</character-size>
+    <alignment>right-bottom</alignment>
+</text>
+
+<text>
+  <name>label.crz_perf.max_turb</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.075</x-m>
+      <y-m>0.039</y-m>
+      <z-m>0.002</z-m>
+    </offsets>
+    <type type="string">literal</type>
+    <text>MAX TURB</text>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0044</character-size>
+    <alignment>right-bottom</alignment>
+</text>
+
+<text>
+  <name>label.crz_perf.dest</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.020</x-m>
+      <y-m>0.010</y-m>
+      <z-m>0.002</z-m>
+    </offsets>
+    <type type="string">literal</type>
+    <text>DEST</text>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.004</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+
+<text>
+  <name>label.crz_perf.step_alt</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.020</x-m>
+      <y-m>0.120</y-m>
+      <z-m>0.002</z-m>
+    </offsets>
+    <type type="string">literal</type>
+    <text>STEP ALT</text>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.004</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+
+
+<text>
+  <name>label.crz_perf.ci</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.150</x-m>
+      <y-m>0.010</y-m>
+      <z-m>0.002</z-m>
+    </offsets>
+    <type type="string">literal</type>
+    <text>CI</text>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.004</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+
+
 
 <!--   input fields -->
 
@@ -889,7 +1053,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU2.selectField("FLT_NBR")</script>
+      <script>MCDU1.selectField("FLT_NBR")</script>
    </binding>
   </action>
 </animation>
@@ -917,7 +1081,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU2.selectField("FROM")</script>
+      <script>MCDU1.selectField("FROM")</script>
    </binding>
   </action>
 </animation>
@@ -945,7 +1109,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU2.selectField("TO")</script>
+      <script>MCDU1.selectField("TO")</script>
    </binding>
   </action>
 </animation>
@@ -976,7 +1140,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU2.selectField("CRZ_FL")</script>
+      <script>MCDU1.selectField("CRZ_FL")</script>
    </binding>
   </action>
 </animation>
@@ -1025,7 +1189,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU2.changePage(1,"active.departure.dep")</script>
+      <script>MCDU1.changePage(1,"active.departure.dep")</script>
    </binding>
   </action>
 </animation>
@@ -1054,7 +1218,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU2.changePage(1,"active.departure.arv")</script>
+      <script>MCDU1.changePage(1,"active.departure.arv")</script>
    </binding>
   </action>
 </animation>
@@ -1188,7 +1352,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU2.dispatchAction("opt01",1)</script>
+      <script>MCDU1.dispatchAction("opt01",1)</script>
    </binding>
   </action>
 </animation>
@@ -1304,7 +1468,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU2.dispatchAction("opt02",1)</script>
+      <script>MCDU1.dispatchAction("opt02",1)</script>
    </binding>
   </action>
 </animation>
@@ -1420,7 +1584,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU2.dispatchAction("opt03",1)</script>
+      <script>MCDU1.dispatchAction("opt03",1)</script>
    </binding>
   </action>
 </animation>
@@ -1536,7 +1700,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU2.dispatchAction("opt04",1)</script>
+      <script>MCDU1.dispatchAction("opt04",1)</script>
    </binding>
   </action>
 </animation>
@@ -1652,7 +1816,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU2.dispatchAction("opt05",1)</script>
+      <script>MCDU1.dispatchAction("opt05",1)</script>
    </binding>
   </action>
 </animation>
@@ -1768,7 +1932,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU2.dispatchAction("opt06",1)</script>
+      <script>MCDU1.dispatchAction("opt06",1)</script>
    </binding>
   </action>
 </animation>
@@ -1884,7 +2048,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU2.dispatchAction("opt07",1)</script>
+      <script>MCDU1.dispatchAction("opt07",1)</script>
    </binding>
   </action>
 </animation>
@@ -2000,7 +2164,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU2.dispatchAction("opt08",1)</script>
+      <script>MCDU1.dispatchAction("opt08",1)</script>
    </binding>
   </action>
 </animation>
@@ -2265,7 +2429,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU2.selectField("thrust-reduce-alt")</script>
+      <script>MCDU1.selectField("thrust-reduce-alt")</script>
    </binding>
   </action>
 </animation>
@@ -2295,7 +2459,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU2.selectField("thrust-accel-alt")</script>
+      <script>MCDU1.selectField("thrust-accel-alt")</script>
    </binding>
   </action>
 </animation>
@@ -2325,10 +2489,14 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU2.selectField("transition-ft")</script>
+      <script>MCDU1.selectField("transition-ft")</script>
    </binding>
   </action>
 </animation>
+
+
+
+<!-- active.to_perf.crz  values -->
 
 
 
@@ -2419,6 +2587,16 @@
     <object-name>label.to_perf.ths_for</object-name>
     <object-name>label.to_perf.to_shift</object-name>
     <object-name>label.to_perf.trans_alt</object-name>
+    <object-name>label.crz_perf.ci</object-name>
+    <object-name>label.crz_perf.dest</object-name>
+    <object-name>label.crz_perf.max_turb</object-name>
+    <object-name>label.crz_perf.lrc</object-name>
+    <object-name>label.crz_perf.step_to</object-name>
+    <object-name>label.crz_perf.step_at</object-name>
+    <object-name>label.crz_perf.spd</object-name>
+    <object-name>label.crz_perf.mach</object-name>
+    <object-name>label.crz_perf.mode</object-name>
+    <object-name>label.crz_perf.step_alt</object-name>
     <object-name>label.menu.t_o</object-name>
     <object-name>label.menu.clb</object-name>
     <object-name>label.menu.crz</object-name>
@@ -2446,7 +2624,6 @@
     <object-name>value.to_perf.v1</object-name>
     <object-name>value.to_perf.rwy</object-name>
     <object-name>value.perf.crz</object-name>
-    
     <object-name>value.to_perf.thr_accel</object-name>
     <object-name>value.to_perf.trans_ft</object-name>
     <object-name>value.to_perf.thr_red</object-name>
@@ -2662,6 +2839,30 @@
     <equals>
       <property>/instrumentation/mcdu[1]/page</property>
       <value>active.to_perf</value>
+    </equals>
+  </condition>
+</animation>
+
+<animation>
+  <type>select</type>
+  <object-name>page.PERF_CRZ</object-name>
+    <object-name>label.crz_perf.ci</object-name>
+    <object-name>label.crz_perf.dest</object-name>
+    <object-name>label.crz_perf.max_turb</object-name>
+    <object-name>label.crz_perf.lrc</object-name>
+    <object-name>label.crz_perf.step_to</object-name>
+    <object-name>label.crz_perf.step_at</object-name>
+    <object-name>label.crz_perf.spd</object-name>
+    <object-name>label.crz_perf.mach</object-name>
+    <object-name>label.crz_perf.mode</object-name>
+    <object-name>label.crz_perf.step_alt</object-name>
+    <object-name>input.crz.econ.mach</object-name>
+    <object-name>input.crz.lrc.mach</object-name>
+    <object-name>input.crz.turb.mach</object-name>
+  <condition>
+    <equals>
+      <property>/instrumentation/mcdu[1]/page</property>
+      <value>active.crz_perf</value>
     </equals>
   </condition>
 </animation>
