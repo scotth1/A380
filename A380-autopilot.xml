@@ -716,7 +716,7 @@
       <alpha>0.3</alpha>  <!-- low pass filter weighing factor was 0.1 SAH 2010-10-19 -->
       <gamma>0.0</gamma>  <!-- input value weighing factor for -->
                           <!-- unfiltered derivative error -->
-      <Ti>40.0</Ti>        <!-- integrator time -->  <!-- was 40.0 SAH 2010-06-06 --> <!-- was 30 SAH 2010-10-19 -->
+      <Ti>30.0</Ti>        <!-- integrator time -->  <!-- was 40.0 SAH 2010-06-06 --> <!-- was 30 SAH 2010-10-19 -->
       <Td>0.00001</Td>    <!-- derivator time -->
       <u_min>-1.0</u_min><!-- minimum output clamp -->
       <u_max>18.0</u_max> <!-- maximum output clamp -->

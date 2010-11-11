@@ -279,6 +279,11 @@ setlistener("/sim/signals/fdm-initialized", func {
     setprop("/instrumentation/afs/thrust-cruise-alt",30000);
     setprop("/instrumentation/afs/crz_speed", 310);
     setprop("/instrumentation/afs/crz_mach", 0.85);
+    setprop("/instrumentation/afs/clb_speed", 280);
+    setprop("/instrumentation/afs/clb_mach", 0.74);
+    setprop("/instrumentation/afs/des_speed", 270);
+    setprop("/instrumentation/afs/des_mach", 0.66);
+    setprop("/instrumentation/afs/changeover-mode", 0);    ### 0 == below changeover, 1 == above changeover
     #setprop("/instrumentation/afs/thrust-descent-alt",14000);
     setprop("/instrumentation/afs/transition-ft",10000);
     setprop("/instrumentation/afs/CRZ_FL",300);
@@ -870,7 +875,7 @@ setlistener("/instrumentation/flightdirector/spd", func(n) {
             setprop("/autopilot/locks/speed","mach-with-throttle");
             ##var newSpeed = 310;
             ##var newSpeed = getprop("/instrumentation/afs/crz_speed");
-            var newSpeed = getprop("/instrumentation/afs/crz-mach");
+            var newSpeed = getprop("/instrumentation/afs/crz_mach");
             if (getprop("/autopilot/settings/target-speed-kt") < 270) {
               ##interpolate("/autopilot/settings/target-speed-kt",newSpeed,100);
               interpolate("/autopilot/settings-target-speed-mach", newSpeed, 100);
@@ -1202,6 +1207,26 @@ handle_inputs = func {
     spdClimbRedArm += 1;
     settimer(delay_climb_reduce_rate, 1);
   }
+  var currMach = getprop("/instrumentation/airspeed-indicator/indicated-mach");
+  var currTAS  = getprop("/instrumentation/airspeed-indicator/true-speed-kt");
+  var clbMach = getprop("/instrumentation/afs/clb_mach");
+  var desMach = getprop("/instrumentation/afs/des_mach");
+  var desSpeed = getprop("/instrumentation/afs/des_speed");
+  var changeoverMode = getprop("/instrumentation/afs/changeover-mode");
+  if (spdMode == SPD_THRCLB and changeoverMode == 0 and (currMach >= clbMach or curAlt > 26000)) {
+    tracer("currMach: "~currMach~" changeover level on");
+    setprop("/instrumentation/afs/changeover-mode", 1);
+    setprop("/autopilot/settings/target-speed-mach", clbMach);
+    setprop("/autopilot/locks/speed","mach-with-throttle");
+  }
+  # don't retrieve the current changeover mode again, otherwise we could oscilate 
+  if (spdMode == SPD_THRDES and changeoverMode == 1 and (currTAS <= desSpeed or curAlt < 26000)) {
+    tracer("currTAS: "~currTAS~" changeover level off");
+    setprop("/instrumentation/afs/changeover-mode",0);
+    setprop("/autopilot/settings/target-speed-kt", desSpeed);
+    setprop("/autopilot/locks/speed", "speed-with-throttle");
+  }
+
   var vAltMode = getprop("/instrumentation/afs/vertical-alt-mode");
   if (vAltMode == 0 and ap_on == 1) {
     #tracer("set ALT hold value");
@@ -1236,8 +1261,9 @@ delay_climb_reduce_rate = func() {
 };
 
 delay_climb_inc_speed = func() {
-    tracer("delayed increase climb speed");
-    interpolate("/autopilot/settings/target-speed-kt",270,30);
+    var clbSpeed = getprop("/instrumentation/afs/clb_speed");
+    tracer("delayed increase climb speed to: "~clbSpeed);
+    interpolate("/autopilot/settings/target-speed-kt",clbSpeed,30);
 };
 
 delay_cruise_speed = func() {
