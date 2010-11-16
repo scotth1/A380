@@ -1314,7 +1314,7 @@
         	<offsets>
              		<x-m>23.347</x-m>
              		<y-m>-39.183</y-m>
-             		<z-m> 2.667</z-m>
+             		<z-m> 2.707</z-m>
          	</offsets>
 	</model>
 
@@ -1324,7 +1324,7 @@
         	<offsets>
              		<x-m>23.347</x-m>
              		<y-m>39.183</y-m>
-             		<z-m> 2.667</z-m>
+             		<z-m> 2.707</z-m>
          	</offsets>
 	</model>
 
@@ -1354,8 +1354,8 @@
   		<name>Strobe.L</name>
   		<offsets>
     			<x-m>23.6883</x-m>
-    			<y-m>-39.808</y-m>
-    			<z-m>2.667</z-m>
+    			<y-m>-39.353</y-m>
+    			<z-m>2.707</z-m>
   		</offsets>
 	</model>
 
@@ -1364,8 +1364,8 @@
   		<name>Strobe.R</name>
   		<offsets>
     			<x-m>23.6883</x-m>
-    			<y-m>39.808</y-m>
-   			<z-m>2.667</z-m>
+    			<y-m>39.353</y-m>
+   			<z-m>2.707</z-m>
   		</offsets>
 	</model>
 

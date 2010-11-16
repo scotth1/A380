@@ -88,7 +88,7 @@
   	<!-- Temorary hack 
   	<model>
    		<path>Aircraft/A380/XML/windshield.xml</path>
-  	</model>-->
+  	</model> -->
 
 	<!--
   	<model>
@@ -166,7 +166,7 @@
   		</axis>
 	</animation>
 
-  	<!-- nose wheel stearing-->
+  	<!-- nose wheel stearing -->
   	<animation>
   		<type>rotate</type>   
   		<object-name>collar</object-name>
@@ -193,7 +193,7 @@
   		</axis>
  	</animation>
 
- <!--end nose wheel stearing-->
+ <!--end nose wheel stearing -->
  <animation>
   <type>rotate</type>
   <object-name>nglhfwddoor</object-name>
@@ -330,8 +330,8 @@
   </axis>
  </animation>
  
-  <!--END OF NOSE GEAR-->
-  <!--START OF MAIN GEAR LEFT-->
+  <!--END OF NOSE GEAR -->
+  <!--START OF MAIN GEAR LEFT -->
 
   <animation>
   <type>rotate</type>
@@ -675,8 +675,8 @@
   </axis>
  </animation>
 
- <!--END OF MAIN GEAR LEFT-->
- <!--START OF MAIN GEAR RIGHT-->
+ <!--END OF MAIN GEAR LEFT -->
+ <!--START OF MAIN GEAR RIGHT -->
 
  <animation>
   <type>rotate</type>
@@ -1019,7 +1019,7 @@
   </axis>
  </animation>
 
-  <!--END OF MAIN GEAR RIGHT-->
+  <!--END OF MAIN GEAR RIGHT -->
 
  <animation>
   <type>rotate</type>
@@ -1138,7 +1138,7 @@
          <offsets>
              <x-m>28.869</x-m>
              <y-m>-0.009</y-m>
-             <z-m>10.985</z-m>
+             <z-m>10.905</z-m>
          </offsets>
 </model>
 
