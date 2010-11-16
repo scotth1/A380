@@ -521,6 +521,77 @@
      <z-m>0.004</z-m>
    </center>
  </animation>
+ 
+ 
+ <text>
+   <name>ias.kt</name>
+   <axis-alignment>yz-plane</axis-alignment>
+   <offsets>
+    <pitch-deg>-90</pitch-deg>
+    <x-m>-0.065</x-m>
+    <y-m>0.010</y-m>
+    <z-m>0.005</z-m>
+  </offsets>
+  <type type="string">number-value</type>
+    <property type="string">/velocities/airspeed-kt</property>
+    <format>%0.0f</format>
+    <!-- truncate type="bool">true</truncate -->
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.008</character-size>
+    <alignment>left-bottom</alignment>
+ </text>
+ 
+  <text>
+   <name>ias.mach</name>
+   <axis-alignment>yz-plane</axis-alignment>
+   <offsets>
+    <pitch-deg>-90</pitch-deg>
+    <x-m>-0.065</x-m>
+    <y-m>0.010</y-m>
+    <z-m>0.005</z-m>
+  </offsets>
+  <type type="string">number-value</type>
+    <property type="string">/instrumentation/airspeed-indicator/indicated-mach</property>
+    <format>%1.2f</format>
+    <!-- truncate type="bool">true</truncate -->
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.008</character-size>
+    <alignment>left-bottom</alignment>
+ </text>
+ 
+ <animation>
+   <type>select</type>
+   <object-name>ias.kt</object-name>
+   <condition>
+      <and>
+        <equals>
+           <property>/instrumentation/afs/changeover-mode</property>
+           <value>0</value>
+        </equals>
+        <greater-than>
+           <property>/velocities/airspeed-kt</property>
+           <value>10</value>
+        </greater-than>
+      </and>
+   </condition>
+ </animation>
+ 
+  <animation>
+   <type>select</type>
+   <object-name>ias.mach</object-name>
+   <condition>
+      <and>
+        <equals>
+           <property>/instrumentation/afs/changeover-mode</property>
+           <value>1</value>
+        </equals>
+        <greater-than>
+           <property>/velocities/airspeed-kt</property>
+           <value>10</value>
+        </greater-than>
+      </and>
+   </condition>
+ </animation>
 
 <!-- LNAV annun -->
 
@@ -1485,6 +1556,8 @@
    <object-name>APvnav.des</object-name>
    <object-name>APvnav.gs</object-name>
    <object-name>APvnav.srs</object-name>
+   <object-name>ias.kt</object-name>
+   <object-name>ias.mach</object-name>
    <emission>
      <red>0.2</red>
      <green>0.6</green>

@@ -1140,6 +1140,7 @@ insertAbsWP = func(id, index, lat, lon, alt) {
    setprop("/instrumentation/gps/scratch/latitude-deg",lat);
    setprop("/instrumentation/gps/scratch/longitude-deg",lon);
    setprop("/instrumentation/gps/scratch/name",id);
+   setprop("/instrumentation/gps/scratch/type","waypoint");
    setprop("/instrumentation/gps/command","route-insert-before");
 }
 

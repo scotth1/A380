@@ -366,27 +366,9 @@ update_radar = func{
       setprop("/instrumentation/switches/seatbelt-sign",1);
     }
   }
-  gearPos    = getprop("/gear/gear[0]/position-norm");
-  fltMode    = getprop("/instrumentation/ecam/flight-mode");
-  if (gearPos == 0 and fltMode >= 6 and fltMode < 9) {
-    thrustMode = getprop("/instrumentation/flightdirector/athr");
-    var latMode = getprop("/instrumentation/afs/lateral-mode");
-    var vnav    = getprop("/instrumentation/flightdirector/vnav");
-    var ap      = getprop("/instrumentation/flightdirector/autopilot-on");
-    ##tracer("fltMode: "~fltMode~", thrustMode: "~thrustMode~", lateral: "~latMode~" vnav: "~vnav);
-    ## if we are in FLEX or TOGA thrust detent
-    if ((thrustMode == 2 or thrustMode == 3) and vnav != VNAV_SRS and vnav != VNAV_VS and ap == 1) {
-      tracer("Enable SRS mode");
-      if (vnav == VNAV_ALT) {
-          tracer("use SRS and acquire selected ALT");
-          setprop("instrumentation/flightdirector/alt-acquire-mode",1);
-      }
-      setprop("/instrumentation/flightdirector/vnav",VNAV_SRS);
-      setprop("/instrumentation/flightdirector/vnav-arm", VNAV_CLB);
-    }
-  }
+  var spd    = getprop("/instrumentation/flightdirector/spd");
   var currFlapPos = getprop("/fdm/jsbsim/fcs/flap-cmd-norm");
-  if (getprop("/instrumentation/flightdirector/spd") == SPD_THRCLB and currFlapPos > 0) {
+  if (spd == SPD_THRCLB and currFlapPos > 0) {
     var flapConfig = 0;
     if (currFlapPos == 0.2424) {
       flapConfig = 1;
@@ -426,9 +408,21 @@ update_radar = func{
    var rho = getprop("/environment/density-slugft3");
    var S   = getprop("/fdm/jsbsim/metrics/Sw-sqft");
    var W   = getprop("/fdm/jsbsim/inertia/weight-lbs");
+   var tat = getprop("/fdm/jsbsim/propulsion/tat-c");
+   var oat = getprop("/environment/temperature-degc");
+   var cs  = 38.967854*math.sqrt(oat+273.15);
    var Vsfts = math.sqrt(W*2/(rho * CLmax * S));
    var Vso = ((Vsfts*60)*FPM2MSEC)*MSEC2KT;
+   var Vb  = Vso*2.049;
+   var Mb  = convertKtMach(Vb);
+   var Mso = convertKtMach(Vso);
+   var Mra = (0.89-Mso)/2+Mso;
    setprop("/velocities/Vso",Vso);
+   setprop("/velocities/Mso",Mso);
+   setprop("/velocities/Vb", Vb);
+   setprop("/velocities/Mb", Mb);
+   setprop("/velocities/Mra", Mra);
+
 
    ##############
    #   update fuel tank KG weight
@@ -444,6 +438,71 @@ update_radar = func{
 
   settimer(update_radar, 1.0);
 } 
+
+
+var convertKtMach = func(kts) {
+   var TEMPSL = 518.67;
+   var RHOSL = 0.00237689;
+   var PRESSSL = 2116.22;
+   var saTheta = 1.0;
+   var saSigma = 1.0;
+   var saDelta = 1.0;
+
+   var h = getprop("/position/altitude-ft");
+   var v = kts*1.6878099;
+
+   if ( h > 232939 ){
+      saTheta = 0.0;
+      saSigma = 0.0;
+      saDelta = 0.0;
+   }
+ 
+   if ( h<232940 ){
+      saTheta = 1.434843 - h/337634;
+      saSigma = math.pow( 0.79899-h/606330, 11.20114 );
+      saDelta = math.pow( 0.838263-h/577922, 12.20114 );
+   }
+   if ( h<167323 ){
+      saTheta = 0.939268;
+      saSigma = 0.00116533 * math.exp( (h-154200)/-25992 );
+      saDelta = 0.00109456 * math.exp( (h-154200)/-25992 );
+   }
+   if ( h<154199 ){
+      saTheta = 0.482561 + h/337634;
+      saSigma = math.pow( 0.857003+h/190115, -13.20114 );
+      saDelta = math.pow( 0.898309+h/181373, -12.20114 );
+   }
+   if ( h<104987 ){
+      saTheta = 0.682457 + h/945374;
+      saSigma = math.pow( 0.978261+h/659515, -35.16319 );
+      saDelta = math.pow( 0.988626+h/652600, -34.16319 );
+   }
+   if ( h<65617 ){
+      saTheta = 0.751865;
+      saSigma = 0.297076 * math.exp( (36089-h)/20806 );
+      saDelta = 0.223361 * math.exp( (36089-h)/20806 );
+   }
+   if ( h<36089 ){
+      saTheta = 1.0 - h/145442;
+      saSigma = math.pow( 1.0-h/145442, 4.255876 );
+      saDelta = math.pow( 1.0-h/145442, 5.255876 );
+   }
+
+   var tempVal = TEMPSL * saTheta;
+   var rhoVal = RHOSL * saSigma;
+   var pVal = PRESSSL * saDelta;
+   var viscVal = 0.0000000226968*math.pow( tempVal, 1.5 ) / ((tempVal)+198.72);
+   var soundVal = math.sqrt( 1.4*1716.56*(tempVal) );
+
+   var machVal = v/soundVal;
+   var qVal = 0.7*pVal*machVal*machVal;
+   ##var reynolds = v*rl*rhoVal/viscVal;
+   ##var cfturb = 0.455/math.pow((Math.log(reynolds)/Math.log(10)),2.58);
+   ##var cflam = 1.328/math.sqrt(reynolds);
+   return machVal;
+
+
+}
 
 # UPDATE CLOCK 
 update_clock = func{

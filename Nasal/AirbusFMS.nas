@@ -125,6 +125,7 @@ tracer : func(msg) {
    ####
    evaluateManagedVNAV : func() {
      var retVNAV = VNAV_OFF;
+     tracer("evaluateManagedVNAV");
      ##var curAlt = getprop("/instrumentation/altimeter/indicated-altitude-ft");
      var curAlt = getprop("/position/altitude-ft");
      var curFlightMode = getprop("/instrumentation/ecam/flight-mode");
@@ -147,22 +148,26 @@ tracer : func(msg) {
      if (altSelect == SELECTED_MODE or vsSelect == SELECTED_MODE) {
        bothSelect = SELECTED_MODE;
      }
-
+      tracer("bothSelect: "~bothSelect~", clbArm: "~clbArm~", spdMode: "~spdMode~", flapPos: "~flapPos);
        ## managed Speed Reference System mode
-       if (curAlt < accAlt and clbArm == 0 and bothSelect == MANAGED_MODE and (spdMode == SPD_FLEX or spdMode == SPD_TOGA) and flapPos > 0 ) {
+       if (curAlt < accAlt and clbArm == 0 and bothSelect == MANAGED_MODE and (spdMode == SPD_FLEX or spdMode == SPD_TOGA or spdMode == SPD_THRCLB) and flapPos > 0 ) {
          retVNAV = VNAV_SRS;
+         tracer("retVNAV = VNAV_SRS");
        }
        ## managed climb
        if (curAlt >= accAlt and curAlt < (crzAlt-100) and crzAcquire == 0) {
          if (lnavMode == LNAV_FMS) {
            retVNAV = VNAV_CLB
+           tracer("retVNAV = VNAV_CLB");
          } else {
            retVNAV = VNAV_OPCLB;
+           tracer("retVNAV = VNAV_OPCLB");
          }
        }
        ## managed cruise alt
        if (curAlt > (crzAlt-1000) and bothSelect == MANAGED_MODE) {
          retVNAV = VNAV_ALTCRZ;
+         tracer("retVNAV = VNAV_ALTCRZ");
        }
        ## managed descend
        var wpLen = getprop("/autopilot/route-manager/route/num");
@@ -178,8 +183,10 @@ tracer : func(msg) {
          if(foundTD == 1 and curAlt > 400 and bothSelect == MANAGED_MODE) {
            if (lnavMode == LNAV_FMS) {
              retVNAV = VNAV_DES;
+             tracer("retVNAV = VNAV_DES");
            } else {
              retVNAV = VNAV_OPDES;
+             tracer("retVNAV = VNAV_OPDES");
            }
          }
        }
