@@ -1,0 +1,294 @@
+AC3Db
+MATERIAL "2 - Default" rgb 0 0 0  amb 1 1 1  emis 1.00305 1.00305 1.00305  spec 1 1 1  shi 32  trans 0.051
+OBJECT world
+kids 12
+OBJECT group
+name "alt_grp"
+loc -0.055319 0.00626756 -0.103156
+kids 1
+OBJECT poly
+name "alt_digit5"
+loc -0.072837 0 -0.0358584
+texture "Aircraft/A380/Textures/Panels/pfd/pfd2.png"
+crease 45.000000
+numvert 4
+-0.00784004 0 0.0016965
+-0.00784004 0 -0.00169648
+0.00784007 0 -0.00169648
+0.00784005 0 0.00169651
+numsurf 1
+SURF 0x30
+mat 0
+refs 4
+3 0.880859 -0.105469
+2 0.935547 -0.105469
+1 0.935547 0.197266
+0 0.880859 0.197266
+kids 0
+OBJECT group
+name "alt_grp"
+loc -0.055319 0.00626756 -0.103156
+kids 1
+OBJECT poly
+name "alt_digit2"
+loc -0.0729424 0 -0.0224688
+texture "Aircraft/A380/Textures/Panels/pfd/pfd2.png"
+crease 45.000000
+numvert 4
+-0.00499354 0 0.00264534
+-0.00499354 0 -0.00264531
+0.00499354 0 -0.00264531
+0.00499354 0 0.00264534
+numsurf 1
+SURF 0x30
+mat 0
+refs 4
+3 0.880859 0
+2 0.935547 0
+1 0.935547 0.0996094
+0 0.880859 0.0996094
+kids 0
+OBJECT group
+name "alt_grp"
+loc -0.055319 0.00626756 -0.103156
+kids 1
+OBJECT poly
+name "alt_digit1"
+loc -0.0729424 0 -0.0171975
+texture "Aircraft/A380/Textures/Panels/pfd/pfd2.png"
+crease 45.000000
+numvert 4
+0.00499354 0 0.00264535
+0.00499354 0 -0.00264531
+-0.00499354 0 -0.00264531
+-0.00499354 0 0.00264535
+numsurf 1
+SURF 0x30
+mat 0
+refs 4
+0 0.880859 0
+1 0.935547 0
+2 0.935547 0.0996094
+3 0.880859 0.0996094
+kids 0
+OBJECT group
+name "alt_grp"
+loc -0.055319 0.00626756 -0.103156
+kids 1
+OBJECT poly
+name "alt_digit4"
+loc -0.072837 0 -0.0322739
+texture "Aircraft/A380/Textures/Panels/pfd/pfd2.png"
+crease 45.000000
+numvert 4
+0.00784005 0 0.00169651
+0.00784007 0 -0.00169648
+-0.00784004 0 -0.00169648
+-0.00784004 0 0.0016965
+numsurf 1
+SURF 0x30
+mat 0
+refs 4
+0 0.880859 -0.105469
+1 0.935547 -0.105469
+2 0.935547 0.197266
+3 0.880859 0.197266
+kids 0
+OBJECT group
+name "alt_grp"
+loc -0.055319 0.00626756 -0.103156
+kids 1
+OBJECT poly
+name "alt_digit3"
+loc -0.0729424 0 -0.0275292
+texture "Aircraft/A380/Textures/Panels/pfd/pfd2.png"
+crease 45.000000
+numvert 4
+-0.00499354 0 0.00264534
+-0.00499354 0 -0.00264531
+0.00499354 0 -0.00264531
+0.00499354 0 0.00264534
+numsurf 1
+SURF 0x30
+mat 0
+refs 4
+3 0.880859 0
+2 0.935547 0
+1 0.935547 0.0996094
+0 0.880859 0.0996094
+kids 0
+OBJECT poly
+name "ASIribbon"
+loc -0.000344522 0 0.00757823
+data 21
+glass_2 - Default.001
+texture "Aircraft/A380/Textures/Panels/pfd/spd-tape.png"
+crease 30.000000
+numvert 4
+-0.172583 0.003013 -0.032694
+-0.172583 0.003013 -0.011317
+-0.081523 0.003013 -0.032694
+-0.081523 0.003013 -0.011317
+numsurf 2
+SURF 0x0
+mat 0
+refs 3
+1 0.104186 0.191284
+3 0.104186 0.0163751
+0 0.860545 0.191284
+SURF 0x0
+mat 0
+refs 3
+3 0.104186 0.0163751
+2 0.860545 0.0163751
+0 0.860545 0.191284
+kids 0
+OBJECT poly
+name "PFD_Mask"
+loc -2.98023e-08 0 -7.45058e-09
+data 17
+glass_2 - Default
+texture "Aircraft/A380/Textures/Panels/pfd/pfd1.png"
+crease 30.000000
+numvert 4
+0 0.004231 0
+-7.45058e-09 0.004231 -0.16
+-0.21 0.004231 -7.45058e-09
+-0.21 0.004231 -0.16
+numsurf 2
+SURF 0x0
+mat 0
+refs 3
+0 0.0549269 0.000442773
+1 1.00017 0.000308543
+3 1.00031 1.00026
+SURF 0x0
+mat 0
+refs 3
+2 0.0551543 1.00026
+0 0.0549269 0.000442773
+3 1.00031 1.00026
+kids 0
+OBJECT poly
+name "ALTribbon"
+loc 2.27988e-06 0.003013 -0.108395
+data 21
+glass_2 - Default.001
+texture "Aircraft/A380/Textures/Panels/pfd/alt-tape.png"
+crease 30.000000
+numvert 4
+-0.0820301 0 -0.00874685
+-0.0820301 0 -0.025269
+-0.173657 0 -0.00874686
+-0.173657 0 -0.025269
+numsurf 2
+SURF 0x0
+mat 0
+refs 3
+0 0.0327498 -0.000345744
+1 0.155658 -0.000345744
+3 0.155658 0.101037
+SURF 0x0
+mat 0
+refs 3
+2 0.0327498 0.101037
+0 0.0327498 -0.000345744
+3 0.155658 0.101037
+kids 0
+OBJECT poly
+name "horizon"
+loc -0.000344522 0.003013 0.00917352
+data 21
+glass_2 - Default.002
+texture "Aircraft/A380/Textures/Panels/pfd/ati.png"
+crease 30.000000
+numvert 4
+-0.081523 0 -0.0453412
+-0.081523 0 -0.120554
+-0.172583 0 -0.0453412
+-0.172583 0 -0.120554
+numsurf 2
+SURF 0x0
+mat 0
+refs 3
+0 0.107085 0.351712
+1 0.395711 0.351712
+3 0.395711 0.642585
+SURF 0x0
+mat 0
+refs 3
+2 0.107085 0.642585
+0 0.107085 0.351712
+3 0.395711 0.642585
+kids 0
+OBJECT poly
+name "horizon.bottom"
+loc -2.98023e-08 0 -7.45058e-09
+data 21
+glass_2 - Default.004
+texture "Aircraft/A380/Textures/Panels/pfd/pfd1.png"
+crease 30.000000
+numvert 4
+-0.080876 0.004125 -0.043057
+-0.080876 0.004125 -0.114481
+-0.093402 0.004125 -0.043057
+-0.093402 0.004125 -0.114481
+numsurf 2
+SURF 0x0
+mat 0
+refs 3
+0 0.348376 0.412311
+1 0.482303 0.412311
+3 0.482303 0.499812
+SURF 0x0
+mat 0
+refs 3
+2 0.348376 0.499812
+0 0.348376 0.412311
+3 0.482303 0.499812
+kids 0
+OBJECT poly
+name "horizon.top"
+loc -2.98023e-08 0 -7.45058e-09
+data 21
+glass_2 - Default.003
+texture "Aircraft/A380/Textures/Panels/pfd/pfd1.png"
+crease 30.000000
+numvert 4
+-0.161239 0.004125 -0.043057
+-0.161239 0.004125 -0.114481
+-0.173765 0.004125 -0.043057
+-0.173765 0.004125 -0.114481
+numsurf 2
+SURF 0x0
+mat 0
+refs 3
+0 0.348376 0.498185
+1 0.482303 0.498185
+3 0.482303 0.585686
+SURF 0x0
+mat 0
+refs 3
+2 0.348376 0.585686
+0 0.348376 0.498185
+3 0.482303 0.585686
+kids 0
+OBJECT poly
+name "VS_scale"
+loc -0.127563 0.0036868 -0.148204
+texture "Aircraft/A380/Textures/Panels/pfd/pfd2.png"
+crease 45.000000
+numvert 4
+-0.0566647 0 0.00585595
+-0.0566647 0 -0.00585592
+0.0566647 0 -0.00585592
+0.0566647 0 0.00585595
+numsurf 1
+SURF 0x30
+mat 0
+refs 4
+3 0.626953 0
+2 0.689453 0
+1 0.689453 0.480469
+0 0.626953 0.480469
+kids 0

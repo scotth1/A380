@@ -7,7 +7,7 @@ OBJECT poly
 name "ASIribbon"
 data 21
 glass_2 - Default.001
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/spd-tape.png"
+texture "Aircraft/A380/Textures/Panels/pfd/spd-tape.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -33,7 +33,7 @@ OBJECT poly
 name "PFD_Mask"
 data 17
 glass_2 - Default
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/pfd1.png"
+texture "Aircraft/A380/Textures/Panels/pfd/pfd1.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -59,7 +59,7 @@ OBJECT poly
 name "horizon"
 data 21
 glass_2 - Default.002
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/ati.png"
+texture "Aircraft/A380/Textures/Panels/pfd/ati.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -85,7 +85,7 @@ OBJECT poly
 name "horizon.bottom"
 data 21
 glass_2 - Default.004
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/ati.png"
+texture "Aircraft/A380/Textures/Panels/pfd/ati.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -111,7 +111,7 @@ OBJECT poly
 name "horizon.top"
 data 21
 glass_2 - Default.003
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/ati.png"
+texture "Aircraft/A380/Textures/Panels/pfd/ati.png"
 texrep 1 1
 crease 30.000000
 numvert 4
