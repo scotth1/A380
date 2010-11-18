@@ -67,8 +67,8 @@ lnavStr = ["off","HDG","TRK","LOC","NAV","RWY"];
 vnavStr = ["off","ALT(s)","V/S","OP CLB","FPA","OP DES","CLB","ALT CRZ","DES","G/S","SRS","LEVEL"];
 spdStr  = ["off","TOGA","FLEX","THR CLB","SPEED","MACH","CRZ","THR DES","THR IDL"];
 
-version="V1.0.3";
-trace=1;
+version="V1.1.0";
+trace=0;
 
 #trigonometric values for glideslope calculations
 FD_TAN3DEG = 0.052407779283;
@@ -1102,22 +1102,29 @@ setlistener("/autopilot/route-manager/route/num", func(n) {
 # 30 seconds after accel alt, we increase thrust
 #
 climb_thrust = func() {
-    tracer("afs: increase CL speed");
-    var targetVS = 2000;
-    # if grossWgt > 500000kg then set vs=1800;
-    if (getprop("/instrumentation/afs/thrust-cruise-alt") > 28000) {
-    ###if (getprop("/instrumentation/mcdu/CRZ_FL") > 28000) {
-      targetVS = 2200;
+    var managedAlt = 0;
+    if (getprop("/instrumentation/afs/vertical-alt-mode") == -1 or getprop("/instrumentation/afs/vertical-vs-mode") == -1) {
+      managedAlt = 1;
     }
-    if (getprop("/fdm/jsbsim/inertia/weight-kg") > 480000) {
-      targetVS = 2000;
+    if (managedAlt == 1) {
+      tracer("afs: increase CL speed");
+      var targetVS = 2000;
+      # if grossWgt > 500000kg then set vs=1800;
+      if (getprop("/instrumentation/afs/thrust-cruise-alt") > 28000) {
+      ###if (getprop("/instrumentation/mcdu/CRZ_FL") > 28000) {
+        targetVS = 2200;
+      }
+      if (getprop("/fdm/jsbsim/inertia/weight-kg") > 480000) {
+        targetVS = 2000;
+      }
+      if (getprop("/fdm/jsbsim/inertia/weight-kg") > 500000) {
+        targetVS = 1800;
+      }
+    
+      interpolate("/autopilot/settings/vertical-speed-fpm",targetVS,30);
+      interpolate("/autopilot/settings/target-speed-kt",230,20);
+      setprop("/autopilot/locks/speed","speed-with-throttle");
     }
-    if (getprop("/fdm/jsbsim/inertia/weight-kg") > 500000) {
-      targetVS = 1800;
-    }
-    interpolate("/autopilot/settings/vertical-speed-fpm",targetVS,30);
-    interpolate("/autopilot/settings/target-speed-kt",230,20);
-    setprop("/autopilot/locks/speed","speed-with-throttle");
 };
 
 

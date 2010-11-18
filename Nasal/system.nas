@@ -87,7 +87,7 @@ CLmax = 2.4;
 srsFlapTarget = [263.0, 222.0, 210.0, 196.0, 182.0];   #another copy in system.nas
 flapPos       = [0, 0.2424, 0.5151, 0.7878, 1.0];
 
-trace = 1;
+trace = 0;
 version = "1.1.0";
 
 strobe_switch = props.globals.getNode("/controls/switches/strobe", 0);
@@ -651,12 +651,23 @@ check_acquire_mode = func {
    var acquireMode = getprop("/instrumentation/flightdirector/alt-acquire-mode");
    if (acquireMode == 1) {
      var alt = getprop("/position/altitude-ft");
+     var vsSpeed = getprop("/velocities/vertical-speed-fps");
      var selectAlt = getprop("/instrumentation/afs/target-altitude-ft");
-     if (alt >= (selectAlt-200)) {
-       setprop("/instrumentation/flightdirector/vnav", VNAV_ALT);
-       setprop("/instrumentation/flightdirector/alt-acquire-mode",0);
-       var aFMS = AirbusFMS.new();
-       setprop("/instrumentation/flightdirector/vnav-arm", aFMS.evaluateManagedVNAV());
+     if (vsSpeed > 0) {
+       if (alt >= (selectAlt-200)) {
+         setprop("/instrumentation/flightdirector/vnav", VNAV_ALT);
+         setprop("/instrumentation/flightdirector/alt-acquire-mode",0);
+         var aFMS = AirbusFMS.new();
+         setprop("/instrumentation/flightdirector/vnav-arm", aFMS.evaluateManagedVNAV());
+       }
+     }
+     if (vsSpeed < 0) {
+       if (alt <= (selectAlt+200)) {
+         setprop("/instrumentation/flightdirector/vnav", VNAV_ALT);
+         setprop("/instrumentation/flightdirector/alt-acquire-mode",0);
+         var aFMS = AirbusFMS.new();
+         setprop("/instrumentation/flightdirector/vnav-arm", aFMS.evaluateManagedVNAV());
+       }
      }
    }
 }

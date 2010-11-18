@@ -15,7 +15,7 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-trace = 1;
+trace = 0;
 
 
 ## mode constants
@@ -70,6 +70,7 @@ var AirbusFMS = {
      m.secFpln = m.FMSnode.getNode("secondary-fpln",1);
      m.depDB = nil;
      m.arvDB = nil;
+     m.version = "V1.0.4";
 
      ##setlistener("/sim/signals/fdm-initialized", func m.init());
      return m;
@@ -104,7 +105,7 @@ tracer : func(msg) {
    # init
    ####
    init : func() {
-      ##me.tracer("FDM ready");
+      ##me.tracer("FDM "~me.version~" ready");
       ##settimer(func me.update(), 0);
       ##settimer(func me.slow_update(), 0);
     },
@@ -138,7 +139,7 @@ tracer : func(msg) {
      var flapPos = me.getFlapConfig();
      var vnavMode = getprop("/instrumentation/flightdirector/vnav");
      var lnavMode = getprop("/instrumentation/flightdirector/lnav");
-     var spdMode = getprop("/instrumentation/flightgear/spd");
+     var spdMode = getprop("/instrumentation/flightdirector/spd");
      var vsi = getprop("/instrumentation/vertical-speed-indicator/indicated-speed-fpm");
      var altSelect = getprop("/instrumentation/afs/vertical-alt-mode");
      var vsSelect = getprop("/instrumentation/afs/vertical-vs-mode");
@@ -148,7 +149,10 @@ tracer : func(msg) {
      if (altSelect == SELECTED_MODE or vsSelect == SELECTED_MODE) {
        bothSelect = SELECTED_MODE;
      }
-      tracer("bothSelect: "~bothSelect~", clbArm: "~clbArm~", spdMode: "~spdMode~", flapPos: "~flapPos);
+      tracer("bothSelect: "~bothSelect);
+      tracer("clbArm: "~clbArm);
+      tracer("spdMode: "~spdMode);
+      tracer("flapPos: "~flapPos);
        ## managed Speed Reference System mode
        if (curAlt < accAlt and clbArm == 0 and bothSelect == MANAGED_MODE and (spdMode == SPD_FLEX or spdMode == SPD_TOGA or spdMode == SPD_THRCLB) and flapPos > 0 ) {
          retVNAV = VNAV_SRS;
@@ -157,7 +161,7 @@ tracer : func(msg) {
        ## managed climb
        if (curAlt >= accAlt and curAlt < (crzAlt-100) and crzAcquire == 0) {
          if (lnavMode == LNAV_FMS) {
-           retVNAV = VNAV_CLB
+           retVNAV = VNAV_CLB;
            tracer("retVNAV = VNAV_CLB");
          } else {
            retVNAV = VNAV_OPCLB;

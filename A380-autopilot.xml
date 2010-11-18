@@ -695,7 +695,7 @@
  <!-- Hold speed by varying pitch (Two stage cascading controller) --> 
  <pid-controller>
     <name>Speed Reference System (vary pitch) Stage #1</name>
-    <debug>true</debug>
+    <debug>false</debug>
     <enable>
       <prop>/autopilot/locks/speed</prop>
       <value>speed-reference-system</value>
@@ -724,7 +724,7 @@
   
 <filter>
     <name>SERVO-DRIVER:srs</name>
-    <debug>true</debug>
+    <debug>false</debug>
     <feedback-if-disabled>true</feedback-if-disabled>
     <enable>
       <prop>/autopilot/locks/speed</prop>
@@ -739,7 +739,7 @@
  <!-- Hold speed by varying pitch (Two stage cascading controller) --> 
  <pid-controller>
     <name>Speed Reference System (vary pitch) Stage #1</name>
-    <debug>true</debug>
+    <debug>false</debug>
     <enable>
       <prop>/autopilot/locks/speed</prop>
       <value>speed-reference-system2</value>
@@ -780,7 +780,7 @@
   
  <pid-controller>
     <name>Speed Reference System (vary pitch) Stage #2</name>
-    <debug>true</debug>
+    <debug>false</debug>
     <enable>
       <prop>/autopilot/locks/speed</prop>
       <value>speed-reference-system2</value>

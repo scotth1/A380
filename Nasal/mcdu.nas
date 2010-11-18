@@ -26,10 +26,10 @@
 currentField = "";
 currentFieldPos = 0;
 inputValue = "";
-trace = 1;         ## Set to 0 to turn off all tracing messages
+trace = 0;         ## Set to 0 to turn off all tracing messages
 depDB = nil;
 arvDB = nil;
-version = "V1.0.7";
+version = "V1.0.12";
 
 routeClearArm = 0;
 
@@ -203,6 +203,7 @@ changePage = func(unit,page) {
         setprop("/autopilot/route-manager/cruise/flight-level",crzFl);
         setprop("/autopilot/route-manager/cruise/altitude-ft",crzFl*100);
         setprop("/autopilot/route-manager/active",0);
+	tracer("/autopilot/route-manager/input,@clear");
         setprop("/autopilot/route-manager/input","@clear");
         
         setprop("/instrumentation/afs/routeClearArm",1);
@@ -553,6 +554,7 @@ selectSidAction = func(opt, unit) {
       }
       tracer("[FMS] Insert route: "~wpIns~", of type: "~wp.wp_type);
       if (wp.wp_type == "Normal") {
+	tracer("/autopilot/route-manager/input, @insert "~wpIns);
         setprop("/autopilot/route-manager/input", "@insert "~wpIns);
       }
     }
@@ -661,6 +663,7 @@ selectSidAction = func(opt, unit) {
       }
       tracer("Insert star route: "~wpIns~", of type: "~w.wp_type);
       if (w.wp_type == "Normal") {
+	tracer("/autopilot/route-manager/input, @insert "~wpIns);
         setprop("/autopilot/route-manager/input", "@insert "~wpIns);
       }
     }
@@ -708,6 +711,7 @@ selectSidAction = func(opt, unit) {
                 } else {
                   wpIns = sprintf("%i:%s@%i",wpLen-1,wpName,wpAlt);
                   tracer("Insert approach transition: "~wpIns~", of type: "~twp.wp_type);
+		  tracer("/autopilot/route-manager/input, @insert "~wpIns);
                   setprop("/autopilot/route-manager/input", "@insert "~wpIns);
                 }
               }
@@ -748,6 +752,7 @@ selectSidAction = func(opt, unit) {
             } else {
               wpIns = sprintf("%s@%i",wpName,wpAlt);
               tracer("Insert approach route: "~wpIns~", of type: "~awp.wp_type);
+	      tracer("/autopilot/route-manager/input, @insert "~wpIns);
               setprop("/autopilot/route-manager/input", "@insert "~wpIns);
             }
           }
@@ -756,11 +761,13 @@ selectSidAction = func(opt, unit) {
     } else {
       tracer("[MCDU] WARN: found "~size(appr)~" approaches, can't use any!!");
     }
-    updateApproachAlts();
-    setprop("/autopilot/route-manager/active",1);
     setprop("/autopilot/route-manager/cruise/flight-level",crzFl);
     setprop("/autopilot/route-manager/cruise/altitude-ft",(crzFl*100));
     setprop("/autopilot/route-manager/cruise/speed-kts",480);
+    updateApproachAlts();
+    tracer("/autopilot/route-manager/input, @ACTIVATE");
+    setprop("/autopilot/route-manager/input", "@ACTIVATE");
+    ##setprop("/autopilot/route-manager/active",1);
   }
   setprop("/instrumentation/mcdu["~unit~"]/opt-scroll", 0);
   changePage(unit, nextPage);
@@ -797,6 +804,7 @@ selectSidTransAction = func(val, unit) {
           }
           tracer("[FMS] Insert route: "~wpIns~", of type: "~wp.wp_type);
           if (wp.wp_type == "Normal") {
+	    tracer("/autopilot/route-manager/input, @insert "~wpIns);
             setprop("/autopilot/route-manager/input", "@insert "~wpIns);
           }
         }
@@ -871,12 +879,14 @@ updateApproachAlts = func() {
          if (thisAlt < 100) {
            tracer("***** [FMS] incorrect calculation!!");
          }
+	 tracer("/autopilot/route-manager/input, @delete "~(r));
          setprop("/autopilot/route-manager/input","@delete "~(r));
          var rpIns = sprintf("@insert %i:%s@%i",(r),rtId,thisAlt);
          tracer("[FMS] update idx["~r~"] for id: "~rtId~" with alt: "~thisAlt);
          if (rtId == "O.M" or rtId == "T/D" or rtId == "M.M" or rtId == "T/C") {
            insertAbsWP(rtId,r,rtLat,rtLon,thisAlt);
          } else {
+	   tracer("/autopilot/route-manager/input, "~rpIns);
            setprop("/autopilot/route-manager/input",rpIns);
          }
          #setprop("/autopilot/route-manager/route/wp["~r~"]/altitude-ft", thisAlt);
@@ -957,6 +967,7 @@ addMissingDeparture = func() {
   if (foundWp == 0) {
     var wpIns = sprintf("%s@%i",depApt.id,depApt.elevation);
     tracer("clear route-manager, add depart airport: "~wpIns);
+    tracer("/autopilot/route-manager/input, "~wpIns);
     setprop("/autopilot/route-manager/input",wpIns);
   }
 }
@@ -976,6 +987,7 @@ var wpLen = getprop("/autopilot/route-manager/route/num");
     }
     if (foundWp == 0) {
       var wpIns = sprintf("%s@%i",arvApt.id, arvApt.elevation);
+      tracer("/autopilot/route-manager/input, "~wpIns);
       setprop("/autopilot/route-manager/input", wpIns);
     }
 }
@@ -1134,14 +1146,22 @@ var calcOrthHeadingDeg = func(lat1, lon1, lat2, lon2) {
 }
 
 insertAbsWP = func(id, index, lat, lon, alt) {
-   setprop("/instrumentation/gps/scratch/altitude-ft",alt);
-   setprop("/instrumentation/gps/scratch/ident",id);
-   setprop("/instrumentation/gps/scratch/index",index);
-   setprop("/instrumentation/gps/scratch/latitude-deg",lat);
-   setprop("/instrumentation/gps/scratch/longitude-deg",lon);
-   setprop("/instrumentation/gps/scratch/name",id);
-   setprop("/instrumentation/gps/scratch/type","waypoint");
-   setprop("/instrumentation/gps/command","route-insert-before");
+  tracer("/instrumentation/gps/scratch/altitude-ft, "~alt);
+  setprop("/instrumentation/gps/scratch/altitude-ft",alt);
+  tracer("/instrumentation/gps/scratch/ident, "~id);
+  setprop("/instrumentation/gps/scratch/ident",id);
+  tracer("/instrumentation/gps/scratch/index, "~index);
+  setprop("/instrumentation/gps/scratch/index",index);
+  tracer("/instrumentation/gps/scratch/latitude-deg, "~lat);
+  setprop("/instrumentation/gps/scratch/latitude-deg",lat);
+  tracer("/instrumentation/gps/scratch/longitude-deg, "~lon);
+  setprop("/instrumentation/gps/scratch/longitude-deg",lon);
+  tracer("/instrumentation/gps/scratch/name, "~id);
+  setprop("/instrumentation/gps/scratch/name",id);
+  tracer("/instrumentation/gps/scratch/type, waypoint");
+  setprop("/instrumentation/gps/scratch/type","waypoint");
+  tracer("/instrumentation/gps/command, route-insert-before");
+  setprop("/instrumentation/gps/command","route-insert-before");
 }
 
 
