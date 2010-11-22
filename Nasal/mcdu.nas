@@ -26,7 +26,7 @@
 currentField = "";
 currentFieldPos = 0;
 inputValue = "";
-trace = 0;         ## Set to 0 to turn off all tracing messages
+trace = 1;         ## Set to 0 to turn off all tracing messages
 depDB = nil;
 arvDB = nil;
 version = "V1.0.12";
