@@ -130,7 +130,7 @@ update_electrical = func {
     dt = time - last_time;
     last_time = time;
     update_virtual_bus( dt );
-    settimer(update_electrical, 0.1);
+    settimer(update_electrical, 1.0);
 }
 
 update_virtual_bus = func( dt ) {
@@ -329,6 +329,7 @@ setprop("/systems/electrical/outputs/instr-ignition-switch", Lmain_bus_volts);
     }
     setprop("/systems/electrical/outputs/flaps",Lmain_bus_volts);
     setprop("/systems/electrical/outputs/turn-coordinator", Lmain_bus_volts);
+    setprop("/systems/electrical/outputs/efis", Lmain_bus_volts);
 
     if ( getprop("/controls/switches/nav-lights" ) ) {
         setprop("/systems/electrical/outputs/nav-lights", Lmain_bus_volts);

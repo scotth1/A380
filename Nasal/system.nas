@@ -654,7 +654,7 @@ check_acquire_mode = func {
      var vsSpeed = getprop("/velocities/vertical-speed-fps");
      var selectAlt = getprop("/instrumentation/afs/target-altitude-ft");
      if (vsSpeed > 0) {
-       if (alt >= (selectAlt-200)) {
+       if (alt >= (selectAlt-300)) {
          setprop("/instrumentation/flightdirector/vnav", VNAV_ALT);
          setprop("/instrumentation/flightdirector/alt-acquire-mode",0);
          var aFMS = AirbusFMS.new();
@@ -662,7 +662,7 @@ check_acquire_mode = func {
        }
      }
      if (vsSpeed < 0) {
-       if (alt <= (selectAlt+200)) {
+       if (alt <= (selectAlt+300)) {
          setprop("/instrumentation/flightdirector/vnav", VNAV_ALT);
          setprop("/instrumentation/flightdirector/alt-acquire-mode",0);
          var aFMS = AirbusFMS.new();

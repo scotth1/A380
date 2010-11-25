@@ -698,6 +698,11 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
 </controls>
 
 <instrumentation>
+	<efis>
+	  <mfd>
+	    <display-mode>MAP</display-mode>
+	  </mfd>
+	</efis>
         <radar>
             <switch type="string" archive="y">on</switch>
             <mode-control type="int" archive="y">1</mode-control>
