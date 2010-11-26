@@ -223,45 +223,36 @@ update_radar = func{
   }
 
   mp_craft = props.globals.getNode("/ai/models").getChildren("multiplayer");
+  var mpPos = 0;
   for(i=0; i<size(mp_craft);i=i+1) {
-    tgt_offset = getprop("/ai/models/multiplayer["~i~"]/radar/bearing-deg");
-    
-    var mpLat = getprop("/ai/models/multiplayer["~i~"]/position/latitude-deg");
-    var mpLon = getprop("/ai/models/multiplayer["~i~"]/position/longitude-deg");
-    if (mpLat != nil and mpLon != nil) {
-      ##tracer("[radar] mpLat: "~mpLat~", mpLon: "~mpLon);
-      var mpPos = geo.Coord.new();
-      mpPos.set_latlon(mpLat, mpLon, getprop("/ai/models/multiplayer[" ~ i ~ "]/position/altitude-ft"));
-      var mpCourse = currentPos.course_to(mpPos);
-      if (mpCourse != nil and true_heading != nil) {
-        tgt_offset = mpCourse + true_heading;
+    var aiHdg = getprop("/ai/models/multiplayer["~i~"]/radar/bearing-deg");
+    var valid    = getprop("/ai/models/multiplayer["~i~"]/valid");
+    setprop("/instrumentation/radar/mp["~mpPos~"]/valid",valid);
+    setprop("/instrumentation/radar/mp["~mpPos~"]/callsign", "");
+    setprop("/instrumentation/radar/mp["~mpPos~"]/norm-dist",-1);
+    setprop("/instrumentation/radar/mp["~mpPos~"]/brg-offset", 0);
+    if (aiHdg != nil and valid == 1) {
+      var callsign = getprop("/ai/models/multiplayer["~i~"]/callsign");
+      var tgt_offset = aiHdg-true_heading;
+      if (tgt_offset < 0){
+        tgt_offset = 360-tgt_offset;
       }
-      #var id = getprop("/ai/models/multiplayer[" ~ i ~ "]/callsign");
-      #if (getprop("/ai[0]/models[0]/multiplayer["~i~"]/valid") == 1) {
-      #tracer("[radar] mp["~i~"] "~id~" - mpCourse: "~mpCourse~", true_heading: "~true_heading~", tgt_offset: "~tgt_offset);
-      #}
-    } else {
-      if(tgt_offset == nil){
-        tgt_offset = 0.0;
+      if (tgt_offset > 360){
+        tgt_offset -=360;
       }
-      tgt_offset -= true_heading;
+      test_dist=getprop("/instrumentation/radar/range");
+      test1_dist = getprop("/ai/models/multiplayer[" ~ i ~ "]/radar/range-nm");
+      if(test1_dist == nil){
+        test1_dist=0.0;
+      }
+      norm_dist= (1 / test_dist) * test1_dist;
+      if (norm_dist <= 1) {
+        setprop("/instrumentation/radar/mp["~mpPos~"]/brg-offset",tgt_offset);
+        setprop("/instrumentation/radar/mp["~mpPos~"]/norm-dist", norm_dist);
+        setprop("/instrumentation/radar/mp["~mpPos~"]/callsign", callsign);
+        mpPos += 1;
+      }
     }
-
-    if (tgt_offset < 0){
-      tgt_offset +=360;
-    }
-    if (tgt_offset > 360){
-      tgt_offset -=360;
-    }
-   
-    setprop("/instrumentation/radar/mp[" ~ i ~ "]/brg-offset",tgt_offset);
-    test_dist=getprop("/instrumentation/radar/range");
-    test1_dist = getprop("/ai/models/multiplayer[" ~ i ~ "]/radar/range-nm");
-    if(test1_dist == nil){
-      test1_dist=0.0;
-    }
-    norm_dist= (1 / test_dist) * test1_dist;
-    setprop("/instrumentation/radar/mp[" ~ i ~ "]/norm-dist", norm_dist);
   }
   var wpCnt = 0;
   var wp_points = props.globals.getNode("/autopilot/route-manager/route").getChildren("wp");

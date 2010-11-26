@@ -57,7 +57,7 @@
     </livery> 
     <pushback>
   	<kp type="double">500</kp>
-	<ki type="double">25</ki>
+	<ki type="double">50</ki>  <!-- was 25 -->
 	<kd type="double">0</kd>
 	<position-norm type="double">0</position-norm>
      </pushback>
@@ -702,6 +702,11 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
 	  <mfd>
 	    <display-mode>MAP</display-mode>
 	  </mfd>
+	  <inputs>
+	    <lh-vor-adf>1</lh-vor-adf>
+	    <rh-vor-adf>1</rh-vor-adf>
+	    <nd-centred>0</nd-centred>
+	  </inputs>
 	</efis>
         <radar>
             <switch type="string" archive="y">on</switch>

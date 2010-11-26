@@ -248,7 +248,6 @@
                 <chunk>
                     <type>number-value</type>
                     <property>instrumentation/radar/range</property>
-                    <scale>0.5</scale>
                     <format>%3.0f</format>
                 </chunk>
             </chunks>
@@ -382,7 +381,6 @@
                 <chunk>
                     <type>number-value</type>
                     <property>instrumentation/radar/range</property>
-                    <scale>0.5</scale>
                     <format>%3.0f</format>
                 </chunk>
             </chunks>
