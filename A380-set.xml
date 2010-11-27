@@ -56,8 +56,8 @@
 	<file type="string">House</file> 
     </livery> 
     <pushback>
-  	<kp type="double">500</kp>
-	<ki type="double">50</ki>  <!-- was 25 -->
+  	<kp type="double">900</kp>
+	<ki type="double">100</ki>  <!-- was 25 -->
 	<kd type="double">0</kd>
 	<position-norm type="double">0</position-norm>
      </pushback>
