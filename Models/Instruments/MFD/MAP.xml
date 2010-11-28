@@ -58,10 +58,10 @@
             <h>20</h>
             <texture>
                 <path>Aircraft/A380/Models/Instruments/MFD/airbus_symbols.png</path>
-                <x1>0.000</x1>
-                <y1>0.800</y1>
-                <x2>0.120</x2>
-                <y2>0.990</y2>
+                <x1>0.035</x1>
+                <y1>0.810</y1>
+                <x2>0.145</x2>
+                <y2>0.970</y2>
             </texture>
            <transformations>
             <transformation>
@@ -74,7 +74,7 @@
             </transformation>
             <transformation><!--shift rotation origin-->
                 <type>y-shift</type>
-                <offset>162</offset>  <!-- was 84 -->
+                <offset>164</offset> 
             </transformation>
         </transformations>
         </layer>
@@ -87,6 +87,10 @@
                   </not>
                   <equals>
                     <property>instrumentation/efis/inputs/lh-vor-adf</property>
+                    <value>1</value>
+                  </equals>
+                  <equals>
+                    <property>/instrumentation/nav[0]/data-is-valid</property>
                     <value>1</value>
                   </equals>
                 </and>
@@ -94,18 +98,18 @@
             <name>Lvor head</name>
             <emissive>true</emissive>
             <w>10</w>
-            <h>50</h>
+            <h>33</h>
             <texture>
                 <path>Aircraft/A380/Models/Instruments/MFD/airbus_symbols.png</path>
-                <x1>0.040</x1>
-                <y1>0.000</y1>
-                <x2>0.150</x2>
-                <y2>0.510</y2>
+                <x1>0.065</x1>
+                <y1>0.380</y1>
+                <x2>0.180</x2>
+                <y2>0.570</y2>
             </texture>
            <transformations>
             <transformation>
                 <type>y-shift</type>
-                <offset>-85</offset>
+                <offset>-78</offset>
             </transformation>
             <transformation>
                 <type>rotation</type>
@@ -118,7 +122,7 @@
             </transformation>
             <transformation><!--shift rotation origin-->
                 <type>y-shift</type>
-                <offset>160</offset>
+                <offset>139</offset>
             </transformation>
         </transformations>
         </layer>
@@ -133,23 +137,27 @@
                     <property>instrumentation/efis/inputs/lh-vor-adf</property>
                     <value>1</value>
                   </equals>
+                  <equals>
+                    <property>/instrumentation/nav[0]/data-is-valid</property>
+                    <value>1</value>
+                  </equals>
                 </and>
             </condition>
             <name>Lvor tail</name>
             <emissive>true</emissive>
             <w>10</w>
-            <h>50</h>
+            <h>33</h>
             <texture>
                 <path>Aircraft/A380/Models/Instruments/MFD/airbus_symbols.png</path>
-                <x1>0.040</x1>
-                <y1>0.000</y1>
-                <x2>0.150</x2>
-                <y2>0.510</y2>
+                <x1>0.065</x1>
+                <y1>0.380</y1>
+                <x2>0.180</x2>
+                <y2>0.570</y2>
             </texture>
            <transformations>
             <transformation>
                 <type>y-shift</type>
-                <offset>-85</offset>
+                <offset>-78</offset>
             </transformation>
             <transformation>
                 <type>rotation</type>
@@ -162,7 +170,7 @@
             </transformation>
             <transformation><!--shift rotation origin-->
                 <type>y-shift</type>
-                <offset>-160</offset>
+                <offset>-139</offset>
             </transformation>
         </transformations>
         </layer>
@@ -255,23 +263,27 @@
                     <property>instrumentation/efis/inputs/rh-vor-adf</property>
                     <value>1</value>
                   </equals>
+                  <equals>
+                    <property>/instrumentation/nav[1]/data-is-valid</property>
+                    <value>1</value>
+                  </equals>
                 </and>
             </condition>
             <name>Rvor head</name>
             <emissive>true</emissive>
-            <w>15</w>
-            <h>50</h>
+            <w>10</w>
+            <h>33</h>
             <texture>
                 <path>Aircraft/A380/Models/Instruments/MFD/airbus_symbols.png</path>
-                <x1>0.350</x1>
-                <y1>0.000</y1>
-                <x2>0.500</x2>
-                <y2>0.510</y2>
+                <x1>0.310</x1>
+                <y1>0.380</y1>
+                <x2>0.410</x2>
+                <y2>0.575</y2>
             </texture>
            <transformations>
             <transformation>
                 <type>y-shift</type>
-                <offset>-85</offset>
+                <offset>-78</offset>
             </transformation>
             <transformation>
                 <type>rotation</type>
@@ -284,38 +296,42 @@
             </transformation>
             <transformation><!--shift rotation origin-->
                 <type>y-shift</type>
-                <offset>160</offset>
+                <offset>139</offset>
             </transformation>
         </transformations>
         </layer>
 
         <layer>
             <condition>
-                <and>
+              <and>
                 <not>
-                    <property>instrumentation/efis/inputs/nd-centered</property>
+                  <property>instrumentation/efis/inputs/nd-centered</property>
                 </not>
-                    <equals>
-                        <property>instrumentation/efis/inputs/rh-vor-adf</property>
-                        <value>1</value>
+                <equals>
+                  <property>instrumentation/efis/inputs/rh-vor-adf</property>
+                   <value>1</value>
                 </equals>
-                </and>
+                <equals>
+                    <property>/instrumentation/nav[1]/data-is-valid</property>
+                    <value>1</value>
+                </equals>
+              </and>
             </condition>
             <name>Rvor tail</name>
             <emissive>true</emissive>
-            <w>15</w>
-            <h>50</h>
+            <w>10</w>
+            <h>33</h>
             <texture>
                 <path>Aircraft/A380/Models/Instruments/MFD/airbus_symbols.png</path>
-                <x1>0.350</x1>
-                <y1>0.000</y1>
-                <x2>0.500</x2>
-                <y2>0.510</y2>
+                <x1>0.310</x1>
+                <y1>0.380</y1>
+                <x2>0.410</x2>
+                <y2>0.575</y2>
             </texture>
            <transformations>
             <transformation>
                 <type>y-shift</type>
-                <offset>-85</offset>
+                <offset>-78</offset>
             </transformation>
             <transformation>
                 <type>rotation</type>
@@ -328,7 +344,7 @@
             </transformation>
             <transformation><!--shift rotation origin-->
                 <type>y-shift</type>
-                <offset>-160</offset>
+                <offset>-139</offset>
             </transformation>
         </transformations>
         </layer>
@@ -412,7 +428,7 @@
         </layer>
 
 
-        <layer>
+        <!-- layer>
             <condition>
                 <not>
                     <property>instrumentation/efis/inputs/nd-centered</property>
@@ -435,7 +451,7 @@
                 </transformation>
             </transformations>
             <emissive>true</emissive>
-        </layer>
+        </layer -->
 
         <layer>
             <condition>
@@ -905,14 +921,14 @@
                 <value>1</value>
             </condition>
           <name>ai0</name>
-          <w>20</w>
-          <h>20</h>
+          <w>15</w>
+          <h>15</h>
           <texture>
             <path>Aircraft/A380/Models/Instruments/MFD/airbus_symbols.png</path>
-            <x1>0.654</x1>
-            <y1>0.786</y1>
-            <x2>0.790</x2>
-            <y2>0.933</y2>
+            <x1>0.280</x1>
+            <y1>0.877</y1>
+            <x2>0.350</x2>
+            <y2>0.953</y2>
           </texture>
           <transformations>
             <transformation>
@@ -926,7 +942,7 @@
             <transformation>
                <type>y-shift</type>
                <property>instrumentation/radar/mp[0]/norm-dist</property>
-               <scale>80</scale>
+               <scale>160</scale>
             </transformation>
           </transformations>
         </layer>
@@ -938,14 +954,14 @@
                 <value>1</value>
             </condition>
           <name>ai1</name>
-          <w>20</w>
-          <h>20</h>
+          <w>15</w>
+          <h>15</h>
           <texture>
             <path>Aircraft/A380/Models/Instruments/MFD/airbus_symbols.png</path>
-            <x1>0.654</x1>
-            <y1>0.786</y1>
-            <x2>0.790</x2>
-            <y2>0.933</y2>
+            <x1>0.280</x1>
+            <y1>0.877</y1>
+            <x2>0.350</x2>
+            <y2>0.953</y2>
           </texture>
           <transformations>
             <transformation>
@@ -971,14 +987,14 @@
                 <value>1</value>
             </condition>
           <name>ai2</name>
-          <w>20</w>
-          <h>20</h>
+          <w>15</w>
+          <h>15</h>
           <texture>
             <path>Aircraft/A380/Models/Instruments/MFD/airbus_symbols.png</path>
-            <x1>0.654</x1>
-            <y1>0.786</y1>
-            <x2>0.790</x2>
-            <y2>0.933</y2>
+            <x1>0.280</x1>
+            <y1>0.877</y1>
+            <x2>0.350</x2>
+            <y2>0.953</y2>
           </texture>
           <transformations>
             <transformation>
@@ -1004,14 +1020,14 @@
                 <value>1</value>
             </condition>
           <name>ai3</name>
-          <w>20</w>
-          <h>20</h>
+          <w>15</w>
+          <h>15</h>
           <texture>
             <path>Aircraft/A380/Models/Instruments/MFD/airbus_symbols.png</path>
-            <x1>0.654</x1>
-            <y1>0.786</y1>
-            <x2>0.790</x2>
-            <y2>0.933</y2>
+            <x1>0.280</x1>
+            <y1>0.877</y1>
+            <x2>0.350</x2>
+            <y2>0.953</y2>
           </texture>
           <transformations>
             <transformation>
@@ -1036,14 +1052,14 @@
                 <value>1</value>
             </condition>
           <name>ai4</name>
-          <w>20</w>
-          <h>20</h>
+          <w>15</w>
+          <h>15</h>
           <texture>
             <path>Aircraft/A380/Models/Instruments/MFD/airbus_symbols.png</path>
-            <x1>0.654</x1>
-            <y1>0.786</y1>
-            <x2>0.790</x2>
-            <y2>0.933</y2>
+            <x1>0.280</x1>
+            <y1>0.877</y1>
+            <x2>0.350</x2>
+            <y2>0.953</y2>
           </texture>
           <transformations>
             <transformation>
@@ -1069,14 +1085,14 @@
                 <value>1</value>
             </condition>
           <name>ai5</name>
-          <w>20</w>
-          <h>20</h>
+          <w>15</w>
+          <h>15</h>
           <texture>
             <path>Aircraft/A380/Models/Instruments/MFD/airbus_symbols.png</path>
-            <x1>0.654</x1>
-            <y1>0.786</y1>
-            <x2>0.790</x2>
-            <y2>0.933</y2>
+            <x1>0.280</x1>
+            <y1>0.877</y1>
+            <x2>0.350</x2>
+            <y2>0.953</y2>
           </texture>
           <transformations>
             <transformation>
@@ -1101,14 +1117,14 @@
                 <value>1</value>
             </condition>
           <name>ai6</name>
-          <w>20</w>
-          <h>20</h>
+          <w>15</w>
+          <h>15</h>
           <texture>
             <path>Aircraft/A380/Models/Instruments/MFD/airbus_symbols.png</path>
-            <x1>0.654</x1>
-            <y1>0.786</y1>
-            <x2>0.790</x2>
-            <y2>0.933</y2>
+            <x1>0.280</x1>
+            <y1>0.877</y1>
+            <x2>0.350</x2>
+            <y2>0.953</y2>
           </texture>
           <transformations>
             <transformation>
@@ -1123,6 +1139,119 @@
                <type>y-shift</type>
                <property>instrumentation/radar/mp[6]/norm-dist</property>
                <scale>80</scale>
+            </transformation>
+          </transformations>
+        </layer>
+        
+        <!--  fix wp -->
+        
+        <layer>
+          <condition>
+                <property>instrumentation/radar/wp[0]/valid</property>
+                <value>1</value>
+            </condition>
+          <name>wp0</name>
+          <w>20</w>
+          <h>20</h>
+          <texture>
+            <path>Aircraft/A380/Models/Instruments/MFD/airbus_symbols.png</path>
+            <x1>0.350</x1>
+            <y1>0.875</y1>
+            <x2>0.450</x2>
+            <y2>0.957</y2>
+          </texture>
+          <transformations>
+            <transformation>
+               <type>y-shift</type>
+               <offset>-78</offset>
+            </transformation>
+            <transformation>
+                <type>rotation</type>
+                <property>instrumentation/radar/wp[0]/brg-offset</property>
+            </transformation>
+            <transformation>
+               <type>y-shift</type>
+               <property>instrumentation/radar/wp[0]/dist-norm</property>
+               <scale>160</scale>
+            </transformation>
+            <transformation>
+                <type>rotation</type>
+                <property>instrumentation/radar/wp[0]/brg-offset</property>
+                <scale>-1.0</scale>
+            </transformation>
+          </transformations>
+        </layer>
+        
+        <layer>
+          <condition>
+                <property>instrumentation/radar/wp[1]/valid</property>
+                <value>1</value>
+            </condition>
+          <name>wp1</name>
+          <w>20</w>
+          <h>20</h>
+          <texture>
+            <path>Aircraft/A380/Models/Instruments/MFD/airbus_symbols.png</path>
+            <x1>0.350</x1>
+            <y1>0.875</y1>
+            <x2>0.450</x2>
+            <y2>0.957</y2>
+          </texture>
+          <transformations>
+            <transformation>
+               <type>y-shift</type>
+               <offset>-78</offset>
+            </transformation>
+            <transformation>
+                <type>rotation</type>
+                <property>instrumentation/radar/wp[1]/brg-offset</property>
+            </transformation>
+            <transformation>
+               <type>y-shift</type>
+               <property>instrumentation/radar/wp[1]/dist-norm</property>
+               <scale>160</scale>
+            </transformation>
+            <transformation>
+                <type>rotation</type>
+                <property>instrumentation/radar/wp[1]/brg-offset</property>
+                <scale>-1.0</scale>
+            </transformation>
+          </transformations>
+        </layer>
+        
+        <layer>
+          <condition>
+                <property>instrumentation/radar/wp[2]/valid</property>
+                <value>1</value>
+            </condition>
+          <name>wp2</name>
+          <w>20</w>
+          <h>20</h>
+          <texture>
+            <path>Aircraft/A380/Models/Instruments/MFD/airbus_symbols.png</path>
+            <x1>0.350</x1>
+            <y1>0.875</y1>
+            <x2>0.450</x2>
+            <y2>0.957</y2>
+          </texture>
+          <transformations>
+            <transformation>
+               <type>y-shift</type>
+               <offset>-78</offset>
+            </transformation>
+            <transformation>
+                <type>rotation</type>
+                <property>instrumentation/radar/wp[2]/brg-offset</property>
+            </transformation>
+            <transformation>
+               <type>y-shift</type>
+               <property>instrumentation/radar/wp[2]/dist-norm</property>
+               <scale>160</scale>
+            </transformation>
+            <transformation>
+                <type>rotation</type>
+                <property>instrumentation/radar/wp[2]/brg-offset</property>
+                <scale>-1.0</scale>
             </transformation>
           </transformations>
         </layer>

@@ -192,6 +192,7 @@ reset_et = func{
 
 update_radar = func{
   true_heading = getprop("/orientation/heading-deg");
+  var myAlt = getprop("/position/altitude-ft");
   var currentPos= geo.Coord.new();
   currentPos.set_latlon(getprop("/position/latitude-deg"), getprop("/position/longitude-deg"), getprop("/position/altitude-ft"));
   ai_craft = props.globals.getNode("/ai/models").getChildren("aircraft");
@@ -213,8 +214,9 @@ update_radar = func{
     if(test1_dist == nil) {
       test1_dist=0.0;
     }
-    norm_dist= (1 / test_dist) * test1_dist;
+    norm_dist = (1 / test_dist) * test1_dist;
     setprop("/instrumentation/radar/ai[" ~ i ~ "]/norm-dist", norm_dist);
+
     #alt = getprop("/ai/models/aircraft["~i~"]/position/altitude-ft");
     #if (alt > 25000) {
     #  nme = getprop("/ai/models/aircraft["~i~"]/callsign");
@@ -231,6 +233,7 @@ update_radar = func{
     setprop("/instrumentation/radar/mp["~mpPos~"]/callsign", "");
     setprop("/instrumentation/radar/mp["~mpPos~"]/norm-dist",-1);
     setprop("/instrumentation/radar/mp["~mpPos~"]/brg-offset", 0);
+    setprop("/instrumentation/radar/mp["~mpPos~"]/altitude-offset", 0);
     if (aiHdg != nil and valid == 1) {
       var callsign = getprop("/ai/models/multiplayer["~i~"]/callsign");
       var tgt_offset = aiHdg-true_heading;
@@ -247,6 +250,9 @@ update_radar = func{
       }
       norm_dist= (1 / test_dist) * test1_dist;
       if (norm_dist <= 1) {
+        var aiAlt = getprop("/ai/models/multiplayer["~i~"]/position/altitude-ft");
+        var diffAlt = (aiAlt-myAlt)/100;
+        setprop("/instrumentation/radar/mp["~mpPos~"]/altitude-offset", diffAlt);
         setprop("/instrumentation/radar/mp["~mpPos~"]/brg-offset",tgt_offset);
         setprop("/instrumentation/radar/mp["~mpPos~"]/norm-dist", norm_dist);
         setprop("/instrumentation/radar/mp["~mpPos~"]/callsign", callsign);
@@ -257,7 +263,7 @@ update_radar = func{
   var wpCnt = 0;
   var wp_points = props.globals.getNode("/autopilot/route-manager/route").getChildren("wp");
   var radarRange = getprop("/instrumentation/radar/range");
-  for(i=0;i <size(wp_points); i=i+1) {
+  for(i=1;i <size(wp_points); i=i+1) {
     var tgt_offset = -9999;
     var wpDist = 9999;
     var wpLat = getprop("/autopilot/route-manager/route/wp["~i~"]/latitude-deg");
@@ -277,11 +283,11 @@ update_radar = func{
         #print("[radar] "~wpId~" true_head: "~true_heading~", wpCourse: "~wpCourse~", tgt_offset: "~tgt_offset);
       }
       #tgt_offset = wpCourse;
-      if (tgt_offset < 0) {
-        tgt_offset += 360;
+      if (tgt_offset < 0){
+        tgt_offset = 360-tgt_offset;
       }
-      if (tgt_offset > 360) {
-        tgt_offset -= 360;
+      if (tgt_offset > 360){
+        tgt_offset -=360;
       }
     
     }

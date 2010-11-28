@@ -35,7 +35,7 @@
             <point-size>8</point-size>
             <color>
                 <red>1.0</red>
-                <green>0.0</green>
+                <green>1.0</green>
                 <blue>1.0</blue>
             </color>
             <chunks>
@@ -66,16 +66,17 @@
             <name>WP ETA</name>
             <type>text</type>
             <font>arial_black</font>
-            <point-size>7</point-size>
+            <point-size>8</point-size>
             <color>
-                <red>1.0</red>
+                <red>0.1</red>
                 <green>1.0</green>
-                <blue>1.0</blue>
+                <blue>0.1</blue>
             </color>
             <chunks>
                 <chunk>
                     <type>text-value</type>
-                    <property>autopilot/route-manager/wp/eta</property>
+                    <property>instrumentation/gps/wp/wp[1]/TTW</property>
+                    <!-- property>autopilot/route-manager/wp/eta</property -->
                 </chunk>
             </chunks>
             <transformations>
@@ -100,11 +101,11 @@
             <name>WP DIST</name>
             <type>text</type>
             <font>arial_black</font>
-            <point-size>7</point-size>
+            <point-size>8</point-size>
             <color>
-                <red>1.0</red>
+                <red>0.1</red>
                 <green>1.0</green>
-                <blue>1.0</blue>
+                <blue>0.1</blue>
             </color>
             <chunks>
                 <chunk>
@@ -129,7 +130,7 @@
             <name>GSPD</name>
             <type>text</type>
             <font>arial_black</font>
-            <point-size>7</point-size>
+            <point-size>8</point-size>
             <color>
                 <red>1.0</red>
                 <green>1.0</green>
@@ -158,7 +159,7 @@
             <name>TAS</name>
             <type>text</type>
             <font>arial_black</font>
-            <point-size>7</point-size>
+            <point-size>8</point-size>
             <color>
                 <red>1.0</red>
                 <green>1.0</green>
@@ -235,13 +236,13 @@
                     <property>instrumentation/efis/inputs/nd-centered</property>
                 </not>
             </condition>
-            <name>WXR range</name>
+            <name>inner-range-left</name>
             <type>text</type>
             <font>arial_black</font>
             <point-size>8</point-size>
             <color>
-                <red>1.0</red>
-                <green>1.0</green>
+                <red>0.8</red>
+                <green>0.8</green>
                 <blue>1.0</blue>
             </color>
             <chunks>
@@ -254,7 +255,7 @@
             <transformations>
                 <transformation>
                     <type>x-shift</type>
-                    <offset>-20</offset>
+                    <offset>-30</offset>
                 </transformation>
                 <transformation>
                     <type>y-shift</type>
@@ -262,6 +263,41 @@
                 </transformation>
             </transformations>
         </layer>
+
+        <layer>
+            <condition>
+                <not>
+                    <property>instrumentation/efis/inputs/nd-centered</property>
+                </not>
+            </condition>
+            <name>inner-range-right</name>
+            <type>text</type>
+            <font>arial_black</font>
+            <point-size>8</point-size>
+            <color>
+                <red>0.8</red>
+                <green>0.8</green>
+                <blue>1.0</blue>
+            </color>
+            <chunks>
+                <chunk>
+                    <type>number-value</type>
+                    <property>instrumentation/radar/range</property>
+                    <format>%3.0f</format>
+                </chunk>
+            </chunks>
+            <transformations>
+                <transformation>
+                    <type>x-shift</type>
+                    <offset>30</offset>
+                </transformation>
+                <transformation>
+                    <type>y-shift</type>
+                    <offset>6</offset>
+                </transformation>
+            </transformations>
+        </layer>
+        
 
         <layer>
             <condition>
@@ -503,16 +539,16 @@
             <name>L VOR</name>
             <type>text</type>
             <font>arial_black</font>
-            <point-size>6</point-size>
+            <point-size>7</point-size>
             <color>
-                <red>0.0</red>
+                <red>1.0</red>
                 <green>1.0</green>
-                <blue>0.0</blue>
+                <blue>1.0</blue>
             </color>
             <chunks>
                 <chunk>
                     <type>literal</type>
-                    <text>VOR L</text>
+                    <text>VOR 1</text>
                 </chunk>
             </chunks>
             <transformations>
@@ -537,11 +573,11 @@
             <name>L VOR ID</name>
             <type>text</type>
             <font>arial_black</font>
-            <point-size>6</point-size>
+            <point-size>7</point-size>
             <color>
-                <red>0.0</red>
+                <red>1.0</red>
                 <green>1.0</green>
-                <blue>0.0</blue>
+                <blue>1.0</blue>
             </color>
             <chunks>
                 <chunk>
@@ -571,7 +607,7 @@
             <name>L VOR dme</name>
             <type>text</type>
             <font>arial_black</font>
-            <point-size>6</point-size>
+            <point-size>6.5</point-size>
             <color>
                 <red>0.0</red>
                 <green>1.0</green>
@@ -582,7 +618,7 @@
                     <type>number-value</type>
                     <property>instrumentation/nav/nav-distance</property>
                     <scale>0.000539</scale>
-                    <format>DME%3.1f</format>
+                    <format>%3.1f NM</format>
                 </chunk>
             </chunks>
             <transformations>
@@ -609,16 +645,16 @@
             <name>R VOR</name>
             <type>text</type>
             <font>arial_black</font>
-            <point-size>6</point-size>
+            <point-size>7</point-size>
             <color>
-                <red>0.0</red>
+                <red>1.0</red>
                 <green>1.0</green>
-                <blue>0.0</blue>
+                <blue>1.0</blue>
             </color>
             <chunks>
                 <chunk>
                     <type>literal</type>
-                    <text>VOR R</text>
+                    <text>VOR 2</text>
                 </chunk>
             </chunks>
             <transformations>
@@ -643,11 +679,11 @@
             <name>R VOR ID</name>
             <type>text</type>
             <font>arial_black</font>
-            <point-size>6</point-size>
+            <point-size>7</point-size>
             <color>
-                <red>0.0</red>
+                <red>1.0</red>
                 <green>1.0</green>
-                <blue>0.0</blue>
+                <blue>1.0</blue>
             </color>
             <chunks>
                 <chunk>
@@ -677,7 +713,7 @@
             <name>R VOR dme</name>
             <type>text</type>
             <font>arial_black</font>
-            <point-size>6</point-size>
+            <point-size>6.5</point-size>
             <color>
                 <red>0.0</red>
                 <green>1.0</green>
@@ -688,7 +724,7 @@
                     <type>number-value</type>
                     <property>instrumentation/nav[1]/nav-distance</property>
                     <scale>0.000539</scale>
-                    <format>DME%3.1f</format>
+                    <format>%3.1f NM</format>
                 </chunk>
             </chunks>
             <transformations>
@@ -841,6 +877,355 @@
                     <offset>-80</offset>
                 </transformation>
             </transformations>
+        </layer>
+        
+        <layer>
+          <condition>
+            <equals>
+	      <property>instrumentation/radar/mp[0]/valid</property>
+              <value>1</value>
+            </equals>
+          </condition>
+          <name>ai0-fl</name>
+          <type>text</type>
+          <font>arial_black</font>
+          <point-size>6</point-size>
+          <color>
+             <red>1.0</red>
+             <green>0.975</green>
+             <blue>0.486</blue>
+          </color>
+          <chunks>
+            <chunk>
+               <type>number-value</type>
+               <property>/instrumentation/radar/mp[0]/altitude-offset</property>
+               <format>%+3.0f</format>
+            </chunk>
+          </chunks>
+          <transformations>
+            <transformation>
+               <type>y-shift</type>
+               <offset>-80</offset>
+            </transformation>
+            <transformation>
+                <type>rotation</type>
+                <property>instrumentation/radar/mp[0]/brg-offset</property>
+            </transformation>
+            <transformation>
+               <type>y-shift</type>
+               <property>instrumentation/radar/mp[0]/norm-dist</property>
+               <scale>160</scale>
+            </transformation>
+            <transformation>
+               <type>rotation</type>
+               <property>instrumentation/radar/mp[0]/brg-offset</property>
+               <scale>-1.0</scale>
+            </transformation>
+            <transformation>
+              <type>y-shift</type>
+              <offset>5</offset>
+            </transformation>
+          </transformations>
+        </layer>
+
+        
+        <layer>
+          <condition>
+            <equals>
+	      <property>instrumentation/radar/mp[1]/valid</property>
+              <value>1</value>
+            </equals>
+          </condition>
+          <name>ai1-fl</name>
+          <type>text</type>
+          <font>arial_black</font>
+          <point-size>6</point-size>
+          <color>
+             <red>1.0</red>
+             <green>0.975</green>
+             <blue>0.486</blue>
+          </color>
+          <chunks>
+            <chunk>
+               <type>number-value</type>
+               <property>/instrumentation/radar/mp[1]/altitude-offset</property>
+               <format>%+3.0f</format>
+            </chunk>
+          </chunks>
+          <transformations>
+            <transformation>
+               <type>y-shift</type>
+               <offset>-80</offset>
+            </transformation>
+            <transformation>
+                <type>rotation</type>
+                <property>instrumentation/radar/mp[1]/brg-offset</property>
+            </transformation>
+            <transformation>
+               <type>y-shift</type>
+               <property>instrumentation/radar/mp[1]/norm-dist</property>
+               <scale>160</scale>
+            </transformation>
+            <transformation>
+               <type>rotation</type>
+               <property>instrumentation/radar/mp[1]/brg-offset</property>
+               <scale>-1.0</scale>
+            </transformation>
+            <transformation>
+              <type>y-shift</type>
+              <offset>5</offset>
+            </transformation>
+          </transformations>
+        </layer>
+        
+        
+        <layer>
+          <condition>
+            <equals>
+	      <property>instrumentation/radar/mp[2]/valid</property>
+              <value>1</value>
+            </equals>
+          </condition>
+          <name>ai2-fl</name>
+          <type>text</type>
+          <font>arial_black</font>
+          <point-size>6</point-size>
+          <color>
+             <red>1.0</red>
+             <green>0.975</green>
+             <blue>0.486</blue>
+          </color>
+          <chunks>
+            <chunk>
+               <type>number-value</type>
+               <property>/instrumentation/radar/mp[2]/altitude-offset</property>
+               <format>%+3.0f</format>
+            </chunk>
+          </chunks>
+          <transformations>
+            <transformation>
+               <type>y-shift</type>
+               <offset>-80</offset>
+            </transformation>
+            <transformation>
+                <type>rotation</type>
+                <property>instrumentation/radar/mp[2]/brg-offset</property>
+            </transformation>
+            <transformation>
+               <type>y-shift</type>
+               <property>instrumentation/radar/mp[2]/norm-dist</property>
+               <scale>160</scale>
+            </transformation>
+            <transformation>
+               <type>rotation</type>
+               <property>instrumentation/radar/mp[2]/brg-offset</property>
+               <scale>-1.0</scale>
+            </transformation>
+            <transformation>
+              <type>y-shift</type>
+              <offset>5</offset>
+            </transformation>
+          </transformations>
+        </layer>
+        
+        
+        <layer>
+          <condition>
+            <equals>
+	      <property>instrumentation/radar/mp[3]/valid</property>
+              <value>1</value>
+            </equals>
+          </condition>
+          <name>ai3-fl</name>
+          <type>text</type>
+          <font>arial_black</font>
+          <point-size>6</point-size>
+          <color>
+             <red>1.0</red>
+             <green>0.975</green>
+             <blue>0.486</blue>
+          </color>
+          <chunks>
+            <chunk>
+               <type>number-value</type>
+               <property>/instrumentation/radar/mp[3]/altitude-offset</property>
+               <format>%+3.0f</format>
+            </chunk>
+          </chunks>
+          <transformations>
+            <transformation>
+               <type>y-shift</type>
+               <offset>-80</offset>
+            </transformation>
+            <transformation>
+                <type>rotation</type>
+                <property>instrumentation/radar/mp[3]/brg-offset</property>
+            </transformation>
+            <transformation>
+               <type>y-shift</type>
+               <property>instrumentation/radar/mp[3]/norm-dist</property>
+               <scale>160</scale>
+            </transformation>
+            <transformation>
+               <type>rotation</type>
+               <property>instrumentation/radar/mp[3]/brg-offset</property>
+               <scale>-1.0</scale>
+            </transformation>
+            <transformation>
+              <type>y-shift</type>
+              <offset>5</offset>
+            </transformation>
+          </transformations>
+        </layer>
+        
+        
+        <layer>
+          <condition>
+            <equals>
+	      <property>instrumentation/radar/mp[4]/valid</property>
+              <value>1</value>
+            </equals>
+          </condition>
+          <name>ai4-fl</name>
+          <type>text</type>
+          <font>arial_black</font>
+          <point-size>6</point-size>
+          <color>
+             <red>1.0</red>
+             <green>0.975</green>
+             <blue>0.486</blue>
+          </color>
+          <chunks>
+            <chunk>
+               <type>number-value</type>
+               <property>/instrumentation/radar/mp[4]/altitude-offset</property>
+               <format>%+3.0f</format>
+            </chunk>
+          </chunks>
+          <transformations>
+            <transformation>
+               <type>y-shift</type>
+               <offset>-80</offset>
+            </transformation>
+            <transformation>
+                <type>rotation</type>
+                <property>instrumentation/radar/mp[4]/brg-offset</property>
+            </transformation>
+            <transformation>
+               <type>y-shift</type>
+               <property>instrumentation/radar/mp[4]/norm-dist</property>
+               <scale>160</scale>
+            </transformation>
+            <transformation>
+               <type>rotation</type>
+               <property>instrumentation/radar/mp[4]/brg-offset</property>
+               <scale>-1.0</scale>
+            </transformation>
+            <transformation>
+              <type>y-shift</type>
+              <offset>5</offset>
+            </transformation>
+          </transformations>
+        </layer>
+        
+        
+        <layer>
+          <condition>
+            <equals>
+	      <property>instrumentation/radar/mp[5]/valid</property>
+              <value>1</value>
+            </equals>
+          </condition>
+          <name>ai5-fl</name>
+          <type>text</type>
+          <font>arial_black</font>
+          <point-size>6</point-size>
+          <color>
+             <red>1.0</red>
+             <green>0.975</green>
+             <blue>0.486</blue>
+          </color>
+          <chunks>
+            <chunk>
+               <type>number-value</type>
+               <property>/instrumentation/radar/mp[5]/altitude-offset</property>
+               <format>%+3.0f</format>
+            </chunk>
+          </chunks>
+          <transformations>
+            <transformation>
+               <type>y-shift</type>
+               <offset>-80</offset>
+            </transformation>
+            <transformation>
+                <type>rotation</type>
+                <property>instrumentation/radar/mp[5]/brg-offset</property>
+            </transformation>
+            <transformation>
+               <type>y-shift</type>
+               <property>instrumentation/radar/mp[5]/norm-dist</property>
+               <scale>160</scale>
+            </transformation>
+            <transformation>
+               <type>rotation</type>
+               <property>instrumentation/radar/mp[5]/brg-offset</property>
+               <scale>-1.0</scale>
+            </transformation>
+            <transformation>
+              <type>y-shift</type>
+              <offset>5</offset>
+            </transformation>
+          </transformations>
+        </layer>
+        
+        
+        <layer>
+          <condition>
+            <equals>
+	      <property>instrumentation/radar/mp[6]/valid</property>
+              <value>1</value>
+            </equals>
+          </condition>
+          <name>ai6-fl</name>
+          <type>text</type>
+          <font>arial_black</font>
+          <point-size>6</point-size>
+          <color>
+             <red>1.0</red>
+             <green>0.975</green>
+             <blue>0.486</blue>
+          </color>
+          <chunks>
+            <chunk>
+               <type>number-value</type>
+               <property>/instrumentation/radar/mp[6]/altitude-offset</property>
+               <format>%+3.0f</format>
+            </chunk>
+          </chunks>
+          <transformations>
+            <transformation>
+               <type>y-shift</type>
+               <offset>-80</offset>
+            </transformation>
+            <transformation>
+                <type>rotation</type>
+                <property>instrumentation/radar/mp[6]/brg-offset</property>
+            </transformation>
+            <transformation>
+               <type>y-shift</type>
+               <property>instrumentation/radar/mp[6]/norm-dist</property>
+               <scale>160</scale>
+            </transformation>
+            <transformation>
+               <type>rotation</type>
+               <property>instrumentation/radar/mp[6]/brg-offset</property>
+               <scale>-1.0</scale>
+            </transformation>
+            <transformation>
+              <type>y-shift</type>
+              <offset>5</offset>
+            </transformation>
+          </transformations>
         </layer>
 
     </layers>
