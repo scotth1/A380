@@ -723,8 +723,9 @@ setlistener("/instrumentation/flightdirector/vnav", func(n) {
     }
     if(vnav == VNAV_ALTCRZ) {   # ALT (m)
       curAlt = getprop("/position/altitude-ft");
-      if (curAlt < getprop("/instrumentation/gps/wp/wp[1]/altitude-ft")) {
-        setprop("/autopilot/settings/target-alt-hold",getprop("/instrumentation/gps/wp/wp[1]/altitude-ft"));
+      var nextWpAlt = getprop("/instrumentation/gps/wp/wp[1]/altitude-ft");
+      if (curAlt < nextWpAlt) {
+        setprop("/autopilot/settings/target-altitude-ft", nextWpAlt);
         setprop("/instrumentation/afs/limit-min-vs-fps",-9.0);
         setprop("/instrumentation/afs/limit-max-vs-fps",13.0);
       }

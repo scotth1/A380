@@ -71,6 +71,7 @@ mp_craft="";
 apu_running=0;
 ecamRequestRef=0;
 radarLastCnt=0;
+radarLastAirportCnt=0;
 
 NM2MTRS = 1852;
 METRE2NM = 0.000539956803;
@@ -87,7 +88,7 @@ CLmax = 2.4;
 srsFlapTarget = [263.0, 222.0, 210.0, 196.0, 182.0];   #another copy in system.nas
 flapPos       = [0, 0.2424, 0.5151, 0.7878, 1.0];
 
-trace = 0;
+trace = 1;
 version = "1.1.0";
 
 strobe_switch = props.globals.getNode("/controls/switches/strobe", 0);
@@ -195,6 +196,10 @@ update_radar = func{
   var myAlt = getprop("/position/altitude-ft");
   var currentPos= geo.Coord.new();
   currentPos.set_latlon(getprop("/position/latitude-deg"), getprop("/position/longitude-deg"), getprop("/position/altitude-ft"));
+
+
+  ## plot AI aircraft on radar
+  ##
   ai_craft = props.globals.getNode("/ai/models").getChildren("aircraft");
   for(i=0; i<size(ai_craft);i=i+1) {
     tgt_offset=getprop("/ai/models/aircraft[" ~ i ~ "]/radar/bearing-deg");
@@ -216,14 +221,11 @@ update_radar = func{
     }
     norm_dist = (1 / test_dist) * test1_dist;
     setprop("/instrumentation/radar/ai[" ~ i ~ "]/norm-dist", norm_dist);
-
-    #alt = getprop("/ai/models/aircraft["~i~"]/position/altitude-ft");
-    #if (alt > 25000) {
-    #  nme = getprop("/ai/models/aircraft["~i~"]/callsign");
-    #  print("AI callsign: "~nme~" idx: "~i~" at alt: "~alt);
-    #}
   }
 
+  ## plot multiplayer aircraft
+  ##
+  var radarRange = getprop("/instrumentation/radar/range");
   mp_craft = props.globals.getNode("/ai/models").getChildren("multiplayer");
   var mpPos = 0;
   for(i=0; i<size(mp_craft);i=i+1) {
@@ -243,12 +245,12 @@ update_radar = func{
       if (tgt_offset > 360){
         tgt_offset -=360;
       }
-      test_dist=getprop("/instrumentation/radar/range");
+      ###test_dist=getprop("/instrumentation/radar/range");
       test1_dist = getprop("/ai/models/multiplayer[" ~ i ~ "]/radar/range-nm");
       if(test1_dist == nil){
         test1_dist=0.0;
       }
-      norm_dist= (1 / test_dist) * test1_dist;
+      norm_dist= (1 / radarRange) * test1_dist;
       if (norm_dist <= 1) {
         var aiAlt = getprop("/ai/models/multiplayer["~i~"]/position/altitude-ft");
         var diffAlt = (aiAlt-myAlt)/100;
@@ -260,9 +262,11 @@ update_radar = func{
       }
     }
   }
+
+  ## plot waypoints
+  ##
   var wpCnt = 0;
   var wp_points = props.globals.getNode("/autopilot/route-manager/route").getChildren("wp");
-  var radarRange = getprop("/instrumentation/radar/range");
   for(i=1;i <size(wp_points); i=i+1) {
     var tgt_offset = -9999;
     var wpDist = 9999;
@@ -282,17 +286,13 @@ update_radar = func{
         tgt_offset = 360-(true_heading-wpCourse);
         #print("[radar] "~wpId~" true_head: "~true_heading~", wpCourse: "~wpCourse~", tgt_offset: "~tgt_offset);
       }
-      #tgt_offset = wpCourse;
       if (tgt_offset < 0){
         tgt_offset = 360-tgt_offset;
       }
       if (tgt_offset > 360){
         tgt_offset -=360;
       }
-    
     }
-    
-    
     if (wpDist <= radarRange) {
       var base = props.globals.getNode("/instrumentation/radar/wp["~wpCnt~"]",1);
       wpCnt = wpCnt + 1;
@@ -304,13 +304,7 @@ update_radar = func{
       dist.setDoubleValue(wpDist/radarRange);
       var id = base.getNode("id",1);
       id.setValue(wpId);
-    } 
-    #else {
-    #  var valid = base.getNode("valid",1);
-    #  valid.setBoolValue(0);
-    #}
-    
-    
+    }    
   }
   if (wpCnt < radarLastCnt) {
     for(i=wpCnt;i<=radarLastCnt;i=i+1) {
@@ -329,6 +323,8 @@ update_radar = func{
   }
   radarLastCnt = wpCnt;
 
+  ## plot the GPS ref navaid on radar
+  ##
   var navBrg  = getprop("/instrumentation/gps/ref-navaid/bearing-deg");
   var navDist = getprop("/instrumentation/gps/ref-navaid/distance-nm");
   if (navBrg != nil) {
@@ -346,7 +342,55 @@ update_radar = func{
     }
     setprop("/instrumentation/radar/navaid-brg",tgt_offset);
     setprop("/instrumentation/radar/navaid-dist-norm",navDist/radarRange);
-    
+  }
+  
+  ## plot nearest airports
+  ##
+  setprop("/instrumentation/gps/scratch/type", "airport");
+  setprop("/instrumentation/gps/scratch/max-results", 10);
+  setprop("/instrumentation/gps/command", "nearest");
+  var pos = 0;
+  var resultCnt = getprop("/instrumentation/gps/scratch/result-count");
+  for(var r = 0; r <= resultCnt; r=r+1) {
+    var ident = getprop("/instrumentation/gps/scratch/ident");
+    var distNM = getprop("/instrumentation/gps/scratch/distance-nm");
+    var base = props.globals.getNode("/instrumentation/radar/airports["~pos~"]",1);
+    var valid = base.getNode("valid",1);
+    valid.setBoolValue(0);
+    var brg = base.getNode("brg-offset",1);
+    brg.setDoubleValue(0.0);
+    var dist = base.getNode("dist-norm", 1);
+    dist.setDoubleValue(0.0);
+    var id = base.getNode("id",1);
+    id.setValue("");
+    if (distNM <= radarRange) {
+      var airportBearing = getprop("/instrumentation/gps/scratch/mag-bearing-deg");
+      var tgt_offset = airportBearing-true_heading;
+      if (tgt_offset < 0){
+        tgt_offset = 360-tgt_offset;
+      }
+      if (tgt_offset > 360){
+        tgt_offset -=360;
+      }
+      var norm_dist = (1 / radarRange) * distNM;
+      valid.setBoolValue(1);
+      brg.setDoubleValue(tgt_offset);
+      dist.setDoubleValue(norm_dist);
+      id.setValue(ident);
+      pos = pos + 1;
+    }
+    setprop("/instrumentation/gps/command", "next");
+  }
+  for(var i = pos; i <= 10; i=i+1) {
+    var base = props.globals.getNode("/instrumentation/radar/airports["~i~"]",1);
+    var valid = base.getNode("valid",1);
+    valid.setBoolValue(0);
+    var brg = base.getNode("brg-offset",1);
+    brg.setDoubleValue(0.0);
+    var dist = base.getNode("dist-norm", 1);
+    dist.setDoubleValue(0.0);
+    var id = base.getNode("id",1);
+    id.setValue("");
   }
 
   seatCtrl = getprop("/controls/switches/seat-belt");
