@@ -710,7 +710,7 @@
       <prop>/autopilot/internal/srs-pitch-deg</prop>
     </output>
     <config>
-      <Kp>0.01</Kp>       <!-- proportional gain  was -0.5 SAH 2010-10-19 -->
+      <Kp>0.005</Kp>       <!-- proportional gain  was -0.5 SAH 2010-10-19 -->
       <beta>1.0</beta>    <!-- input value weighing factor -->
       <alpha>0.1</alpha>  <!-- low pass filter weighing factor was 0.1 SAH 2010-10-19 --><!-- was 0.3 SAH 2010-11-16 -->
       <gamma>0.0</gamma>  <!-- input value weighing factor for -->

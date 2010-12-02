@@ -589,6 +589,18 @@ selectSidAction = func(opt, unit) {
     var firstWp = star.wpts[0];
     var arvApt = airportinfo(getprop("/instrumentation/afs/TO"));
     var crzFt  = getprop("/instrumentation/afs/thrust-cruise-alt");
+    ## work around bug 189 for the meanwhile..
+    var wptIdx = wpLen-1;
+    var badAlt = getprop("/autopilot/route-manager/route/wp["~wptIdx~"]/altitude-ft");
+    var appId  = getprop("/autopilot/route-manager/route/wp["~wptIdx~"]/id");
+    tracer("update elevation for id: "~appId~", route/wp["~wptIdx~"]/altitude-ft = "~badAlt);
+    if (badAlt < -9999 and substr(appId,0,4) == arvApt.id) {
+      var appLat = getprop("/autopilot/route-manager/route/wp["~wptIdx~"]/latitude-deg");
+      var appLon = getprop("/autopilot/route-manager/route/wp["~wptIdx~"]/longitude-deg");
+      tracer("add new airport WPT");
+      insertAbsWP(appId,wptIdx,appLat,appLon,int(arvApt.elevation));
+      setprop("/autopilot/route-manager/input", "@delete "~(wpLen));
+    }
     tracer(">>>>>>>>>>>>>> current thrust-cruise-alt: "~crzFt);
     var prevCoord = geo.Coord.new();
     prevCoord.set_latlon(getprop("/autopilot/route-manager/route/wp["~(wpLen-2)~"]/latitude-deg"), getprop("/autopilot/route-manager/route/wp["~(wpLen-2)~"]/longitude-deg"), crzFt);
@@ -622,7 +634,7 @@ selectSidAction = func(opt, unit) {
       tracer("[FMS] enroute hdg: "~prevHdg);
       var hdg = prevHdg;
       #if (difHdg > 10 or difHdg < -10) {
-      #  tracer("[FMS] heading difference to great, reducing...");
+      #  tracer("[FMS] heading difference too great, reducing...");
       #  difHdg = difHdg/2;
       #  hdg = starHdg+difHdg;
       #  if (hdg > 360) {
@@ -821,7 +833,7 @@ updateApproachAlts = func() {
      var crzFt  = getprop("/instrumentation/afs/thrust-cruise-alt");
      tracer(">>>>>>>>>>>>>> current thrust-cruise-alt: "~crzFt);
      var crzArm = 0;
-     for(var r=0; r != rtSize; r=r+1) {
+     for(var r=0; r < rtSize-1; r=r+1) {
        rtSize = getprop("/autopilot/route-manager/route/num");
        var rtAlt = getprop("/autopilot/route-manager/route/wp["~r~"]/altitude-ft");
        if (crzArm == 1 and rtAlt < 0 and (r+1) <= rtSize) {
@@ -841,8 +853,9 @@ updateApproachAlts = func() {
          if (r+2 <= rtSize) {
            nextWpAlt = getprop("/autopilot/route-manager/route/wp["~(r+1)~"]/altitude-ft");
          }
-         
-         tracer("[FMS] start - r="~r~" of "~rtSize~", rtId="~rtId~" prev trans lat: "~prevLat~"/lon: "~prevLon~", next lat: "~nextLat~"/lon: "~nextLon~", this lat: "~rtLat~"/lon: "~rtLon);
+
+         tracer("[FMS] start - r="~r~" of "~rtSize);
+         tracer("[FMS] rtId="~rtId~" prev trans lat: "~prevLat~"/lon: "~prevLon~", next lat: "~nextLat~"/lon: "~nextLon~", this lat: "~rtLat~"/lon: "~rtLon);
          tracer("[FMS] prev trans alt: "~prevAlt~", next alt: "~nextAlt);
          var prevDist = gcd2(prevLat, prevLon, rtLat, rtLon, "nm");
          var nextDist = gcd2(rtLat, rtLon, nextLat, nextLon, "nm");
@@ -877,7 +890,7 @@ updateApproachAlts = func() {
          tracer("[FMS] end - prev trans Dist: "~prevDist~"nm, nextDist: "~nextDist~"nm");
          var thisAlt = int(prevAlt-(((prevAlt-nextAlt)/(prevDist+nextDist))*prevDist));
          if (thisAlt < 100) {
-           tracer("***** [FMS] incorrect calculation!!");
+           tracer("***** [FMS] incorrect calculation!!  thisAlt: "~thisAlt);
          }
 	 tracer("/autopilot/route-manager/input, @delete "~(r));
          setprop("/autopilot/route-manager/input","@delete "~(r));

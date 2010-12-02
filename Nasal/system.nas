@@ -337,8 +337,10 @@ update_radar = func{
     }
     if (navDist < radarRange) {
       setprop("/instrumentation/radar/navaid-valid",1);
+      setprop("/instrumentation/radar/navaid-id", getprop("/instrumentation/gps/ref-navaid/id"));
     } else {
       setprop("/instrumentation/radar/navaid-valid",0);
+      setprop("/instrumentation/radar/navaid-id", "");
     }
     setprop("/instrumentation/radar/navaid-brg",tgt_offset);
     setprop("/instrumentation/radar/navaid-dist-norm",navDist/radarRange);
@@ -346,52 +348,52 @@ update_radar = func{
   
   ## plot nearest airports
   ##
-  setprop("/instrumentation/gps/scratch/type", "airport");
-  setprop("/instrumentation/gps/scratch/max-results", 10);
-  setprop("/instrumentation/gps/command", "nearest");
-  var pos = 0;
-  var resultCnt = getprop("/instrumentation/gps/scratch/result-count");
-  for(var r = 0; r <= resultCnt; r=r+1) {
-    var ident = getprop("/instrumentation/gps/scratch/ident");
-    var distNM = getprop("/instrumentation/gps/scratch/distance-nm");
-    var base = props.globals.getNode("/instrumentation/radar/airports["~pos~"]",1);
-    var valid = base.getNode("valid",1);
-    valid.setBoolValue(0);
-    var brg = base.getNode("brg-offset",1);
-    brg.setDoubleValue(0.0);
-    var dist = base.getNode("dist-norm", 1);
-    dist.setDoubleValue(0.0);
-    var id = base.getNode("id",1);
-    id.setValue("");
-    if (distNM <= radarRange) {
-      var airportBearing = getprop("/instrumentation/gps/scratch/mag-bearing-deg");
-      var tgt_offset = airportBearing-true_heading;
-      if (tgt_offset < 0){
-        tgt_offset = 360-tgt_offset;
-      }
-      if (tgt_offset > 360){
-        tgt_offset -=360;
-      }
-      var norm_dist = (1 / radarRange) * distNM;
-      valid.setBoolValue(1);
-      brg.setDoubleValue(tgt_offset);
-      dist.setDoubleValue(norm_dist);
-      id.setValue(ident);
-      pos = pos + 1;
-    }
-    setprop("/instrumentation/gps/command", "next");
-  }
-  for(var i = pos; i <= 10; i=i+1) {
-    var base = props.globals.getNode("/instrumentation/radar/airports["~i~"]",1);
-    var valid = base.getNode("valid",1);
-    valid.setBoolValue(0);
-    var brg = base.getNode("brg-offset",1);
-    brg.setDoubleValue(0.0);
-    var dist = base.getNode("dist-norm", 1);
-    dist.setDoubleValue(0.0);
-    var id = base.getNode("id",1);
-    id.setValue("");
-  }
+  #setprop("/instrumentation/gps/scratch/type", "airport");
+  #setprop("/instrumentation/gps/scratch/max-results", 10);
+  #setprop("/instrumentation/gps/command", "nearest");
+  #var pos = 0;
+  #var resultCnt = getprop("/instrumentation/gps/scratch/result-count");
+  #for(var r = 0; r <= resultCnt; r=r+1) {
+  #  var ident = getprop("/instrumentation/gps/scratch/ident");
+  #  var distNM = getprop("/instrumentation/gps/scratch/distance-nm");
+  #  var base = props.globals.getNode("/instrumentation/radar/airports["~pos~"]",1);
+  #  var valid = base.getNode("valid",1);
+  #  valid.setBoolValue(0);
+  #  var brg = base.getNode("brg-offset",1);
+  #  brg.setDoubleValue(0.0);
+  #  var dist = base.getNode("dist-norm", 1);
+  #  dist.setDoubleValue(0.0);
+  #  var id = base.getNode("id",1);
+  #  id.setValue("");
+  #  if (distNM <= radarRange) {
+  #    var airportBearing = getprop("/instrumentation/gps/scratch/mag-bearing-deg");
+  #    var tgt_offset = airportBearing-true_heading;
+  #    if (tgt_offset < 0){
+  #      tgt_offset = 360-tgt_offset;
+  #    }
+  #    if (tgt_offset > 360){
+  #      tgt_offset -=360;
+  #    }
+  #    var norm_dist = (1 / radarRange) * distNM;
+  #    valid.setBoolValue(1);
+  #    brg.setDoubleValue(tgt_offset);
+  #    dist.setDoubleValue(norm_dist);
+  #    id.setValue(ident);
+  #    pos = pos + 1;
+  #  }
+  #  setprop("/instrumentation/gps/command", "next");
+  #}
+  #for(var i = pos; i <= 10; i=i+1) {
+  #  var base = props.globals.getNode("/instrumentation/radar/airports["~i~"]",1);
+  #  var valid = base.getNode("valid",1);
+  #  valid.setBoolValue(0);
+  #  var brg = base.getNode("brg-offset",1);
+  #  brg.setDoubleValue(0.0);
+  #  var dist = base.getNode("dist-norm", 1);
+  #  dist.setDoubleValue(0.0);
+  #  var id = base.getNode("id",1);
+  #  id.setValue("");
+  #}
 
   seatCtrl = getprop("/controls/switches/seat-belt");
   if (seatCtrl == 1) {
