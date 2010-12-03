@@ -704,7 +704,7 @@ setlistener("/instrumentation/flightdirector/vnav", func(n) {
       tracer("VNAV_CLB: cur V/S: "~curVS);
       if (curAlt < accAlt and curAlt > redAlt and getprop("/fdm/jsbsim/fcs/flap-cmd-norm") == 0) {
           tracer("adjust V/S");
-          var vSpeed = 1600;  
+          var vSpeed = 2100;  
           # determine vertical-speed during inital climb based on grossWeight.
           setprop("/autopilot/settings/vertical-speed-fpm",vSpeed);
           settimer(climb_flap_adjust, 5);  #was 20 2009-06-30

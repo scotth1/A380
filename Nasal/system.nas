@@ -192,10 +192,19 @@ reset_et = func{
 # ESTIMATED TIME CALCULATIONS 
 
 update_radar = func{
-  true_heading = getprop("/orientation/heading-deg");
+  var true_heading = getprop("/orientation/heading-deg");
+  var mag_heading  = getprop("orientation/heading-magnetic-deg");
   var myAlt = getprop("/position/altitude-ft");
   var currentPos= geo.Coord.new();
   currentPos.set_latlon(getprop("/position/latitude-deg"), getprop("/position/longitude-deg"), getprop("/position/altitude-ft"));
+
+  ## set NAV[1] (R VOR) to always be our ref navaid
+  #
+  var refNavFreq = getprop("/instrumentation/gps/ref-navaid/frequency-mhz");
+  var currNav1Freq = getprop("/instrumentation/nav[1]/frequencies/selected-mhz");
+  if (refNavFreq != nil and refNavFreq != currNav1Freq) {
+    setprop("/instrumentation/nav[1]/frequencies/selected-mhz", refNavFreq);
+  }
 
 
   ## plot AI aircraft on radar
@@ -326,9 +335,10 @@ update_radar = func{
   ## plot the GPS ref navaid on radar
   ##
   var navBrg  = getprop("/instrumentation/gps/ref-navaid/bearing-deg");
+  var navBrgMag  = getprop("/instrumentation/gps/ref-navaid/mag-bearing-deg");
   var navDist = getprop("/instrumentation/gps/ref-navaid/distance-nm");
   if (navBrg != nil) {
-    var tgt_offset = navBrg;    ##+true_heading;
+    var tgt_offset = navBrg-mag_heading;    ##+true_heading;
     if (tgt_offset < 0) {
       tgt_offset +=360;
     }
