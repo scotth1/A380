@@ -721,7 +721,6 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
             </display-controls>
             <serviceable type="bool">true</serviceable>
             <range type="int" archive="y">10</range>
-            <reference-range-nm type="double" archive="y">640</reference-range-nm>
             <mode type="string" archive="y">WX</mode>
             <font>
                 <color>
@@ -736,8 +735,6 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
             </font>
             <lightning type="bool" archive="y">true</lightning>
             <display-mode type="string" archive="y">arc</display-mode>
-            <radar-texture-path type="string" archive="y">Aircraft/777-200/Models/Instruments/MFD/od_wxradar.png</radar-texture-path>
-            <echo-texture-path type="string" archive="y">Aircraft/777-200/Models/Instruments/MFD/wxecho.png</echo-texture-path>
             <minimized type="bool" archive="y">false</minimized>
             <heading-marker type="bool" archive="y">true</heading-marker>
             <limit-deg type="int">360</limit-deg>
@@ -750,7 +747,7 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
             <serviceable>true</serviceable>
             
             <configuration-module>
-              <category-1>  254 </category-1>  <!-- AIRCRAFT_MODE_TYPE_SELECT -->
+              <category-1>  255 </category-1>  <!-- AIRCRAFT_MODE_TYPE_SELECT -->
               <category-3>   2 </category-3>  <!-- POSITION_INPUT_SELECT -->
               <category-4>   9 </category-4>  <!-- ALTITUDE_CALLOUTS -->
               <category-5>   0 </category-5>  <!-- AUDIO_MENU_SELECT -->
@@ -772,7 +769,7 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
             <speaker>
                 <max-dist>2</max-dist>
                 <reference-dist>1</reference-dist>
-                <volume>0.8</volume>
+                <volume>0.4</volume>
             </speaker>
         </mk-viii>
         <adf n="1">
@@ -814,6 +811,7 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
 <nasal>
     <A380>
       <file>Aircraft/A380/Nasal/electrical.nas</file>
+      <file>Aircraft/A380/Nasal/TextRegion.nas</file>
       <file>Aircraft/A380/Nasal/AirbusFMS.nas</file>
       <file>Aircraft/A380/Nasal/system.nas</file>
       <file>Aircraft/A380/Nasal/Airbus_fg.nas</file>

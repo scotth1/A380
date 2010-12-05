@@ -96,8 +96,8 @@
                            <!-- unfiltered derivative error -->
       <Ti>10.0</Ti>        <!-- integrator time -->
       <Td>0.00001</Td>     <!-- derivator time -->
-      <u_min>-20.0</u_min> <!-- minimum output clamp -->
-      <u_max>20.0</u_max>  <!-- maximum output clamp -->
+      <u_min>-30.0</u_min> <!-- minimum output clamp -->
+      <u_max>30.0</u_max>  <!-- maximum output clamp -->
     </config>
   </pid-controller>
 
@@ -126,8 +126,8 @@
                           <!-- unfiltered derivative error -->
       <Ti>10.0</Ti>       <!-- integrator time -->
       <Td>0.00001</Td>    <!-- derivator time -->
-      <u_min>-0.5</u_min> <!-- minimum output clamp -->
-      <u_max>0.5</u_max>  <!-- maximum output clamp -->
+      <u_min>-1.0</u_min> <!-- minimum output clamp -->
+      <u_max>1.0</u_max>  <!-- maximum output clamp -->
     </config>
   </pid-controller>
 
@@ -159,8 +159,8 @@
                            <!-- unfiltered derivative error -->
       <Ti>30.0</Ti>        <!-- integrator time -->
       <Td>0.00001</Td>     <!-- derivator time -->
-      <u_min>-20.0</u_min> <!-- minimum output clamp -->
-      <u_max>20.0</u_max>  <!-- maximum output clamp -->
+      <u_min>-30.0</u_min> <!-- minimum output clamp -->
+      <u_max>30.0</u_max>  <!-- maximum output clamp -->
     </config>
   </pid-controller>
 
@@ -189,8 +189,8 @@
                           <!-- unfiltered derivative error -->
       <Ti>10.0</Ti>       <!-- integrator time was 25 SAH 5-JUL-2009 -->
       <Td>0.00001</Td>    <!-- derivator time  was 0.001 SAH 20-jun-2009 -->
-      <u_min>-0.5</u_min> <!-- minimum output clamp -->
-      <u_max>0.5</u_max>  <!-- maximum output clamp -->
+      <u_min>-1.0</u_min> <!-- minimum output clamp -->
+      <u_max>1.0</u_max>  <!-- maximum output clamp -->
     </config>
   </pid-controller>
 
@@ -221,8 +221,8 @@
       <gamma>0.0</gamma>   <!-- input value weighing factor for -->
                            <!-- unfiltered derivative error -->
       <Ti>35.0</Ti>        <!-- integrator time  was 15.0 -->
-      <u_min>-20.0</u_min> <!-- minimum output clamp -->
-      <u_max>20.0</u_max>  <!-- maximum output clamp -->
+      <u_min>-30.0</u_min> <!-- minimum output clamp -->
+      <u_max>30.0</u_max>  <!-- maximum output clamp -->
     <!-- 
       <Kp>-0.75</Kp>    
       <beta>1.0</beta>  
@@ -532,12 +532,10 @@
   <!-- Glideslope hold. -->
     <pid-controller>
         <name>Glideslope Hold</name>
-        <debug>false</debug>
+        <debug>true</debug>
         <enable> 
 	    <prop>/autopilot/locks/altitude</prop>
             <value>gs1-hold</value>
-            <!--prop>instrumentation/afds/ap-modes/pitch-mode</prop>
-            <value>G/S</value -->
         </enable>
         <input>
             <prop>velocities/vertical-speed-fps</prop>
@@ -547,9 +545,10 @@
         </reference>
         <output>
             <prop>autopilot/internal/elevator-filter</prop>
+            <!-- prop>/controls/flight/elevator-trim</prop -->
         </output>
         <config>
-            <Kp>-0.01</Kp>
+            <Kp>-0.005</Kp>
             <beta>1.0</beta>
             <alpha>0.1</alpha>
             <gamma>0.0</gamma>
@@ -559,6 +558,34 @@
             <u_max>1.0</u_max>
         </config>
     </pid-controller>
+    
+    <filter>
+      <name>GS Filter</name>
+      <debug>true</debug>
+      <enable> 
+        <prop>/autopilot/locks/altitude</prop>
+        <value>gs1-hold</value>
+      </enable>
+      <type>exponential</type>
+      <filter-time>0.08</filter-time>
+      <input>autopilot/internal/elevator-filter</input>
+      <output>/controls/flight/elevator</output>
+    </filter>
+
+    
+    <!-- filter>
+      <name>SERVO-DRIVER:elevator</name>
+      <debug>true</debug>
+      <feedback-if-disabled>true</feedback-if-disabled>
+      <enable>
+	<prop>/autopilot/locks/altitude</prop>
+	<value>gs1-hold</value>
+      </enable>
+      <input>/autopilot/internal/elevator-filter</input>
+      <output>/controls/flight/elevator</output>
+      <type>noise-spike</type>
+      <max-rate-of-change>0.08</max-rate-of-change>
+    </filter -->
 
 
   <!-- vertical speed hold -->

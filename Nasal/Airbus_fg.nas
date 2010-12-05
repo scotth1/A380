@@ -67,8 +67,8 @@ lnavStr = ["off","HDG","TRK","LOC","NAV","RWY"];
 vnavStr = ["off","ALT(s)","V/S","OP CLB","FPA","OP DES","CLB","ALT CRZ","DES","G/S","SRS","LEVEL"];
 spdStr  = ["off","TOGA","FLEX","THR CLB","SPEED","MACH","CRZ","THR DES","THR IDL"];
 
-version="V1.1.0";
-trace=0;
+version="V1.1.4";
+trace=1;
 
 #trigonometric values for glideslope calculations
 FD_TAN3DEG = 0.052407779283;
@@ -278,7 +278,7 @@ setlistener("/sim/signals/fdm-initialized", func {
     ###  should be set from route manager at initalisation.
     setprop("/instrumentation/afs/thrust-cruise-alt",30000);
     setprop("/instrumentation/afs/crz_speed", 310);
-    setprop("/instrumentation/afs/crz_mach", 0.84);
+    setprop("/instrumentation/afs/crz_mach", 0.85);
     setprop("/instrumentation/afs/clb_speed", 280);
     setprop("/instrumentation/afs/clb_mach", 0.76);
     setprop("/instrumentation/afs/des_speed", 270);
@@ -878,26 +878,31 @@ setlistener("/instrumentation/flightdirector/spd", func(n) {
             ##var newSpeed = 310;
             ##var newSpeed = getprop("/instrumentation/afs/crz_speed");
             var newSpeed = getprop("/instrumentation/afs/crz_mach");
-            if (getprop("/autopilot/settings/target-speed-kt") < 270) {
-              ##interpolate("/autopilot/settings/target-speed-kt",newSpeed,100);
-              interpolate("/autopilot/settings-target-speed-mach", newSpeed, 100);
-            } else {
-              if (newSpeed > getprop("/autopilot/settings/target-speed-mach")) {
-                interpolate("/autopilot/settings/target-speed-mach",newSpeed,10);
-              }
-            }    
+            if (getprop("/autopilot/settings/target-speed-mach") < newSpeed) {
+              setprop("/autopilot/settings/target-speed-kt",310);
+              interpolate("/autopilot/settings/target-speed-mach", newSpeed, 10);
+            }  
       }
       if (spdMode == SPD_THRDES) {   #THR DES
         var curAlt = getprop("/position/altitude-ft");
-        if (curAlt > 15000 and getprop("/autopilot/settings/target-speed-kt") > 270) {
-          interpolate("/autopilot/settings/target-speed-kt",270,90);
+        if (getprop("/instrumentation/afs/changeover-mode") == 1) {
+          setprop("/autopilot/locks/speed","mach-with-throttle");
+        } else {
+          setprop("/autopilot/locks/speed","speed-with-throttle");
+        }
+        var desMach = getprop("/instrumentation/afs/des_mach");
+        if (curAlt > 28000 and getprop("/autopilot/settings/target-speed-mach") > desMach) {
+          interpolate("/autopilot/settings/target-speed-mach", desMach, 20);
+        }
+        if (curAlt > 15000 and curAlt <= 28000 and getprop("/autopilot/settings/target-speed-kt") > 270) {
+          interpolate("/autopilot/settings/target-speed-kt",270,90);    #was 270 in 90 SAH 2010-12-04
         }
         if (curAlt <12000 and getprop("/autopilot/settings/target-speed-kt") > 250 and spdDesArm2 == 0) {
           spdDesArm2 = 1;
           interpolate("/autopilot/settings/target-speed-kt",250,60);
         }
         if (curAlt <2000 and getprop("/autopilot/settings/target-speed-kt") > 210) {
-          interpolate("/autopilot/settings/target-speed-kt",210,60);
+          interpolate("/autopilot/settings/target-speed-kt",180,60);
         }
       }
       if (spdMode == 8) { #THR CLB
@@ -1233,6 +1238,7 @@ handle_inputs = func {
     tracer("currTAS: "~currTAS~" changeover level off");
     setprop("/instrumentation/afs/changeover-mode",0);
     setprop("/autopilot/settings/target-speed-kt", desSpeed);
+    setprop("/autopilot/settings/target-speed-mach", desMach);
     setprop("/autopilot/locks/speed", "speed-with-throttle");
   }
 
@@ -1256,6 +1262,7 @@ handle_inputs = func {
   var spdMode = getprop("/instrumentation/afs/speed-mode");
   if (spdMode == 0 and ap_on == 1) {
     setprop("/autopilot/settings/target-speed-kt",getprop("/instrumentation/afs/target-speed-kt"));
+    ##setprop("/autopilot/settings/target-speed-mach", getprop("/instrumentation/afs/target-speed-mach"));
   }
 };
 
@@ -1271,8 +1278,10 @@ delay_climb_reduce_rate = func() {
 
 delay_climb_inc_speed = func() {
     var clbSpeed = getprop("/instrumentation/afs/clb_speed");
+    var clbMach  = getprop("/instrumentation/afs/clb_mach");
     tracer("delayed increase climb speed to: "~clbSpeed);
     interpolate("/autopilot/settings/target-speed-kt",clbSpeed,30);
+    setprop("/autopilot/settings/target-speed-mach", clbMach);
 };
 
 delay_cruise_speed = func() {
@@ -1341,8 +1350,8 @@ update_mode = func {
         }
     }
 
-    ##var nextWpAlt = getprop("/autopilot/route-manager/route/wp[0]/altitude-ft");
-    var nextWpAlt = getprop("/instrumentation/gps/wp/wp[1]/altitude-ft");
+    var nextWpAlt = getprop("/autopilot/route-manager/route/wp[0]/altitude-ft");
+    ##var nextWpAlt = getprop("/instrumentation/gps/wp/wp[1]/altitude-ft");
     var descentAlt = getprop("/instrumentation/afs/thrust-descent-alt");
     var cruiseAlt  = getprop("/instrumentation/afs/thrust-cruise-alt");
     ###var cruiseAlt  = getprop("/instrumentation/mcdu/CRZ_FL");
@@ -1353,10 +1362,16 @@ update_mode = func {
     if (getprop("/instrumentation/afs/vertical-alt-mode") == -1 and getprop("/instrumentation/afs/vertical-vs-mode") == -1 and getprop("/instrumentation/flightdirector/autopilot-on") == 1) {
         managedVert = 1;
     } 
-
+ 
     var distToTD = getprop("/autopilot/route-manager/wp[0]/dist");
+    var nextId   = getprop("/instrumentation/gps/wp/wp[1]/ID");
+    if (nextWpAlt == descentAlt or nextId == "T/D") {
+      tracer("[update_mode] distToWp: "~distToTD~", nextWpAlt: "~nextWpAlt~", descentAlt: "~descentAlt~", cruiseAlt: "~cruiseAlt~", curAlt: "~curAlt~", managedVert: "~managedVert);
+    }
     if (nextWpAlt == descentAlt and vnav == VNAV_ALTCRZ and distToTD < 8) {
+      var desMach = getprop("/instrumentation/afs/des_mach");
       setprop("/instrumentation/flightdirector/vnav-arm", VNAV_DES);
+      interpolate("/autopilot/settings/target-speed-mach", desMach, 20);
     }
 
     if (nextWpAlt == descentAlt and vnav != VNAV_DES and vnav != VNAV_OPDES and managedVert == 1) {

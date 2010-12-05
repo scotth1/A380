@@ -739,17 +739,19 @@ selectSidAction = func(opt, unit) {
               runwayTransArm = 1;   #Don't include GA in approach.
               break;
         }
-        if (awp.wp_type == "Normal" or awp.wp_type == "Outer Marker" or awp.wp_type == "Middle Marker" and runwayTransArm == 0) {
+        if ((awp.wp_type == "Normal" or awp.wp_type == "Outer Marker" or awp.wp_type == "Middle Marker") and runwayTransArm == 0) {
           wpLen = getprop("/autopilot/route-manager/route/num");
           var wpIns = "";
           var idExists = 0;
           for(var r=0; r!= wpLen; r=r+1) {
             var rId = getprop("/autopilot/route-manager/route/wp["~r~"]/id");
             if (rId == awp.wp_name) {
+              tracer("[Star.IAP] awp: "~awp.wp_name~" already exists!");
               idExists = 1;
             }
           }
           if (idExists == 0) {
+            wpLen = getprop("/autopilot/route-manager/route/num");
             var wpName = awp.wp_name;
             var wpAlt = -1;
             if (awp.alt_csrt >0) {
@@ -762,7 +764,7 @@ selectSidAction = func(opt, unit) {
               }
               insertAbsWP(type,wpLen-1,awp.wp_lat,awp.wp_lon,wpAlt);
             } else {
-              wpIns = sprintf("%s@%i",wpName,wpAlt);
+              wpIns = sprintf("%i:%s@%i",wpLen-1,wpName,wpAlt);
               tracer("Insert approach route: "~wpIns~", of type: "~awp.wp_type);
 	      tracer("/autopilot/route-manager/input, @insert "~wpIns);
               setprop("/autopilot/route-manager/input", "@insert "~wpIns);

@@ -108,7 +108,7 @@ var fmsDB = {
             }
           }
           trans.trans_type = "RWY";
-          ##print("-- Start RWY Transition for: "~trans.trans_name);
+          print("-- Start RWY Transition for: "~trans.trans_name);
         }
         if (name == "RwyTr_Waypoint") {
           wp = fmsWP.new();
@@ -118,10 +118,10 @@ var fmsDB = {
               wp.wp_name = attr[a];
             }
           }
-          ##print("--- Start RWY Trans WP for trans: "~trans.trans_name);
+          print("--- Start RWY Trans WP for trans: "~trans.trans_name);
         }
         if (name == "Approach") {
-          ##print("- Parse Approach");
+          print("- Parse Approach");
           tp = fmsTP.new();
           tp.tp_type = "Approach";
           foreach (var a; keys(attr)) {
@@ -131,29 +131,29 @@ var fmsDB = {
           }
           if (substr(tp.wp_name,0,3) == "ILS") {
             var len = size(tp.wp_name);
-            var pos = int(len-2);
-            if (len == 6) {
-              pos = int(len-3);
-            }
-            if (len == 8) {
-              pos = int(len-2);
-            }
-            if (len == 9) {
-              pos = int(len-3);
-            }
-            var run = substr(tp.wp_name,pos);
-            ##print("   set approach runway: "~run);
+            var pos = int(len-3);
+            #if (len == 6) {
+            #  pos = int(len-3);
+            #}
+            #if (len == 8) {
+            #  pos = int(len-2);
+            #}
+            #if (len == 9) {
+            #  pos = int(len-3);
+            #}
+            var run = substr(tp.wp_name,3);
+            print("   set approach runway: "~run);
             append(tp.runways,run);
           }
         }
         if (name == "App_Waypoint") {
-           ##print("--  Start Approach Waypoint for "~tp.wp_name);
+           print("--  Start Approach Waypoint for "~tp.wp_name);
            wp = fmsWP.new();
            wp.wp_type = "Approach";
            
         }
         if (name == "App_Transition") {
-          ##print("-- Start Approach Transition for: "~tp.wp_name);
+          print("-- Start Approach Transition for: "~tp.wp_name);
           trans = fmsTransition.new();
           trans.trans_type = "AppTransition";
           foreach (var a; keys(attr)) {
@@ -163,7 +163,7 @@ var fmsDB = {
           }
         }
         if (name == "AppTr_Waypoint") {
-          ##print("--- Start Approach Transition WP");
+          print("--- Start Approach Transition WP");
           wp = fmsWP.new();
           wp.wp_type = "AppTransition";
         }

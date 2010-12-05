@@ -90,7 +90,7 @@
                     <value>1</value>
                   </equals>
                   <equals>
-                    <property>/instrumentation/nav[0]/data-is-valid</property>
+                    <property>/instrumentation/nav[0]/in-range</property>
                     <value>1</value>
                   </equals>
                 </and>
@@ -138,7 +138,7 @@
                     <value>1</value>
                   </equals>
                   <equals>
-                    <property>/instrumentation/nav[0]/data-is-valid</property>
+                    <property>/instrumentation/nav[0]/in-range</property>
                     <value>1</value>
                   </equals>
                 </and>
@@ -264,7 +264,7 @@
                     <value>1</value>
                   </equals>
                   <equals>
-                    <property>/instrumentation/nav[1]/data-is-valid</property>
+                    <property>/instrumentation/nav[1]/in-range</property>
                     <value>1</value>
                   </equals>
                 </and>
@@ -312,7 +312,7 @@
                    <value>1</value>
                 </equals>
                 <equals>
-                    <property>/instrumentation/nav[1]/data-is-valid</property>
+                    <property>/instrumentation/nav[1]/in-range</property>
                     <value>1</value>
                 </equals>
               </and>
@@ -515,7 +515,7 @@
             <transformations>
                 <transformation>
                     <type>y-shift</type>
-                    <offset>-90</offset>
+                    <offset>-78</offset>
                 </transformation>
             </transformations>
             <emissive>true</emissive>
@@ -944,7 +944,7 @@
                 <property>instrumentation/radar/mp[0]/valid</property>
                 <value>1</value>
             </condition>
-          <name>ai0</name>
+          <name>mp0</name>
           <w>15</w>
           <h>15</h>
           <texture>
@@ -957,7 +957,7 @@
           <transformations>
             <transformation>
                <type>y-shift</type>
-               <offset>-80</offset>
+               <offset>-78</offset>
             </transformation>
             <transformation>
                 <type>rotation</type>
@@ -977,7 +977,7 @@
                 <property>instrumentation/radar/mp[1]/valid</property>
                 <value>1</value>
             </condition>
-          <name>ai1</name>
+          <name>mp1</name>
           <w>15</w>
           <h>15</h>
           <texture>
@@ -1010,7 +1010,7 @@
                 <property>instrumentation/radar/mp[2]/valid</property>
                 <value>1</value>
             </condition>
-          <name>ai2</name>
+          <name>mp2</name>
           <w>15</w>
           <h>15</h>
           <texture>
@@ -1043,7 +1043,7 @@
                 <property>instrumentation/radar/mp[3]/valid</property>
                 <value>1</value>
             </condition>
-          <name>ai3</name>
+          <name>mp3</name>
           <w>15</w>
           <h>15</h>
           <texture>
@@ -1075,7 +1075,7 @@
                 <property>instrumentation/radar/mp[4]/valid</property>
                 <value>1</value>
             </condition>
-          <name>ai4</name>
+          <name>mp4</name>
           <w>15</w>
           <h>15</h>
           <texture>
@@ -1108,7 +1108,7 @@
                 <property>instrumentation/radar/mp[5]/valid</property>
                 <value>1</value>
             </condition>
-          <name>ai5</name>
+          <name>mp5</name>
           <w>15</w>
           <h>15</h>
           <texture>
@@ -1140,7 +1140,7 @@
                 <property>instrumentation/radar/mp[6]/valid</property>
                 <value>1</value>
             </condition>
-          <name>ai6</name>
+          <name>mp6</name>
           <w>15</w>
           <h>15</h>
           <texture>
@@ -1175,8 +1175,8 @@
                 <value>1</value>
             </condition>
           <name>wp0</name>
-          <w>15</w>
-          <h>15</h>
+          <w>10</w>
+          <h>10</h>
           <texture>
             <path>Aircraft/A380/Models/Instruments/MFD/airbus_symbols.png</path>
             <x1>0.540</x1>
@@ -1212,8 +1212,8 @@
                 <value>1</value>
             </condition>
           <name>wp1</name>
-          <w>15</w>
-          <h>15</h>
+          <w>10</w>
+          <h>10</h>
           <texture>
             <path>Aircraft/A380/Models/Instruments/MFD/airbus_symbols.png</path>
             <x1>0.540</x1>
@@ -1249,8 +1249,8 @@
                 <value>1</value>
             </condition>
           <name>wp2</name>
-          <w>15</w>
-          <h>15</h>
+          <w>10</w>
+          <h>10</h>
           <texture>
             <path>Aircraft/A380/Models/Instruments/MFD/airbus_symbols.png</path>
             <x1>0.540</x1>
@@ -1286,8 +1286,8 @@
                 <value>1</value>
             </condition>
           <name>wp3</name>
-          <w>15</w>
-          <h>15</h>
+          <w>10</w>
+          <h>10</h>
           <texture>
             <path>Aircraft/A380/Models/Instruments/MFD/airbus_symbols.png</path>
             <x1>0.540</x1>
@@ -1317,7 +1317,82 @@
           </transformations>
         </layer>
         
+        <layer>
+          <condition>
+                <property>instrumentation/radar/wp[4]/valid</property>
+                <value>1</value>
+            </condition>
+          <name>wp4</name>
+          <w>10</w>
+          <h>10</h>
+          <texture>
+            <path>Aircraft/A380/Models/Instruments/MFD/airbus_symbols.png</path>
+            <x1>0.540</x1>
+            <y1>0.900</y1>
+            <x2>0.590</x2>
+            <y2>0.950</y2>
+          </texture>
+          <transformations>
+            <transformation>
+               <type>y-shift</type>
+               <offset>-78</offset>
+            </transformation>
+            <transformation>
+                <type>rotation</type>
+                <property>instrumentation/radar/wp[4]/brg-offset</property>
+            </transformation>
+            <transformation>
+               <type>y-shift</type>
+               <property>instrumentation/radar/wp[4]/dist-norm</property>
+               <scale>160</scale>
+            </transformation>
+            <transformation>
+                <type>rotation</type>
+                <property>instrumentation/radar/wp[4]/brg-offset</property>
+                <scale>-1.0</scale>
+            </transformation>
+          </transformations>
+        </layer>
         
+        <layer>
+          <condition>
+                <property>instrumentation/radar/wp[5]/valid</property>
+                <value>1</value>
+            </condition>
+          <name>wp5</name>
+          <w>10</w>
+          <h>10</h>
+          <texture>
+            <path>Aircraft/A380/Models/Instruments/MFD/airbus_symbols.png</path>
+            <x1>0.540</x1>
+            <y1>0.900</y1>
+            <x2>0.590</x2>
+            <y2>0.950</y2>
+          </texture>
+          <transformations>
+            <transformation>
+               <type>y-shift</type>
+               <offset>-78</offset>
+            </transformation>
+            <transformation>
+                <type>rotation</type>
+                <property>instrumentation/radar/wp[5]/brg-offset</property>
+            </transformation>
+            <transformation>
+               <type>y-shift</type>
+               <property>instrumentation/radar/wp[5]/dist-norm</property>
+               <scale>160</scale>
+            </transformation>
+            <transformation>
+                <type>rotation</type>
+                <property>instrumentation/radar/wp[5]/brg-offset</property>
+                <scale>-1.0</scale>
+            </transformation>
+          </transformations>
+        </layer>
+        
+        
+        <!-- ref navaid RH NAV2 -->
         <layer>
           <condition>
                 <property>instrumentation/radar/navaid-valid</property>
@@ -1364,19 +1439,19 @@
                 <value>1</value>
             </condition>
           <name>airport0</name>
-          <w>12</w>
-          <h>12</h>
+          <w>9.5</w>
+          <h>25</h>
           <texture>
             <path>Aircraft/A380/Models/Instruments/MFD/airbus_symbols.png</path>
-            <x1>0.460</x1>
-            <y1>0.890</y1>
-            <x2>0.537</x2>
-            <y2>0.960</y2>
+            <x1>0.450</x1>
+            <y1>0.370</y1>
+            <x2>0.530</x2>
+            <y2>0.610</y2>
           </texture>
           <transformations>
             <transformation>
                <type>y-shift</type>
-               <offset>-78</offset>
+               <offset>-82</offset>
             </transformation>
             <transformation>
                 <type>rotation</type>
@@ -1406,9 +1481,9 @@
           <texture>
             <path>Aircraft/A380/Models/Instruments/MFD/airbus_symbols.png</path>
             <x1>0.460</x1>
-            <y1>0.890</y1>
-            <x2>0.537</x2>
-            <y2>0.960</y2>
+            <y1>0.380</y1>
+            <x2>0.540</x2>
+            <y2>0.575</y2>
           </texture>
           <transformations>
             <transformation>
@@ -1443,9 +1518,9 @@
           <texture>
             <path>Aircraft/A380/Models/Instruments/MFD/airbus_symbols.png</path>
             <x1>0.460</x1>
-            <y1>0.890</y1>
-            <x2>0.537</x2>
-            <y2>0.960</y2>
+            <y1>0.380</y1>
+            <x2>0.540</x2>
+            <y2>0.575</y2>
           </texture>
           <transformations>
             <transformation>
@@ -1480,9 +1555,9 @@
           <texture>
             <path>Aircraft/A380/Models/Instruments/MFD/airbus_symbols.png</path>
             <x1>0.460</x1>
-            <y1>0.890</y1>
-            <x2>0.537</x2>
-            <y2>0.960</y2>
+            <y1>0.380</y1>
+            <x2>0.540</x2>
+            <y2>0.575</y2>
           </texture>
           <transformations>
             <transformation>
@@ -1517,9 +1592,9 @@
           <texture>
             <path>Aircraft/A380/Models/Instruments/MFD/airbus_symbols.png</path>
             <x1>0.460</x1>
-            <y1>0.890</y1>
-            <x2>0.537</x2>
-            <y2>0.960</y2>
+            <y1>0.380</y1>
+            <x2>0.540</x2>
+            <y2>0.575</y2>
           </texture>
           <transformations>
             <transformation>
@@ -1554,9 +1629,9 @@
           <texture>
             <path>Aircraft/A380/Models/Instruments/MFD/airbus_symbols.png</path>
             <x1>0.460</x1>
-            <y1>0.890</y1>
-            <x2>0.537</x2>
-            <y2>0.960</y2>
+            <y1>0.380</y1>
+            <x2>0.540</x2>
+            <y2>0.575</y2>
           </texture>
           <transformations>
             <transformation>
@@ -1591,9 +1666,9 @@
           <texture>
             <path>Aircraft/A380/Models/Instruments/MFD/airbus_symbols.png</path>
             <x1>0.460</x1>
-            <y1>0.890</y1>
-            <x2>0.537</x2>
-            <y2>0.960</y2>
+            <y1>0.380</y1>
+            <x2>0.540</x2>
+            <y2>0.575</y2>
           </texture>
           <transformations>
             <transformation>
@@ -1628,9 +1703,9 @@
           <texture>
             <path>Aircraft/A380/Models/Instruments/MFD/airbus_symbols.png</path>
             <x1>0.460</x1>
-            <y1>0.890</y1>
-            <x2>0.537</x2>
-            <y2>0.960</y2>
+            <y1>0.380</y1>
+            <x2>0.540</x2>
+            <y2>0.575</y2>
           </texture>
           <transformations>
             <transformation>
@@ -1665,9 +1740,9 @@
           <texture>
             <path>Aircraft/A380/Models/Instruments/MFD/airbus_symbols.png</path>
             <x1>0.460</x1>
-            <y1>0.890</y1>
-            <x2>0.537</x2>
-            <y2>0.960</y2>
+            <y1>0.380</y1>
+            <x2>0.540</x2>
+            <y2>0.575</y2>
           </texture>
           <transformations>
             <transformation>
@@ -1702,9 +1777,9 @@
           <texture>
             <path>Aircraft/A380/Models/Instruments/MFD/airbus_symbols.png</path>
             <x1>0.460</x1>
-            <y1>0.890</y1>
-            <x2>0.537</x2>
-            <y2>0.960</y2>
+            <y1>0.380</y1>
+            <x2>0.540</x2>
+            <y2>0.575</y2>
           </texture>
           <transformations>
             <transformation>
@@ -1739,9 +1814,9 @@
           <texture>
             <path>Aircraft/A380/Models/Instruments/MFD/airbus_symbols.png</path>
             <x1>0.460</x1>
-            <y1>0.890</y1>
-            <x2>0.537</x2>
-            <y2>0.960</y2>
+            <y1>0.380</y1>
+            <x2>0.540</x2>
+            <y2>0.575</y2>
           </texture>
           <transformations>
             <transformation>

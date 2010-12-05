@@ -89,21 +89,23 @@ srsFlapTarget = [263.0, 222.0, 210.0, 196.0, 182.0];   #another copy in system.n
 flapPos       = [0, 0.2424, 0.5151, 0.7878, 1.0];
 
 trace = 1;
-version = "1.1.0";
+version = "1.1.7";
 
 strobe_switch = props.globals.getNode("/controls/switches/strobe", 0);
 aircraft.light.new("sim/model/A380/lighting/strobe", [0.05, 1.2], strobe_switch);
 beacon_switch = props.globals.getNode("/controls/lighting/beacon", 0);
 aircraft.light.new("sim/model/A380/lighting/beacon", [0.05, 1.25], beacon_switch);
 
+ewdChecklist = TextRegion.new(5, 50, "/instrumentation/ewd/checklists");
+
 
 
 init_controls = func {
-setprop("/instrumentation/mk-viii/serviceable","true");
-setprop("/instrumentation/mk-viii/configuration-module/category-1","254");
-setprop("/instrumentation/gps/wp/wp/waypoint-type","airport");
-setprop("/instrumentation/gps/wp/wp/ID",getprop("/sim/tower/airport-id"));
-setprop("/instrumentation/gps/serviceable","true");
+#setprop("/instrumentation/mk-viii/serviceable","true");
+##setprop("/instrumentation/mk-viii/configuration-module/category-1","254");
+#setprop("/instrumentation/gps/wp/wp/waypoint-type","airport");
+#setprop("/instrumentation/gps/wp/wp/ID",getprop("/sim/tower/airport-id"));
+#setprop("/instrumentation/gps/serviceable","true");
 setprop("/engines/engine[0]/fuel-flow_pph",0.0);
 setprop("/engines/engine[1]/fuel-flow_pph",0.0);
 setprop("/engines/engine[2]/fuel-flow_pph",0.0);
@@ -160,7 +162,7 @@ fuel_density=getprop("/consumables/fuel/tank[0]/density-ppg");
 setprop("/surface-positions/speedbrake-pos-norm",0.0);
 setprop("/instrumentation/clock/ET-min",0);
 setprop("/instrumentation/clock/ET-hr",0);
-setprop("/instrumentation/mk-viii/speaker/volume",5);
+##setprop("/instrumentation/mk-viii/speaker/volume",5);
 setprop("/instrumentation/wxradar/display-mode",2);   #is 'arc'
 
 #payload - Crew, PAX, Cargo
@@ -178,11 +180,12 @@ DOORS.doorsystem.forwardCargoDoor.open();
 DOORS.doorsystem.paxLeftLow1Door.open();
 DOORS.doorsystem.paxLeftUp1Door.open();
 
+settimer(update_systems,0);
 setprop("/systems/electrical/apu-test",0);
 print("Aircraft systems initialised");
 }
 
-reset_et = func{
+reset_et = func {
   et_base = getprop("/sim/time/elapsed-sec");
   et_min_start = et_base;
   et_hr=0.0;
@@ -191,11 +194,11 @@ reset_et = func{
 
 # ESTIMATED TIME CALCULATIONS 
 
-update_radar = func{
+update_radar = func {
   var true_heading = getprop("/orientation/heading-deg");
   var mag_heading  = getprop("orientation/heading-magnetic-deg");
   var myAlt = getprop("/position/altitude-ft");
-  var currentPos= geo.Coord.new();
+  var currentPos = geo.Coord.new();
   currentPos.set_latlon(getprop("/position/latitude-deg"), getprop("/position/longitude-deg"), getprop("/position/altitude-ft"));
 
   ## set NAV[1] (R VOR) to always be our ref navaid
@@ -210,26 +213,41 @@ update_radar = func{
   ## plot AI aircraft on radar
   ##
   ai_craft = props.globals.getNode("/ai/models").getChildren("aircraft");
+  var aiPos = 0;
   for(i=0; i<size(ai_craft);i=i+1) {
-    tgt_offset=getprop("/ai/models/aircraft[" ~ i ~ "]/radar/bearing-deg");
-    if(tgt_offset == nil) {
-      tgt_offset = 0.0;
+    var inRange = getprop("/ai/models/aircraft["~i~"]/radar/in-range");
+    setprop("instrumentation/radar/ai["~aiPos~"]/valid",0);
+    setprop("instrumentation/radar/ai["~aiPos~"]/brg-offset",0);
+    setprop("instrumentation/radar/ai["~aiPos~"]/norm-dist",0);
+    setprop("instrumentation/radar/ai["~aiPos~"]/diff-alt-fl",0);
+    setprop("instrumentation/radar/ai["~aiPos~"]/callsign","");
+    if (inRange == 1) {
+      tgt_offset=getprop("/ai/models/aircraft[" ~ i ~ "]/radar/bearing-deg");
+      if(tgt_offset == nil) {
+        tgt_offset = 0.0;
+      }
+      tgt_offset -= true_heading;
+      if (tgt_offset < 0){
+        tgt_offset = 360-tgt_offset;
+      }
+      if (tgt_offset > 360){
+        tgt_offset -=360;
+      }
+      setprop("/instrumentation/radar/ai[" ~ aiPos ~ "]/brg-offset",tgt_offset);
+      test_dist=getprop("/instrumentation/radar/range");
+      test1_dist = getprop("/ai/models/aircraft[" ~ i ~ "]/radar/range-nm");
+      if(test1_dist == nil) {
+        test1_dist=0.0;
+      }
+      norm_dist = (1 / test_dist) * test1_dist;
+      setprop("/instrumentation/radar/ai[" ~ aiPos ~ "]/norm-dist", norm_dist);
+      var aiAlt = getprop("ai/models/aircraft["~i~"]/position/altitude-ft");
+      var diffAlt = (myAlt-aiAlt)/100;
+      setprop("/instrumentation/radar/ai["~aiPos~"]/diff-alt-fl", diffAlt);
+      setprop("/instrumentation/radar/ai["~aiPos~"]/valid",1);
+      setprop("/instrumentation/radar/ai["~aiPos~"]/callsign", getprop("/ai/models/aircraft["~i~"]/callsign"));
+      aiPos = aiPos + 1;
     }
-    tgt_offset -= true_heading;
-    if (tgt_offset < -180){
-      tgt_offset +=360;
-    }
-    if (tgt_offset > 180) {
-      tgt_offset -=360;
-    }
-    setprop("/instrumentation/radar/ai[" ~ i ~ "]/brg-offset",tgt_offset);
-    test_dist=getprop("/instrumentation/radar/range");
-    test1_dist = getprop("/ai/models/aircraft[" ~ i ~ "]/radar/range-nm");
-    if(test1_dist == nil) {
-      test1_dist=0.0;
-    }
-    norm_dist = (1 / test_dist) * test1_dist;
-    setprop("/instrumentation/radar/ai[" ~ i ~ "]/norm-dist", norm_dist);
   }
 
   ## plot multiplayer aircraft
@@ -256,7 +274,7 @@ update_radar = func{
       }
       ###test_dist=getprop("/instrumentation/radar/range");
       test1_dist = getprop("/ai/models/multiplayer[" ~ i ~ "]/radar/range-nm");
-      if(test1_dist == nil){
+      if(test1_dist == nil) {
         test1_dist=0.0;
       }
       norm_dist= (1 / radarRange) * test1_dist;
@@ -281,7 +299,7 @@ update_radar = func{
     var wpDist = 9999;
     var wpLat = getprop("/autopilot/route-manager/route/wp["~i~"]/latitude-deg");
     var wpLon = getprop("/autopilot/route-manager/route/wp["~i~"]/longitude-deg");
-    var wpId     = getprop("/autopilot/route-manager/route/wp["~i~"]/id");
+    var wpId  = getprop("/autopilot/route-manager/route/wp["~i~"]/id");
     if (wpLat != nil and wpLon != nil) {
       var wpPos = geo.Coord.new();
       wpPos.set_latlon(wpLat, wpLon, 0);
@@ -313,7 +331,7 @@ update_radar = func{
       dist.setDoubleValue(wpDist/radarRange);
       var id = base.getNode("id",1);
       id.setValue(wpId);
-    }    
+    }
   }
   if (wpCnt < radarLastCnt) {
     for(i=wpCnt;i<=radarLastCnt;i=i+1) {
@@ -345,9 +363,10 @@ update_radar = func{
     if (tgt_offset > 360) {
       tgt_offset -=360;
     }
-    if (navDist < radarRange) {
+    var navaidId = getprop("/instrumentation/gps/ref-navaid/id");
+    if (navDist < radarRange and navaidId != '') {
       setprop("/instrumentation/radar/navaid-valid",1);
-      setprop("/instrumentation/radar/navaid-id", getprop("/instrumentation/gps/ref-navaid/id"));
+      setprop("/instrumentation/radar/navaid-id", navaidId);
     } else {
       setprop("/instrumentation/radar/navaid-valid",0);
       setprop("/instrumentation/radar/navaid-id", "");
@@ -445,15 +464,19 @@ update_radar = func{
         print("WARN: Flap overspeed, retracting flaps!");
         flapConfig -= 1;
         #var newFlapPos = flapPos[flapConfig];
-        print("new flap config: "~flapConfig);
-        #setprop("/controls/flight/flaps",newFlapPos);
+        #print("new flap config: "~flapConfig);
+        setprop("/instrumentation/ewd/flap-overspeed",1);
+      } else {
+        if (getprop("/instrumentation/ewd/flap-overspeed") == 1) {
+          setprop("/instrumentation/ewd/flap-overspeed",0);
+        }
       }
     }
   }
   var fobLbs = getprop("/fdm/jsbsim/propulsion/total-fuel-lbs");
   var fobKg  = fobLbs*0.45359237;
   setprop("/consumables/fuel/total-fuel-lbs",fobLbs);
-  setprop("/consumables/fuel/total-fuel-kg",fobKg);
+  setprop("/consumables/fuel/total-fuel-kg", fobKg);
   var cgX    = getprop("/fdm/jsbsim/inertia/cg-x-in");
   var gwcg   = (1629.615473-cgX);
   setprop("/fdm/jsbsim/inertia/gwcg",gwcg);
@@ -476,10 +499,7 @@ update_radar = func{
    setprop("/velocities/Mb", Mb);
    setprop("/velocities/Mra", Mra);
 
-
-   ##############
    #   update fuel tank KG weight
-   ##############
    var density = getprop("/consumables/fuel/tank/density-kgpl");
    var tanks = props.globals.getNode("/consumables/fuel").getChildren("tank");
    for(i=0; i<size(tanks);i=i+1) {
@@ -487,10 +507,8 @@ update_radar = func{
      var levelLbs = tank.getChild("level-lbs").getValue();
      tank.getChild("level-kg",0,1).setValue(levelLbs*density);
    }
-  
-
   settimer(update_radar, 1.0);
-} 
+}
 
 
 var convertKtMach = func(kts) {
@@ -553,25 +571,59 @@ var convertKtMach = func(kts) {
    ##var cfturb = 0.455/math.pow((Math.log(reynolds)/Math.log(10)),2.58);
    ##var cflam = 1.328/math.sqrt(reynolds);
    return machVal;
-
-
 }
 
+
+# update EWD checklists
+update_ewd = func {
+  var flt_mode = getprop("/instrumentation/ecam/flight-mode");
+  if (getprop("/controls/switches/seat-belt") == 0 and  flt_mode < 10) {
+    ewdChecklist.append("SEAT BELTS");
+  }
+  if (getprop("/controls/switches/seat-belt") == 1 and  flt_mode > 11) {
+    ewdChecklist.append("SEAT BELTS");
+  }
+  if (getprop("/controls/switches/smoking") == 0 and flt_mode < 8) {
+    ewdChecklist.append("NO SMOKING");
+  }
+  if (getprop("/controls/gear/brake-parking") == 1) {
+    ewdChecklist.append("PARK BRAKE ON");
+  }
+  if (getprop("/controls/engines/engine[4]/bleed") == 1) {
+    ewdChecklist.append("APU BLEED");
+  }
+  if (flt_mode > 1 and flt_mode < 5 and getprop("/controls/flight/flaps") < 0.01) {
+    ewdCheclist.append("FLAP CONFIG");
+  }
+  if (getprop("/instrumentation/ecam/egt_limit_arm") == 1) {
+      ewdCheclist.append("EGT OVERLIMIT");
+  }
+  if (getprop("/instrumentation/ewd/flap-overspeed") == 1) {
+    ewdChecklist.append("FLAP OVERSPEED");
+  }
+  if (flt_mode == 7 and getprop("/controls/gear/gear-down") == 1) {
+    ewdChecklist.append("GEARS");
+  }
+  ewdChecklist.reset();
+  settimer(update_ewd, 2);
+}
+
+
 # UPDATE CLOCK 
-update_clock = func{
+update_clock = func {
   sec = getprop("/sim/time/elapsed-sec") - et_min_start;
   if(sec >= 60.0){et_min += 1;
-  et_min_start = getprop("/sim/time/elapsed-sec");
+    et_min_start = getprop("/sim/time/elapsed-sec");
   }
   if(et_min ==60){et_min = 0; et_hr += 1;}
 
   etmin = props.globals.getNode("/instrumentation/clock/ET-min");
   if (etmin !=nil) {
-  etmin.setIntValue(et_min);
+    etmin.setIntValue(et_min);
   }
   ethr = props.globals.getNode("/instrumentation/clock/ET-hr");
   if (ethr !=nil) {
-  ethr.setIntValue(et_hr);
+    ethr.setIntValue(et_hr);
   }
 }
 
@@ -697,7 +749,7 @@ update_engines = func {
     setprop("/instrumentation/ecam/flight-mode",flt_mode);
   }
 
-settimer(update_engines, 0.60);  
+  settimer(update_engines, 0.60);  
 }
 
 check_acquire_mode = func {
@@ -754,7 +806,7 @@ trim_fuel_tanks = func {
     tank = getprop("/consumables/fuel/tank["~t1~"]/level-lbs");
     # reserve 1000kg in feed for pump
 
-    if (tank < 1000) {  
+    if (tank < 1000) { 
       for(factor = 1; factor != 3;factor=factor+1) {
         t2 = 2+(factor*2);
         if (getprop("/consumables/fuel/tank["~t2~"]/level-lbs") > 10) {
@@ -800,7 +852,8 @@ start_apu = func {
   if (n2 > 50) {
     tracer("stop APU ignition");
     setprop("/controls/engines/engine[4]/ignition",0);
-    #setprop("/controls/engines/engine[4]/starter",0);
+    setprop("/controls/engines/engine[4]/starter",0);
+    setprop("/controls/engines/engine[4]/bleed",1);
     setprop("/engines/engine[4]/off-start-run",2);
     setprop("/controls/electric/engine[4]/generator", 1);
     setprop("/controls/electric/engine[4]/bus-tie", 1);
@@ -904,10 +957,9 @@ update_systems = func {
   var grossWgtKg    = jsbsimGrossWgt*0.45359237;
   setprop("/fdm/jsbsim/inertia/weight-kg",grossWgtKg);
 
-
-settimer(update_systems,0.5);
+  settimer(update_systems,0.5);
 }
-settimer(update_systems,0);
+
 
 update_metric = func {
   var posAltitudeFt = getprop("/position/altitude-ft");
@@ -949,7 +1001,7 @@ revert_sd = func {
 update_sd = func {
   flt_mode = getprop("/instrumentation/ecam/flight-mode");
   setprop("/instrumentation/ecam/flight-mode", flt_mode);
-};
+}
 
 var stepSpeedbrake = func(step) {
     if(props.globals.getNode("/sim/spoilers") != nil) {
@@ -982,14 +1034,16 @@ setlistener("/sim/signals/fdm-initialized", func {
      setprop("/instrumentation/ecam/page","door");
  update_engines();
  update_metric();
+ settimer(update_radar,5);
+ update_ewd();
 });
 
 
 # wait for master avionics to be on to start radar
-setlistener("/controls/switches/master-avionics", func(n) {
-  #print("Aircraft awake now! - "~n.getValue());
-  #update_radar();
-});
+#setlistener("/controls/switches/master-avionics", func(n) {
+#  #print("Aircraft awake now! - "~n.getValue());
+#  #update_radar();
+#});
 
 # 
 
@@ -1188,12 +1242,13 @@ setlistener("/controls/APU/run",func(n) {
     setprop("/engines/engine[4]/off-start-run",1);
     #setprop("/controls/engines/engine[4]/cutoff",1);
     ##setprop("/controls/engines/engine[4]/bleed",1);
-    setprop("/controls/engines/engine[4]/starter","true");
+    setprop("/controls/engines/engine[4]/starter", 1);
   }
   if (apu_req == 0 and apu_run == 2) {
     setprop("/controls/engines/engine[4]/cutoff",1);
     setprop("/controls/engines/engine[4]/ignition",0);
     setprop("/controls/engines/engine[4]/starter",0);
+    setprop("/controls/engines/engine[4]/bleed",0);
     setprop("/instrumentation/ecam/synoptic","apu");
     setprop("/instrumentation/ecam/page","apu");
   }
@@ -1228,4 +1283,3 @@ setlistener("/instrumentation/efis/baro-std-mode", func(n) {
 });
 
 settimer(init_controls, 0);
-settimer(update_radar,5);

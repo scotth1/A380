@@ -69,7 +69,7 @@ SPD_THRDES=7;
 SPD_THRIDL=8;
 
 # working memory
-trace = 1;
+trace = 0;
 
 
 
