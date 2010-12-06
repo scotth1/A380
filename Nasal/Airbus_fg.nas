@@ -1350,8 +1350,8 @@ update_mode = func {
         }
     }
 
-    var nextWpAlt = getprop("/autopilot/route-manager/route/wp[0]/altitude-ft");
-    ##var nextWpAlt = getprop("/instrumentation/gps/wp/wp[1]/altitude-ft");
+    ##var nextWpAlt = getprop("/autopilot/route-manager/route/wp[0]/altitude-ft");
+    var nextWpAlt = getprop("/instrumentation/gps/wp/wp[1]/altitude-ft");
     var descentAlt = getprop("/instrumentation/afs/thrust-descent-alt");
     var cruiseAlt  = getprop("/instrumentation/afs/thrust-cruise-alt");
     ###var cruiseAlt  = getprop("/instrumentation/mcdu/CRZ_FL");
@@ -1365,16 +1365,16 @@ update_mode = func {
  
     var distToTD = getprop("/autopilot/route-manager/wp[0]/dist");
     var nextId   = getprop("/instrumentation/gps/wp/wp[1]/ID");
-    if (nextWpAlt == descentAlt or nextId == "T/D") {
-      tracer("[update_mode] distToWp: "~distToTD~", nextWpAlt: "~nextWpAlt~", descentAlt: "~descentAlt~", cruiseAlt: "~cruiseAlt~", curAlt: "~curAlt~", managedVert: "~managedVert);
-    }
-    if (nextWpAlt == descentAlt and vnav == VNAV_ALTCRZ and distToTD < 8) {
+    #if (nextWpAlt == descentAlt or nextId == "T/D") {
+    #  tracer("[update_mode] distToWp: "~distToTD~", nextWpAlt: "~nextWpAlt~", descentAlt: "~descentAlt~", cruiseAlt: "~cruiseAlt~", curAlt: "~curAlt~", managedVert: "~managedVert);
+    #}
+    if (nextId == "T/D" and vnav == VNAV_ALTCRZ and distToTD < 5 and getprop("/instrumentation/flightdirector/vnav-arm") == VNAV_OFF) {
       var desMach = getprop("/instrumentation/afs/des_mach");
       setprop("/instrumentation/flightdirector/vnav-arm", VNAV_DES);
       interpolate("/autopilot/settings/target-speed-mach", desMach, 20);
     }
 
-    if (nextWpAlt == descentAlt and vnav != VNAV_DES and vnav != VNAV_OPDES and managedVert == 1) {
+    if (nextId == "T/D" and vnav != VNAV_DES and vnav != VNAV_OPDES and managedVert == 1) {
       vnav = VNAV_DES;
       setprop("/instrumentation/flightdirector/vnav",vnav);  # DES
       setprop("/instrumentation/flightdirector/vnav-arm", VNAV_OFF); 

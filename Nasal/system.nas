@@ -593,10 +593,10 @@ update_ewd = func {
     ewdChecklist.append("APU BLEED");
   }
   if (flt_mode > 1 and flt_mode < 5 and getprop("/controls/flight/flaps") < 0.01) {
-    ewdCheclist.append("FLAP CONFIG");
+    ewdChecklist.append("FLAP CONFIG");
   }
   if (getprop("/instrumentation/ecam/egt_limit_arm") == 1) {
-      ewdCheclist.append("EGT OVERLIMIT");
+      ewdChecklist.append("EGT OVERLIMIT");
   }
   if (getprop("/instrumentation/ewd/flap-overspeed") == 1) {
     ewdChecklist.append("FLAP OVERSPEED");
