@@ -15,7 +15,7 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-trace = 0;
+fms_trace = 0;
 
 
 ## mode constants
@@ -82,9 +82,9 @@ var AirbusFMS = {
 tracer : func(msg) {
   var timeStr = getprop("/sim/time/gmt-string");
   var curAltStr = getprop("/position/altitude-ft");
-  var curVnav    = me.afs.vnav.getValue();
-  var curLnav    = me.afs.lnav.getValue();
-  var curSpd     = me.afs.spd.getValue();
+  var curVnav    = getprop("/instrumentation/flightdirector/vnav");
+  var curLnav    = getprop("/instrumentation/flightdirector/lnav");
+  var curSpd     = getprop("/instrumentation/flightdirector/spd");
   var athrStr   = getprop("/instrumentation/flightdirector/at-on");
   var ap1Str     = getprop("/instrumentation/flightdirector/ap");
   var altHold = getprop("/autopilot/settings/target-altitude-ft");
@@ -93,9 +93,9 @@ tracer : func(msg) {
   if (curVnav == nil) curVnav = "0";
   if (curLnav == nil) curLnav = "0";
   if (curSpd  == nil) curSpd  = "0";
-  if (trace > 0) {
+  if (fms_trace > 0) {
     print("[AFMS] time: "~timeStr~" alt: "~curAltStr~", - "~msg);
-    if (trace > 1) {
+    if (fms_trace > 1) {
       print("[AFMS] vnav: "~me.afs.vertical_text[curVnav]~", lnav: "~me.afs.lateral_text[curLnav]~", spd: "~me.afs.spd_text[curSpd]);
     }
   }
@@ -126,7 +126,7 @@ tracer : func(msg) {
    ####
    evaluateManagedVNAV : func() {
      var retVNAV = VNAV_OFF;
-     tracer("evaluateManagedVNAV");
+     me.tracer("evaluateManagedVNAV");
      ##var curAlt = getprop("/instrumentation/altimeter/indicated-altitude-ft");
      var curAlt = getprop("/position/altitude-ft");
      var curFlightMode = getprop("/instrumentation/ecam/flight-mode");
@@ -149,29 +149,29 @@ tracer : func(msg) {
      if (altSelect == SELECTED_MODE or vsSelect == SELECTED_MODE) {
        bothSelect = SELECTED_MODE;
      }
-      tracer("bothSelect: "~bothSelect);
-      tracer("clbArm: "~clbArm);
-      tracer("spdMode: "~spdMode);
-      tracer("flapPos: "~flapPos);
+      me.tracer("bothSelect: "~bothSelect);
+      me.tracer("clbArm: "~clbArm);
+      me.tracer("spdMode: "~spdMode);
+      me.tracer("flapPos: "~flapPos);
        ## managed Speed Reference System mode
        if (curAlt < accAlt and clbArm == 0 and bothSelect == MANAGED_MODE and (spdMode == SPD_FLEX or spdMode == SPD_TOGA or spdMode == SPD_THRCLB) and flapPos > 0 ) {
          retVNAV = VNAV_SRS;
-         tracer("retVNAV = VNAV_SRS");
+         me.tracer("retVNAV = VNAV_SRS");
        }
        ## managed climb
        if (curAlt >= accAlt and curAlt < (crzAlt-100) and crzAcquire == 0) {
          if (lnavMode == LNAV_FMS) {
            retVNAV = VNAV_CLB;
-           tracer("retVNAV = VNAV_CLB");
+           me.tracer("retVNAV = VNAV_CLB");
          } else {
            retVNAV = VNAV_OPCLB;
-           tracer("retVNAV = VNAV_OPCLB");
+           me.tracer("retVNAV = VNAV_OPCLB");
          }
        }
        ## managed cruise alt
        if (curAlt > (crzAlt-1000) and bothSelect == MANAGED_MODE) {
          retVNAV = VNAV_ALTCRZ;
-         tracer("retVNAV = VNAV_ALTCRZ");
+         me.tracer("retVNAV = VNAV_ALTCRZ");
        }
        ## managed descend
        var wpLen = getprop("/autopilot/route-manager/route/num");
@@ -187,10 +187,10 @@ tracer : func(msg) {
          if(foundTD == 1 and curAlt > 400 and bothSelect == MANAGED_MODE) {
            if (lnavMode == LNAV_FMS) {
              retVNAV = VNAV_DES;
-             tracer("retVNAV = VNAV_DES");
+             me.tracer("retVNAV = VNAV_DES");
            } else {
              retVNAV = VNAV_OPDES;
-             tracer("retVNAV = VNAV_OPDES");
+             me.tracer("retVNAV = VNAV_OPDES");
            }
          }
        }

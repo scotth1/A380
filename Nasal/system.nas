@@ -88,8 +88,8 @@ CLmax = 2.4;
 srsFlapTarget = [263.0, 222.0, 210.0, 196.0, 182.0];   #another copy in system.nas
 flapPos       = [0, 0.2424, 0.5151, 0.7878, 1.0];
 
-trace = 1;
-version = "1.1.7";
+trace = 0;
+version = "1.1.8";
 
 strobe_switch = props.globals.getNode("/controls/switches/strobe", 0);
 aircraft.light.new("sim/model/A380/lighting/strobe", [0.05, 1.2], strobe_switch);
@@ -132,6 +132,7 @@ setprop("/instrumentation/ecam/synoptic","door");  # the page that should be dis
 setprop("/instrumentation/ecam/page","door");      # the current page displayed on SD
 setprop("/instrumentation/gear/wow",1);            # to capture WOW events better
 setprop("/instrumentation/ecam/egt_limit_arm",0.0);
+setprop("/instrumentation/ecam/to-data", 0);
 setprop("/instrumentation/mcdu/field-select",1); 
 ##setprop("/controls/engines/reverser-position",0.0);
 setprop("/controls/engines/engine[0]/master",0);
@@ -583,7 +584,7 @@ update_ewd = func {
   if (getprop("/controls/switches/seat-belt") == 1 and  flt_mode > 11) {
     ewdChecklist.append("SEAT BELTS");
   }
-  if (getprop("/controls/switches/smoking") == 0 and flt_mode < 8) {
+  if (getprop("/controls/switches/smoking") == 0 and flt_mode < 11) {
     ewdChecklist.append("NO SMOKING");
   }
   if (getprop("/controls/gear/brake-parking") == 1) {
@@ -592,8 +593,11 @@ update_ewd = func {
   if (getprop("/controls/engines/engine[4]/bleed") == 1) {
     ewdChecklist.append("APU BLEED");
   }
-  if (flt_mode > 1 and flt_mode < 5 and getprop("/controls/flight/flaps") < 0.01) {
+  if (flt_mode > 2 and flt_mode < 5 and getprop("/controls/flight/flaps") < 0.01) {
     ewdChecklist.append("FLAP CONFIG");
+  }
+  if (flt_mode > 1 and flt_mode < 8 and getprop("/instrumentation/ecam/to-data") != 1) {
+    ewdChecklist.append("T.O. DATA");
   }
   if (getprop("/instrumentation/ecam/egt_limit_arm") == 1) {
       ewdChecklist.append("EGT OVERLIMIT");
@@ -603,6 +607,16 @@ update_ewd = func {
   }
   if (flt_mode == 7 and getprop("/controls/gear/gear-down") == 1) {
     ewdChecklist.append("GEARS");
+  }
+  if (getprop("/controls/flight/speedbrake") > 0) {
+    ewdChecklist.append("SPEEDBRAKE");
+  }
+  var battVolts = getprop("/system/electrical/suppliers/battery");
+  if (battVolts == nil) {
+    battVolts = 28;
+  }
+  if (battVolts < 26) {
+    ewdChecklist.append("BATT LOW");
   }
   ewdChecklist.reset();
   settimer(update_ewd, 2);
@@ -672,6 +686,7 @@ update_engines = func {
     if (hpsi >= 50 and ign == 1 and e_ign == 1) {
          tracer("shut engine igniter");
          setprop("/controls/engines/engine["~e~"]/ignition",0);
+         setprop("/controls/engines/engine["~e~"]/generator",1);
          settimer(check_all_start, 10);
     }
     var eng_egtF = getprop("/engines/engine["~e~"]/egt_degf");
@@ -695,6 +710,15 @@ update_engines = func {
   if (apu_state == 2 and getprop("/engines/engine[4]/cutoff") == 1 and getprop("/engines/engine[4]/n2") < 50) {
     setprop("/engines/engine[4]/off-start-run",0);
     settimer(update_sd, 10);
+  }
+  var apuN2 = getprop("/engines/engine[4]/n2");
+  if (apuN2 == nil) {
+    apuN2 = 0.0;
+  }
+  if (apuN2 > 50) {
+    setprop("/controls/engines/engine[4]/bleed",1);
+  } else {
+    setprop("/controls/engines/engine[4]/bleed",0);
   }
   var apu_egtF = getprop("/engines/engine[4]/egt_degf");
   if (apu_egtF == nil) {
@@ -844,7 +868,7 @@ start_apu = func {
     setprop("/controls/engines/engine[4]/cutoff",0);
   }
   if (n2 > 25 and n2 < 50) {
-    #tracer("start APU ignition");
+    tracer("start APU ignition");
     setprop("/controls/engines/engine[4]/ignition",1);
     #setprop("/controls/engines/engine[4]/starter",0);
     #setprop("/controls/engines/engine[4]/bleed",1);
@@ -852,8 +876,7 @@ start_apu = func {
   if (n2 > 50) {
     tracer("stop APU ignition");
     setprop("/controls/engines/engine[4]/ignition",0);
-    setprop("/controls/engines/engine[4]/starter",0);
-    setprop("/controls/engines/engine[4]/bleed",1);
+    ##setprop("/controls/engines/engine[4]/starter",0);
     setprop("/engines/engine[4]/off-start-run",2);
     setprop("/controls/electric/engine[4]/generator", 1);
     setprop("/controls/electric/engine[4]/bus-tie", 1);

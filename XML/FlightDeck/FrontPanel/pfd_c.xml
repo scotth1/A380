@@ -44,8 +44,7 @@
            <value>9</value>
          </equals>
        </or>
-         <property>/instrumentation/nav/has-gs</property>
-         <property>/instrumentation/nav/in-range</property>
+         <property>/instrumentation/nav/gs-in-range</property>
      </and>
    </condition>
  </animation>
@@ -74,19 +73,19 @@
  <animation>
    <type>translate</type>
    <object-name>GSneedle</object-name>
-   <property>/instrumentation/nav/gs-needle-deflection</property>
+   <property>/instrumentation/nav/gs-needle-deflection-norm</property>
    <interpolation>
      <entry>
-       <ind> -10.0</ind>
-       <dep>-0.05</dep>
+       <ind> -1.0</ind>
+       <dep>-0.04</dep>
      </entry>
      <entry>
        <ind> 0.0</ind>
        <dep>0.0</dep>
      </entry>
      <entry>
-       <ind> 10.0</ind>
-       <dep>0.05</dep>
+       <ind> 1.0</ind>
+       <dep>0.04</dep>
      </entry>
   </interpolation>
   <!-- interpolation>
@@ -104,9 +103,9 @@
     </entry>
   </interpolation -->
   <axis>
-   <x>0</x>
+   <x>1</x>
    <y>0</y>
-   <z>1</z>
+   <z>0</z>
   </axis>
  </animation>
  
@@ -155,8 +154,22 @@
  <animation>
    <type>translate</type>
    <object-name>LOCneedle</object-name>
-   <property>/instrumentation/nav/heading-needle-deflection</property>
+   <property>/instrumentation/nav/heading-needle-deflection-norm</property>
    <interpolation>
+    <entry>
+      <ind>-1.0</ind>
+      <dep>-0.035</dep>
+    </entry>
+    <entry>
+      <ind>0.0</ind>
+      <dep>0.0</dep>
+    </entry>
+    <entry>
+      <ind>1.0</ind>
+      <dep>0.035</dep>
+    </entry>
+  </interpolation>
+   <!-- interpolation>
      <entry>
        <ind> -10.0</ind>
        <dep>-0.0253</dep>
@@ -169,7 +182,7 @@
        <ind> 10.0</ind>
        <dep>0.0253</dep>
      </entry>
-  </interpolation> 
+  </interpolation --> 
   <!-- interpolation>
      <entry>
        <ind> -10.0</ind>

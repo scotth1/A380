@@ -128,6 +128,9 @@
         <enabled type="bool">false</enabled>
        </dynamic>
      </view>
+     <view n="102">
+       <enabled type="bool">false</enabled>
+     </view>
      <chase-distance-m>-100</chase-distance-m> <!-- -75 -->
   
   <flaps>
@@ -338,7 +341,12 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
             </menu>
         </default>
     </menubar>
-
+    <instrumentation>
+    <mk-viii>
+       <name>mk-viii</name>
+       <number>0</number>
+    </mk-viii>
+  </instrumentation>
   </sim>
 
 <payload>
@@ -642,6 +650,20 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
      </mod-shift>
    </key>
 
+<key n="261">
+ <name>F5</name>
+ <repeatable type="bool">true</repeatable>
+ <mod-shift>
+  <desc>Reload autopilot configuration</desc>
+  <binding>
+   <command>nasal</command>
+   <script>
+    fgcommand('reinit', props.Node.new({ subsystem: "xml-autopilot" }));
+    print("xml-autopilot reinitialized!");
+   </script>
+  </binding>
+ </mod-shift>
+</key>
 
    
  </keyboard>
@@ -752,7 +774,7 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
               <category-4>   9 </category-4>  <!-- ALTITUDE_CALLOUTS -->
               <category-5>   0 </category-5>  <!-- AUDIO_MENU_SELECT -->
               <category-6>   1 </category-6>  <!-- TERRAIN_DISPLAY_SELECT -->
-              <category-7>   4 </category-7>  <!-- OPTIONS_SELECT_GROUP_1 -->
+              <category-7>  64 </category-7>  <!-- OPTIONS_SELECT_GROUP_1 -->
               <category-8>   2 </category-8>  <!-- RADIO_ALTITUDE_INPUT_SELECT -->
               <category-9>   3 </category-9>  <!-- NAVIGATION_INPUT_SELECT -->
               <category-10>  6 </category-10> <!-- ATTITUDE_INPUT_SELECT -->

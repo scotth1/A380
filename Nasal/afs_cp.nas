@@ -27,7 +27,7 @@
 
 hdg_vs_select=0;
 detent_repeat_time = 0.0;
-throttleRates = [0.0, 0.65, 0.90, 0.97];
+throttleRates = [0.0, 0.67, 0.90, 0.97];
 flexTempN1 = [96.6, 96.5, 96.5, 96.5, 96.4, 96.4, 96.4, 96.3, 96.3, 96.3, 96.1, 96.0, 95.8, 95.6, 95.5, 95.3, 95.2, 95.0, 94.9, 94.7, 94.5, 94.4, 94.2, 94.1, 93.9, 93.8, 93.6, 93.5, 93.3, 93.1, 93.0, 92.8, 92.7, 92.5, 92.4, 92.2, 92.1, 91.9, 91.7, 91.6, 91.4, 91.3, 91.1, 91.0, 90.8, 90.7, 90.5, 90.3, 90.2, 90.0, 89.9, 89.7, 89.6, 89.4, 89.3, 89.1, 88.9, 88.8, 88.6, 88.5, 88.3, 88.3, 88.2, 88.1, 88.0 ];
 
 timer = {
@@ -69,7 +69,8 @@ SPD_THRDES=7;
 SPD_THRIDL=8;
 
 # working memory
-trace = 0;
+afs_trace = 0;
+afs_version = "1.0.9";
 
 
 
@@ -91,16 +92,13 @@ tracer = func(msg) {
   if (curVnav == nil) curVnav = "0";
   if (curLnav == nil) curLnav = "0";
   if (curSpd  == nil) curSpd  = "0";
-  if (trace > 0) {
+  if (afs_trace > 0) {
     print("[afs] time: "~timeStr~" alt: "~curAltStr~", - "~msg);
-    if (trace > 1) {
+    if (afs_trace > 1) {
       ###print("[afs] vnav: "~vnavStr[curVnav]~", lnav: "~lnavStr[curLnav]~", spd: "~spdStr[curSpd]);
     }
   }
 }
-
-
-
 
 
 toggle_fd = func() {
@@ -651,7 +649,7 @@ toggle_thrust_detent = func(n) {
        setprop("/instrumentation/flightdirector/spd",SPD_THRCLB);
        var grossWgtKg = getprop("/fdm/jsbsim/inertia/weight-kg");
        if (grossWgtKg > 500000) {
-         newThrottle = 0.67;
+         newThrottle = 0.69;
        }
      }
      if (currDetent == 1 and curAlt >= crzAlt) {   # change to CL when at cruise alt
@@ -685,11 +683,13 @@ toggle_thrust_detent = func(n) {
        setprop("/instrumentation/flightdirector/spd",SPD_THRIDL);
      }
      for(e=0; e <4; e=e+1) {
-       interpolate("/controls/engines/engine["~e~"]/thrust-lever", throttleRates[currDetent], 1);
+       ##interpolate("/controls/engines/engine["~e~"]/thrust-lever", throttleRates[currDetent], 1);
+       setprop("/controls/engines/engine["~e~"]/thrust-lever", throttleRates[currDetent]);
        var curTh = getprop("/controls/engines/engine["~e~"]/throttle");
        tracer("Current Throttle: "~curTh~", set new throttle: "~newThrottle~", engine: "~e~", throttleRate: "~throttleRates[currDetent]);       
        if (currDetent == 1 and n == -1) {
-         interpolate("/controls/engines/engine["~e~"]/throttle",newThrottle,5);
+         ##setprop("/controls/engines/engine["~e~"]/throttle",newThrottle);
+         interpolate("/controls/engines/engine["~e~"]/throttle",newThrottle, 10);
          tracer("interpolate engine: "~e~" down to newThrottle: "~newThrottle);
        } else {
          setprop("/controls/engines/engine["~e~"]/throttle",newThrottle);
@@ -851,3 +851,6 @@ var pow = func(x, y) {
 }
 
 
+setlistener("/sim/signals/fdm-initialized", func {
+  print("Airbus Auto Flight Control "~afs_version);
+});

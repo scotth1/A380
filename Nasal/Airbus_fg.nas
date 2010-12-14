@@ -67,8 +67,8 @@ lnavStr = ["off","HDG","TRK","LOC","NAV","RWY"];
 vnavStr = ["off","ALT(s)","V/S","OP CLB","FPA","OP DES","CLB","ALT CRZ","DES","G/S","SRS","LEVEL"];
 spdStr  = ["off","TOGA","FLEX","THR CLB","SPEED","MACH","CRZ","THR DES","THR IDL"];
 
-version="V1.1.4";
-trace=1;
+version="V1.1.5";
+trace=0;
 
 #trigonometric values for glideslope calculations
 FD_TAN3DEG = 0.052407779283;
@@ -258,6 +258,7 @@ setlistener("/sim/signals/fdm-initialized", func {
     setprop("/instrumentation/flightdirector/from-flag",0);
     setprop("/instrumentation/flightdirector/accel-arm",0.0);
     setprop("/instrumentation/flightdirector/climb-arm",0.0);
+    setprop("/instrumentation/flightdirector/past-td", 0);
     setprop("/instrumentation/afs/flex-throttle",0.0);
     setprop("/instrumentation/afs/V1",135);
     setprop("/instrumentation/afs/Vr",140);
@@ -538,6 +539,20 @@ calc_initial_track_params = func {
 #############################################################################
 # handle KC 290 Mode Controller inputs, and compute correct mode/settings
 #############################################################################
+
+
+setlistener("/autopilot/route-manager/current-wp", func(n) {
+  if (getprop("/instrumentation/flightdirector/past-td") == 0) {
+    tracer("check if past T/D");
+    for(var p = 0; p < getprop("/autopilot/route-manager/current-wp"); p=p+1) {
+      var id = getprop("/autopilot/route-manager/route/wp["~p~"]/id");
+      if (id == "T/D") {
+        setprop("/instrumentation/flightdirector/past-td",1);
+        tracer("Gone past T/D");
+      }
+    }
+  }
+});
 
 
 setlistener("/controls/autoflight/autopilot[0]/engage", func(n) {
@@ -891,10 +906,10 @@ setlistener("/instrumentation/flightdirector/spd", func(n) {
           setprop("/autopilot/locks/speed","speed-with-throttle");
         }
         var desMach = getprop("/instrumentation/afs/des_mach");
-        if (curAlt > 28000 and getprop("/autopilot/settings/target-speed-mach") > desMach) {
+        if (curAlt > 29000 and getprop("/autopilot/settings/target-speed-mach") > desMach) {
           interpolate("/autopilot/settings/target-speed-mach", desMach, 20);
         }
-        if (curAlt > 15000 and curAlt <= 28000 and getprop("/autopilot/settings/target-speed-kt") > 270) {
+        if (curAlt > 15000 and curAlt <= 29000 and getprop("/autopilot/settings/target-speed-kt") > 270) {
           interpolate("/autopilot/settings/target-speed-kt",270,90);    #was 270 in 90 SAH 2010-12-04
         }
         if (curAlt <12000 and getprop("/autopilot/settings/target-speed-kt") > 250 and spdDesArm2 == 0) {
@@ -1365,17 +1380,26 @@ update_mode = func {
  
     var distToTD = getprop("/autopilot/route-manager/wp[0]/dist");
     var nextId   = getprop("/instrumentation/gps/wp/wp[1]/ID");
-    #if (nextWpAlt == descentAlt or nextId == "T/D") {
+    var nextTD = 0;
+    if (nextId == "T/D" and nextTD == 0) {
+      nextTD = 1;
+      tracer("[update_mode] next WPT is T/D");
+    }
+    var pastTD = getprop("/instrumentation/flightdirector/past-td");
+    
+    #if (nextWpAlt == descentAlt or nextTD == 1) {
     #  tracer("[update_mode] distToWp: "~distToTD~", nextWpAlt: "~nextWpAlt~", descentAlt: "~descentAlt~", cruiseAlt: "~cruiseAlt~", curAlt: "~curAlt~", managedVert: "~managedVert);
     #}
-    if (nextId == "T/D" and vnav == VNAV_ALTCRZ and distToTD < 5 and getprop("/instrumentation/flightdirector/vnav-arm") == VNAV_OFF) {
+    if (nextTD == 1 and vnav == VNAV_ALTCRZ and distToTD < 4 and getprop("/instrumentation/flightdirector/vnav-arm") == VNAV_OFF) {
+      tracer("[update_mode] ARM DES - distToWp: "~distToTD~", nextWpAlt: "~nextWpAlt~", descentAlt: "~descentAlt~", cruiseAlt: "~cruiseAlt~", curAlt: "~curAlt~", managedVert: "~managedVert);
       var desMach = getprop("/instrumentation/afs/des_mach");
       setprop("/instrumentation/flightdirector/vnav-arm", VNAV_DES);
       interpolate("/autopilot/settings/target-speed-mach", desMach, 20);
     }
 
-    if (nextId == "T/D" and vnav != VNAV_DES and vnav != VNAV_OPDES and managedVert == 1) {
+    if (pastTD == 1 and vnav == VNAV_ALTCRZ and managedVert == 1) {
       vnav = VNAV_DES;
+      tracer("[update_mode] enable DES/THRDES - distToWp: "~distToTD~", nextWpAlt: "~nextWpAlt~", descentAlt: "~descentAlt~", cruiseAlt: "~cruiseAlt~", curAlt: "~curAlt~", managedVert: "~managedVert);
       setprop("/instrumentation/flightdirector/vnav",vnav);  # DES
       setprop("/instrumentation/flightdirector/vnav-arm", VNAV_OFF); 
       if (getprop("/instrumentation/flightdirector/spd") != SPD_THRDES) {
