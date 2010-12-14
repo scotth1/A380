@@ -7,7 +7,7 @@ name "ASIribbon"
 loc -0.000344567 0 0.00757819
 data 21
 glass_2 - Default.001
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/spd-tape.png"
+texture "Aircraft/A380/Textures/Panels/pfd/spd-tape.png"
 crease 30.000000
 numvert 4
 -0.081523 0.003013 -0.011317
@@ -33,7 +33,7 @@ name "ALTribbon"
 loc 2.23517e-06 0.003013 -0.108395
 data 21
 glass_2 - Default.001
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/alt-tape.png"
+texture "Aircraft/A380/Textures/Panels/pfd/alt-tape.png"
 crease 30.000000
 numvert 4
 -0.173657 0 -0.025269
@@ -59,7 +59,7 @@ name "horizon"
 loc -0.000344567 0.003013 0.00917348
 data 21
 glass_2 - Default.002
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/ati.png"
+texture "Aircraft/A380/Textures/Panels/pfd/ati.png"
 crease 30.000000
 numvert 4
 -0.172583 0 -0.120554
@@ -87,7 +87,7 @@ kids 5
 OBJECT poly
 name "alt_digit1"
 loc 0.0264196 0 -0.0635095
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/pfd2.png"
+texture "Aircraft/A380/Textures/Panels/pfd/pfd2.png"
 crease 45.000000
 numvert 4
 -0.00499354 0 0.00264534
@@ -106,7 +106,7 @@ kids 0
 OBJECT poly
 name "alt_digit2"
 loc 0.0264196 0 -0.0687808
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/pfd2.png"
+texture "Aircraft/A380/Textures/Panels/pfd/pfd2.png"
 crease 45.000000
 numvert 4
 0.00499354 0 0.00264534
@@ -125,7 +125,7 @@ kids 0
 OBJECT poly
 name "alt_digit3"
 loc 0.0264196 0 -0.073841
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/pfd2.png"
+texture "Aircraft/A380/Textures/Panels/pfd/pfd2.png"
 crease 45.000000
 numvert 4
 0.00499354 0 0.00264534
@@ -144,7 +144,7 @@ kids 0
 OBJECT poly
 name "alt_digit4"
 loc 0.026525 0 -0.078586
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/pfd2.png"
+texture "Aircraft/A380/Textures/Panels/pfd/pfd2.png"
 crease 45.000000
 numvert 4
 -0.00784004 0 0.00169648
@@ -163,7 +163,7 @@ kids 0
 OBJECT poly
 name "alt_digit5"
 loc 0.026525 0 -0.08217
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/pfd2.png"
+texture "Aircraft/A380/Textures/Panels/pfd/pfd2.png"
 crease 45.000000
 numvert 4
 0.00784007 0 0.00169653
@@ -182,7 +182,7 @@ kids 0
 OBJECT poly
 name "VS_scale"
 loc -0.127563 0.0036868 -0.148204
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/pfd2.png"
+texture "Aircraft/A380/Textures/Panels/pfd/pfd2.png"
 crease 45.000000
 numvert 4
 0.0566647 0 0.00585595
@@ -203,7 +203,7 @@ name "GSscale"
 loc -0.211645 0.00626495 -0.069631
 data 21
 glass_2 - Default.004
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/ati.png"
+texture "Aircraft/A380/Textures/Panels/pfd/ati.png"
 crease 30.000000
 numvert 4
 0.0456492 0 -0.0420058
@@ -229,7 +229,7 @@ name "LOCscale"
 loc 0.0146204 0.00590829 -0.00340151
 data 21
 glass_2 - Default.004
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/ati.png"
+texture "Aircraft/A380/Textures/Panels/pfd/ati.png"
 crease 30.000000
 numvert 4
 -0.0934019 0 -0.103913
@@ -255,7 +255,7 @@ name "PFD_Mask"
 loc -4.59775e-05 -0.000184637 -2.23517e-08
 data 17
 glass_2 - Default
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/pfd1.png"
+texture "Aircraft/A380/Textures/Panels/pfd/pfd1.png"
 crease 30.000000
 numvert 4
 -0.21 0.004231 -0.16
@@ -279,7 +279,7 @@ kids 0
 OBJECT poly
 name "LOCneedle"
 loc -0.0739199 0.00646657 -0.0757288
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/ati.png"
+texture "Aircraft/A380/Textures/Panels/pfd/ati.png"
 crease 180.000000
 numvert 4
 0.00561513 0 -0.00494666
@@ -303,7 +303,7 @@ kids 0
 OBJECT poly
 name "GSneedle"
 loc -0.126658 0.00788147 -0.11512
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/ati.png"
+texture "Aircraft/A380/Textures/Panels/pfd/ati.png"
 crease 180.000000
 numvert 4
 0.00401081 0 -0.00387712
