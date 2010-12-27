@@ -2,7 +2,8 @@
 # Jet Engine electrical system.
 
 
-battery = nil;
+battery1 = nil;
+battery2 = nil;
 alternator = nil;
 
 
@@ -21,11 +22,13 @@ load = 0.0;
 
 init_electrical = func {
     print("Initializing Electrical System");
-    battery = BatteryClass.new();
+    battery1 = BatteryClass.new(0);
+    battery2 = BatteryClass.new(1);
     alternator = AlternatorClass.new();
     setprop("/controls/switches/master-avionics", 1);
-    setprop("/controls/electric/battery-switch", 1.0);
-    setprop("/controls/electric/external-power", 0);
+    setprop("/controls/electric/battery[0]/bus-tie", 1);
+    setprop("/controls/electric/battery[1]/bus-tie", 1);
+    setprop("/controls/electric/external/bus-tie", 1);
     setprop("/controls/electric/engine[0]/generator", 1);
     setprop("/controls/electric/engine[1]/generator", 1);
     setprop("/controls/electric/engine[2]/generator", 1);
@@ -39,13 +42,14 @@ init_electrical = func {
 
 BatteryClass = {};
 
-BatteryClass.new = func {
+BatteryClass.new = func(unit) {
     obj = { parents : [BatteryClass],
             ideal_volts : 24.0,
             ideal_amps : 30.0,
             amp_hours : 12.75,
             charge_percent : 1.0,
             charge_amps : 12.0 };   ## 7.0
+            obj.unit = unit;
     return obj;
 }
 
@@ -60,7 +64,7 @@ BatteryClass.apply_load = func( amps, dt ) {
         me.charge_percent = 1.0;
     }
     var battAmps = me.amp_hours * me.charge_percent;
-    setprop("/systems/electrical/suppliers/batt/amps", battAmps);
+    setprop("/systems/electrical/suppliers/batt["~me.unit~"]/amps", battAmps);
     return battAmps
 }
 
@@ -70,7 +74,7 @@ BatteryClass.get_output_volts = func {
     tmp = -(3.0 * x - 1.0);
     factor = (tmp*tmp*tmp*tmp*tmp + 32) / 32;
     var batVolts = me.ideal_volts * factor;
-    setprop("/systems/electrical/suppliers/batt/volts", batVolts);
+    setprop("/systems/electrical/suppliers/batt["~me.unit~"]/volts", batVolts);
     return batVolts;
 }
 
@@ -150,7 +154,14 @@ update_electrical = func {
 }
 
 update_virtual_bus = func( dt ) {
-    battery_volts = battery.get_output_volts();
+    var battery1_volts = 0.0;
+    var battery2_volts = 0.0;
+    if (getprop("/controls/electric/battery[0]/bus-tie") == 1) {
+      battery1_volts = battery1.get_output_volts();
+    }
+    if (getprop("/controls/electric/battery[1]/bus-tie") == 1) {
+      battery2_volts = battery2.get_output_volts();
+    }
     alternator0_volts = alternator.get_output_volts(0);
     alternator1_volts = alternator.get_output_volts(1);
     alternator2_volts = alternator.get_output_volts(2);
@@ -158,7 +169,6 @@ update_virtual_bus = func( dt ) {
     external_volts = 0.0;
     load = 0.0;
 
-    master_bat  = getprop("/controls/electric/battery-switch");
     master_alt0 = getprop("/controls/electric/engine[0]/generator");
     master_alt1 = getprop("/controls/electric/engine[1]/generator");
     master_alt2 = getprop("/controls/electric/engine[2]/generator");
@@ -176,53 +186,110 @@ update_virtual_bus = func( dt ) {
 
 #APU generator
     a_volts = alternator.get_output_volts(4);
+    b_volts = alternator.get_output_volts(4);
     if (a_volts < 0) {
       a_volts = 0;
     }
-    setprop("/engines/engine[4]/volts",a_volts);
+    setprop("/engines/engine[4]/volts_a",a_volts);
+    setprop("/engines/engine[4]/volts_b",b_volts);
     if(getprop("/controls/electric/engine[4]/generator") == 1) {
       apu_volts = a_volts; 
     } else {
       apu_volts = 0;
     };
 
-    if ( master_bat == 1.0 ) {
-        bat_bus_volts = battery_volts;
+    if ( battery1_volts > bat_bus_volts) {
+        bat_bus_volts = battery1_volts;
         Lmain_bus_volts = bat_bus_volts;
         Rmain_bus_volts = bat_bus_volts;
         emerg_bus_volts = bat_bus_volts;
         power_source = "battery";
-    }else{
-      if ( master_bat == 2.0 ) {
-        emerg_bus_volts = battery_volts;
+    }
+    
+    if (battery2_volts > bat_bus_volts) {
+        bat_bus_volts = battery2_volts;
+        Lmain_bus_volts = bat_bus_volts;
+        Rmain_bus_volts = bat_bus_volts;
+        emerg_bus_volts = bat_bus_volts;
         power_source = "battery";
-      }
     }
 
-    if ( master_alt0 and (alternator0_volts > bat_bus_volts) ) {
-        Lmain_bus_volts = alternator0_volts+alternator2_volts;
-        #bat_bus_volts = alternator0_volts;
-        bat_bus_volts = Lmain_bus_volts;
+    if ( master_alt0 and (alternator0_volts > 110) ) {
+        Lmain_bus_volts = Lmain_bus_volts + alternator0_volts;
+        bat_bus_volts = Rmain_bus_volts + Lmain_bus_volts;
         power_source = "alternator";
+        setprop("/controls/electric/engine[0]/bus-tie", 1);
+    } else {
+        setprop("/controls/electric/engine[0]/bus-tie", 0);
     }
-    if ( master_alt1 and (alternator1_volts > bat_bus_volts) ) {
-        Rmain_bus_volts = alternator1_volts+alternator3_volts;
-        ##bat_bus_volts = alternator_volts;
-        bat_bus_volts = Rmain_bus_volts;
+    setprop("/engines/engine[0]/volts", alternator0_volts);
+
+    if ( master_alt2 and (alternator2_volts > 110) ) {
+        Lmain_bus_volts = Lmain_bus_volts + alternator2_volts;
+        bat_bus_volts = Rmain_bus_volts + Lmain_bus_volts;
         power_source = "alternator";
+        setprop("/controls/electric/engine[2]/bus-tie", 1);
+    } else {
+        setprop("/controls/electric/engine[2]/bus-tie", 0);
     }
+    setprop("/engines/engine[2]/volts", alternator2_volts);
+
+    if ( master_alt1 and (alternator1_volts > 110) ) {
+        Rmain_bus_volts = Rmain_bus_volts + alternator1_volts;
+        bat_bus_volts = Rmain_bus_volts + Lmain_bus_volts;
+        power_source = "alternator";
+        setprop("/controls/electric/engine[1]/bus-tie", 1);
+    } else {
+        setprop("/controls/electric/engine[1]/bus-tie", 0);
+    }
+    setprop("/engines/engine[1]/volts", alternator1_volts);
+
+    if ( master_alt3 and (alternator3_volts > 110) ) {
+        Rmain_bus_volts = Rmain_bus_volts + alternator3_volts;
+        bat_bus_volts = Rmain_bus_volts + Lmain_bus_volts;
+        power_source = "alternator";
+        setprop("/controls/electric/engine[3]/bus-tie", 1);
+    } else {
+        setprop("/controls/electric/engine[3]/bus-tie", 0);
+    }
+    setprop("/engines/engine[3]/volts", alternator3_volts);
+    
     if ( external_volts > bat_bus_volts ) {
         bat_bus_volts = external_volts;
         power_source = "external";
+        setprop("/controls/electric/external/bus-tie", 1);
+    } else {
+        setprop("/controls/electric/external/bus-tie", 0);
     }
+
     if ( master_apu and (apu_volts > bat_bus_volts) ) {
         if(rbus_tie) {Rmain_bus_volts = apu_volts;};
         if(lbus_tie) {Lmain_bus_volts = apu_volts;};
         bat_bus_volts = apu_volts;
         emerg_bus_volts = apu_volts;
         power_source = "apu";
+        setprop("/controls/electric/engine[4]/bus-tie", 1);
+    } else {
+        setprop("/controls/electric/engine[4]/bus-tie", 0);
     }
+
+    ## need to re-evaluate if battery is best power source
+    if (battery1_volts == bat_bus_volts) {
+      setprop("/controls/electric/battery[0]/bus-tie", 1);
+      power_source = "battery";
+    } else {
+      setprop("/controls/electric/battery[0]/bus-tie", 0);
+    }
+    if (battery2_volts == bat_bus_volts) {
+      setprop("/controls/electric/battery[1]/bus-tie", 1);
+      power_source = "battery";
+    } else {
+      setprop("/controls/electric/battery[1]/bus-tie", 0);
+    }
+
+    ## finally set property to show what selected power source is
     setprop("/systems/electrical/power-source", power_source);
+
 
     # left starter motor
     starter_switch = getprop("/controls/engines/engine[0]/starter");
@@ -257,17 +324,22 @@ update_virtual_bus = func( dt ) {
         if ( power_source == "battery" ) {
             ammeter = -load;
         } else {
-            ammeter = battery.charge_amps;
+            ammeter = battery1.charge_amps;
         }
     }
 
     # charge/discharge the battery
     if ( power_source == "battery" ) {
-        battery.apply_load( load, dt );
+        battery1.apply_load( load, dt );
+        battery2.apply_load( load, dt );
     } else {
-      ##print("recharge battery - dt: "~dt~", bat_bus_volts: "~bat_bus_volts~", battery_volts: "~battery_volts);
-      if ( bat_bus_volts > battery_volts ) {
-        battery.apply_load( -battery.charge_amps, dt );
+      if ( bat_bus_volts > battery1_volts ) {
+        #print("recharge battery #1 - dt: "~dt~", bat_bus_volts: "~bat_bus_volts~", battery_volts: "~battery1_volts);
+        battery1.apply_load( -battery1.charge_amps, dt );
+      }
+      if ( bat_bus_volts > battery2_volts ) {
+        #print("recharge battery #2 - dt: "~dt~", bat_bus_volts: "~bat_bus_volts~", battery_volts: "~battery2_volts);
+        battery2.apply_load( -battery2.charge_amps, dt );
       }
     }
 

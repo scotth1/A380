@@ -699,8 +699,6 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
     <cabin-lights type="double">0.8</cabin-lights>
     <map-lights type="double">0.0</map-lights>
     <master-panel type="bool">1</master-panel>
-    <smoking type="double">0</smoking>
-    <seat-belt type="double">0</seat-belt>
     <storm type="bool">1</storm>
   </switches>
   <engines>

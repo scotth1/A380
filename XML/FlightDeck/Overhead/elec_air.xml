@@ -46,6 +46,171 @@
 			<y-m>0.2475</y-m>
 		</offsets>
 	</model>
+	
+	<!-- APU bus tie -->
+    <animation>
+          <type>textranslate</type>
+          <object-name>APU_GENA</object-name>
+          <object-name>APU_GENB</object-name>
+          <property>/controls/electric/engine[4]/bus-tie</property>
+          <axis>
+              <x>0</x>
+              <y>0.6</y>
+              <z>1</z>
+          </axis>
+    </animation>
+    <animation>
+          <type>material</type>
+          <object-name>APU_GENA</object-name>
+          <object-name>APU_GENB</object-name>
+          <property>/controls/electric/engine[4]/bus-tie</property>
+          <factor-prop>/controls/electric/engine[4]/bus-tie</factor-prop>
+          <emission>
+                <red>0.0</red>
+                <green>0.2</green>
+                <blue>0.0</blue>
+          </emission>
+    </animation>
+    
+
+    
+    <!-- engine alternator bus ties -->
+    <animation>
+          <type>textranslate</type>
+          <object-name>DRIVE1_GEN2</object-name>
+          <property>/controls/electric/engine[0]/bus-tie</property>
+          <axis>
+              <x>0</x>
+              <y>0.6</y>
+              <z>1</z>
+          </axis>
+    </animation>
+    <animation>
+          <type>material</type>
+          <object-name>DRIVE1_GEN2</object-name>
+          <property>/controls/electric/engine[0]/bus-tie</property>
+          <factor-prop>/controls/electric/engine[0]/bus-tie</factor-prop>
+          <emission>
+                <red>0.0</red>
+                <green>0.2</green>
+                <blue>0.0</blue>
+          </emission>
+    </animation>
+    
+    <animation>
+          <type>textranslate</type>
+          <object-name>DRIVE2_GEN2</object-name>
+          <property>/controls/electric/engine[1]/bus-tie</property>
+          <axis>
+              <x>0</x>
+              <y>0.6</y>
+              <z>1</z>
+          </axis>
+    </animation>
+    <animation>
+          <type>material</type>
+          <object-name>DRIVE2_GEN2</object-name>
+          <property>/controls/electric/engine[1]/bus-tie</property>
+          <factor-prop>/controls/electric/engine[1]/bus-tie</factor-prop>
+          <emission>
+                <red>0.0</red>
+                <green>0.2</green>
+                <blue>0.0</blue>
+          </emission>
+    </animation>
+    
+    <animation>
+          <type>textranslate</type>
+          <object-name>DRIVE3_GEN2</object-name>
+          <property>/controls/electric/engine[2]/bus-tie</property>
+          <axis>
+              <x>0</x>
+              <y>0.6</y>
+              <z>1</z>
+          </axis>
+    </animation>
+    <animation>
+          <type>material</type>
+          <object-name>DRIVE3_GEN2</object-name>
+          <property>/controls/electric/engine[2]/bus-tie</property>
+          <factor-prop>/controls/electric/engine[2]/bus-tie</factor-prop>
+          <emission>
+                <red>0.0</red>
+                <green>0.2</green>
+                <blue>0.0</blue>
+          </emission>
+    </animation>
+    
+    <animation>
+          <type>textranslate</type>
+          <object-name>DRIVE4_GEN2</object-name>
+          <property>/controls/electric/engine[3]/bus-tie</property>
+          <axis>
+              <x>0</x>
+              <y>0.6</y>
+              <z>1</z>
+          </axis>
+    </animation>
+    <animation>
+          <type>material</type>
+          <object-name>DRIVE4_GEN2</object-name>
+          <property>/controls/electric/engine[3]/bus-tie</property>
+          <factor-prop>/controls/electric/engine[2]/bus-tie</factor-prop>
+          <emission>
+                <red>0.0</red>
+                <green>0.2</green>
+                <blue>0.0</blue>
+          </emission>
+    </animation>
+    
+    
+    <!-- battery bus ties -->
+    <animation>
+          <type>textranslate</type>
+          <object-name>BAT1</object-name>
+          <property>/controls/electric/battery[0]/bus-tie</property>
+          <axis>
+              <x>0</x>
+              <y>0.6</y>
+              <z>1</z>
+          </axis>
+    </animation>
+    <animation>
+          <type>material</type>
+          <object-name>BAT1</object-name>
+          <property>/controls/electric/battery[0]/bus-tie</property>
+          <factor-prop>/controls/electric/battery[0]/bus-tie</factor-prop>
+          <emission>
+                <red>0.0</red>
+                <green>0.2</green>
+                <blue>0.0</blue>
+          </emission>
+    </animation>
+    
+    <animation>
+          <type>textranslate</type>
+          <object-name>BAT2</object-name>
+          <property>/controls/electric/battery[1]/bus-tie</property>
+          <axis>
+              <x>0</x>
+              <y>0.6</y>
+              <z>1</z>
+          </axis>
+    </animation>
+    <animation>
+          <type>material</type>
+          <object-name>BAT2</object-name>
+          <property>/controls/electric/battery[1]/bus-tie</property>
+          <factor-prop>/controls/electric/battery[1]/bus-tie</factor-prop>
+          <emission>
+                <red>0.0</red>
+                <green>0.2</green>
+                <blue>0.0</blue>
+          </emission>
+    </animation>
+    
+    
 
 </PropertyList> 
  
+

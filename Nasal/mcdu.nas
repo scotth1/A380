@@ -117,6 +117,11 @@ init_mcdu = func() {
     var depapt = airportinfo();
     setprop("/instrumentation/afs/FROM",depapt["id"]);
     #setprop("/instrumentation/afs/depart-runway","");
+    var multiCall = getprop("/sim/multiplay/callsign");
+    if (getprop("/sim/multiplay/rxhost") != "0" and getprop("/sim/multiplay/txhost") != "0" and multiCall != "callsign") {
+      setprop("/instrumentation/afs/FLT_NBR", multiCall);
+      setprop("sim/multiplay/generic/string[0]", multiCall);
+    }
 
 }
 
@@ -165,6 +170,12 @@ keyPress = func(key) {
     if (cruiseFt != nil) {
       cruiseFt = int(cruiseFt*100);
       setprop("/instrumentation/afs/thrust-cruise-alt",cruiseFt);
+    }
+  }
+  if (currentField == "FLT_NBR") {
+    if (getprop("/sim/multiplay/rxhost") != "0" and getprop("/sim/multiplay/txhost") != "0") {
+      setprop("sim/multiplay/generic/string[0]", inputValue);
+      setprop("sim/multiplay/callsign", inputValue);
     }
   }
 }
