@@ -6,7 +6,7 @@
 	<!-- texture-path>../../../Textures/Instruments</texture-path -->
 	<texture-path>../../../Textures/Panels/pfd/</texture-path>
 
-<animation>
+<!-- animation>
    <type>select</type>
    <object-name>FDbars</object-name>
    <condition>
@@ -27,7 +27,7 @@
      </equals>
    </and>
    </condition>
- </animation>
+ </animation -->
  
   <animation>
    <type>select</type>
@@ -191,10 +191,9 @@
   </axis>
  </animation>
  
-  <animation>
+  <!-- animation>
    <type>rotate</type>
    <object-name>FDbars</object-name>
-   <!-- property>/instrumentation/flightdirector/vbar-roll</property -->
    <property>/autopilot/internal/target-roll-deg</property>
    <axis>
      <x>1.0</x>
@@ -206,14 +205,12 @@
      <y-m>-0.014</y-m>
      <z-m>0.005</z-m>
    </center>
- </animation>
+ </animation -->
 
- <animation>
+ <!-- animation>
    <type>translate</type>
    <object-name>FDbars</object-name>
-   <!-- property>/instrumentation/flightdirector/vbar-pitch</property -->
    <property>/autopilot/settings/target-pitch-deg</property>
-   <!--factor>0.0014</factor-->
    <factor>0.0014</factor>
    <axis>
      <x>0.0</x>
@@ -225,7 +222,7 @@
      <y-m>-0.014</y-m>
      <z-m>0.005</z-m>
    </center>
- </animation>
+ </animation -->
 
  <animation>
    <type>select</type>

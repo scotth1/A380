@@ -341,7 +341,7 @@
      </entry>
      <entry>
        <ind>90</ind>
-       <dep>214.0</dep>
+       <dep>20.0</dep>
      </entry>
    </interpolation>
    <center>
@@ -368,99 +368,44 @@
 </animation>
 
  <!-- apu n1 digits -->
-<animation>
-  <type>textranslate</type>
-  <object-name>apu n1 digit1</object-name>
-  <condition>
-    <equals>
-      <property>/instrumentation/ecam/page</property>
-      <value>apu</value>
-    </equals>
-  </condition>
-  <property>/engines/engine[4]/n1</property>
-  <factor>0.1</factor>
-  <step>1</step>  
-  <axis>
-   <x>0</x>
-   <y>1</y>
-   <z>0</z>
-  </axis>
- </animation>
- <animation>
-  <type>textranslate</type>
-  <object-name>apu n1 digit2</object-name>
-  <condition>
-    <equals>
-      <property>/instrumentation/ecam/page</property>
-      <value>apu</value>
-    </equals>
-  </condition>
-  <property>/engines/engine[4]/n1</property>
-  <factor>0.01</factor>
-  <step>10</step> 
-  <axis>
-   <x>0</x>
-   <y>1</y>
-   <z>0</z>
-  </axis>
- </animation>
+ 
+   <text>
+   <name>apu_n1</name>
+   <axis-alignment>yz-plane</axis-alignment>
+   <offsets>
+     <pitch-deg>-90</pitch-deg>
+     <x-m>-0.123</x-m>
+     <y-m>0.058</y-m>
+     <z-m>0.0015</z-m>
+   </offsets>
+   <type type="string">number-value</type>
+    <property type="string">/engines/engine[4]/n1</property>
+    <format>%2.0f</format>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.005</character-size>
+    <alignment>right-bottom</alignment>
+ </text>
+ 
  
  <!-- apu n2 digits -->
- <animation>
-  <type>textranslate</type>
-  <object-name>apu n2 digit1</object-name>
-  <condition>
-    <equals>
-      <property>/instrumentation/ecam/page</property>
-      <value>apu</value>
-    </equals>
-  </condition>
-  <property>/engines/engine[4]/n2</property>
-  <factor>0.1</factor>
-  <step>1</step>  
-  <axis>
-   <x>0</x>
-   <y>1</y>
-   <z>0</z>
-  </axis>
- </animation>
- <animation>
-  <type>textranslate</type>
-  <object-name>apu n2 digit2</object-name>
-  <condition>
-    <equals>
-      <property>/instrumentation/ecam/page</property>
-      <value>apu</value>
-    </equals>
-  </condition>
-  <property>/engines/engine[4]/n2</property>
-  <factor>0.01</factor>
-  <step>10</step> 
-  <axis>
-   <x>0</x>
-   <y>1</y>
-   <z>0</z>
-  </axis>
- </animation>
-  <animation>
-  <type>textranslate</type>
-  <object-name>apu n2 digit3</object-name>
-  <condition>
-    <equals>
-      <property>/instrumentation/ecam/page</property>
-      <value>apu</value>
-    </equals>
-  </condition>
-  <property>/engines/engine[4]/n2</property>
-  <factor>0.001</factor>
-  <step>100</step>
-  <axis>
-   <x>0</x>
-   <y>1</y>
-   <z>0</z>
-  </axis>
- </animation>
-
+ 
+  <text>
+   <name>apu_n2</name>
+   <axis-alignment>yz-plane</axis-alignment>
+   <offsets>
+     <pitch-deg>-90</pitch-deg>
+     <x-m>-0.115</x-m>
+     <y-m>0.058</y-m>
+     <z-m>0.0015</z-m>
+   </offsets>
+   <type type="string">number-value</type>
+    <property type="string">/engines/engine[4]/n2</property>
+    <format>%2.0f</format>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.005</character-size>
+    <alignment>right-bottom</alignment>
+ </text>
+ 
 
 <animation>
   <type>rotate</type>
@@ -478,8 +423,12 @@
        <dep>0.0</dep>
      </entry>
      <entry>
-       <ind>90</ind>
-       <dep>900.0</dep>
+       <ind>160</ind>
+       <dep>390.0</dep>
+     </entry>
+     <entry>
+       <ind>240</ind>
+       <dep>900</dep>
      </entry>
    </interpolation>
    <center>
@@ -495,117 +444,142 @@
 </animation>
 
 <!-- apu egt digits -->
- <animation>
-  <type>textranslate</type>
-  <object-name>apu egt digit1</object-name>
-    <condition>
-    <equals>
-      <property>/instrumentation/ecam/page</property>
-      <value>apu</value>
-    </equals>
-  </condition>
-  <property>/engines/engine[4]/egt_degc</property>
-  <factor>0.1</factor>
-  <step>1</step>  
-  <axis>
-   <x>0</x>
-   <y>1</y>
-   <z>0</z>
-  </axis>
- </animation>
- <animation>
-  <type>textranslate</type>
-  <object-name>apu egt digit2</object-name>
-    <condition>
-    <equals>
-      <property>/instrumentation/ecam/page</property>
-      <value>apu</value>
-    </equals>
-  </condition>
-  <property>/engines/engine[4]/egt_degc</property>
-  <factor>0.01</factor>
-  <step>10</step> 
-  <axis>
-   <x>0</x>
-   <y>1</y>
-   <z>0</z>
-  </axis>
- </animation>
-  <animation>
-  <type>textranslate</type>
-  <object-name>apu egt digit3</object-name>
-  <condition>
-    <equals>
-      <property>/instrumentation/ecam/page</property>
-      <value>apu</value>
-    </equals>
-  </condition>
-  <property>/engines/engine[4]/egt_degc</property>
-  <factor>0.001</factor>
-  <step>100</step>
-  <axis>
-   <x>0</x>
-   <y>1</y>
-   <z>0</z>
-  </axis>
- </animation>
- 
+
+ <text>
+   <name>apu_egt</name>
+   <axis-alignment>yz-plane</axis-alignment>
+   <offsets>
+     <pitch-deg>-90</pitch-deg>
+     <x-m>-0.083</x-m>
+     <y-m>0.058</y-m>
+     <z-m>0.0015</z-m>
+   </offsets>
+   <type type="string">number-value</type>
+    <property type="string">/engines/engine[4]/egt_degc</property>
+    <format>%2.0f</format>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.007</character-size>
+    <alignment>right-bottom</alignment>
+ </text>
+
 <!-- apu volts digits -->
- <animation>
-  <type>textranslate</type>
-  <object-name>apu volt digit1</object-name>
-  <condition>
-    <equals>
-      <property>/instrumentation/ecam/page</property>
-      <value>apu</value>
-    </equals>
-  </condition>
-  <property>/engines/engine[4]/volts</property>
-  <factor>0.1</factor>
-  <step>1</step>  
-  <axis>
-   <x>0</x>
-   <y>1</y>
-   <z>0</z>
-  </axis>
- </animation>
- <animation>
-  <type>textranslate</type>
-  <object-name>apu volt digit2</object-name>
-  <condition>
-    <equals>
-      <property>/instrumentation/ecam/page</property>
-      <value>apu</value>
-    </equals>
-  </condition>
-  <property>/engines/engine[4]/volts</property>
-  <factor>0.01</factor>
-  <step>10</step> 
-  <axis>
-   <x>0</x>
-   <y>1</y>
-   <z>0</z>
-  </axis>
- </animation>
-  <animation>
-  <type>textranslate</type>
-  <object-name>apu volt digit3</object-name>
-  <condition>
-    <equals>
-      <property>/instrumentation/ecam/page</property>
-      <value>apu</value>
-    </equals>
-  </condition>
-  <property>/engines/engine[4]/volts</property>
-  <factor>0.001</factor>
-  <step>100</step>
-  <axis>
-   <x>0</x>
-   <y>1</y>
-   <z>0</z>
-  </axis>
- </animation>
+ <text>
+   <name>apu_volts_a</name>
+   <axis-alignment>yz-plane</axis-alignment>
+   <offsets>
+     <pitch-deg>-90</pitch-deg>
+     <x-m>-0.175</x-m>
+     <y-m>0.037</y-m>
+     <z-m>0.0015</z-m>
+   </offsets>
+   <type type="string">number-value</type>
+    <property type="string">/engines/engine[4]/volts_a</property>
+    <format>%2.0f</format>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.005</character-size>
+    <alignment>right-bottom</alignment>
+ </text>
  
+  <text>
+   <name>apu_hz_a</name>
+   <axis-alignment>yz-plane</axis-alignment>
+   <offsets>
+     <pitch-deg>-90</pitch-deg>
+     <x-m>-0.170</x-m>
+     <y-m>0.037</y-m>
+     <z-m>0.0015</z-m>
+   </offsets>
+   <type type="string">number-value</type>
+    <property type="string">/engines/engine[4]/gena-hz</property>
+    <format>%2.0f</format>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.005</character-size>
+    <alignment>right-bottom</alignment>
+ </text>
+ 
+  <text>
+   <name>apu_volts_b</name>
+   <axis-alignment>yz-plane</axis-alignment>
+   <offsets>
+     <pitch-deg>-90</pitch-deg>
+     <x-m>-0.175</x-m>
+     <y-m>0.075</y-m>
+     <z-m>0.0015</z-m>
+   </offsets>
+   <type type="string">number-value</type>
+    <property type="string">/engines/engine[4]/volts_b</property>
+    <format>%2.0f</format>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.005</character-size>
+    <alignment>right-bottom</alignment>
+ </text>
+ 
+   <text>
+   <name>apu_hz_b</name>
+   <axis-alignment>yz-plane</axis-alignment>
+   <offsets>
+     <pitch-deg>-90</pitch-deg>
+     <x-m>-0.170</x-m>
+     <y-m>0.075</y-m>
+     <z-m>0.0015</z-m>
+   </offsets>
+   <type type="string">number-value</type>
+    <property type="string">/engines/engine[4]/genb-hz</property>
+    <format>%2.0f</format>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.005</character-size>
+    <alignment>right-bottom</alignment>
+ </text>
+ 
+ <animation>
+  <type>select</type>
+  <object-name>apu_volts_a</object-name>
+  <object-name>apu_hz_a</object-name>
+  <object-name>apu_volts_b</object-name>
+  <object-name>apu_hz_b</object-name>
+  <object-name>apu_egt</object-name>
+  <object-name>apu_n2</object-name>
+  <object-name>apu_n1</object-name>
+  <condition>
+     <equals>
+       <property>/instrumentation/ecam/page</property>
+       <value>apu</value>
+     </equals>
+   </condition>
+ </animation> 
+ 
+ <animation>
+   <type>material</type>
+   <object-name>apu_volts_a</object-name>
+   <object-name>apu_hz_a</object-name>
+   <object-name>apu_volts_b</object-name>
+   <object-name>apu_hz_b</object-name>
+   <object-name>apu_egt</object-name>
+   <object-name>apu_n2</object-name>
+   <object-name>apu_n1</object-name>
+   <ambient>
+      <red>0.1</red>
+      <green>0.8</green>
+      <blue>0.1</blue>
+    </ambient>
+    <emission>
+      <red>0.1</red>
+      <green>0.8</green>
+      <blue>0.1</blue>
+    </emission>
+    <diffuse>
+      <red>0.1</red>
+      <green>0.8</green>
+      <blue>0.1</blue>
+    </diffuse>
+    <specular>
+      <red>0.0</red>
+      <green>0.0</green>
+      <blue>0.0</blue>
+    </specular>
+    <shininess>0.0</shininess>
+    <transparency><alpha>0.7</alpha></transparency>
+ </animation>
 
 
  <!-- 

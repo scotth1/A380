@@ -156,12 +156,12 @@ update_electrical = func {
 update_virtual_bus = func( dt ) {
     var battery1_volts = 0.0;
     var battery2_volts = 0.0;
-    if (getprop("/controls/electric/battery[0]/bus-tie") == 1) {
+    #if (getprop("/controls/electric/battery[0]/bus-tie") == 1) {
       battery1_volts = battery1.get_output_volts();
-    }
-    if (getprop("/controls/electric/battery[1]/bus-tie") == 1) {
+    #}
+    #if (getprop("/controls/electric/battery[1]/bus-tie") == 1) {
       battery2_volts = battery2.get_output_volts();
-    }
+    #}
     alternator0_volts = alternator.get_output_volts(0);
     alternator1_volts = alternator.get_output_volts(1);
     alternator2_volts = alternator.get_output_volts(2);
@@ -330,17 +330,20 @@ update_virtual_bus = func( dt ) {
 
     # charge/discharge the battery
     if ( power_source == "battery" ) {
+      if (getprop("/controls/electric/battery[0]/bus-tie") == 1) {
         battery1.apply_load( load, dt );
+      }
+      if (getprop("/controls/electric/battery[1]/bus-tie") == 1) {
         battery2.apply_load( load, dt );
-    } else {
-      if ( bat_bus_volts > battery1_volts ) {
+      }
+    } 
+    if ( bat_bus_volts > battery1_volts ) {
         #print("recharge battery #1 - dt: "~dt~", bat_bus_volts: "~bat_bus_volts~", battery_volts: "~battery1_volts);
         battery1.apply_load( -battery1.charge_amps, dt );
-      }
-      if ( bat_bus_volts > battery2_volts ) {
+    }
+    if ( bat_bus_volts > battery2_volts ) {
         #print("recharge battery #2 - dt: "~dt~", bat_bus_volts: "~bat_bus_volts~", battery_volts: "~battery2_volts);
         battery2.apply_load( -battery2.charge_amps, dt );
-      }
     }
 
     # filter ammeter needle pos

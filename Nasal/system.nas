@@ -611,13 +611,28 @@ update_ewd = func {
   if (getprop("/controls/flight/speedbrake") > 0) {
     ewdChecklist.append("SPEEDBRAKE");
   }
-  var battVolts = getprop("/system/electrical/suppliers/battery");
+  var battVolts = getprop("/systems/electrical/suppliers/batt[0]/volts");
   if (battVolts == nil) {
     battVolts = 28;
   }
-  if (battVolts < 26) {
-    ewdChecklist.append("BATT LOW");
+  if (battVolts < 23) {
+    ewdChecklist.append("BATT 1 LOW");
   }
+  var battVolts = getprop("/systems/electrical/suppliers/batt[1]/volts");
+  if (battVolts == nil) {
+    battVolts = 28;
+  }
+  if (battVolts < 23) {
+    ewdChecklist.append("BATT 2 LOW");
+  }
+  if (getprop("/position/altitude-ft") > 25000 and getprop("/environment/temperature-degc") > -40) {
+    ewdChecklist.append("ANTI ICE CHECK");
+  }
+  if (flt_mode < 5 and getprop("/fdm/jsbsim/propulsion/tat-c") < 10) {
+    ewdChecklist.append("ANTI ICE CHECK");
+  }
+
+
   ewdChecklist.reset();
   settimer(update_ewd, 2);
 }
@@ -702,6 +717,11 @@ update_engines = func {
     }
   }
 
+  ### APU stuff 
+  var apuN1 = getprop("/engines/engine[4]/n1");
+  var hz = apuN1*20;
+  setprop("/engines/engine[4]/gena-hz", hz);
+  setprop("/engines/engine[4]/genb-hz", hz);
   # update APU status and start/stop APU  
   apu_state = getprop("/engines/engine[4]/off-start-run");
   if (apu_state == 1) {
