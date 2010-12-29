@@ -47,12 +47,11 @@
 		</offsets>
 	</model>
 	
-	<!-- APU bus tie -->
+	<!-- APU gen -->
     <animation>
           <type>textranslate</type>
           <object-name>APU_GENA</object-name>
-          <object-name>APU_GENB</object-name>
-          <property>/controls/electric/engine[4]/bus-tie</property>
+          <property>/controls/electric/contact/apu_gen-a</property>
           <axis>
               <x>0</x>
               <y>0.6</y>
@@ -62,14 +61,65 @@
     <animation>
           <type>material</type>
           <object-name>APU_GENA</object-name>
-          <object-name>APU_GENB</object-name>
-          <property>/controls/electric/engine[4]/bus-tie</property>
+          <condition>
+            <equals>
+              <property>/controls/electric/contact/apu_gen-a</property>
+              <value>0</value>
+            </equals>
+          </condition>
           <emission>
-                <red>0.0</red>
-                <green>0.2</green>
-                <blue>0.0</blue>
-                <factor-prop>/controls/electric/engine[4]/bus-tie</factor-prop>
+                <red>0.3</red>
+                <green>0.3</green>
+                <blue>0.3</blue>
           </emission>
+    </animation>
+    <animation>
+      <type>pick</type>
+      <object-name>APU_GENA</object-name>
+      <action>
+        <button>0</button>
+	<binding>
+          <command>property-toggle</command>
+          <property>/controls/electric/contact/apu_gen-a</property>
+        </binding>
+      </action>
+    </animation>
+    
+    <animation>
+          <type>textranslate</type>
+          <object-name>APU_GENB</object-name>
+          <property>/controls/electric/contact/apu_gen-b</property>
+          <axis>
+              <x>0</x>
+              <y>0.6</y>
+              <z>1</z>
+          </axis>
+    </animation>
+    <animation>
+          <type>material</type>
+          <object-name>APU_GENB</object-name>
+          <condition>
+            <equals>
+              <property>/controls/electric/contact/apu_gen-b</property>
+              <value>0</value>
+            </equals>
+          </condition>
+          <emission>
+                <red>0.3</red>
+                <green>0.3</green>
+                <blue>0.3</blue>
+          </emission>
+    </animation>
+    <animation>
+      <type>pick</type>
+      <object-name>APU_GENB</object-name>
+      <action>
+        <button>0</button>
+	<binding>
+          <command>property-toggle</command>
+          <property>/controls/electric/contact/apu_gen-b</property>
+        </binding>
+      </action>
     </animation>
     
 
@@ -78,7 +128,7 @@
     <animation>
           <type>textranslate</type>
           <object-name>DRIVE1_GEN2</object-name>
-          <property>/controls/electric/engine[0]/bus-tie</property>
+          <property>/controls/electric/contact/engine_1</property>
           <axis>
               <x>0</x>
               <y>0.6</y>
@@ -88,19 +138,34 @@
     <animation>
           <type>material</type>
           <object-name>DRIVE1_GEN2</object-name>
-          <property>/controls/electric/engine[0]/bus-tie</property>
+          <condition>
+            <equals>
+              <property>/controls/electric/contact/engine_1</property>
+              <value>0</value>
+            </equals>
+          </condition>
           <emission>
-                <red>0.0</red>
-                <green>0.2</green>
-                <blue>0.0</blue>
-                <factor-prop>/controls/electric/engine[0]/bus-tie</factor-prop>
+                <red>0.3</red>
+                <green>0.3</green>
+                <blue>0.3</blue>
           </emission>
+    </animation>
+    <animation>
+      <type>pick</type>
+      <object-name>DRIVE1_GEN2</object-name>
+      <action>
+        <button>0</button>
+	<binding>
+          <command>property-toggle</command>
+          <property>/controls/electric/contact/engine_1</property>
+        </binding>
+      </action>
     </animation>
     
     <animation>
           <type>textranslate</type>
           <object-name>DRIVE2_GEN2</object-name>
-          <property>/controls/electric/engine[1]/bus-tie</property>
+          <property>/controls/electric/contact/engine_2</property>
           <axis>
               <x>0</x>
               <y>0.6</y>
@@ -110,19 +175,34 @@
     <animation>
           <type>material</type>
           <object-name>DRIVE2_GEN2</object-name>
-          <property>/controls/electric/engine[1]/bus-tie</property>
+          <condition>
+            <equals>
+              <property>/controls/electric/contact/engine_2</property>
+              <value>0</value>
+            </equals>
+          </condition>
           <emission>
-                <red>0.0</red>
-                <green>0.2</green>
-                <blue>0.0</blue>
-                <factor-prop>/controls/electric/engine[1]/bus-tie</factor-prop>
+                <red>0.3</red>
+                <green>0.3</green>
+                <blue>0.3</blue>
           </emission>
+    </animation>
+    <animation>
+      <type>pick</type>
+      <object-name>DRIVE2_GEN2</object-name>
+      <action>
+        <button>0</button>
+	<binding>
+          <command>property-toggle</command>
+          <property>/controls/electric/contact/engine_2</property>
+        </binding>
+      </action>
     </animation>
     
     <animation>
           <type>textranslate</type>
           <object-name>DRIVE3_GEN2</object-name>
-          <property>/controls/electric/engine[2]/bus-tie</property>
+          <property>/controls/electric/contact/engine_3</property>
           <axis>
               <x>0</x>
               <y>0.6</y>
@@ -132,19 +212,34 @@
     <animation>
           <type>material</type>
           <object-name>DRIVE3_GEN2</object-name>
-          <property>/controls/electric/engine[2]/bus-tie</property>
+          <condition>
+            <equals>
+              <property>/controls/electric/contact/engine_3</property>
+              <value>0</value>
+            </equals>
+          </condition>
           <emission>
-                <red>0.0</red>
-                <green>0.2</green>
-                <blue>0.0</blue>
-                <factor-prop>/controls/electric/engine[2]/bus-tie</factor-prop>
+                <red>0.3</red>
+                <green>0.3</green>
+                <blue>0.3</blue>
           </emission>
+    </animation>
+    <animation>
+      <type>pick</type>
+      <object-name>DRIVE3_GEN2</object-name>
+      <action>
+        <button>0</button>
+	<binding>
+          <command>property-toggle</command>
+          <property>/controls/electric/contact/engine_3</property>
+        </binding>
+      </action>
     </animation>
     
     <animation>
           <type>textranslate</type>
           <object-name>DRIVE4_GEN2</object-name>
-          <property>/controls/electric/engine[3]/bus-tie</property>
+          <property>/controls/electric/contact/engine_4</property>
           <axis>
               <x>0</x>
               <y>0.6</y>
@@ -154,13 +249,28 @@
     <animation>
           <type>material</type>
           <object-name>DRIVE4_GEN2</object-name>
-          <property>/controls/electric/engine[3]/bus-tie</property>
+          <condition>
+            <equals>
+              <property>/controls/electric/contact/engine_4</property>
+              <value>0</value>
+            </equals>
+          </condition>
           <emission>
-                <red>0.0</red>
-                <green>0.2</green>
-                <blue>0.0</blue>
-                <factor-prop>/controls/electric/engine[2]/bus-tie</factor-prop>
+                <red>0.3</red>
+                <green>0.3</green>
+                <blue>0.3</blue>
           </emission>
+    </animation>
+    <animation>
+      <type>pick</type>
+      <object-name>DRIVE4_GEN2</object-name>
+      <action>
+        <button>0</button>
+	<binding>
+          <command>property-toggle</command>
+          <property>/controls/electric/contact/engine_4</property>
+        </binding>
+      </action>
     </animation>
     
     
@@ -168,7 +278,7 @@
     <animation>
           <type>textranslate</type>
           <object-name>BAT1</object-name>
-          <property>/controls/electric/battery[0]/bus-tie</property>
+          <property>/controls/electric/contact/batt_1</property>
           <axis>
               <x>0</x>
               <y>0.6</y>
@@ -178,19 +288,34 @@
     <animation>
           <type>material</type>
           <object-name>BAT1</object-name>
-          <property>/controls/electric/battery[0]/bus-tie</property>
+          <condition>
+            <equals>
+              <property>/controls/electric/contact/batt_1</property>
+              <value>0</value>
+            </equals>
+          </condition>
           <emission>
-                <red>0.0</red>
-                <green>0.2</green>
-                <blue>0.0</blue>
-                <factor-prop>/controls/electric/battery[0]/bus-tie</factor-prop>
+                <red>0.3</red>
+                <green>0.3</green>
+                <blue>0.3</blue>
           </emission>
+    </animation>
+    <animation>
+      <type>pick</type>
+      <object-name>BAT1</object-name>
+      <action>
+        <button>0</button>
+	<binding>
+          <command>property-toggle</command>
+          <property>/controls/electric/contact/batt_1</property>
+        </binding>
+      </action>
     </animation>
     
     <animation>
           <type>textranslate</type>
           <object-name>BAT2</object-name>
-          <property>/controls/electric/battery[1]/bus-tie</property>
+          <property>/controls/electric/contact/batt_2</property>
           <axis>
               <x>0</x>
               <y>0.6</y>
@@ -200,15 +325,365 @@
     <animation>
           <type>material</type>
           <object-name>BAT2</object-name>
-          <property>/controls/electric/battery[1]/bus-tie</property>
+          <condition>
+            <equals>
+              <property>/controls/electric/contact/batt_2</property>
+              <value>0</value>
+            </equals>
+          </condition>
           <emission>
-                <red>0.0</red>
-                <green>0.2</green>
-                <blue>0.0</blue>
-                <factor-prop>/controls/electric/battery[1]/bus-tie</factor-prop>
+                <red>0.3</red>
+                <green>0.3</green>
+                <blue>0.3</blue>
           </emission>
     </animation>
+    <animation>
+      <type>pick</type>
+      <object-name>BAT2</object-name>
+      <action>
+        <button>0</button>
+	<binding>
+          <command>property-toggle</command>
+          <property>/controls/electric/contact/batt_2</property>
+        </binding>
+      </action>
+    </animation>
     
+    <!-- external supply -->
+    <animation>
+          <type>textranslate</type>
+          <object-name>EXT1</object-name>
+          <property>/controls/electric/contact/external_1</property>
+          <axis>
+              <x>0</x>
+              <y>0.6</y>
+              <z>1</z>
+          </axis>
+    </animation>
+    <animation>
+          <type>material</type>
+          <object-name>EXT1</object-name>
+          <condition>
+            <equals>
+              <property>/controls/electric/contact/external_1</property>
+              <value>1</value>
+            </equals>
+          </condition>
+          <emission>
+                <red>0.3</red>
+                <green>0.3</green>
+                <blue>0.3</blue>
+          </emission>
+    </animation>
+    <animation>
+      <type>pick</type>
+      <object-name>EXT1</object-name>
+      <action>
+        <button>0</button>
+	<binding>
+          <command>property-toggle</command>
+          <property>/controls/electric/contact/external_1</property>
+        </binding>
+      </action>
+    </animation>
+    
+    <animation>
+          <type>textranslate</type>
+          <object-name>EXT2</object-name>
+          <property>/controls/electric/contact/external_2</property>
+          <axis>
+              <x>0</x>
+              <y>0.6</y>
+              <z>1</z>
+          </axis>
+    </animation>
+    <animation>
+          <type>material</type>
+          <object-name>EXT2</object-name>
+          <condition>
+            <equals>
+              <property>/controls/electric/contact/external_2</property>
+              <value>1</value>
+            </equals>
+          </condition>
+          <emission>
+                <red>0.3</red>
+                <green>0.3</green>
+                <blue>0.3</blue>
+          </emission>
+    </animation>
+    <animation>
+      <type>pick</type>
+      <object-name>EXT2</object-name>
+      <action>
+        <button>0</button>
+	<binding>
+          <command>property-toggle</command>
+          <property>/controls/electric/contact/external_2</property>
+        </binding>
+      </action>
+    </animation>
+    
+    <animation>
+          <type>textranslate</type>
+          <object-name>EXT3</object-name>
+          <property>/controls/electric/contact/external_3</property>
+          <axis>
+              <x>0</x>
+              <y>0.6</y>
+              <z>1</z>
+          </axis>
+    </animation>
+    <animation>
+          <type>material</type>
+          <object-name>EXT3</object-name>
+          <condition>
+            <equals>
+              <property>/controls/electric/contact/external_3</property>
+              <value>1</value>
+            </equals>
+          </condition>
+          <emission>
+                <red>0.3</red>
+                <green>0.3</green>
+                <blue>0.3</blue>
+          </emission>
+    </animation>
+    <animation>
+      <type>pick</type>
+      <object-name>EXT3</object-name>
+      <action>
+        <button>0</button>
+	<binding>
+          <command>property-toggle</command>
+          <property>/controls/electric/contact/external_3</property>
+        </binding>
+      </action>
+    </animation>
+    
+    <animation>
+          <type>textranslate</type>
+          <object-name>EXT4</object-name>
+          <property>/controls/electric/contact/external_4</property>
+          <axis>
+              <x>0</x>
+              <y>0.6</y>
+              <z>1</z>
+          </axis>
+    </animation>
+    <animation>
+          <type>material</type>
+          <object-name>EXT4</object-name>
+          <condition>
+            <equals>
+              <property>/controls/electric/contact/external_4</property>
+              <value>1</value>
+            </equals>
+          </condition>
+          <emission>
+                <red>0.3</red>
+                <green>0.3</green>
+                <blue>0.3</blue>
+          </emission>
+    </animation>
+    <animation>
+      <type>pick</type>
+      <object-name>EXT4</object-name>
+      <action>
+        <button>0</button>
+	<binding>
+          <command>property-toggle</command>
+          <property>/controls/electric/contact/external_4</property>
+        </binding>
+      </action>
+    </animation>
+    
+    <!-- shed loads -->
+    <animation>
+          <type>textranslate</type>
+          <object-name>PAX_SYS</object-name>
+          <property>/controls/electric/contact/pax_sys</property>
+          <axis>
+              <x>0</x>
+              <y>0.6</y>
+              <z>1</z>
+          </axis>
+    </animation>
+    <animation>
+          <type>material</type>
+          <object-name>PAX_SYS</object-name>
+          <condition>
+            <equals>
+              <property>/controls/electric/contact/pax_sys</property>
+              <value>0</value>
+            </equals>
+          </condition>
+          <emission>
+                <red>0.3</red>
+                <green>0.3</green>
+                <blue>0.3</blue>
+          </emission>
+    </animation>
+    <animation>
+      <type>pick</type>
+      <object-name>PAX_SYS</object-name>
+      <action>
+        <button>0</button>
+	<binding>
+          <command>property-toggle</command>
+          <property>/controls/electric/contact/pax_sys</property>
+        </binding>
+      </action>
+    </animation>
+    
+    <animation>
+          <type>textranslate</type>
+          <object-name>GALLEY</object-name>
+          <property>/controls/electric/contact/galley</property>
+          <axis>
+              <x>0</x>
+              <y>0.6</y>
+              <z>1</z>
+          </axis>
+    </animation>
+    <animation>
+          <type>material</type>
+          <object-name>GALLEY</object-name>
+          <condition>
+            <equals>
+              <property>/controls/electric/contact/galley</property>
+              <value>0</value>
+            </equals>
+          </condition>
+          <emission>
+                <red>0.3</red>
+                <green>0.3</green>
+                <blue>0.3</blue>
+          </emission>
+    </animation>
+    <animation>
+      <type>pick</type>
+      <object-name>GALLEY</object-name>
+      <action>
+        <button>0</button>
+	<binding>
+          <command>property-toggle</command>
+          <property>/controls/electric/contact/galley</property>
+        </binding>
+      </action>
+    </animation>
+    
+    <animation>
+          <type>textranslate</type>
+          <object-name>COMM</object-name>
+          <property>/controls/electric/contact/commercial</property>
+          <axis>
+              <x>0</x>
+              <y>0.6</y>
+              <z>1</z>
+          </axis>
+    </animation>
+    <animation>
+          <type>material</type>
+          <object-name>COMM</object-name>
+          <condition>
+            <equals>
+              <property>/controls/electric/contact/commercial</property>
+              <value>0</value>
+            </equals>
+          </condition>
+          <emission>
+                <red>0.3</red>
+                <green>0.3</green>
+                <blue>0.3</blue>
+          </emission>
+    </animation>
+    <animation>
+      <type>pick</type>
+      <object-name>COMM</object-name>
+      <action>
+        <button>0</button>
+	<binding>
+          <command>property-toggle</command>
+          <property>/controls/electric/contact/commercial</property>
+        </binding>
+      </action>
+    </animation>
+    
+    <!-- other batteries -->
+    <animation>
+          <type>textranslate</type>
+          <object-name>APUBAT</object-name>
+          <property>/controls/electric/contact/apu_bat</property>
+          <axis>
+              <x>0</x>
+              <y>0.6</y>
+              <z>1</z>
+          </axis>
+    </animation>
+    <animation>
+          <type>material</type>
+          <object-name>APUBAT</object-name>
+          <condition>
+            <equals>
+              <property>/controls/electric/contact/apu_bat</property>
+              <value>0</value>
+            </equals>
+          </condition>
+          <emission>
+                <red>0.3</red>
+                <green>0.3</green>
+                <blue>0.3</blue>
+          </emission>
+    </animation>
+    <animation>
+      <type>pick</type>
+      <object-name>APUBAT</object-name>
+      <action>
+        <button>0</button>
+	<binding>
+          <command>property-toggle</command>
+          <property>/controls/electric/contact/apu_bat</property>
+        </binding>
+      </action>
+    </animation>
+    
+    <animation>
+          <type>textranslate</type>
+          <object-name>ESSBAT</object-name>
+          <property>/controls/electric/contact/ess_bat</property>
+          <axis>
+              <x>0</x>
+              <y>0.6</y>
+              <z>1</z>
+          </axis>
+    </animation>
+    <animation>
+          <type>material</type>
+          <object-name>ESSBAT</object-name>
+          <condition>
+            <equals>
+              <property>/controls/electric/contact/ess_bat</property>
+              <value>0</value>
+            </equals>
+          </condition>
+          <emission>
+                <red>0.3</red>
+                <green>0.3</green>
+                <blue>0.3</blue>
+          </emission>
+    </animation>
+    <animation>
+      <type>pick</type>
+      <object-name>ESSBAT</object-name>
+      <action>
+        <button>0</button>
+	<binding>
+          <command>property-toggle</command>
+          <property>/controls/electric/contact/ess_bat</property>
+        </binding>
+      </action>
+    </animation>
     
 
 </PropertyList> 

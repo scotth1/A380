@@ -715,6 +715,32 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
       <thrust-lever>0</thrust-lever>
     </engine>
   </engines>
+  <electric>
+    <contact>
+      <engine_1 type="bool">1</engine_1>
+      <engine_2 type="bool">1</engine_2>
+      <engine_3 type="bool">1</engine_3>
+      <engine_4 type="bool">1</engine_4>
+      <apu_gen-a type="bool">1</apu_gen-a>
+      <apu_gen-b type="bool">1</apu_gen-b>
+      <batt_1 type="bool">1</batt_1>
+      <batt_2 type="bool">1</batt_2>
+      <ess_bat type="bool">1</ess_bat>
+      <apu_bat type="bool">1</apu_bat>
+      <external_1 type="bool">0</external_1>
+      <external_2 type="bool">0</external_2>
+      <external_3 type="bool">0</external_3>
+      <external_4 type="bool">0</external_4>
+      <pax_sys type="bool">1</pax_sys>
+      <galley type="bool">1</galley>
+      <commercial type="bool">1</commercial>
+      <bus_tie type="bool">1</bus_tie>
+      <dc_left_tie type="bool">1</dc_left_tie>
+      <dc_right_tie type="bool">1</dc_right_tie>
+      <tr_left_tie type="bool">0</tr_left_tie>
+      <tr_right_tie type="bool">0</tr_right_tie>
+    </contact>
+  </electric>
 </controls>
 
 <instrumentation>
