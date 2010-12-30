@@ -19,7 +19,6 @@
     <animation>
           <type>pick</type>
           <object-name>APU_MASTER</object-name>
-          <object-name>APU_MASTER.fault</object-name>
           <action>
             <button>0</button>
             <binding>
@@ -46,11 +45,10 @@
     <animation>
           <type>material</type>
           <object-name>APU_MASTER</object-name>
-          <object-name>APU_MASTER.fault</object-name>
           <emission>
-                <red>0.2</red>
-                <green>0.2</green>
-                <blue>0.2</blue>
+                <red>0.0</red>
+                <green>0.0</green>
+                <blue>0.35</blue>
                 <factor-prop>/controls/APU/run</factor-prop>
           </emission>
     </animation>

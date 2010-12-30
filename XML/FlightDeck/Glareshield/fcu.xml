@@ -17,7 +17,17 @@
 	</offsets>
 	
 	
-	
+
+<animation>
+       <type>material</type>
+       <object-name>backlight</object-name>
+       <emission>
+         <red>0.325</red>
+         <green>0.184</green>
+         <blue>0.001</blue>
+         <factor-prop>/controls/switches/storm-lights</factor-prop>
+       </emission>
+    </animation>
 <!-- ALT -->
 <!-- Altitude readout and knob -->
  

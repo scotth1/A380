@@ -1129,6 +1129,7 @@ setlistener("/controls/pneumatic/engine[0]/bleed", func(n) {
     setprop("/controls/pressurization/engine[0]/bleed-on",1);
   } else {
     setprop("/controls/pressurization/engine[0]/bleed-on",0);
+    setprop("/controls/pressurization/pack[0]/pack-on", 0);
   }
 });
 
@@ -1159,6 +1160,7 @@ setlistener("/controls/pneumatic/engine[1]/bleed", func(n) {
     setprop("/controls/pressurization/engine[1]/bleed-on",1);
   } else {
     setprop("/controls/pressurization/engine[1]/bleed-on",0);
+    setprop("/controls/pressurization/pack[0]/pack-on", 0);
   }
 });
 
@@ -1187,6 +1189,7 @@ setlistener("/controls/pneumatic/engine[2]/bleed", func(n) {
     setprop("/controls/pressurization/engine[2]/bleed-on",1);
   } else {
     setprop("/controls/pressurization/engine[2]/bleed-on",0);
+    setprop("/controls/pressurization/pack[1]/pack-on", 0);
   }
 });
 
@@ -1221,9 +1224,10 @@ setlistener("/controls/pneumatic/engine[3]/bleed", func(n) {
     setprop("/controls/pressurization/engine[3]/bleed-on",1);
   } else {
     setprop("/controls/pressurization/engine[3]/bleed-on",0);
+    setprop("/controls/pressurization/pack[1]/pack-on", 0);
   }
 });
-# once we have engine bleed open air valve
+# control APU bleed air to pressurisation
 setlistener("/controls/pneumatic/APU-bleed", func(n) {
   bleed = n.getValue();
   if (bleed == 1) {
@@ -1232,6 +1236,32 @@ setlistener("/controls/pneumatic/APU-bleed", func(n) {
     setprop("/controls/pressurization/apu/bleed-on",0);
   }
 });
+# control HOT-AIR valves from AIR PACKS
+setlistener("/controls/pressurization/pack[0]/pack-on", func(n) {
+   pack = n.getValue();
+   if (pack == 1) {
+     settimer(open_hotair, 1);
+   } else {
+     setprop("/controls/pressurization/pack[0]/hotair-on",0);
+   }
+});
+setlistener("/controls/pressurization/pack[1]/pack-on", func(n) {
+   pack = n.getValue();
+   if (pack == 1) {
+     settimer(open_hotair, 1);
+   } else {
+     setprop("/controls/pressurization/pack[1]/hotair-on",0);
+   }
+});
+
+open_hotair = func() {
+  if (getprop("/controls/pressurization/pack[0]/pack-on") == 1) {
+    setprop("/controls/pressurization/pack[0]/hotair-on",1);
+  }
+  if (getprop("/controls/pressurization/pack[1]/pack-on") == 1) {
+    setprop("/controls/pressurization/pack[1]/hotair-on",1);
+  }
+}
 
 
 # monitor main gear wow
