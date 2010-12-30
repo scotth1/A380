@@ -590,7 +590,7 @@ update_ewd = func {
   if (getprop("/controls/gear/brake-parking") == 1) {
     ewdChecklist.append("PARK BRAKE ON");
   }
-  if (getprop("/controls/engines/engine[4]/bleed") == 1) {
+  if (getprop("/controls/pneumatic/APU-bleed") == 1) {
     ewdChecklist.append("APU BLEED");
   }
   if (flt_mode > 2 and flt_mode < 5 and getprop("/controls/flight/flaps") < 0.01) {
@@ -695,7 +695,6 @@ update_engines = func {
         tracer("engine igniter");
         setprop("/controls/engines/engine["~e~"]/ignition",1);
         #setprop("/controls/engines/engine["~e~"]/starter",0);
-        setprop("/controls/pneumatic/engine["~e~"]/bleed",1);
       }
     }
     if (hpsi >= 50 and ign == 1 and e_ign == 1) {
@@ -703,6 +702,15 @@ update_engines = func {
          setprop("/controls/engines/engine["~e~"]/ignition",0);
          setprop("/controls/engines/engine["~e~"]/generator",1);
          settimer(check_all_start, 10);
+    }
+    if (hpsi > 55) {
+      if (getprop("/controls/pneumatic/engine["~e~"]/bleed") == 0) {
+        setprop("/controls/pneumatic/engine["~e~"]/bleed",1);
+      }
+    } else {
+      if (getprop("/controls/pneumatic/engine["~e~"]/bleed") == 1) {
+        setprop("/controls/pneumatic/engine["~e~"]/bleed",0);
+      }
     }
     var eng_egtF = getprop("/engines/engine["~e~"]/egt_degf");
     if (eng_egtF == nil) {
@@ -736,9 +744,13 @@ update_engines = func {
     apuN2 = 0.0;
   }
   if (apuN2 > 50) {
-    setprop("/controls/engines/engine[4]/bleed",1);
+    if (getprop("/controls/pneumatic/APU-bleed") == 0) {
+      setprop("/controls/pneumatic/APU-bleed",1);
+    }
   } else {
-    setprop("/controls/engines/engine[4]/bleed",0);
+    if (getprop("/controls/pneumatic/APU-bleed") == 1) {
+      setprop("/controls/pneumatic/APU-bleed",0);
+    }
   }
   var apu_egtF = getprop("/engines/engine[4]/egt_degf");
   if (apu_egtF == nil) {
@@ -1102,11 +1114,21 @@ setlistener("/controls/engines/engine[0]/master", func(n) {
       setprop("/instrumentation/ecam/flight-mode",2);
     }
     setprop("/controls/engines/engine[0]/starter",1);
-    setprop("/controls/pneumatic/engine[0]/bleed",1);
   }
   if (master == 0 and ign == 0) {
     tracer("cutoff engine 0");
     setprop("/controls/engines/engine[0]/cutoff",1);
+  }
+});
+
+# once we have engine bleed open air valve
+setlistener("/controls/pneumatic/engine[0]/bleed", func(n) {
+  bleed = n.getValue();
+  if (bleed == 1) {
+    setprop("/controls/pressurization/apu/bleed-on",0);
+    setprop("/controls/pressurization/engine[0]/bleed-on",1);
+  } else {
+    setprop("/controls/pressurization/engine[0]/bleed-on",0);
   }
 });
 
@@ -1129,6 +1151,17 @@ setlistener("/controls/engines/engine[1]/master", func(n) {
   }
 });
 
+# once we have engine bleed open air valve
+setlistener("/controls/pneumatic/engine[1]/bleed", func(n) {
+  bleed = n.getValue();
+  if (bleed == 1) {
+    setprop("/controls/pressurization/apu/bleed-on",0);
+    setprop("/controls/pressurization/engine[1]/bleed-on",1);
+  } else {
+    setprop("/controls/pressurization/engine[1]/bleed-on",0);
+  }
+});
+
 # monitor eng 2 switch for ignition
 setlistener("/controls/engines/engine[2]/master", func(n) {
   master = n.getValue();
@@ -1141,10 +1174,19 @@ setlistener("/controls/engines/engine[2]/master", func(n) {
       setprop("/instrumentation/ecam/flight-mode",2);
     }
     setprop("/controls/engines/engine[2]/starter","true");
-    setprop("/controls/pneumatic/engine[2]/bleed",1);
   }
   if (master == 0 and ign == 0) {
     setprop("/controls/engines/engine[2]/cutoff",1);
+  }
+});
+# once we have engine bleed open air valve
+setlistener("/controls/pneumatic/engine[2]/bleed", func(n) {
+  bleed = n.getValue();
+  if (bleed == 1) {
+    setprop("/controls/pressurization/apu/bleed-on",0);
+    setprop("/controls/pressurization/engine[2]/bleed-on",1);
+  } else {
+    setprop("/controls/pressurization/engine[2]/bleed-on",0);
   }
 });
 
@@ -1161,7 +1203,6 @@ setlistener("/controls/engines/engine[3]/master", func(n) {
       setprop("/instrumentation/ecam/flight-mode",2);
     }
     setprop("/controls/engines/engine[3]/starter","true");
-    setprop("/controls/pneumatic/engine[3]/bleed",1);
   }
   if (master == 0 and ign == 0) {
     setprop("/controls/engines/engine[3]/cutoff",1);
@@ -1170,6 +1211,25 @@ setlistener("/controls/engines/engine[3]/master", func(n) {
       setprop("/instrumentation/ecam/flight-mode",flt_mode);
       
     }
+  }
+});
+# once we have engine bleed open air valve
+setlistener("/controls/pneumatic/engine[3]/bleed", func(n) {
+  bleed = n.getValue();
+  if (bleed == 1) {
+    setprop("/controls/pressurization/apu/bleed-on",0);
+    setprop("/controls/pressurization/engine[3]/bleed-on",1);
+  } else {
+    setprop("/controls/pressurization/engine[3]/bleed-on",0);
+  }
+});
+# once we have engine bleed open air valve
+setlistener("/controls/pneumatic/APU-bleed", func(n) {
+  bleed = n.getValue();
+  if (bleed == 1) {
+    setprop("/controls/pressurization/apu/bleed-on",1);
+  } else {
+    setprop("/controls/pressurization/apu/bleed-on",0);
   }
 });
 
@@ -1291,7 +1351,7 @@ setlistener("/controls/APU/run",func(n) {
     setprop("/controls/engines/engine[4]/cutoff",1);
     setprop("/controls/engines/engine[4]/ignition",0);
     setprop("/controls/engines/engine[4]/starter",0);
-    setprop("/controls/engines/engine[4]/bleed",0);
+    setprop("/controls/pneumatic/APU-bleed",0);
     setprop("/instrumentation/ecam/synoptic","apu");
     setprop("/instrumentation/ecam/page","apu");
   }
