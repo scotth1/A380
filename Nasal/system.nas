@@ -89,14 +89,14 @@ srsFlapTarget = [263.0, 222.0, 210.0, 196.0, 182.0];   #another copy in system.n
 flapPos       = [0, 0.2424, 0.5151, 0.7878, 1.0];
 
 trace = 0;
-version = "1.1.8";
+version = "1.1.10";
 
 strobe_switch = props.globals.getNode("/controls/switches/strobe", 0);
 aircraft.light.new("sim/model/A380/lighting/strobe", [0.05, 1.2], strobe_switch);
 beacon_switch = props.globals.getNode("/controls/lighting/beacon", 0);
 aircraft.light.new("sim/model/A380/lighting/beacon", [0.05, 1.25], beacon_switch);
 
-ewdChecklist = TextRegion.new(5, 50, "/instrumentation/ewd/checklists");
+ewdChecklist = TextRegion.new(8, 50, "/instrumentation/ewd/checklists");
 
 
 
@@ -625,10 +625,11 @@ update_ewd = func {
   if (battVolts < 23) {
     ewdChecklist.append("BATT 2 LOW");
   }
-  if (getprop("/position/altitude-ft") > 25000 and getprop("/environment/temperature-degc") > -40) {
+  if (getprop("/position/altitude-ft") > 25000 and getprop("/environment/temperature-degc") > -40 and getprop("/controls/anti-ice/wing-heat") == 0) {
     ewdChecklist.append("ANTI ICE CHECK");
   }
-  if (flt_mode < 5 and getprop("/fdm/jsbsim/propulsion/tat-c") < 10) {
+  var allEngAntiIce = getprop("/controls/anti-ice/engine[0]/inlet-heat")+getprop("/controls/anti-ice/engine[1]/inlet-heat")+getprop("/controls/anti-ice/engine[2]/inlet-heat")+getprop("/controls/anti-ice/engine[3]/inlet-heat");
+  if (flt_mode < 5 and getprop("/fdm/jsbsim/propulsion/tat-c") < 10 and (allEngAntiIce == 0)) {
     ewdChecklist.append("ANTI ICE CHECK");
   }
 
