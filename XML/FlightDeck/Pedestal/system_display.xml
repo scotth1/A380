@@ -473,7 +473,7 @@
      <z-m>0.0015</z-m>
    </offsets>
    <type type="string">number-value</type>
-    <property type="string">/engines/engine[4]/volts_a</property>
+    <property type="string">/systems/electrical/suppliers/apu[0]/volts</property>
     <format>%2.0f</format>
     <font>helvetica_medium.txf</font>
     <character-size type="double">0.005</character-size>
@@ -507,7 +507,7 @@
      <z-m>0.0015</z-m>
    </offsets>
    <type type="string">number-value</type>
-    <property type="string">/engines/engine[4]/volts_b</property>
+    <property type="string">/systems/electrical/suppliers/apu[1]/volts</property>
     <format>%2.0f</format>
     <font>helvetica_medium.txf</font>
     <character-size type="double">0.005</character-size>
@@ -1528,8 +1528,118 @@
       ELEC AC page stuff
       
       -->
+      
+ <text>
+   <name>engine1_volts</name>
+   <axis-alignment>yz-plane</axis-alignment>
+   <offsets>
+     <pitch-deg>-90</pitch-deg>
+     <x-m>-0.103</x-m>
+     <y-m>0.035</y-m>
+     <z-m>0.0015</z-m>
+   </offsets>
+   <type type="string">number-value</type>
+    <property type="string">/systems/electrical/suppliers/idg[0]/volts</property>
+    <format>%2.0f</format>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.005</character-size>
+    <alignment>right-bottom</alignment>
+ </text>
+ 
+ <text>
+   <name>engine2_volts</name>
+   <axis-alignment>yz-plane</axis-alignment>
+   <offsets>
+     <pitch-deg>-90</pitch-deg>
+     <x-m>-0.103</x-m>
+     <y-m>0.063</y-m>
+     <z-m>0.0015</z-m>
+   </offsets>
+   <type type="string">number-value</type>
+    <property type="string">/systems/electrical/suppliers/idg[1]/volts</property>
+    <format>%2.0f</format>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.005</character-size>
+    <alignment>right-bottom</alignment>
+ </text>
 
+ <text>
+   <name>engine3_volts</name>
+   <axis-alignment>yz-plane</axis-alignment>
+   <offsets>
+     <pitch-deg>-90</pitch-deg>
+     <x-m>-0.103</x-m>
+     <y-m>0.110</y-m>
+     <z-m>0.0015</z-m>
+   </offsets>
+   <type type="string">number-value</type>
+    <property type="string">/systems/electrical/suppliers/idg[2]/volts</property>
+    <format>%2.0f</format>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.005</character-size>
+    <alignment>right-bottom</alignment>
+ </text>
+ 
+ <text>
+   <name>engine4_volts</name>
+   <axis-alignment>yz-plane</axis-alignment>
+   <offsets>
+     <pitch-deg>-90</pitch-deg>
+     <x-m>-0.103</x-m>
+     <y-m>0.139</y-m>
+     <z-m>0.0015</z-m>
+   </offsets>
+   <type type="string">number-value</type>
+    <property type="string">/systems/electrical/suppliers/idg[3]/volts</property>
+    <format>%2.0f</format>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.005</character-size>
+    <alignment>right-bottom</alignment>
+ </text>
 
+ <animation>
+  <type>select</type>
+  <object-name>engine1_volts</object-name>
+  <object-name>engine2_volts</object-name>
+  <object-name>engine3_volts</object-name>
+  <object-name>engine4_volts</object-name>
+  <condition>
+     <equals>
+       <property>/instrumentation/ecam/page</property>
+       <value>elec ac</value>
+     </equals>
+   </condition>
+ </animation> 
+ 
+ <animation>
+   <type>material</type>
+   <object-name>engine1_volts</object-name>
+   <object-name>engine2_volts</object-name>
+   <object-name>engine3_volts</object-name>
+   <object-name>engine4_volts</object-name>
+   <ambient>
+      <red>0.1</red>
+      <green>0.8</green>
+      <blue>0.1</blue>
+    </ambient>
+    <emission>
+      <red>0.1</red>
+      <green>0.8</green>
+      <blue>0.1</blue>
+    </emission>
+    <diffuse>
+      <red>0.1</red>
+      <green>0.8</green>
+      <blue>0.1</blue>
+    </diffuse>
+    <specular>
+      <red>0.0</red>
+      <green>0.0</green>
+      <blue>0.0</blue>
+    </specular>
+    <shininess>0.0</shininess>
+    <transparency><alpha>0.7</alpha></transparency>
+ </animation>
 
 
 <!--

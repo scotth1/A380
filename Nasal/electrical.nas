@@ -183,6 +183,18 @@ BusBarClass.new = func(baseProperty) {
    return obj;
 }
 
+ExternalPowerClass = {};
+
+ExternalPowerClass.new = func(unit) {
+  obj = {parents : [ExternalPowerClass],
+           volts : 0.0,
+           avail : false,
+        };
+     obj.unit = unit;
+    return obj;
+}
+
+
 
 update_electrical = func {
     time = getprop("/sim/time/elapsed-sec");
