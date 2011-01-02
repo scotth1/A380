@@ -1479,6 +1479,25 @@
     <shininess>0.0</shininess>
     <transparency><alpha>0.7</alpha></transparency>
   </animation>
+  
+  <animation>
+    <type>select</type>
+    <object-name>ewd grp</object-name>
+    <object-name>checklist00</object-name>
+    <object-name>checklist01</object-name>
+    <object-name>checklist02</object-name>
+    <object-name>checklist03</object-name>
+    <object-name>checklist04</object-name>
+    <object-name>checklist05</object-name>
+    <object-name>checklist06</object-name>
+    <object-name>checklist07</object-name>
+    <condition>
+      <greater-than>
+        <property>/systems/electrical/outputs/efis</property>
+        <value>15</value>
+      </greater-than>
+    </condition>
+  </animation>
 
 
 </PropertyList>

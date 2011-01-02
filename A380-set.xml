@@ -747,6 +747,12 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
       <tr_left_tie type="bool">0</tr_left_tie>
       <tr_right_tie type="bool">0</tr_right_tie>
     </contact>
+    <ground>
+      <external_1 type="bool">0</external_1>
+      <external_2 type="bool">0</external_2>
+      <external_3 type="bool">0</external_3>
+      <external_4 type="bool">0</external_4>
+    </ground>
   </electric>
   <pressurization>
     <pack>

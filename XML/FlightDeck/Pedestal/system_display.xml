@@ -40,10 +40,16 @@
   <type>select</type>
   <object-name>sd door grp</object-name>
   <condition>
+    <and>
     <equals>
       <property>/instrumentation/ecam/page</property>
       <value>door</value>
     </equals>
+    <greater-than>
+      <property>/systems/electrical/outputs/efis</property>
+      <value>15</value>
+    </greater-than>
+    </and>
   </condition>
 </animation>
 
@@ -51,10 +57,16 @@
   <type>select</type>
   <object-name>sd apu grp</object-name>
   <condition>
+    <and>
     <equals>
       <property>/instrumentation/ecam/page</property>
       <value>apu</value>
     </equals>
+    <greater-than>
+      <property>/systems/electrical/outputs/efis</property>
+      <value>15</value>
+    </greater-than>
+    </and>
   </condition>
 </animation>
 
@@ -62,10 +74,16 @@
   <type>select</type>
   <object-name>sd engine grp</object-name>
   <condition>
+    <and>
     <equals>
       <property>/instrumentation/ecam/page</property>
       <value>engine</value>
     </equals>
+    <greater-than>
+      <property>/systems/electrical/outputs/efis</property>
+      <value>15</value>
+    </greater-than>
+    </and>
   </condition>
 </animation>
 
@@ -73,10 +91,16 @@
   <type>select</type>
   <object-name>sd cruise grp</object-name>
   <condition>
+    <and>
     <equals>
       <property>/instrumentation/ecam/page</property>
       <value>cruise</value>
     </equals>
+    <greater-than>
+      <property>/systems/electrical/outputs/efis</property>
+      <value>15</value>
+    </greater-than>
+    </and>
   </condition>
 </animation>
 
@@ -84,10 +108,16 @@
   <type>select</type>
   <object-name>sd bleed grp</object-name>
   <condition>
+    <and>
     <equals>
       <property>/instrumentation/ecam/page</property>
       <value>bleed</value>
     </equals>
+    <greater-than>
+      <property>/systems/electrical/outputs/efis</property>
+      <value>15</value>
+    </greater-than>
+    </and>
   </condition>
 </animation>
 
@@ -95,10 +125,16 @@
   <type>select</type>
   <object-name>sd elec ac grp</object-name>
   <condition>
+    <and>
     <equals>
       <property>/instrumentation/ecam/page</property>
       <value>elec ac</value>
     </equals>
+    <greater-than>
+      <property>/systems/electrical/outputs/efis</property>
+      <value>15</value>
+    </greater-than>
+    </and>
   </condition>
 </animation>
 
@@ -106,10 +142,16 @@
   <type>select</type>
   <object-name>sd elec dc grp</object-name>
   <condition>
+    <and>
     <equals>
       <property>/instrumentation/ecam/page</property>
       <value>elec dc</value>
     </equals>
+    <greater-than>
+      <property>/systems/electrical/outputs/efis</property>
+      <value>15</value>
+    </greater-than>
+    </and>
   </condition>
 </animation>
 
@@ -117,10 +159,16 @@
   <type>select</type>
   <object-name>sd fuel grp</object-name>
   <condition>
+    <and>
     <equals>
       <property>/instrumentation/ecam/page</property>
       <value>fuel</value>
     </equals>
+    <greater-than>
+      <property>/systems/electrical/outputs/efis</property>
+      <value>15</value>
+    </greater-than>
+    </and>
   </condition>
 </animation>
 
@@ -128,10 +176,16 @@
   <type>select</type>
   <object-name>sd cab press grp</object-name>
   <condition>
+    <and>
     <equals>
       <property>/instrumentation/ecam/page</property>
       <value>pressure</value>
     </equals>
+    <greater-than>
+      <property>/systems/electrical/outputs/efis</property>
+      <value>15</value>
+    </greater-than>
+    </and>
   </condition>
 </animation>
 
@@ -541,10 +595,16 @@
   <object-name>apu_n2</object-name>
   <object-name>apu_n1</object-name>
   <condition>
+    <and>
      <equals>
        <property>/instrumentation/ecam/page</property>
        <value>apu</value>
      </equals>
+     <greater-than>
+      <property>/systems/electrical/outputs/efis</property>
+      <value>15</value>
+    </greater-than>
+    </and>
    </condition>
  </animation> 
  
@@ -1569,7 +1629,7 @@
    <offsets>
      <pitch-deg>-90</pitch-deg>
      <x-m>-0.103</x-m>
-     <y-m>0.110</y-m>
+     <y-m>0.109</y-m>
      <z-m>0.0015</z-m>
    </offsets>
    <type type="string">number-value</type>
@@ -1604,10 +1664,16 @@
   <object-name>engine3_volts</object-name>
   <object-name>engine4_volts</object-name>
   <condition>
+    <and>
      <equals>
        <property>/instrumentation/ecam/page</property>
        <value>elec ac</value>
      </equals>
+     <greater-than>
+      <property>/systems/electrical/outputs/efis</property>
+      <value>15</value>
+    </greater-than>
+    </and>
    </condition>
  </animation> 
  
@@ -1851,10 +1917,16 @@
    <object-name>value.outerL</object-name>
    <object-name>value.outerR</object-name>
    <condition>
+    <and>
      <equals>
       <property>/instrumentation/ecam/page</property>
       <value>fuel</value>
     </equals>
+    <greater-than>
+      <property>/systems/electrical/outputs/efis</property>
+      <value>15</value>
+    </greater-than>
+    </and>
    </condition>
 </animation>
 
@@ -2558,6 +2630,34 @@
       <green>0.4</green>
       <blue>0.6</blue>
    </diffuse>
+</animation>
+
+<animation>
+  <type>select</type>
+  <object-name>label.TAT</object-name>
+  <object-name>label.SAT</object-name>
+  <object-name>label.ISA</object-name>
+  <object-name>label.GW</object-name>
+  <object-name>label.GWCG</object-name>
+  <object-name>label.FOB</object-name>
+  <object-name>value.TAT</object-name>
+  <object-name>value.SAT</object-name>
+  <object-name>value.UTC</object-name>
+  <object-name>value.GW</object-name>
+  <object-name>value.GWCG</object-name>
+  <object-name>value.FOB</object-name>
+  <object-name>units.TAT</object-name>
+  <object-name>units.SAT</object-name>
+  <object-name>units.GW</object-name>
+  <object-name>units.GWCG</object-name>
+  <object-name>units.FOB</object-name>
+  <object-name>sd perm grp</object-name>
+  <condition>
+    <greater-than>
+      <property>/systems/electrical/outputs/efis</property>
+      <value>15</value>
+    </greater-than>
+   </condition>
 </animation>
   
     
