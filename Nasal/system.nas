@@ -1069,6 +1069,27 @@ var stepSpeedbrake = func(step) {
     setprop("/controls/flight/speedbrake", val > 1 ? 1 : val < 0 ? 0 : val);
 }
 
+toggleExternalServices = func() {
+   var extAvail = getprop("/controls/electric/ground/external_1")+getprop("/controls/electric/ground/external_2")+getprop("/controls/electric/ground/external_3")+getprop("/controls/electric/ground/external_4");
+   var fltMode = getprop("/instrumentation/ecam/flight-mode");
+   var engRun = getprop("/engines/engine[0]/running")+getprop("/engines/engine[1]/running")+getprop("/engines/engine[2]/running")+getprop("/engines/engine[3]/running");
+   if (extAvail > 0) {
+       extAvail = 0;
+       setprop("/controls/electric/contact/external_1", 0);
+       setprop("/controls/electric/contact/external_2", 0);
+       setprop("/controls/electric/contact/external_3", 0);
+       setprop("/controls/electric/contact/external_4", 0);
+   } else {
+     if ((fltMode == 1 or fltMode == 12) and engRun == 0) {
+       extAvail = 1;
+     }
+   }
+   setprop("/controls/electric/ground/external_1", extAvail);
+   setprop("/controls/electric/ground/external_2", extAvail);
+   setprop("/controls/electric/ground/external_3", extAvail);
+   setprop("/controls/electric/ground/external_4", extAvail);
+}
+
 
 ## FDM init
 setlistener("/sim/signals/fdm-initialized", func {

@@ -1878,6 +1878,21 @@
  
  <animation>
    <type>material</type>
+   <object-name>tr1a.tie</object-name>
+   <object-name>tr2a.tie</object-name>
+   <object-name>batt1.tie</object-name>
+   <object-name>batt2.tie</object-name>
+   <object-name>apu-batt.tie</object-name>
+   <object-name>ess-batt.tie</object-name>
+   <emission>
+     <red>0.0</red>
+     <green>1.0</green>
+     <blue>0.0</blue>
+   </emission>
+ </animation>
+ 
+ <animation>
+   <type>material</type>
    <object-name>bat1_volts</object-name>
    <object-name>bat2_volts</object-name>
    <object-name>apu_bat_volts</object-name>

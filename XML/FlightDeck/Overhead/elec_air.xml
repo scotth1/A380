@@ -370,8 +370,8 @@
             </equals>
           </condition>
           <emission>
-                <red>0.3</red>
-                <green>0.3</green>
+                <red>0.0</red>
+                <green>0.0</green>
                 <blue>0.3</blue>
           </emission>
     </animation>
@@ -385,6 +385,32 @@
           <property>/controls/electric/contact/external_1</property>
         </binding>
       </action>
+    </animation>
+    
+    <animation>
+          <type>textranslate</type>
+          <object-name>EXT1.avail</object-name>
+          <property>/controls/electric/ground/external_1</property>
+          <axis>
+              <x>0</x>
+              <y>0.6</y>
+              <z>1</z>
+          </axis>
+    </animation>
+    <animation>
+          <type>material</type>
+          <object-name>EXT1.avail</object-name>
+          <condition>
+            <equals>
+              <property>/controls/electric/ground/external_1</property>
+              <value>1</value>
+            </equals>
+          </condition>
+          <emission>
+                <red>0.0</red>
+                <green>0.3</green>
+                <blue>0.0</blue>
+          </emission>
     </animation>
     
     <animation>
@@ -407,8 +433,8 @@
             </equals>
           </condition>
           <emission>
-                <red>0.3</red>
-                <green>0.3</green>
+                <red>0.0</red>
+                <green>0.0</green>
                 <blue>0.3</blue>
           </emission>
     </animation>
@@ -422,6 +448,32 @@
           <property>/controls/electric/contact/external_2</property>
         </binding>
       </action>
+    </animation>
+    
+    <animation>
+          <type>textranslate</type>
+          <object-name>EXT2.avail</object-name>
+          <property>/controls/electric/ground/external_2</property>
+          <axis>
+              <x>0</x>
+              <y>0.6</y>
+              <z>1</z>
+          </axis>
+    </animation>
+    <animation>
+          <type>material</type>
+          <object-name>EXT2.avail</object-name>
+          <condition>
+            <equals>
+              <property>/controls/electric/ground/external_2</property>
+              <value>1</value>
+            </equals>
+          </condition>
+          <emission>
+                <red>0.0</red>
+                <green>0.3</green>
+                <blue>0.0</blue>
+          </emission>
     </animation>
     
     <animation>
@@ -444,8 +496,8 @@
             </equals>
           </condition>
           <emission>
-                <red>0.3</red>
-                <green>0.3</green>
+                <red>0.0</red>
+                <green>0.0</green>
                 <blue>0.3</blue>
           </emission>
     </animation>
@@ -459,6 +511,32 @@
           <property>/controls/electric/contact/external_3</property>
         </binding>
       </action>
+    </animation>
+    
+    <animation>
+          <type>textranslate</type>
+          <object-name>EXT3.avail</object-name>
+          <property>/controls/electric/ground/external_3</property>
+          <axis>
+              <x>0</x>
+              <y>0.6</y>
+              <z>1</z>
+          </axis>
+    </animation>
+    <animation>
+          <type>material</type>
+          <object-name>EXT3.avail</object-name>
+          <condition>
+            <equals>
+              <property>/controls/electric/ground/external_3</property>
+              <value>1</value>
+            </equals>
+          </condition>
+          <emission>
+                <red>0.0</red>
+                <green>0.3</green>
+                <blue>0.0</blue>
+          </emission>
     </animation>
     
     <animation>
@@ -481,8 +559,8 @@
             </equals>
           </condition>
           <emission>
-                <red>0.3</red>
-                <green>0.3</green>
+                <red>0.0</red>
+                <green>0.0</green>
                 <blue>0.3</blue>
           </emission>
     </animation>
@@ -496,6 +574,32 @@
           <property>/controls/electric/contact/external_4</property>
         </binding>
       </action>
+    </animation>
+    
+    <animation>
+          <type>textranslate</type>
+          <object-name>EXT4.avail</object-name>
+          <property>/controls/electric/ground/external_4</property>
+          <axis>
+              <x>0</x>
+              <y>0.6</y>
+              <z>1</z>
+          </axis>
+    </animation>
+    <animation>
+          <type>material</type>
+          <object-name>EXT4.avail</object-name>
+          <condition>
+            <equals>
+              <property>/controls/electric/ground/external_4</property>
+              <value>1</value>
+            </equals>
+          </condition>
+          <emission>
+                <red>0.0</red>
+                <green>0.3</green>
+                <blue>0.0</blue>
+          </emission>
     </animation>
     
     <!-- shed loads -->

@@ -199,9 +199,13 @@
         <name>Delete</name>
         <desc>toggle thrust reversers</desc>
       </key>
-        <key>
+      <key>
         <name>Ctrl-b</name>
         <desc>toggle speed brakes</desc>
+      </key>
+      <key>
+        <name>Ctrl-e</name>
+        <desc>Toggle external ground power connection</desc>
       </key>
       <key>
         <name>k</name>
@@ -445,6 +449,14 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
 
 <input>
   <keyboard>
+    <key n="5">
+      <name>CTRL-E</name>
+      <desc>Toggle connection of ground external power</desc>
+      <binding>
+        <command>nasal</command>
+        <script>A380.toggleExternalServices()</script>
+      </binding>
+    </key>
     <key n="127">
       <name>Delete</name>
       <desc>Toggle Reversers</desc>
@@ -502,7 +514,7 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
       </binding>
     </key>
 
-    <key n="101">
+    <!-- key n="101">
       <name>e</name>
       <desc>Cycle cockpit location - Stand up, walk around, sit down</desc>
       <binding>
@@ -518,7 +530,7 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
         <command>nasal</command>
         <script>walk.cycle_cockpit(10)</script>
       </binding>
-    </key>
+    </key -->
     
     <key n="119">
       <name>w</name>
