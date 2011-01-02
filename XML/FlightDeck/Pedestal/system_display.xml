@@ -1600,7 +1600,7 @@
    </offsets>
    <type type="string">number-value</type>
     <property type="string">/systems/electrical/suppliers/idg[0]/volts</property>
-    <format>%2.0f</format>
+    <format>%3.0f</format>
     <font>helvetica_medium.txf</font>
     <character-size type="double">0.005</character-size>
     <alignment>right-bottom</alignment>
@@ -1617,7 +1617,7 @@
    </offsets>
    <type type="string">number-value</type>
     <property type="string">/systems/electrical/suppliers/idg[1]/volts</property>
-    <format>%2.0f</format>
+    <format>%3.0f</format>
     <font>helvetica_medium.txf</font>
     <character-size type="double">0.005</character-size>
     <alignment>right-bottom</alignment>
@@ -1634,7 +1634,7 @@
    </offsets>
    <type type="string">number-value</type>
     <property type="string">/systems/electrical/suppliers/idg[2]/volts</property>
-    <format>%2.0f</format>
+    <format>%3.0f</format>
     <font>helvetica_medium.txf</font>
     <character-size type="double">0.005</character-size>
     <alignment>right-bottom</alignment>
@@ -1651,7 +1651,7 @@
    </offsets>
    <type type="string">number-value</type>
     <property type="string">/systems/electrical/suppliers/idg[3]/volts</property>
-    <format>%2.0f</format>
+    <format>%3.0f</format>
     <font>helvetica_medium.txf</font>
     <character-size type="double">0.005</character-size>
     <alignment>right-bottom</alignment>
@@ -1714,7 +1714,198 @@
       
       -->
 
+ <text>
+   <name>bat1_volts</name>
+   <axis-alignment>yz-plane</axis-alignment>
+   <offsets>
+     <pitch-deg>-90</pitch-deg>
+     <x-m>-0.168</x-m>
+     <y-m>0.034</y-m>
+     <z-m>0.0015</z-m>
+   </offsets>
+   <type type="string">number-value</type>
+    <property type="string">/systems/electrical/suppliers/battery[0]/volts</property>
+    <format>%2.1f</format>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.005</character-size>
+    <alignment>right-bottom</alignment>
+ </text>
+ 
+ <text>
+   <name>bat2_volts</name>
+   <axis-alignment>yz-plane</axis-alignment>
+   <offsets>
+     <pitch-deg>-90</pitch-deg>
+     <x-m>-0.168</x-m>
+     <y-m>0.105</y-m>
+     <z-m>0.0015</z-m>
+   </offsets>
+   <type type="string">number-value</type>
+    <property type="string">/systems/electrical/suppliers/battery[1]/volts</property>
+    <format>%2.1f</format>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.005</character-size>
+    <alignment>right-bottom</alignment>
+ </text>
+ 
+ <text>
+   <name>apu_bat_volts</name>
+   <axis-alignment>yz-plane</axis-alignment>
+   <offsets>
+     <pitch-deg>-90</pitch-deg>
+     <x-m>-0.168</x-m>
+     <y-m>0.143</y-m>
+     <z-m>0.0015</z-m>
+   </offsets>
+   <type type="string">number-value</type>
+    <property type="string">/systems/electrical/suppliers/apu-battery/volts</property>
+    <format>%2.1f</format>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.005</character-size>
+    <alignment>right-bottom</alignment>
+ </text>
+ 
+ <text>
+   <name>tr1a_volts</name>
+   <axis-alignment>yz-plane</axis-alignment>
+   <offsets>
+     <pitch-deg>-90</pitch-deg>
+     <x-m>-0.116</x-m>
+     <y-m>0.029</y-m>
+     <z-m>0.0015</z-m>
+   </offsets>
+   <type type="string">number-value</type>
+    <property type="string">/systems/electrical/suppliers/tr[0]/volts</property>
+    <format>%2.1f</format>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.005</character-size>
+    <alignment>right-bottom</alignment>
+ </text>
+ 
+ <text>
+   <name>tr2a_volts</name>
+   <axis-alignment>yz-plane</axis-alignment>
+   <offsets>
+     <pitch-deg>-90</pitch-deg>
+     <x-m>-0.116</x-m>
+     <y-m>0.100</y-m>
+     <z-m>0.0015</z-m>
+   </offsets>
+   <type type="string">number-value</type>
+    <property type="string">/systems/electrical/suppliers/tr[1]/volts</property>
+    <format>%2.1f</format>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.005</character-size>
+    <alignment>right-bottom</alignment>
+ </text>
 
+ <animation>
+  <type>select</type>
+  <object-name>bat1_volts</object-name>
+  <object-name>bat2_volts</object-name>
+  <object-name>apu_bat_volts</object-name>
+  <object-name>tr1a_volts</object-name>
+  <object-name>tr2a_volts</object-name>
+  <condition>
+    <and>
+     <equals>
+       <property>/instrumentation/ecam/page</property>
+       <value>elec dc</value>
+     </equals>
+     <greater-than>
+      <property>/systems/electrical/outputs/efis</property>
+      <value>15</value>
+    </greater-than>
+    </and>
+   </condition>
+ </animation> 
+ 
+ <animation>
+   <type>select</type>
+   <object-name>tr1a.tie</object-name>
+   <condition>
+     <and>
+       <property>/controls/electric/contact/tr_left_tie</property>
+       <greater-than>
+         <property>/systems/electrical/suppliers/tr[0]/volts</property>
+         <value>12</value>
+       </greater-than>
+     </and>
+   </condition>
+ </animation>
+ 
+ <animation>
+   <type>select</type>
+   <object-name>tr2a.tie</object-name>
+   <condition>
+     <and>
+       <property>/controls/electric/contact/tr_right_tie</property>
+       <greater-than>
+         <property>/systems/electrical/suppliers/tr[1]/volts</property>
+         <value>12</value>
+       </greater-than>
+     </and>
+   </condition>
+ </animation>
+ <animation>
+   <type>select</type>
+   <object-name>batt1.tie</object-name>
+   <condition>
+     <property>/controls/electric/contact/batt_1</property>
+   </condition>
+ </animation>
+ <animation>
+   <type>select</type>
+   <object-name>batt2.tie</object-name>
+   <condition>
+     <property>/controls/electric/contact/batt_2</property>
+   </condition>
+ </animation>
+ <animation>
+   <type>select</type>
+   <object-name>apu-batt.tie</object-name>
+   <condition>
+       <property>/controls/electric/contact/apu_bat</property>
+   </condition>
+ </animation>
+ <animation>
+   <type>select</type>
+   <object-name>ess-batt.tie</object-name>
+   <condition>
+     <property>/controls/electric/contact/ess_bat</property>
+   </condition>
+ </animation>
+ 
+ <animation>
+   <type>material</type>
+   <object-name>bat1_volts</object-name>
+   <object-name>bat2_volts</object-name>
+   <object-name>apu_bat_volts</object-name>
+   <object-name>tr1a_volts</object-name>
+   <object-name>tr2a_volts</object-name>
+   <ambient>
+      <red>0.1</red>
+      <green>0.8</green>
+      <blue>0.1</blue>
+    </ambient>
+    <emission>
+      <red>0.1</red>
+      <green>0.8</green>
+      <blue>0.1</blue>
+    </emission>
+    <diffuse>
+      <red>0.1</red>
+      <green>0.8</green>
+      <blue>0.1</blue>
+    </diffuse>
+    <specular>
+      <red>0.0</red>
+      <green>0.0</green>
+      <blue>0.0</blue>
+    </specular>
+    <shininess>0.0</shininess>
+    <transparency><alpha>0.7</alpha></transparency>
+ </animation>
 
 
 <!--
