@@ -1719,7 +1719,7 @@
    <axis-alignment>yz-plane</axis-alignment>
    <offsets>
      <pitch-deg>-90</pitch-deg>
-     <x-m>-0.168</x-m>
+     <x-m>-0.169</x-m>
      <y-m>0.034</y-m>
      <z-m>0.0015</z-m>
    </offsets>
@@ -1736,7 +1736,7 @@
    <axis-alignment>yz-plane</axis-alignment>
    <offsets>
      <pitch-deg>-90</pitch-deg>
-     <x-m>-0.168</x-m>
+     <x-m>-0.169</x-m>
      <y-m>0.105</y-m>
      <z-m>0.0015</z-m>
    </offsets>
@@ -1753,7 +1753,7 @@
    <axis-alignment>yz-plane</axis-alignment>
    <offsets>
      <pitch-deg>-90</pitch-deg>
-     <x-m>-0.168</x-m>
+     <x-m>-0.169</x-m>
      <y-m>0.143</y-m>
      <z-m>0.0015</z-m>
    </offsets>
@@ -1770,7 +1770,7 @@
    <axis-alignment>yz-plane</axis-alignment>
    <offsets>
      <pitch-deg>-90</pitch-deg>
-     <x-m>-0.116</x-m>
+     <x-m>-0.119</x-m>
      <y-m>0.029</y-m>
      <z-m>0.0015</z-m>
    </offsets>
@@ -1787,7 +1787,7 @@
    <axis-alignment>yz-plane</axis-alignment>
    <offsets>
      <pitch-deg>-90</pitch-deg>
-     <x-m>-0.116</x-m>
+     <x-m>-0.119</x-m>
      <y-m>0.100</y-m>
      <z-m>0.0015</z-m>
    </offsets>
@@ -2153,228 +2153,263 @@
     -->
     
      <!-- eng kg/h fuel flow -->
- <animation>
-  <type>textranslate</type>
-  <object-name>cruise engine1 ff digit1</object-name>
-    <condition>
-    <equals>
-      <property>/instrumentation/ecam/page</property>
-      <value>cruise</value>
-    </equals>
-  </condition>
-  <property>/engines/engine[0]/fuel-flow_kgph</property>
-  <factor>0.1</factor>
-  <step>1</step>  
-  <axis>
-   <x>0</x>
-   <y>1</y>
-   <z>0</z>
-  </axis>
- </animation>
- <animation>
-  <type>textranslate</type>
-  <object-name>cruise engine1 ff digit2</object-name>
-  <condition>
-    <equals>
-      <property>/instrumentation/ecam/page</property>
-      <value>cruise</value>
-    </equals>
-  </condition>
-  <property>/engines/engine[0]/fuel-flow_kgph</property>
-  <factor>0.01</factor>
-  <step>10</step> 
-  <axis>
-   <x>0</x>
-   <y>1</y>
-   <z>0</z>
-  </axis>
- </animation>
-  <animation>
-  <type>textranslate</type>
-  <object-name>cruise engine1 ff digit3</object-name>
-  <condition>
-    <equals>
-      <property>/instrumentation/ecam/page</property>
-      <value>cruise</value>
-    </equals>
-  </condition>
-  <property>/engines/engine[0]/fuel-flow_kgph</property>
-  <factor>0.001</factor>
-  <step>100</step>
-  <axis>
-   <x>0</x>
-   <y>1</y>
-   <z>0</z>
-  </axis>
- </animation>
  
-      <!-- eng kg/h fuel flow -->
- <animation>
-  <type>textranslate</type>
-  <object-name>cruise engine2 ff digit1</object-name>
-    <condition>
-    <equals>
-      <property>/instrumentation/ecam/page</property>
-      <value>cruise</value>
-    </equals>
-  </condition>
-  <property>/engines/engine[1]/fuel-flow_kgph</property>
-  <factor>0.1</factor>
-  <step>1</step>  
-  <axis>
-   <x>0</x>
-   <y>1</y>
-   <z>0</z>
-  </axis>
- </animation>
- <animation>
-  <type>textranslate</type>
-  <object-name>cruise engine2 ff digit2</object-name>
-  <condition>
-    <equals>
-      <property>/instrumentation/ecam/page</property>
-      <value>cruise</value>
-    </equals>
-  </condition>
-  <property>/engines/engine[1]/fuel-flow_kgph</property>
-  <factor>0.01</factor>
-  <step>10</step> 
-  <axis>
-   <x>0</x>
-   <y>1</y>
-   <z>0</z>
-  </axis>
- </animation>
-  <animation>
-  <type>textranslate</type>
-  <object-name>cruise engine2 ff digit3</object-name>
-  <condition>
-    <equals>
-      <property>/instrumentation/ecam/page</property>
-      <value>cruise</value>
-    </equals>
-  </condition>
-  <property>/engines/engine[1]/fuel-flow_kgph</property>
-  <factor>0.001</factor>
-  <step>100</step>
-  <axis>
-   <x>0</x>
-   <y>1</y>
-   <z>0</z>
-  </axis>
- </animation>
+ <text>
+   <name>cruise.engine1.ff</name>
+   <axis-alignment>yz-plane</axis-alignment>
+   <alignment>right-bottom</alignment>
+   <offsets>
+      <pitch-deg>-87</pitch-deg>
+      <x-m>-0.1775</x-m>
+      <y-m>0.0348</y-m>
+      <z-m>0.0011</z-m>
+   </offsets>
+   <type>number-value</type>
+   <property type="string">/engines/engine[0]/fuel-flow_kgph</property>
+   <format type="string">%02.0f</format>
+   <font>helvetica_medium.txf</font>
+   <character-size type="double">0.006</character-size>
+ </text>
  
-      <!-- eng kg/h fuel flow -->
- <animation>
-  <type>textranslate</type>
-  <object-name>cruise engine3 ff digit1</object-name>
-    <condition>
-    <equals>
-      <property>/instrumentation/ecam/page</property>
-      <value>cruise</value>
-    </equals>
-  </condition>
-  <property>/engines/engine[2]/fuel-flow_kgph</property>
-  <factor>0.1</factor>
-  <step>1</step>  
-  <axis>
-   <x>0</x>
-   <y>1</y>
-   <z>0</z>
-  </axis>
- </animation>
- <animation>
-  <type>textranslate</type>
-  <object-name>cruise engine3 ff digit2</object-name>
-  <condition>
-    <equals>
-      <property>/instrumentation/ecam/page</property>
-      <value>cruise</value>
-    </equals>
-  </condition>
-  <property>/engines/engine[2]/fuel-flow_kgph</property>
-  <factor>0.01</factor>
-  <step>10</step> 
-  <axis>
-   <x>0</x>
-   <y>1</y>
-   <z>0</z>
-  </axis>
- </animation>
-  <animation>
-  <type>textranslate</type>
-  <object-name>cruise engine3 ff digit3</object-name>
-  <condition>
-    <equals>
-      <property>/instrumentation/ecam/page</property>
-      <value>cruise</value>
-    </equals>
-  </condition>
-  <property>/engines/engine[2]/fuel-flow_kgph</property>
-  <factor>0.001</factor>
-  <step>100</step>
-  <axis>
-   <x>0</x>
-   <y>1</y>
-   <z>0</z>
-  </axis>
- </animation>
+ <text>
+   <name>cruise.engine2.ff</name>
+   <axis-alignment>yz-plane</axis-alignment>
+   <alignment>right-bottom</alignment>
+   <offsets>
+      <pitch-deg>-87</pitch-deg>
+      <x-m>-0.1775</x-m>
+      <y-m>0.0565</y-m>
+      <z-m>0.0011</z-m>
+   </offsets>
+   <type>number-value</type>
+   <property type="string">/engines/engine[1]/fuel-flow_kgph</property>
+   <format type="string">%02.0f</format>
+   <font>helvetica_medium.txf</font>
+   <character-size type="double">0.006</character-size>
+ </text>
  
-     <!-- eng kg/h fuel flow -->
+ <text>
+   <name>cruise.engine3.ff</name>
+   <axis-alignment>yz-plane</axis-alignment>
+   <alignment>right-bottom</alignment>
+   <offsets>
+      <pitch-deg>-87</pitch-deg>
+      <x-m>-0.1775</x-m>
+      <y-m>0.1071</y-m>
+      <z-m>0.0011</z-m>
+   </offsets>
+   <type>number-value</type>
+   <property type="string">/engines/engine[2]/fuel-flow_kgph</property>
+   <format type="string">%02.0f</format>
+   <font>helvetica_medium.txf</font>
+   <character-size type="double">0.006</character-size>
+ </text>
+ 
+ <text>
+   <name>cruise.engine4.ff</name>
+   <axis-alignment>yz-plane</axis-alignment>
+   <alignment>right-bottom</alignment>
+   <offsets>
+      <pitch-deg>-87</pitch-deg>
+      <x-m>-0.1775</x-m>
+      <y-m>0.1371</y-m>
+      <z-m>0.0011</z-m>
+   </offsets>
+   <type>number-value</type>
+   <property type="string">/engines/engine[3]/fuel-flow_kgph</property>
+   <format type="string">%02.0f</format>
+   <font>helvetica_medium.txf</font>
+   <character-size type="double">0.006</character-size>
+ </text>
+ 
+ 
+ <!-- eng fuel consumed kg -->
+ 
+
+ <text>
+   <name>cruise.engine1.fu</name>
+   <axis-alignment>yz-plane</axis-alignment>
+   <alignment>right-bottom</alignment>
+   <offsets>
+      <pitch-deg>-87</pitch-deg>
+      <x-m>-0.162</x-m>
+      <y-m>0.035</y-m>
+      <z-m>0.0011</z-m>
+   </offsets>
+   <type>number-value</type>
+   <property type="string">/engines/engine[0]/fuel-consumed-kg</property>
+   <format type="string">%04.0f</format>
+   <font>helvetica_medium.txf</font>
+   <character-size type="double">0.006</character-size>
+ </text>
+ 
+ <text>
+   <name>cruise.engine2.fu</name>
+   <axis-alignment>yz-plane</axis-alignment>
+   <alignment>right-bottom</alignment>
+   <offsets>
+      <pitch-deg>-87</pitch-deg>
+      <x-m>-0.162</x-m>
+      <y-m>0.0575</y-m>
+      <z-m>0.0011</z-m>
+   </offsets>
+   <type>number-value</type>
+   <property type="string">/engines/engine[1]/fuel-consumed-kg</property>
+   <format type="string">%04.0f</format>
+   <font>helvetica_medium.txf</font>
+   <character-size type="double">0.006</character-size>
+ </text>
+ 
+ <text>
+   <name>cruise.engine3.fu</name>
+   <axis-alignment>yz-plane</axis-alignment>
+   <alignment>right-bottom</alignment>
+   <offsets>
+      <pitch-deg>-87</pitch-deg>
+      <x-m>-0.162</x-m>
+      <y-m>0.1078</y-m>
+      <z-m>0.0011</z-m>
+   </offsets>
+   <type>number-value</type>
+   <property type="string">/engines/engine[2]/fuel-consumed-kg</property>
+   <format type="string">%04.0f</format>
+   <font>helvetica_medium.txf</font>
+   <character-size type="double">0.006</character-size>
+ </text>
+ 
+ <text>
+   <name>cruise.engine4.fu</name>
+   <axis-alignment>yz-plane</axis-alignment>
+   <alignment>right-bottom</alignment>
+   <offsets>
+      <pitch-deg>-87</pitch-deg>
+      <x-m>-0.162</x-m>
+      <y-m>0.1381</y-m>
+      <z-m>0.0011</z-m>
+   </offsets>
+   <type>number-value</type>
+   <property type="string">/engines/engine[3]/fuel-consumed-kg</property>
+   <format type="string">%04.0f</format>
+   <font>helvetica_medium.txf</font>
+   <character-size type="double">0.006</character-size>
+ </text>
+ 
+ <text>
+   <name>cruise.total.fu</name>
+   <axis-alignment>yz-plane</axis-alignment>
+   <alignment>center-bottom</alignment>
+   <offsets>
+      <pitch-deg>-87</pitch-deg>
+      <x-m>-0.1555</x-m>
+      <y-m>0.076</y-m>
+      <z-m>0.0011</z-m>
+   </offsets>
+   <type>number-value</type>
+   <property type="string">/consumables/fuel/total-used-kg</property>
+   <format type="string">%05.0f</format>
+   <font>helvetica_medium.txf</font>
+   <character-size type="double">0.006</character-size>
+ </text>
+ 
+ <!-- cabin pressure -->
+ 
+ <text>
+   <name>cruise.ldg-elev</name>
+   <axis-alignment>yz-plane</axis-alignment>
+   <alignment>right-bottom</alignment>
+   <offsets>
+      <pitch-deg>-87</pitch-deg>
+      <x-m>-0.134</x-m>
+      <y-m>0.100</y-m>
+      <z-m>0.0011</z-m>
+   </offsets>
+   <type>number-value</type>
+   <property type="string">/controls/pressurisation/landing-elev-ft</property>
+   <format type="string">%3.0f</format>
+   <font>helvetica_medium.txf</font>
+   <character-size type="double">0.006</character-size>
+ </text>
+ 
+ 
+ <text>
+   <name>delta-psi</name>
+   <axis-alignment>yz-plane</axis-alignment>
+   <alignment>right-bottom</alignment>
+   <offsets>
+      <pitch-deg>-87</pitch-deg>
+      <x-m>-0.1149</x-m>
+      <y-m>0.07</y-m>
+      <z-m>0.0011</z-m>
+   </offsets>
+   <type>number-value</type>
+   <property type="string">/instrumentation/pressurisation/cabin-delta-psi</property>
+   <format type="string">%2.1f</format>
+   <font>helvetica_medium.txf</font>
+   <character-size type="double">0.006</character-size>
+ </text>
+ 
+ <text>
+   <name>cabin-alt</name>
+   <axis-alignment>yz-plane</axis-alignment>
+   <alignment>right-bottom</alignment>
+   <offsets>
+      <pitch-deg>-87</pitch-deg>
+      <x-m>-0.08</x-m>
+      <y-m>0.133</y-m>
+      <z-m>0.0011</z-m>
+   </offsets>
+   <type>number-value</type>
+   <property type="string">/instrumentation/pressurisation/cabin-altitude-ft</property>
+   <format type="string">%4.0f</format>
+   <font>helvetica_medium.txf</font>
+   <character-size type="double">0.006</character-size>
+ </text> 
+ 
+ <text>
+   <name>cabin-vs</name>
+   <axis-alignment>yz-plane</axis-alignment>
+   <alignment>right-bottom</alignment>
+   <offsets>
+      <pitch-deg>-87</pitch-deg>
+      <x-m>-0.1112</x-m>
+      <y-m>0.135</y-m>
+      <z-m>0.0011</z-m>
+   </offsets>
+   <type>number-value</type>
+   <property type="string">/controls/pressurisation/cabin_vs</property>
+   <format type="string">%4.0f</format>
+   <font>helvetica_medium.txf</font>
+   <character-size type="double">0.006</character-size>
+ </text>
+ 
  <animation>
-  <type>textranslate</type>
-  <object-name>cruise engine4 ff digit1</object-name>
-    <condition>
-    <equals>
+   <type>select</type>
+   <object-name>delta-psi</object-name>
+   <object-name>cabin-alt</object-name>
+   <object-name>cabin-vs</object-name>
+   <object-name>cruise.engine1.ff</object-name>
+   <object-name>cruise.engine2.ff</object-name>
+   <object-name>cruise.engine3.ff</object-name>
+   <object-name>cruise.engine4.ff</object-name>
+   <object-name>cruise.engine1.fu</object-name>
+   <object-name>cruise.engine2.fu</object-name>
+   <object-name>cruise.engine3.fu</object-name>
+   <object-name>cruise.engine4.fu</object-name>
+   <object-name>cruise.total.fu</object-name>
+   <object-name>cruise.ldg-elev</object-name>
+   <condition>
+    <and>
+     <equals>
       <property>/instrumentation/ecam/page</property>
       <value>cruise</value>
     </equals>
-  </condition>
-  <property>/engines/engine[3]/fuel-flow_kgph</property>
-  <factor>0.1</factor>
-  <step>1</step>  
-  <axis>
-   <x>0</x>
-   <y>1</y>
-   <z>0</z>
-  </axis>
- </animation>
- <animation>
-  <type>textranslate</type>
-  <object-name>cruise engine4 ff digit2</object-name>
-  <condition>
-    <equals>
-      <property>/instrumentation/ecam/page</property>
-      <value>cruise</value>
-    </equals>
-  </condition>
-  <property>/engines/engine[3]/fuel-flow_kgph</property>
-  <factor>0.01</factor>
-  <step>10</step> 
-  <axis>
-   <x>0</x>
-   <y>1</y>
-   <z>0</z>
-  </axis>
- </animation>
-  <animation>
-  <type>textranslate</type>
-  <object-name>cruise engine4 ff digit3</object-name>
-  <condition>
-    <equals>
-      <property>/instrumentation/ecam/page</property>
-      <value>cruise</value>
-    </equals>
-  </condition>
-  <property>/engines/engine[3]/fuel-flow_kgph</property>
-  <factor>0.001</factor>
-  <step>100</step>
-  <axis>
-   <x>0</x>
-   <y>1</y>
-   <z>0</z>
-  </axis>
- </animation>
+    <greater-than>
+      <property>/systems/electrical/outputs/efis</property>
+      <value>15</value>
+    </greater-than>
+    </and>
+   </condition>
+</animation>
  
  
       
@@ -2797,6 +2832,19 @@
    <object-name>value.midR</object-name>
    <object-name>value.outerL</object-name>
    <object-name>value.outerR</object-name>
+   <object-name>delta-psi</object-name>
+   <object-name>cabin-alt</object-name>
+   <object-name>cabin-vs</object-name>
+   <object-name>cruise.engine1.ff</object-name>
+   <object-name>cruise.engine2.ff</object-name>
+   <object-name>cruise.engine3.ff</object-name>
+   <object-name>cruise.engine4.ff</object-name>
+   <object-name>cruise.engine1.fu</object-name>
+   <object-name>cruise.engine2.fu</object-name>
+   <object-name>cruise.engine3.fu</object-name>
+   <object-name>cruise.engine4.fu</object-name>
+   <object-name>cruise.total.fu</object-name>
+   <object-name>cruise.ldg-elev</object-name>
    <emission>
      <red>0.1</red>
      <green>1.0</green>

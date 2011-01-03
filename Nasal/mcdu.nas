@@ -114,6 +114,8 @@ init_mcdu = func() {
   
     setprop("/instrumentation/afs/routeClearArm",0);
 
+    setprop("/controls/pressurisation/landing-elev-ft", 0);
+
     var depapt = airportinfo();
     setprop("/instrumentation/afs/FROM",depapt["id"]);
     #setprop("/instrumentation/afs/depart-runway","");
@@ -465,8 +467,8 @@ changePage = func(unit,page) {
      var fltMode    = getprop("/instrumentation/ecam/flight-mode");
      if (fltMode == 2) {
        setprop("/instrumentation/ecam/flight-mode", fltMode+1);
-       setprop("/instrumentation/ecam/to-data", 1);
      }
+     setprop("/instrumentation/ecam/to-data", 1);
   }
   tracer("**** End changePage("~page~")");
   setprop("/instrumentation/mcdu["~unit~"]/page",page);

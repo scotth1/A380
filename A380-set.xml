@@ -769,21 +769,41 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
   <pressurization>
     <pack>
       <hotair-on type="bool">0</hotair-on>
+      <pack-valve type="float">1.0</pack-valve>
+      <hotair-valve type="float">1.0</hotair-valve>
     </pack>
     <pack>
       <hotair-on type="bool">0</hotair-on>
+      <pack-valve type="float">1.0</pack-valve>
+      <hotair-valve type="float">1.0</hotair-valve>
     </pack>
     <engine>
       <bleed-on type="bool">0</bleed-on>
+      <hp-valve type="float">0</hp-valve>
+      <lp-valve type="float">0</lp-valve>
+      <bleed-psi type="int">0</bleed-psi>
+      <bleed-degc type="int">0</bleed-degc>
     </engine>
     <engine>
       <bleed-on type="bool">0</bleed-on>
+      <hp-valve type="float">0</hp-valve>
+      <lp-valve type="float">0</lp-valve>
+      <bleed-psi type="int">0</bleed-psi>
+      <bleed-degc type="int">0</bleed-degc>
     </engine>
     <engine>
       <bleed-on type="bool">0</bleed-on>
+      <hp-valve type="float">0</hp-valve>
+      <lp-valve type="float">0</lp-valve>
+      <bleed-psi type="int">0</bleed-psi>
+      <bleed-degc type="int">0</bleed-degc>
     </engine>
     <engine>
       <bleed-on type="bool">0</bleed-on>
+      <hp-valve type="float">0</hp-valve>
+      <lp-valve type="float">0</lp-valve>
+      <bleed-psi type="int">0</bleed-psi>
+      <bleed-degc type="int">0</bleed-degc>
     </engine>
     <apu>
       <bleed-on type="bool">0</bleed-on>
@@ -882,13 +902,13 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
 	</attitude-indicator -->
 
   <wxradar>
-  <serviceable>true</serviceable>
-  <range type="int" archive="y">20</range>
-  <minimized type="bool" archive="y">false</minimized>
-  <switch archive="y">off</switch>
-  <mode archive="y">wx</mode>
-  <lightning type="bool" archive="y">false</lightning>
-  <display-mode archive="y">arc</display-mode>
+      <serviceable>true</serviceable>
+      <range type="int" archive="y">20</range>
+      <minimized type="bool" archive="y">false</minimized>
+      <switch archive="y">off</switch>
+      <mode archive="y">wx</mode>
+      <lightning type="bool" archive="y">false</lightning>
+      <display-mode archive="y">arc</display-mode>
   </wxradar>
   <nav n="2">
     <serviceable type="bool">true</serviceable>
@@ -899,6 +919,12 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
       <standby-mhz>109.3</standby-mhz>
     </frequencies>
   </nav>
+  <pressurisation>
+    <cabin-pressure-psi type="float">14.69594</cabin-pressure-psi>
+    <cabin-pressure-hpa type="float">1013.25</cabin-pressure-hpa>
+    <cabin-altitude-ft  type="float">0.0</cabin-altitude-ft>
+    <cabin-delta-psi type="float">0.0</cabin-delta-psi>
+  </pressurisation>
 </instrumentation>
 
 <nasal>
