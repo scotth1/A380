@@ -278,6 +278,7 @@ setlistener("/sim/signals/fdm-initialized", func {
     setprop("/instrumentation/afs/thrust-accel-alt",5500);
     ###  should be set from route manager at initalisation.
     setprop("/instrumentation/afs/thrust-cruise-alt",30000);
+    setprop("/instrumentation/afs/to-flaps", 2);
     setprop("/instrumentation/afs/crz_speed", 310);
     setprop("/instrumentation/afs/crz_mach", 0.85);
     setprop("/instrumentation/afs/clb_speed", 280);
@@ -294,6 +295,8 @@ setlistener("/sim/signals/fdm-initialized", func {
     setprop("/instrumentation/afs/vertical-speed-fpm",1000);
     setprop("/instrumentation/afs/heading-bug-deg",0);
     setprop("/instrumentation/afs/target-speed-kt",200);
+    setprop("/instrumentation/afs/target-speed-mach", 0.85);
+    setprop("/instrumentation/afs/spd-mach-display-mode", 0);   ## 0 == Kt, 1 == Mach
     setprop("/instrumentation/afs/limit-min-vs-fps", -16.67);
     setprop("/instrumentation/afs/limit-max-vs-fps", 33.33);
     setprop("/instrumentation/afs/steps[0]/at","");
@@ -1102,6 +1105,13 @@ setlistener("/autopilot/route-manager/route/num", func(n) {
         var crzFL = int(ceilingFt/100);
         setprop("/instrumentation/afs/CRZ_FL",crzFL);
         tracer("set CRZ_FL: "~crzFL);
+        var atmos = Atmos.new();
+        var Pcr = atmos.convertAltitudePressure("feet",ceilingFt,"psi");
+        setprop("/controls/pressurisation/outside-cruise-ft", ceilingFt);
+        setprop("/controls/pressurisation/outside-pressure-cruise-psi", Pcr);
+        setprop("/controls/pressurisation/cabin-cruise-ft", 6500);
+        var Pcc = atmos.convertAltitudePressure("feet",6500,"psi");
+        setprop("/controls/pressurisation/cabin-pressure-cruise-psi", Pcc);
       }
       
       setprop("/instrumentation/afs/thrust-descent-alt", descentFt);
@@ -1245,15 +1255,19 @@ handle_inputs = func {
   if (spdMode == SPD_THRCLB and changeoverMode == 0 and (currMach >= clbMach or curAlt > 28000)) {
     tracer("currMach: "~currMach~" changeover level on");
     setprop("/instrumentation/afs/changeover-mode", 1);
+    setprop("/instrumentation/afs/spd-mach-display-mode", 1);
     setprop("/autopilot/settings/target-speed-mach", clbMach);
+    setprop("/instrumentation/afs/target-speed-mach", clbMach);
     setprop("/autopilot/locks/speed","mach-with-throttle");
   }
   # don't retrieve the current changeover mode again, otherwise we could oscilate 
   if (spdMode == SPD_THRDES and changeoverMode == 1 and (currTAS <= desSpeed or curAlt < 28000)) {
     tracer("currTAS: "~currTAS~" changeover level off");
     setprop("/instrumentation/afs/changeover-mode",0);
+    setprop("/instrumentation/afs/spd-mach-display-mode", 1);
     setprop("/autopilot/settings/target-speed-kt", desSpeed);
     setprop("/autopilot/settings/target-speed-mach", desMach);
+    setprop("/instrumentation/afs/target-speed-mach", desMach);
     setprop("/autopilot/locks/speed", "speed-with-throttle");
   }
 
@@ -1275,9 +1289,14 @@ handle_inputs = func {
   }
 
   var spdMode = getprop("/instrumentation/afs/speed-mode");
+  var machSpdMode = getprop("/instrumentation/afs/spd-mach-display-mode");
   if (spdMode == 0 and ap_on == 1) {
-    setprop("/autopilot/settings/target-speed-kt",getprop("/instrumentation/afs/target-speed-kt"));
-    ##setprop("/autopilot/settings/target-speed-mach", getprop("/instrumentation/afs/target-speed-mach"));
+    if (machSpdMode == 0) {
+      setprop("/autopilot/settings/target-speed-kt",getprop("/instrumentation/afs/target-speed-kt"));
+    }
+    if (machSpdMode == 1) {
+      setprop("/autopilot/settings/target-speed-mach", getprop("/instrumentation/afs/target-speed-mach"));
+    }
   }
 };
 

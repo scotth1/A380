@@ -980,7 +980,7 @@
    <axis-alignment>yz-plane</axis-alignment>
     <offsets>
       <pitch-deg>-90</pitch-deg>
-      <x-m>-0.020</x-m>
+      <x-m>-0.015</x-m>
       <y-m>0.010</y-m>
       <z-m>0.002</z-m>
     </offsets>
@@ -991,12 +991,25 @@
     <alignment>left-bottom</alignment>
 </text>
 
+<animation>
+  <type>pick</type>
+  <object-name>menu.STEP_ALT</object-name>
+  <action>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+      <command>nasal</command>
+      <script>MCDU1.changePage(0,"active.crz.stepalt")</script>
+   </binding>
+  </action>
+</animation>
+
 <text>
   <name>label.crz_perf.step_alt</name>
    <axis-alignment>yz-plane</axis-alignment>
     <offsets>
       <pitch-deg>-90</pitch-deg>
-      <x-m>-0.020</x-m>
+      <x-m>-0.015</x-m>
       <y-m>0.120</y-m>
       <z-m>0.002</z-m>
     </offsets>
@@ -1006,6 +1019,8 @@
     <character-size type="double">0.004</character-size>
     <alignment>left-bottom</alignment>
 </text>
+
+
 
 
 <text>
@@ -2494,6 +2509,36 @@
   </action>
 </animation>
 
+<text>
+  <name>value.to_perf.to_flaps</name>
+  <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.106</x-m>
+      <y-m>0.032</y-m>
+      <z-m>0.002</z-m>
+    </offsets>
+    <type type="string">number-value</type>
+    <property type="string">/instrumentation/afs/to-flaps</property>
+    <format>%1.0f</format>
+    <truncate type="bool">true</truncate>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.005</character-size>
+</text>
+
+<animation>
+  <type>pick</type>
+  <object-name>input.to_flaps</object-name>
+  <action>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+      <command>nasal</command>
+      <script>MCDU1.selectField("to-flaps")</script>
+   </binding>
+  </action>
+</animation>
+
 
 
 <!-- active.to_perf.crz  values -->
@@ -2551,6 +2596,19 @@
     <character-size type="double">0.0044</character-size>
     <alignment>left-bottom</alignment>
 </text>
+
+<animation>
+  <type>pick</type>
+  <object-name>input.crz.turb.mach</object-name>
+  <action>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+      <command>nasal</command>
+      <script>MCDU1.selectField("crz_mach")</script>
+   </binding>
+  </action>
+</animation>
 
 
 
@@ -2683,6 +2741,7 @@
     <object-name>value.to_perf.green-dot</object-name>
     <object-name>value.to_perf.s-speed</object-name>
     <object-name>value.to_perf.f-speed</object-name>
+    <object-name>value.to_perf.to_flaps</object-name>
     <ambient>
       <red>0.0</red>
       <green>0.0</green>
@@ -2904,6 +2963,7 @@
     <object-name>value.to_perf.green-dot</object-name>
     <object-name>value.to_perf.s-speed</object-name>
     <object-name>value.to_perf.f-speed</object-name>
+    <object-name>value.to_perf.to_flaps</object-name>
     <object-name>label.to_perf.crz</object-name>
     <object-name>label.to_perf.rwy</object-name>
     <object-name>label.to_perf.v1</object-name>
@@ -2953,6 +3013,18 @@
   </condition>
 </animation>
 
+
+<!-- animation>
+  <type>select</type>
+  <object-name>menu.STEP_ALT</object-name>
+  <condition>
+    <equals>
+      <property>/instrumentation/mcdu[0]/page</property>
+      <value>active.crz.stepalt</value>
+    </equals>
+  </condition>
+</animation -->
+
 <animation>
   <type>select</type>
   <object-name>page.perf</object-name>
@@ -2988,6 +3060,10 @@
         <property>/instrumentation/mcdu[0]/page</property>
         <value>active.ga_perf</value>
       </equals> 
+      <equals>
+        <property>/instrumentation/mcdu[0]/page</property>
+        <value>active.crz.stepalt</value>
+      </equals>
     </or>
   </condition>
 </animation>

@@ -84,55 +84,12 @@ METRE2FT=3.28083989501;
 FT2METRE=0.3048;
 CLmax = 2.4;
 
-# atmos constants
-p0             = 101325.0;                         # [N/m^2] = [Pa]
-p1             =  22632.22842714;                  # [N/m^2] = [Pa]
-
-p0hPa          = 1013.25;                          # [hPa]
-p0inHG         =   29.92;                          # [inHG] Truncated 29.9213
-p0mmHG         = p0inHG*25.4;                      # [mmHG] with 25.4 [mm] = 1.0 [in]
-
-T0             =    288.15;                        # [K]
-T1             =    216.65;                        # [K]
-
-h1             =  36089.2388451444;                # [ft]
-h2             =  65616.7979002625;                # [ft]
-
-dTdh0          =     -0.0019812;                   # [K/ft]
-dTdh0SI        =     -0.0065;                      # [K/m]
-
-CPascalTOPSI   =  0.000145037737730209;
-ChPaTOinHG     = p0inHG/p0hPa;
-
-ClbPft3TOkgPm3 = 16.0184633739601;                 # [lb/ft^3] to [kg/m^3]
-
-CftTOm         = 0.3048;
-CftTOnm        = 1.64578833693305e-04;
-
-CnmTOm         = 1852.0;
-
-CftPsTOkn      = CftTOnm*3600.0;
-CftPsTOmph     = 3600.0/5280.0;
-CftPsTOkph     = CftTOm*3600.0/1000.0;
-
-CmPsTOkn       = 3600.0/CnmTOm;
-
-CknTOftPs      = 1.0/(CftTOnm*3600.0);
-
-CRGasSI        = 287.053;                       # [m^2/(s^2*K)] = [J/(kg*K)]
-
-CgSI           =  9.80665;                     # [m/s^2]
-
-CgRGas         = (CgSI*CftTOm)/CRGasSI;
-CgRGasSI       = CgSI/CRGasSI;
-
-CgRGas         = (CgSI*CftTOm)/CRGasSI;
 
 ###srsFlapTarget = [263.0, 220.0, 210.0, 196.0, 182.0];   # copied from Airbus_fms.nas
 srsFlapTarget = [263.0, 222.0, 210.0, 196.0, 182.0];   #another copy in system.nas
 flapPos       = [0, 0.2424, 0.5151, 0.7878, 1.0];
 
-trace = 0;
+trace = 1;
 version = "1.1.10";
 
 strobe_switch = props.globals.getNode("/controls/switches/strobe", 0);
@@ -192,8 +149,11 @@ setprop("/controls/gear/brake-parking",1.0);
 setprop("/controls/engines/ign-start",0);        # the IGN start switch on the OH
 setprop("/controls/APU/run",0);                  # what should we do with the APU (engine[4])
 setprop("/controls/afs/alt-inc-select",1000);
-setprop("/controls/pressurisation/cabin_alt", getprop("/position/altitude-ft"));
-setprop("/controls/pressurisation/cabin_vs", 0);  #ft/min
+var atmos = Atmos.new();
+##setprop("/controls/pressurisation/cabin_alt", getprop("/position/altitude-ft"));
+setprop("/instrumentation/pressurisation/target-cabin-pressure-psi", atmos.convertAltitudePressure("feet", getprop("/position/altitude-ft"), "psi"));
+setprop("/instrumentation/pressurisation/output-cabin-pressure-psi", atmos.convertAltitudePressure("feet", getprop("/position/altitude-ft"), "psi"));
+#setprop("/controls/pressurisation/cabin_vs", 0);  #ft/min
 setprop("/systems/electrical/apu-test",0);
 setprop("/instrumentation/annunciator/master-caution",0.0);
 setprop("/instrumentation/switches/seat-belt-sign",0.0);
@@ -550,8 +510,13 @@ update_radar = func {
    var tanks = props.globals.getNode("/consumables/fuel").getChildren("tank");
    for(i=0; i<size(tanks);i=i+1) {
      var tank = tanks[i];
-     var levelLbs = tank.getChild("level-lbs").getValue();
-     tank.getChild("level-kg",0,1).setValue(levelLbs*density);
+     if (tank != nil) {
+       var levelLbs = tank.getChild("level-lbs").getValue();
+       var levelKgNode = tank.getChild("level-kg",0,1);
+       if (levelKgNode != nil and levelLbs != nil) {
+         levelKgNode.setValue(levelLbs*density);
+       }
+     }
    }
   settimer(update_radar, 1.0);
 }
@@ -638,7 +603,7 @@ update_ewd = func {
   if (getprop("/controls/pneumatic/APU-bleed") == 1) {
     ewdChecklist.append("APU BLEED");
   }
-  if (flt_mode > 2 and flt_mode < 5 and getprop("/controls/flight/flaps") < 0.01) {
+  if (flt_mode > 1 and flt_mode < 5 and getprop("/controls/flight/flaps") < 0.01) {
     ewdChecklist.append("FLAP CONFIG");
   }
   if (flt_mode > 1 and flt_mode < 8 and getprop("/instrumentation/ecam/to-data") != 1) {
@@ -739,17 +704,20 @@ update_engines = func {
     }
     pph1=getprop("/engines/engine["~e~"]/fuel-flow-pph");
     if(pph1 == nil){
-      pph1 = getprop("/fdm/jsbsim/propulsion/engine["~e~"]/fuel-flow-rate-pps")*60;
+      pph1 = getprop("/fdm/jsbsim/propulsion/engine["~e~"]/fuel-flow-rate-pps")*3600;
     }
-    ##  this goes from gallons/sec to lbs/hour (and kg/h)
+    ##  this goes from gallons/sec to lbs/hour (and kg/hr to litres/hr)
     var fuel_density_metric = getprop("/consumables/fuel/tank[0]/density-kgpl");
     if (fuel_density_metric == nil) {
       fuel_density_metric = 0;
     }
-    setprop("engines/engine["~e~"]/fuel-flow_pph",pph1*fuel_density);
-    setprop("/engines/engine["~e~"]/fuel-flow_kgph",(pph1*fuel_density_metric));
-    var consumeLbs = getprop("/engines/engine["~e~"]/fuel-consumed-lbs");
-    setprop("/engines/engine["~e~"]/fuel-consumed-kg", (consumeLbs*0.45359237));
+    setprop("engines/engine["~e~"]/fuel-flow-gph",pph1*fuel_density);   #convert to gallons per hour
+    setprop("/engines/engine["~e~"]/fuel-flow_lph",(pph1*fuel_density_metric));  #convert to litres per hour
+    var consumeLbs = getprop("/engines/engine["~e~"]/fuel-used-lbs");
+    if (consumeLbs == nil) {
+      consumeLbs = 0.0;
+    }
+    setprop("/engines/engine["~e~"]/fuel-used-kg", (consumeLbs*0.45359237));
     if (ign == 1 and e_start == 1 and e_master == 1) {
       tracer("Engine "~e~" in start phase, N2: "~hpsi);
       if (hpsi > 20 and hpsi < 22 and getprop("/controls/engines/engine["~e~"]/cutoff") == 1) {
@@ -776,10 +744,11 @@ update_engines = func {
         setprop("/controls/pneumatic/engine["~e~"]/bleed",0);
       }
     }
-    var eng_egtF = getprop("/engines/engine["~e~"]/egt_degf");
-    if (eng_egtF == nil) {
-      eng_egtF = getprop("/engines/engine["~e~"]/egt-degf");
-    }
+    ##var eng_egtF = getprop("/engines/engine["~e~"]/egt_degf");
+    var eng_egtF = getprop("/engines/engine["~e~"]/egt-degf");
+    #if (eng_egtF == nil) {
+    #  eng_egtF = getprop("/engines/engine["~e~"]/egt-degf");
+    #}
     eng_egtC = (5/9)*(eng_egtF-32);
     setprop("/engines/engine["~e~"]/egt_degc",eng_egtC);
     limit = getprop("/instrumentation/ecam/egt_limit_arm");
@@ -816,10 +785,10 @@ update_engines = func {
       setprop("/controls/pneumatic/APU-bleed",0);
     }
   }
-  var apu_egtF = getprop("/engines/engine[4]/egt_degf");
-  if (apu_egtF == nil) {
-    apu_egtF = getprop("/engines/engine[4]/egt-degf");
-  }
+  var apu_egtF = getprop("/engines/engine[4]/egt-degf");
+  #if (apu_egtF == nil) {
+  #  apu_egtF = getprop("/engines/engine[4]/egt-degf");
+  #}
   apu_egtC = (5/9)*(apu_egtF-32);
   setprop("/engines/engine[4]/egt_degc",apu_egtC);
 
@@ -1087,19 +1056,14 @@ update_metric = func {
   setprop("/position/altitude-m",posAltitudeFt*FT2METRE);
   setprop("/instrumentation/altimeter/indicated-altitude-m",altIndicatedAltFt*FT2METRE);
 
+  var atmos = Atmos.new();
   var static_inHg = getprop("/systems/static/pressure-inhg");
   var static_psi  = static_inHg/2.036259;
+  var static_pascal = static_inHg/ChPaTOinHG;
   setprop("/systems/static/pressure-psi",static_psi);
+  setprop("/systems/static/pressure-pa", static_pascal);
   var cabin_psi   = getprop("/instrumentation/pressurisation/cabin-pressure-psi");
-  var p = cabin_psi/CPascalTOPSI;
-  var h = 0.0;
-  if (p >= p1) {
-    # Troposphere
-    h = T0*(math.pow((p0/p), (dTdh0SI/CgRGasSI)) - 1.0)/dTdh0;
-  } else {
-    #Tropopause
-    h = h1 - math.log(p/p1)*T1/CgRGas;
-  }
+  var h = atmos.convertPressureAltitude("psi",cabin_psi,"feet");
   setprop("/instrumentation/pressurisation/cabin-altitude-ft", h);
   var delta_psi   = cabin_psi-static_psi;
   setprop("/instrumentation/pressurisation/cabin-delta-psi", delta_psi);
@@ -1193,7 +1157,7 @@ setlistener("/sim/signals/fdm-initialized", func {
      setprop("/instrumentation/ecam/synoptic","door");
      setprop("/instrumentation/ecam/page","door");
  update_engines();
- update_metric();
+ settimer(update_metric, 2);
  settimer(update_radar,5);
  update_ewd();
 });

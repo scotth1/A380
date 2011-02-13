@@ -26,10 +26,10 @@
 currentField = "";
 currentFieldPos = 0;
 inputValue = "";
-trace = 0;         ## Set to 0 to turn off all tracing messages
+trace = 1;         ## Set to 0 to turn off all tracing messages
 depDB = nil;
 arvDB = nil;
-version = "V1.0.15";
+version = "V1.0.18";
 
 routeClearArm = 0;
 
@@ -158,7 +158,14 @@ keyPress = func(key) {
   }
   if (num(inputValue) != nil) {
     inputValue = num(inputValue);
-  }  
+  }
+  ## the to-flaps field is a single digit
+  if (currentField == "to-flaps") {
+    if (key == "DEL") {
+      key = "0";
+    }
+    inputValue = num(key);
+  }
   var attr = "/instrumentation/afs/"~currentField;
   tracer("set field: "~attr~", with value: "~inputValue);
   setprop(attr, inputValue);
@@ -284,6 +291,11 @@ changePage = func(unit,page) {
       setprop("/instrumentation/afs/dep-course",depCourse);
     }
     ## var routeRoot = props.globals.getNode("autopilot/route-manager/route",1); 
+    var ldgElev = arvApt.elevation;
+    var atmos = Atmos.new();
+    var ldgElevPSI = atmos.convertAltitudePressure("feet",ldgElev,"psi");
+    setprop("/controls/pressurisation/landing-elev-ft", ldgElev);
+    setprop("/controls/pressurisation/landing-elev-psi", ldgElevPSI);
     
 
     var runWays = arvApt["runways"];
@@ -470,6 +482,12 @@ changePage = func(unit,page) {
      }
      setprop("/instrumentation/ecam/to-data", 1);
   }
+
+  if (page == "active.crz.stepalt") {
+  
+  }
+
+
   tracer("**** End changePage("~page~")");
   setprop("/instrumentation/mcdu["~unit~"]/page",page);
 }
@@ -681,7 +699,8 @@ selectSidAction = func(opt, unit) {
 
     foreach(var w; star.wpts) {
       var wpIns = "";
-      wpLen = getprop("/autopilot/route-manager/route/num");
+      var wpLen = getprop("/autopilot/route-manager/route/num");
+      tracer("wpLen now: "~wpLen);
       if (w.alt_csrt > 0) {
         wpIns = sprintf("%i:%s@%i",wpLen-1,w.wp_name,int(w.alt_csrt));
       } else {
@@ -691,6 +710,7 @@ selectSidAction = func(opt, unit) {
       if (w.wp_type == "Normal") {
 	tracer("/autopilot/route-manager/input, @insert "~wpIns);
         setprop("/autopilot/route-manager/input", "@insert "~wpIns);
+        checkInsert(w, wpLen-1);
       }
     }
     var transArm = 0;
@@ -715,7 +735,7 @@ selectSidAction = func(opt, unit) {
           tracer("transition to approach has "~size(trans.trans_wpts)~" wps");
           foreach(var twp; trans.trans_wpts) {
             if (twp.wp_type == "Normal" or twp.wp_type == "Outer Marker") {
-              wpLen = getprop("/autopilot/route-manager/route/num");
+              var wpLen = getprop("/autopilot/route-manager/route/num");
               var wpIns = "";
               var idExists = 0;
               for(var r=0; r != wpLen; r=r+1) {
@@ -754,7 +774,7 @@ selectSidAction = func(opt, unit) {
               break;
         }
         if ((awp.wp_type == "Normal" or awp.wp_type == "Outer Marker" or awp.wp_type == "Middle Marker") and runwayTransArm == 0) {
-          wpLen = getprop("/autopilot/route-manager/route/num");
+          var wpLen = getprop("/autopilot/route-manager/route/num");
           var wpIns = "";
           var idExists = 0;
           for(var r=0; r!= wpLen; r=r+1) {
@@ -912,12 +932,12 @@ updateApproachAlts = func() {
          setprop("/autopilot/route-manager/input","@delete "~(r));
          var rpIns = sprintf("@insert %i:%s@%i",(r),rtId,thisAlt);
          tracer("[FMS] update idx["~r~"] for id: "~rtId~" with alt: "~thisAlt);
-         if (rtId == "O.M" or rtId == "T/D" or rtId == "M.M" or rtId == "T/C") {
+         #if (rtId == "O.M" or rtId == "T/D" or rtId == "M.M" or rtId == "T/C") {
            insertAbsWP(rtId,r,rtLat,rtLon,thisAlt);
-         } else {
-	   tracer("/autopilot/route-manager/input, "~rpIns);
-           setprop("/autopilot/route-manager/input",rpIns);
-         }
+         #} else {
+	 #  tracer("/autopilot/route-manager/input, "~rpIns);
+         #  setprop("/autopilot/route-manager/input",rpIns);
+         #}
          #setprop("/autopilot/route-manager/route/wp["~r~"]/altitude-ft", thisAlt);
          #setprop("/autopilot/route-manager/route/wp["~r~"]/altitude-m", thisAlt*0.3);
          tracer("[FMS] update wp: "~rtId~", with alt: "~thisAlt);
@@ -1019,6 +1039,35 @@ var wpLen = getprop("/autopilot/route-manager/route/num");
       tracer("/autopilot/route-manager/input, "~wpIns);
       setprop("/autopilot/route-manager/input", wpIns);
     }
+}
+
+
+checkInsert = func(wp,r) {
+  var wpLen = getprop("/autopilot/route-manager/route/num");
+  var foundWp = nil;
+  for(wt=0; wt < wpLen; wt=wt+1) {
+    if (getprop("/autopilot/route-manager/route/wp["~wt~"]/id") == wp.wp_name) {
+      foundWp = fmsWP.new();
+      foundWp.name = getprop("/autopilot/route-manager/route/wp["~wt~"]/id");
+      foundWp.wp_lat = getprop("/autopilot/route-manager/route/wp["~wt~"]/latitude-deg");
+      foundWp.wp_lon = getprop("/autopilot/route-manager/route/wp["~wt~"]/longitude-deg");
+      foundWp.alt_csrt = getprop("/autopilot/route-manager/route/wp["~wt~"]/altitude-ft");
+      var difLat = foundWp.wp_lat - wp.wp_lat;
+      var difLon = foundWp.wp_lon - wp.wp_lon;
+      if (difLat < -0.001 or difLat > 0.001 or difLon < -0.001 or difLon > 0.001) {
+        tracer("update STAR WP, input lat: "~foundWp.wp_lat~", wp lat: "~wp.wp_lat);
+        tracer("update STAR WP, input lon: "~foundWp.wp_lon~", wp lon: "~wp.wp_lon);
+        setprop("/autopilot/route-manager/input","@delete "~(wt));
+        insertAbsWP(wp.wp_name,wt,wp.wp_lat,wp.wp_lon,foundWp.alt_csrt);
+      }
+    }
+  }
+  if (foundWp == nil) {
+    if (wp.alt_csrt == 0 or wp.apt_csrt == nil) {
+      wp.alt_csrt = -1;
+    }
+    insertAbsWP(wp.wp_name, r, wp.wp_lat, wp.wp_lon, wp.alt_csrt);
+  }
 }
 
 

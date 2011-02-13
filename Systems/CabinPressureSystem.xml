@@ -1,0 +1,278 @@
+<?xml version="1.0"?>
+ 
+<!-- General cabin pressurisation controller -->
+
+<!--    Modification History
+     Jan 2011	S.Hamilton	Initial cut
+     -->
+
+
+<PropertyList>
+
+ <logic>
+   <name>pressurisation required</name>
+   <input>
+    <and>
+      <or>
+      <greater-than>
+        <property>/velocities/vertical-speed-fps</property>
+        <value>3</value>
+      </greater-than>
+      <less-than>
+        <property>/velocities/vertical-speed-fps</property>
+        <value>-5</value>
+      </less-than>
+    </or>
+    <and>
+      <greater-than>
+        <property>/position/altitude-ft</property>
+        <property>instrumentation/afs/thrust-reduce-alt</property>
+      </greater-than>
+      <less-than>
+        <property>/instrumentation/pressurisation/cabin-altitude-ft</property>
+        <!-- property>/controls/pressurisation/cabin-cruise-ft</property -->
+        <value>8500</value>
+      </less-than>
+    </and>
+    </and>
+  </input>
+  <output>
+    <property>/controls/pressurisation/engaged</property>
+  </output>
+ </logic>
+ 
+ <logic>
+   <name>descent logic</name>
+   <input>
+     <and>
+       <property>/controls/pressurisation/engaged</property>
+       <less-than>
+         <property>/velocities/vertical-speed-fps</property>
+         <value>-2</value>
+       </less-than>
+     </and>
+   </input>
+   <output>
+     <property>/controls/pressurisation/descent-engaged</property>
+   </output>
+ </logic>
+ 
+  <logic>
+   <name>ascent logic</name>
+   <input>
+     <and>
+       <property>/controls/pressurisation/engaged</property>
+       <greater-than>
+         <property>/velocities/vertical-speed-fps</property>
+         <value>2</value>
+       </greater-than>
+      </and>
+   </input>
+   <output>
+     <property>/controls/pressurisation/ascent-engaged</property>
+   </output>
+ </logic>
+
+  <filter>
+    <name>vs schedule</name>
+    <type>gain</type>
+    <debug>false</debug>
+    <gain>1.0</gain>
+    <input>
+      <condition>
+          <property>/controls/pressurisation/engaged</property>
+      </condition>
+      <expression>
+        <table>
+          <property>/velocities/vertical-speed-fps</property>>
+          <entry>
+            <ind>-5000</ind><dep>-1.10</dep>
+          </entry>
+          <entry>
+            <ind>-8.3</ind><dep>-1.05</dep>
+          </entry>
+          <entry>
+            <ind>0</ind><dep>0</dep>
+          </entry>
+          <entry>
+            <ind>5</ind><dep>0.98</dep>
+          </entry>
+          <entry>
+            <ind>5000</ind><dep>1.10</dep>
+          </entry>
+        </table>
+      </expression>
+    </input>
+    <input>
+      <condition>
+          <not><property>/controls/pressurisation/engaged</property></not>
+      </condition>
+      <value>0</value>
+    </input>
+    <output>
+      <property>/controls/pressurisation/cabin-vs-schedule</property>
+    </output>
+  </filter>
+ 
+  
+  <pi-simple-controller>
+    <name>calc control diff</name>
+    <input>
+      <property>instrumentation/pressurisation/cabin-altitude-ft-sec</property>
+    </input>
+    <reference>
+      <property>controls/pressurisation/cabin-vs-schedule</property>
+    </reference>
+    <output>
+      <property>controls/pressurisation/cabin-altitude-error</property>
+    </output>
+    <min>-8.5</min>
+    <max>5.0</max>
+    <config>
+      <Kp>1.0</Kp>
+      <Ki>0.0</Ki>
+    </config>
+  </pi-simple-controller>
+  
+<filter>
+  <type>gain</type>
+  <name>descent ratio</name>
+  <gain>1.0</gain>
+  <input>
+    <expression>
+      <div>
+        <dif>
+          <property>/controls/pressurisation/landing-elev-psi</property>
+          <property>instrumentation/pressurisation/cabin-pressure-psi</property>
+        </dif>
+        <dif>
+          <property>/controls/pressurisation/landing-elev-psi</property>
+          <property>/systems/static/pressure-psi</property>
+        </dif>
+      </div>
+    </expression>
+  </input>
+  <output>
+    <property>/instrumentation/pressurisation/descent-ratio</property>
+  </output>
+</filter>
+
+<filter>
+  <type>gain</type>
+  <name>ascent ratio</name>
+  <gain>-1.0</gain>
+  <input>
+    <expression>
+      <div>
+        <dif>
+          <property>/controls/pressurisation/cabin-pressure-cruise-psi</property>
+          <property>instrumentation/pressurisation/cabin-pressure-psi</property>
+        </dif>
+        <dif>
+          <property>/controls/pressurisation/outside-pressure-cruise-psi</property>
+          <property>/systems/static/pressure-psi</property>
+        </dif>
+      </div>
+    </expression>
+  </input>
+  <output>
+    <property>/instrumentation/pressurisation/ascent-ratio</property>
+  </output>
+</filter>
+
+
+<filter>
+  <type>gain</type>
+  <gain>1.0</gain>
+  <name>descent target calc</name>
+  <enable>
+    <property>controls/pressurisation/descent-engaged</property>
+  </enable>
+  <input>
+    <expression>
+      <sum>
+        <property>instrumentation/pressurisation/cabin-pressure-psi</property>
+        <property>instrumentation/pressurisation/descent-ratio</property>
+      </sum>
+    </expression>
+  </input>
+  <output>
+    <property>instrumentation/pressurisation/target-cabin-pressure-psi</property>
+    <min>
+      <property>controls/pressurisation/cabin-pressure-cruise-psi</property>
+    </min>
+    <max>
+      <property>/systems/static/pressure-psi</property>
+    </max>
+  </output>
+</filter>
+
+<filter>
+  <type>gain</type>
+  <gain>1.0</gain>
+  <name>ascent target calc</name>
+  <enable>
+    <property>/controls/pressurisation/ascent-engaged</property>
+  </enable>
+  <input>
+    <expression>
+      <sum>
+        <property>instrumentation/pressurisation/cabin-pressure-psi</property>
+        <property>instrumentation/pressurisation/ascent-ratio</property>
+      </sum>
+    </expression>
+  </input>
+  <output>
+    <property>instrumentation/pressurisation/target-cabin-pressure-psi</property>
+    <min>
+      <property>controls/pressurisation/cabin-pressure-cruise-psi</property>
+    </min>
+    <max>
+      <property>systems/static/pressure-psi</property>
+    </max>
+  </output>
+</filter>
+
+<!-- pid-controller>
+        <name>reduce cabin error</name>
+        <debug>false</debug>
+        <enable>
+          <property>/controls/pressurisation/engaged</property>
+        </enable>
+        <input>
+          <property>instrumentation/pressurisation/cabin-pressure-psi</property>
+        </input>
+        <reference>
+          <property>instrumentation/pressurisation/target-cabin-pressure-psi</property>
+        </reference>
+        <output>
+          <property>instrumentation/pressurisation/output-cabin-pressure-psi</property>
+        </output>
+        <config>
+          <Kp>0.01</Kp>
+          <beta>1.0</beta>
+          <alpha>0.1</alpha>
+          <gamma>0.0</gamma>
+          <Ti>60.0</Ti>
+          <Td>0.00001</Td>
+          <u_min>-1.0</u_min>
+          <u_max>1.0</u_max>
+        </config>
+</pid-controller -->
+
+
+   <filter>
+      <name>adjust cabin to target</name>
+      <type>noise-spike</type>
+      <debug>false</debug>
+      <feedback-if-disabled>false</feedback-if-disabled>
+      <enable>
+        <property>/controls/pressurisation/engaged</property>
+      </enable>
+       <input>instrumentation/pressurisation/target-cabin-pressure-psi</input>
+      <output>instrumentation/pressurisation/cabin-pressure-psi</output>
+      <max-rate-of-change>0.003</max-rate-of-change>
+    </filter>
+
+
+</PropertyList>

@@ -834,7 +834,7 @@
 
  <!-- Hold speed by varying pitch (Two stage cascading controller) --> 
  <pid-controller>
-    <name>Speed Reference System (vary pitch) Stage #1</name>
+    <name>Speed Reference System2 (vary pitch) Stage #1</name>
     <debug>false</debug>
     <enable>
       <prop>/autopilot/locks/speed</prop>

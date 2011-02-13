@@ -260,33 +260,68 @@ decrement_hdg = func() {
 
 increment_spd = func() {
     time_reset_spd("spd-display");
-    var curr = getprop("/instrumentation/afs/target-speed-kt");
-    curr += 1;
-    if (curr > 360) {
-      curr = 360;
+    var currKts = getprop("/instrumentation/afs/target-speed-kt");
+    var currMach = getprop("/instrumentation/afs/target-speed-mach");
+    var dispMode = getprop("instrumentation/afs/spd-mach-display-mode");
+    if (dispMode == 0) {
+      currKts += 1;
+      if (currKts > 360) {
+        currKts = 360;
+      }
+      if (currKts < 0) {
+        currKts = 0;
+      }
+      setprop("/instrumentation/afs/target-speed-kt",currKts);
     }
-    if (curr < 0) {
-      curr = 0;
+    if (dispMode == 1) {
+      currMach += 0.01;
+      if (currMach > 0.90) {
+        currMach = 0.90;
+      }
+      if (currMach < 0) {
+        currMach = 0;
+      }
+      setprop("/instrumentation/afs/target-speed-mach",currMach);
     }
-    setprop("/instrumentation/afs/target-speed-kt",curr);
     if (getprop("/instrumentation/flightdirector/spd") == SPD_SPEED) {
-      setprop("/autopilot/settings/target-speed-kt", curr);
+      setprop("/autopilot/settings/target-speed-kt", currKts);
     }
+    if (getprop("/instrumentation/flightdirector/spd") == SPD_MACH) {
+      setprop("/autopilot/settings/target-speed-mach", currMach);
+    }
+
 }
 
 decrement_spd = func() {
     time_reset_spd("spd-display");
-    var curr = getprop("/instrumentation/afs/target-speed-kt");
-    curr -= 1;
-    if (curr > 360) {
-      curr = 360;
+    var currKts = getprop("/instrumentation/afs/target-speed-kt");
+    var currMach = getprop("/instrumentation/afs/target-speed-mach");
+    var dispMode = getprop("instrumentation/afs/spd-mach-display-mode");
+    if (dispMode == 0) {
+      currKts -= 1;
+      if (currKts > 360) {
+        currKts = 360;
+      }
+      if (currKts < 0) {
+        currKts = 0;
+      }
+      setprop("/instrumentation/afs/target-speed-kt",currKts);
     }
-    if (curr < 0) {
-      curr = 0;
+    if (dispMode == 1) {
+      currMach -= 0.01;
+      if (currMach > 0.90) {
+        currMach = 0.90;
+      }
+      if (currMach < 0.0) {
+        currMach = 0;
+      }
+      setprop("/instrumentation/afs/target-speed-mach",currMach);
     }
-    setprop("/instrumentation/afs/target-speed-kt",curr);
     if (getprop("/instrumentation/flightdirector/spd") == SPD_SPEED) {
-      setprop("/autopilot/settings/target-speed-kt", curr);
+      setprop("/autopilot/settings/target-speed-kt", currKts);
+    }
+    if (getprop("/instrumentation/flightdirector/spd") == SPD_MACH) {
+      setprop("/autopilot/settings/target-speed-mach", currMach);
     }
 }
 
@@ -535,6 +570,19 @@ toggle_hdg_select = func(n) {
       }
       setprop("/instrumentation/afs/lateral-mode",lateral);
       setprop("/instrumentation/afs/lateral-display",lateral);
+}
+
+toggle_mach_spd = func() {
+      var dispMode = getprop("/instrumentation/afs/spd-mach-display-mode");
+      var changeMode = getprop("instrumentation/afs/changeover-mode");
+      if (dispMode == 0) {
+        setprop("/instrumentation/afs/spd-mach-display-mode", 1);
+        ##setprop("instrumentation/afs/changeover-mode",1);
+      }
+      if (dispMode == 1) {
+        setprop("/instrumentation/afs/spd-mach-display-mode", 0);
+        ##setprop("instrumentation/afs/changeover-mode",0);
+      }
 }
 
 

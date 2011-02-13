@@ -2,7 +2,7 @@
 #   Simple utility to manage an array of text lines in a region.
 #
 #
-#   Copyright (C) 2009 Scott Hamilton
+#   Copyright (C) 2010 Scott Hamilton
 #
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
@@ -13,7 +13,7 @@ var TextRegion = {
         var me = {parents:[TextRegion]};
 
         me.posLine = 0;
-	me.baseNode = props.globals.getNode(prefix,1);
+        me.baseNode = props.globals.getNode(prefix,1);
         me.maxWidth = width;
         me.maxLines = lines;
         for(var p = 0; p != lines; p=p+1) {
