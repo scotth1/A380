@@ -2393,6 +2393,7 @@
    </offsets>
    <type>number-value</type>
    <property type="string">/controls/pressurisation/cabin-vs-schedule</property>
+   <factor type="double">60.0</factor>
    <format type="string">%3.0f</format>
    <font>helvetica_medium.txf</font>
    <character-size type="double">0.006</character-size>

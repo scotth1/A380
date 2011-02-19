@@ -497,8 +497,17 @@ toggle_spd_select = func(n) {
       }
       if (speed == 0) {
         if (apMode == 1) {
-          setprop("/autopilot/settings/target-speed-kt", getprop("/instrumentation/afs/target-speed-kt"));
-          setprop("/instrumentation/flightdirector/spd",SPD_SPEED);
+          var currKts = getprop("/instrumentation/afs/target-speed-kt");
+          var currMach = getprop("/instrumentation/afs/target-speed-mach");
+          var dispMode = getprop("instrumentation/afs/spd-mach-display-mode");
+          if (dispMode == 0) {  
+            setprop("/autopilot/settings/target-speed-kt", currKts);
+            setprop("/instrumentation/flightdirector/spd",SPD_SPEED);
+          }
+          if (dispMode == 1) {  
+            setprop("/autopilot/settings/target-speed-mach", currMach);
+            setprop("/instrumentation/flightdirector/spd",SPD_MACH);
+          }
         } else {
           setprop("/instrumentation/flightdirector/spd-arm",SPD_OFF);
         }

@@ -48,7 +48,7 @@
        <property>/controls/pressurisation/engaged</property>
        <less-than>
          <property>/velocities/vertical-speed-fps</property>
-         <value>-2</value>
+         <value>-5</value>
        </less-than>
      </and>
    </input>
@@ -64,7 +64,7 @@
        <property>/controls/pressurisation/engaged</property>
        <greater-than>
          <property>/velocities/vertical-speed-fps</property>
-         <value>2</value>
+         <value>3</value>
        </greater-than>
       </and>
    </input>
@@ -113,26 +113,6 @@
       <property>/controls/pressurisation/cabin-vs-schedule</property>
     </output>
   </filter>
- 
-  
-  <pi-simple-controller>
-    <name>calc control diff</name>
-    <input>
-      <property>instrumentation/pressurisation/cabin-altitude-ft-sec</property>
-    </input>
-    <reference>
-      <property>controls/pressurisation/cabin-vs-schedule</property>
-    </reference>
-    <output>
-      <property>controls/pressurisation/cabin-altitude-error</property>
-    </output>
-    <min>-8.5</min>
-    <max>5.0</max>
-    <config>
-      <Kp>1.0</Kp>
-      <Ki>0.0</Ki>
-    </config>
-  </pi-simple-controller>
   
 <filter>
   <type>gain</type>
@@ -273,6 +253,35 @@
       <output>instrumentation/pressurisation/cabin-pressure-psi</output>
       <max-rate-of-change>0.003</max-rate-of-change>
     </filter>
+    
+  <filter>
+    <name>cabin pressure rate computer</name>
+    <debug>false</debug>
+    <type>derivative</type>
+    <input>instrumentation/pressurisation/cabin-altitude-ft</input>
+    <output>instrumentation/pressurisation/cabin-altitude-ft-sec</output>
+    <filter-time>1.0</filter-time>
+  </filter>
+  
+    
+  <!-- pi-simple-controller>
+    <name>pressure control error</name>
+    <input>
+      <property>instrumentation/pressurisation/cabin-altitude-ft-sec</property>
+    </input>
+    <reference>
+      <property>controls/pressurisation/cabin-vs-schedule</property>
+    </reference>
+    <output>
+      <property>controls/pressurisation/cabin-altitude-error</property>
+    </output>
+    <min>-8.5</min>
+    <max>5.0</max>
+    <config>
+      <Kp>1.0</Kp>
+      <Ki>0.0</Ki>
+    </config>
+  </pi-simple-controller -->
 
 
 </PropertyList>
