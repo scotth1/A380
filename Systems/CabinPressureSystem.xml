@@ -26,7 +26,7 @@
     <and>
       <greater-than>
         <property>/position/altitude-ft</property>
-        <property>instrumentation/afs/thrust-reduce-alt</property>
+        <property>/instrumentation/afs/thrust-reduce-alt</property>
       </greater-than>
       <less-than>
         <property>/instrumentation/pressurisation/cabin-altitude-ft</property>
@@ -123,7 +123,7 @@
       <div>
         <dif>
           <property>/controls/pressurisation/landing-elev-psi</property>
-          <property>instrumentation/pressurisation/cabin-pressure-psi</property>
+          <property>/instrumentation/pressurisation/cabin-pressure-psi</property>
         </dif>
         <dif>
           <property>/controls/pressurisation/landing-elev-psi</property>
@@ -134,6 +134,9 @@
   </input>
   <output>
     <property>/instrumentation/pressurisation/descent-ratio</property>
+    <max>
+      <value>0.25</value>
+    </max>
   </output>
 </filter>
 
@@ -146,7 +149,7 @@
       <div>
         <dif>
           <property>/controls/pressurisation/cabin-pressure-cruise-psi</property>
-          <property>instrumentation/pressurisation/cabin-pressure-psi</property>
+          <property>/instrumentation/pressurisation/cabin-pressure-psi</property>
         </dif>
         <dif>
           <property>/controls/pressurisation/outside-pressure-cruise-psi</property>
@@ -157,6 +160,9 @@
   </input>
   <output>
     <property>/instrumentation/pressurisation/ascent-ratio</property>
+    <max>
+      <value>-0.25</value>
+    </max>
   </output>
 </filter>
 
@@ -166,20 +172,20 @@
   <gain>1.0</gain>
   <name>descent target calc</name>
   <enable>
-    <property>controls/pressurisation/descent-engaged</property>
+    <property>/controls/pressurisation/descent-engaged</property>
   </enable>
   <input>
     <expression>
       <sum>
-        <property>instrumentation/pressurisation/cabin-pressure-psi</property>
-        <property>instrumentation/pressurisation/descent-ratio</property>
+        <property>/instrumentation/pressurisation/cabin-pressure-psi</property>
+        <property>/instrumentation/pressurisation/descent-ratio</property>
       </sum>
     </expression>
   </input>
   <output>
-    <property>instrumentation/pressurisation/target-cabin-pressure-psi</property>
+    <property>/instrumentation/pressurisation/target-cabin-pressure-psi</property>
     <min>
-      <property>controls/pressurisation/cabin-pressure-cruise-psi</property>
+      <property>/controls/pressurisation/cabin-pressure-cruise-psi</property>
     </min>
     <max>
       <property>/systems/static/pressure-psi</property>
@@ -197,18 +203,18 @@
   <input>
     <expression>
       <sum>
-        <property>instrumentation/pressurisation/cabin-pressure-psi</property>
-        <property>instrumentation/pressurisation/ascent-ratio</property>
+        <property>/instrumentation/pressurisation/cabin-pressure-psi</property>
+        <property>/instrumentation/pressurisation/ascent-ratio</property>
       </sum>
     </expression>
   </input>
   <output>
-    <property>instrumentation/pressurisation/target-cabin-pressure-psi</property>
+    <property>/instrumentation/pressurisation/target-cabin-pressure-psi</property>
     <min>
-      <property>controls/pressurisation/cabin-pressure-cruise-psi</property>
+      <property>/controls/pressurisation/cabin-pressure-cruise-psi</property>
     </min>
     <max>
-      <property>systems/static/pressure-psi</property>
+      <property>/systems/static/pressure-psi</property>
     </max>
   </output>
 </filter>
@@ -247,19 +253,28 @@
       <debug>false</debug>
       <feedback-if-disabled>false</feedback-if-disabled>
       <enable>
-        <property>/controls/pressurisation/engaged</property>
+        <or>
+          <equals>
+            <property>/controls/pressurisation/ascent-engaged</property>
+            <value>1</value>
+          </equals>
+          <equals>
+            <property>/controls/pressurisation/descent-engaged</property>
+            <value>1</value>
+          </equals>
+        </or>
       </enable>
-       <input>instrumentation/pressurisation/target-cabin-pressure-psi</input>
-      <output>instrumentation/pressurisation/cabin-pressure-psi</output>
-      <max-rate-of-change>0.003</max-rate-of-change>
+      <input>/instrumentation/pressurisation/target-cabin-pressure-psi</input>
+      <output>/instrumentation/pressurisation/cabin-pressure-psi</output>
+      <max-rate-of-change>0.0028</max-rate-of-change>
     </filter>
     
   <filter>
     <name>cabin pressure rate computer</name>
     <debug>false</debug>
     <type>derivative</type>
-    <input>instrumentation/pressurisation/cabin-altitude-ft</input>
-    <output>instrumentation/pressurisation/cabin-altitude-ft-sec</output>
+    <input>/instrumentation/pressurisation/cabin-altitude-ft</input>
+    <output>/instrumentation/pressurisation/cabin-altitude-ft-sec</output>
     <filter-time>1.0</filter-time>
   </filter>
   

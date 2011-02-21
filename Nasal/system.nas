@@ -49,9 +49,6 @@ v1 = nil;
 cl = 0.0;
 c2 = 0.0;
 hpsi = 0.0;
-pph1=0.0;
-pph2=0.0;
-fuel_density=0.0;
 n_offset=0;
 nm_calc=0.0;
 spdbrake=0.0;
@@ -102,18 +99,7 @@ ewdChecklist = TextRegion.new(8, 50, "/instrumentation/ewd/checklists");
 
 
 init_controls = func {
-#setprop("/instrumentation/mk-viii/serviceable","true");
-##setprop("/instrumentation/mk-viii/configuration-module/category-1","254");
-#setprop("/instrumentation/gps/wp/wp/waypoint-type","airport");
-#setprop("/instrumentation/gps/wp/wp/ID",getprop("/sim/tower/airport-id"));
-#setprop("/instrumentation/gps/serviceable","true");
-setprop("/engines/engine[0]/fuel-flow_pph",0.0);
-setprop("/engines/engine[1]/fuel-flow_pph",0.0);
-setprop("/engines/engine[2]/fuel-flow_pph",0.0);
-setprop("/engines/engine[3]/fuel-flow_pph",0.0);
-setprop("/engines/engine[4]/fuel-flow_pph",0.0);   # APU
 setprop("/engines/engine[4]/off-start-run",0);     # APU state, 0=OFF, 1=START, 2=RUN
-setprop("/consumables/fuel/total-fuel-kg",0);
 setprop("/instrumentation/efis/baro",0.0);
 setprop("/instrumentation/efis/baro-std-mode",0);
 setprop("/instrumentation/efis/inhg",0);
@@ -134,7 +120,6 @@ setprop("/instrumentation/ecam/page","door");      # the current page displayed 
 setprop("/instrumentation/gear/wow",1);            # to capture WOW events better
 setprop("/instrumentation/ecam/egt_limit_arm",0.0);
 setprop("/instrumentation/ecam/to-data", 0);
-##setprop("/controls/engines/reverser-position",0.0);
 setprop("/controls/engines/engine[0]/master",0);
 setprop("/controls/engines/engine[1]/master",0);
 setprop("/controls/engines/engine[2]/master",0);
@@ -153,18 +138,11 @@ var atmos = Atmos.new();
 ##setprop("/controls/pressurisation/cabin_alt", getprop("/position/altitude-ft"));
 setprop("/instrumentation/pressurisation/target-cabin-pressure-psi", atmos.convertAltitudePressure("feet", getprop("/position/altitude-ft"), "psi"));
 setprop("/instrumentation/pressurisation/output-cabin-pressure-psi", atmos.convertAltitudePressure("feet", getprop("/position/altitude-ft"), "psi"));
-#setprop("/controls/pressurisation/cabin_vs", 0);  #ft/min
 setprop("/systems/electrical/apu-test",0);
 setprop("/instrumentation/annunciator/master-caution",0.0);
 setprop("/instrumentation/switches/seat-belt-sign",0.0);
 setprop("/systems/hydraulic/pump-psi[0]",0.0);
 setprop("/systems/hydraulic/pump-psi[1]",0.0);
-var tanks = props.globals.getNode("/consumables/fuel").getChildren("tank");
-for(t=0; t< size(tanks);t=t+1) {
-  setprop("/consumables/fuel/tank["~t~"]/density-ppg", 6);
-  setprop("/consumables/fuel/tank["~t~"]/density-kgpl",(6*0.119826427));
-}
-fuel_density=getprop("/consumables/fuel/tank[0]/density-ppg");
 setprop("/surface-positions/speedbrake-pos-norm",0.0);
 setprop("/instrumentation/clock/ET-min",0);
 setprop("/instrumentation/clock/ET-hr",0);
@@ -479,10 +457,6 @@ update_radar = func {
       }
     }
   }
-  var fobLbs = getprop("/fdm/jsbsim/propulsion/total-fuel-lbs");
-  var fobKg  = fobLbs*0.45359237;
-  setprop("/consumables/fuel/total-fuel-lbs",fobLbs);
-  setprop("/consumables/fuel/total-fuel-kg", fobKg);
   var cgX    = getprop("/fdm/jsbsim/inertia/cg-x-in");
   var gwcg   = (1629.615473-cgX);
   setprop("/fdm/jsbsim/inertia/gwcg",gwcg);
@@ -505,19 +479,6 @@ update_radar = func {
    setprop("/velocities/Mb", Mb);
    setprop("/velocities/Mra", Mra);
 
-   #   update fuel tank KG weight
-   var density = getprop("/consumables/fuel/tank/density-kgpl");
-   var tanks = props.globals.getNode("/consumables/fuel").getChildren("tank");
-   for(i=0; i<size(tanks);i=i+1) {
-     var tank = tanks[i];
-     if (tank != nil) {
-       var levelLbs = tank.getChild("level-lbs").getValue();
-       var levelKgNode = tank.getChild("level-kg",0,1);
-       if (levelKgNode != nil and levelLbs != nil) {
-         levelKgNode.setValue(levelLbs*density);
-       }
-     }
-   }
   settimer(update_radar, 1.0);
 }
 
@@ -702,22 +663,7 @@ update_engines = func {
     }else{
       setprop("/systems/hydraulic/pump-psi["~e~"]",hpsi * 2);
     }
-    pph1=getprop("/engines/engine["~e~"]/fuel-flow-pph");
-    if(pph1 == nil){
-      pph1 = getprop("/fdm/jsbsim/propulsion/engine["~e~"]/fuel-flow-rate-pps")*3600;
-    }
-    ##  this goes from gallons/sec to lbs/hour (and kg/hr to litres/hr)
-    var fuel_density_metric = getprop("/consumables/fuel/tank[0]/density-kgpl");
-    if (fuel_density_metric == nil) {
-      fuel_density_metric = 0;
-    }
-    setprop("engines/engine["~e~"]/fuel-flow-gph",pph1*fuel_density);   #convert to gallons per hour
-    setprop("/engines/engine["~e~"]/fuel-flow_lph",(pph1*fuel_density_metric));  #convert to litres per hour
-    var consumeLbs = getprop("/engines/engine["~e~"]/fuel-used-lbs");
-    if (consumeLbs == nil) {
-      consumeLbs = 0.0;
-    }
-    setprop("/engines/engine["~e~"]/fuel-used-kg", (consumeLbs*0.45359237));
+    
     if (ign == 1 and e_start == 1 and e_master == 1) {
       tracer("Engine "~e~" in start phase, N2: "~hpsi);
       if (hpsi > 20 and hpsi < 22 and getprop("/controls/engines/engine["~e~"]/cutoff") == 1) {
@@ -746,9 +692,6 @@ update_engines = func {
     }
     ##var eng_egtF = getprop("/engines/engine["~e~"]/egt_degf");
     var eng_egtF = getprop("/engines/engine["~e~"]/egt-degf");
-    #if (eng_egtF == nil) {
-    #  eng_egtF = getprop("/engines/engine["~e~"]/egt-degf");
-    #}
     eng_egtC = (5/9)*(eng_egtF-32);
     setprop("/engines/engine["~e~"]/egt_degc",eng_egtC);
     limit = getprop("/instrumentation/ecam/egt_limit_arm");
@@ -786,9 +729,6 @@ update_engines = func {
     }
   }
   var apu_egtF = getprop("/engines/engine[4]/egt-degf");
-  #if (apu_egtF == nil) {
-  #  apu_egtF = getprop("/engines/engine[4]/egt-degf");
-  #}
   apu_egtC = (5/9)*(apu_egtF-32);
   setprop("/engines/engine[4]/egt_degc",apu_egtC);
 
@@ -883,29 +823,6 @@ check_egt_overlimit = func {
    }
 }
 
-trim_fuel_tanks = func {
-  # keep the four feed tanks full
-  for(t=0; t!= 3; t=t+1) {
-    ## tank = getprop("/consumables/fuel/tank["~t~"]/level-lbs");
-    t1 = getprop("/controls/engines/engine["~t~"]/feed_tank");
-    if (t1 == nil or t1 < 0) {
-      t1 = t;
-      setprop("/controls/engines/engine["~t~"]/feed_tank",t1);
-    }
-    tank = getprop("/consumables/fuel/tank["~t1~"]/level-lbs");
-    # reserve 1000kg in feed for pump
-
-    if (tank < 1000) { 
-      for(factor = 1; factor != 3;factor=factor+1) {
-        t2 = 2+(factor*2);
-        if (getprop("/consumables/fuel/tank["~t2~"]/level-lbs") > 10) {
-          print("switch engine "~t~" to tank "~t2~".");
-          setprop("/controls/engines/engine["~t~"]/feed_tank",t2);
-        }
-      }
-    }
-  }
-}
 
 
 check_all_start = func {
@@ -975,8 +892,6 @@ togglereverser = func {
 # UPDATE SYSTEMS
 update_systems = func {
   update_clock();
-  ##update_radar();
-  #update_fueltanks();
   check_acquire_mode();
 
   baro = getprop("/instrumentation/altimeter/setting-inhg");
@@ -1032,16 +947,6 @@ update_systems = func {
     setprop("/sim/current-view/y-offset-m",eyepoint);
   }
 
-  #if(getprop("/controls/flight/speedbrake")== 1){
-  #  interpolate("surface-positions/speedbrake-pos-norm", 1.0, 5.0);
-  #  interpolate("controls/flight/spoilers", 1.0, 5.0);
-  #}
-  #if(getprop("/controls/flight/speedbrake")== 0){
-  #  interpolate("surface-positions/speedbrake-pos-norm", 0.0, 5.0);
-  #  interpolate("controls/flight/spoilers", 0.0, 5.0);
-  #}
-
-
   var jsbsimGrossWgt = getprop("/fdm/jsbsim/inertia/weight-lbs");
   var grossWgtKg    = jsbsimGrossWgt*0.45359237;
   setprop("/fdm/jsbsim/inertia/weight-kg",grossWgtKg);
@@ -1068,7 +973,6 @@ update_metric = func {
   var delta_psi   = cabin_psi-static_psi;
   setprop("/instrumentation/pressurisation/cabin-delta-psi", delta_psi);
   
-
   settimer(update_metric, 1.0);
 }
 
@@ -1140,22 +1044,10 @@ toggleExternalServices = func() {
 
 ## FDM init
 setlistener("/sim/signals/fdm-initialized", func {
- pph1=getprop("/engines/engine[0]/fuel-flow-gph");
- if(pph1 == nil){pph1 = 0.0};
- pph2=getprop("/engines/engine[1]/fuel-flow-gph");
- if(pph2 == nil){pph2 = 0.0};
-  pph1=getprop("/engines/engine[2]/fuel-flow-gph");
- if(pph1 == nil){pph1 = 0.0};
- pph2=getprop("/engines/engine[3]/fuel-flow-gph");
- if(pph2 == nil){pph2 = 0.0};
- setprop("engines/engine[0]/fuel-flow_pph",pph1* fuel_density);
- setprop("engines/engine[1]/fuel-flow_pph",pph2* fuel_density);
- setprop("engines/engine[2]/fuel-flow_pph",pph1* fuel_density);
- setprop("engines/engine[3]/fuel-flow_pph",pph2* fuel_density);
-#flight mode 
-     setprop("/instrumentation/ecam/flight-mode",1);
-     setprop("/instrumentation/ecam/synoptic","door");
-     setprop("/instrumentation/ecam/page","door");
+ #flight mode 
+ setprop("/instrumentation/ecam/flight-mode",1);
+ setprop("/instrumentation/ecam/synoptic","door");
+ setprop("/instrumentation/ecam/page","door");
  update_engines();
  settimer(update_metric, 2);
  settimer(update_radar,5);
@@ -1296,6 +1188,8 @@ setlistener("/controls/pneumatic/engine[3]/bleed", func(n) {
     setprop("/controls/pressurization/pack[1]/pack-on", 0);
   }
 });
+
+
 # control APU bleed air to pressurisation
 setlistener("/controls/pneumatic/APU-bleed", func(n) {
   bleed = n.getValue();
@@ -1305,6 +1199,8 @@ setlistener("/controls/pneumatic/APU-bleed", func(n) {
     setprop("/controls/pressurization/apu/bleed-on",0);
   }
 });
+
+
 # control HOT-AIR valves from AIR PACKS
 setlistener("/controls/pressurization/pack[0]/pack-on", func(n) {
    pack = n.getValue();
@@ -1314,6 +1210,8 @@ setlistener("/controls/pressurization/pack[0]/pack-on", func(n) {
      setprop("/controls/pressurization/pack[0]/hotair-on",0);
    }
 });
+
+
 setlistener("/controls/pressurization/pack[1]/pack-on", func(n) {
    pack = n.getValue();
    if (pack == 1) {
