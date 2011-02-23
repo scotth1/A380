@@ -596,7 +596,7 @@ update_ewd = func {
   if (battVolts < 23) {
     ewdChecklist.append("BATT 2 LOW");
   }
-  if (getprop("/position/altitude-ft") > 25000 and getprop("/environment/temperature-degc") > -35 and getprop("/controls/anti-ice/wing-heat") == 0) {
+  if (getprop("/position/altitude-ft") > 25000 and getprop("/environment/temperature-degc") > -34 and getprop("/controls/anti-ice/wing-heat") == 0) {
     ewdChecklist.append("ANTI ICE CHECK");
   }
   var allEngAntiIce = getprop("/controls/anti-ice/engine[0]/inlet-heat")+getprop("/controls/anti-ice/engine[1]/inlet-heat")+getprop("/controls/anti-ice/engine[2]/inlet-heat")+getprop("/controls/anti-ice/engine[3]/inlet-heat");
@@ -618,6 +618,9 @@ update_ewd = func {
   }
   if (getprop("/position/altitude-ft") > 1500 and packOn == 0) {
     ewdChecklist.append("PACK 1+2 OFF");
+  }
+  if (getprop("/consumables/fuel/total-fuel-kg") < 10000) {
+    ewdChecklist.append("FUEL LOW");
   }
 
 

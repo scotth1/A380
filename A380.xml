@@ -148,7 +148,7 @@
             <rolling_friction> 0.02 </rolling_friction>
             <spring_coeff unit="LBS/FT"> 362502 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC"> 120834 </damping_coeff>
-            <max_steer unit="DEG"> 30 </max_steer>
+            <max_steer unit="DEG"> 32 </max_steer>
             <brake_group> NOSE </brake_group>
             <retractable>1</retractable>
         </contact>
@@ -164,7 +164,7 @@
             <rolling_friction> 0.02 </rolling_friction>
             <spring_coeff unit="LBS/FT"> 1.20834e+06 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC"> 241668 </damping_coeff>
-            <max_steer unit="DEG"> 5.0 </max_steer>   <!-- was 0.0 -->
+            <max_steer unit="DEG"> 0.0 </max_steer>   <!-- was 0.0 -->
             <brake_group> LEFT </brake_group>
             <retractable>1</retractable>
         </contact>
@@ -180,7 +180,7 @@
             <rolling_friction> 0.02 </rolling_friction>
             <spring_coeff unit="LBS/FT"> 1.20834e+06 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC"> 241668 </damping_coeff>
-            <max_steer unit="DEG"> 5.0 </max_steer>   <!-- was 0.0 -->
+            <max_steer unit="DEG"> 0.0 </max_steer>   <!-- was 0.0 -->
             <brake_group> RIGHT </brake_group>
             <retractable>1</retractable>
         </contact>

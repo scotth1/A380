@@ -119,6 +119,9 @@
   <name>descent ratio</name>
   <gain>1.0</gain>
   <input>
+    <condition>
+          <property>/controls/pressurisation/engaged</property>
+    </condition>
     <expression>
       <div>
         <dif>
@@ -131,6 +134,12 @@
         </dif>
       </div>
     </expression>
+  </input>
+  <input>
+      <condition>
+          <not><property>/controls/pressurisation/engaged</property></not>
+      </condition>
+      <value>0</value>
   </input>
   <output>
     <property>/instrumentation/pressurisation/descent-ratio</property>
@@ -145,6 +154,9 @@
   <name>ascent ratio</name>
   <gain>-1.0</gain>
   <input>
+    <condition>
+          <property>/controls/pressurisation/engaged</property>
+    </condition>
     <expression>
       <div>
         <dif>
@@ -157,6 +169,12 @@
         </dif>
       </div>
     </expression>
+  </input>
+  <input>
+      <condition>
+          <not><property>/controls/pressurisation/engaged</property></not>
+      </condition>
+      <value>0</value>
   </input>
   <output>
     <property>/instrumentation/pressurisation/ascent-ratio</property>

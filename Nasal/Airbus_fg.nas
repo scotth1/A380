@@ -1027,46 +1027,63 @@ setlistener("/instrumentation/flightdirector/track-mode-on", func {
  }
 });
 
-setlistener("/instrumentation/nav/in-range", func(n) {
+setlistener("/instrumentation/nav[0]/in-range", func(n) {
    var range = n.getValue();
-   if (range != lastNavStatus) {
-     tracer("[NAV1] NAV1 range status: "~range);
-     lastNavStatus = range;
-     var lnavMode = getprop("/instrumentation/flightdirector/lnav");
-     var fltMode = getprop("/instrumentation/ecam/flight-mode");
-     if (range == 1) {
-       if (lnavMode != LNAV_LOC and fltMode > 8) {
-         setprop("/instrumentation/flightdirector/lnav-arm", LNAV_LOC);
-       } else {
-         if (getprop("/instrumentation/flightdirector/lnav-arm") == LNAV_LOC) {
-           setprop("/instrumentation/flightdirector/lnav-arm", VNAV_OFF);
+   var apMode = getprop("/instrumentation/flightdirector/autopilot-on");
+   if (apMode == 1) {
+     if (range != lastNavStatus) {
+       tracer("[NAV1] NAV1 range status: "~range);
+       lastNavStatus = range;
+       var lnavMode = getprop("/instrumentation/flightdirector/lnav");
+       var lnavArm = getprop("/instrumentation/flightdirector/lnav-arm");
+       var fltMode = getprop("/instrumentation/ecam/flight-mode");
+       if (range == 1) {
+         if (lnavMode != LNAV_LOC and fltMode > 8) {
+           setprop("/instrumentation/flightdirector/lnav-arm", LNAV_LOC);
+         } else {
+           if (lnavArm == LNAV_LOC) {
+             setprop("/instrumentation/flightdirector/lnav-arm", VNAV_OFF);
+             setprop("/instrumentation/flightdirector/lnav", VNAV_LOC);
+           }
          }
-       }
-     } else {
-       if (getprop("/instrumentation/flightdirector/lnav-arm") == LNAV_LOC) {
-         setprop("/instrumentation/flightdirector/lnav-arm", LNAV_OFF);
+       } else {
+         if (lnavMode == LNAV_LOC) {
+           ## we should disable the AP if we loose LOC while active.
+         }
+         if (lnavArm == LNAV_LOC) {
+           setprop("/instrumentation/flightdirector/lnav-arm", LNAV_OFF);
+         }
        }
      }
    }
 });
 
-setlistener("/instrumentation/nav/gs-in-range", func(n) {
+setlistener("/instrumentation/nav[0]/gs-in-range", func(n) {
    var range = n.getValue();
-   if (range != lastGSStatus) {
-     tracer("[NAV1] GS range status: "~range);
-     lastGSStatus = range;
-     var vnavMode = getprop("/instrumentation/flightdirector/vnav");
-     if (range == 1) {
-       if (vnavMode != VNAV_GS) {
-         setprop("/instrumentation/flightdirector/vnav-arm", VNAV_GS);
+   var vnavMode = getprop("/instrumentation/flightdirector/vnav");
+   var vnavArm  = getprop("/instrumentation/flightdirector/vnav-arm");
+   var apMode = getprop("/instrumentation/flightdirector/autopilot-on");
+   if (apMode == 1) {
+     if (range != lastGSStatus) {
+       tracer("[NAV1] GS range status: "~range);
+       lastGSStatus = range;
+     
+       if (range == 1) {
+         if (vnavMode != VNAV_GS) {
+           setprop("/instrumentation/flightdirector/vnav-arm", VNAV_GS);
+         } else {
+            if (vnavArm == VNAV_GS) {
+              setprop("/instrumentation/flightdirector/vnav", VNAV_GS);
+              setprop("/instrumentation/flightdirector/vnav-arm", VNAV_OFF);
+            }
+         }
        } else {
-          if (getprop("/instrumentation/flightdirector/vnav-arm" == VNAV_GS)) {
-            setprop("/instrumentation/flightdirector/vnav-arm", VNAV_OFF);
-          }
-       }
-     } else {
-       if (getprop("/instrumentation/flightdirector/vnav-arm") == VNAV_GS) {
-         setprop("/instrumentation/flightdirector/vnav-arm", VNAV_OFF);
+         if (vnavMode == VNAV_GS) {
+           ### we should disable AP if we loose GS while active...
+         }
+         if (vnavArm == VNAV_GS) {
+           setprop("/instrumentation/flightdirector/vnav-arm", VNAV_OFF);
+         }
        }
      }
    }

@@ -138,10 +138,11 @@ toggle_loc = func() {
       } else {
         var inRange1 = getprop("/instrumentation/nav[0]/in-range");
         tracer("AFS: localizer inrange: "~inRange1);
-        if ((inRange1 == 1) or (getprop("/instrumentation/nav[1]/in-range") == 1)) {
+        if ((inRange1 == 1)) {
           setprop("/autopilot/locks/heading","nav1-hold");
           # notice that nav1 loc is different than APPR?
 	  setprop("/instrumentation/flightdirector/lnav",LNAV_LOC);
+          setprop("/instrumentation/flightdirector/lnav-arm",LNAV_OFF);
           setprop("instrumentation/flightdirector/alt-acquire-mode",0);
         }
       }
@@ -597,27 +598,19 @@ toggle_mach_spd = func() {
 
 toggle_appr = func() {
       if (getprop("/autopilot/locks/altitude") == "gs1-hold") {
-        setprop("/instrumentation/flightdirector/vnav",0);
-        setprop("/autopilot/locks/altitude","");
+        setprop("/instrumentation/flightdirector/vnav",VNAV_OFF);
+        setprop("/instrumentation/flightdirector/lnav",LNAV_LOC);
       } else {
-        if ((getprop("/instrumentation/nav[0]/has-gs") == 1) or (getprop("/instrumentation/nav[1]/has-gs") == 1)) {
-            tracer("AFS: nav1 or nav2 has GS");
-            setprop("/autopilot/locks/altitude","gs1-hold");
+        if ((getprop("/instrumentation/nav[0]/has-gs") == 1)) {
+            tracer("AFS: nav1 has GS/LOC");
+            setprop("/instrumentation/flightdirector/vnav",VNAV_GS);
+            setprop("/instrumentation/flightdirector/lnav",LNAV_LOC);
+            setprop("/instrumentation/flightdirector/vnav-arm",VNAV_OFF);
+            setprop("/instrumentation/flightdirector/lnav-arm",LNAV_OFF);
+        } else {
+            setprop("/instrumentation/flightdirector/vnav-arm",VNAV_GS);
+            setprop("/instrumentation/flightdirector/lnav-arm",LNAV_LOC);
         }
-        ## but we'll set the instrumentation anyway. 
-	setprop("/instrumentation/flightdirector/vnav",VNAV_GS);
-      }
-
-      if (getprop("/autopilot/locks/heading") == "nav1-hold") {
-        setprop("/instrumentation/flightdirector/lnav",0);
-        setprop("/autopilot/locks/heading","");
-      } else {
-        if ((getprop("/instrumentation/nav[0]/in-range") == 1) or (getprop("/instrumentation/nav[1]/in-range") == 1)) {
-          tracer("AFS: nav1 or nav2 localiser in-range");
-          setprop("/autopilot/locks/heading","nav1-hold");
-        }
-        ## but set instrumentation anyway.
-	setprop("/instrumentation/flightdirector/lnav",LNAV_LOC);
       }
 }
 
