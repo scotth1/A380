@@ -23,14 +23,14 @@
 
 <!--  Text labels -->
 
-<text>
+<!-- text>
   <name>label.active</name>
   <axis-alignment>yz-plane</axis-alignment>
   <offsets>
     <pitch-deg>-90</pitch-deg>
     <x-m>-0.19</x-m>
     <y-m>0.033</y-m>
-    <z-m>0.002</z-m>
+    <z-m>0.0008</z-m>
   </offsets>
   <type>literal</type>
   <text>ACTIVE</text>
@@ -51,7 +51,192 @@
       <script>MCDU1.changePage(1,"active.init")</script>
    </binding>
   </action>
+</animation -->
+
+
+
+<text>
+  <name>label.active</name>
+  <axis-alignment>yz-plane</axis-alignment>
+  <offsets>
+    <pitch-deg>-90</pitch-deg>
+    <x-m>-0.19</x-m>
+    <y-m>0.022</y-m>
+    <z-m>0.0011</z-m>
+  </offsets>
+  <type type="string">text-value</type>
+  <property>/instrumentation/mcdu[1]/dropdown[0]/title</property>
+  <font>helvetica_medium.txf</font>
+  <character-size type="double">0.005</character-size>
+  <alignment>center-bottom</alignment>  
+</text>
+
+<text>
+  <name>label.position</name>
+  <axis-alignment>yz-plane</axis-alignment>
+  <offsets>
+    <pitch-deg>-90</pitch-deg>
+    <x-m>-0.19</x-m>
+    <y-m>0.051</y-m>
+    <z-m>0.0011</z-m>
+  </offsets>
+  <type type="string">text-value</type>
+  <property>/instrumentation/mcdu[1]/dropdown[1]/title</property>
+  <font>helvetica_medium.txf</font>
+  <character-size type="double">0.005</character-size>
+  <alignment>center-bottom</alignment>  
+</text>
+
+<text>
+  <name>label.sec</name>
+  <axis-alignment>yz-plane</axis-alignment>
+  <offsets>
+    <pitch-deg>-90</pitch-deg>
+    <x-m>-0.19</x-m>
+    <y-m>0.078</y-m>
+    <z-m>0.0011</z-m>
+  </offsets>
+  <type type="string">text-value</type>
+  <property>/instrumentation/mcdu[1]/dropdown[2]/title</property>
+  <font>helvetica_medium.txf</font>
+  <character-size type="double">0.005</character-size>
+  <alignment>center-bottom</alignment>  
+</text>
+
+
+<!--  active sub-menu -->
+
+<animation>
+  <type>pick</type>
+  <object-name>menu.active</object-name>
+  <action>
+    <button>0</button>
+    <repeatable>false</repeatable>
+    <binding>
+      <command>property-toggle</command>
+      <property>/instrumentation/mcdu[1]/dropdown[0]/active</property>
+    </binding>
+  </action>
 </animation>
+
+<text>
+  <name>label.dropdown0.opt1</name>
+  <axis-alignment>yz-plane</axis-alignment>
+  <offsets>
+    <pitch-deg>-90</pitch-deg>
+    <x-m>-0.1833</x-m>
+    <y-m>0.022</y-m>
+    <z-m>0.0011</z-m>
+  </offsets>
+  <type type="string">text-value</type>
+  <property>/instrumentation/mcdu[1]/dropdown[0]/menu[0]/item[0]</property>
+  <font>helvetica_medium.txf</font>
+  <character-size type="double">0.0045</character-size>
+  <alignment>center-bottom</alignment>  
+</text>
+
+
+<animation>
+  <type>pick</type>
+  <object-name>dropdown0.opt1</object-name>
+  <action>
+    <button>0</button>
+    <repeatable>false</repeatable>
+    <binding>
+      <command>nasal</command>
+      <script>MCDU2.changePage(1,"active.init")</script>
+    </binding>
+  </action>
+</animation>
+
+<text>
+  <name>label.dropdown0.opt2</name>
+  <axis-alignment>yz-plane</axis-alignment>
+  <offsets>
+    <pitch-deg>-90</pitch-deg>
+    <x-m>-0.1785</x-m>
+    <y-m>0.022</y-m>
+    <z-m>0.0011</z-m>
+  </offsets>
+  <type type="string">text-value</type>
+  <property>/instrumentation/mcdu[1]/dropdown[0]/menu[0]/item[1]</property>
+  <font>helvetica_medium.txf</font>
+  <character-size type="double">0.0045</character-size>
+  <alignment>center-bottom</alignment>  
+</text>
+
+<animation>
+  <type>pick</type>
+  <object-name>dropdown0.opt2</object-name>
+  <action>
+    <button>0</button>
+    <repeatable>false</repeatable>
+    <binding>
+      <command>nasal</command>
+      <script>MCDU2.changePage(1,"active.flt_pln")</script>
+    </binding>
+  </action>
+</animation>
+
+<animation>
+  <type>select</type>
+  <object-name>label.dropdown0.opt1</object-name>
+  <object-name>label.dropdown0.opt2</object-name>
+  <condition>
+    <property>/instrumentation/mcdu[1]/dropdown[0]/active</property>
+  </condition>
+</animation>
+
+
+<!--  position sub-menu -->
+
+<animation>
+  <type>pick</type>
+  <object-name>menu.position</object-name>
+  <action>
+    <button>0</button>
+    <repeatable>false</repeatable>
+    <binding>
+      <command>property-toggle</command>
+      <property>/instrumentation/mcdu[1]/dropdown[1]/active</property>
+    </binding>
+  </action>
+</animation>
+
+
+<!--  secondary sub-menu -->
+
+<animation>
+  <type>pick</type>
+  <object-name>menu.sec</object-name>
+  <action>
+    <button>0</button>
+    <repeatable>false</repeatable>
+    <binding>
+      <command>property-toggle</command>
+      <property>/instrumentation/mcdu[1]/dropdown[2]/active</property>
+    </binding>
+  </action>
+</animation>
+
+<!-- data sub-menu -->
+
+<animation>
+  <type>pick</type>
+  <object-name>menu.data</object-name>
+  <action>
+    <button>0</button>
+    <repeatable>false</repeatable>
+    <binding>
+      <command>property-toggle</command>
+      <property>/instrumentation/mcdu[1]/dropdown[3]/active</property>
+    </binding>
+  </action>
+</animation>
+
+
+
+
 
 
 <!--  active.init page labels  -->
@@ -62,7 +247,7 @@
     <pitch-deg>-90</pitch-deg>
     <x-m>-0.171</x-m>
     <y-m>0.034</y-m>
-    <z-m>0.002</z-m>
+    <z-m>0.0008</z-m>
   </offsets>
   <type>literal</type>
   <text>FLT NBR</text>
@@ -78,7 +263,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.16</x-m>
       <y-m>0.034</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type>literal</type>
     <text>FROM</text>
@@ -94,7 +279,7 @@
     <pitch-deg>-90</pitch-deg>
     <x-m>-0.16</x-m>
     <y-m>0.069</y-m>
-    <z-m>0.002</z-m>
+    <z-m>0.0005</z-m>
   </offsets>
   <type>literal</type>
   <text>TO</text>
@@ -110,7 +295,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.1466</x-m>
       <y-m>0.034</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type>literal</type>
     <text>CPNY RTE</text>
@@ -126,7 +311,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.1364</x-m>
       <y-m>0.034</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type>literal</type>
     <text>ALTN RTE</text>
@@ -142,7 +327,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.118</x-m>
       <y-m>0.034</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type>literal</type>
     <text>CRZ FL</text>
@@ -158,7 +343,7 @@
     <pitch-deg>-90</pitch-deg>
     <x-m>-0.118</x-m>
     <y-m>0.093</y-m>
-    <z-m>0.002</z-m>
+    <z-m>0.0005</z-m>
   </offsets>
   <type>literal</type>
   <text>CRZ TEMP</text>
@@ -174,7 +359,7 @@
     <pitch-deg>-90</pitch-deg>
     <x-m>-0.071</x-m>
     <y-m>0.0515</y-m>
-    <z-m>0.002</z-m>
+    <z-m>0.0005</z-m>
   </offsets>
   <type>literal</type>
   <text>IRS</text>
@@ -203,7 +388,7 @@
     <pitch-deg>-90</pitch-deg>
     <x-m>-0.062</x-m>
     <y-m>0.0515</y-m>
-    <z-m>0.002</z-m>
+    <z-m>0.0009</z-m>
   </offsets>
   <type>literal</type>
   <text>DEPARTURE</text>
@@ -232,7 +417,7 @@
     <pitch-deg>-90</pitch-deg>
     <x-m>-0.053</x-m>
     <y-m>0.0515</y-m>
-    <z-m>0.002</z-m>
+    <z-m>0.0005</z-m>
   </offsets>
   <type>literal</type>
   <text>NAVAIDS</text>
@@ -261,7 +446,7 @@
     <pitch-deg>-90</pitch-deg>
     <x-m>-0.044</x-m>
     <y-m>0.0515</y-m>
-    <z-m>0.002</z-m>
+    <z-m>0.0005</z-m>
   </offsets>
   <type>literal</type>
   <text>FUEL &amp; LOAD</text>
@@ -290,7 +475,7 @@
     <pitch-deg>-90</pitch-deg>
     <x-m>-0.035</x-m>
     <y-m>0.0515</y-m>
-    <z-m>0.002</z-m>
+    <z-m>0.0005</z-m>
   </offsets>
   <type>literal</type>
   <text>T.O PERF</text>
@@ -323,7 +508,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.15</x-m>
       <y-m>0.025</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>APT</text>
@@ -339,7 +524,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.139</x-m>
       <y-m>0.095</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>SID</text>
@@ -355,7 +540,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.139</x-m>
       <y-m>0.095</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>STAR</text>
@@ -465,7 +650,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.161</x-m>
       <y-m>0.012</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>T.O</text>
@@ -559,7 +744,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.161</x-m>
       <y-m>0.035</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>CLB</text>
@@ -575,7 +760,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.161</x-m>
       <y-m>0.058</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>CRZ</text>
@@ -591,7 +776,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.161</x-m>
       <y-m>0.082</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>DES</text>
@@ -607,7 +792,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.161</x-m>
       <y-m>0.105</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>APPR</text>
@@ -623,7 +808,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.161</x-m>
       <y-m>0.134</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>GA</text>
@@ -639,7 +824,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.176</x-m>
       <y-m>0.020</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>CRZ</text>
@@ -658,7 +843,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.150</x-m>
       <y-m>0.010</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>RWY</text>
@@ -674,7 +859,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.139</x-m>
       <y-m>0.020</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>V1</text>
@@ -690,7 +875,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.129</x-m>
       <y-m>0.020</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>VR</text>
@@ -706,7 +891,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.119</x-m>
       <y-m>0.020</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>V2</text>
@@ -722,7 +907,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.139</x-m>
       <y-m>0.060</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>F</text>
@@ -738,7 +923,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.129</x-m>
       <y-m>0.060</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>S</text>
@@ -754,7 +939,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.0885</x-m>
       <y-m>0.035</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>THR RED</text>
@@ -770,7 +955,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.078</x-m>
       <y-m>0.035</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>ACCEL</text>
@@ -786,7 +971,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.078</x-m>
       <y-m>0.098</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>EO ACCEL</text>
@@ -802,7 +987,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.106</x-m>
       <y-m>0.022</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>FLAPS</text>
@@ -818,7 +1003,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.106</x-m>
       <y-m>0.0615</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>THS FOR</text>
@@ -834,7 +1019,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.106</x-m>
       <y-m>0.117</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>T.O SHIFT</text>
@@ -850,7 +1035,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.051</x-m>
       <y-m>0.035</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>TRANS</text>
@@ -870,7 +1055,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.110</x-m>
       <y-m>0.015</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>MODE</text>
@@ -886,7 +1071,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.110</x-m>
       <y-m>0.040</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>MACH</text>
@@ -902,7 +1087,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.110</x-m>
       <y-m>0.065</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>SPD</text>
@@ -918,7 +1103,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.120</x-m>
       <y-m>0.100</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>AT</text>
@@ -934,7 +1119,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.110</x-m>
       <y-m>0.095</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>STEP TO</text>
@@ -950,7 +1135,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.085</x-m>
       <y-m>0.039</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>LRC</text>
@@ -966,7 +1151,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.075</x-m>
       <y-m>0.039</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>MAX TURB</text>
@@ -982,7 +1167,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.020</x-m>
       <y-m>0.010</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>DEST</text>
@@ -998,7 +1183,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.020</x-m>
       <y-m>0.120</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>STEP ALT</text>
@@ -1015,7 +1200,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.150</x-m>
       <y-m>0.010</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>CI</text>
@@ -1037,7 +1222,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.1725</x-m>
       <y-m>0.0357</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/afs/FLT_NBR</property>
@@ -1065,7 +1250,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.16</x-m>
       <y-m>0.03725</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/afs/FROM</property>
@@ -1093,7 +1278,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.16</x-m>
       <y-m>0.0715</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/afs/TO</property>
@@ -1121,7 +1306,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.118</x-m>
       <y-m>0.038</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">number-value</type>
     <property type="string">/instrumentation/afs/CRZ_FL</property>
@@ -1155,7 +1340,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.155</x-m>
       <y-m>0.027</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/opt-error</property>
@@ -1172,7 +1357,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.167</x-m>
       <y-m>0.025</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>DEPARTURE</text>
@@ -1201,7 +1386,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.167</x-m>
       <y-m>0.085</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>ARRIVAL</text>
@@ -1230,7 +1415,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.15</x-m>
       <y-m>0.027</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/afs/FROM</property>
@@ -1246,7 +1431,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.15</x-m>
       <y-m>0.027</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/afs/TO</property>
@@ -1262,7 +1447,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.15</x-m>
       <y-m>0.065</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">literal</type>
     <text type="string">HEADING: </text>
@@ -1278,7 +1463,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.15</x-m>
       <y-m>0.097</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">number-value</type>
     <property type="string">/instrumentation/afs/dep-course</property>
@@ -1296,7 +1481,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.15</x-m>
       <y-m>0.047</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/afs/dep-rwy</property>
@@ -1312,7 +1497,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.15</x-m>
       <y-m>0.047</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/afs/arv-rwy</property>
@@ -1335,7 +1520,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.139</x-m>
       <y-m>0.026</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/opt01</property>
@@ -1370,7 +1555,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.139</x-m>
       <y-m>0.045</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col01-opt01</property>
@@ -1393,7 +1578,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.139</x-m>
       <y-m>0.065</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col02-opt01</property>
@@ -1428,7 +1613,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.139</x-m>
       <y-m>0.065</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col02-opt01</property>
@@ -1451,7 +1636,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.13</x-m>
       <y-m>0.026</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/opt02</property>
@@ -1486,7 +1671,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.13</x-m>
       <y-m>0.045</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col01-opt02</property>
@@ -1509,7 +1694,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.13</x-m>
       <y-m>0.065</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col02-opt02</property>
@@ -1544,7 +1729,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.13</x-m>
       <y-m>0.065</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col02-opt02</property>
@@ -1567,7 +1752,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.12</x-m>
       <y-m>0.026</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/opt03</property>
@@ -1602,7 +1787,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.12</x-m>
       <y-m>0.045</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col01-opt03</property>
@@ -1625,7 +1810,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.12</x-m>
       <y-m>0.065</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col02-opt03</property>
@@ -1660,7 +1845,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.12</x-m>
       <y-m>0.065</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col02-opt03</property>
@@ -1683,7 +1868,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.112</x-m>
       <y-m>0.026</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/opt04</property>
@@ -1718,7 +1903,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.112</x-m>
       <y-m>0.045</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col01-opt04</property>
@@ -1741,7 +1926,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.112</x-m>
       <y-m>0.065</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col02-opt04</property>
@@ -1776,7 +1961,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.112</x-m>
       <y-m>0.065</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col02-opt04</property>
@@ -1799,7 +1984,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.103</x-m>
       <y-m>0.026</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/opt05</property>
@@ -1834,7 +2019,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.103</x-m>
       <y-m>0.045</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col01-opt05</property>
@@ -1857,7 +2042,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.103</x-m>
       <y-m>0.065</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col02-opt05</property>
@@ -1892,7 +2077,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.103</x-m>
       <y-m>0.065</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col02-opt05</property>
@@ -1915,7 +2100,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.095</x-m>
       <y-m>0.026</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/opt06</property>
@@ -1950,7 +2135,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.095</x-m>
       <y-m>0.045</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col01-opt06</property>
@@ -1973,7 +2158,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.095</x-m>
       <y-m>0.065</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col02-opt06</property>
@@ -2008,7 +2193,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.095</x-m>
       <y-m>0.065</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col02-opt06</property>
@@ -2031,7 +2216,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.0855</x-m>
       <y-m>0.026</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/opt07</property>
@@ -2066,7 +2251,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.0855</x-m>
       <y-m>0.045</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col01-opt07</property>
@@ -2089,7 +2274,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.0855</x-m>
       <y-m>0.065</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col02-opt07</property>
@@ -2124,7 +2309,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.0855</x-m>
       <y-m>0.065</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col02-opt07</property>
@@ -2147,7 +2332,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.077</x-m>
       <y-m>0.026</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/opt08</property>
@@ -2182,7 +2367,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.077</x-m>
       <y-m>0.045</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col01-opt08</property>
@@ -2217,7 +2402,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.077</x-m>
       <y-m>0.065</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col02-opt08</property>
@@ -2252,7 +2437,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.077</x-m>
       <y-m>0.065</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col02-opt08</property>
@@ -2273,7 +2458,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.176</x-m>
       <y-m>0.038</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">number-value</type>
     <property type="string">/instrumentation/afs/CRZ_FL</property>
@@ -2293,7 +2478,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.150</x-m>
       <y-m>0.028</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/afs/dep-rwy</property>
@@ -2309,7 +2494,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.139</x-m>
       <y-m>0.030</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">number-value</type>
     <property type="string">/instrumentation/afs/V1</property>
@@ -2326,7 +2511,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.129</x-m>
       <y-m>0.030</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">number-value</type>
     <property type="string">/instrumentation/afs/Vr</property>
@@ -2343,7 +2528,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.119</x-m>
       <y-m>0.030</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">number-value</type>
     <property type="string">/instrumentation/afs/V2</property>
@@ -2360,7 +2545,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.139</x-m>
       <y-m>0.060</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">number-value</type>
     <property type="string">/instrumentation/afs/to-F</property>
@@ -2377,7 +2562,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.129</x-m>
       <y-m>0.060</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">number-value</type>
     <property type="string">/instrumentation/afs/to-S</property>
@@ -2394,7 +2579,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.119</x-m>
       <y-m>0.060</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">number-value</type>
     <property type="string">/instrumentation/afs/to-greendot</property>
@@ -2411,7 +2596,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.0887</x-m>
       <y-m>0.045</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">number-value</type>
     <property type="string">/instrumentation/afs/thrust-reduce-alt</property>
@@ -2441,7 +2626,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.078</x-m>
       <y-m>0.045</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">number-value</type>
     <property type="string">/instrumentation/afs/thrust-accel-alt</property>
@@ -2471,7 +2656,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.051</x-m>
       <y-m>0.045</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">number-value</type>
     <property type="string">/instrumentation/afs/transition-ft</property>
@@ -2505,7 +2690,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.093</x-m>
       <y-m>0.046</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">number-value</type>
     <property type="string">/instrumentation/afs/crz_mach</property>
@@ -2523,7 +2708,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.086</x-m>
       <y-m>0.0454</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">number-value</type>
     <property type="string">/velocities/Mra</property>
@@ -2541,7 +2726,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.076</x-m>
       <y-m>0.046</y-m>
-      <z-m>0.002</z-m>
+      <z-m>0.0005</z-m>
     </offsets>
     <type type="string">number-value</type>
     <property type="string">/velocities/Mb</property>
@@ -2569,6 +2754,9 @@
   <animation>
     <type>material</type>
     <object-name>label.active</object-name>
+    <object-name>label.position</object-name>
+    <object-name>label.sec</object-name>
+    <object-name>label.data</object-name>
     <object-name>label.FLT_NBR</object-name>
     <object-name>label.FROM</object-name>
     <object-name>label.TO</object-name>
@@ -2955,6 +3143,18 @@
 
 <animation>
   <type>select</type>
+  <object-name>page.PERF_APPR</object-name>
+  <condition>
+    <equals>
+      <property>/instrumentation/mcdu[1]/page</property>
+      <value>active.appr_perf</value>
+    </equals>
+  </condition>
+</animation>
+
+
+<animation>
+  <type>select</type>
   <object-name>page.perf</object-name>
   <object-name>label.menu.t_o</object-name>
   <object-name>label.menu.clb</object-name>
@@ -3231,5 +3431,36 @@
   </condition>
 </animation>
 
+<animation>
+  <type>select</type>
+  <object-name>dropdown.menu.active</object-name>
+  <condition>
+    <property>/instrumentation/mcdu[1]/dropdown[0]/active</property>
+  </condition>
+</animation>
+
+<animation>
+  <type>select</type>
+  <object-name>dropdown.menu.position</object-name>
+  <condition>
+    <property>/instrumentation/mcdu[1]/dropdown[1]/active</property>
+  </condition>
+</animation>
+
+<animation>
+  <type>select</type>
+  <object-name>dropdown.menu.sec</object-name>
+  <condition>
+    <property>/instrumentation/mcdu[1]/dropdown[2]/active</property>
+  </condition>
+</animation>
+
+<animation>
+  <type>select</type>
+  <object-name>dropdown.menu.data</object-name>
+  <condition>
+    <property>/instrumentation/mcdu[1]/dropdown[3]/active</property>
+  </condition>
+</animation>
 
 </PropertyList>

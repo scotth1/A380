@@ -195,6 +195,10 @@ changePage = func(unit,page) {
   tracer("**** Start changePage("~page~")");
   var crzFl = getprop("/instrumentation/afs/CRZ_FL");
   setprop("/instrumentation/mcdu["~unit~"]/opt-error-display",0);
+  setprop("/instrumentation/mcdu["~unit~"]/dropdown[0]/active",0);
+  setprop("/instrumentation/mcdu["~unit~"]/dropdown[1]/active",0);
+  setprop("/instrumentation/mcdu["~unit~"]/dropdown[2]/active",0);
+  setprop("/instrumentation/mcdu["~unit~"]/dropdown[3]/active",0);
 
   for(r =0; r != 8; r=r+1) {
       var optAttr = sprintf("/instrumentation/mcdu[%i]/opt%02i",unit,r+1);

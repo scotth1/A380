@@ -954,6 +954,48 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
        <volume> 0.6 </volume>            <!-- Volume at reference distance -->
      </speaker>
    </tcas>
+   <mcdu>
+     <dropdown>
+       <active type="bool">false</active>
+       <title type="string">ACTIVE</title>
+       <menu>
+         <item type="string">INIT</item>
+         <page>active.init</page>
+         <item type="string">FLT PLN</item>
+         <page>active.flt_pln</page>
+       </menu>
+     </dropdown>
+     <dropdown>
+       <active type="bool">false</active>
+       <title type="string">POSITION</title>
+     </dropdown>
+     <dropdown>
+       <active type="bool">false</active>
+       <title type="string">SEC</title>
+     </dropdown>
+     <dropdown>
+       <active type="bool">false</active>
+       <title type="string">DATA</title>
+     </dropdown>
+   </mcdu>
+   <mcdu>
+     <dropdown>
+       <active type="bool">false</active>
+       <title type="string">ACTIVE</title>
+     </dropdown>
+     <dropdown>
+       <active type="bool">false</active>
+       <title type="string">POSITION</title>
+     </dropdown>
+     <dropdown>
+       <active type="bool">false</active>
+       <title type="string">SEC</title>
+     </dropdown>
+     <dropdown>
+       <active type="bool">false</active>
+       <title type="string">DATA</title>
+     </dropdown>
+   </mcdu>
 
 </instrumentation>
 

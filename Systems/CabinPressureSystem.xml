@@ -268,22 +268,32 @@
    <filter>
       <name>adjust cabin to target</name>
       <type>noise-spike</type>
-      <debug>false</debug>
+      <debug>true</debug>
       <feedback-if-disabled>false</feedback-if-disabled>
       <enable>
-        <or>
+        <condition>
+        <and>
           <equals>
-            <property>/controls/pressurisation/ascent-engaged</property>
+            <property>/controls/pressurisation/engaged</property>
             <value>1</value>
           </equals>
-          <equals>
-            <property>/controls/pressurisation/descent-engaged</property>
-            <value>1</value>
-          </equals>
-        </or>
+          <or>
+            <equals>
+              <property>/controls/pressurisation/ascent-engaged</property>
+              <value>1</value>
+            </equals>
+            <equals>
+              <property>/controls/pressurisation/descent-engaged</property>
+              <value>1</value>
+            </equals>
+          </or>
+        </and>
+        </condition>
       </enable>
       <input>/instrumentation/pressurisation/target-cabin-pressure-psi</input>
-      <output>/instrumentation/pressurisation/cabin-pressure-psi</output>
+      <output>
+        <property>/instrumentation/pressurisation/cabin-pressure-psi</property>
+      </output>
       <max-rate-of-change>0.0028</max-rate-of-change>
     </filter>
     

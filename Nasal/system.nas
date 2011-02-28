@@ -138,6 +138,8 @@ var atmos = Atmos.new();
 ##setprop("/controls/pressurisation/cabin_alt", getprop("/position/altitude-ft"));
 setprop("/instrumentation/pressurisation/target-cabin-pressure-psi", atmos.convertAltitudePressure("feet", getprop("/position/altitude-ft"), "psi"));
 setprop("/instrumentation/pressurisation/output-cabin-pressure-psi", atmos.convertAltitudePressure("feet", getprop("/position/altitude-ft"), "psi"));
+  setprop("/instrumentation/pressurisation/cabin-altitude-ft", getprop("/position/altitude-ft"));
+  setprop("/instrumentation/pressurisation/cabin-pressure-psi", atmos.convertAltitudePressure("feet", getprop("/position/altitude-ft"), "psi"));
 setprop("/systems/electrical/apu-test",0);
 setprop("/instrumentation/annunciator/master-caution",0.0);
 setprop("/instrumentation/switches/seat-belt-sign",0.0);
@@ -167,7 +169,18 @@ DOORS.doorsystem.paxLeftUp1Door.open();
 settimer(update_systems,0);
 setprop("/systems/electrical/apu-test",0);
 print("Aircraft systems initialised");
+settimer(update_cabin_pressure, 2);
 }
+
+
+
+update_cabin_pressure = func {
+  var atmos = Atmos.new();
+  setprop("/instrumentation/pressurisation/cabin-altitude-ft", getprop("/position/altitude-ft"));
+  setprop("/instrumentation/pressurisation/cabin-pressure-psi", atmos.convertAltitudePressure("feet", getprop("/position/altitude-ft"), "psi"));
+  ###print("Reset cabin pressure and altitude");
+}
+
 
 reset_et = func {
   et_base = getprop("/sim/time/elapsed-sec");
