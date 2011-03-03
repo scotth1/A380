@@ -15,7 +15,7 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-fms_trace = 0;
+fms_trace = 1;
 
 
 ## mode constants
@@ -169,7 +169,7 @@ tracer : func(msg) {
          }
        }
        ## managed cruise alt
-       if (curAlt > (crzAlt-1000) and bothSelect == MANAGED_MODE) {
+       if (curAlt > (crzAlt-5000) and bothSelect == MANAGED_MODE) {
          retVNAV = VNAV_ALTCRZ;
          me.tracer("retVNAV = VNAV_ALTCRZ");
        }
@@ -184,6 +184,7 @@ tracer : func(msg) {
              foundTD = 1;
            }
          }
+         me.tracer("foundTD: "~foundTD~", bothSelect: "~bothSelect~", lnavMode: "~lnavMode);
          if(foundTD == 1 and curAlt > 400 and bothSelect == MANAGED_MODE) {
            if (lnavMode == LNAV_FMS) {
              retVNAV = VNAV_DES;

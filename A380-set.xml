@@ -968,20 +968,38 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
      <dropdown>
        <active type="bool">false</active>
        <title type="string">POSITION</title>
+       <menu>
+       </menu>
      </dropdown>
      <dropdown>
        <active type="bool">false</active>
        <title type="string">SEC</title>
+       <menu>
+         <item>INIT</item>
+         <page>sec.init</page>
+         <item type="string">FLT PLN</item>
+         <page>sec.flt_pln</page>
+         <item>COPY</item>
+         <page>sec.copy</page>
+       </menu>
      </dropdown>
      <dropdown>
        <active type="bool">false</active>
        <title type="string">DATA</title>
+       <menu>
+       </menu>
      </dropdown>
    </mcdu>
    <mcdu>
      <dropdown>
        <active type="bool">false</active>
        <title type="string">ACTIVE</title>
+       <menu>
+         <item type="string">INIT</item>
+         <page>active.init</page>
+         <item type="string">FLT PLN</item>
+         <page>active.flt_pln</page>
+       </menu>
      </dropdown>
      <dropdown>
        <active type="bool">false</active>
@@ -990,6 +1008,14 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
      <dropdown>
        <active type="bool">false</active>
        <title type="string">SEC</title>
+       <menu>
+         <item>INIT</item>
+         <page>sec.init</page>
+         <item type="string">FLT PLN</item>
+         <page>sec.flt_pln</page>
+         <item>COPY</item>
+         <page>sec.copy</page>
+       </menu>
      </dropdown>
      <dropdown>
        <active type="bool">false</active>

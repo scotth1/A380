@@ -268,7 +268,7 @@
    <filter>
       <name>adjust cabin to target</name>
       <type>noise-spike</type>
-      <debug>true</debug>
+      <debug>false</debug>
       <feedback-if-disabled>false</feedback-if-disabled>
       <enable>
         <condition>

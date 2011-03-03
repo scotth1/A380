@@ -23,38 +23,6 @@
 
 <!--  Text labels -->
 
-<!-- text>
-  <name>label.active</name>
-  <axis-alignment>yz-plane</axis-alignment>
-  <offsets>
-    <pitch-deg>-90</pitch-deg>
-    <x-m>-0.19</x-m>
-    <y-m>0.033</y-m>
-    <z-m>0.0008</z-m>
-  </offsets>
-  <type>literal</type>
-  <text>ACTIVE</text>
-  <font>helvetica_medium.txf</font>
-  <character-size type="double">0.005</character-size>
-  <alignment>right-bottom</alignment>  
-</text>
-
-
-<animation>
-  <type>pick</type>
-  <object-name>menu.active</object-name>
-    <action>
-   <button>0</button>
-   <repeatable>false</repeatable>
-   <binding>
-      <command>nasal</command>
-      <script>MCDU1.changePage(1,"active.init")</script>
-   </binding>
-  </action>
-</animation -->
-
-
-
 <text>
   <name>label.active</name>
   <axis-alignment>yz-plane</axis-alignment>
@@ -129,7 +97,7 @@
     <z-m>0.0011</z-m>
   </offsets>
   <type type="string">text-value</type>
-  <property>/instrumentation/mcdu[1]/dropdown[0]/menu[0]/item[0]</property>
+  <property>/instrumentation/mcdu[1]/dropdown[0]/menu/item[0]</property>
   <font>helvetica_medium.txf</font>
   <character-size type="double">0.0045</character-size>
   <alignment>center-bottom</alignment>  
@@ -144,7 +112,7 @@
     <repeatable>false</repeatable>
     <binding>
       <command>nasal</command>
-      <script>MCDU2.changePage(1,"active.init")</script>
+      <script>MCDU2.changeDropdown(1,0,0)</script>
     </binding>
   </action>
 </animation>
@@ -159,7 +127,7 @@
     <z-m>0.0011</z-m>
   </offsets>
   <type type="string">text-value</type>
-  <property>/instrumentation/mcdu[1]/dropdown[0]/menu[0]/item[1]</property>
+  <property>/instrumentation/mcdu[1]/dropdown[0]/menu/item[1]</property>
   <font>helvetica_medium.txf</font>
   <character-size type="double">0.0045</character-size>
   <alignment>center-bottom</alignment>  
@@ -173,7 +141,7 @@
     <repeatable>false</repeatable>
     <binding>
       <command>nasal</command>
-      <script>MCDU2.changePage(1,"active.flt_pln")</script>
+      <script>MCDU2.changeDropdown(1,0,1)</script>
     </binding>
   </action>
 </animation>
@@ -187,8 +155,7 @@
   </condition>
 </animation>
 
-
-<!--  position sub-menu -->
+<!-- position sub-menu -->
 
 <animation>
   <type>pick</type>
@@ -219,6 +186,102 @@
   </action>
 </animation>
 
+<text>
+  <name>label.dropdown2.opt1</name>
+  <axis-alignment>yz-plane</axis-alignment>
+  <offsets>
+    <pitch-deg>-90</pitch-deg>
+    <x-m>-0.1833</x-m>
+    <y-m>0.078</y-m>
+    <z-m>0.0012</z-m>
+  </offsets>
+  <type type="string">text-value</type>
+  <property>/instrumentation/mcdu[1]/dropdown[2]/menu/item[0]</property>
+  <font>helvetica_medium.txf</font>
+  <character-size type="double">0.0045</character-size>
+  <alignment>center-bottom</alignment>  
+</text>
+<animation>
+  <type>pick</type>
+  <object-name>dropdown2.opt1</object-name>
+  <action>
+    <button>0</button>
+    <repeatable>false</repeatable>
+    <binding>
+      <command>nasal</command>
+      <script>MCDU2.changeDropdown(1,2,0)</script>
+    </binding>
+  </action>
+</animation>
+
+<text>
+  <name>label.dropdown2.opt2</name>
+  <axis-alignment>yz-plane</axis-alignment>
+  <offsets>
+    <pitch-deg>-90</pitch-deg>
+    <x-m>-0.1785</x-m>
+    <y-m>0.078</y-m>
+    <z-m>0.0012</z-m>
+  </offsets>
+  <type type="string">text-value</type>
+  <property>/instrumentation/mcdu[1]/dropdown[2]/menu/item[1]</property>
+  <font>helvetica_medium.txf</font>
+  <character-size type="double">0.0045</character-size>
+  <alignment>center-bottom</alignment>  
+</text>
+<animation>
+  <type>pick</type>
+  <object-name>dropdown2.opt2</object-name>
+  <action>
+    <button>0</button>
+    <repeatable>false</repeatable>
+    <binding>
+      <command>nasal</command>
+      <script>MCDU2.changeDropdown(1,2,1)</script>
+    </binding>
+  </action>
+</animation>
+
+<text>
+  <name>label.dropdown2.opt3</name>
+  <axis-alignment>yz-plane</axis-alignment>
+  <offsets>
+    <pitch-deg>-90</pitch-deg>
+    <x-m>-0.1737</x-m>
+    <y-m>0.078</y-m>
+    <z-m>0.0012</z-m>
+  </offsets>
+  <type type="string">text-value</type>
+  <property>/instrumentation/mcdu[1]/dropdown[2]/menu/item[2]</property>
+  <font>helvetica_medium.txf</font>
+  <character-size type="double">0.0045</character-size>
+  <alignment>center-bottom</alignment>  
+</text>
+<animation>
+  <type>pick</type>
+  <object-name>dropdown2.opt3</object-name>
+  <action>
+    <button>0</button>
+    <repeatable>false</repeatable>
+    <binding>
+      <command>nasal</command>
+      <script>MCDU2.changeDropdown(1,2,2)</script>
+    </binding>
+  </action>
+</animation>
+
+<animation>
+  <type>select</type>
+  <object-name>label.dropdown2.opt1</object-name>
+  <object-name>label.dropdown2.opt2</object-name>
+  <object-name>label.dropdown2.opt3</object-name>
+  <condition>
+    <property>/instrumentation/mcdu[1]/dropdown[2]/active</property>
+  </condition>
+</animation>
+
+
+
 <!-- data sub-menu -->
 
 <animation>
@@ -233,7 +296,6 @@
     </binding>
   </action>
 </animation>
-
 
 
 
@@ -376,7 +438,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU1.changePage(1,"active.irs")</script>
+      <script>MCDU2.changePage(1,"active.irs")</script>
    </binding>
   </action>
 </animation>
@@ -405,7 +467,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU1.changePage(1,"active.departure.dep")</script>
+      <script>MCDU2.changePage(1,"active.departure.dep")</script>
    </binding>
   </action>
 </animation>
@@ -434,7 +496,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU1.changePage(1,"active.navaids")</script>
+      <script>MCDU2.changePage(1,"active.navaids")</script>
    </binding>
   </action>
 </animation>
@@ -463,7 +525,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU1.changePage(1,"active.fuel_load")</script>
+      <script>MCDU2.changePage(1,"active.fuel_load")</script>
    </binding>
   </action>
 </animation>
@@ -492,7 +554,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU1.changePage(1,"active.to_perf")</script>
+      <script>MCDU2.changePage(1,"active.to_perf")</script>
    </binding>
   </action>
 </animation>
@@ -557,7 +619,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU1.changePage(1,"active.departure.sid")</script>
+      <script>MCDU2.changePage(1,"active.departure.sid")</script>
    </binding>
   </action>
 </animation>
@@ -570,7 +632,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU1.changePage(1,"active.departure.star")</script>
+      <script>MCDU2.changePage(1,"active.departure.star")</script>
    </binding>
   </action>
 </animation>
@@ -615,7 +677,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU1.scrollRwy(1,"more")</script>
+      <script>MCDU2.scrollRwy(1,"more")</script>
    </binding>
   </action>
 </animation>
@@ -628,7 +690,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU1.scrollRwy(1,"less")</script>
+      <script>MCDU2.scrollRwy(1,"less")</script>
    </binding>
   </action>
 </animation>
@@ -667,7 +729,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU1.changePage(1,"active.to_perf")</script>
+      <script>MCDU2.changePage(1,"active.to_perf")</script>
    </binding>
   </action>
 </animation>
@@ -680,7 +742,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU1.changePage(1,"active.clb_perf")</script>
+      <script>MCDU2.changePage(1,"active.clb_perf")</script>
    </binding>
   </action>
 </animation>
@@ -693,7 +755,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU1.changePage(1,"active.crz_perf")</script>
+      <script>MCDU2.changePage(1,"active.crz_perf")</script>
    </binding>
   </action>
 </animation>
@@ -706,7 +768,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU1.changePage(1,"active.des_perf")</script>
+      <script>MCDU2.changePage(1,"active.des_perf")</script>
    </binding>
   </action>
 </animation>
@@ -719,7 +781,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU1.changePage(1,"active.appr_perf")</script>
+      <script>MCDU2.changePage(1,"active.appr_perf")</script>
    </binding>
   </action>
 </animation>
@@ -732,7 +794,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU1.changePage(1,"active.ga_perf")</script>
+      <script>MCDU2.changePage(1,"active.ga_perf")</script>
    </binding>
   </action>
 </animation>
@@ -1238,7 +1300,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU1.selectField("FLT_NBR")</script>
+      <script>MCDU2.selectField("FLT_NBR")</script>
    </binding>
   </action>
 </animation>
@@ -1266,7 +1328,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU1.selectField("FROM")</script>
+      <script>MCDU2.selectField("FROM")</script>
    </binding>
   </action>
 </animation>
@@ -1294,7 +1356,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU1.selectField("TO")</script>
+      <script>MCDU2.selectField("TO")</script>
    </binding>
   </action>
 </animation>
@@ -1325,7 +1387,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU1.selectField("CRZ_FL")</script>
+      <script>MCDU2.selectField("CRZ_FL")</script>
    </binding>
   </action>
 </animation>
@@ -1374,7 +1436,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU1.changePage(1,"active.departure.dep")</script>
+      <script>MCDU2.changePage(1,"active.departure.dep")</script>
    </binding>
   </action>
 </animation>
@@ -1403,7 +1465,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU1.changePage(1,"active.departure.arv")</script>
+      <script>MCDU2.changePage(1,"active.departure.arv")</script>
    </binding>
   </action>
 </animation>
@@ -1537,7 +1599,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU1.dispatchAction("opt01",1)</script>
+      <script>MCDU2.dispatchAction("opt01",1)</script>
    </binding>
   </action>
 </animation>
@@ -1653,7 +1715,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU1.dispatchAction("opt02",1)</script>
+      <script>MCDU2.dispatchAction("opt02",1)</script>
    </binding>
   </action>
 </animation>
@@ -1769,7 +1831,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU1.dispatchAction("opt03",1)</script>
+      <script>MCDU2.dispatchAction("opt03",1)</script>
    </binding>
   </action>
 </animation>
@@ -1885,7 +1947,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU1.dispatchAction("opt04",1)</script>
+      <script>MCDU2.dispatchAction("opt04",1)</script>
    </binding>
   </action>
 </animation>
@@ -2001,7 +2063,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU1.dispatchAction("opt05",1)</script>
+      <script>MCDU2.dispatchAction("opt05",1)</script>
    </binding>
   </action>
 </animation>
@@ -2117,7 +2179,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU1.dispatchAction("opt06",1)</script>
+      <script>MCDU2.dispatchAction("opt06",1)</script>
    </binding>
   </action>
 </animation>
@@ -2233,7 +2295,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU1.dispatchAction("opt07",1)</script>
+      <script>MCDU2.dispatchAction("opt07",1)</script>
    </binding>
   </action>
 </animation>
@@ -2349,7 +2411,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU1.dispatchAction("opt08",1)</script>
+      <script>MCDU2.dispatchAction("opt08",1)</script>
    </binding>
   </action>
 </animation>
@@ -2594,7 +2656,7 @@
   <axis-alignment>yz-plane</axis-alignment>
     <offsets>
       <pitch-deg>-90</pitch-deg>
-      <x-m>-0.0887</x-m>
+      <x-m>-0.0888</x-m>
       <y-m>0.045</y-m>
       <z-m>0.0005</z-m>
     </offsets>
@@ -2614,7 +2676,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU1.selectField("thrust-reduce-alt")</script>
+      <script>MCDU2.selectField("thrust-reduce-alt")</script>
    </binding>
   </action>
 </animation>
@@ -2644,7 +2706,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU1.selectField("thrust-accel-alt")</script>
+      <script>MCDU2.selectField("thrust-accel-alt")</script>
    </binding>
   </action>
 </animation>
@@ -2674,7 +2736,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU1.selectField("transition-ft")</script>
+      <script>MCDU2.selectField("transition-ft")</script>
    </binding>
   </action>
 </animation>
@@ -2757,6 +2819,11 @@
     <object-name>label.position</object-name>
     <object-name>label.sec</object-name>
     <object-name>label.data</object-name>
+    <object-name>label.dropdown0.opt1</object-name>
+    <object-name>label.dropdown0.opt2</object-name>
+    <object-name>label.dropdown2.opt1</object-name>
+    <object-name>label.dropdown2.opt2</object-name>
+    <object-name>label.dropdown2.opt3</object-name>
     <object-name>label.FLT_NBR</object-name>
     <object-name>label.FROM</object-name>
     <object-name>label.TO</object-name>
@@ -3148,6 +3215,17 @@
     <equals>
       <property>/instrumentation/mcdu[1]/page</property>
       <value>active.appr_perf</value>
+    </equals>
+  </condition>
+</animation>
+
+<animation>
+  <type>select</type>
+  <object-name>page.FLT_PLN</object-name>
+  <condition>
+    <equals>
+      <property>/instrumentation/mcdu[1]/page</property>
+      <value>active.flt_pln</value>
     </equals>
   </condition>
 </animation>

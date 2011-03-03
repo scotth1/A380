@@ -69,7 +69,7 @@ SPD_THRDES=7;
 SPD_THRIDL=8;
 
 # working memory
-afs_trace = 0;
+afs_trace = 1;
 afs_version = "1.0.9";
 
 
@@ -385,9 +385,11 @@ toggle_vs_select = func(n) {
       }
       if (finalVNAVMode == VNAV_VS) {
         armMode = aFMS.evaluateManagedVNAV();
+        tracer("finalVNAVMode: "~finalVNAVMode~", verticalMode: "~verticalMode);
         if (verticalMode == 0) {
           setprop("/autopilot/settings/vertical-speed-fpm",getprop("/instrumentation/afs/vertical-speed-fpm"));
           setprop("/instrumentation/flightdirector/alt-acquire-mode",1);
+          setprop("/instrumentation/flightdirector/vnav-arm", VNAV_ALTs);
         }
       }
       if (finalVNAVMode == VNAV_OPCLB) {

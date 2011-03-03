@@ -1127,7 +1127,7 @@ setlistener("/autopilot/route-manager/route/num", func(n) {
         setprop("/controls/pressurisation/outside-cruise-ft", ceilingFt);
         setprop("/controls/pressurisation/outside-pressure-cruise-psi", Pcr);
         setprop("/controls/pressurisation/cabin-cruise-ft", 6500);
-        var Pcc = atmos.convertAltitudePressure("feet",6500,"psi");
+        var Pcc = atmos.convertAltitudePressure("feet",6800,"psi");
         setprop("/controls/pressurisation/cabin-pressure-cruise-psi", Pcc);
       }
       

@@ -26,7 +26,7 @@
 currentField = "";
 currentFieldPos = 0;
 inputValue = "";
-trace = 1;         ## Set to 0 to turn off all tracing messages
+trace = 0;         ## Set to 0 to turn off all tracing messages
 depDB = nil;
 arvDB = nil;
 version = "V1.0.18";
@@ -188,6 +188,15 @@ keyPress = func(key) {
     }
   }
 }
+
+
+changeDropdown = func(unit, menu, item) {
+  var page = getprop("/instrumentation/mcdu["~unit~"]/dropdown["~menu~"]/menu/page["~item~"]");
+  changePage(unit, page);
+}
+
+
+
 
 ################
 ## general menu action function.
