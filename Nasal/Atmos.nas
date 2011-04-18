@@ -97,6 +97,12 @@ var Atmos = {
   },
 
 
+  #
+  # eg: KIAS 270, MIAS 0.70 crossover occurs at 28765ft
+  # param: kts 
+  # param: mach
+  # returns: altitude of crossover in ft
+  #
   calculateCrossover : func(kts, mach) {
     var CAS = kts;
     var alt = 0.0;
@@ -173,6 +179,10 @@ var Atmos = {
   #
   # convert from pressure to altitude
   #
+  # param: inputUnits (either "hectoPascal", "Pascal", "psi", "inHg", "mmHg")
+  # param: the pressure in inputUnits
+  # param: outputUnits (either "feet", "metre")
+  #
   convertPressureAltitude : func(inputUnits, value, outputUnits) {
   
     var p = 0.0;
@@ -197,6 +207,7 @@ var Atmos = {
       h = T0*(math.pow((p0/p), (dTdh0SI/CgRGasSI)) - 1.0)/dTdh0;
     } else {
       # Tropopause
+      print("units: "~inputUnits~", value: "~value~", p: "~p);
       h = h1 - math.ln(p/p1)*T1/CgRGas;
     }
 
@@ -208,6 +219,98 @@ var Atmos = {
       alt = h*CftTOm;
     }
     return alt;
-}
+ },
+
+ #
+ # calculate Mach, TAS based on entered CAS
+ # param: alt (in ft)
+ # param: cas (in kts)
+ # param: output ("mach" or "tas" in kts);
+ # returns: 
+ calculateFromCAS : func(alt, cas, output) {
+   var h = alt;
+   var T = 0;
+   var p = 0;
+   if (h <= h1) {
+     # Troposphere
+     T = T0 + dTdh0*h;
+     p = p0*Math.pow((T0/T), (CgRGasSI/dTdh0SI));
+   } else {
+     # Tropopause
+     T = T1;
+     p = p1*Math.exp((CgRGas/T1)*(h1 - h));
+   }
+   var Rho = p/(CRGasSI*T);
+   var a   = math.sqrt(CGammaRGas*T);
+   var TAS = math.sqrt(5)*a*math.sqrt(math.pow(((CPressureSLSI/p)*(math.pow((CAS*CAS/(5.0*CaSLNU*CaSLNU)) + 1, (CGamma/(CGamma - 1))) - 1) + 1), (CGamma - 1)/CGamma) - 1);
+   var Mach = TAS / a;
+   TAS *= CftPsTOkn;
+   if (output == "mach") {
+     return Mach;
+   }
+   return TAS;
+ },
+
+
+ #
+ # calculate CAS or TAS based on entered Mach
+ # param: alt (in ft)
+ # param: mach 
+ # param: output ("cas" or "tas" in kts);
+ # returns: 
+ calculateFromMach : func(alt, mach, output) {
+   var h = alt;
+   var T = 0;
+   var p = 0;
+   if (h <= h1) {
+     # Troposphere
+     T = T0 + dTdh0*h;
+     p = p0*math.pow((T0/T), (CgRGasSI/dTdh0SI));
+   } else {
+     # Tropopause
+     T = T1;
+     p = p1*math.exp((CgRGas/T1)*(h1 - h));
+   }
+   var Rho = p/(CRGasSI*T);
+   var a   = math.sqrt(CGammaRGas*T);
+   var TAS = mach * a;
+   var CAS = math.sqrt(5)*CaSLNU*math.sqrt(math.pow(((p/CPressureSLSI)*(math.pow((TAS*TAS/(5.0*a*a)) + 1, (CGamma/(CGamma - 1))) - 1) + 1), (CGamma - 1)/CGamma) - 1);
+   TAS *= CftPsTOkn;
+   if (output == "cas") {
+     return CAS;
+   }
+   return TAS;
+ },
+
+
+  #
+  # calculate CAS or Mach based on entered TAS
+  # param: alt (in ft)
+  # param: tas (in kts)
+  # param: output ("cas" or "mach" in kts);
+  # returns: cas or mach depending on output
+  calculateFromTAS : func(alt, tas, output) {
+    var h = alt;
+    var T = 0;
+    var p = 0;
+    var TAS = tas/CftPsTOkn;
+    if (h <= h1) {
+      # Troposphere
+      T = T0 + dTdh0*h;
+      p = p0*math.pow((T0/T), (CgRGasSI/dTdh0SI));
+    } else {
+      # Tropopause
+      T = T1;
+      p = p1*math.exp((CgRGas/T1)*(h1 - h));
+    }
+    var Rho = p/(CRGasSI*T);
+    var a   = math.sqrt(CGammaRGas*T);
+    var Mach = TAS / a;
+    var CAS = math.sqrt(5)*CaSLNU*math.sqrt(math.pow(((p/CPressureSLSI)*(math.pow((TAS*TAS/(5.0*a*a)) + 1, (CGamma/(CGamma - 1))) - 1) + 1), (CGamma - 1)/CGamma) - 1);
+    if (output == "mach") {
+      return Mach;
+    }
+    return cas;
+  }
 
 };

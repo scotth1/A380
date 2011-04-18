@@ -544,12 +544,12 @@ calc_initial_track_params = func {
 #############################################################################
 
 
-setlistener("/autopilot/route-manager/current-wp", func(n) {
+setlistener("/autopilot/route-manager/current-wp", func(n) {  
   if (getprop("/instrumentation/flightdirector/past-td") == 0) {
     tracer("check if past T/D");
     for(var p = 0; p < getprop("/autopilot/route-manager/current-wp"); p=p+1) {
       var id = getprop("/autopilot/route-manager/route/wp["~p~"]/id");
-      if (id == "T/D") {
+      if (id == "(T/D)") {
         setprop("/instrumentation/flightdirector/past-td",1);
         tracer("Gone past T/D");
       }
@@ -1417,7 +1417,7 @@ update_mode = func {
     var distToTD = getprop("/autopilot/route-manager/wp[0]/dist");
     var nextId   = getprop("/instrumentation/gps/wp/wp[1]/ID");
     var nextTD = 0;
-    if (nextId == "T/D" and nextTD == 0) {
+    if (nextId == "(T/D)" and nextTD == 0) {
       nextTD = 1;
       tracer("[update_mode] next WPT is T/D");
     }

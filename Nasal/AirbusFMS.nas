@@ -66,13 +66,19 @@ var AirbusFMS = {
    new : func() {
      var m = {parents : [AirbusFMS]};
      m.FMSnode = props.globals.getNode("/instrumentation/fms",1);
-     m.activeFpln = m.FMSnode.getNode("active-fpln",1);
-     m.secFpln = m.FMSnode.getNode("secondary-fpln",1);
+     m.activeFpln = m.FMSnode.getNode("plan[0]",1);
+     m.secFpln = m.FMSnode.getNode("plan[1]",1);
+     m.activePlan = [];
+     m.lastWP = 0;
+     m.secondPlan = [];
      m.depDB = nil;
      m.arvDB = nil;
-     m.version = "V1.0.4";
+     setprop("instrumentation/fms/plan[0]/display-nodes/current-page",0);
+     setprop("instrumentation/fms/plan[0]/display-nodes/current-wp",0);
+     m.version = "V1.0.6";
 
-     ##setlistener("/sim/signals/fdm-initialized", func m.init());
+     setlistener("/sim/signals/fdm-initialized", func m.init());
+     setlistener("/autopilot/route-manager/current-wp", func m.updateCurrentWP());
      return m;
    },
 
@@ -105,7 +111,18 @@ tracer : func(msg) {
    # init
    ####
    init : func() {
-      ##me.tracer("FDM "~me.version~" ready");
+      print("AFMS "~me.version~" ready");
+      for(var w=0; w < 9; w=w+1) {
+        var wp = me.activeFpln.getNode("display-nodes/wp["~w~"]",1);
+        wp.getNode("id",1).setValue("");
+        wp.getNode("parent",1).setValue("");
+        wp.getNode("spd-lim-display",1).setValue("0.00");
+        wp.getNode("alt-lim-display",1).setValue("FL000");
+        wp.getNode("time-utc-display",1).setValue("00:00");
+        wp.getNode("active", 1).setBoolValue(0);
+        wp.getNode("track",1).setDoubleValue(0.0);
+        wp.getNode("dist",1).setIntValue(0);
+      }
       ##settimer(func me.update(), 0);
       ##settimer(func me.slow_update(), 0);
     },
@@ -226,7 +243,7 @@ tracer : func(msg) {
 
    #############
    # evaluate managed LNAV
-   #############
+   #
    evaluateManagedLNAV : func() {
      var retLNAV = LNAV_OFF;
 
@@ -240,7 +257,7 @@ tracer : func(msg) {
 
    ####
    #  calculate the current flap position
-   ####
+   #
    getFlapConfig : func() {
      var flapConfig = 0;
      var currFlapPos = getprop("/fdm/jsbsim/fcs/flap-cmd-norm");
@@ -257,6 +274,169 @@ tracer : func(msg) {
        flapConfig = 4;
      }
      return flapConfig;
+    },
+
+    ###################################
+    #  called from the autopilot/route-manager/current-wp tied property listener
+    #
+    updateCurrentWP : func() {
+      var rteWP = getprop("autopilot/route-manager/current-wp");
+      var rteWPId = getprop("autopilot/route-manager/route/wp["~rteWP~"]/id");
+      var planIdx = me.findWPName(rteWPId);
+      if (planIdx != nil) {
+        var tmp = int(planIdx/9);
+        var mod = (planIdx-(tmp*9));
+        setprop("instrumentation/fms/plan[0]/display-nodes/current-wp", mod);
+        var currPage = getprop("instrumentation/fms/plan[0]/display-nodes/current-page");
+        if (tmp != currPage) {
+          setprop("instrumentation/fms/plan[0]/display-nodes/current-page", tmp);
+          me.updateDisplay();
+        }
+      }
+    },
+
+    ####
+    # copy current page from active flight plan to display nodes
+    #
+    updateDisplay : func() {
+      var startPage = getprop("instrumentation/fms/plan[0]/display-nodes/current-page");
+      var startWP = startPage*9;
+      var max = size(me.activePlan);
+      if (max > 9) {
+        max = 9;
+      }
+      for(var w = 0; w != max; w=w+1) {
+        var pos = startWP+w;
+        var dn = me.activeFpln.getNode("display-nodes/wp["~w~"]",1);
+        ###var wp = me.activeFpln.getNode("wp["~pos~"]",0);
+        var wp = me.activePlan[pos];
+        if (wp != nil) {
+          dn.getNode("id",1).setValue(wp.wp_name);
+          dn.getNode("parent",1).setValue(wp.wp_parent_name);
+          var spdLim = wp.spd_csrt;
+          if (spdLim < 1 and spdLim > 0) {
+            dn.getNode("spd-lim-display",1).setValue(sprintf("%01.2f", spdLim));
+          } else {
+            dn.getNode("spd-lim-display",1).setValue(sprintf("%5.0f", spdLim));
+          }
+          var altLim = wp.alt_csrt;
+          if (altLim > 10000) {
+            dn.getNode("alt-lim-display",1).setValue(sprintf("FL%3.0f",(altLim/100)));
+          } else {
+            dn.getNode("alt-lim-display",1).setValue(sprintf("%5.0f",altLim));
+          }
+          dn.getNode("wp-type",1).setValue(wp.wp_type);
+          ##dn.getNode("time-utc-display",1).setValue(sprintf("%2f:%2f",wp.getNode("time-utc-hours").getIntValue(),wp.getNode("time-utc-mins").getIntValue()));
+          dn.getNode("time-utc-display",1).setValue("00:00");
+          dn.getNode("active", 1).setBoolValue(1);
+          dn.getNode("track",1).setDoubleValue(wp.leg_bearing);
+          dn.getNode("dist",1).setIntValue(wp.leg_distance);
+        } else {
+          dn.getNode("active",1).setBoolValue(0);
+        }
+      }
+    },
+
+    ######
+    # add WP to FMS plan.
+    #
+    appendWP : func(wp) {
+      me.tracer("Append WP: "~wp.wp_name~" at pos: "~me.lastWP);
+      append(me.activePlan, wp);
+      me.lastWP = me.lastWP+1;
+      me.updateDisplay();
+      return me.lastWP-1;
+    },
+
+    ###################
+    # insert a WP into FMS plan at positon
+    #
+    insertWPBefore : func(wp, idx) {
+      me.tracer("insert WP: "~wp.wp_name~" at pos: "~idx);
+      if (idx > size(me.activePlan)-1) {
+        append(me.activePlan, wp);
+      } else {
+        me.activePlan = setsize(me.activePlan, size(me.activePlan)+1);
+        # shuffle down all elements
+        for(var p = size(me.activePlan)-1; p > idx; p=p-1) {
+          me.activePlan[p] = me.activePlan[p-1];
+        }
+        me.activePlan[idx] = wp;
+        me.lastWP = me.lastWP+1;
+      }
+      me.updateDisplay();
+    },
+
+    ##################
+    # replace a WP in plan at specified index
+    #
+    replaceWPAt : func(wp, idx) {
+      me.tracer("replace WP: "~wp.wp_name~" at pos: "~idx);
+      if (idx > size(me.activePlan)-1) {
+        append(me.activePlan, wp);
+      } else {
+        me.activePlan[idx] = wp;
+      }
+      me.updateDisplay();
+    },
+
+    ##################
+    # find index of WP in plan of the same wp_name
+    #
+    findWPName : func(name) {
+      var retValue = nil;
+      forindex(i; me.activePlan) {
+        if (me.activePlan[i].wp_name == name) {
+          retValue = i;
+          break;
+        }
+      }
+      return retValue;
+    },
+
+    ###################
+    # find index of WP by type
+    #
+    findWPType : func(type) {
+      var retValue = nil;
+      forindex(i; me.activePlan) {
+        if (me.activePlan[i].wp_type == type) {
+          retValue = i;
+          break;
+        }
+      }
+      return retValue;
+    },
+
+    ##################
+    # get WP from display by index
+    #
+    getWPIdx : func(idx) {
+      var startPage = getprop("instrumentation/fms/plan[0]/display-nodes/current-page");
+      var wpIdx = startPage*9+idx;
+      return me.activePlan[wpIdx];
+    },
+
+    ##################
+    # get WP from plan by index
+    #
+    getWP : func(idx) {
+      return me.activePlan[idx];
+    },
+
+    ###################
+    # clear plan
+    #
+    clearPlan : func() {
+      me.lastPos = 0;
+      setsize(me.activePlan, 0);
+    },
+
+    ###################
+    #  get plan size
+    #
+    getPlanSize : func() {
+      return size(me.activePlan);
     }
 
 };

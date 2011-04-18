@@ -201,12 +201,12 @@
     </expression>
   </input>
   <output>
-    <property>/instrumentation/pressurisation/target-cabin-pressure-psi</property>
+    <property>instrumentation/pressurisation/target-cabin-pressure-psi</property>
     <min>
-      <property>/controls/pressurisation/cabin-pressure-cruise-psi</property>
+      <property>controls/pressurisation/cabin-pressure-cruise-psi</property>
     </min>
     <max>
-      <property>/systems/static/pressure-psi</property>
+      <property>controls/pressurisation/landing-elev-psi</property>
     </max>
   </output>
 </filter>
@@ -227,12 +227,12 @@
     </expression>
   </input>
   <output>
-    <property>/instrumentation/pressurisation/target-cabin-pressure-psi</property>
+    <property>instrumentation/pressurisation/target-cabin-pressure-psi</property>
     <min>
-      <property>/controls/pressurisation/cabin-pressure-cruise-psi</property>
+      <property>controls/pressurisation/cabin-pressure-cruise-psi</property>
     </min>
     <max>
-      <property>/systems/static/pressure-psi</property>
+      <property>controls/pressuriation/landing-elev-psi</property>
     </max>
   </output>
 </filter>
@@ -293,6 +293,12 @@
       <input>/instrumentation/pressurisation/target-cabin-pressure-psi</input>
       <output>
         <property>/instrumentation/pressurisation/cabin-pressure-psi</property>
+        <min>
+          <value>11.1</value>
+        </min>
+        <max>
+           <value>15.0</value>
+        </max>
       </output>
       <max-rate-of-change>0.0028</max-rate-of-change>
     </filter>

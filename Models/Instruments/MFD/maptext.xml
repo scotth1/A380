@@ -350,7 +350,7 @@
             <chunks>
                 <chunk>
                     <type>number-value</type>
-                    <property>orientation/heading-magnetic-deg</property>
+                    <property>orientation/heading-deg</property>
                     <format>%03.0f</format>
                 </chunk>
             </chunks>
@@ -479,7 +479,7 @@
             <chunks>
                 <chunk>
                     <type>number-value</type>
-                    <property>orientation/heading-magnetic-deg</property>
+                    <property>orientation/heading-deg</property>
                     <format>%03.0f</format>
                 </chunk>
             </chunks>

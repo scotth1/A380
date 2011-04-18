@@ -148,7 +148,7 @@
             <rolling_friction> 0.02 </rolling_friction>
             <spring_coeff unit="LBS/FT"> 362502 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC"> 120834 </damping_coeff>
-            <max_steer unit="DEG"> 32 </max_steer>
+            <max_steer unit="DEG"> 70 </max_steer>
             <brake_group> NOSE </brake_group>
             <retractable>1</retractable>
         </contact>
@@ -776,9 +776,9 @@
                       <tableData>
                       0.00	0.00
                       0.25	0.00
-                      0.53	0.00
-                      0.79	0.03
-                      1.00	0.05
+                      0.53	0.001  <!-- 0.00 -->
+                      0.79	0.024   <!-- 0.03 -->
+                      1.00	0.038    <!-- 0.05 -->
                       </tableData>
                     </table>
                 </product>
@@ -894,7 +894,7 @@
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>fcs/speedbrake-pos-norm</property>
-                    <value>-0.0800</value>
+                    <value>-0.0830</value>   <!-- -0.08 -->
                 </product>
             </function>
             <function name="aero/coefficient/CLde">

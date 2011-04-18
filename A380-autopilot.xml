@@ -708,10 +708,7 @@
       <prop>/autopilot/settings/target-speed-kt</prop>
     </reference>
     <output>
-      <prop>/controls/engines/engine[0]/throttle</prop>
-      <prop>/controls/engines/engine[1]/throttle</prop>
-      <prop>/controls/engines/engine[2]/throttle</prop>
-      <prop>/controls/engines/engine[3]/throttle</prop>
+      <prop>/autopilot/internal/throttle-pos</prop>
     </output>
     <config>
       <Kp>0.05</Kp>        <!-- proportional gain --> <!-- was 0.1 SAH 2010-06-06 -->
@@ -932,10 +929,7 @@
       <prop>/autopilot/settings/target-speed-mach</prop>
     </reference>
     <output>
-      <prop>/controls/engines/engine[0]/throttle</prop>
-      <prop>/controls/engines/engine[1]/throttle</prop>
-      <prop>/controls/engines/engine[2]/throttle</prop>
-      <prop>/controls/engines/engine[3]/throttle</prop>
+      <prop>/autopilot/internal/throttle-pos</prop>
     </output>
     <config>
       <Kp>10.0</Kp>        <!-- proportional gain --> <!-- was 0.1 SAH 2010-06-06 --><!-- was 0.05 SAH 2010-11-13 -->
@@ -949,6 +943,37 @@
       <u_max>1.0</u_max>  <!-- maximum output clamp -->
     </config>
   </pid-controller>
+  
+  
+  <filter>
+    <name>SERVO-DRIVER:throttle</name>
+    <debug>false</debug>
+    <feedback-if-disabled>true</feedback-if-disabled>
+    <enable>
+      <condition>
+        <or>
+        <equals>
+          <property>/autopilot/locks/speed</property>
+          <value>mach-with-throttle</value>
+        </equals>
+        <equals>
+          <property>/autopilot/locks/speed</property>
+          <value>speed-with-throttle</value>
+        </equals>
+        </or>
+      </condition>
+    </enable>
+    <input>/autopilot/internal/throttle-pos</input>
+    <output>
+      <prop>/controls/engines/engine[0]/throttle</prop>
+      <prop>/controls/engines/engine[1]/throttle</prop>
+      <prop>/controls/engines/engine[2]/throttle</prop>
+      <prop>/controls/engines/engine[3]/throttle</prop>
+    </output>
+    <type>noise-spike</type>
+    <!-- max-rate-of-change>0.16</max-rate-of-change -->
+    <max-rate-of-change>0.22</max-rate-of-change>
+</filter>
 
   <pid-controller>
     <name>THR CL Balance elevator</name>

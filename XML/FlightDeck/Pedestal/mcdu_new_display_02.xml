@@ -299,8 +299,6 @@
 
 
 
-
-
 <!--  active.init page labels  -->
 <text>
   <name>label.FLT_NBR</name>
@@ -325,7 +323,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.16</x-m>
       <y-m>0.034</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type>literal</type>
     <text>FROM</text>
@@ -341,7 +339,7 @@
     <pitch-deg>-90</pitch-deg>
     <x-m>-0.16</x-m>
     <y-m>0.069</y-m>
-    <z-m>0.0005</z-m>
+    <z-m>0.0008</z-m>
   </offsets>
   <type>literal</type>
   <text>TO</text>
@@ -357,7 +355,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.1466</x-m>
       <y-m>0.034</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type>literal</type>
     <text>CPNY RTE</text>
@@ -373,7 +371,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.1364</x-m>
       <y-m>0.034</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type>literal</type>
     <text>ALTN RTE</text>
@@ -389,7 +387,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.118</x-m>
       <y-m>0.034</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type>literal</type>
     <text>CRZ FL</text>
@@ -405,7 +403,7 @@
     <pitch-deg>-90</pitch-deg>
     <x-m>-0.118</x-m>
     <y-m>0.093</y-m>
-    <z-m>0.0005</z-m>
+    <z-m>0.0008</z-m>
   </offsets>
   <type>literal</type>
   <text>CRZ TEMP</text>
@@ -421,7 +419,7 @@
     <pitch-deg>-90</pitch-deg>
     <x-m>-0.071</x-m>
     <y-m>0.0515</y-m>
-    <z-m>0.0005</z-m>
+    <z-m>0.0008</z-m>
   </offsets>
   <type>literal</type>
   <text>IRS</text>
@@ -450,7 +448,7 @@
     <pitch-deg>-90</pitch-deg>
     <x-m>-0.062</x-m>
     <y-m>0.0515</y-m>
-    <z-m>0.0009</z-m>
+    <z-m>0.0008</z-m>
   </offsets>
   <type>literal</type>
   <text>DEPARTURE</text>
@@ -479,7 +477,7 @@
     <pitch-deg>-90</pitch-deg>
     <x-m>-0.053</x-m>
     <y-m>0.0515</y-m>
-    <z-m>0.0005</z-m>
+    <z-m>0.0008</z-m>
   </offsets>
   <type>literal</type>
   <text>NAVAIDS</text>
@@ -508,7 +506,7 @@
     <pitch-deg>-90</pitch-deg>
     <x-m>-0.044</x-m>
     <y-m>0.0515</y-m>
-    <z-m>0.0005</z-m>
+    <z-m>0.0008</z-m>
   </offsets>
   <type>literal</type>
   <text>FUEL &amp; LOAD</text>
@@ -537,7 +535,7 @@
     <pitch-deg>-90</pitch-deg>
     <x-m>-0.035</x-m>
     <y-m>0.0515</y-m>
-    <z-m>0.0005</z-m>
+    <z-m>0.0008</z-m>
   </offsets>
   <type>literal</type>
   <text>T.O PERF</text>
@@ -570,7 +568,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.15</x-m>
       <y-m>0.025</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>APT</text>
@@ -586,7 +584,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.139</x-m>
       <y-m>0.095</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>SID</text>
@@ -602,7 +600,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.139</x-m>
       <y-m>0.095</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>STAR</text>
@@ -712,7 +710,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.161</x-m>
       <y-m>0.012</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>T.O</text>
@@ -806,7 +804,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.161</x-m>
       <y-m>0.035</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>CLB</text>
@@ -822,7 +820,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.161</x-m>
       <y-m>0.058</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>CRZ</text>
@@ -838,7 +836,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.161</x-m>
       <y-m>0.082</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>DES</text>
@@ -854,7 +852,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.161</x-m>
       <y-m>0.105</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>APPR</text>
@@ -870,7 +868,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.161</x-m>
       <y-m>0.134</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>GA</text>
@@ -886,7 +884,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.176</x-m>
       <y-m>0.020</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>CRZ</text>
@@ -905,7 +903,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.150</x-m>
       <y-m>0.010</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>RWY</text>
@@ -921,7 +919,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.139</x-m>
       <y-m>0.020</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>V1</text>
@@ -937,7 +935,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.129</x-m>
       <y-m>0.020</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>VR</text>
@@ -953,7 +951,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.119</x-m>
       <y-m>0.020</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>V2</text>
@@ -969,7 +967,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.139</x-m>
       <y-m>0.060</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>F</text>
@@ -985,7 +983,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.129</x-m>
       <y-m>0.060</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>S</text>
@@ -1001,7 +999,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.0885</x-m>
       <y-m>0.035</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>THR RED</text>
@@ -1017,7 +1015,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.078</x-m>
       <y-m>0.035</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>ACCEL</text>
@@ -1033,7 +1031,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.078</x-m>
       <y-m>0.098</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>EO ACCEL</text>
@@ -1049,7 +1047,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.106</x-m>
       <y-m>0.022</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>FLAPS</text>
@@ -1065,7 +1063,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.106</x-m>
       <y-m>0.0615</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>THS FOR</text>
@@ -1081,7 +1079,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.106</x-m>
       <y-m>0.117</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>T.O SHIFT</text>
@@ -1097,7 +1095,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.051</x-m>
       <y-m>0.035</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>TRANS</text>
@@ -1117,7 +1115,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.110</x-m>
       <y-m>0.015</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>MODE</text>
@@ -1133,7 +1131,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.110</x-m>
       <y-m>0.040</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>MACH</text>
@@ -1149,7 +1147,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.110</x-m>
       <y-m>0.065</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>SPD</text>
@@ -1165,7 +1163,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.120</x-m>
       <y-m>0.100</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>AT</text>
@@ -1181,7 +1179,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.110</x-m>
       <y-m>0.095</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>STEP TO</text>
@@ -1197,7 +1195,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.085</x-m>
       <y-m>0.039</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>LRC</text>
@@ -1213,7 +1211,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.075</x-m>
       <y-m>0.039</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>MAX TURB</text>
@@ -1227,9 +1225,9 @@
    <axis-alignment>yz-plane</axis-alignment>
     <offsets>
       <pitch-deg>-90</pitch-deg>
-      <x-m>-0.020</x-m>
+      <x-m>-0.015</x-m>
       <y-m>0.010</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>DEST</text>
@@ -1238,14 +1236,27 @@
     <alignment>left-bottom</alignment>
 </text>
 
+<animation>
+  <type>pick</type>
+  <object-name>menu.STEP_ALT</object-name>
+  <action>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+      <command>nasal</command>
+      <script>MCDU2.changePage(1,"active.crz.stepalt")</script>
+   </binding>
+  </action>
+</animation>
+
 <text>
   <name>label.crz_perf.step_alt</name>
    <axis-alignment>yz-plane</axis-alignment>
     <offsets>
       <pitch-deg>-90</pitch-deg>
-      <x-m>-0.020</x-m>
+      <x-m>-0.015</x-m>
       <y-m>0.120</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>STEP ALT</text>
@@ -1255,6 +1266,8 @@
 </text>
 
 
+
+
 <text>
   <name>label.crz_perf.ci</name>
    <axis-alignment>yz-plane</axis-alignment>
@@ -1262,7 +1275,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.150</x-m>
       <y-m>0.010</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>CI</text>
@@ -1284,7 +1297,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.1725</x-m>
       <y-m>0.0357</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/afs/FLT_NBR</property>
@@ -1312,7 +1325,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.16</x-m>
       <y-m>0.03725</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/afs/FROM</property>
@@ -1340,7 +1353,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.16</x-m>
       <y-m>0.0715</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/afs/TO</property>
@@ -1368,7 +1381,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.118</x-m>
       <y-m>0.038</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">number-value</type>
     <property type="string">/instrumentation/afs/CRZ_FL</property>
@@ -1402,7 +1415,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.155</x-m>
       <y-m>0.027</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/opt-error</property>
@@ -1419,7 +1432,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.167</x-m>
       <y-m>0.025</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>DEPARTURE</text>
@@ -1448,7 +1461,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.167</x-m>
       <y-m>0.085</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">literal</type>
     <text>ARRIVAL</text>
@@ -1477,7 +1490,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.15</x-m>
       <y-m>0.027</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/afs/FROM</property>
@@ -1493,7 +1506,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.15</x-m>
       <y-m>0.027</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/afs/TO</property>
@@ -1509,7 +1522,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.15</x-m>
       <y-m>0.065</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">literal</type>
     <text type="string">HEADING: </text>
@@ -1525,7 +1538,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.15</x-m>
       <y-m>0.097</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">number-value</type>
     <property type="string">/instrumentation/afs/dep-course</property>
@@ -1543,7 +1556,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.15</x-m>
       <y-m>0.047</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/afs/dep-rwy</property>
@@ -1559,7 +1572,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.15</x-m>
       <y-m>0.047</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/afs/arv-rwy</property>
@@ -1582,7 +1595,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.139</x-m>
       <y-m>0.026</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/opt01</property>
@@ -1599,7 +1612,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU2.dispatchAction("opt01",1)</script>
+      <script>MCDU2.dispatchAction("opt01",0)</script>
    </binding>
   </action>
 </animation>
@@ -1617,7 +1630,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.139</x-m>
       <y-m>0.045</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col01-opt01</property>
@@ -1640,7 +1653,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.139</x-m>
       <y-m>0.065</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col02-opt01</property>
@@ -1675,7 +1688,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.139</x-m>
       <y-m>0.065</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col02-opt01</property>
@@ -1698,7 +1711,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.13</x-m>
       <y-m>0.026</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/opt02</property>
@@ -1715,7 +1728,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU2.dispatchAction("opt02",1)</script>
+      <script>MCDU2.dispatchAction("opt02",0)</script>
    </binding>
   </action>
 </animation>
@@ -1733,7 +1746,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.13</x-m>
       <y-m>0.045</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col01-opt02</property>
@@ -1756,7 +1769,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.13</x-m>
       <y-m>0.065</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col02-opt02</property>
@@ -1791,7 +1804,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.13</x-m>
       <y-m>0.065</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col02-opt02</property>
@@ -1814,7 +1827,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.12</x-m>
       <y-m>0.026</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/opt03</property>
@@ -1831,7 +1844,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU2.dispatchAction("opt03",1)</script>
+      <script>MCDU2.dispatchAction("opt03",0)</script>
    </binding>
   </action>
 </animation>
@@ -1849,7 +1862,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.12</x-m>
       <y-m>0.045</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col01-opt03</property>
@@ -1872,7 +1885,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.12</x-m>
       <y-m>0.065</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col02-opt03</property>
@@ -1907,7 +1920,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.12</x-m>
       <y-m>0.065</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col02-opt03</property>
@@ -1930,7 +1943,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.112</x-m>
       <y-m>0.026</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/opt04</property>
@@ -1947,7 +1960,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU2.dispatchAction("opt04",1)</script>
+      <script>MCDU2.dispatchAction("opt04",0)</script>
    </binding>
   </action>
 </animation>
@@ -1965,7 +1978,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.112</x-m>
       <y-m>0.045</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col01-opt04</property>
@@ -1988,7 +2001,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.112</x-m>
       <y-m>0.065</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col02-opt04</property>
@@ -2023,7 +2036,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.112</x-m>
       <y-m>0.065</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col02-opt04</property>
@@ -2046,7 +2059,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.103</x-m>
       <y-m>0.026</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/opt05</property>
@@ -2063,7 +2076,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU2.dispatchAction("opt05",1)</script>
+      <script>MCDU2.dispatchAction("opt05",0)</script>
    </binding>
   </action>
 </animation>
@@ -2081,7 +2094,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.103</x-m>
       <y-m>0.045</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col01-opt05</property>
@@ -2104,7 +2117,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.103</x-m>
       <y-m>0.065</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col02-opt05</property>
@@ -2139,7 +2152,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.103</x-m>
       <y-m>0.065</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col02-opt05</property>
@@ -2162,7 +2175,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.095</x-m>
       <y-m>0.026</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/opt06</property>
@@ -2179,7 +2192,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU2.dispatchAction("opt06",1)</script>
+      <script>MCDU2.dispatchAction("opt06",0)</script>
    </binding>
   </action>
 </animation>
@@ -2197,7 +2210,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.095</x-m>
       <y-m>0.045</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col01-opt06</property>
@@ -2220,7 +2233,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.095</x-m>
       <y-m>0.065</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col02-opt06</property>
@@ -2255,7 +2268,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.095</x-m>
       <y-m>0.065</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col02-opt06</property>
@@ -2278,7 +2291,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.0855</x-m>
       <y-m>0.026</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/opt07</property>
@@ -2295,7 +2308,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU2.dispatchAction("opt07",1)</script>
+      <script>MCDU2.dispatchAction("opt07",0)</script>
    </binding>
   </action>
 </animation>
@@ -2313,7 +2326,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.0855</x-m>
       <y-m>0.045</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col01-opt07</property>
@@ -2336,7 +2349,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.0855</x-m>
       <y-m>0.065</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col02-opt07</property>
@@ -2371,7 +2384,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.0855</x-m>
       <y-m>0.065</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col02-opt07</property>
@@ -2394,7 +2407,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.077</x-m>
       <y-m>0.026</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/opt08</property>
@@ -2411,7 +2424,7 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU2.dispatchAction("opt08",1)</script>
+      <script>MCDU2.dispatchAction("opt08",0)</script>
    </binding>
   </action>
 </animation>
@@ -2429,7 +2442,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.077</x-m>
       <y-m>0.045</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col01-opt08</property>
@@ -2464,7 +2477,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.077</x-m>
       <y-m>0.065</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col02-opt08</property>
@@ -2499,7 +2512,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.077</x-m>
       <y-m>0.065</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/mcdu[1]/col02-opt08</property>
@@ -2520,7 +2533,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.176</x-m>
       <y-m>0.038</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">number-value</type>
     <property type="string">/instrumentation/afs/CRZ_FL</property>
@@ -2540,7 +2553,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.150</x-m>
       <y-m>0.028</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">text-value</type>
     <property type="string">/instrumentation/afs/dep-rwy</property>
@@ -2556,7 +2569,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.139</x-m>
       <y-m>0.030</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">number-value</type>
     <property type="string">/instrumentation/afs/V1</property>
@@ -2573,7 +2586,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.129</x-m>
       <y-m>0.030</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">number-value</type>
     <property type="string">/instrumentation/afs/Vr</property>
@@ -2590,7 +2603,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.119</x-m>
       <y-m>0.030</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">number-value</type>
     <property type="string">/instrumentation/afs/V2</property>
@@ -2607,7 +2620,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.139</x-m>
       <y-m>0.060</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">number-value</type>
     <property type="string">/instrumentation/afs/to-F</property>
@@ -2624,7 +2637,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.129</x-m>
       <y-m>0.060</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">number-value</type>
     <property type="string">/instrumentation/afs/to-S</property>
@@ -2641,7 +2654,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.119</x-m>
       <y-m>0.060</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">number-value</type>
     <property type="string">/instrumentation/afs/to-greendot</property>
@@ -2658,7 +2671,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.0888</x-m>
       <y-m>0.045</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">number-value</type>
     <property type="string">/instrumentation/afs/thrust-reduce-alt</property>
@@ -2688,7 +2701,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.078</x-m>
       <y-m>0.045</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">number-value</type>
     <property type="string">/instrumentation/afs/thrust-accel-alt</property>
@@ -2718,7 +2731,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.051</x-m>
       <y-m>0.045</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">number-value</type>
     <property type="string">/instrumentation/afs/transition-ft</property>
@@ -2741,6 +2754,36 @@
   </action>
 </animation>
 
+<text>
+  <name>value.to_perf.to_flaps</name>
+  <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.106</x-m>
+      <y-m>0.032</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">number-value</type>
+    <property type="string">/instrumentation/afs/to-flaps</property>
+    <format>%1.0f</format>
+    <truncate type="bool">true</truncate>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.005</character-size>
+</text>
+
+<animation>
+  <type>pick</type>
+  <object-name>input.to_flaps</object-name>
+  <action>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+      <command>nasal</command>
+      <script>MCDU2.selectField("to-flaps")</script>
+   </binding>
+  </action>
+</animation>
+
 
 
 <!-- active.to_perf.crz  values -->
@@ -2752,7 +2795,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.093</x-m>
       <y-m>0.046</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">number-value</type>
     <property type="string">/instrumentation/afs/crz_mach</property>
@@ -2770,7 +2813,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.086</x-m>
       <y-m>0.0454</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">number-value</type>
     <property type="string">/velocities/Mra</property>
@@ -2788,7 +2831,7 @@
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.076</x-m>
       <y-m>0.046</y-m>
-      <z-m>0.0005</z-m>
+      <z-m>0.0008</z-m>
     </offsets>
     <type type="string">number-value</type>
     <property type="string">/velocities/Mb</property>
@@ -2798,6 +2841,19 @@
     <character-size type="double">0.0044</character-size>
     <alignment>left-bottom</alignment>
 </text>
+
+<animation>
+  <type>pick</type>
+  <object-name>input.crz.turb.mach</object-name>
+  <action>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+      <command>nasal</command>
+      <script>MCDU2.selectField("crz_mach")</script>
+   </binding>
+  </action>
+</animation>
 
 
 
@@ -2816,14 +2872,14 @@
   <animation>
     <type>material</type>
     <object-name>label.active</object-name>
-    <object-name>label.position</object-name>
-    <object-name>label.sec</object-name>
-    <object-name>label.data</object-name>
     <object-name>label.dropdown0.opt1</object-name>
     <object-name>label.dropdown0.opt2</object-name>
     <object-name>label.dropdown2.opt1</object-name>
     <object-name>label.dropdown2.opt2</object-name>
     <object-name>label.dropdown2.opt3</object-name>
+    <object-name>label.position</object-name>
+    <object-name>label.sec</object-name>
+    <object-name>label.data</object-name>
     <object-name>label.FLT_NBR</object-name>
     <object-name>label.FROM</object-name>
     <object-name>label.TO</object-name>
@@ -2938,6 +2994,7 @@
     <object-name>value.to_perf.green-dot</object-name>
     <object-name>value.to_perf.s-speed</object-name>
     <object-name>value.to_perf.f-speed</object-name>
+    <object-name>value.to_perf.to_flaps</object-name>
     <ambient>
       <red>0.0</red>
       <green>0.0</green>
@@ -3159,6 +3216,7 @@
     <object-name>value.to_perf.green-dot</object-name>
     <object-name>value.to_perf.s-speed</object-name>
     <object-name>value.to_perf.f-speed</object-name>
+    <object-name>value.to_perf.to_flaps</object-name>
     <object-name>label.to_perf.crz</object-name>
     <object-name>label.to_perf.rwy</object-name>
     <object-name>label.to_perf.v1</object-name>
@@ -3208,6 +3266,7 @@
   </condition>
 </animation>
 
+
 <animation>
   <type>select</type>
   <object-name>page.PERF_APPR</object-name>
@@ -3230,6 +3289,1836 @@
   </condition>
 </animation>
 
+
+
+
+<text>
+   <name>value.wp0.disc</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.165</x-m>
+      <y-m>0.07</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">literal</type>
+    <text> - - - - - -  D I S C O N T I N U I T Y - - - - - - </text>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>center-bottom</alignment>
+</text>
+<text>
+   <name>value.wp0.from</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.165</x-m>
+      <y-m>0.007</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[0]/id</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<animation>
+  <type>pick</type>
+  <object-name>fltpln.field0.id</object-name>
+  <action>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+      <command>nasal</command>
+      <script>MCDU2.selectWP(0)</script>
+   </binding>
+  </action>
+</animation>
+<text>
+   <name>value.wp0.time</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.165</x-m>
+      <y-m>0.040</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[0]/time-utc-display</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<text>
+   <name>value.wp0.spd-limit</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.165</x-m>
+      <y-m>0.075</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[0]/spd-lim-display</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<text>
+   <name>value.wp0.alt-limit</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.165</x-m>
+      <y-m>0.10</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[0]/alt-lim-display</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<text>
+  <name>value.wp0.parent</name>
+  <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.160</x-m>
+      <y-m>0.014</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[0]/parent</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<animation>
+  <type>textranslate</type>
+  <object-name>fltpln.node0</object-name>
+  <property>instrumentation/fms/plan[0]/display-nodes/wp[0]/node-type[0]</property>
+  <factor>0.09</factor>
+  <step>1</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>fltpln.node1</object-name>
+  <property>instrumentation/fms/plan[0]/display-nodes/wp[0]/node-type[1]</property>
+  <factor>0.09</factor>
+  <step>1</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <name>group.node0</name>
+  <object-name>value.wp0.from</object-name>
+  <object-name>value.wp0.time</object-name>
+  <object-name>value.wp0.spd-limit</object-name>
+  <object-name>value.wp0.alt-limit</object-name>
+  <object-name>value.wp0.parent</object-name>
+  <object-name>fltpln.node0</object-name>
+  <object-name>fltpln.node1</object-name>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>group.node0</object-name>
+  <condition>
+    <and>
+    <equals>
+      <property>/instrumentation/mcdu[1]/page</property>
+      <value>active.flt_pln</value>
+    </equals>
+    <equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/wp[0]/active</property>
+      <value>1</value>
+    </equals>
+    <not-equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/wp[0]/wp-type</property>
+      <value>DISC</value>
+    </not-equals>
+    </and>
+  </condition>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>value.wp0.disc</object-name>
+  <condition>
+    <and>
+    <equals>
+      <property>/instrumentation/mcdu[1]/page</property>
+      <value>active.flt_pln</value>
+    </equals>
+    <equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/wp[0]/active</property>
+      <value>1</value>
+    </equals>
+    <equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/wp[0]/wp-type</property>
+      <value>DISC</value>
+    </equals>
+    </and>
+  </condition>
+</animation>
+<animation>
+  <type>material</type>
+  <object-name>group.node0</object-name>
+  <condition>
+    <equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/current-wp</property>
+      <value>0</value>
+    </equals>
+  </condition>
+  <emission>
+    <red>0.9</red>
+    <green>0.9</green>
+    <blue>0.9</blue>
+  </emission>
+  <shininess>0.0</shininess>
+  <transparency><alpha>0.7</alpha></transparency>
+</animation>
+<animation>
+  <type>material</type>
+  <object-name>group.node0</object-name>
+  <condition>
+    <not-equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/current-wp</property>
+      <value>0</value>
+    </not-equals>
+  </condition>
+  <emission>
+    <red>0.1</red>
+    <green>0.9</green>
+    <blue>0.1</blue>
+  </emission>
+  <shininess>0.0</shininess>
+  <transparency><alpha>0.7</alpha></transparency>
+</animation>
+
+<text>
+   <name>value.wp1.disc</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.151</x-m>
+      <y-m>0.07</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">literal</type>
+    <text> - - - - - -  D I S C O N T I N U I T Y - - - - - - </text>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>center-bottom</alignment>
+</text>
+<text>
+   <name>value.wp1.from</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.151</x-m>
+      <y-m>0.007</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[1]/id</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<animation>
+  <type>pick</type>
+  <object-name>fltpln.field1.id</object-name>
+  <action>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+      <command>nasal</command>
+      <script>MCDU2.selectWP(1)</script>
+   </binding>
+  </action>
+</animation>
+<text>
+   <name>value.wp1.time</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.151</x-m>
+      <y-m>0.040</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[1]/time-utc-display</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<text>
+   <name>value.wp1.spd-limit</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.151</x-m>
+      <y-m>0.075</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[1]/spd-lim-display</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<text>
+   <name>value.wp1.alt-limit</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.151</x-m>
+      <y-m>0.10</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[1]/alt-lim-display</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<text>
+  <name>value.wp1.parent</name>
+  <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.145</x-m>
+      <y-m>0.014</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[1]/parent</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<animation>
+  <type>textranslate</type>
+  <object-name>fltpln.node2</object-name>
+  <property>instrumentation/fms/plan[0]/display-nodes/wp[1]/node-type[0]</property>
+  <factor>0.09</factor>
+  <step>1</step>  
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>fltpln.node3</object-name>
+  <property>instrumentation/fms/plan[0]/display-nodes/wp[1]/node-type[1]</property>
+  <factor>0.09</factor>
+  <step>1</step>  
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <name>group.node1</name>
+  <object-name>value.wp1.from</object-name>
+  <object-name>value.wp1.time</object-name>
+  <object-name>value.wp1.spd-limit</object-name>
+  <object-name>value.wp1.alt-limit</object-name>
+  <object-name>value.wp1.parent</object-name>
+  <object-name>fltpln.node2</object-name>
+  <object-name>fltpln.node3</object-name>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>group.node1</object-name>
+  <condition>
+    <and>
+    <equals>
+      <property>/instrumentation/mcdu[1]/page</property>
+      <value>active.flt_pln</value>
+    </equals>
+    <equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/wp[1]/active</property>
+      <value>1</value>
+    </equals>
+    <not-equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/wp[1]/wp-type</property>
+      <value>DISC</value>
+    </not-equals>
+    </and>
+  </condition>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>value.wp1.disc</object-name>
+  <condition>
+    <and>
+    <equals>
+      <property>/instrumentation/mcdu[1]/page</property>
+      <value>active.flt_pln</value>
+    </equals>
+    <equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/wp[1]/active</property>
+      <value>1</value>
+    </equals>
+    <equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/wp[1]/wp-type</property>
+      <value>DISC</value>
+    </equals>
+    </and>
+  </condition>
+</animation>
+<animation>
+  <type>material</type>
+  <object-name>group.node1</object-name>
+  <condition>
+    <equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/current-wp</property>
+      <value>1</value>
+    </equals>
+  </condition>
+  <emission>
+    <red>0.9</red>
+    <green>0.9</green>
+    <blue>0.9</blue>
+  </emission>
+  <shininess>0.0</shininess>
+  <transparency><alpha>0.7</alpha></transparency>
+</animation>
+<animation>
+  <type>material</type>
+  <object-name>group.node1</object-name>
+  <condition>
+    <not-equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/current-wp</property>
+      <value>1</value>
+    </not-equals>
+  </condition>
+  <emission>
+    <red>0.1</red>
+    <green>0.9</green>
+    <blue>0.1</blue>
+  </emission>
+  <shininess>0.0</shininess>
+  <transparency><alpha>0.7</alpha></transparency>
+</animation>
+
+<text>
+   <name>value.wp2.disc</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.137</x-m>
+      <y-m>0.07</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">literal</type>
+    <text> - - - - - -  D I S C O N T I N U I T Y - - - - - - </text>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>center-bottom</alignment>
+</text>
+<text>
+   <name>value.wp2.from</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.137</x-m>
+      <y-m>0.007</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[2]/id</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<text>
+   <name>value.wp2.time</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.137</x-m>
+      <y-m>0.040</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[2]/time-utc-display</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<text>
+   <name>value.wp2.spd-limit</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.137</x-m>
+      <y-m>0.075</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[2]/spd-lim-display</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<text>
+   <name>value.wp2.alt-limit</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.137</x-m>
+      <y-m>0.10</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[2]/alt-lim-display</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<text>
+  <name>value.wp2.parent</name>
+  <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.131</x-m>
+      <y-m>0.014</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[2]/parent</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<animation>
+  <type>textranslate</type>
+  <object-name>fltpln.node4</object-name>
+  <property>instrumentation/fms/plan[0]/display-nodes/wp[2]/node-type[0]</property>
+  <factor>0.09</factor>
+  <step>1</step>  
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>fltpln.node5</object-name>
+  <property>instrumentation/fms/plan[0]/display-nodes/wp[2]/node-type[1]</property>
+  <factor>0.09</factor>
+  <step>1</step>  
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <name>group.node2</name>
+  <object-name>value.wp2.from</object-name>
+  <object-name>value.wp2.time</object-name>
+  <object-name>value.wp2.spd-limit</object-name>
+  <object-name>value.wp2.alt-limit</object-name>
+  <object-name>value.wp2.parent</object-name>
+  <object-name>fltpln.node4</object-name>
+  <object-name>fltpln.node5</object-name>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>group.node2</object-name>
+  <condition>
+    <and>
+    <equals>
+      <property>/instrumentation/mcdu[1]/page</property>
+      <value>active.flt_pln</value>
+    </equals>
+    <equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/wp[2]/active</property>
+      <value>1</value>
+    </equals>
+    <not-equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/wp[2]/wp-type</property>
+      <value>DISC</value>
+    </not-equals>
+    </and>
+  </condition>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>value.wp2.disc</object-name>
+  <condition>
+    <and>
+    <equals>
+      <property>/instrumentation/mcdu[1]/page</property>
+      <value>active.flt_pln</value>
+    </equals>
+    <equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/wp[2]/active</property>
+      <value>1</value>
+    </equals>
+    <equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/wp[2]/wp-type</property>
+      <value>DISC</value>
+    </equals>
+    </and>
+  </condition>
+</animation>
+<animation>
+  <type>material</type>
+  <object-name>group.node2</object-name>
+  <condition>
+    <equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/current-wp</property>
+      <value>2</value>
+    </equals>
+  </condition>
+  <emission>
+    <red>0.9</red>
+    <green>0.9</green>
+    <blue>0.9</blue>
+  </emission>
+  <shininess>0.0</shininess>
+  <transparency><alpha>0.7</alpha></transparency>
+</animation>
+<animation>
+  <type>material</type>
+  <object-name>group.node2</object-name>
+  <condition>
+    <not-equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/current-wp</property>
+      <value>2</value>
+    </not-equals>
+  </condition>
+  <emission>
+    <red>0.1</red>
+    <green>0.9</green>
+    <blue>0.1</blue>
+  </emission>
+  <shininess>0.0</shininess>
+  <transparency><alpha>0.7</alpha></transparency>
+</animation>
+
+<text>
+   <name>value.wp3.disc</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.123</x-m>
+      <y-m>0.07</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">literal</type>
+    <text> - - - - - -  D I S C O N T I N U I T Y - - - - - - </text>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>center-bottom</alignment>
+</text>
+<text>
+   <name>value.wp3.from</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.123</x-m>
+      <y-m>0.007</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[3]/id</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<text>
+   <name>value.wp3.time</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.123</x-m>
+      <y-m>0.04</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[3]/time-utc-display</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<text>
+   <name>value.wp3.spd-limit</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.123</x-m>
+      <y-m>0.075</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[3]/spd-lim-display</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<text>
+   <name>value.wp3.alt-limit</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.123</x-m>
+      <y-m>0.10</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[3]/alt-lim-display</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<text>
+  <name>value.wp3.parent</name>
+  <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.117</x-m>
+      <y-m>0.014</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[3]/parent</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<animation>
+  <type>textranslate</type>
+  <object-name>fltpln.node6</object-name>
+  <property>/instrumentation/fms/plan[0]/display-nodes/wp[3]/node-type[0]</property>
+  <factor>0.09</factor>
+  <step>1</step>  
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>fltpln.node7</object-name>
+  <property>/instrumentation/fms/plan[0]/display-nodes/wp[3]/node-type[1]</property>
+  <factor>0.09</factor>
+  <step>1</step>  
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <name>group.node3</name>
+  <object-name>value.wp3.from</object-name>
+  <object-name>value.wp3.time</object-name>
+  <object-name>value.wp3.spd-limit</object-name>
+  <object-name>value.wp3.alt-limit</object-name>
+  <object-name>value.wp3.parent</object-name>
+  <object-name>fltpln.node6</object-name>
+  <object-name>fltpln.node7</object-name>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>group.node3</object-name>
+  <condition>
+    <and>
+    <equals>
+      <property>/instrumentation/mcdu[1]/page</property>
+      <value>active.flt_pln</value>
+    </equals>
+    <equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/wp[3]/active</property>
+      <value>1</value>
+    </equals>
+    <not-equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/wp[3]/wp-type</property>
+      <value>DISC</value>
+    </not-equals>
+    </and>
+  </condition>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>value.wp3.disc</object-name>
+  <condition>
+    <and>
+    <equals>
+      <property>/instrumentation/mcdu[1]/page</property>
+      <value>active.flt_pln</value>
+    </equals>
+    <equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/wp[3]/active</property>
+      <value>1</value>
+    </equals>
+    <equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/wp[3]/wp-type</property>
+      <value>DISC</value>
+    </equals>
+    </and>
+  </condition>
+</animation>
+<animation>
+  <type>material</type>
+  <object-name>group.node3</object-name>
+  <condition>
+    <equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/current-wp</property>
+      <value>3</value>
+    </equals>
+  </condition>
+  <emission>
+    <red>0.9</red>
+    <green>0.9</green>
+    <blue>0.9</blue>
+  </emission>
+  <shininess>0.0</shininess>
+  <transparency><alpha>0.7</alpha></transparency>
+</animation>
+<animation>
+  <type>material</type>
+  <object-name>group.node3</object-name>
+  <condition>
+    <not-equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/current-wp</property>
+      <value>3</value>
+    </not-equals>
+  </condition>
+  <emission>
+    <red>0.1</red>
+    <green>0.9</green>
+    <blue>0.1</blue>
+  </emission>
+  <shininess>0.0</shininess>
+  <transparency><alpha>0.7</alpha></transparency>
+</animation>
+
+<text>
+   <name>value.wp4.disc</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.1085</x-m>
+      <y-m>0.07</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">literal</type>
+    <text> - - - - - -  D I S C O N T I N U I T Y - - - - - - </text>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>center-bottom</alignment>
+</text>
+<text>
+   <name>value.wp4.from</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.1085</x-m>
+      <y-m>0.007</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[4]/id</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<text>
+   <name>value.wp4.time</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.1085</x-m>
+      <y-m>0.040</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[4]/time-utc-display</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<text>
+   <name>value.wp4.spd-limit</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.1085</x-m>
+      <y-m>0.075</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[4]/spd-lim-display</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<text>
+   <name>value.wp4.alt-limit</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.1085</x-m>
+      <y-m>0.10</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[4]/alt-lim-display</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<text>
+  <name>value.wp4.parent</name>
+  <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.1025</x-m>
+      <y-m>0.014</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[4]/parent</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<animation>
+  <type>textranslate</type>
+  <object-name>fltpln.node8</object-name>
+  <property>/instrumentation/fms/plan[0]/display-nodes/wp[4]/node-type[0]</property>
+  <factor>0.09</factor>
+  <step>1</step>  
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>fltpln.node9</object-name>
+  <property>/instrumentation/fms/plan[0]/display-nodes/wp[4]/node-type[1]</property>
+  <factor>0.09</factor>
+  <step>1</step>  
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <name>group.node4</name>
+  <object-name>value.wp4.from</object-name>
+  <object-name>value.wp4.time</object-name>
+  <object-name>value.wp4.spd-limit</object-name>
+  <object-name>value.wp4.alt-limit</object-name>
+  <object-name>value.wp4.parent</object-name>
+  <object-name>fltpln.node8</object-name>
+  <object-name>fltpln.node9</object-name>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>group.node4</object-name>
+  <condition>
+    <and>
+    <equals>
+      <property>/instrumentation/mcdu[1]/page</property>
+      <value>active.flt_pln</value>
+    </equals>
+    <equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/wp[4]/active</property>
+      <value>1</value>
+    </equals>
+    <not-equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/wp[4]/wp-type</property>
+      <value>DISC</value>
+    </not-equals>
+    </and>
+  </condition>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>value.wp4.disc</object-name>
+  <condition>
+    <and>
+    <equals>
+      <property>/instrumentation/mcdu[1]/page</property>
+      <value>active.flt_pln</value>
+    </equals>
+    <equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/wp[4]/active</property>
+      <value>1</value>
+    </equals>
+    <equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/wp[4]/wp-type</property>
+      <value>DISC</value>
+    </equals>
+    </and>
+  </condition>
+</animation>
+<animation>
+  <type>material</type>
+  <object-name>group.node4</object-name>
+  <condition>
+    <equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/current-wp</property>
+      <value>4</value>
+    </equals>
+  </condition>
+  <emission>
+    <red>0.9</red>
+    <green>0.9</green>
+    <blue>0.9</blue>
+  </emission>
+  <shininess>0.0</shininess>
+  <transparency><alpha>0.7</alpha></transparency>
+</animation>
+<animation>
+  <type>material</type>
+  <object-name>group.node4</object-name>
+  <condition>
+    <not-equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/current-wp</property>
+      <value>4</value>
+    </not-equals>
+  </condition>
+  <emission>
+    <red>0.1</red>
+    <green>0.9</green>
+    <blue>0.1</blue>
+  </emission>
+  <shininess>0.0</shininess>
+  <transparency><alpha>0.7</alpha></transparency>
+</animation>
+
+<text>
+   <name>value.wp5.disc</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.0945</x-m>
+      <y-m>0.07</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">literal</type>
+    <text> - - - - - -  D I S C O N T I N U I T Y - - - - - - </text>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>center-bottom</alignment>
+</text>
+<text>
+   <name>value.wp5.from</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.0945</x-m>
+      <y-m>0.007</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[5]/id</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<text>
+   <name>value.wp5.time</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.0945</x-m>
+      <y-m>0.04</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[5]/time-utc-display</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<text>
+   <name>value.wp5.spd-limit</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.0945</x-m>
+      <y-m>0.075</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[5]/spd-lim-display</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<text>
+   <name>value.wp5.alt-limit</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.0945</x-m>
+      <y-m>0.10</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[5]/alt-lim-display</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<text>
+  <name>value.wp5.parent</name>
+  <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.0885</x-m>
+      <y-m>0.014</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[5]/parent</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<animation>
+  <type>textranslate</type>
+  <object-name>fltpln.node10</object-name>
+  <property>/instrumentation/fms/plan[0]/display-nodes/wp[5]/node-type[0]</property>
+  <factor>0.09</factor>
+  <step>1</step>  
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>fltpln.node11</object-name>
+  <property>/instrumentation/fms/plan[0]/display-nodes/wp[5]/node-type[1]</property>
+  <factor>0.09</factor>
+  <step>1</step>  
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <name>group.node5</name>
+  <object-name>value.wp5.from</object-name>
+  <object-name>value.wp5.time</object-name>
+  <object-name>value.wp5.spd-limit</object-name>
+  <object-name>value.wp5.alt-limit</object-name>
+  <object-name>value.wp5.parent</object-name>
+  <object-name>fltpln.node10</object-name>
+  <object-name>fltpln.node11</object-name>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>group.node5</object-name>
+  <condition>
+    <and>
+    <equals>
+      <property>/instrumentation/mcdu[1]/page</property>
+      <value>active.flt_pln</value>
+    </equals>
+    <equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/wp[5]/active</property>
+      <value>1</value>
+    </equals>
+    <not-equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/wp[5]/wp-type</property>
+      <value>DISC</value>
+    </not-equals>
+    </and>
+  </condition>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>value.wp5.disc</object-name>
+  <condition>
+    <and>
+    <equals>
+      <property>/instrumentation/mcdu[1]/page</property>
+      <value>active.flt_pln</value>
+    </equals>
+    <equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/wp[5]/active</property>
+      <value>1</value>
+    </equals>
+    <equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/wp[5]/wp-type</property>
+      <value>DISC</value>
+    </equals>
+    </and>
+  </condition>
+</animation>
+<animation>
+  <type>material</type>
+  <object-name>group.node5</object-name>
+  <condition>
+    <equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/current-wp</property>
+      <value>5</value>
+    </equals>
+  </condition>
+  <emission>
+    <red>0.9</red>
+    <green>0.9</green>
+    <blue>0.9</blue>
+  </emission>
+  <shininess>0.0</shininess>
+  <transparency><alpha>0.7</alpha></transparency>
+</animation>
+<animation>
+  <type>material</type>
+  <object-name>group.node5</object-name>
+  <condition>
+    <not-equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/current-wp</property>
+      <value>5</value>
+    </not-equals>
+  </condition>
+  <emission>
+    <red>0.1</red>
+    <green>0.9</green>
+    <blue>0.1</blue>
+  </emission>
+  <shininess>0.0</shininess>
+  <transparency><alpha>0.7</alpha></transparency>
+</animation>
+
+<text>
+   <name>value.wp6.disc</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.081</x-m>
+      <y-m>0.07</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">literal</type>
+    <text> - - - - - -  D I S C O N T I N U I T Y - - - - - - </text>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>center-bottom</alignment>
+</text>
+<text>
+   <name>value.wp6.from</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.081</x-m>
+      <y-m>0.007</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[6]/id</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<text>
+   <name>value.wp6.time</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.081</x-m>
+      <y-m>0.04</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[6]/time-utc-display</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<text>
+   <name>value.wp6.spd-limit</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.081</x-m>
+      <y-m>0.075</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[6]/spd-lim-display</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<text>
+   <name>value.wp6.alt-limit</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.081</x-m>
+      <y-m>0.10</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[6]/alt-lim-display</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<text>
+  <name>value.wp6.parent</name>
+  <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.075</x-m>
+      <y-m>0.014</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[6]/parent</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<animation>
+  <type>textranslate</type>
+  <object-name>fltpln.node12</object-name>
+  <property>/instrumentation/fms/plan[0]/display-nodes/wp[6]/node-type[0]</property>
+  <factor>0.09</factor>
+  <step>1</step>  
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>fltpln.node13</object-name>
+  <property>/instrumentation/fms/plan[0]/display-nodes/wp[6]/node-type[1]</property>
+  <factor>0.09</factor>
+  <step>1</step>  
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <name>group.node6</name>
+  <object-name>value.wp6.from</object-name>
+  <object-name>value.wp6.time</object-name>
+  <object-name>value.wp6.spd-limit</object-name>
+  <object-name>value.wp6.alt-limit</object-name>
+  <object-name>value.wp6.parent</object-name>
+  <object-name>fltpln.node12</object-name>
+  <object-name>fltpln.node13</object-name>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>group.node6</object-name>
+  <condition>
+    <and>
+    <equals>
+      <property>/instrumentation/mcdu[1]/page</property>
+      <value>active.flt_pln</value>
+    </equals>
+    <equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/wp[6]/active</property>
+      <value>1</value>
+    </equals>
+    <not-equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/wp[6]/wp-type</property>
+      <value>DISC</value>
+    </not-equals>
+    </and>
+  </condition>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>value.wp6.disc</object-name>
+  <condition>
+    <and>
+    <equals>
+      <property>/instrumentation/mcdu[1]/page</property>
+      <value>active.flt_pln</value>
+    </equals>
+    <equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/wp[6]/active</property>
+      <value>1</value>
+    </equals>
+    <equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/wp[6]/wp-type</property>
+      <value>DISC</value>
+    </equals>
+    </and>
+  </condition>
+</animation>
+<animation>
+  <type>material</type>
+  <object-name>group.node6</object-name>
+  <condition>
+    <equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/current-wp</property>
+      <value>6</value>
+    </equals>
+  </condition>
+  <emission>
+    <red>0.9</red>
+    <green>0.9</green>
+    <blue>0.9</blue>
+  </emission>
+  <shininess>0.0</shininess>
+  <transparency><alpha>0.7</alpha></transparency>
+</animation>
+<animation>
+  <type>material</type>
+  <object-name>group.node6</object-name>
+  <condition>
+    <not-equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/current-wp</property>
+      <value>6</value>
+    </not-equals>
+  </condition>
+  <emission>
+    <red>0.1</red>
+    <green>0.9</green>
+    <blue>0.1</blue>
+  </emission>
+  <shininess>0.0</shininess>
+  <transparency><alpha>0.7</alpha></transparency>
+</animation>
+
+<text>
+   <name>value.wp7.disc</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.066</x-m>
+      <y-m>0.07</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">literal</type>
+    <text> - - - - - -  D I S C O N T I N U I T Y - - - - - - </text>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>center-bottom</alignment>
+</text>
+<text>
+   <name>value.wp7.from</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.066</x-m>
+      <y-m>0.007</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[7]/id</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<text>
+   <name>value.wp7.time</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.066</x-m>
+      <y-m>0.04</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[7]/time-utc-display</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<text>
+   <name>value.wp7.spd-limit</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.066</x-m>
+      <y-m>0.075</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[7]/spd-lim-display</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<text>
+   <name>value.wp7.alt-limit</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.066</x-m>
+      <y-m>0.10</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[7]/alt-lim-display</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<text>
+  <name>value.wp7.parent</name>
+  <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.060</x-m>
+      <y-m>0.014</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[7]/parent</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<animation>
+  <type>textranslate</type>
+  <object-name>fltpln.node14</object-name>
+  <property>/instrumentation/fms/plan[0]/display-nodes/wp[7]/node-type[0]</property>
+  <factor>0.09</factor>
+  <step>1</step>  
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>fltpln.node15</object-name>
+  <property>/instrumentation/fms/plan[0]/display-nodes/wp[7]/node-type[1]</property>
+  <factor>0.09</factor>
+  <step>1</step>  
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <name>group.node7</name>
+  <object-name>value.wp7.from</object-name>
+  <object-name>value.wp7.time</object-name>
+  <object-name>value.wp7.spd-limit</object-name>
+  <object-name>value.wp7.alt-limit</object-name>
+  <object-name>value.wp7.parent</object-name>
+  <object-name>fltpln.node14</object-name>
+  <object-name>fltpln.node15</object-name>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>group.node7</object-name>
+  <condition>
+    <and>
+    <equals>
+      <property>/instrumentation/mcdu[1]/page</property>
+      <value>active.flt_pln</value>
+    </equals>
+    <equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/wp[7]/active</property>
+      <value>1</value>
+    </equals>
+    <not-equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/wp[7]/wp-type</property>
+      <value>DISC</value>
+    </not-equals>
+    </and>
+  </condition>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>value.wp7.disc</object-name>
+  <condition>
+    <and>
+    <equals>
+      <property>/instrumentation/mcdu[1]/page</property>
+      <value>active.flt_pln</value>
+    </equals>
+    <equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/wp[7]/active</property>
+      <value>1</value>
+    </equals>
+    <equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/wp[7]/wp-type</property>
+      <value>DISC</value>
+    </equals>
+    </and>
+  </condition>
+</animation>
+<animation>
+  <type>material</type>
+  <object-name>group.node7</object-name>
+  <condition>
+    <equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/current-wp</property>
+      <value>7</value>
+    </equals>
+  </condition>
+  <emission>
+    <red>0.9</red>
+    <green>0.9</green>
+    <blue>0.9</blue>
+  </emission>
+  <shininess>0.0</shininess>
+  <transparency><alpha>0.7</alpha></transparency>
+</animation>
+<animation>
+  <type>material</type>
+  <object-name>group.node7</object-name>
+  <condition>
+    <not-equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/current-wp</property>
+      <value>7</value>
+    </not-equals>
+  </condition>
+  <emission>
+    <red>0.1</red>
+    <green>0.9</green>
+    <blue>0.1</blue>
+  </emission>
+  <shininess>0.0</shininess>
+  <transparency><alpha>0.7</alpha></transparency>
+</animation>
+
+<text>
+   <name>value.wp8.disc</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.052</x-m>
+      <y-m>0.07</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">literal</type>
+    <text> - - - - - -  D I S C O N T I N U I T Y - - - - - - </text>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>center-bottom</alignment>
+</text>
+<text>
+   <name>value.wp8.from</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.052</x-m>
+      <y-m>0.007</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[8]/id</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<text>
+   <name>value.wp8.time</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.052</x-m>
+      <y-m>0.04</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[8]/time-utc-display</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<text>
+   <name>value.wp8.spd-limit</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.052</x-m>
+      <y-m>0.075</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[8]/spd-lim-display</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<text>
+   <name>value.wp8.alt-limit</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.052</x-m>
+      <y-m>0.10</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[8]/alt-lim-display</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<text>
+  <name>value.wp8.parent</name>
+  <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.046</x-m>
+      <y-m>0.014</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">text-value</type>
+    <property type="string">instrumentation/fms/plan[0]/display-nodes/wp[8]/parent</property>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0035</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+<animation>
+  <type>textranslate</type>
+  <object-name>fltpln.node16</object-name>
+  <property>/instrumentation/fms/plan[0]/display-nodes/wp[8]/node-type[0]</property>
+  <factor>0.09</factor>
+  <step>1</step>  
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <type>textranslate</type>
+  <object-name>fltpln.node17</object-name>
+  <property>/instrumentation/fms/plan[0]/display-nodes/wp[8]/node-type[1]</property>
+  <factor>0.09</factor>
+  <step>1</step>  
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+</animation>
+<animation>
+  <name>group.node8</name>
+  <object-name>value.wp8.from</object-name>
+  <object-name>value.wp8.time</object-name>
+  <object-name>value.wp8.spd-limit</object-name>
+  <object-name>value.wp8.alt-limit</object-name>
+  <object-name>value.wp8.parent</object-name>
+  <object-name>fltpln.node16</object-name>
+  <object-name>fltpln.node17</object-name>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>group.node8</object-name>
+  <condition>
+    <and>
+    <equals>
+      <property>/instrumentation/mcdu[1]/page</property>
+      <value>active.flt_pln</value>
+    </equals>
+    <equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/wp[8]/active</property>
+      <value>1</value>
+    </equals>
+    <not-equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/wp[8]/wp-type</property>
+      <value>DISC</value>
+    </not-equals>
+    </and>
+  </condition>
+</animation>
+<animation>
+  <type>select</type>
+  <object-name>value.wp8.disc</object-name>
+  <condition>
+    <and>
+    <equals>
+      <property>/instrumentation/mcdu[1]/page</property>
+      <value>active.flt_pln</value>
+    </equals>
+    <equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/wp[8]/active</property>
+      <value>1</value>
+    </equals>
+    <equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/wp[8]/wp-type</property>
+      <value>DISC</value>
+    </equals>
+    </and>
+  </condition>
+</animation>
+<animation>
+  <type>material</type>
+  <object-name>group.node8</object-name>
+  <condition>
+    <equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/current-wp</property>
+      <value>8</value>
+    </equals>
+  </condition>
+  <emission>
+    <red>0.9</red>
+    <green>0.9</green>
+    <blue>0.9</blue>
+  </emission>
+  <shininess>0.0</shininess>
+  <transparency><alpha>0.7</alpha></transparency>
+</animation>
+<animation>
+  <type>material</type>
+  <object-name>group.node8</object-name>
+  <condition>
+    <not-equals>
+      <property>instrumentation/fms/plan[0]/display-nodes/current-wp</property>
+      <value>8</value>
+    </not-equals>
+  </condition>
+  <emission>
+    <red>0.1</red>
+    <green>0.9</green>
+    <blue>0.1</blue>
+  </emission>
+  <shininess>0.0</shininess>
+  <transparency><alpha>0.7</alpha></transparency>
+</animation>
+
+
+
+<!-- animation>
+  <type>select</type>
+  <object-name>menu.STEP_ALT</object-name>
+  <condition>
+    <equals>
+      <property>/instrumentation/mcdu[1]/page</property>
+      <value>active.crz.stepalt</value>
+    </equals>
+  </condition>
+</animation -->
 
 <animation>
   <type>select</type>
@@ -3266,6 +5155,10 @@
         <property>/instrumentation/mcdu[1]/page</property>
         <value>active.ga_perf</value>
       </equals> 
+      <equals>
+        <property>/instrumentation/mcdu[1]/page</property>
+        <value>active.crz.stepalt</value>
+      </equals>
     </or>
   </condition>
 </animation>
@@ -3540,5 +5433,6 @@
     <property>/instrumentation/mcdu[1]/dropdown[3]/active</property>
   </condition>
 </animation>
+
 
 </PropertyList>

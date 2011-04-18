@@ -95,6 +95,7 @@ beacon_switch = props.globals.getNode("/controls/lighting/beacon", 0);
 aircraft.light.new("sim/model/A380/lighting/beacon", [0.05, 1.25], beacon_switch);
 
 ewdChecklist = TextRegion.new(8, 50, "/instrumentation/ewd/checklists");
+fms = AirbusFMS.new();
 
 
 
@@ -253,7 +254,8 @@ update_radar = func {
   mp_craft = props.globals.getNode("/ai/models").getChildren("multiplayer");
   var mpPos = 0;
   for(i=0; i<size(mp_craft);i=i+1) {
-    var aiHdg = getprop("/ai/models/multiplayer["~i~"]/radar/bearing-deg");
+    ##var aiHdg = getprop("/ai/models/multiplayer["~i~"]/radar/bearing-deg");
+    var aiHdg = getprop("ai/models/multiplayer["~i~"]/bearing-to");
     var valid    = getprop("/ai/models/multiplayer["~i~"]/valid");
     setprop("/instrumentation/radar/mp["~mpPos~"]/valid",valid);
     setprop("/instrumentation/radar/mp["~mpPos~"]/callsign", "");
@@ -262,15 +264,17 @@ update_radar = func {
     setprop("/instrumentation/radar/mp["~mpPos~"]/altitude-offset", 0);
     if (aiHdg != nil and valid == 1) {
       var callsign = getprop("/ai/models/multiplayer["~i~"]/callsign");
-      var tgt_offset = aiHdg-true_heading;
-      if (tgt_offset < 0){
-        tgt_offset = 360-tgt_offset;
-      }
-      if (tgt_offset > 360){
-        tgt_offset -=360;
-      }
+      var tgt_offset = aiHdg;
+      #var tgt_offset = aiHdg-true_heading;
+      #if (tgt_offset < 0){
+      #  tgt_offset = 360-tgt_offset;
+      #}
+      #if (tgt_offset > 360){
+      #  tgt_offset -=360;
+      #}
       ###test_dist=getprop("/instrumentation/radar/range");
-      test1_dist = getprop("/ai/models/multiplayer[" ~ i ~ "]/radar/range-nm");
+      ##test1_dist = getprop("/ai/models/multiplayer[" ~ i ~ "]/radar/range-nm");
+      test1_dist = getprop("ai/models/multiplayer["~i~"]/distance-to-nm");
       if(test1_dist == nil) {
         test1_dist=0.0;
       }
@@ -584,10 +588,10 @@ update_ewd = func {
     ewdChecklist.append("T.O. DATA");
   }
   if (getprop("/instrumentation/ecam/egt_limit_arm") == 1) {
-      ewdChecklist.append("EGT OVERLIMIT");
+      ewdChecklist.appendStyle("EGT OVERLIMIT", 0.8, 0.1, 0.1);
   }
   if (getprop("/instrumentation/ewd/flap-overspeed") == 1) {
-    ewdChecklist.append("FLAP OVERSPEED");
+    ewdChecklist.appendStyle("FLAP OVERSPEED", 0.8, 0.1, 0.1);
   }
   if (flt_mode == 7 and getprop("/controls/gear/gear-down") == 1) {
     ewdChecklist.append("GEARS");
@@ -600,14 +604,14 @@ update_ewd = func {
     battVolts = 28;
   }
   if (battVolts < 23) {
-    ewdChecklist.append("BATT 1 LOW");
+    ewdChecklist.appendStyle("BATT 1 LOW", 0.8, 0.1, 0.1);
   }
   var battVolts = getprop("/systems/electrical/suppliers/batt[1]/volts");
   if (battVolts == nil) {
     battVolts = 28;
   }
   if (battVolts < 23) {
-    ewdChecklist.append("BATT 2 LOW");
+    ewdChecklist.appendStyle("BATT 2 LOW", 0.8, 0.1, 0.1);
   }
   if (getprop("/position/altitude-ft") > 25000 and getprop("/environment/temperature-degc") > -34 and getprop("/controls/anti-ice/wing-heat") == 0) {
     ewdChecklist.append("ANTI ICE CHECK");
@@ -623,17 +627,17 @@ update_ewd = func {
   var packOn = getprop("/controls/pressurization/pack[0]/pack-on")+getprop("/controls/pressurization/pack[1]/pack-on");
   if (getprop("/position/altitude-ft") > 1500 and packOn == 1) {
     if (getprop("/controls/pressurization/pack[0]/pack-on") == 0) {
-      ewdChecklist.append("PACK 1 OFF");
+      ewdChecklist.appendStyle("PACK 1 OFF", 0.8, 0.5, 0.2);
     }
     if (getprop("/controls/pressurization/pack[1]/pack-on") == 0) {
-      ewdChecklist.append("PACK 2 OFF");
+      ewdChecklist.append("PACK 2 OFF", 0.8, 0.5, 0.2);
     }
   }
   if (getprop("/position/altitude-ft") > 1500 and packOn == 0) {
-    ewdChecklist.append("PACK 1+2 OFF");
+    ewdChecklist.append("PACK 1+2 OFF", 0.8, 0.1, 0.1);
   }
   if (getprop("/consumables/fuel/total-fuel-kg") < 10000) {
-    ewdChecklist.append("FUEL LOW");
+    ewdChecklist.append("FUEL LOW", 0.8, 0.1, 0.1);
   }
 
 

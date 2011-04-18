@@ -1022,6 +1022,48 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
        <title type="string">DATA</title>
      </dropdown>
    </mcdu>
+   <fms>
+     <plan>
+       <display-nodes>
+       <wp>
+         <node-type type="int">6</node-type>
+         <node-type type="int">4</node-type>
+       </wp>
+       <wp>
+         <node-type type="int">3</node-type>
+         <node-type type="int">4</node-type>
+       </wp>
+       <wp>
+         <node-type type="int">3</node-type>
+         <node-type type="int">4</node-type>
+       </wp>
+       <wp>
+         <node-type type="int">3</node-type>
+         <node-type type="int">4</node-type>
+       </wp>
+       <wp>
+         <node-type type="int">3</node-type>
+         <node-type type="int">4</node-type>
+       </wp>
+       <wp>
+         <node-type type="int">3</node-type>
+         <node-type type="int">4</node-type>
+       </wp>
+       <wp>
+         <node-type type="int">3</node-type>
+         <node-type type="int">4</node-type>
+       </wp>
+       <wp>
+         <node-type type="int">3</node-type>
+         <node-type type="int">4</node-type>
+       </wp>
+       <wp>
+         <node-type type="int">3</node-type>
+         <node-type type="int">4</node-type>
+       </wp>
+       </display-nodes>
+     </plan>
+   </fms>
 
 </instrumentation>
 

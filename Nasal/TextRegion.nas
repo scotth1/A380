@@ -18,7 +18,13 @@ var TextRegion = {
         me.maxLines = lines;
         for(var p = 0; p != lines; p=p+1) {
           var lineNode = me.baseNode.getNode("line["~p~"]",1);
+          var redNode  = me.baseNode.getNode("red["~p~"]",1);
+          var greenNode  = me.baseNode.getNode("green["~p~"]",1);
+          var blueNode  = me.baseNode.getNode("blue["~p~"]",1);
           lineNode.setValue("");
+          redNode.setValue(0.1);
+          greenNode.setValue(0.8);
+          blueNode.setValue(0.1);
         }
 
         return me;
@@ -26,11 +32,21 @@ var TextRegion = {
 
 
    append : func(text) {
-    var lineNode = me.baseNode.getNode("line["~me.posLine~"]",1);
-    lineNode.setValue(text);
-    if (me.posLine < me.maxLines) {
-      me.posLine = me.posLine+1;
-    }
+     me.appendStyle(text, 0.1, 0.8, 0.1);
+   },
+
+   appendStyle : func(text, red, green, blue) {
+     var lineNode = me.baseNode.getNode("line["~me.posLine~"]",1);
+     var redNode  = me.baseNode.getNode("red["~me.posLine~"]",1);
+     var greenNode  = me.baseNode.getNode("green["~me.posLine~"]",1);
+     var blueNode  = me.baseNode.getNode("blue["~me.posLine~"]",1);
+     redNode.setValue(red);
+     greenNode.setValue(green);
+     blueNode.setValue(blue);
+     lineNode.setValue(text);
+     if (me.posLine < me.maxLines) {
+       me.posLine = me.posLine+1;
+     }
    },
 
    textAt : func(index, text) {
