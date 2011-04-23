@@ -15,7 +15,7 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-fms_trace = 1;
+fms_trace = 0;
 
 
 ## mode constants
@@ -75,7 +75,7 @@ var AirbusFMS = {
      m.arvDB = nil;
      setprop("instrumentation/fms/plan[0]/display-nodes/current-page",0);
      setprop("instrumentation/fms/plan[0]/display-nodes/current-wp",0);
-     m.version = "V1.0.6";
+     m.version = "V1.0.7";
 
      setlistener("/sim/signals/fdm-initialized", func m.init());
      setlistener("/autopilot/route-manager/current-wp", func m.updateCurrentWP());
@@ -125,6 +125,7 @@ tracer : func(msg) {
       }
       ##settimer(func me.update(), 0);
       ##settimer(func me.slow_update(), 0);
+      setlistener("/instrumentation/fms/plan[0]/display-nodes/current-page", func me.updateDisplay());
     },
 
    ### for high prio tasks ###
@@ -195,12 +196,7 @@ tracer : func(msg) {
        var curWp = getprop("/autopilot/route-manager/current-wp");
        var foundTD = 0;
        if (curWp > 0) {
-         for(w=0; w < curWp; w=w+1) {
-           var wpName = getprop("/autopilot/route-manager/route/wp["~w~"]/id");
-           if (wpName == "T/D") {
-             foundTD = 1;
-           }
-         }
+         foundTD = getprop("/instrumentation/flightdirector/past-td");
          me.tracer("foundTD: "~foundTD~", bothSelect: "~bothSelect~", lnavMode: "~lnavMode);
          if(foundTD == 1 and curAlt > 400 and bothSelect == MANAGED_MODE) {
            if (lnavMode == LNAV_FMS) {
@@ -305,34 +301,52 @@ tracer : func(msg) {
       if (max > 9) {
         max = 9;
       }
+      for(var w = 0; w != 9; w=w+1) {
+        var dn = me.activeFpln.getNode("display-nodes/wp["~w~"]",1);
+        dn.getNode("active",1).setBoolValue(0);
+      }
       for(var w = 0; w != max; w=w+1) {
         var pos = startWP+w;
         var dn = me.activeFpln.getNode("display-nodes/wp["~w~"]",1);
         ###var wp = me.activeFpln.getNode("wp["~pos~"]",0);
-        var wp = me.activePlan[pos];
-        if (wp != nil) {
-          dn.getNode("id",1).setValue(wp.wp_name);
-          dn.getNode("parent",1).setValue(wp.wp_parent_name);
-          var spdLim = wp.spd_csrt;
-          if (spdLim < 1 and spdLim > 0) {
-            dn.getNode("spd-lim-display",1).setValue(sprintf("%01.2f", spdLim));
+        if (pos < size(me.activePlan)) {
+          var wp = me.activePlan[pos];
+          if (wp != nil) {
+            dn.getNode("id",1).setValue(wp.wp_name);
+            dn.getNode("parent",1).setValue(wp.wp_parent_name);
+            var spdLim = wp.spd_csrt;
+            if (spdLim < 1 and spdLim > 0) {
+              dn.getNode("spd-lim-display",1).setValue(sprintf("%01.2f", spdLim));
+            } else {
+              dn.getNode("spd-lim-display",1).setValue(sprintf("%5.0f", spdLim));
+            }
+            var altLim = wp.alt_csrt;
+            if (altLim > 10000) {
+              dn.getNode("alt-lim-display",1).setValue(sprintf("FL%3.0f",(altLim/100)));
+            } else {
+              dn.getNode("alt-lim-display",1).setValue(sprintf("%5.0f",altLim));
+            }
+            dn.getNode("wp-type",1).setValue(wp.wp_type);
+            ##dn.getNode("time-utc-display",1).setValue(sprintf("%2f:%2f",wp.getNode("time-utc-hours").getIntValue(),wp.getNode("time-utc-mins").getIntValue()));
+            dn.getNode("time-utc-display",1).setValue("00:00");
+            dn.getNode("active", 1).setBoolValue(1);
+            dn.getNode("track",1).setDoubleValue(wp.leg_bearing);
+            dn.getNode("dist",1).setIntValue(wp.leg_distance);
           } else {
-            dn.getNode("spd-lim-display",1).setValue(sprintf("%5.0f", spdLim));
+            dn.getNode("active",1).setBoolValue(0);
           }
-          var altLim = wp.alt_csrt;
-          if (altLim > 10000) {
-            dn.getNode("alt-lim-display",1).setValue(sprintf("FL%3.0f",(altLim/100)));
-          } else {
-            dn.getNode("alt-lim-display",1).setValue(sprintf("%5.0f",altLim));
+        }
+      }
+      # if the current autopilot WP is not on this page, then set our display status to some high number
+      var rteWP = getprop("autopilot/route-manager/current-wp");
+      if (rteWP > -1) {
+        var rteWPId = getprop("autopilot/route-manager/route/wp["~rteWP~"]/id");
+        var planIdx = me.findWPName(rteWPId);
+        if (planIdx != nil) {
+          var tmp = int(planIdx/9);
+          if (tmp != startPage) {
+            setprop("instrumentation/fms/plan[0]/display-nodes/current-wp",99);
           }
-          dn.getNode("wp-type",1).setValue(wp.wp_type);
-          ##dn.getNode("time-utc-display",1).setValue(sprintf("%2f:%2f",wp.getNode("time-utc-hours").getIntValue(),wp.getNode("time-utc-mins").getIntValue()));
-          dn.getNode("time-utc-display",1).setValue("00:00");
-          dn.getNode("active", 1).setBoolValue(1);
-          dn.getNode("track",1).setDoubleValue(wp.leg_bearing);
-          dn.getNode("dist",1).setIntValue(wp.leg_distance);
-        } else {
-          dn.getNode("active",1).setBoolValue(0);
         }
       }
     },
@@ -351,7 +365,27 @@ tracer : func(msg) {
     ###################
     # insert a WP into FMS plan at positon
     #
-    insertWPBefore : func(wp, idx) {
+    insertWP : func(wp, idx) {
+      me.tracer("insert WP: "~wp.wp_name~" at pos: "~idx);
+      if (idx > size(me.activePlan)-1) {
+        append(me.activePlan, wp);
+      } else {
+        me.activePlan = setsize(me.activePlan, size(me.activePlan)+1);
+        # shuffle down all elements
+        for(var p = size(me.activePlan)-1; p > idx; p=p-1) {
+          me.activePlan[p] = me.activePlan[p-1];
+        }
+        me.activePlan[idx] = wp;
+        me.lastWP = me.lastWP+1;
+      }
+      me.updateDisplay();
+    },
+
+    ###################
+    # insert a WP into FMS plan after positon
+    #
+    insertWPAfter : func(wp, idx) {
+      idx = idx + 1;
       me.tracer("insert WP: "~wp.wp_name~" at pos: "~idx);
       if (idx > size(me.activePlan)-1) {
         append(me.activePlan, wp);

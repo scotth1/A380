@@ -67,7 +67,7 @@ lnavStr = ["off","HDG","TRK","LOC","NAV","RWY"];
 vnavStr = ["off","ALT(s)","V/S","OP CLB","FPA","OP DES","CLB","ALT CRZ","DES","G/S","SRS","LEVEL"];
 spdStr  = ["off","TOGA","FLEX","THR CLB","SPEED","MACH","CRZ","THR DES","THR IDL"];
 
-version="V1.1.5";
+version="V1.1.6";
 trace=0;
 
 #trigonometric values for glideslope calculations
@@ -281,7 +281,7 @@ setlistener("/sim/signals/fdm-initialized", func {
     setprop("/instrumentation/afs/to-flaps", 2);
     setprop("/instrumentation/afs/crz_speed", 310);
     setprop("/instrumentation/afs/crz_mach", 0.85);
-    setprop("/instrumentation/afs/clb_speed", 280);
+    setprop("/instrumentation/afs/clb_speed", 270);
     setprop("/instrumentation/afs/clb_mach", 0.76);
     setprop("/instrumentation/afs/des_speed", 270);
     setprop("/instrumentation/afs/des_mach", 0.66);
@@ -742,7 +742,8 @@ setlistener("/instrumentation/flightdirector/vnav", func(n) {
     if(vnav == VNAV_ALTCRZ) {   # ALT (m)
       curAlt = getprop("/position/altitude-ft");
       var nextWpAlt = getprop("/instrumentation/gps/wp/wp[1]/altitude-ft");
-      if (curAlt < nextWpAlt) {
+      var alreadyCruise = getprop("instrumentation/afs/acquire_crz");
+      if (curAlt < nextWpAlt and alreadyCruise != 1) {
         setprop("/autopilot/settings/target-altitude-ft", nextWpAlt);
         setprop("/instrumentation/afs/limit-min-vs-fps",-9.0);
         setprop("/instrumentation/afs/limit-max-vs-fps",13.0);

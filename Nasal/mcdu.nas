@@ -26,10 +26,10 @@
 currentField = "";
 currentFieldPos = 0;
 inputValue = "";
-trace = 1;         ## Set to 0 to turn off all tracing messages
+trace = 0;         ## Set to 0 to turn off all tracing messages
 depDB = nil;
 arvDB = nil;
-version = "V1.0.18";
+version = "V1.0.19";
 
 routeClearArm = 0;
 airbusFMS = nil;   ###A380.fms;
@@ -613,6 +613,7 @@ selectSidAction = func(opt, unit) {
     var pos = 0;
     var crzFl = getprop("/instrumentation/afs/CRZ_FL");
     tracer("Got back sid: "~sid.wp_name~", with: "~size(sid.wpts)~" wp");
+    var toSpd = 200;
     for(var w=0; w != size(sid.wpts);w=w+1) {
       var wpIns = "";
       var wp = sid.wpts[w];
@@ -630,8 +631,15 @@ selectSidAction = func(opt, unit) {
       if (wp.wp_type == "Normal") {
 	tracer("/autopilot/route-manager/input, @insert "~wpIns);
         setprop("/autopilot/route-manager/input", "@insert "~wpIns);
-        wp.wp_parent_name = getprop("instrumentation/afs/sid");
-        airbusFMS.insertWPBefore(wp, wpLen);
+        var wpt = wp;
+        wpt.wp_parent_name = getprop("instrumentation/afs/sid");
+        wpt.wp_type = "SID";
+        if (wpt.spd_csrt == nil and wpt.spd_csrt > 0) {
+          wpt.spd_csrt = toSpd;
+        } else {
+          toSpd = wpt.spd_csrt;
+        }
+        airbusFMS.insertWP(wpt, wpLen);
       }
     }
     var transArm = 0;
@@ -739,8 +747,9 @@ selectSidAction = func(opt, unit) {
       wp.wp_lat =  tdLat;
       wp.wp_lon =  tdLon;
       wp.alt_csrt = crzFt;
+      wp.spd_csrt = getprop("/instrumentation/afs/des_mach");
       var disIdx = airbusFMS.findWPType("DISC");
-      airbusFMS.insertWPBefore(wp, disIdx+1);
+      airbusFMS.insertWP(wp, disIdx+1);
       wpLen = getprop("/autopilot/route-manager/route/num");
       tracer("wpLen now: "~wpLen);
       #var wpStr = "/autopilot/route-manager/route/wp["~(wpLen-2)~"]";
@@ -749,6 +758,7 @@ selectSidAction = func(opt, unit) {
       #setprop(wpStr~"/name","TD");
     }
 
+    var appSpd = 270;
     foreach(var w; star.wpts) {
       var wpIns = "";
       var wpLen = getprop("/autopilot/route-manager/route/num");
@@ -763,6 +773,22 @@ selectSidAction = func(opt, unit) {
 	tracer("/autopilot/route-manager/input, @insert "~wpIns);
         setprop("/autopilot/route-manager/input", "@insert "~wpIns);
         checkInsert(w, wpLen-1);
+        var wpt = w;
+        wpt.wp_parent_name = getprop("instrumentation/afs/star");
+        wpt.wp_type = "STAR";
+        if (wpt.alt_csrt != nil and wpt.alt_csrt < 11000) {
+          appSpd = 250;
+        }
+        if (wpt.alt_csrt != nil and wpt.alt_csrt < 3000) {
+          appSpd = 210;
+        }
+        if (wpt.spd_csrt == nil and wpt.spd_csrt > 0) {
+          wpt.spd_csrt = appSpd;
+        } else {
+          appSpd = wpt.spd_csrt;
+        }
+        var lastPos = airbusFMS.getPlanSize()-1;
+        airbusFMS.insertWP(wpt, lastPos);
       }
     }
     var transArm = 0;
@@ -922,6 +948,7 @@ updateApproachAlts = func() {
      tracer(">>>>>>>>>>>>>> current thrust-cruise-alt: "~crzFt);
      var crzArm = 0;
      var tdIdx = airbusFMS.findWPType("T/D")+1;
+     var appSpeed = 270;
      for(var r=0; r < rtSize-1; r=r+1) {
        rtSize = getprop("/autopilot/route-manager/route/num");
        var rtAlt = getprop("/autopilot/route-manager/route/wp["~r~"]/altitude-ft");
@@ -988,12 +1015,25 @@ updateApproachAlts = func() {
          #if (rtId == "O.M" or rtId == "(T/D)" or rtId == "M.M" or rtId == "T/C") {
            insertAbsWP(rtId,r,rtLat,rtLon,thisAlt);
             var appWP = fmsWP.new();
+            var existIdPos = airbusFMS.findWPName(rtId);
+            if (existIdPos == nil) {
+              existIdPos = tdIdx;
+            } else {
+              appWP = airbusFMS.getWPIdx(existIdPos);
+              if (appWP.spd_csrt != nil and appWP.spd_csrt < appSpeed) {
+                appSpeed = appWP.spd_csrt;
+              }
+            } 
+            if (thisAlt < 11000 and appSpeed > 250) {
+              appSpeed = 250;
+            }
             appWP.wp_name = rtId;
-            appWP.alt_cstr = thisAlt;
+            appWP.alt_csrt = thisAlt;
+            appWP.spd_csrt = appSpeed;
             appWP.wp_lat = rtLat;
             appWP.wp_lon = rtLon;
             appWP.wp_parent_name = getprop("instrumentation/afs/star");
-            airbusFMS.insertWPBefore(appWP, tdIdx);
+            airbusFMS.replaceWPAt(appWP, existIdPos);
             tdIdx = tdIdx + 1;
          #} else {
 	 #  tracer("/autopilot/route-manager/input, "~rpIns);

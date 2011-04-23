@@ -190,7 +190,18 @@
   <gain>1.0</gain>
   <name>descent target calc</name>
   <enable>
-    <property>/controls/pressurisation/descent-engaged</property>
+    <condition>
+      <and>
+        <equals>
+          <property>/controls/pressurisation/descent-engaged</property>
+          <value>1</value>
+        </equals>
+        <equals>
+          <property>/controls/pressurisation/engaged</property>
+          <value>1</value>
+        </equals>
+      </and>
+    </condition>
   </enable>
   <input>
     <expression>
@@ -216,7 +227,17 @@
   <gain>1.0</gain>
   <name>ascent target calc</name>
   <enable>
-    <property>/controls/pressurisation/ascent-engaged</property>
+    <condition>
+      <and>
+        <equals>
+          <property>/controls/pressurisation/ascent-engaged</property>
+          <value>1</value>
+        <equals>
+          <property>/controls/pressurisation/engaged</property>
+          <value>1</value>
+        </equals>
+      </and>
+    </condition>
   </enable>
   <input>
     <expression>

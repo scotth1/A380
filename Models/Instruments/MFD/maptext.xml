@@ -31,8 +31,9 @@
             </condition>
             <name>WP ID</name>
             <type>text</type>
-            <font>arial_black</font>
-            <point-size>8</point-size>
+            <!-- font>arial_black</font -->
+            <font>helvetica_medium</font>
+            <point-size>9</point-size>
             <color>
                 <red>1.0</red>
                 <green>1.0</green>
@@ -65,8 +66,9 @@
             </condition>
             <name>WP ETA</name>
             <type>text</type>
-            <font>arial_black</font>
-            <point-size>8</point-size>
+            <!-- font>arial_black</font -->
+            <font>helvetica_medium</font>
+            <point-size>9</point-size>
             <color>
                 <red>0.1</red>
                 <green>1.0</green>
@@ -100,8 +102,9 @@
             </condition>
             <name>WP DIST</name>
             <type>text</type>
-            <font>arial_black</font>
-            <point-size>8</point-size>
+            <!-- font>arial_black</font -->
+            <font>helvetica_medium</font>
+            <point-size>9</point-size>
             <color>
                 <red>0.1</red>
                 <green>1.0</green>
@@ -130,7 +133,7 @@
             <name>GSPD</name>
             <type>text</type>
             <font>arial_black</font>
-            <point-size>8</point-size>
+            <point-size>9</point-size>
             <color>
                 <red>1.0</red>
                 <green>1.0</green>
@@ -159,7 +162,7 @@
             <name>TAS</name>
             <type>text</type>
             <font>arial_black</font>
-            <point-size>8</point-size>
+            <point-size>9</point-size>
             <color>
                 <red>1.0</red>
                 <green>1.0</green>

@@ -3530,6 +3530,17 @@
 </animation>
 <animation>
   <type>material</type>
+  <object-name>value.wp0.disc</object-name>
+  <emission>
+    <red>0.9</red>
+    <green>0.9</green>
+    <blue>0.9</blue>
+  </emission>
+  <shininess>0.0</shininess>
+  <transparency><alpha>0.7</alpha></transparency>
+</animation>
+<animation>
+  <type>material</type>
   <object-name>group.node0</object-name>
   <condition>
     <equals>
@@ -3562,6 +3573,10 @@
   <shininess>0.0</shininess>
   <transparency><alpha>0.7</alpha></transparency>
 </animation>
+
+
+
+
 
 <text>
    <name>value.wp1.disc</name>
@@ -3741,6 +3756,17 @@
 </animation>
 <animation>
   <type>material</type>
+  <object-name>value.wp1.disc</object-name>
+  <emission>
+    <red>0.9</red>
+    <green>0.9</green>
+    <blue>0.9</blue>
+  </emission>
+  <shininess>0.0</shininess>
+  <transparency><alpha>0.7</alpha></transparency>
+</animation>
+<animation>
+  <type>material</type>
   <object-name>group.node1</object-name>
   <condition>
     <equals>
@@ -3774,6 +3800,10 @@
   <transparency><alpha>0.7</alpha></transparency>
 </animation>
 
+
+
+
+
 <text>
    <name>value.wp2.disc</name>
    <axis-alignment>yz-plane</axis-alignment>
@@ -3789,6 +3819,18 @@
     <character-size type="double">0.0035</character-size>
     <alignment>center-bottom</alignment>
 </text>
+<animation>
+  <type>pick</type>
+  <object-name>fltpln.field2.id</object-name>
+  <action>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+      <command>nasal</command>
+      <script>MCDU1.selectWP(2)</script>
+   </binding>
+  </action>
+</animation>
 <text>
    <name>value.wp2.from</name>
    <axis-alignment>yz-plane</axis-alignment>
@@ -3940,6 +3982,17 @@
 </animation>
 <animation>
   <type>material</type>
+  <object-name>value.wp2.disc</object-name>
+  <emission>
+    <red>0.9</red>
+    <green>0.9</green>
+    <blue>0.9</blue>
+  </emission>
+  <shininess>0.0</shininess>
+  <transparency><alpha>0.7</alpha></transparency>
+</animation>
+<animation>
+  <type>material</type>
   <object-name>group.node2</object-name>
   <condition>
     <equals>
@@ -3973,6 +4026,10 @@
   <transparency><alpha>0.7</alpha></transparency>
 </animation>
 
+
+
+
+
 <text>
    <name>value.wp3.disc</name>
    <axis-alignment>yz-plane</axis-alignment>
@@ -3988,6 +4045,18 @@
     <character-size type="double">0.0035</character-size>
     <alignment>center-bottom</alignment>
 </text>
+<animation>
+  <type>pick</type>
+  <object-name>fltpln.field3.id</object-name>
+  <action>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+      <command>nasal</command>
+      <script>MCDU1.selectWP(3)</script>
+   </binding>
+  </action>
+</animation>
 <text>
    <name>value.wp3.from</name>
    <axis-alignment>yz-plane</axis-alignment>
@@ -4139,6 +4208,17 @@
 </animation>
 <animation>
   <type>material</type>
+  <object-name>value.wp3.disc</object-name>
+  <emission>
+    <red>0.9</red>
+    <green>0.9</green>
+    <blue>0.9</blue>
+  </emission>
+  <shininess>0.0</shininess>
+  <transparency><alpha>0.7</alpha></transparency>
+</animation>
+<animation>
+  <type>material</type>
   <object-name>group.node3</object-name>
   <condition>
     <equals>
@@ -4172,6 +4252,10 @@
   <transparency><alpha>0.7</alpha></transparency>
 </animation>
 
+
+
+
+
 <text>
    <name>value.wp4.disc</name>
    <axis-alignment>yz-plane</axis-alignment>
@@ -4187,6 +4271,18 @@
     <character-size type="double">0.0035</character-size>
     <alignment>center-bottom</alignment>
 </text>
+<animation>
+  <type>pick</type>
+  <object-name>fltpln.field4.id</object-name>
+  <action>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+      <command>nasal</command>
+      <script>MCDU1.selectWP(4)</script>
+   </binding>
+  </action>
+</animation>
 <text>
    <name>value.wp4.from</name>
    <axis-alignment>yz-plane</axis-alignment>
@@ -4338,6 +4434,17 @@
 </animation>
 <animation>
   <type>material</type>
+  <object-name>value.wp4.disc</object-name>
+  <emission>
+    <red>0.9</red>
+    <green>0.9</green>
+    <blue>0.9</blue>
+  </emission>
+  <shininess>0.0</shininess>
+  <transparency><alpha>0.7</alpha></transparency>
+</animation>
+<animation>
+  <type>material</type>
   <object-name>group.node4</object-name>
   <condition>
     <equals>
@@ -4371,6 +4478,10 @@
   <transparency><alpha>0.7</alpha></transparency>
 </animation>
 
+
+
+
+
 <text>
    <name>value.wp5.disc</name>
    <axis-alignment>yz-plane</axis-alignment>
@@ -4386,6 +4497,18 @@
     <character-size type="double">0.0035</character-size>
     <alignment>center-bottom</alignment>
 </text>
+<animation>
+  <type>pick</type>
+  <object-name>fltpln.field5.id</object-name>
+  <action>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+      <command>nasal</command>
+      <script>MCDU1.selectWP(5)</script>
+   </binding>
+  </action>
+</animation>
 <text>
    <name>value.wp5.from</name>
    <axis-alignment>yz-plane</axis-alignment>
@@ -4537,6 +4660,17 @@
 </animation>
 <animation>
   <type>material</type>
+  <object-name>value.wp5.disc</object-name>
+  <emission>
+    <red>0.9</red>
+    <green>0.9</green>
+    <blue>0.9</blue>
+  </emission>
+  <shininess>0.0</shininess>
+  <transparency><alpha>0.7</alpha></transparency>
+</animation>
+<animation>
+  <type>material</type>
   <object-name>group.node5</object-name>
   <condition>
     <equals>
@@ -4570,6 +4704,10 @@
   <transparency><alpha>0.7</alpha></transparency>
 </animation>
 
+
+
+
+
 <text>
    <name>value.wp6.disc</name>
    <axis-alignment>yz-plane</axis-alignment>
@@ -4585,6 +4723,18 @@
     <character-size type="double">0.0035</character-size>
     <alignment>center-bottom</alignment>
 </text>
+<animation>
+  <type>pick</type>
+  <object-name>fltpln.field6.id</object-name>
+  <action>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+      <command>nasal</command>
+      <script>MCDU1.selectWP(6)</script>
+   </binding>
+  </action>
+</animation>
 <text>
    <name>value.wp6.from</name>
    <axis-alignment>yz-plane</axis-alignment>
@@ -4736,6 +4886,17 @@
 </animation>
 <animation>
   <type>material</type>
+  <object-name>value.wp6.disc</object-name>
+  <emission>
+    <red>0.9</red>
+    <green>0.9</green>
+    <blue>0.9</blue>
+  </emission>
+  <shininess>0.0</shininess>
+  <transparency><alpha>0.7</alpha></transparency>
+</animation>
+<animation>
+  <type>material</type>
   <object-name>group.node6</object-name>
   <condition>
     <equals>
@@ -4769,6 +4930,10 @@
   <transparency><alpha>0.7</alpha></transparency>
 </animation>
 
+
+
+
+
 <text>
    <name>value.wp7.disc</name>
    <axis-alignment>yz-plane</axis-alignment>
@@ -4784,6 +4949,18 @@
     <character-size type="double">0.0035</character-size>
     <alignment>center-bottom</alignment>
 </text>
+<animation>
+  <type>pick</type>
+  <object-name>fltpln.field7.id</object-name>
+  <action>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+      <command>nasal</command>
+      <script>MCDU1.selectWP(7)</script>
+   </binding>
+  </action>
+</animation>
 <text>
    <name>value.wp7.from</name>
    <axis-alignment>yz-plane</axis-alignment>
@@ -4935,6 +5112,17 @@
 </animation>
 <animation>
   <type>material</type>
+  <object-name>value.wp7.disc</object-name>
+  <emission>
+    <red>0.9</red>
+    <green>0.9</green>
+    <blue>0.9</blue>
+  </emission>
+  <shininess>0.0</shininess>
+  <transparency><alpha>0.7</alpha></transparency>
+</animation>
+<animation>
+  <type>material</type>
   <object-name>group.node7</object-name>
   <condition>
     <equals>
@@ -4968,6 +5156,11 @@
   <transparency><alpha>0.7</alpha></transparency>
 </animation>
 
+
+
+
+
+
 <text>
    <name>value.wp8.disc</name>
    <axis-alignment>yz-plane</axis-alignment>
@@ -4983,6 +5176,18 @@
     <character-size type="double">0.0035</character-size>
     <alignment>center-bottom</alignment>
 </text>
+<animation>
+  <type>pick</type>
+  <object-name>fltpln.field8.id</object-name>
+  <action>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+      <command>nasal</command>
+      <script>MCDU1.selectWP(8)</script>
+   </binding>
+  </action>
+</animation>
 <text>
    <name>value.wp8.from</name>
    <axis-alignment>yz-plane</axis-alignment>
@@ -5131,6 +5336,17 @@
     </equals>
     </and>
   </condition>
+</animation>
+<animation>
+  <type>material</type>
+  <object-name>value.wp8.disc</object-name>
+  <emission>
+    <red>0.9</red>
+    <green>0.9</green>
+    <blue>0.9</blue>
+  </emission>
+  <shininess>0.0</shininess>
+  <transparency><alpha>0.7</alpha></transparency>
 </animation>
 <animation>
   <type>material</type>
