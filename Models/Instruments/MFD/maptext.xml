@@ -31,8 +31,8 @@
             </condition>
             <name>WP ID</name>
             <type>text</type>
-            <!-- font>arial_black</font -->
-            <font>helvetica_medium</font>
+            <font>arial_black</font>
+            <!-- font>helvetica_bold</font -->
             <point-size>9</point-size>
             <color>
                 <red>1.0</red>
@@ -48,11 +48,11 @@
             <transformations>
                 <transformation>
                     <type>x-shift</type>
-                    <offset>92</offset>       <!-- was 95 SAH 2010-12-04 -->
+                    <offset>75</offset>       <!-- was 95 SAH 2010-12-04 -->
                 </transformation>
                 <transformation>
                     <type>y-shift</type>
-                    <offset>115</offset>
+                    <offset>115</offset>      <!-- was 115 SAH 2011-04-24 -->
                 </transformation>
             </transformations>
         </layer>
@@ -66,8 +66,8 @@
             </condition>
             <name>WP ETA</name>
             <type>text</type>
-            <!-- font>arial_black</font -->
-            <font>helvetica_medium</font>
+            <font>arial_black</font>
+            <!-- font>helvetica_bold</font -->
             <point-size>9</point-size>
             <color>
                 <red>0.1</red>
@@ -84,11 +84,11 @@
             <transformations>
                 <transformation>
                     <type>x-shift</type>
-                    <offset>92</offset>   <!-- was 95 SAH 2010-12-04 -->
+                    <offset>75</offset>   <!-- was 95 SAH 2010-12-04 -->
                 </transformation>
                 <transformation>
                     <type>y-shift</type>
-                    <offset>100</offset>
+                    <offset>100</offset> <!-- was 100 SAH 2011-04-24 -->
                 </transformation>
             </transformations>
         </layer>
@@ -102,8 +102,8 @@
             </condition>
             <name>WP DIST</name>
             <type>text</type>
-            <!-- font>arial_black</font -->
-            <font>helvetica_medium</font>
+            <font>arial_black</font>
+            <!-- font>helvetica_bold</font -->
             <point-size>9</point-size>
             <color>
                 <red>0.1</red>
@@ -120,11 +120,11 @@
             <transformations>
                 <transformation>
                     <type>x-shift</type>
-                    <offset>92</offset>  <!-- was 95 SAH 2010-12-04 -->
+                    <offset>75</offset>  <!-- was 95 SAH 2010-12-04 -->
                 </transformation>
                 <transformation>
                     <type>y-shift</type>
-                    <offset>85</offset>
+                    <offset>85</offset>   <!-- was 85 SAH 2011-04-24 -->
                 </transformation>
             </transformations>
         </layer>
@@ -133,7 +133,7 @@
             <name>GSPD</name>
             <type>text</type>
             <font>arial_black</font>
-            <point-size>9</point-size>
+            <point-size>8.5</point-size>
             <color>
                 <red>1.0</red>
                 <green>1.0</green>
@@ -162,7 +162,7 @@
             <name>TAS</name>
             <type>text</type>
             <font>arial_black</font>
-            <point-size>9</point-size>
+            <point-size>8.5</point-size>
             <color>
                 <red>1.0</red>
                 <green>1.0</green>

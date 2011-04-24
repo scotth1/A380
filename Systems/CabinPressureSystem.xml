@@ -232,6 +232,7 @@
         <equals>
           <property>/controls/pressurisation/ascent-engaged</property>
           <value>1</value>
+        </equals>
         <equals>
           <property>/controls/pressurisation/engaged</property>
           <value>1</value>
