@@ -86,11 +86,17 @@
     </product>
   </function>
   
-  <!-- function name="propulsion/engine[#]/fuel-used-kg" type="post">
+  <function name="propulsion/engine[#]/fuel-used-kg" type="post">
     <product>
       <property>propulsion/engine[#]/fuel-used-lbs</property>
       <value>0.45359237</value>
     </product>
-  </function -->
+  </function>
+  
+  <function name="propulsion/total-fuel-used-kg" type="post">
+    <addition>
+      <property>propulsion/engine[#]/fuel-used-kg</property>
+    </addition>
+  </function>
 
 </turbine_engine>

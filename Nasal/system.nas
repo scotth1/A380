@@ -1226,8 +1226,20 @@ setlistener("/controls/pressurization/pack[0]/pack-on", func(n) {
    pack = n.getValue();
    if (pack == 1) {
      settimer(open_hotair, 1);
+     var currBleed = getprop("fdm/jsbsim/propulsion/engine[0]/bleed-factor");
+     tracer("pack[0] on - currBleed: "~currBleed);
+     setprop("fdm/jsbsim/propulsion/engine[0]/bleed-factor", currBleed+0.1);
+     currBleed = getprop("fdm/jsbsim/propulsion/engine[1]/bleed-factor");
+     tracer("pack[0] on - currBleed: "~currBleed);
+     setprop("fdm/jsbsim/propulsion/engine[1]/bleed-factor", currBleed+0.1);
    } else {
      setprop("/controls/pressurization/pack[0]/hotair-on",0);
+     var currBleed = getprop("fdm/jsbsim/propulsion/engine[0]/bleed-factor");
+     tracer("pack[0] off - currBleed: "~currBleed);
+     setprop("fdm/jsbsim/propulsion/engine[0]/bleed-factor", currBleed-0.1);
+     currBleed = getprop("fdm/jsbsim/propulsion/engine[1]/bleed-factor");
+     tracer("pack[0] off - currBleed: "~currBleed);
+     setprop("fdm/jsbsim/propulsion/engine[1]/bleed-factor", currBleed-0.1);
    }
 });
 
@@ -1236,8 +1248,20 @@ setlistener("/controls/pressurization/pack[1]/pack-on", func(n) {
    pack = n.getValue();
    if (pack == 1) {
      settimer(open_hotair, 1);
+     var currBleed = getprop("fdm/jsbsim/propulsion/engine[2]/bleed-factor");
+     tracer("pack[1] on - currBleed: "~currBleed);
+     setprop("fdm/jsbsim/propulsion/engine[2]/bleed-factor", currBleed+0.1);
+     currBleed = getprop("fdm/jsbsim/propulsion/engine[3]/bleed-factor");
+     tracer("pack[1] on - currBleed: "~currBleed);
+     setprop("fdm/jsbsim/propulsion/engine[3]/bleed-factor", currBleed+0.1);
    } else {
      setprop("/controls/pressurization/pack[1]/hotair-on",0);
+     var currBleed = getprop("fdm/jsbsim/propulsion/engine[2]/bleed-factor");
+     tracer("pack[1] off - currBleed: "~currBleed);
+     setprop("fdm/jsbsim/propulsion/engine[2]/bleed-factor", currBleed-0.1);
+     currBleed = getprop("fdm/jsbsim/propulsion/engine[3]/bleed-factor");
+     tracer("pack[1] on - currBleed: "~currBleed);
+     setprop("fdm/jsbsim/propulsion/engine[3]/bleed-factor", currBleed+0.1);
    }
 });
 
@@ -1433,6 +1457,51 @@ setlistener("/controls/electric/ground/external_4", func(n) {
    if (connect == 0 and getprop("/controls/electric/contact/external_4") == 1) {
      setprop("/controls/electric/contact/external_4", 0);
    }
+});
+
+
+setlistener("/controls/anti-ice/engine[0]/inlet-heat", func(n) {
+   var anti = 0;
+   var currBleed = getprop("fdm/jsbsim/propulsion/engine[0]/bleed-factor");
+   if (n.getValue() == 0) {
+     anti = -0.2;
+   } else {
+     anti = 0.2;
+   }
+   setprop("fdm/jsbsim/propulsion/engine[0]/bleed-factor", currBleed+anti);
+});
+
+setlistener("/controls/anti-ice/engine[1]/inlet-heat", func(n) {
+   var anti = 0;
+   var currBleed = getprop("fdm/jsbsim/propulsion/engine[1]/bleed-factor");
+   if (n.getValue() == 0) {
+     anti = -0.2;
+   } else {
+     anti = 0.2;
+   }
+   setprop("fdm/jsbsim/propulsion/engine[1]/bleed-factor", currBleed+anti);
+});
+
+setlistener("/controls/anti-ice/engine[2]/inlet-heat", func(n) {
+   var anti = 0;
+   var currBleed = getprop("fdm/jsbsim/propulsion/engine[2]/bleed-factor");
+   if (n.getValue() == 0) {
+     anti = -0.2;
+   } else {
+     anti = 0.2;
+   }
+   setprop("fdm/jsbsim/propulsion/engine[2]/bleed-factor", currBleed+anti);
+});
+
+setlistener("/controls/anti-ice/engine[3]/inlet-heat", func(n) {
+   var anti = 0;
+   var currBleed = getprop("fdm/jsbsim/propulsion/engine[3]/bleed-factor");
+   if (n.getValue() == 0) {
+     anti = -0.2;
+   } else {
+     anti = 0.2;
+   }
+   setprop("fdm/jsbsim/propulsion/engine[3]/bleed-factor", currBleed+anti);
 });
 
 
