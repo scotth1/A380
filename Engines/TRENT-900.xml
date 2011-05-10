@@ -92,11 +92,5 @@
       <value>0.45359237</value>
     </product>
   </function>
-  
-  <function name="propulsion/total-fuel-used-kg" type="post">
-    <addition>
-      <property>propulsion/engine[#]/fuel-used-kg</property>
-    </addition>
-  </function>
 
 </turbine_engine>

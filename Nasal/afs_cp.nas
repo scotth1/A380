@@ -7,7 +7,7 @@
 #    the tree under /instrumentation drives the flight director. 
 #  
 #  Author:  S.Hamilton
-#  Version: V1.0
+#  Version: V2.0
 #
 #
 #   Copyright (C) 2009 Scott Hamilton
@@ -22,6 +22,7 @@
 #  SH      7-JUN-2009  Added Thrust detents
 #  SH      18-MAY-2010 clean up toggling of various modes and displays
 #  SH      17-OCT-2010 support both alt and v/s in selected mode
+#  SH      01-MAY-2011 new V2 
 #
 #
 
@@ -69,8 +70,8 @@ SPD_THRDES=7;
 SPD_THRIDL=8;
 
 # working memory
-afs_trace = 0;
-afs_version = "1.0.9";
+afs_trace = 1;
+afs_version = "2.0.0";
 
 
 
@@ -116,11 +117,11 @@ toggle_ap = func(n) {
       if (apeng == 1) {
         setprop("/instrumentation/flightdirector/autopilot-on",0);
         setprop("/controls/autoflight/autopilot["~n~"]/engage","false");
+        setprop("instrumentation/flightdirector/alt-acquire-mode",0);
       } else {
         setprop("/controls/autoflight/autopilot["~n~"]/engage","true");
 	setprop("/instrumentation/flightdirector/autopilot-on",1);
       }
-      setprop("instrumentation/flightdirector/alt-acquire-mode",0);
       ### called each of the modes to evaluate their current settings ###
       toggle_spd_select(0);
       toggle_hdg_select(0);
@@ -135,6 +136,8 @@ toggle_loc = func() {
       if (curHead == "nav1-hold") {
 	setprop("instrumentation/flightdirector/lnav",0);
         setprop("/autopilot/locks/heading","");
+        setprop("instrumentation/afs/lateral-managed-mode", 0);
+          setprop("/instrumentation/afs/lateral-display",0);
       } else {
         var inRange1 = getprop("/instrumentation/nav[0]/in-range");
         tracer("AFS: localizer inrange: "~inRange1);
@@ -144,6 +147,8 @@ toggle_loc = func() {
 	  setprop("/instrumentation/flightdirector/lnav",LNAV_LOC);
           setprop("/instrumentation/flightdirector/lnav-arm",LNAV_OFF);
           setprop("instrumentation/flightdirector/alt-acquire-mode",0);
+          setprop("instrumentation/afs/lateral-managed-mode", -1);
+          setprop("/instrumentation/afs/lateral-display",-1);
         }
       }
 }
@@ -153,7 +158,7 @@ toggle_alt = func() {
         setprop("instrumentation/flightdirector/vnav",0);
         setprop("/autopilot/locks/altitude","");
       } else {
-	setprop("/instrumentation/flightdirector/vnav",11);
+	setprop("/instrumentation/flightdirector/vnav",VNAV_LEVEL);
       }
 }
 
@@ -338,7 +343,8 @@ setlistener("/autopilot/settings/heading-bug-deg", func(n) {
 setlistener("/autopilot/settings/target-altitude-ft", func(n) {
    var val = n.getValue();
    var mode = getprop("instrumentation/afs/vertical-alt-mode");
-   if (mode == 0) {
+   var fltMode = getprop("instrumentation/ecam/flight-mode");
+   if (mode == 0 and fltMode > 2) {
      setprop("/instrumentation/afs/target-altitude-ft",val);
    }
 });
@@ -380,6 +386,7 @@ toggle_vs_select = func(n) {
       var aFMS = AirbusFMS.new();
       var armMode = VNAV_OFF;
       finalVNAVMode = aFMS.evaluateVNAV();
+      ##finalVNAVMode = aFMS.evaluateVertical();
       if (finalVNAVMode == VNAV_SRS) {
         armMode = VNAV_CLB;
       }
@@ -429,6 +436,9 @@ toggle_alt_select = func(n) {
       var aFMS = AirbusFMS.new();
       var armMode = VNAV_OFF;
       finalVNAVMode = aFMS.evaluateVNAV();
+      if (vertical == -1) {
+        setprop("/instrumentation/flightdirector/alt-acquire-mode",1);
+      }
       if (finalVNAVMode == VNAV_SRS) {
         armMode = VNAV_CLB;
       }
@@ -438,10 +448,15 @@ toggle_alt_select = func(n) {
         setprop("/instrumentation/flightdirector/alt-acquire-mode",1);
       }
       if (finalVNAVMode == VNAV_OPCLB) {
-        armMode = VNAV_CLB;
+        armMode = VNAV_ALTs;
+        setprop("/instrumentation/flightdirector/alt-acquire-mode",1);
       }
       if (finalVNAVMode == VNAV_OPDES) {
-        armMode = VNAV_DES;
+        armMode = VNAV_ALTs;
+        setprop("/instrumentation/flightdirector/alt-acquire-mode",1);
+      }
+      if (finalVNAVMode == VNAV_CLB or finalVNAVMode == VNAV_DES or finalVNAVMode == VNAV_ALTCRZ) {
+        setprop("instrumentation/flightdirector/alt-acquire-mode",1);
       }
       if (apMode == 0) {
         setprop("/autopilot/locks/alitutde","");
@@ -460,6 +475,7 @@ toggle_spd_select = func(n) {
       speed = getprop("instrumentation/afs/speed-mode");
       speed = speed+n;
       apMode = getprop("/instrumentation/flightdirector/autopilot-on");
+      athMode = getprop("instrumentation/flightdirector/at-on");
       if (speed < -1) {
         speed = -1;
       }
@@ -467,39 +483,29 @@ toggle_spd_select = func(n) {
         speed = 0;
       }
       tracer("toggle_spd_select - cur spd: "~mode~" func: "~n~" new speed: "~speed);
-      if (apMode == 0) {
-        setprop("/instrumentation/flightdirector/spd",0);
-      }
-      if (speed == -1) {
-        curAlt = getprop("/position/altitude-ft");
-        crzAlt = getprop("/instrumentation/afs/thrust-cruise-alt");
-        accelAlt = getprop("/instrumentation/afs/thrust-accel-alt");
-        desAlt = getprop("/instrumentation/afs/thrust-descent-alt");
-        vnav   = getprop("/instrumentation/flightdirector/vnav");
-        if (curAlt >= (crzAlt-50)) {
-          if (apMode == 1) {
+      ##if (apMode == 0) {
+      ##  setprop("/instrumentation/flightdirector/spd",SPD_OFF);
+      ###} else {
+        var aFMS = AirbusFMS.new();
+        if (speed == -1) {
+          var newMode = aFMS.evaluateManagedSpeed();
+          tracer("set new SPD mode: "~newMode);
+          curAlt = getprop("/position/altitude-ft");
+          crzAlt = getprop("/instrumentation/afs/thrust-cruise-alt");
+          accelAlt = getprop("/instrumentation/afs/thrust-accel-alt");
+          desAlt = getprop("/instrumentation/afs/thrust-descent-alt");
+          vnav   = getprop("/instrumentation/flightdirector/vnav");
+          if (curAlt >= (crzAlt-50)) {
             setprop("/instrumentation/flightdirector/spd",SPD_CRZ);
-          } else {
-            setprop("/instrumentation/flightdirector/spd-arm",SPD_CRZ);
           }
-        }
-        if (curAlt >= accelAlt and curAlt < crzAlt and (vnav == VNAV_CLB or vnav == VNAV_SRS)) {
-          if (apMode == 1) {
+          if (curAlt >= accelAlt and curAlt < crzAlt and (vnav == VNAV_CLB or vnav == VNAV_SRS)) {
             setprop("/instrumentation/flightdirector/spd",SPD_THRCLB);
-          } else {
-            setprop("/instrumentation/flightdirector/spd-arm",SPD_THRCLB);
           }
-        }
-        if (curAlt > 5000 and curAlt < crzAlt and (vnav == VNAV_DES or vnav == VNAV_OPDES)) {
-          if (apMode == 1) {
+          if (curAlt > 5000 and curAlt < crzAlt and (vnav == VNAV_DES or vnav == VNAV_OPDES)) {
             setprop("/instrumentation/flightdirector/spd",SPD_THRDES);
-          } else {
-            setprop("/instrumentation/flightdirector/spd-arm",SPD_THRDES);
           }
         }
-      }
-      if (speed == 0) {
-        if (apMode == 1) {
+        if (speed == 0) {
           var currKts = getprop("/instrumentation/afs/target-speed-kt");
           var currMach = getprop("/instrumentation/afs/target-speed-mach");
           var dispMode = getprop("instrumentation/afs/spd-mach-display-mode");
@@ -511,10 +517,8 @@ toggle_spd_select = func(n) {
             setprop("/autopilot/settings/target-speed-mach", currMach);
             setprop("/instrumentation/flightdirector/spd",SPD_MACH);
           }
-        } else {
-          setprop("/instrumentation/flightdirector/spd-arm",SPD_OFF);
-        }
-      }
+        } 
+      ###}
       setprop("/instrumentation/afs/speed-mode", speed);
       setprop("/instrumentation/afs/spd-display", speed);
 }
@@ -532,6 +536,9 @@ toggle_hdg_select = func(n) {
         lateral = 0;
       }
       tracer("toggle_hdg_select - cur lnav: "~mode~" func: "~n~" new lateral: "~lateral);
+      var aFMS = AirbusFMS.new();
+      var newLateral = aFMS.evaluateManagedLNAV();
+      tracer("returned FMS lateral mode: "~newLateral);
       if (apMode == 0) {
         setprop("/instrumentation/flightdirector/lnav",0);
       }
@@ -541,6 +548,7 @@ toggle_hdg_select = func(n) {
       if (lateral == -1) {
         if (apMode == 1) {
           setprop("instrumentation/flightdirector/lnav",LNAV_FMS);
+          setprop("instrumentation/afs/lateral-managed-mode", -1);
           if (vnav == VNAV_OPCLB) {
             tracer("change in NAV mode, set CLB");
             setprop("/instrumentation/flightdirector/vnav",VNAV_CLB);
@@ -561,6 +569,7 @@ toggle_hdg_select = func(n) {
         if (apMode == 1) {
           var currVS = getprop("/instrumentation/vertical-speed-indicator/indicated-speed-fpm");
           setprop("instrumentation/flightdirector/lnav",LNAV_HDG);
+          setprop("instrumentation/afs/lateral-managed-mode", 0);
           tracer("later: "~lateral~", vnav: "~vnav~" currVS: "~currVS);
           if (vnav == VNAV_CLB) {
             tracer("change in NAV mode, set OPCLB");
@@ -609,6 +618,8 @@ toggle_appr = func() {
             setprop("/instrumentation/flightdirector/lnav",LNAV_LOC);
             setprop("/instrumentation/flightdirector/vnav-arm",VNAV_OFF);
             setprop("/instrumentation/flightdirector/lnav-arm",LNAV_OFF);
+            setprop("/instrumentation/afs/lateral-display",-1);
+            setprop("instrumentation/afs/lateral-managed-mode", -1);
         } else {
             setprop("/instrumentation/flightdirector/vnav-arm",VNAV_GS);
             setprop("/instrumentation/flightdirector/lnav-arm",LNAV_LOC);
@@ -727,9 +738,23 @@ toggle_thrust_detent = func(n) {
        tracer("FLX: set N1 % "~flexTempN1[flexTempIdx]);
        tracer("afs: set spd: 2");
        setprop("/instrumentation/flightdirector/spd",SPD_FLEX);
+       var aFMS = AirbusFMS.new();
+       var newLat = aFMS.evaluateLateral();
+       var locInRange = getprop("/instrumentation/nav[0]/in-range");
+       tracer("FLEX - newLateral: "~newLat~", locInRange: "~locInRange);
+       if (newLat == LNAV_RWY and locInRange == 1) {
+         setprop("/instrumentation/flightdirector/lnav", newLat);
+       }
      }
      if (currDetent == 3) {   # TOGA
        setprop("/instrumentation/flightdirector/spd",SPD_TOGA);
+       var aFMS = AirbusFMS.new();
+       var newLat = aFMS.evaluateLateral();
+       var locInRange = getprop("/instrumentation/nav[0]/in-range");
+       tracer("FLEX - newLateral: "~newLat~", locInRange: "~locInRange);
+       if (newLat == LNAV_RWY and locInRange == 1) {
+         setprop("/instrumentation/flightdirector/lnav", newLat);
+       }
      }
      if (currDetent == 0) {
        setprop("/instrumentation/flightdirector/spd",SPD_THRIDL);

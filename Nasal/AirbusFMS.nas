@@ -15,7 +15,7 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-fms_trace = 0;
+fms_trace = 1;
 
 
 ## mode constants
@@ -75,7 +75,7 @@ var AirbusFMS = {
      m.arvDB = nil;
      setprop("instrumentation/fms/plan[0]/display-nodes/current-page",0);
      setprop("instrumentation/fms/plan[0]/display-nodes/current-wp",0);
-     m.version = "V1.0.7";
+     m.version = "V1.1.0";
 
      setlistener("/sim/signals/fdm-initialized", func m.init());
      setlistener("/autopilot/route-manager/current-wp", func m.updateCurrentWP());
@@ -163,6 +163,7 @@ tracer : func(msg) {
      var vsSelect = getprop("/instrumentation/afs/vertical-vs-mode");
      var spdSelect = getprop("/instrumentation/afs/speed-mode");
      var apMode = getprop("/instrumentation/flightdirector/autopilot-on");
+     var foundTD = getprop("/instrumentation/flightdirector/past-td");
      var bothSelect = MANAGED_MODE;
      if (altSelect == SELECTED_MODE or vsSelect == SELECTED_MODE) {
        bothSelect = SELECTED_MODE;
@@ -171,40 +172,49 @@ tracer : func(msg) {
       me.tracer("clbArm: "~clbArm);
       me.tracer("spdMode: "~spdMode);
       me.tracer("flapPos: "~flapPos);
+      if (bothSelect == MANAGED_MODE) {
+        setprop("instrumentation/afs/vertical-lvl-managed-mode",-1);
+      }
        ## managed Speed Reference System mode
        if (curAlt < accAlt and clbArm == 0 and bothSelect == MANAGED_MODE and (spdMode == SPD_FLEX or spdMode == SPD_TOGA or spdMode == SPD_THRCLB) and flapPos > 0 ) {
          retVNAV = VNAV_SRS;
          me.tracer("retVNAV = VNAV_SRS");
-       }
-       ## managed climb
-       if (curAlt >= accAlt and curAlt < (crzAlt-100) and crzAcquire == 0) {
-         if (lnavMode == LNAV_FMS) {
-           retVNAV = VNAV_CLB;
-           me.tracer("retVNAV = VNAV_CLB");
-         } else {
-           retVNAV = VNAV_OPCLB;
-           me.tracer("retVNAV = VNAV_OPCLB");
-         }
        }
        ## managed cruise alt
        if (curAlt > (crzAlt-5000) and bothSelect == MANAGED_MODE) {
          retVNAV = VNAV_ALTCRZ;
          me.tracer("retVNAV = VNAV_ALTCRZ");
        }
+       ## managed climb
+       if (curAlt >= accAlt and curAlt < (crzAlt-500) and crzAcquire == 0) {
+         if (lnavMode == LNAV_FMS) {
+           retVNAV = VNAV_CLB;
+           me.tracer("retVNAV = VNAV_CLB");
+         } else {
+           retVNAV = VNAV_OPCLB;
+           me.tracer("retVNAV = VNAV_OPCLB");
+           setprop("instrumentation/afs/vertical-lvl-managed-mode",0);
+         }
+       }
        ## managed descend
        var wpLen = getprop("/autopilot/route-manager/route/num");
        var curWp = getprop("/autopilot/route-manager/current-wp");
-       var foundTD = 0;
        if (curWp > 0) {
-         foundTD = getprop("/instrumentation/flightdirector/past-td");
          me.tracer("foundTD: "~foundTD~", bothSelect: "~bothSelect~", lnavMode: "~lnavMode);
-         if(foundTD == 1 and curAlt > 400 and bothSelect == MANAGED_MODE) {
-           if (lnavMode == LNAV_FMS) {
-             retVNAV = VNAV_DES;
-             me.tracer("retVNAV = VNAV_DES");
+         if (foundTD == 1 and curAlt > 400) {
+           if(bothSelect == MANAGED_MODE) {
+             if (lnavMode == LNAV_FMS) {
+               retVNAV = VNAV_DES;
+               me.tracer("retVNAV = VNAV_DES");
+             } else {
+               retVNAV = VNAV_OPDES;
+               me.tracer("retVNAV = VNAV_OPDES");
+               setprop("instrumentation/afs/vertical-lvl-managed-mode",0);
+             }
            } else {
              retVNAV = VNAV_OPDES;
              me.tracer("retVNAV = VNAV_OPDES");
+             setprop("instrumentation/afs/vertical-lvl-managed-mode",0);
            }
          }
        }
@@ -228,10 +238,16 @@ tracer : func(msg) {
        var vsSelect = getprop("/instrumentation/afs/vertical-vs-mode");
        if (altSelect == SELECTED_MODE) {
          retVNAV = VNAV_ALTs;
+         setprop("instrumentation/afs/vertical-lvl-managed-mode",0);
        }
        if (vsSelect == SELECTED_MODE) {
          retVNAV = VNAV_VS;
+         setprop("instrumentation/afs/vertical-lvl-managed-mode",0);
        }
+     } else {
+       retVNAV = VNAV_OFF;
+       setprop("instrumentation/afs/vertical-lvl-managed-mode",0);
+       setprop("instrumentation/flightdirector/alt-acquire-mode",0);
      }
      return retVNAV;
    },
@@ -242,11 +258,138 @@ tracer : func(msg) {
    #
    evaluateManagedLNAV : func() {
      var retLNAV = LNAV_OFF;
-
      var agl = getprop("/position/altitude-agl-ft");
-     
+     var latMode = getprop("instrumentation/afs/lateral-mode");
+     var apMode = getprop("/instrumentation/flightdirector/autopilot-on");
+     var fltMode = getprop("instrumentation/ecam/flight-mode");
+     var spd = getprop("instrumentation/flightdirector/spd");
 
+     if (apMode == 1) {
+       if (latMode == MANAGED_MODE) {
+         setprop("instrumentation/afs/lateral-managed-mode",-1);
+         retLNAV = LNAV_FMS;
+         if ((fltMode >= 2 and fltMode <= 5) and (spd == SPD_FLEX or spd == SPD_TOGA)) {
+           retLNAV = LNAV_RWY;
+         }
+       } else {
+         setprop("instrumentation/afs/lateral-managed-mode",0);
+         retLNAV = LNAV_HDG;
+       }
+     } else {
+       setprop("instrumentation/afs/lateral-managed-mode",0);
+     }
+     
      return retLNAV;
+   },
+
+   evaluateLateral : func() {
+     return me.evaluateManagedLNAV();
+   },
+
+
+   #################
+   # evaluate managed SPD
+   #################
+   evaluateManagedSpeed : func() {
+     var retSpeed = SPD_OFF;
+     var altMode = getprop("/instrumentation/afs/vertical-alt-mode");
+     var vsMode = getprop("/instrumentation/afs/vertical-vs-mode");
+     var apMode = getprop("/instrumentation/flightdirector/autopilot-on");
+     var athrMode = getprop("/instrumentation/flightdirector/at-on");
+     var vnav = getprop("instrumentation/flightdirector/vnav");
+     var lnav  = getprop("instrumentation/flightdirector/lnav");
+     var spdMode = getprop("instrumentation/afs/speed-mode");
+     var curAlt = getprop("/position/altitude-ft");
+     var curFlightMode = getprop("/instrumentation/ecam/flight-mode");
+     var redAlt = getprop("/instrumentation/afs/thrust-reduce-alt");
+     var accAlt = getprop("/instrumentation/afs/thrust-accel-alt");
+     var crzAlt = getprop("/instrumentation/afs/thrust-cruise-alt");
+     var crzAcquire = getprop("/instrumentation/afs/acquire_crz");
+     var accelArm = getprop("/instrumentation/flightdirector/accel-arm");
+     var clbArm   = getprop("/instrumentation/flightdirector/climb-arm");
+     var afterTD  = getprop("instrumentation/flightdirector/past-td");
+     var decelAlt = getprop("instrumentation/afs/decelAlt");
+     var changeoverAlt = getprop("instrumentation/afs/changeover-alt");
+     
+     if (apMode == 1) {
+       if (spdMode == MANAGED_MODE) {
+         setprop("instrumentation/afs/speed-managed-mode",-1);
+         if (curAlt >= accAlt and curAlt < crzAlt and (vnav == VNAV_CLB or vnav == VNAV_SRS) and crzAcquire == 0) {
+           retSpeed = SPD_THRCLB;
+         }
+         if (curAlt > 5000 and afterTD == 1) {
+           retSpeed = SPD_THRDES;
+         }
+         if(curAlt > crzAlt-100 and afterTD == 0) {
+           retSpeed = SPD_CRZ;
+         }
+       } else {
+         setprop("instrumentation/afs/speed-managed-mode",0);
+         if (curAlt > changeoverAlt) {
+           retSpeed = SPD_MACH;
+         } else {
+           retSpeed = SPD_SPEED;
+         }
+       }
+     } else {
+       setprop("instrumentation/afs/speed-managed-mode",0);
+       retSpeed = SPD_OFF;
+     }
+     return retSpeed;
+   },
+
+
+   #########################
+   # evaluateArmedVertical
+   #########################
+   evaluteArmedVertical : func() {
+     var retMode = VNAV_OFF;
+     var altMode = getprop("/instrumentation/afs/vertical-alt-mode");
+     var vsMode = getprop("/instrumentation/afs/vertical-vs-mode");
+     var apMode = getprop("/instrumentation/flightdirector/autopilot-on");
+     var athrMode = getprop("/instrumentation/flightdirector/at-on");
+     var vnav = getprop("instrumentation/flightdirector/vnav");
+     var lnav  = getprop("instrumentation/flightdirector/lnav");
+     var spdMode = getprop("instrumentation/afs/speed-mode");
+     var curAlt = getprop("/position/altitude-ft");
+     var curFlightMode = getprop("/instrumentation/ecam/flight-mode");
+     var redAlt = getprop("/instrumentation/afs/thrust-reduce-alt");
+     var accAlt = getprop("/instrumentation/afs/thrust-accel-alt");
+     var crzAlt = getprop("/instrumentation/afs/thrust-cruise-alt");
+     var crzAcquire = getprop("/instrumentation/afs/acquire_crz");
+     var accelArm = getprop("/instrumentation/flightdirector/accel-arm");
+     var clbArm   = getprop("/instrumentation/flightdirector/climb-arm");
+     var afterTD  = getprop("instrumentation/flightdirector/past-td");
+     var decelAlt = getprop("instrumentation/afs/decelAlt");
+
+     return retMode;   
+   },
+
+
+   #########################
+   # evaluateArmedLateral
+   #########################
+   evaluteArmedLateral : func() {
+     var retMode = LNAV_OFF;
+     var altMode = getprop("/instrumentation/afs/vertical-alt-mode");
+     var vsMode = getprop("/instrumentation/afs/vertical-vs-mode");
+     var apMode = getprop("/instrumentation/flightdirector/autopilot-on");
+     var athrMode = getprop("/instrumentation/flightdirector/at-on");
+     var vnav = getprop("instrumentation/flightdirector/vnav");
+     var lnav  = getprop("instrumentation/flightdirector/lnav");
+     var spdMode = getprop("instrumentation/afs/speed-mode");
+     var curAlt = getprop("/position/altitude-ft");
+     var curFlightMode = getprop("/instrumentation/ecam/flight-mode");
+     var redAlt = getprop("/instrumentation/afs/thrust-reduce-alt");
+     var accAlt = getprop("/instrumentation/afs/thrust-accel-alt");
+     var crzAlt = getprop("/instrumentation/afs/thrust-cruise-alt");
+     var crzAcquire = getprop("/instrumentation/afs/acquire_crz");
+     var accelArm = getprop("/instrumentation/flightdirector/accel-arm");
+     var clbArm   = getprop("/instrumentation/flightdirector/climb-arm");
+     var afterTD  = getprop("instrumentation/flightdirector/past-td");
+     var decelAlt = getprop("instrumentation/afs/decelAlt");
+
+     return retMode;   
    },
 
 

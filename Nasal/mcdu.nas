@@ -18,6 +18,7 @@
 # 01-SEP-2009	S.H.	V1.0		Initial version
 # 13-DEC-2009	S.H.	V1.0.3		Calculate descent where more than one WP has unknown altitude
 # 28-APR-2010	S.H.	V1.0.6		Roughly calculate Vr and V2 based on Vso
+# 12-APR-2011	S.H.	V1.0.19		build internal flightplan
 #
 # 
 
@@ -26,10 +27,10 @@
 currentField = "";
 currentFieldPos = 0;
 inputValue = "";
-trace = 0;         ## Set to 0 to turn off all tracing messages
+trace = 1;         ## Set to 0 to turn off all tracing messages
 depDB = nil;
 arvDB = nil;
-version = "V1.0.19";
+version = "V1.0.20";
 
 routeClearArm = 0;
 airbusFMS = nil;   ###A380.fms;
@@ -188,6 +189,8 @@ keyPress = func(key) {
   tracer("set field: "~attr~", with value: "~inputValue);
   setprop(attr, inputValue);
 
+  ## here we can do field specific stuff
+
   if (currentField == "CRZ_FL") {
     var cruiseFt = num(inputValue);
     if (cruiseFt == nil) {
@@ -197,6 +200,9 @@ keyPress = func(key) {
     if (cruiseFt != nil) {
       cruiseFt = int(cruiseFt*100);
       setprop("/instrumentation/afs/thrust-cruise-alt",cruiseFt);
+      if (getprop("instrumentation/ecam/flight-mode") < 3 and cruiseFt > 20000) {
+        setprop("instrumentation/afs/target-altitude-ft",cruiseFt);
+      }
     }
   }
   if (currentField == "FLT_NBR") {
@@ -496,12 +502,7 @@ changePage = func(unit,page) {
      #  W = weight KG
 
      tracer(" active.to-perf calc Vso, Vr, V2");
-     var Vso = getprop("/velocities/Vso");
-     var Vr  = (Vso*1.4);
-     var V2  = (Vso*1.5)+10;
-     setprop("/instrumentation/afs/Vr", Vr);
-     setprop("/instrumentation/afs/V2", V2);
-     tracer("  Vso: "~Vso~", Vr: "~Vr~", V2: "~V2);
+     calcVSpeeds();
 
      var fltMode    = getprop("/instrumentation/ecam/flight-mode");
      if (fltMode == 2) {
@@ -519,6 +520,29 @@ changePage = func(unit,page) {
   setprop("/instrumentation/mcdu["~unit~"]/page",page);
 }
 
+
+calcVSpeeds = func() {
+   var Vso = getprop("/velocities/Vso");
+   if (Vso != nil) {
+     var flapConfig = getprop("instrumentation/afs/to-flaps");
+     var flapFactor = 1.4;
+     if (flapConfig == 1) {
+       flapFactor = 1.55;
+     }
+     if (flapConfig == 2) {
+       flapFactor = 1.41;
+     }
+     if (flapConfig == 3) {
+       flapFactor = 1.3;
+     }
+     var Vr  = (Vso*flapFactor);
+     var V2  = (Vso*(flapFactor+0.05))+10;
+     setprop("/instrumentation/afs/Vr", Vr);
+     setprop("/instrumentation/afs/V2", V2);
+     tracer("  Vso: "~Vso~", Vr: "~Vr~", V2: "~V2~", flapFactor: "~flapFactor);
+   }
+
+}
 
 
 #####################
@@ -569,7 +593,7 @@ selectRwyAction = func(rwy, unit) {
       ##setprop("/instrumentation/nav[0]/frequencies/selected-mhz-fmt",mhz);
     }
     wp = makeAirportWP(apt, rwyVal);
-    airbusFMS.replaceWPAt(wp, 0);
+    airbusFMS.appendWP(wp);
     var discWP = fmsWP.new();
     discWP.wp_name = "discontinuity";
     discWP.wp_type = "DISC";
@@ -614,6 +638,7 @@ selectSidAction = func(opt, unit) {
     var crzFl = getprop("/instrumentation/afs/CRZ_FL");
     tracer("Got back sid: "~sid.wp_name~", with: "~size(sid.wpts)~" wp");
     var toSpd = 200;
+    var discontIdx = airbusFMS.findWPType("DISC");
     for(var w=0; w != size(sid.wpts);w=w+1) {
       var wpIns = "";
       var wp = sid.wpts[w];
@@ -639,7 +664,8 @@ selectSidAction = func(opt, unit) {
         } else {
           toSpd = wpt.spd_csrt;
         }
-        airbusFMS.insertWP(wpt, wpLen);
+        airbusFMS.insertWP(wpt, discontIdx);
+        discontIdx = discontIdx+1;
       }
     }
     var transArm = 0;
@@ -1359,7 +1385,10 @@ insertAbsWP = func(id, index, lat, lon, alt) {
   setprop("/instrumentation/gps/command","route-insert-before");
 }
 
-
+# update Vr and V2 when we change the T.O. flaps config
+setlistener("instrumentation/afs/to-flaps", func(n) {
+  calcVSpeeds();
+});
 
 
 ### Call the init_mcdu after a few seconds to give time for other systems to settle.

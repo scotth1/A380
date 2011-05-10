@@ -69,6 +69,7 @@ apu_running=0;
 ecamRequestRef=0;
 radarLastCnt=0;
 radarLastAirportCnt=0;
+maxMPCnt = 0;
 
 NM2MTRS = 1852;
 METRE2NM = 0.000539956803;
@@ -86,8 +87,8 @@ CLmax = 2.4;
 srsFlapTarget = [263.0, 222.0, 210.0, 196.0, 182.0];   #another copy in system.nas
 flapPos       = [0, 0.2424, 0.5151, 0.7878, 1.0];
 
-trace = 0;
-version = "1.1.10";
+##trace = 0;
+version = "1.1.11";
 
 strobe_switch = props.globals.getNode("/controls/switches/strobe", 0);
 aircraft.light.new("sim/model/A380/lighting/strobe", [0.05, 1.2], strobe_switch);
@@ -100,77 +101,82 @@ fms = AirbusFMS.new();
 
 
 init_controls = func {
-setprop("/engines/engine[4]/off-start-run",0);     # APU state, 0=OFF, 1=START, 2=RUN
-setprop("/instrumentation/efis/baro",0.0);
-setprop("/instrumentation/efis/baro-std-mode",0);
-setprop("/instrumentation/efis/inhg",0);
-setprop("/instrumentation/efis/kpa",0);
-setprop("/instrumentation/efis/stab",0);
-setprop("/instrumentation/efis/baro-mode",1);
-setprop("/instrumentation/efis/fixed-temp",0.0);
-setprop("/instrumentation/efis/fixed-stab",0.0);
-setprop("/instrumentation/efis/fixed-pitch",0.0);
-setprop("/instrumentation/efis/fixed-vs",0.0);
-setprop("/instrumentation/efis/alt-mode",0.0);
-setprop("/instrumentation/efis_fo/baro",0.0);
-setprop("/instrumentation/efis_fo/baro-mode",1);
-setprop("/instrumentation/efis_fo/alt-mode",0.0);
-setprop("/instrumentation/ecam/flight-mode",1);    # A380 has 12 phases of flight
-setprop("/instrumentation/ecam/synoptic","door");  # the page that should be displayed on SD
-setprop("/instrumentation/ecam/page","door");      # the current page displayed on SD
-setprop("/instrumentation/gear/wow",1);            # to capture WOW events better
-setprop("/instrumentation/ecam/egt_limit_arm",0.0);
-setprop("/instrumentation/ecam/to-data", 0);
-setprop("/controls/engines/engine[0]/master",0);
-setprop("/controls/engines/engine[1]/master",0);
-setprop("/controls/engines/engine[2]/master",0);
-setprop("/controls/engines/engine[3]/master",0);
-setprop("/controls/engines/engine[0]/thrust-lever",0);
-setprop("/controls/engines/engine[1]/thrust-lever",0);
-setprop("/controls/engines/engine[2]/thrust-lever",0);
-setprop("/controls/engines/engine[3]/thrust-lever",0);
-setprop("/environment/turbulence/use-cloud-turbulence","true");
-setprop("/sim/current-view/field-of-view",60.0);
-setprop("/controls/gear/brake-parking",1.0);
-setprop("/controls/engines/ign-start",0);        # the IGN start switch on the OH
-setprop("/controls/APU/run",0);                  # what should we do with the APU (engine[4])
-setprop("/controls/afs/alt-inc-select",1000);
-var atmos = Atmos.new();
-##setprop("/controls/pressurisation/cabin_alt", getprop("/position/altitude-ft"));
-setprop("/instrumentation/pressurisation/target-cabin-pressure-psi", atmos.convertAltitudePressure("feet", getprop("/position/altitude-ft"), "psi"));
-setprop("/instrumentation/pressurisation/output-cabin-pressure-psi", atmos.convertAltitudePressure("feet", getprop("/position/altitude-ft"), "psi"));
+  setprop("/engines/engine[4]/off-start-run",0);     # APU state, 0=OFF, 1=START, 2=RUN
+  setprop("/instrumentation/efis/baro",0.0);
+  setprop("/instrumentation/efis/baro-std-mode",0);
+  setprop("/instrumentation/efis/inhg",0);
+  setprop("/instrumentation/efis/kpa",0);
+  setprop("/instrumentation/efis/stab",0);
+  setprop("/instrumentation/efis/baro-mode",1);
+  setprop("/instrumentation/efis/fixed-temp",0.0);
+  setprop("/instrumentation/efis/fixed-stab",0.0);
+  setprop("/instrumentation/efis/fixed-pitch",0.0);
+  setprop("/instrumentation/efis/fixed-vs",0.0);
+  setprop("/instrumentation/efis/alt-mode",0.0);
+  setprop("/instrumentation/efis_fo/baro",0.0);
+  setprop("/instrumentation/efis_fo/baro-mode",1);
+  setprop("/instrumentation/efis_fo/alt-mode",0.0);
+  setprop("/instrumentation/ecam/flight-mode",1);    # A380 has 12 phases of flight
+  setprop("/instrumentation/ecam/synoptic","door");  # the page that should be displayed on SD
+  setprop("/instrumentation/ecam/page","door");      # the current page displayed on SD
+  setprop("/instrumentation/gear/wow",1);            # to capture WOW events better
+  setprop("/instrumentation/ecam/egt_limit_arm",0.0);
+  setprop("/instrumentation/ecam/to-data", 0);
+  setprop("/controls/engines/engine[0]/master",0);
+  setprop("/controls/engines/engine[1]/master",0);
+  setprop("/controls/engines/engine[2]/master",0);
+  setprop("/controls/engines/engine[3]/master",0);
+  setprop("/controls/engines/engine[0]/thrust-lever",0);
+  setprop("/controls/engines/engine[1]/thrust-lever",0);
+  setprop("/controls/engines/engine[2]/thrust-lever",0);
+  setprop("/controls/engines/engine[3]/thrust-lever",0);
+  setprop("/environment/turbulence/use-cloud-turbulence","true");
+  setprop("/sim/current-view/field-of-view",60.0);
+  setprop("/controls/gear/brake-parking",1.0);
+  setprop("/controls/engines/ign-start",0);        # the IGN start switch on the OH
+  setprop("/controls/APU/run",0);                  # what should we do with the APU (engine[4])
+  setprop("/controls/afs/alt-inc-select",1000);
+  var atmos = Atmos.new();
+  ##setprop("/controls/pressurisation/cabin_alt", getprop("/position/altitude-ft"));
+  setprop("/instrumentation/pressurisation/target-cabin-pressure-psi", atmos.convertAltitudePressure("feet", getprop("/position/altitude-ft"), "psi"));
+  setprop("/instrumentation/pressurisation/output-cabin-pressure-psi", atmos.convertAltitudePressure("feet", getprop("/position/altitude-ft"), "psi"));
   setprop("/instrumentation/pressurisation/cabin-altitude-ft", getprop("/position/altitude-ft"));
   setprop("/instrumentation/pressurisation/cabin-pressure-psi", atmos.convertAltitudePressure("feet", getprop("/position/altitude-ft"), "psi"));
-setprop("/systems/electrical/apu-test",0);
-setprop("/instrumentation/annunciator/master-caution",0.0);
-setprop("/instrumentation/switches/seat-belt-sign",0.0);
-setprop("/systems/hydraulic/pump-psi[0]",0.0);
-setprop("/systems/hydraulic/pump-psi[1]",0.0);
-setprop("/surface-positions/speedbrake-pos-norm",0.0);
-setprop("/instrumentation/clock/ET-min",0);
-setprop("/instrumentation/clock/ET-hr",0);
-##setprop("/instrumentation/mk-viii/speaker/volume",5);
-setprop("/instrumentation/wxradar/display-mode",2);   #is 'arc'
+  setprop("/systems/electrical/apu-test",0);
+  setprop("/instrumentation/annunciator/master-caution",0.0);
+  setprop("/instrumentation/switches/seat-belt-sign",0.0);
+  setprop("/systems/hydraulic/pump-psi[0]",0.0);
+  setprop("/systems/hydraulic/pump-psi[1]",0.0);
+  setprop("/surface-positions/speedbrake-pos-norm",0.0);
+  setprop("/instrumentation/clock/ET-min",0);
+  setprop("/instrumentation/clock/ET-hr",0);
+  ##setprop("/instrumentation/mk-viii/speaker/volume",5);
+  setprop("/instrumentation/wxradar/display-mode",2);   #is 'arc'
 
-#payload - Crew, PAX, Cargo
-setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[0]",350);
-setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[1]",48420);
-setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[2]",28350);
-setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[3]",21000);
-setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[4]",14328);
-setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[5]",1200);
+  #payload - Crew, PAX, Cargo
+  setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[0]",350);
+  setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[1]",48420);
+  setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[2]",28350);
+  setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[3]",21000);
+  setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[4]",14328);
+  setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[5]",1200);
 
-reset_et();
+  #setprop("fdm/jsbsim/propulsion/engine[0]/bleed-factor",0.0);
+  #setprop("fdm/jsbsim/propulsion/engine[1]/bleed-factor",0.0);
+  #setprop("fdm/jsbsim/propulsion/engine[2]/bleed-factor",0.0);
+  #setprop("fdm/jsbsim/propulsion/engine[3]/bleed-factor",0.0);
 
-DOORS.doorsystem.aftCargoDoor.open();
-DOORS.doorsystem.forwardCargoDoor.open();
-DOORS.doorsystem.paxLeftLow1Door.open();
-DOORS.doorsystem.paxLeftUp1Door.open();
+  reset_et();
 
-settimer(update_systems,0);
-setprop("/systems/electrical/apu-test",0);
-print("Aircraft systems initialised");
-settimer(update_cabin_pressure, 2);
+  DOORS.doorsystem.aftCargoDoor.open();
+  DOORS.doorsystem.forwardCargoDoor.open();
+  DOORS.doorsystem.paxLeftLow1Door.open();
+  DOORS.doorsystem.paxLeftUp1Door.open();
+
+  settimer(update_systems,0);
+  setprop("/systems/electrical/apu-test",0);
+  print("Aircraft systems initialised");
+  settimer(update_cabin_pressure, 2);
 }
 
 
@@ -290,6 +296,10 @@ update_radar = func {
       }
     }
   }
+  for(i=mpPos; i < maxMPCnt; i=i+1) {
+    setprop("/instrumentation/radar/mp["~i~"]/valid",0);
+  }
+  maxMPCnt = mpPos;
 
   ## plot waypoints
   ##
@@ -669,11 +679,14 @@ update_clock = func {
 update_engines = func {
 
   # update engine data and start engines
+  var totalFuel = 0;
   for(e=0; e < 4; e=e+1) {
     ign = getprop("/controls/engines/ign-start");
     e_start  = getprop("/controls/engines/engine["~e~"]/starter");
     e_master = getprop("/controls/engines/engine["~e~"]/master");
     e_ign    = getprop("/controls/engines/engine["~e~"]/ignition");
+    e_fu_kg  = getprop("fdm/jsbsim/propulsion/engine["~e~"]/fuel-used-kg");
+    totalFuel = totalFuel+e_fu_kg;
     hpsi     = getprop("/engines/engine["~e~"]/n2");
     if(hpsi == nil){
       hpsi =0.0;
@@ -720,6 +733,7 @@ update_engines = func {
       setprop("/instrumentation/ecam/egt_limit_arm",1);
     }
   }
+  setprop("consumables/fuel/total-used-kg",totalFuel);
 
   ### APU stuff 
   var apuN1 = getprop("/engines/engine[4]/n1");
@@ -916,7 +930,7 @@ update_systems = func {
 
   baro = getprop("/instrumentation/altimeter/setting-inhg");
   setprop("/instrumentation/efis/inhg",baro);
-  setprop("/instrumentation/efis/kpa",int(baro * 33.8637526));
+  setprop("/instrumentation/efis/kpa",baro * 33.8637526);
   setprop("/instrumentation/efis/stab",getprop("/controls/flight/elevator-trim") * 15);
 
   if(getprop("/instrumentation/efis/baro-mode")== 0){
@@ -1072,13 +1086,22 @@ setlistener("/sim/signals/fdm-initialized", func {
  settimer(update_metric, 2);
  settimer(update_radar,5);
  update_ewd();
+ #setprop("fdm/jsbsim/propulsion/engine[0]/bleed-factor",0.0);
+ #setprop("fdm/jsbsim/propulsion/engine[1]/bleed-factor",0.0);
+ #setprop("fdm/jsbsim/propulsion/engine[2]/bleed-factor",0.0);
+ #setprop("fdm/jsbsim/propulsion/engine[3]/bleed-factor",0.0);
+ print("Aircraft Systems ready.");
 });
 
 
 # wait for master avionics to be on to start radar
 #setlistener("/controls/switches/master-avionics", func(n) {
-#  #print("Aircraft awake now! - "~n.getValue());
-#  #update_radar();
+# print("Aircraft awake now! - "~n.getValue());
+# update_radar();
+# setprop("fdm/jsbsim/propulsion/engine[0]/bleed-factor",0.0);
+# setprop("fdm/jsbsim/propulsion/engine[1]/bleed-factor",0.0);
+# setprop("fdm/jsbsim/propulsion/engine[2]/bleed-factor",0.0);
+# setprop("fdm/jsbsim/propulsion/engine[3]/bleed-factor",0.0);
 #});
 
 # 
@@ -1105,6 +1128,7 @@ setlistener("/controls/engines/engine[0]/master", func(n) {
 # once we have engine bleed, open air valve
 setlistener("/controls/pneumatic/engine[0]/bleed", func(n) {
   bleed = n.getValue();
+  tracer("engine[0] bleed: "~bleed);
   if (bleed == 1) {
     setprop("/controls/pressurization/apu/bleed-on",0);
     setprop("/controls/pressurization/engine[0]/bleed-on",1);
@@ -1136,6 +1160,7 @@ setlistener("/controls/engines/engine[1]/master", func(n) {
 # once we have engine bleed open air valve
 setlistener("/controls/pneumatic/engine[1]/bleed", func(n) {
   bleed = n.getValue();
+  tracer("engine[1] bleed: "~bleed);
   if (bleed == 1) {
     setprop("/controls/pressurization/apu/bleed-on",0);
     setprop("/controls/pressurization/engine[1]/bleed-on",1);
@@ -1165,6 +1190,7 @@ setlistener("/controls/engines/engine[2]/master", func(n) {
 # once we have engine bleed open air valve
 setlistener("/controls/pneumatic/engine[2]/bleed", func(n) {
   bleed = n.getValue();
+  tracer("engine[2] bleed: "~bleed);
   if (bleed == 1) {
     setprop("/controls/pressurization/apu/bleed-on",0);
     setprop("/controls/pressurization/engine[2]/bleed-on",1);
@@ -1200,6 +1226,7 @@ setlistener("/controls/engines/engine[3]/master", func(n) {
 # once we have engine bleed open air valve
 setlistener("/controls/pneumatic/engine[3]/bleed", func(n) {
   bleed = n.getValue();
+  tracer("engine[3] bleed: "~bleed);
   if (bleed == 1) {
     setprop("/controls/pressurization/apu/bleed-on",0);
     setprop("/controls/pressurization/engine[3]/bleed-on",1);
@@ -1213,6 +1240,7 @@ setlistener("/controls/pneumatic/engine[3]/bleed", func(n) {
 # control APU bleed air to pressurisation
 setlistener("/controls/pneumatic/APU-bleed", func(n) {
   bleed = n.getValue();
+  tracer("apu[0] bleed: "~bleed);
   if (bleed == 1) {
     setprop("/controls/pressurization/apu/bleed-on",1);
   } else {
@@ -1223,7 +1251,8 @@ setlistener("/controls/pneumatic/APU-bleed", func(n) {
 
 # control HOT-AIR valves from AIR PACKS
 setlistener("/controls/pressurization/pack[0]/pack-on", func(n) {
-   pack = n.getValue();
+   var pack = n.getValue();
+   tracer("pack[0] bleed: "~pack);
    if (pack == 1) {
      settimer(open_hotair, 1);
      var currBleed = getprop("fdm/jsbsim/propulsion/engine[0]/bleed-factor");
@@ -1235,17 +1264,22 @@ setlistener("/controls/pressurization/pack[0]/pack-on", func(n) {
    } else {
      setprop("/controls/pressurization/pack[0]/hotair-on",0);
      var currBleed = getprop("fdm/jsbsim/propulsion/engine[0]/bleed-factor");
-     tracer("pack[0] off - currBleed: "~currBleed);
-     setprop("fdm/jsbsim/propulsion/engine[0]/bleed-factor", currBleed-0.1);
+     if (currBleed > 0) {
+       tracer("pack[0] off - currBleed: "~currBleed);
+       setprop("fdm/jsbsim/propulsion/engine[0]/bleed-factor", currBleed-0.1);
+     }
      currBleed = getprop("fdm/jsbsim/propulsion/engine[1]/bleed-factor");
-     tracer("pack[0] off - currBleed: "~currBleed);
-     setprop("fdm/jsbsim/propulsion/engine[1]/bleed-factor", currBleed-0.1);
+     if (currBleed > 0) {
+       tracer("pack[0] off - currBleed: "~currBleed);
+       setprop("fdm/jsbsim/propulsion/engine[1]/bleed-factor", currBleed-0.1);
+     }
    }
 });
 
 
 setlistener("/controls/pressurization/pack[1]/pack-on", func(n) {
-   pack = n.getValue();
+   var pack = n.getValue();
+   tracer("pack[1] bleed: "~pack);
    if (pack == 1) {
      settimer(open_hotair, 1);
      var currBleed = getprop("fdm/jsbsim/propulsion/engine[2]/bleed-factor");
@@ -1257,11 +1291,15 @@ setlistener("/controls/pressurization/pack[1]/pack-on", func(n) {
    } else {
      setprop("/controls/pressurization/pack[1]/hotair-on",0);
      var currBleed = getprop("fdm/jsbsim/propulsion/engine[2]/bleed-factor");
-     tracer("pack[1] off - currBleed: "~currBleed);
-     setprop("fdm/jsbsim/propulsion/engine[2]/bleed-factor", currBleed-0.1);
+     if (currBleed > 0) {
+       tracer("pack[1] off - currBleed: "~currBleed);
+       setprop("fdm/jsbsim/propulsion/engine[2]/bleed-factor", currBleed-0.1);
+     }
      currBleed = getprop("fdm/jsbsim/propulsion/engine[3]/bleed-factor");
-     tracer("pack[1] on - currBleed: "~currBleed);
-     setprop("fdm/jsbsim/propulsion/engine[3]/bleed-factor", currBleed+0.1);
+     if (currBleed > 0) {
+       tracer("pack[1] on - currBleed: "~currBleed);
+       setprop("fdm/jsbsim/propulsion/engine[3]/bleed-factor", currBleed-0.1);
+     }
    }
 });
 
@@ -1274,6 +1312,15 @@ open_hotair = func() {
   }
 }
 
+setlistener("fdm/jsbsim/propulsion/engine[0]/bleed-factor", func(n) {
+   var engBleed = n.getValue();
+   tracer("jsbsim engine[0] bleed: "~engBleed);
+});
+
+setlistener("fdm/jsbsim/propulsion/engine[2]/bleed-factor", func(n) {
+   var engBleed = n.getValue();
+   tracer("jsbsim engine[2] bleed: "~engBleed);
+});
 
 # monitor main gear wow
 setlistener("/instrumentation/gear/wow", func(n) {
@@ -1463,11 +1510,16 @@ setlistener("/controls/electric/ground/external_4", func(n) {
 setlistener("/controls/anti-ice/engine[0]/inlet-heat", func(n) {
    var anti = 0;
    var currBleed = getprop("fdm/jsbsim/propulsion/engine[0]/bleed-factor");
-   if (n.getValue() == 0) {
+   var heat = n.getValue();
+   if (heat == 0) {
      anti = -0.2;
+     if (currBleed == 0) {
+       anti = 0.0;
+     }
    } else {
      anti = 0.2;
    }
+   tracer("[SYS] inlet-heat - heat: "~heat~", currBleed: "~currBleed~", anti: "~anti);
    setprop("fdm/jsbsim/propulsion/engine[0]/bleed-factor", currBleed+anti);
 });
 
@@ -1476,6 +1528,9 @@ setlistener("/controls/anti-ice/engine[1]/inlet-heat", func(n) {
    var currBleed = getprop("fdm/jsbsim/propulsion/engine[1]/bleed-factor");
    if (n.getValue() == 0) {
      anti = -0.2;
+     if (currBleed == 0) {
+       anti = 0.0;
+     }
    } else {
      anti = 0.2;
    }
@@ -1487,6 +1542,9 @@ setlistener("/controls/anti-ice/engine[2]/inlet-heat", func(n) {
    var currBleed = getprop("fdm/jsbsim/propulsion/engine[2]/bleed-factor");
    if (n.getValue() == 0) {
      anti = -0.2;
+     if (currBleed == 0) {
+       anti = 0.0;
+     }
    } else {
      anti = 0.2;
    }
@@ -1498,6 +1556,9 @@ setlistener("/controls/anti-ice/engine[3]/inlet-heat", func(n) {
    var currBleed = getprop("fdm/jsbsim/propulsion/engine[3]/bleed-factor");
    if (n.getValue() == 0) {
      anti = -0.2;
+     if (currBleed == 0) {
+       anti = 0.0;
+     }
    } else {
      anti = 0.2;
    }

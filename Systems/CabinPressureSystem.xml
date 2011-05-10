@@ -15,12 +15,12 @@
     <and>
       <or>
       <greater-than>
-        <property>/velocities/vertical-speed-fps</property>
-        <value>3</value>
+        <property>instrumentation/vertical-speed-indicator/indicated-speed-fpm</property>
+        <value>800</value>
       </greater-than>
       <less-than>
-        <property>/velocities/vertical-speed-fps</property>
-        <value>-5</value>
+        <property>instrumentation/vertical-speed-indicator/indicated-speed-fpm</property>
+        <value>-800</value>
       </less-than>
     </or>
     <and>
@@ -31,9 +31,13 @@
       <less-than>
         <property>/instrumentation/pressurisation/cabin-altitude-ft</property>
         <!-- property>/controls/pressurisation/cabin-cruise-ft</property -->
-        <value>8500</value>
+        <value>7500</value>
       </less-than>
     </and>
+    <not-equal>
+      <property>autopilot/locks/altitude</property>
+      <value>altitude-hold</value>
+    </not-equal>
     </and>
   </input>
   <output>
@@ -45,10 +49,13 @@
    <name>descent logic</name>
    <input>
      <and>
-       <property>/controls/pressurisation/engaged</property>
+       <equals>
+         <property>/controls/pressurisation/engaged</property>
+         <value>1</value>
+       </equals>
        <less-than>
-         <property>/velocities/vertical-speed-fps</property>
-         <value>-5</value>
+         <property>instrumentation/vertical-speed-indicator/indicated-speed-fpm</property>
+         <value>-800</value>
        </less-than>
      </and>
    </input>
@@ -61,10 +68,13 @@
    <name>ascent logic</name>
    <input>
      <and>
-       <property>/controls/pressurisation/engaged</property>
+       <equals>
+         <property>/controls/pressurisation/engaged</property>
+         <value>1</value>
+       </equals>
        <greater-than>
-         <property>/velocities/vertical-speed-fps</property>
-         <value>3</value>
+         <property>instrumentation/vertical-speed-indicator/indicated-speed-fpm</property>
+         <value>800</value>
        </greater-than>
       </and>
    </input>
@@ -84,18 +94,24 @@
       </condition>
       <expression>
         <table>
-          <property>/velocities/vertical-speed-fps</property>>
+          <property>instrumentation/vertical-speed-indicator/indicated-speed-fpm</property>>
           <entry>
             <ind>-5000</ind><dep>-1.10</dep>
           </entry>
           <entry>
-            <ind>-8.3</ind><dep>-1.05</dep>
+            <ind>-3000</ind><dep>-1.05</dep>
+          </entry>
+          <entry>
+            <ind>-1000</ind><dep>0</dep>
           </entry>
           <entry>
             <ind>0</ind><dep>0</dep>
           </entry>
           <entry>
-            <ind>5</ind><dep>0.98</dep>
+            <ind>1000</ind><dep>0</dep>
+          </entry>
+          <entry>
+            <ind>3000</ind><dep>0.98</dep>
           </entry>
           <entry>
             <ind>5000</ind><dep>1.10</dep>
@@ -103,7 +119,7 @@
         </table>
       </expression>
     </input>
-    <input>
+    <input>  <!-- if engaged is not true then return the input value 0 -->
       <condition>
           <not><property>/controls/pressurisation/engaged</property></not>
       </condition>
@@ -117,10 +133,16 @@
 <filter>
   <type>gain</type>
   <name>descent ratio</name>
-  <gain>1.0</gain>
+  <gain>0.8</gain>
   <input>
     <condition>
+      <and>
           <property>/controls/pressurisation/engaged</property>
+          <not-equal>
+            <property>autopilot/locks/altitude</property>
+            <value>altitude-hold</value>
+          </not-equal>
+      </and>
     </condition>
     <expression>
       <div>
@@ -152,10 +174,16 @@
 <filter>
   <type>gain</type>
   <name>ascent ratio</name>
-  <gain>-1.0</gain>
+  <gain>-0.8</gain>
   <input>
     <condition>
+      <and>
           <property>/controls/pressurisation/engaged</property>
+          <not-equal>
+            <property>autopilot/locks/altitude</property>
+            <value>altitude-hold</value>
+          </not-equal>
+      </and>
     </condition>
     <expression>
       <div>
@@ -299,6 +327,10 @@
             <property>/controls/pressurisation/engaged</property>
             <value>1</value>
           </equals>
+          <not-equal>
+            <property>autopilot/locks/altitude</property>
+            <value>altitude-hold</value>
+          </not-equal>
           <or>
             <equals>
               <property>/controls/pressurisation/ascent-engaged</property>
