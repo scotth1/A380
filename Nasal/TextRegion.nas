@@ -30,11 +30,16 @@ var TextRegion = {
         return me;
     },
 
-
+   #
+   # append some text in default colour
+   #
    append : func(text) {
      me.appendStyle(text, 0.1, 0.8, 0.1);
    },
 
+   #
+   # append some text to the region and set the colour
+   #
    appendStyle : func(text, red, green, blue) {
      var lineNode = me.baseNode.getNode("line["~me.posLine~"]",1);
      var redNode  = me.baseNode.getNode("red["~me.posLine~"]",1);
@@ -49,12 +54,18 @@ var TextRegion = {
      }
    },
 
+   #
+   # simply replace the text at a particular line
+   #
    textAt : func(index, text) {
      var lineNode = me.baseNode.getNode("line["~index~"]",1);
      lineNode.setValue(text);
      me.posLine = index;
    },
 
+   #
+   # clears out all the lines and resets the pointer
+   #
    clear : func() {
      for(var p = 0; p != me.maxLines; p=p+1) {
           var lineNode = me.baseNode.getNode("line["~p~"]",1);
@@ -63,6 +74,10 @@ var TextRegion = {
      me.posLine = 0;
    },
 
+   #
+   # called reset when you are done writing to the region
+   # it will reset the pointer so next frame you start writing from the top again
+   #
    reset : func() {
      for(var p = me.posLine; p != me.maxLines; p=p+1) {
        var lineNode = me.baseNode.getNode("line["~p~"]",1);

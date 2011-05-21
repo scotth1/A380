@@ -136,15 +136,20 @@
        <pitch-offset-deg>-10</pitch-offset-deg>   <!-- -15 -->
        <default-field-of-view-deg type="double">90.0</default-field-of-view-deg>  <!-- 70.0 -->
        <heading-offset-deg type="double">358.0</heading-offset-deg>
-      </config>
-      <dynamic>
+     </config>
+     <dynamic>
         <enabled type="bool">false</enabled>
-       </dynamic>
-     </view>
-     <view n="102">
-       <enabled type="bool">false</enabled>
-     </view>
-     <chase-distance-m>-100</chase-distance-m> <!-- -75 -->
+     </dynamic>
+  </view>
+  <view n="102">
+    <name>jump seat</name>
+    <enabled type="bool">false</enabled>
+  </view>
+  <view n="103">
+    <name>unused</name>
+    <enabled type="bool">false</enabled>
+  </view>
+  <chase-distance-m>-100</chase-distance-m> <!-- -75 -->
   
   <flaps>
 	  <setting>0.000</setting>  <!-- flaps up -->

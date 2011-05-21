@@ -132,6 +132,8 @@ init_controls = func {
   setprop("/controls/engines/engine[3]/thrust-lever",0);
   setprop("/environment/turbulence/use-cloud-turbulence","true");
   setprop("/sim/current-view/field-of-view",60.0);
+  setprop("/sim/view[102]/enabled", 0);
+  setprop("/sim/view[103]/enabled", 0);
   setprop("/controls/gear/brake-parking",1.0);
   setprop("/controls/engines/ign-start",0);        # the IGN start switch on the OH
   setprop("/controls/APU/run",0);                  # what should we do with the APU (engine[4])
@@ -483,6 +485,8 @@ update_radar = func {
         }
       }
     }
+  } else {
+    setprop("/instrumentation/ewd/flap-overspeed",0);
   }
   var cgX    = getprop("/fdm/jsbsim/inertia/cg-x-in");
   var gwcg   = (1629.615473-cgX);
@@ -823,18 +827,30 @@ check_acquire_mode = func {
      var selectAlt = getprop("/instrumentation/afs/target-altitude-ft");
      if (vsSpeed > 0) {
        if (alt >= (selectAlt-300)) {
-         setprop("/instrumentation/flightdirector/vnav", VNAV_ALT);
-         setprop("/instrumentation/flightdirector/alt-acquire-mode",0);
-         var aFMS = AirbusFMS.new();
-         setprop("/instrumentation/flightdirector/vnav-arm", aFMS.evaluateManagedVNAV());
+         setprop("autopilot/settings/target-altitude-ft", getprop("instrumentation/afs/target-altitude-ft"));
+         setprop("autopilot/locks/altitude","altitude-hold");
+         ##setprop("/instrumentation/flightdirector/vnav", VNAV_ALT);
+         ##setprop("/instrumentation/flightdirector/alt-acquire-mode",0);
+         if (getprop("/instrumentation/flightdirector/vnav-arm") == VNAV_OFF and getprop("instrumentation/afs/vertical-alt-mode") == 0) {
+           var aFMS = AirbusFMS.new();
+           setprop("/instrumentation/flightdirector/vnav-arm", aFMS.evaluateManagedVNAV());
+         } else {
+           setprop("/instrumentation/flightdirector/vnav-arm", VNAV_OFF);
+         }
        }
      }
      if (vsSpeed < 0) {
        if (alt <= (selectAlt+300)) {
-         setprop("/instrumentation/flightdirector/vnav", VNAV_ALT);
-         setprop("/instrumentation/flightdirector/alt-acquire-mode",0);
-         var aFMS = AirbusFMS.new();
-         setprop("/instrumentation/flightdirector/vnav-arm", aFMS.evaluateManagedVNAV());
+         setprop("autopilot/settings/target-altitude-ft", getprop("instrumentation/afs/target-altitude-ft"));
+         setprop("autopilot/locks/altitude","altitude-hold");
+         ##setprop("/instrumentation/flightdirector/vnav", VNAV_ALT);
+         ##setprop("/instrumentation/flightdirector/alt-acquire-mode",0);
+         if (getprop("/instrumentation/flightdirector/vnav-arm") == VNAV_OFF and getprop("instrumentation/afs/vertical-alt-mode") == 0) {
+           var aFMS = AirbusFMS.new();
+           setprop("/instrumentation/flightdirector/vnav-arm", aFMS.evaluateManagedVNAV());
+         } else {
+           setprop("/instrumentation/flightdirector/vnav-arm", VNAV_OFF);
+         }
        }
      }
    }

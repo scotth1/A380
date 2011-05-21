@@ -30,7 +30,7 @@ inputValue = "";
 trace = 1;         ## Set to 0 to turn off all tracing messages
 depDB = nil;
 arvDB = nil;
-version = "V1.0.20";
+version = "V1.0.21";
 
 routeClearArm = 0;
 airbusFMS = nil;   ###A380.fms;
@@ -593,11 +593,17 @@ selectRwyAction = func(rwy, unit) {
       ##setprop("/instrumentation/nav[0]/frequencies/selected-mhz-fmt",mhz);
     }
     wp = makeAirportWP(apt, rwyVal);
-    airbusFMS.appendWP(wp);
+    if (airbusFMS.findWPName(wp.wp_name) == nil) {
+      airbusFMS.appendWP(wp);
+    }
     var discWP = fmsWP.new();
     discWP.wp_name = "discontinuity";
     discWP.wp_type = "DISC";
-    airbusFMS.appendWP(discWP);
+    tracer("[selectRwyAction] check if existing DISC");
+    if (airbusFMS.findWPType("DISC") == nil) {
+      tracer("Append DISC");
+      airbusFMS.appendWP(discWP);
+    }
   } else {
     var apt = airportinfo(getprop("/instrumentation/afs/TO"));
     var mhz = getILS(apt,rwyVal);
@@ -609,7 +615,7 @@ selectRwyAction = func(rwy, unit) {
     }
     wp = makeAirportWP(apt, rwyVal);
     var idx = airbusFMS.getPlanSize()-1;
-    if (airbusFMS.getWP(idx).wp_type == "APT" and idx > 0) {
+    if (airbusFMS.findWPName(wp.wp_name) != nil) {
       airbusFMS.replaceWPAt(wp, idx);
     } else {
       airbusFMS.appendWP(wp);
@@ -638,6 +644,7 @@ selectSidAction = func(opt, unit) {
     var crzFl = getprop("/instrumentation/afs/CRZ_FL");
     tracer("Got back sid: "~sid.wp_name~", with: "~size(sid.wpts)~" wp");
     var toSpd = 200;
+    airbusFMS.clearWPType("SID");
     var discontIdx = airbusFMS.findWPType("DISC");
     for(var w=0; w != size(sid.wpts);w=w+1) {
       var wpIns = "";
@@ -774,6 +781,7 @@ selectSidAction = func(opt, unit) {
       wp.wp_lon =  tdLon;
       wp.alt_csrt = crzFt;
       wp.spd_csrt = getprop("/instrumentation/afs/des_mach");
+      airbusFMS.clearWPType("T/D");
       var disIdx = airbusFMS.findWPType("DISC");
       airbusFMS.insertWP(wp, disIdx+1);
       wpLen = getprop("/autopilot/route-manager/route/num");
@@ -785,6 +793,7 @@ selectSidAction = func(opt, unit) {
     }
 
     var appSpd = 270;
+    airbusFMS.clearWPType("STAR");
     foreach(var w; star.wpts) {
       var wpIns = "";
       var wpLen = getprop("/autopilot/route-manager/route/num");
@@ -1044,6 +1053,7 @@ updateApproachAlts = func() {
             var existIdPos = airbusFMS.findWPName(rtId);
             if (existIdPos == nil) {
               existIdPos = tdIdx;
+              appWP.wp_type = "STAR";
             } else {
               appWP = airbusFMS.getWPIdx(existIdPos);
               if (appWP.spd_csrt != nil and appWP.spd_csrt < appSpeed) {
