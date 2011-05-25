@@ -561,6 +561,7 @@ setlistener("/autopilot/route-manager/current-wp", func(n) {
       }
     }
   }
+  
 });
 
 
