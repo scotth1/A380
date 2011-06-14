@@ -607,7 +607,7 @@
       <input>/autopilot/internal/elevator-trim-filter</input>
       <output>/controls/flight/elevator-trim</output>
       <type>noise-spike</type>
-      <max-rate-of-change>0.5</max-rate-of-change>
+      <max-rate-of-change>0.56</max-rate-of-change> <!-- over 3.5 seconds -->
     </filter>
 
 
@@ -686,7 +686,7 @@
      <enable>
        <condition>
          <and>
-         <or>
+         <!-- or>
           <equals>
             <property>/autopilot/locks/speed</property>
             <value>speed-with-pitch-trim</value>
@@ -695,7 +695,11 @@
             <property>/autopilot/locks/speed</property>
             <value>mach-with-pitch-trim</value>
           </equals>
-         </or>
+         </or -->
+         <equals>
+           <property>instrumentation/flightdirector/spd</property>
+           <value>8</value>  <!-- SPD_THRIDL -->
+         </equals>
          <greater-than>
            <property>controls/engines/engine[0]/throttle</property>
            <value>0</value>

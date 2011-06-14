@@ -35,7 +35,8 @@ SPD_THRCLB=3;
 SPD_SPEED=4;
 SPD_MACH=5;
 SPD_CRZ=6;
-SPD_THRIDL=7;
+SPD_THRDES=7;
+SPD_THRIDL=8;
 
 aircraft.livery.init("Aircraft/A380/XML/Liveries");
 
@@ -826,7 +827,7 @@ check_acquire_mode = func {
      var vsSpeed = getprop("/velocities/vertical-speed-fps");
      var selectAlt = getprop("/instrumentation/afs/target-altitude-ft");
      if (vsSpeed > 0) {
-       if (alt >= (selectAlt-300)) {
+       if (alt >= (selectAlt-400)) {
          setprop("autopilot/settings/target-altitude-ft", getprop("instrumentation/afs/target-altitude-ft"));
          setprop("autopilot/locks/altitude","altitude-hold");
          ##setprop("/instrumentation/flightdirector/vnav", VNAV_ALT);
@@ -840,7 +841,7 @@ check_acquire_mode = func {
        }
      }
      if (vsSpeed < 0) {
-       if (alt <= (selectAlt+300)) {
+       if (alt <= (selectAlt+400)) {
          setprop("autopilot/settings/target-altitude-ft", getprop("instrumentation/afs/target-altitude-ft"));
          setprop("autopilot/locks/altitude","altitude-hold");
          ##setprop("/instrumentation/flightdirector/vnav", VNAV_ALT);
