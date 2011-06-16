@@ -30,7 +30,7 @@ inputValue = "";
 trace = 1;         ## Set to 0 to turn off all tracing messages
 depDB = nil;
 arvDB = nil;
-version = "V1.0.21";
+version = "V1.0.22";
 
 routeClearArm = 0;
 airbusFMS = nil;   ###A380.fms;
@@ -790,6 +790,33 @@ selectSidAction = func(opt, unit) {
       #print("[FMS] using wpStr: "~wpStr);
       #setprop(wpStr~"/id","TD");
       #setprop(wpStr~"/name","TD");
+    } else {
+      var difDist = 15;
+      var firstWpCoord = geo.Coord.new();
+      firstWpCoord.set_latlon(firstWp.wp_lat, firstWp.wp_lon, crzFt);
+      var prevHdg = firstWpCoord.course_to(prevCoord); 
+      tracer("[FMS] enroute hdg: "~prevHdg);
+      var hdg = prevHdg;
+      tracer("[FMS] find point at course: "~hdg~", dist: "~difDist~"nm from: "~firstWp.wp_name);
+      var tdCoord = firstWpCoord.apply_course_distance(hdg, difDist*NM2MTRS);
+      var tdLat = tdCoord.lat();
+      var tdLon = tdCoord.lon();
+      tracer("T/D lat: "~tdLat~", lon: "~tdLon);
+      var tdIns = sprintf("@insert %i:%s,%s@%i",wpLen-1,tdLon,tdLat,int(crzFt));
+      tracer("insert T/D: "~tdIns);
+      insertAbsWP("(T/D)",wpLen-1,tdLat,tdLon,int(crzFt));
+      var wp = fmsWP.new();
+      wp.wp_name = "(T/D)";
+      wp.wp_type = "T/D";
+      wp.wp_lat =  tdLat;
+      wp.wp_lon =  tdLon;
+      wp.alt_csrt = crzFt;
+      wp.spd_csrt = getprop("/instrumentation/afs/des_mach");
+      airbusFMS.clearWPType("T/D");
+      var disIdx = airbusFMS.findWPType("DISC");
+      airbusFMS.insertWP(wp, disIdx+1);
+      wpLen = getprop("/autopilot/route-manager/route/num");
+      tracer("wpLen now: "~wpLen);
     }
 
     var appSpd = 270;
