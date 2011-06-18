@@ -823,10 +823,11 @@ update_engines = func {
 check_acquire_mode = func {
    var acquireMode = getprop("/instrumentation/flightdirector/alt-acquire-mode");
    if (acquireMode == 1) {
+     var vnavMode = getprop("instrumentation/flightdirector/vnav");
      var alt = getprop("/position/altitude-ft");
      var vsSpeed = getprop("/velocities/vertical-speed-fps");
      var selectAlt = getprop("/instrumentation/afs/target-altitude-ft");
-     if (vsSpeed > 0) {
+     if (vsSpeed > 0 and vnavMode != VNAV_DES and vnavMode != VNAV_OPDES) {
        if (alt >= (selectAlt-400)) {
          setprop("autopilot/settings/target-altitude-ft", getprop("instrumentation/afs/target-altitude-ft"));
          setprop("autopilot/locks/altitude","altitude-hold");
@@ -841,7 +842,7 @@ check_acquire_mode = func {
        }
      }
      if (vsSpeed < 0) {
-       if (alt <= (selectAlt+400)) {
+       if (alt <= (selectAlt+400) and vnavMode != VNAV_CLB and vnavMode != VNAV_OPCLB) {
          setprop("autopilot/settings/target-altitude-ft", getprop("instrumentation/afs/target-altitude-ft"));
          setprop("autopilot/locks/altitude","altitude-hold");
          ##setprop("/instrumentation/flightdirector/vnav", VNAV_ALT);
