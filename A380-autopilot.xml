@@ -740,8 +740,8 @@
                           <!-- unfiltered derivative error -->
       <Ti>10.0</Ti>        <!-- integrator time --> <!-- was 40 2011-04-30 -->
       <Td>0.00001</Td>    <!-- derivator time -->
-      <u_min>-5.0</u_min><!-- minimum output clamp -->
-      <u_max>18.0</u_max> <!-- maximum output clamp -->
+      <u_min>-15.0</u_min><!-- minimum output clamp -->
+      <u_max>15.0</u_max> <!-- maximum output clamp -->
     </config>
   </pid-controller>
   
@@ -769,8 +769,8 @@
                           <!-- unfiltered derivative error -->
       <Ti>5.0</Ti>        <!-- integrator time -->  <!-- was 40 2011-04-30 -->
       <Td>0.00001</Td>    <!-- derivator time -->
-      <u_min>-4.0</u_min><!-- minimum output clamp -->
-      <u_max>4.0</u_max> <!-- maximum output clamp -->
+      <u_min>-15.0</u_min><!-- minimum output clamp -->
+      <u_max>15.0</u_max> <!-- maximum output clamp -->
     </config>
   </pid-controller>
 

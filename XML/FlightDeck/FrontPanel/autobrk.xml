@@ -1,0 +1,165 @@
+<?xml version="1.0"?>
+<PropertyList>
+
+  <path>../../../Models/FlightDeck/FrontPanel/autobrk.ac</path> 
+  <texture-path>../../../Textures/FlightDeck/FrontPanel</texture-path>  
+  <offsets>
+    <z-m>-0.005</z-m>
+  </offsets>
+
+  <animation>
+    <type>select</type>
+    <object-name>gear1.ind</object-name>
+    <condition>
+      <greater-than>
+        <property>gear/gear[0]/position-norm</property>
+        <value>0.90</value>
+      </greater-than>
+    </condition>
+  </animation>
+  <animation>
+    <type>select</type>
+    <object-name>gear1.unlckd</object-name>
+    <condition>
+      <and>
+      <greater-than>
+        <property>gear/gear[0]/position-norm</property>
+        <value>0.0</value>
+      </greater-than>
+      <less-than>
+        <property>gear/gear[0]/position-norm</property>
+        <value>0.4</value>
+      </less-than>
+      </and>
+    </condition>
+  </animation>
+  
+  <animation>
+    <type>select</type>
+    <object-name>gear2.ind</object-name>
+    <condition>
+      <greater-than>
+        <property>gear/gear[1]/position-norm</property>
+        <value>0.90</value>
+      </greater-than>
+    </condition>
+  </animation>
+  <animation>
+    <type>select</type>
+    <object-name>gear2.unlckd</object-name>
+    <condition>
+      <and>
+      <greater-than>
+        <property>gear/gear[1]/position-norm</property>
+        <value>0.0</value>
+      </greater-than>
+      <less-than>
+        <property>gear/gear[1]/position-norm</property>
+        <value>0.4</value>
+      </less-than>
+      </and>
+    </condition>
+  </animation>
+  
+  <animation>
+    <type>select</type>
+    <object-name>gear3.ind</object-name>
+    <condition>
+      <greater-than>
+        <property>gear/gear[1]/position-norm</property>
+        <value>0.90</value>
+      </greater-than>
+    </condition>
+  </animation>
+  <animation>
+    <type>select</type>
+    <object-name>gear3.unlckd</object-name>
+    <condition>
+      <and>
+      <greater-than>
+        <property>gear/gear[1]/position-norm</property>
+        <value>0.0</value>
+      </greater-than>
+      <less-than>
+        <property>gear/gear[1]/position-norm</property>
+        <value>0.4</value>
+      </less-than>
+      </and>
+    </condition>
+  </animation>
+  
+  <animation>
+    <type>select</type>
+    <object-name>gear4.ind</object-name>
+    <condition>
+      <greater-than>
+        <property>gear/gear[2]/position-norm</property>
+        <value>0.90</value>
+      </greater-than>
+    </condition>
+  </animation>
+  <animation>
+    <type>select</type>
+    <object-name>gear4.unlckd</object-name>
+    <condition>
+      <and>
+      <greater-than>
+        <property>gear/gear[2]/position-norm</property>
+        <value>0.0</value>
+      </greater-than>
+      <less-than>
+        <property>gear/gear[2]/position-norm</property>
+        <value>0.4</value>
+      </less-than>
+      </and>
+    </condition>
+  </animation>
+  
+  <animation>
+    <type>select</type>
+    <object-name>gear5.ind</object-name>
+    <condition>
+      <greater-than>
+        <property>gear/gear[2]/position-norm</property>
+        <value>0.90</value>
+      </greater-than>
+    </condition>
+  </animation>
+  <animation>
+    <type>select</type>
+    <object-name>gear5.unlckd</object-name>
+    <condition>
+      <and>
+      <greater-than>
+        <property>gear/gear[2]/position-norm</property>
+        <value>0.0</value>
+      </greater-than>
+      <less-than>
+        <property>gear/gear[2]/position-norm</property>
+        <value>0.4</value>
+      </less-than>
+      </and>
+    </condition>
+  </animation>
+  
+  <animation>
+    <type>rotate</type>
+    <object-name>auto_brk</object-name>
+    <property>controls/gear/autobrakes</property>
+    <factor>45</factor>
+    
+<center>
+ <x-m>0.030500</x-m>
+ <y-m>0.013000</y-m>
+ <z-m>-0.019750</z-m>
+</center>
+
+<axis>
+ <x>0.000000</x>
+ <y>0.000000</y>
+ <z>-1.000000</z>
+</axis>
+  </animation>
+  
+
+</PropertyList>
