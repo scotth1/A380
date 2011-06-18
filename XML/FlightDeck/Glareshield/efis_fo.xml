@@ -63,55 +63,6 @@
     </action>
   </animation>
  
-  <!-- animation>
-   <type>textranslate</type>
-   <object-name>baro.04</object-name>
-   <property>/instrumentation/efis/baro</property>
-   <factor>0.0001</factor>
-   <step>1000.0</step>
-   <axis>
-     <x>0</x>
-     <y>1</y>
-     <z>0</z>
-   </axis>
- </animation>
- <animation>
-   <type>textranslate</type>
-   <object-name>baro.03</object-name>
-   <property>/instrumentation/efis/baro</property>
-   <factor>0.001</factor>
-   <step>100.0</step>
-   <axis>
-     <x>0</x>
-     <y>1</y>
-     <z>0</z>
-   </axis>
- </animation>
- <animation>
-   <type>textranslate</type>
-   <object-name>baro.02</object-name>
-   <property>/instrumentation/efis/baro</property>
-   <factor>0.01</factor>
-   <step>10.0</step>
-   <axis>
-     <x>0</x>
-     <y>1</y>
-     <z>0</z>
-   </axis>
- </animation>
- <animation>
-   <type>textranslate</type>
-   <object-name>baro.01</object-name>
-   <property>/instrumentation/efis/baro</property>
-   <factor>0.1</factor>
-   <step>1.0</step>
-   <axis>
-     <x>0</x>
-     <y>1</y>
-     <z>0</z>
-   </axis>
- </animation -->
- 
  <text>
     <name>baro.value.hPa</name>
     <axis-alignment>yz-plane</axis-alignment>
