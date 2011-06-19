@@ -13,7 +13,7 @@
     <condition>
       <greater-than>
         <property>gear/gear[0]/position-norm</property>
-        <value>0.90</value>
+        <value>0.4</value>
       </greater-than>
     </condition>
   </animation>
@@ -40,7 +40,7 @@
     <condition>
       <greater-than>
         <property>gear/gear[1]/position-norm</property>
-        <value>0.90</value>
+        <value>0.4</value>
       </greater-than>
     </condition>
   </animation>
@@ -67,7 +67,7 @@
     <condition>
       <greater-than>
         <property>gear/gear[1]/position-norm</property>
-        <value>0.90</value>
+        <value>0.4</value>
       </greater-than>
     </condition>
   </animation>
@@ -94,7 +94,7 @@
     <condition>
       <greater-than>
         <property>gear/gear[2]/position-norm</property>
-        <value>0.90</value>
+        <value>0.4</value>
       </greater-than>
     </condition>
   </animation>
@@ -121,7 +121,7 @@
     <condition>
       <greater-than>
         <property>gear/gear[2]/position-norm</property>
-        <value>0.90</value>
+        <value>0.4</value>
       </greater-than>
     </condition>
   </animation>
@@ -146,19 +146,195 @@
     <type>rotate</type>
     <object-name>auto_brk</object-name>
     <property>controls/gear/autobrakes</property>
-    <factor>45</factor>
-    
-<center>
- <x-m>0.030500</x-m>
- <y-m>0.013000</y-m>
- <z-m>-0.019750</z-m>
-</center>
-
-<axis>
- <x>0.000000</x>
- <y>0.000000</y>
- <z>-1.000000</z>
-</axis>
+    <factor>45</factor> 
+    <center>
+      <x-m>0.030500</x-m>
+      <y-m>0.013000</y-m>
+      <z-m>-0.019750</z-m>
+    </center>
+    <axis>
+      <x>0.000000</x>
+      <y>0.000000</y>
+      <z>-1.000000</z>
+    </axis>
+  </animation>
+  
+  <!-- unit [0] -->
+  <animation>
+    <type>material</type>
+    <object-name>gear1.ind</object-name>
+    <condition>
+      <and>
+        <greater-than>
+          <property>gear/gear[0]/position-norm</property>
+          <value>0.3</value>
+        </greater-than>
+        <less-than>
+          <property>gear/gear[0]/position-norm</property>
+          <value>0.9</value>
+        </less-than>
+      </and>
+    </condition>
+    <diffuse>
+      <red>1.000</red>
+      <green>0.460</green>
+      <blue>0.000</blue>
+    </diffuse>
+    <emission>
+      <red>1.000</red>
+      <green>0.460</green>
+      <blue>0.000</blue>
+    </emission>
+    <ambient>
+      <red>1.000</red>
+      <green>0.460</green>
+      <blue>0.000</blue>
+    </ambient>
+  </animation>
+  <animation>
+    <type>material</type>
+    <object-name>gear1.ind</object-name>
+    <condition>
+        <greater-than>
+          <property>gear/gear[0]/position-norm</property>
+          <value>0.9</value>
+        </greater-than>
+    </condition>
+    <diffuse>
+      <red>0.220</red>
+      <green>0.792</green>
+      <blue>0.220</blue>
+    </diffuse>
+    <emission>
+      <red>0.220</red>
+      <green>0.792</green>
+      <blue>0.220</blue>
+    </emission>
+    <ambient>
+      <red>0.220</red>
+      <green>0.792</green>
+      <blue>0.220</blue>
+    </ambient>
+  </animation>
+  
+  <!-- unit [1] -->
+  <animation>
+    <type>material</type>
+    <object-name>gear2.ind</object-name>
+    <object-name>gear3.ind</object-name>
+    <condition>
+      <and>
+        <greater-than>
+          <property>gear/gear[1]/position-norm</property>
+          <value>0.3</value>
+        </greater-than>
+        <less-than>
+          <property>gear/gear[1]/position-norm</property>
+          <value>0.9</value>
+        </less-than>
+      </and>
+    </condition>
+    <diffuse>
+      <red>1.000</red>
+      <green>0.460</green>
+      <blue>0.000</blue>
+    </diffuse>
+    <emission>
+      <red>1.000</red>
+      <green>0.460</green>
+      <blue>0.000</blue>
+    </emission>
+    <ambient>
+      <red>1.000</red>
+      <green>0.460</green>
+      <blue>0.000</blue>
+    </ambient>
+  </animation>
+  <animation>
+    <type>material</type>
+    <object-name>gear2.ind</object-name>
+    <object-name>gear3.ind</object-name>
+    <condition>
+        <greater-than>
+          <property>gear/gear[1]/position-norm</property>
+          <value>0.9</value>
+        </greater-than>
+    </condition>
+    <diffuse>
+      <red>0.220</red>
+      <green>0.792</green>
+      <blue>0.220</blue>
+    </diffuse>
+    <emission>
+      <red>0.220</red>
+      <green>0.792</green>
+      <blue>0.220</blue>
+    </emission>
+    <ambient>
+      <red>0.220</red>
+      <green>0.792</green>
+      <blue>0.220</blue>
+    </ambient>
+  </animation>
+  
+  <!-- unit [2] -->
+  <animation>
+    <type>material</type>
+    <object-name>gear4.ind</object-name>
+    <object-name>gear5.ind</object-name>
+    <condition>
+      <and>
+        <greater-than>
+          <property>gear/gear[2]/position-norm</property>
+          <value>0.3</value>
+        </greater-than>
+        <less-than>
+          <property>gear/gear[2]/position-norm</property>
+          <value>0.9</value>
+        </less-than>
+      </and>
+    </condition>
+    <diffuse>
+      <red>1.000</red>
+      <green>0.460</green>
+      <blue>0.000</blue>
+    </diffuse>
+    <emission>
+      <red>1.000</red>
+      <green>0.460</green>
+      <blue>0.000</blue>
+    </emission>
+    <ambient>
+      <red>1.000</red>
+      <green>0.460</green>
+      <blue>0.000</blue>
+    </ambient>
+  </animation>
+  <animation>
+    <type>material</type>
+    <object-name>gear4.ind</object-name>
+    <object-name>gear5.ind</object-name>
+    <condition>
+        <greater-than>
+          <property>gear/gear[2]/position-norm</property>
+          <value>0.9</value>
+        </greater-than>
+    </condition>
+    <diffuse>
+      <red>0.220</red>
+      <green>0.792</green>
+      <blue>0.220</blue>
+    </diffuse>
+    <emission>
+      <red>0.220</red>
+      <green>0.792</green>
+      <blue>0.220</blue>
+    </emission>
+    <ambient>
+      <red>0.220</red>
+      <green>0.792</green>
+      <blue>0.220</blue>
+    </ambient>
   </animation>
   
 

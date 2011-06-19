@@ -27,7 +27,7 @@
 currentField = "";
 currentFieldPos = 0;
 inputValue = "";
-trace = 1;         ## Set to 0 to turn off all tracing messages
+trace = 0;         ## Set to 0 to turn off all tracing messages
 depDB = nil;
 arvDB = nil;
 version = "V1.0.22";
@@ -727,7 +727,7 @@ selectSidAction = func(opt, unit) {
     tracer(" 2deg dist: "~sidebNM~" nm");
     totalDist = totalDist+sidebNM;
     var difAlt = (crzFt-arvApt.elevation)-10000;
-    sidebNM = calcDistAtAngle(3, difAlt);
+    sidebNM = calcDistAtAngle(2.7, difAlt);
     tracer(" 3deg dist: "~sidebNM~" nm for: "~difAlt~"ft");
     totalDist = totalDist+sidebNM;
     var remainDist = gcd2(arvApt.lat, arvApt.lon, firstWp.wp_lat, firstWp.wp_lon, "nm");
@@ -1276,6 +1276,7 @@ var calcDistAtAngle = func(angleX, height) {
     var anglexinradians = angleX*(math.pi/180);
     # solve for side b
     var sideb = height/math.tan(anglexinradians);
+    # convert ft to nautical miles
     var sidebNM = sideb/6076;
     return sidebNM;
 }

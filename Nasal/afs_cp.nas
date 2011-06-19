@@ -70,7 +70,7 @@ SPD_THRDES=7;
 SPD_THRIDL=8;
 
 # working memory
-afs_trace = 1;
+afs_trace = 0;
 afs_version = "2.0.3";
 
 
