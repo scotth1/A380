@@ -1,6 +1,6 @@
 AC3Db
-MATERIAL "ac3dmat0" rgb 0 0 0  amb 0 0 0  emis 0 0 0  spec 0.2 0.2 0.2  shi 128  trans 0
 MATERIAL "ac3dmat3" rgb 1 0 0  amb 0.2 0.2 0.2  emis 0 0 0  spec 0.2 0.2 0.2  shi 128  trans 0
+MATERIAL "ac3dmat0" rgb 0 0 0  amb 0 0 0  emis 0 0 0  spec 0.2 0.2 0.2  shi 128  trans 0
 MATERIAL "ac3dmat1" rgb 1 1 1  amb 1 1 1  emis 1 1 1  spec 0.2 0.2 0.2  shi 0  trans 0
 MATERIAL "DefaultWhite" rgb 0.318 0.373 0.373  amb 0.753 0.816 0.816  emis 0 0 0  spec 0 0 0  shi 0  trans 0
 MATERIAL "2 - Default" rgb 0.125 0.188 0.188  amb 0.627 0.69 0.69  emis 0 0 0  spec 0 0 0  shi 1  trans 0
@@ -893,42 +893,42 @@ numvert 8
 -0.00866763 -0.00223585 0.0112483
 numsurf 6
 SURF 0x30
-mat 0
+mat 1
 refs 4
 7 0 0
 6 1 0
 5 1 1
 4 0 1
 SURF 0x30
-mat 0
+mat 1
 refs 4
 0 0 0
 3 1 0
 2 1 1
 1 0 1
 SURF 0x30
-mat 0
+mat 1
 refs 4
 3 0 0
 4 1 0
 5 1 1
 2 0 1
 SURF 0x30
-mat 0
+mat 1
 refs 4
 1 0 0
 6 1 0
 7 1 1
 0 0 1
 SURF 0x30
-mat 0
+mat 1
 refs 4
 0 0 0
 7 1 0
 4 1 1
 3 0 1
 SURF 0x30
-mat 0
+mat 1
 refs 4
 2 0 0
 5 1 0
@@ -978,42 +978,42 @@ numvert 8
 -0.00805169 0.00223585 0.0107116
 numsurf 6
 SURF 0x30
-mat 0
+mat 1
 refs 4
 5 0 0
 2 1 0
 1 1 1
 6 0 1
 SURF 0x30
-mat 0
+mat 1
 refs 4
 7 0 0
 0 1 0
 3 1 1
 4 0 1
 SURF 0x30
-mat 0
+mat 1
 refs 4
 6 0 0
 1 1 0
 0 1 1
 7 0 1
 SURF 0x30
-mat 0
+mat 1
 refs 4
 4 0 0
 3 1 0
 2 1 1
 5 0 1
 SURF 0x30
-mat 0
+mat 1
 refs 4
 7 0 0
 4 1 0
 5 1 1
 6 0 1
 SURF 0x30
-mat 0
+mat 1
 refs 4
 0 0 0
 1 1 0
@@ -1087,42 +1087,42 @@ numvert 8
 -0.00866762 -0.00223585 0.0112483
 numsurf 6
 SURF 0x30
-mat 0
+mat 1
 refs 4
 7 0 0
 6 1 0
 5 1 1
 4 0 1
 SURF 0x30
-mat 0
+mat 1
 refs 4
 0 0 0
 3 1 0
 2 1 1
 1 0 1
 SURF 0x30
-mat 0
+mat 1
 refs 4
 3 0 0
 4 1 0
 5 1 1
 2 0 1
 SURF 0x30
-mat 0
+mat 1
 refs 4
 1 0 0
 6 1 0
 7 1 1
 0 0 1
 SURF 0x30
-mat 0
+mat 1
 refs 4
 0 0 0
 7 1 0
 4 1 1
 3 0 1
 SURF 0x30
-mat 0
+mat 1
 refs 4
 2 0 0
 5 1 0
@@ -1196,42 +1196,42 @@ numvert 8
 -0.00805169 0.00223585 0.0107116
 numsurf 6
 SURF 0x30
-mat 0
+mat 1
 refs 4
 5 0 0
 2 1 0
 1 1 1
 6 0 1
 SURF 0x30
-mat 0
+mat 1
 refs 4
 7 0 0
 0 1 0
 3 1 1
 4 0 1
 SURF 0x30
-mat 0
+mat 1
 refs 4
 6 0 0
 1 1 0
 0 1 1
 7 0 1
 SURF 0x30
-mat 0
+mat 1
 refs 4
 4 0 0
 3 1 0
 2 1 1
 5 0 1
 SURF 0x30
-mat 0
+mat 1
 refs 4
 7 0 0
 4 1 0
 5 1 1
 6 0 1
 SURF 0x30
-mat 0
+mat 1
 refs 4
 0 0 0
 1 1 0
@@ -1305,42 +1305,42 @@ numvert 8
 -0.00805169 0.00223585 0.0107116
 numsurf 6
 SURF 0x30
-mat 0
+mat 1
 refs 4
 5 0 0
 2 1 0
 1 1 1
 6 0 1
 SURF 0x30
-mat 0
+mat 1
 refs 4
 7 0 0
 0 1 0
 3 1 1
 4 0 1
 SURF 0x30
-mat 0
+mat 1
 refs 4
 6 0 0
 1 1 0
 0 1 1
 7 0 1
 SURF 0x30
-mat 0
+mat 1
 refs 4
 4 0 0
 3 1 0
 2 1 1
 5 0 1
 SURF 0x30
-mat 0
+mat 1
 refs 4
 7 0 0
 4 1 0
 5 1 1
 6 0 1
 SURF 0x30
-mat 0
+mat 1
 refs 4
 0 0 0
 1 1 0
@@ -1438,42 +1438,42 @@ numvert 8
 -0.00866764 -0.00223585 0.0112484
 numsurf 6
 SURF 0x30
-mat 0
+mat 1
 refs 4
 7 0 0
 6 1 0
 5 1 1
 4 0 1
 SURF 0x30
-mat 0
+mat 1
 refs 4
 0 0 0
 3 1 0
 2 1 1
 1 0 1
 SURF 0x30
-mat 0
+mat 1
 refs 4
 3 0 0
 4 1 0
 5 1 1
 2 0 1
 SURF 0x30
-mat 0
+mat 1
 refs 4
 1 0 0
 6 1 0
 7 1 1
 0 0 1
 SURF 0x30
-mat 0
+mat 1
 refs 4
 0 0 0
 7 1 0
 4 1 1
 3 0 1
 SURF 0x30
-mat 0
+mat 1
 refs 4
 2 0 0
 5 1 0
@@ -2264,14 +2264,14 @@ refs 22
 kids 0
 OBJECT poly
 name "line"
-loc 0.023532 0.00443041 -0.0260849
+loc 0.0232239 -0.0111282 -0.0260849
 crease 45.000000
 numvert 2
 0.00700124 0.00853117 0.0149609
 0.00699074 0.00853827 -0.00226645
 numsurf 1
 SURF 0x32
-mat 1
+mat 0
 refs 2
 0 1 0
 1 0 1
