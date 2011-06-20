@@ -208,6 +208,14 @@ update_radar = func {
   var currentPos = geo.Coord.new();
   currentPos.set_latlon(getprop("/position/latitude-deg"), getprop("/position/longitude-deg"), getprop("/position/altitude-ft"));
 
+  ## calculate distance from departure airport using straight line
+  #
+  #var departPos = geo.Coord.new();
+  #departPos.setlatlon(getprop("instrumentation/gps/wp/wp[0]/latitude-deg"), getprop("instrumentation/gps/wp/wp[0]/longitude-deg"), getprop("instrumentation/gps/wp/wp[0]/altitude-ft"));
+  #var departDistMetre   = currentPos.distance_to(departPos);
+  
+
+
   ## set NAV[1] (R VOR) to always be our ref navaid
   #
   var refNavFreq = getprop("/instrumentation/gps/ref-navaid/frequency-mhz");

@@ -1090,4 +1090,72 @@
 		  <u_max>1.0</u_max>  <!-- maximum output clamp -->
 	  </config>
   </pid-controller>
+  
+  <logic>
+    <name>check tc true</name>
+    <input>
+      <and>
+          <less-than>
+            <property>instrumentation/gps/odometer</property>
+            <value>200</value>
+          </less-than>
+          <property>autopilot/route-manager/airborne</property>
+        </and>
+    </input>
+    <output>
+      <property>instrumentation/afs/calc-tc</property>
+    </output>
+  </logic>
+  
+<filter>
+  <name>calc angle of climb</name>
+  <type>gain</type>
+  <gain>1.0</gain>
+  <enable>
+    <property>instrumentation/afs/calc-tc</property>
+  </enable>
+  <input>
+    <expression>
+      <atan>
+        <div>
+          <property>position/altitude-ft</property>
+          <product>
+            <property>instrumentation/gps/odometer</property>
+            <value>6076</value>
+          </product>
+        </div>
+      </atan>
+    </expression>
+  </input>
+  <output>
+    <property>instrumentation/afs/avg-climb-angle</property>
+  </output>
+</filter>
+
+<filter>
+  <debug>true</debug>
+  <name>calc distance to TC</name>
+  <type>gain</type>
+  <gain>1.0</gain>
+  <enable>
+    <property>instrumentation/afs/calc-tc</property>
+  </enable>
+  <input>
+    <expression>
+     <product>
+      <div>
+        <property>instrumentation/afs/thrust-cruise-alt</property>
+        <tan>
+          <property>instrumentation/afs/avg-climb-angle</property>
+        </tan>
+      </div>
+      <value>0.000164578834</value>
+     </product>
+    </expression>
+  </input>
+  <output>
+    <property>instrumentation/afs/top-of-climb-dist</property>
+  </output>
+</filter>
+
 </PropertyList>
