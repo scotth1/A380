@@ -463,7 +463,7 @@ tracer : func(msg) {
             } else {
               dn.getNode("spd-lim-display",1).setValue(sprintf("%5.0f", spdLim));
             }
-            var altLim = wp.alt_csrt;
+            var altLim = wp.alt_cstr;
             if (altLim > 10000) {
               dn.getNode("alt-lim-display",1).setValue(sprintf("FL%3.0f",(altLim/100)));
             } else {

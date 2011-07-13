@@ -268,11 +268,14 @@ update_radar = func {
   ## plot multiplayer aircraft
   ##
   var radarRange = getprop("/instrumentation/radar/range");
-  mp_craft = props.globals.getNode("/ai/models").getChildren("multiplayer");
+  #mp_craft = props.globals.getNode("/ai/models").getChildren("multiplayer");
   var mpPos = 0;
-  for(i=0; i<size(mp_craft);i=i+1) {
+  ###for(i=0; i<size(mp_craft);i=i+1) {
+  var playerNum = getprop("ai/models/num-players");
+  for(i=0;i<playerNum;i=i+1) {
     ##var aiHdg = getprop("/ai/models/multiplayer["~i~"]/radar/bearing-deg");
     var aiHdg = getprop("ai/models/multiplayer["~i~"]/bearing-to");
+    ##var aiHdg = getprop("ai/models/multiplayer["~i~"]/radar/rotation");
     var valid    = getprop("/ai/models/multiplayer["~i~"]/valid");
     setprop("/instrumentation/radar/mp["~mpPos~"]/valid",valid);
     setprop("/instrumentation/radar/mp["~mpPos~"]/callsign", "");
@@ -282,12 +285,24 @@ update_radar = func {
     if (aiHdg != nil and valid == 1) {
       var callsign = getprop("/ai/models/multiplayer["~i~"]/callsign");
       var tgt_offset = aiHdg;
+      if (mag_heading > 180) {
+        var dif = 360-mag_heading;
+        tgt_offset = aiHdg+dif;
+      } else {
+        var dif = mag_heading;
+        tgt_offset = aiHdg-dif;
+      }
+      ###var tgt_offset = aiHdg+180;
+      #if (tgt_offset > 360) {
+      #  tgt_offset = (tgt_offset-360);
+      #}
+      
       #var tgt_offset = aiHdg-true_heading;
       #if (tgt_offset < 0){
-      #  tgt_offset = 360-tgt_offset;
+      #  tgt_offset = tgt_offset+360;
       #}
       #if (tgt_offset > 360){
-      #  tgt_offset -=360;
+      #  tgt_offset = tgt_offset - 360;
       #}
       ###test_dist=getprop("/instrumentation/radar/range");
       ##test1_dist = getprop("/ai/models/multiplayer[" ~ i ~ "]/radar/range-nm");
