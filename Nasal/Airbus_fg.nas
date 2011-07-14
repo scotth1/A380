@@ -67,7 +67,7 @@ lnavStr = ["off","HDG","TRK","LOC","NAV","RWY"];
 vnavStr = ["off","ALT(s)","V/S","OP CLB","FPA","OP DES","CLB","ALT CRZ","DES","G/S","SRS","LEVEL"];
 spdStr  = ["off","TOGA","FLEX","THR CLB","SPEED","MACH","CRZ","THR DES","THR IDL"];
 
-version="V1.1.7";
+version="V1.1.8";
 trace=0;
 
 #trigonometric values for glideslope calculations
@@ -1483,6 +1483,7 @@ update_mode = func {
 
     ##var nextWpAlt = getprop("/autopilot/route-manager/route/wp[0]/altitude-ft");
     var nextWpAlt = getprop("/instrumentation/gps/wp/wp[1]/altitude-ft");
+    var nextAlt = getprop("instrumentation/afs/target-altitude-ft");
     var descentAlt = getprop("/instrumentation/afs/thrust-descent-alt");
     var cruiseAlt  = getprop("/instrumentation/afs/thrust-cruise-alt");
     ###var cruiseAlt  = getprop("/instrumentation/mcdu/CRZ_FL");
@@ -1522,16 +1523,17 @@ update_mode = func {
         setprop("/instrumentation/flightdirector/spd", SPD_THRDES);  # THR DES
       }
     }
-    if (vnav == VNAV_DES and nextWpAlt <= 10000 and managedVert == 1 and spd == SPD_THRDES and spdDesArm3 == 0) {
+    if (vnav == VNAV_DES and nextAlt <= 10000 and managedVert == 1 and spd == SPD_THRDES and spdDesArm3 == 0) {
       spdDesArm3 = 1;
       interpolate("/autopilot/settings/target-speed-kt",250,60);
     }
-    if (vnav == VNAV_DES and nextWpAlt <= 4000 and managedVert == 1 and spd == SPD_THRDES and spdDesArm4 == 0) {
+    if (vnav == VNAV_DES and nextAlt <= 4000 and managedVert == 1 and spd == SPD_THRDES and spdDesArm4 == 0) {
       spdDesArm4 = 1;
       interpolate("/autopilot/settings/target-speed-kt",220,60);
     }
     if (vnav == VNAV_DES and nextWpAlt > 0 and managedVert == 1) {
-      diffAlt = nextWpAlt-curAlt;
+      ##diffAlt = nextWpAlt-curAlt;
+      diffAlt = nextAlt-curAlt;
       if (diffAlt < 0) {
         var etaParts = split(":",getprop("/autopilot/route-manager/wp[0]/eta"));
         var etaDist  = getprop("/autopilot/route-manager/wp[0]/dist");
@@ -1543,7 +1545,7 @@ update_mode = func {
         }
         #tracer("[updateMode] ETA min: "~etaMin~", ETA sec: "~etaSec~", difAlt: "~diffAlt);
         var gap = 10;
-        if (nextWpAlt < 15000) {
+        if (nextAlt < 15000) {
           gap = 20;
         }
         eta = (etaSec+(etaMin*60))-gap;

@@ -364,7 +364,7 @@ setlistener("/autopilot/settings/heading-bug-deg", func(n) {
 });
 
 setlistener("/autopilot/settings/target-altitude-ft", func(n) {
-   var val = n.getValue();
+   var val = int(n.getValue()/100)*100;
    var mode = getprop("instrumentation/afs/vertical-alt-mode");
    var apMode = getprop("/instrumentation/flightdirector/autopilot-on");
    var fltMode = getprop("instrumentation/ecam/flight-mode");
