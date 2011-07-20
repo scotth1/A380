@@ -852,6 +852,7 @@ check_acquire_mode = func {
      var selectAlt = getprop("/instrumentation/afs/target-altitude-ft");
      if (vsSpeed > 0 and vnavMode != VNAV_DES and vnavMode != VNAV_OPDES) {
        if (alt >= (selectAlt-400)) {
+         tracer("[ACQ] reached selected alt: "~selectAlt);
          setprop("autopilot/settings/target-altitude-ft", getprop("instrumentation/afs/target-altitude-ft"));
          setprop("autopilot/locks/altitude","altitude-hold");
          ##setprop("/instrumentation/flightdirector/vnav", VNAV_ALT);
@@ -866,6 +867,7 @@ check_acquire_mode = func {
      }
      if (vsSpeed < 0) {
        if (alt <= (selectAlt+400) and vnavMode != VNAV_CLB and vnavMode != VNAV_OPCLB) {
+         tracer("[ACQ] reached selectAlt: "~selectAlt);
          setprop("autopilot/settings/target-altitude-ft", getprop("instrumentation/afs/target-altitude-ft"));
          setprop("autopilot/locks/altitude","altitude-hold");
          ##setprop("/instrumentation/flightdirector/vnav", VNAV_ALT);

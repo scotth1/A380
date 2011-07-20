@@ -723,12 +723,12 @@
       <prop>/autopilot/settings/target-pitch-deg</prop>
     </output>
     <config>
-      <Kp>-0.5</Kp>       <!-- proportional gain -->  <!-- was -0.5 -->
+      <Kp>-0.05</Kp>       <!-- proportional gain -->  <!-- was -0.5 -->
       <beta>1.0</beta>    <!-- input value weighing factor -->
       <alpha>0.1</alpha>  <!-- low pass filter weighing factor -->
       <gamma>0.0</gamma>  <!-- input value weighing factor for -->
                           <!-- unfiltered derivative error -->
-      <Ti>25.0</Ti>        <!-- integrator time --> <!-- was 40 2011-04-30 -->
+      <Ti>15.0</Ti>        <!-- integrator time --> <!-- was 40 2011-04-30 -->
       <Td>0.00001</Td>    <!-- derivator time -->
       <u_min>-15.0</u_min><!-- minimum output clamp -->
       <u_max>15.0</u_max> <!-- maximum output clamp -->
@@ -752,12 +752,12 @@
       <prop>/autopilot/settings/target-pitch-deg</prop>
     </output>
     <config>
-      <Kp>-0.5</Kp>       <!-- proportional gain -->  <!-- was -0.5 -->
+      <Kp>-0.01</Kp>       <!-- proportional gain -->  <!-- was -0.5 -->
       <beta>1.0</beta>    <!-- input value weighing factor -->
       <alpha>0.1</alpha>  <!-- low pass filter weighing factor -->
       <gamma>0.0</gamma>  <!-- input value weighing factor for -->
                           <!-- unfiltered derivative error -->
-      <Ti>25.0</Ti>        <!-- integrator time -->  <!-- was 40 2011-04-30 -->
+      <Ti>40.0</Ti>        <!-- integrator time -->  <!-- was 40 2011-04-30 -->
       <Td>0.00001</Td>    <!-- derivator time -->
       <u_min>-15.0</u_min><!-- minimum output clamp -->
       <u_max>15.0</u_max> <!-- maximum output clamp -->

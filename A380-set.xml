@@ -21,12 +21,19 @@
  <PropertyList>
   <sim>
     <description>Airbus A380</description>
-    <aircraft-version>1.0</aircraft-version>
+    <aircraft-version>1.2</aircraft-version>
     <author>Ampere.K, I.Cunningham, F.Dalvi, S.Hamilton, et al</author>
-    <status>development</status>
+    <status>production</status>
+    <rating>
+      <FDM type="int">4</FDM>
+      <systems type="int">4</systems>
+      <cockpit type="int">4</cockpit>
+      <model type="int">4</model>
+    </rating>
     <flight-model>jsb</flight-model>
     <livery>../Textures/Livery/SA</livery>
     <aero>A380</aero>
+    
     
     <startup>
        <splash-texture>Aircraft/A380/a380-splash.png</splash-texture>
