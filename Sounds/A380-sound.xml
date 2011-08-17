@@ -419,7 +419,7 @@
 	  <property>engines/engine[3]/n1</property>
 	  <factor>0.02</factor>
 	  <min>0.0</min>
-      <max>0.8</max>
+          <max>0.8</max>
 	</volume>
 	<pitch>
 		<property>/engines/engine[3]/n1</property>
@@ -435,7 +435,7 @@
 </engine>
 
 
-<engine>
+<!-- engine>
     <name>Engine0 startup</name>
     <path>Aircraft/A380/Sounds/trent_starter02.wav</path>
     <mode>looped</mode>
@@ -597,7 +597,7 @@
       <y>1.0</y>
       <z>10.0</z>
     </position>
-  </engine>
+  </engine -->
 
 
 
@@ -1508,24 +1508,24 @@
         <and>
           <greater-than>
             <property>controls/engines/engine[0]/thrust-lever</property>
-            <value>0.1</value>
+            <value>0.0</value>
           </greater-than>
           <greater-than>
             <property>controls/engines/engine[1]/thrust-lever</property>
-            <value>0.1</value>
+            <value>0.0</value>
           </greater-than>
           <greater-than>
             <property>controls/engines/engine[2]/thrust-lever</property>
-            <value>0.1</value>
+            <value>0.0</value>
           </greater-than>
           <greater-than>
             <property>controls/engines/engine[3]/thrust-lever</property>
-            <value>0.1</value>
+            <value>0.0</value>
           </greater-than>
         </and>
         <less-than>
           <property>position/altitude-agl-ft</property>
-          <value>22</value>
+          <value>30</value>
         </less-than>
         <equals>
           <property>instrumentation/ecam/flight-mode</property>

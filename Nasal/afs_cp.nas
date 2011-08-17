@@ -71,7 +71,7 @@ SPD_THRIDL=8;
 
 # working memory
 afs_trace = 0;
-afs_version = "2.0.3";
+afs_version = "2.0.4";
 
 
 
@@ -161,6 +161,18 @@ toggle_alt = func() {
       } else {
 	setprop("/instrumentation/flightdirector/vnav",VNAV_LEVEL);
       }
+}
+
+toggle_alt_inc = func() {
+   var incAmt = getprop("/controls/afs/alt-inc-select");
+   tracer("AFS: old incAmt: "~incAmt);
+   if (incAmt == 100) {
+     incAmt = 1000;
+   } else {
+     incAmt = 100;
+   }
+   tracer("AFS: new incAmt: "~incAmt);
+   setprop("/controls/afs/alt-inc-select", incAmt);
 }
 
 increment_alt = func() {
@@ -368,7 +380,7 @@ setlistener("/autopilot/settings/target-altitude-ft", func(n) {
    var mode = getprop("instrumentation/afs/vertical-alt-mode");
    var apMode = getprop("/instrumentation/flightdirector/autopilot-on");
    var fltMode = getprop("instrumentation/ecam/flight-mode");
-   if (mode == -1 and apMode == 1 and fltMode > 2) {
+   if (mode == -1 and apMode == 1 and fltMode > 2 and val > 0) {
      setprop("/instrumentation/afs/target-altitude-ft",val);
    }
 });

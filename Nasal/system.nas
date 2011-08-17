@@ -89,7 +89,7 @@ srsFlapTarget = [263.0, 222.0, 210.0, 196.0, 182.0];   #another copy in system.n
 flapPos       = [0, 0.2424, 0.5151, 0.7878, 1.0];
 
 ##trace = 0;
-version = "1.1.13";
+version = "1.1.14";
 
 strobe_switch = props.globals.getNode("/controls/switches/strobe", 0);
 aircraft.light.new("sim/model/A380/lighting/strobe", [0.05, 1.2], strobe_switch);
@@ -604,6 +604,7 @@ var convertKtMach = func(kts) {
 # update EWD checklists
 update_ewd = func {
   var flt_mode = getprop("/instrumentation/ecam/flight-mode");
+  var acqClm = getprop("instrumentation/afs/acquire_cl");
   if (getprop("/controls/switches/seat-belt") == 0 and  flt_mode < 10) {
     ewdChecklist.append("SEAT BELTS");
   }
@@ -619,8 +620,25 @@ update_ewd = func {
   if (getprop("/controls/pneumatic/APU-bleed") == 1) {
     ewdChecklist.append("APU BLEED");
   }
-  if (flt_mode > 1 and flt_mode < 5 and getprop("/controls/flight/flaps") < 0.01) {
-    ewdChecklist.append("FLAP CONFIG");
+  if (flt_mode > 1 and flt_mode < 5) {
+    var flapPos = getprop("/controls/flight/flaps");
+    var flapConfig = 0;
+    if (flapPos == 0.2424) {
+      flapConfig = 1;
+    }
+    if (flapPos == 0.5151) {
+      flapConfig = 2;
+    }
+    if (flapPos == 0.7878) {
+      flapConfig = 3;
+    }
+    if (flapPos == 1.0) {
+      flapConfig = 4;
+    }
+    var perfPos = getprop("instrumentation/afs/to-flaps");
+    if (flapConfig < perfPos) {
+      ewdChecklist.append("FLAP CONFIG");
+    }
   }
   if (flt_mode > 1 and flt_mode < 8 and getprop("/instrumentation/ecam/to-data") != 1) {
     ewdChecklist.append("T.O. DATA");
@@ -633,6 +651,9 @@ update_ewd = func {
   }
   if (flt_mode == 7 and getprop("/controls/gear/gear-down") == 1) {
     ewdChecklist.append("GEARS");
+  }
+  if (flt_mode == 8 and getprop("position/altitude-ft")-getprop("controls/pressurisation/landing-elev-ft") < 3000 and getprop("/controls/gear/gear-down") == 0 and acqClm == 1) {
+    ewdChecklist.append("GEARS", 0.8, 0.5, 0.2);
   }
   if (getprop("/controls/flight/speedbrake") > 0) {
     ewdChecklist.append("SPEEDBRAKE");
@@ -1555,12 +1576,12 @@ setlistener("/controls/anti-ice/engine[0]/inlet-heat", func(n) {
    var currBleed = getprop("fdm/jsbsim/propulsion/engine[0]/bleed-factor");
    var heat = n.getValue();
    if (heat == 0) {
-     anti = -0.2;
+     anti = -0.12;
      if (currBleed == 0) {
        anti = 0.0;
      }
    } else {
-     anti = 0.2;
+     anti = 0.12;
    }
    tracer("[SYS] inlet-heat - heat: "~heat~", currBleed: "~currBleed~", anti: "~anti);
    setprop("fdm/jsbsim/propulsion/engine[0]/bleed-factor", currBleed+anti);
@@ -1570,12 +1591,12 @@ setlistener("/controls/anti-ice/engine[1]/inlet-heat", func(n) {
    var anti = 0;
    var currBleed = getprop("fdm/jsbsim/propulsion/engine[1]/bleed-factor");
    if (n.getValue() == 0) {
-     anti = -0.2;
+     anti = -0.12;
      if (currBleed == 0) {
        anti = 0.0;
      }
    } else {
-     anti = 0.2;
+     anti = 0.12;
    }
    setprop("fdm/jsbsim/propulsion/engine[1]/bleed-factor", currBleed+anti);
 });
@@ -1584,12 +1605,12 @@ setlistener("/controls/anti-ice/engine[2]/inlet-heat", func(n) {
    var anti = 0;
    var currBleed = getprop("fdm/jsbsim/propulsion/engine[2]/bleed-factor");
    if (n.getValue() == 0) {
-     anti = -0.2;
+     anti = -0.12;
      if (currBleed == 0) {
        anti = 0.0;
      }
    } else {
-     anti = 0.2;
+     anti = 0.12;
    }
    setprop("fdm/jsbsim/propulsion/engine[2]/bleed-factor", currBleed+anti);
 });
@@ -1598,12 +1619,12 @@ setlistener("/controls/anti-ice/engine[3]/inlet-heat", func(n) {
    var anti = 0;
    var currBleed = getprop("fdm/jsbsim/propulsion/engine[3]/bleed-factor");
    if (n.getValue() == 0) {
-     anti = -0.2;
+     anti = -0.12;
      if (currBleed == 0) {
        anti = 0.0;
      }
    } else {
-     anti = 0.2;
+     anti = 0.12;
    }
    setprop("fdm/jsbsim/propulsion/engine[3]/bleed-factor", currBleed+anti);
 });

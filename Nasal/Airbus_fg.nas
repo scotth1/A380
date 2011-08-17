@@ -1372,6 +1372,7 @@ handle_inputs = func {
     setprop("/autopilot/settings/target-speed-kt", desSpeed);
     setprop("/autopilot/settings/target-speed-mach", desMach);
     setprop("/instrumentation/afs/target-speed-mach", desMach);
+    setprop("/autopilot/locks/speed", "speed-with-throttle");
     setprop("instrumentation/flightdirector/vnav",vnav);
   }
 
