@@ -10,15 +10,19 @@
 
         <layer>
             <condition>
-                <not>
-                    <property>instrumentation/efis/inputs/nd-centered</property>
-                </not>
+              <and>
+                <equals>
+                    <property>instrumentation/efis[0]/mfd/display-mode</property>
+                    <value>ARC</value>
+                </equals>
+                <property>instrumentation/efis[0]/inputs/WX</property>
+              </and>
             </condition>
             <name>radararc</name>
             <w>350</w>
             <h>350</h>
             <texture>
-                <path>Aircraft/A380/Models/Instruments/MFD/od_wxradar.png</path>
+                <path>Aircraft/Instruments/Textures/od_wxradar.rgb</path>
                 <x1>0.0</x1>
                 <y1>0.0</y1>
                 <x2>1</x2>
@@ -39,13 +43,19 @@
 
         <layer>
             <condition>
-                    <property>instrumentation/efis/inputs/nd-centered</property>
+              <and>
+                <equals>
+                    <property>instrumentation/efis[0]/mfd/display-mode</property>
+                    <value>ROSE</value>
+                </equals>
+                <property>instrumentation/efis[0]/inputs/WX</property>
+              </and>
             </condition>
             <name>radarfull</name>
             <w>220</w>
             <h>220</h>
             <texture>
-                <path>Aircraft/A380/Models/Instruments/MFD/od_wxradar.png</path>
+                <path>Aircraft/Instruments/Textures/od_wxradar.rgb</path>
                 <x1>0.0</x1>
                 <y1>0.0</y1>
                 <x2>1</x2>

@@ -457,7 +457,7 @@ tracer : func(msg) {
           if (wp != nil) {
             dn.getNode("id",1).setValue(wp.wp_name);
             dn.getNode("parent",1).setValue(wp.wp_parent_name);
-            var spdLim = wp.spd_csrt;
+            var spdLim = wp.spd_cstr;
             if (spdLim < 1 and spdLim > 0) {
               dn.getNode("spd-lim-display",1).setValue(sprintf("%01.2f", spdLim));
             } else {

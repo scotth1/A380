@@ -142,6 +142,16 @@ toggle_loc = func() {
       } else {
         var inRange1 = getprop("/instrumentation/nav[0]/in-range");
         tracer("AFS: localizer inrange: "~inRange1);
+        var dh = getprop("instrumentation/mk-viii/arinc429/decision-height");
+        var rwyVal = getprop("instrumentation/afs/arv-rwy");
+        var apt = airportinfo(getprop("/instrumentation/afs/FROM"));
+        var mhz = getILS(apt,rwyVal);
+        if (mhz != nil) {
+          setprop("instrumentation/afs/rwy-cat","CAT I");
+          if (dh < 100) {
+            setprop("instrumentation/afs/rwy-cat","CAT III");
+          }
+        }
         if ((inRange1 == 1)) {
           setprop("/autopilot/locks/heading","nav1-hold");
           # notice that nav1 loc is different than APPR?
@@ -402,6 +412,35 @@ setlistener("/autopilot/settings/vertical-speed-fpm", func(n) {
 });
 
 
+setlistener("instrumentation/efis[0]/display-mode", func(n) {
+    var val = n.getValue();
+    var mode = "MAP";
+    var modeStr = "";
+    if (val == 0) {
+      mode = "ROSE";
+      modeStr = "LS";
+    }
+    if (val == 1) {
+      mode = "ROSE";
+      modeStr = "VOR";
+    }
+    if (val == 2) {
+      mode = "ROSE";
+      modeStr = "NAV";
+    }
+    if (val == 3) {
+      mode = "ARC";
+      modeStr = "ARC";
+    }
+    if (val == 4) {
+      mode = "PLAN";
+      modeStr = "PLAN";
+    }
+    setprop("instrumentation/efis[0]/mfd/display-mode", mode);
+    setprop("instrumentation/efis[0]/nd-mode", modeStr);
+});
+
+
 toggle_vs_select = func(n) {
       mode = getprop("instrumentation/flightdirector/vnav");
       vs = getprop("instrumentation/afs/vertical-vs-mode");
@@ -649,6 +688,16 @@ toggle_appr = func() {
         setprop("/instrumentation/flightdirector/vnav",VNAV_OFF);
         setprop("/instrumentation/flightdirector/lnav",LNAV_LOC);
       } else {
+        var dh = getprop("instrumentation/mk-viii/arinc429/decision-height");
+        var rwyVal = getprop("instrumentation/afs/arv-rwy");
+        var apt = airportinfo(getprop("/instrumentation/afs/FROM"));
+        var mhz = getILS(apt,rwyVal);
+        if (mhz != nil) {
+          setprop("instrumentation/afs/rwy-cat", "CAT I");
+          if (dh < 100) {
+            setprop("instrumentation/afs/rwy-cat","CAT III");
+          }
+        }
         if ((getprop("/instrumentation/nav[0]/has-gs") == 1)) {
             tracer("AFS: nav1 has GS/LOC");
             setprop("/instrumentation/flightdirector/vnav",VNAV_GS);
@@ -663,6 +712,21 @@ toggle_appr = func() {
             setprop("/instrumentation/flightdirector/lnav-arm",LNAV_LOC);
         }
       }
+}
+
+## get ILS frequency from airportinfo.
+var getILS = func(apt, rwy) {
+   var mhz = nil;
+   var runways = apt["runways"];
+   var ks = keys(runways);
+   for(var r=0; r != size(runways); r=r+1) {
+     var run = runways[ks[r]];
+     if (run.id == rwy and contains(run, "ils_frequency_mhz")) {
+       mhz = sprintf("%3.1f",run.ils_frequency_mhz);
+       return mhz;
+     }
+   }
+   return mhz;
 }
 
 toggle_spd = func() {
@@ -846,6 +910,8 @@ change_radar_range = func(n) {
   }
   setprop("/instrumentation/radar/range",newRange);
 }
+
+
 
 ###############################################################
 ## timers to reset display on AFS CP.

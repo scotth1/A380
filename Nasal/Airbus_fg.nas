@@ -1176,6 +1176,24 @@ setlistener("/instrumentation/nav[0]/gs-in-range", func(n) {
 });
 
 
+## get ILS frequency from airportinfo.
+var getILS = func(apt, rwy) {
+   if (trace > 1) {
+     debug.dump(apt);
+   }
+   var mhz = nil;
+   var runways = apt["runways"];
+   var ks = keys(runways);
+   for(var r=0; r != size(runways); r=r+1) {
+     var run = runways[ks[r]];
+     if (run.id == rwy and contains(run, "ils_frequency_mhz")) {
+       mhz = sprintf("%3.1f",run.ils_frequency_mhz);
+       return mhz;
+     }
+   }
+   return mhz;
+}
+
 
 #
 # if we add/remove waypoints we might need to update stuff?

@@ -27,7 +27,7 @@
 currentField = "";
 currentFieldPos = 0;
 inputValue = "";
-trace = 0;         ## Set to 0 to turn off all tracing messages
+trace = 1;         ## Set to 0 to turn off all tracing messages
 depDB = nil;
 arvDB = nil;
 version = "V1.0.22";
@@ -651,11 +651,11 @@ selectSidAction = func(opt, unit) {
       var wp = sid.wpts[w];
       tracer(" add sid wp: "~wp.wp_name);
       if (w == size(sid.wpts)-1) {
-        wp.alt_csrt = (crzFl*100);
+        wp.alt_cstr = (crzFl*100);
       }
       var wpLen = getprop("/autopilot/route-manager/route/num");
-      if (wp.alt_csrt != nil and wp.alt_csrt > 0) {
-        wpIns = sprintf("%i:%s@%i",wpLen,wp.wp_name,int(wp.alt_csrt));
+      if (wp.alt_cstr != nil and wp.alt_cstr > 0) {
+        wpIns = sprintf("%i:%s@%i",wpLen,wp.wp_name,int(wp.alt_cstr));
       } else {
         wpIns = sprintf("%i:%s@-1",wpLen,wp.wp_name);
       }
@@ -666,10 +666,10 @@ selectSidAction = func(opt, unit) {
         var wpt = wp;
         wpt.wp_parent_name = getprop("instrumentation/afs/sid");
         wpt.wp_type = "SID";
-        if (wpt.spd_csrt == nil and wpt.spd_csrt > 0) {
-          wpt.spd_csrt = toSpd;
+        if (wpt.spd_cstr == nil and wpt.spd_cstr > 0) {
+          wpt.spd_cstr = toSpd;
         } else {
-          toSpd = wpt.spd_csrt;
+          toSpd = wpt.spd_cstr;
         }
         airbusFMS.insertWP(wpt, discontIdx);
         discontIdx = discontIdx+1;
@@ -690,134 +690,54 @@ selectSidAction = func(opt, unit) {
     }
 
     ####  calculate T/C
-    var wpLen = getprop("/autopilot/route-manager/route/num");
-    
-    for(var v=0; v != wpLen; v=v+1) {
-      var wpId = getprop("/autopilot/route-manager/route/wp["~v~"]/id");
-      var wpAlt = getprop("/autopilot/route-manager/route/wp["~v~"]/altitude-ft");
-
+    #var wpLen = getprop("/autopilot/route-manager/route/num");
+    #for(var v=0; v != wpLen; v=v+1) {
+    #  var wpId = getprop("/autopilot/route-manager/route/wp["~v~"]/id");
+    #  var wpAlt = getprop("/autopilot/route-manager/route/wp["~v~"]/altitude-ft");
+    #
+    #}
+    var prevWpt = airbusFMS.getWP(discontIdx-1);
+    var fromApt = airportinfo(getprop("/instrumentation/afs/FROM"));
+    var toApt = airportinfo(getprop("/instrumentation/afs/TO"));
+    var crzFt  = getprop("/instrumentation/afs/thrust-cruise-alt");
+    var tocWP = fmsWP.new();
+    tocWP.wp_name="(T/C)";
+    tocWP.wp_type = "T/C";
+    var climbNM = calcDistAtAngle(3, crzFt);
+    var tocWpCoord = geo.Coord.new();
+    tocWpCoord.set_latlon(fromApt.lat, fromApt.lon, fromApt.elevation);
+    var prevCoord = geo.Coord.new();
+    var toAptCoord = geo.Coord.new();
+    toAptCoord.set_latlon(toApt.lat, toApt.lon, 0);
+    tracer("prevWPT.wp_lat: "~prevWpt.wp_lat~", prevWPT.wp_lon: "~prevWpt.wp_lon~", toApt.lat: "~toApt.lat~", toApt.lon: "~toApt.lon);
+    prevCoord.set_latlon(prevWpt.wp_lat, prevWpt.wp_lon, 0);
+    var hdg = prevCoord.course_to(toAptCoord);
+    tracer("apply course: "~hdg~", distance: "~climbNM*NM2MTRS);
+    tocWpCoord.apply_course_distance(hdg, (climbNM*NM2MTRS));
+    var tcLat = tocWpCoord.lat();
+    var tcLon = tocWpCoord.lon();
+    tracer("tocWpCoord.lat: "~tcLat~" / tocWpCoord.lon: "~tcLon);
+    tocWP.wp_lat = tcLat;
+    tocWP.wp_lon = tcLon;
+    tracer("tocWP.wp_lat: "~tocWP.wp_lat~" / tocWP.wp_lon: "~tocWP.wp_lon);
+    tocWP.alt_cstr = crzFt;
+    tocWP.spd_cstr = getprop("instrumentation/afs/crz_mach");
+    var existIdx = airbusFMS.findWPType("T/C");
+    if (existIdx == nil) {
+      airbusFMS.insertWP(tocWP, discontIdx);
+      discontIdx = discontIdx+1;
+      var wpLen = getprop("/autopilot/route-manager/route/num");
+      #var tcIns = sprintf("@insert %i:%s,%s@%i",wpLen-1,tocWP.wp_lon,tocWP.wp_lat, tocWP.alt_cstr);
+      #tracer("insert T/C: "~tcIns);
+      insertAbsWP("(T/C)",wpLen-1,tocWP.wp_lat,tocWP.wp_lon, tocWP.alt_cstr);
+    } else {
+      airbusFMS.replaceAt(tocWP, existIdx);
     }
   }
   if (direct == "star") {
     var star = arvDB.getStar(sidVal);
     var wpLen = getprop("/autopilot/route-manager/route/num");
     var crzFl = getprop("/instrumentation/afs/CRZ_FL");
-    ###   calculate the T/D
-    var firstWp = star.wpts[0];
-    var arvApt = airportinfo(getprop("/instrumentation/afs/TO"));
-    var crzFt  = getprop("/instrumentation/afs/thrust-cruise-alt");
-    ## work around bug 189 for the meanwhile..
-    var wptIdx = wpLen-1;
-    var badAlt = getprop("/autopilot/route-manager/route/wp["~wptIdx~"]/altitude-ft");
-    var appId  = getprop("/autopilot/route-manager/route/wp["~wptIdx~"]/id");
-    tracer("update elevation for id: "~appId~", route/wp["~wptIdx~"]/altitude-ft = "~badAlt);
-    if (badAlt < -9999 and substr(appId,0,4) == arvApt.id) {
-      var appLat = getprop("/autopilot/route-manager/route/wp["~wptIdx~"]/latitude-deg");
-      var appLon = getprop("/autopilot/route-manager/route/wp["~wptIdx~"]/longitude-deg");
-      tracer("add new airport WPT");
-      insertAbsWP(appId,wptIdx,appLat,appLon,int(arvApt.elevation));
-      setprop("/autopilot/route-manager/input", "@delete "~(wpLen));
-    }
-    tracer(">>>>>>>>>>>>>> current thrust-cruise-alt: "~crzFt);
-    var prevCoord = geo.Coord.new();
-    prevCoord.set_latlon(getprop("/autopilot/route-manager/route/wp["~(wpLen-2)~"]/latitude-deg"), getprop("/autopilot/route-manager/route/wp["~(wpLen-2)~"]/longitude-deg"), crzFt);
-    ### calc Pythagorean Theorem of each phase
-    var totalDist = 0;
-    var sidebNM = calcDistAtAngle(2, 10000);
-    tracer(" 2deg dist: "~sidebNM~" nm");
-    totalDist = totalDist+sidebNM;
-    var difAlt = (crzFt-arvApt.elevation)-10000;
-    sidebNM = calcDistAtAngle(2.7, difAlt);
-    tracer(" 3deg dist: "~sidebNM~" nm for: "~difAlt~"ft");
-    totalDist = totalDist+sidebNM;
-    var remainDist = gcd2(arvApt.lat, arvApt.lon, firstWp.wp_lat, firstWp.wp_lon, "nm");
-    tracer("T/D is at: "~totalDist~"nm from arrival apt, first wp of STAR is: "~remainDist~"nm from airport");
-    if (totalDist > remainDist) {
-
-      var difDist = totalDist-remainDist;
-      var firstWpCoord = geo.Coord.new();
-      firstWpCoord.set_latlon(firstWp.wp_lat, firstWp.wp_lon, crzFt);
-      #var NextStarWp = star.wpts[1];
-      #if (size(star.wpts) == 1) {
-      #  
-      #}
-      
-      #var NextStarWpCoord = geo.Coord.new();
-      #NextStarWpCoord.set_latlon(NextStarWp.wp_lat, NextStarWp.wp_lon, crzFt);
-      #var starHdg = NextStarWpCoord.course_to(firstWpCoord);
-      var prevHdg = firstWpCoord.course_to(prevCoord); 
-      #var difHdg = starHdg-prevHdg;
-      #tracer("[FMS] diff heading between enroute "~prevHdg~" and star "~starHdg~" is: "~difHdg);
-      tracer("[FMS] enroute hdg: "~prevHdg);
-      var hdg = prevHdg;
-      #if (difHdg > 10 or difHdg < -10) {
-      #  tracer("[FMS] heading difference too great, reducing...");
-      #  difHdg = difHdg/2;
-      #  hdg = starHdg+difHdg;
-      #  if (hdg > 360) {
-      #    hdg = hdg-360;
-      #  }
-      #  if (hdg < 0) {
-      #    hdg = 360+hdg;
-      #  }
-      #  tracer("[FMS] difHdg: "~difHdg~", new T/D heading: "~hdg);
-      #}
-      ###var hdg = calcOrthHeadingDeg(firstWp.wp_lat, firstWp.wp_lon, prevRtLat, prevRtLon);
-      tracer("[FMS] find point at course: "~hdg~", dist: "~difDist~"nm from: "~firstWp.wp_name);
-    
-      #var tdCoord = calcDistancePointDeg(hdg, difDist, firstWp.wp_lat, firstWp.wp_lon);
-      var tdCoord = firstWpCoord.apply_course_distance(hdg, difDist*NM2MTRS);
-      var tdLat = tdCoord.lat();
-      var tdLon = tdCoord.lon();
-      tracer("T/D lat: "~tdLat~", lon: "~tdLon);
-      var tdIns = sprintf("@insert %i:%s,%s@%i",wpLen-1,tdLon,tdLat,int(crzFt));
-      tracer("insert T/D: "~tdIns);
-      ##setprop("/autopilot/route-manager/input",tdIns);
-      insertAbsWP("(T/D)",wpLen-1,tdLat,tdLon,int(crzFt));
-      var wp = fmsWP.new();
-      wp.wp_name = "(T/D)";
-      wp.wp_type = "T/D";
-      wp.wp_lat =  tdLat;
-      wp.wp_lon =  tdLon;
-      wp.alt_csrt = crzFt;
-      wp.spd_csrt = getprop("/instrumentation/afs/des_mach");
-      airbusFMS.clearWPType("T/D");
-      var disIdx = airbusFMS.findWPType("DISC");
-      airbusFMS.insertWP(wp, disIdx+1);
-      wpLen = getprop("/autopilot/route-manager/route/num");
-      tracer("wpLen now: "~wpLen);
-      #var wpStr = "/autopilot/route-manager/route/wp["~(wpLen-2)~"]";
-      #print("[FMS] using wpStr: "~wpStr);
-      #setprop(wpStr~"/id","TD");
-      #setprop(wpStr~"/name","TD");
-    } else {
-      var difDist = 15;
-      var firstWpCoord = geo.Coord.new();
-      firstWpCoord.set_latlon(firstWp.wp_lat, firstWp.wp_lon, crzFt);
-      var prevHdg = firstWpCoord.course_to(prevCoord); 
-      tracer("[FMS] enroute hdg: "~prevHdg);
-      var hdg = prevHdg;
-      tracer("[FMS] find point at course: "~hdg~", dist: "~difDist~"nm from: "~firstWp.wp_name);
-      var tdCoord = firstWpCoord.apply_course_distance(hdg, difDist*NM2MTRS);
-      var tdLat = tdCoord.lat();
-      var tdLon = tdCoord.lon();
-      tracer("T/D lat: "~tdLat~", lon: "~tdLon);
-      var tdIns = sprintf("@insert %i:%s,%s@%i",wpLen-1,tdLon,tdLat,int(crzFt));
-      tracer("insert T/D: "~tdIns);
-      insertAbsWP("(T/D)",wpLen-1,tdLat,tdLon,int(crzFt));
-      var wp = fmsWP.new();
-      wp.wp_name = "(T/D)";
-      wp.wp_type = "T/D";
-      wp.wp_lat =  tdLat;
-      wp.wp_lon =  tdLon;
-      wp.alt_csrt = crzFt;
-      wp.spd_csrt = getprop("/instrumentation/afs/des_mach");
-      airbusFMS.clearWPType("T/D");
-      var disIdx = airbusFMS.findWPType("DISC");
-      airbusFMS.insertWP(wp, disIdx+1);
-      wpLen = getprop("/autopilot/route-manager/route/num");
-      tracer("wpLen now: "~wpLen);
-    }
 
     var appSpd = 270;
     airbusFMS.clearWPType("STAR");
@@ -825,8 +745,8 @@ selectSidAction = func(opt, unit) {
       var wpIns = "";
       var wpLen = getprop("/autopilot/route-manager/route/num");
       tracer("wpLen now: "~wpLen);
-      if (w.alt_csrt > 0) {
-        wpIns = sprintf("%i:%s@%i",wpLen-1,w.wp_name,int(w.alt_csrt));
+      if (w.alt_cstr > 0) {
+        wpIns = sprintf("%i:%s@%i",wpLen-1,w.wp_name,int(w.alt_cstr));
       } else {
         wpIns = sprintf("%i:%s@-1",wpLen-1,w.wp_name);
       }
@@ -838,21 +758,26 @@ selectSidAction = func(opt, unit) {
         var wpt = w;
         wpt.wp_parent_name = getprop("instrumentation/afs/star");
         wpt.wp_type = "STAR";
-        if (wpt.alt_csrt != nil and wpt.alt_csrt < 11000) {
+        if (wpt.alt_cstr != nil and wpt.alt_cstr < 11000) {
           appSpd = 250;
         }
-        if (wpt.alt_csrt != nil and wpt.alt_csrt < 3000) {
+        if (wpt.alt_cstr != nil and wpt.alt_cstr <= 3000) {
           appSpd = 210;
         }
-        if (wpt.spd_csrt == nil and wpt.spd_csrt > 0) {
-          wpt.spd_csrt = appSpd;
+        if (wpt.spd_cstr == nil) {
+          wpt.spd_cstr = appSpd;
+          spd_cstr_ind = 0;
         } else {
-          appSpd = wpt.spd_csrt;
+          appSpd = wpt.spd_cstr;
+          wpt.spd_cstr_ind = 1;
         }
         var lastPos = airbusFMS.getPlanSize()-1;
         airbusFMS.insertWP(wpt, lastPos);
       }
     }
+    tracer("insert T/D after STAR");
+    insertTopOfDescent();
+
     var transArm = 0;
     if (star.transitions != nil and size(star.transitions) > 0) {
       foreach(var tr; star.transitions) {
@@ -861,6 +786,9 @@ selectSidAction = func(opt, unit) {
         }
       }
     }
+    ##################
+    ## insert approach transition and IAP wpts
+
     if (transArm == 1) {
       nextPage = "active.departure.arv";
     } else {
@@ -869,12 +797,15 @@ selectSidAction = func(opt, unit) {
     var appr = arvDB.getApproachList(getprop("/instrumentation/afs/arv-rwy"));
     if (size(appr) == 1) {
       var iap = appr[0];
+      airbusFMS.clearWPType("IAP");
       tracer("star approach avail: "~iap.wp_name~", with "~size(iap.wpts)~" wps");
       foreach(var trans; iap.transitions) {
         if (trans.trans_name == sidVal) {
           tracer("transition to approach has "~size(trans.trans_wpts)~" wps");
           foreach(var twp; trans.trans_wpts) {
             if (twp.wp_type == "Normal" or twp.wp_type == "Outer Marker") {
+              iapWP = twp;
+              iapWP.wp_type = "IAP";
               var wpLen = getprop("/autopilot/route-manager/route/num");
               var wpIns = "";
               var idExists = 0;
@@ -887,18 +818,23 @@ selectSidAction = func(opt, unit) {
               if (idExists == 0) {
                 var wpName = twp.wp_name;
                 var wpAlt = -1;
-                if (twp.alt_csrt > 0) {
-                  wpAlt = int(twp.alt_csrt);
+                if (twp.alt_cstr > 0) {
+                  wpAlt = int(twp.alt_cstr);
                 }
                 if (twp.wp_type == "Outer Marker") {
                   wpName = sprintf("%i:%s,%s",wpLen-1,twp.wp_lon,twp.wp_lat);
                   insertAbsWP("OM",wpLen-1,wp_lat,wp_lon,wpAlt);
                   tracer("insert approach OM");
+                  iapWP.wp_name = "O.M";
+                  var arpIdx = airbus.findWPName(getprop("/instrumentation/afs/TO"));
+                  airbusFMS.insertWP(iapWP, arpIdx-1);
                 } else {
                   wpIns = sprintf("%i:%s@%i",wpLen-1,wpName,wpAlt);
                   tracer("Insert approach transition: "~wpIns~", of type: "~twp.wp_type);
 		  tracer("/autopilot/route-manager/input, @insert "~wpIns);
                   setprop("/autopilot/route-manager/input", "@insert "~wpIns);
+                  var arpIdx = airbus.findWPName(getprop("/instrumentation/afs/TO"));
+                  airbusFMS.insertWP(iapWP, arpIdx-1);
                 }
               }
             }
@@ -925,11 +861,13 @@ selectSidAction = func(opt, unit) {
             }
           }
           if (idExists == 0) {
+            var iapWP = awp;
             wpLen = getprop("/autopilot/route-manager/route/num");
             var wpName = awp.wp_name;
             var wpAlt = -1;
-            if (awp.alt_csrt >0) {
-              wpAlt = int(awp.alt_csrt);
+            if (awp.alt_cstr >0) {
+              wpAlt = int(awp.alt_cstr);
+              iapWP.alt_cstr_ind = 1;
             }
             if (awp.wp_type == "Outer Marker" or awp.wp_type == "Middle Marker") {
               var type = "O.M";
@@ -937,11 +875,18 @@ selectSidAction = func(opt, unit) {
                 type = "M.M";
               }
               insertAbsWP(type,wpLen-1,awp.wp_lat,awp.wp_lon,wpAlt);
+              var arpIdx = airbus.findWPName(getprop("/instrumentation/afs/TO"));
+              iapWP.wp_type = "IAP";
+              iapWP.wp_name = type;
+              airbusFMS.insertWP(iapWP, arpIdx);
             } else {
               wpIns = sprintf("%i:%s@%i",wpLen-1,wpName,wpAlt);
               tracer("Insert approach route: "~wpIns~", of type: "~awp.wp_type);
 	      tracer("/autopilot/route-manager/input, @insert "~wpIns);
               setprop("/autopilot/route-manager/input", "@insert "~wpIns);
+              var arpIdx = airbusFMS.findWPName(getprop("/instrumentation/afs/TO"));
+              iapWP.wp_type = "IAP";
+              airbusFMS.insertWP(iapWP, arpIdx);
             }
           }
         }
@@ -949,10 +894,31 @@ selectSidAction = func(opt, unit) {
     } else {
       tracer("[MCDU] WARN: found "~size(appr)~" approaches, can't use any!!");
     }
+    
+    updateApproachAlts();
+    
+    tracer("clear route-manager and copy from FMS plan");
+    setprop("/autopilot/route-manager/active",0);
+    setprop("autopilot/route-manager/input", "@CLEAR");
+    setprop("/autopilot/route-manager/departure/airport",getprop("/instrumentation/afs/FROM"));
+    setprop("/autopilot/route-manager/departure/runway",getprop("/instrumentation/afs/dep-rwy"));
+    setprop("/autopilot/route-manager/destination/airport",getprop("/instrumentation/afs/TO"));
+    setprop("/autopilot/route-manager/destination/runway",getprop("/instrumentation/afs/arv-rwy"));
+
+    var maxWP = airbusFMS.getPlanSize();
+    var idx = 1;
+    for(var w = 0; w < maxWP; w=w+1) {
+      var wp = airbusFMS.getWP(w);
+      if (wp.wp_type == "APT" or wp.wp_type == "DISC") {
+      } else {
+        insertAbsWP(wp.wp_name,idx,wp.wp_lat,wp.wp_lon,wp.alt_cstr);
+        idx=idx+1;
+      }
+    }
     setprop("/autopilot/route-manager/cruise/flight-level",crzFl);
     setprop("/autopilot/route-manager/cruise/altitude-ft",(crzFl*100));
     setprop("/autopilot/route-manager/cruise/speed-kts",480);
-    updateApproachAlts();
+
     tracer("/autopilot/route-manager/input, @ACTIVATE");
     setprop("/autopilot/route-manager/input", "@ACTIVATE");
     ##setprop("/autopilot/route-manager/active",1);
@@ -983,10 +949,12 @@ selectSidTransAction = func(val, unit) {
           var wp = sidTran.trans_wpts[w];
           tracer(" add sid wp: "~wp.wp_name);
           if (w == size(sidTran.trans_wpts)-1) {
-            wp.alt_csrt = (crzFl*100);
+            wp.alt_cstr = (crzFl*100);
           }
-          if (wp.alt_csrt != nil and wp.alt_csrt > 0) {
-            wpIns = sprintf("%i:%s@%i",(wpLen+w),wp.wp_name,int(wp.alt_csrt));
+          var sidTransWP = wp;
+          if (wp.alt_cstr != nil and wp.alt_cstr > 0) {
+            wpIns = sprintf("%i:%s@%i",(wpLen+w),wp.wp_name,int(wp.alt_cstr));
+            sidTransWP.alt_cstr_ind = 1;
           } else {
             wpIns = sprintf("%i:%s@-1",(wpLen+w),wp.wp_name);
           }
@@ -994,6 +962,12 @@ selectSidTransAction = func(val, unit) {
           if (wp.wp_type == "Normal") {
 	    tracer("/autopilot/route-manager/input, @insert "~wpIns);
             setprop("/autopilot/route-manager/input", "@insert "~wpIns);
+            sidTransWP.wp_type = "SID";
+            var TCIdx = airbusFMS.findWPType("T/C");
+            if (TCIdx == nil) {
+              TCIdx = airbusFMS.findWPType("DISC");
+            }
+            airbusFMS.insertWP(sidTransWP, TCIdx);
           }
         }
       }
@@ -1001,6 +975,9 @@ selectSidTransAction = func(val, unit) {
 
   changePage(unit, "active.departure.dep");
 }
+
+
+
 
 updateApproachAlts = func() {
 ### we need to calculate diff alt.
@@ -1083,16 +1060,16 @@ updateApproachAlts = func() {
               appWP.wp_type = "STAR";
             } else {
               appWP = airbusFMS.getWPIdx(existIdPos);
-              if (appWP.spd_csrt != nil and appWP.spd_csrt < appSpeed) {
-                appSpeed = appWP.spd_csrt;
+              if (appWP.spd_cstr != nil and appWP.spd_cstr < appSpeed) {
+                appSpeed = appWP.spd_cstr;
               }
             } 
             if (thisAlt < 11000 and appSpeed > 250) {
               appSpeed = 250;
             }
             appWP.wp_name = rtId;
-            appWP.alt_csrt = thisAlt;
-            appWP.spd_csrt = appSpeed;
+            appWP.alt_cstr = thisAlt;
+            appWP.spd_cstr = appSpeed;
             appWP.wp_lat = rtLat;
             appWP.wp_lon = rtLon;
             appWP.wp_parent_name = getprop("instrumentation/afs/star");
@@ -1176,7 +1153,7 @@ var makeAirportWP = func(apt, rwy) {
   aptWP.wp_type = "APT";
   aptWP.wp_lat = run["lat"];
   aptWP.wp_lon = run["lon"];
-  aptWP.alt_csrt = apt["elevation"];
+  aptWP.alt_cstr = apt["elevation"];
   aptWP.hdg_radial = run["heading"];
   return aptWP;
 }
@@ -1231,25 +1208,126 @@ checkInsert = func(wp,r) {
       foundWp.name = getprop("/autopilot/route-manager/route/wp["~wt~"]/id");
       foundWp.wp_lat = getprop("/autopilot/route-manager/route/wp["~wt~"]/latitude-deg");
       foundWp.wp_lon = getprop("/autopilot/route-manager/route/wp["~wt~"]/longitude-deg");
-      foundWp.alt_csrt = getprop("/autopilot/route-manager/route/wp["~wt~"]/altitude-ft");
+      foundWp.alt_cstr = getprop("/autopilot/route-manager/route/wp["~wt~"]/altitude-ft");
       var difLat = foundWp.wp_lat - wp.wp_lat;
       var difLon = foundWp.wp_lon - wp.wp_lon;
       if (difLat < -0.001 or difLat > 0.001 or difLon < -0.001 or difLon > 0.001) {
         tracer("update STAR WP, input lat: "~foundWp.wp_lat~", wp lat: "~wp.wp_lat);
         tracer("update STAR WP, input lon: "~foundWp.wp_lon~", wp lon: "~wp.wp_lon);
         setprop("/autopilot/route-manager/input","@delete "~(wt));
-        insertAbsWP(wp.wp_name,wt,wp.wp_lat,wp.wp_lon,foundWp.alt_csrt);
+        insertAbsWP(wp.wp_name,wt,wp.wp_lat,wp.wp_lon,foundWp.alt_cstr);
       }
     }
   }
   if (foundWp == nil) {
-    if (wp.alt_csrt == 0 or wp.alt_csrt == nil) {
-      wp.alt_csrt = -1;
+    if (wp.alt_cstr == 0 or wp.alt_cstr == nil) {
+      wp.alt_cstr = -1;
     }
-    insertAbsWP(wp.wp_name, r, wp.wp_lat, wp.wp_lon, wp.alt_csrt);
+    insertAbsWP(wp.wp_name, r, wp.wp_lat, wp.wp_lon, wp.alt_cstr);
   }
 }
 
+
+#######################################
+## calculate T/D
+insertTopOfDescent = func() {
+    var starVal = getprop("instrumentation/afs/star");
+    var star = arvDB.getStar(starVal);
+    var wpLen = getprop("/autopilot/route-manager/route/num");
+    var crzFl = getprop("/instrumentation/afs/CRZ_FL");
+    var firstStarWp = star.wpts[0];
+    var starWPIdx = airbusFMS.findWPType("STAR");
+    var starWP = airbusFMS.getWP(starWPIdx);
+    var arvApt = airportinfo(getprop("/instrumentation/afs/TO"));
+    var crzFt  = getprop("/instrumentation/afs/thrust-cruise-alt");
+    tracer(">>>>>>>>>>>>>> current thrust-cruise-alt: "~crzFt);
+     
+    var prevCoord = geo.Coord.new();
+    prevCoord.set_latlon(starWP.wp_lat, starWP.wp_lon, starWP.alt_cstr);
+    ### calc Pythagorean Theorem of each phase
+    var totalDist = 0;
+    var sidebNM = calcDistAtAngle(2, 10000);
+    tracer(" 2deg dist: "~sidebNM~" nm");
+    totalDist = totalDist+sidebNM;
+    var difAlt = (crzFt-arvApt.elevation)-10000;
+    sidebNM = calcDistAtAngle(2.7, difAlt);
+    tracer(" 3deg dist: "~sidebNM~" nm for: "~difAlt~"ft");
+    totalDist = totalDist+sidebNM;
+    var remainDist = gcd2(arvApt.lat, arvApt.lon, starWP.wp_lat, starWP.wp_lon, "nm");
+    tracer("T/D is at: "~totalDist~"nm from arrival apt, first wp of STAR is: "~remainDist~"nm from airport");
+    if (totalDist > remainDist) {
+      var difDist = totalDist-remainDist;
+      var prevWP = nil;
+      for (var w = starWPIdx-1; w > 0; w=w-1) {
+        var prevWP = airbusFMS.getWP(w);
+        if (prevWP.wp_type != "DISC") {
+          break;
+        }
+      }
+      var firstWpCoord = geo.Coord.new();
+      firstWpCoord.set_latlon(prevWP.wp_lat, prevWP.wp_lon, crzFt);
+      
+      var prevHdg = firstWpCoord.course_to(prevCoord); 
+      var nextCoord = geo.Coord.new();
+      var nextStarWp = airbusFMS.getWP(starWPIdx+1);
+      nextCoord.set_latlon(nextStarWp.wp_lat, nextStarWp.wp_lon, nextStarWp.alt_cstr);
+      var starHdg = prevCoord.course_to(nextCoord);
+      var difHdg = starHdg-prevHdg;
+      tracer("[FMS] diff heading between enroute "~prevHdg~" and star "~starHdg~" is: "~difHdg);
+      tracer("[FMS] enroute hdg: "~prevHdg);
+      var hdg = prevHdg;
+ 
+      ###var hdg = calcOrthHeadingDeg(firstStarWp.wp_lat, firstStarWp.wp_lon, prevRtLat, prevRtLon);
+      tracer("[FMS] find point at course: "~hdg~", dist: "~difDist~"nm from: "~firstStarWp.wp_name);
+    
+      #var tdCoord = calcDistancePointDeg(hdg, difDist, starWP.lat, firstWp.wp_lon);
+      var tdCoord = firstWpCoord.apply_course_distance(hdg, difDist*NM2MTRS);
+      var tdLat = tdCoord.lat();
+      var tdLon = tdCoord.lon();
+      tracer("T/D lat: "~tdLat~", lon: "~tdLon);
+      ##var tdIns = sprintf("@insert %i:%s,%s@%i",wpLen-1,tdLon,tdLat,int(crzFt));
+      ##tracer("insert T/D: "~tdIns);
+      ##setprop("/autopilot/route-manager/input",tdIns);
+      ###insertAbsWP("(T/D)",wpLen-1,tdLat,tdLon,int(crzFt));
+      var wp = fmsWP.new();
+      wp.wp_name = "(T/D)";
+      wp.wp_type = "T/D";
+      wp.wp_lat =  tdLat;
+      wp.wp_lon =  tdLon;
+      wp.alt_cstr = crzFt;
+      wp.spd_cstr = getprop("/instrumentation/afs/des_mach");
+      ###var disIdx = airbusFMS.findWPType("DISC");
+      airbusFMS.clearWPType("T/D");
+      airbusFMS.insertWP(wp, starWPIdx);
+    } else {
+      var difDist = 15;
+      var firstWpCoord = geo.Coord.new();
+      firstWpCoord.set_latlon(firstStarWp.wp_lat, firstStarWp.wp_lon, crzFt);
+      var prevHdg = firstWpCoord.course_to(prevCoord); 
+      tracer("[FMS] enroute hdg: "~prevHdg);
+      var hdg = prevHdg;
+      tracer("[FMS] find point at course: "~hdg~", dist: "~difDist~"nm from: "~firstStarWp.wp_name);
+      var tdCoord = firstWpCoord.apply_course_distance(hdg, difDist*NM2MTRS);
+      var tdLat = tdCoord.lat();
+      var tdLon = tdCoord.lon();
+      tracer("T/D lat: "~tdLat~", lon: "~tdLon);
+      #var tdIns = sprintf("@insert %i:%s,%s@%i",wpLen-1,tdLon,tdLat,int(crzFt));
+      #tracer("insert T/D: "~tdIns);
+      #insertAbsWP("(T/D)",wpLen-1,tdLat,tdLon,int(crzFt));
+      var wp = fmsWP.new();
+      wp.wp_name = "(T/D)";
+      wp.wp_type = "T/D";
+      wp.wp_lat =  tdLat;
+      wp.wp_lon =  tdLon;
+      wp.alt_cstr = crzFt;
+      wp.spd_cstr = getprop("/instrumentation/afs/des_mach");
+      ##var disIdx = airbusFMS.findWPType("DISC");
+      airbusFMS.clearWPType("T/D");
+      airbusFMS.insertWP(wp, starWPIdx-1);
+      ##wpLen = getprop("/autopilot/route-manager/route/num");
+      ##tracer("wpLen now: "~wpLen);
+    }
+}
 
 #################################################
 #   basic mathematic functions not in Nasal :(
@@ -1419,8 +1497,13 @@ insertAbsWP = func(id, index, lat, lon, alt) {
   setprop("/instrumentation/gps/scratch/name",id);
   tracer("/instrumentation/gps/scratch/type, waypoint");
   setprop("/instrumentation/gps/scratch/type","waypoint");
-  tracer("/instrumentation/gps/command, route-insert-before");
-  setprop("/instrumentation/gps/command","route-insert-before");
+  var funct = "route-insert-before";
+  if (index == -1) {
+    funct = "route-insert-after";
+    index = 0;
+  }
+  tracer("/instrumentation/gps/command, "~funct);
+  setprop("/instrumentation/gps/command", funct);
 }
 
 # update Vr and V2 when we change the T.O. flaps config

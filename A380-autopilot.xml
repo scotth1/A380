@@ -26,6 +26,13 @@
      <seconds>8.0</seconds>
      <filter-gain>0.0</filter-gain>
   </predict-simple>
+  
+  <predict-simple>
+    <input>instrumentation/ivsi-adc[0]/indicated-speed-fps</input>
+    <output>instrumentation/ivsi-adc[0]/predict-speed-fps</output>
+    <seconds>5.0</seconds>
+    <filter-gain>0.0</filter-gain>
+  </predict-simple>
 
   <!-- =============================================================== -->
   <!-- Roll Axis Modes                                                 -->
@@ -1106,6 +1113,18 @@
       <property>instrumentation/afs/calc-tc</property>
     </output>
   </logic>
+  
+  <filter>
+    <name>calc fpm</name>
+    <type>gain</type>
+    <gain>60</gain>
+    <input>
+      <property>velocities/vertical-speed-fps</property>
+    </input>
+    <output>
+      <property>instrumentation/vertical-speed-indicator[1]/indicated-speed-fpm</property>
+    </output>
+  </filter>
   
 <filter>
   <name>calc angle of climb</name>

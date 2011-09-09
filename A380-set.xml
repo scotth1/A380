@@ -63,6 +63,7 @@
       <electrical>
         <path>Aircraft/A380/Systems/Electrical/A380-electrical.xml</path>
       </electrical>
+      
     </systems>
 
    <sound>
@@ -364,15 +365,8 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
         </default>
     </menubar>
     <instrumentation>
-    <mk-viii>
-       <name>mk-viii</name>
-       <number>0</number>
-    </mk-viii>
-    <tcas>
-       <name>tcas</name>
-       <number>0</number>
-    </tcas>
-  </instrumentation>
+            <path>Aircraft/A380/Systems/instrumentation.xml</path>
+        </instrumentation>
   </sim>
 
 <payload>
@@ -837,16 +831,49 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
 </controls>
 
 <instrumentation>
-	<efis>
+        <afs>
+          <rwy-cat type="string"></rwy-cat>
+          <approach-radio-lh type="string">VOR</approach-radio-lh>
+          <approach-radio-rh type="string">VOR</approach-radio-rh>
+        </afs>
+	<efis n="0">
+	  <display-mode type="int">3</display-mode>
+	  <nd-mode>ARC</nd-mode>
 	  <mfd>
-	    <display-mode>MAP</display-mode>
+	    <display-mode>ARC</display-mode>
 	  </mfd>
 	  <inputs>
-	    <lh-vor-adf>1</lh-vor-adf>
-	    <rh-vor-adf>1</rh-vor-adf>
-	    <nd-centred>0</nd-centred>
+	    <lh-vor-adf type="bool">1</lh-vor-adf>
+	    <rh-vor-adf type="bool">1</rh-vor-adf>
+	    <CSTR type="bool">0</CSTR>
+	    <WPT type="bool">0</WPT>
+	    <VORD type="bool">0</VORD>
+	    <NDB type="bool">0</NDB>
+	    <ARPT type="bool">0</ARPT>
+	    <WX type="bool">0</WX>
+	    <TERR type="bool">0</TERR>
+	    <TRAF type="bool">0</TRAF>
+	    <taxi type="bool">0</taxi>
+	  </inputs>
+	  
+	</efis>
+	<efis n="1">
+	  <display-mode type="int">3</display-mode>
+	  <inputs>
+	    <lh-vor-adf type="bool">1</lh-vor-adf>
+	    <rh-vor-adf type="bool">1</rh-vor-adf>
+	    <CSTR type="bool">0</CSTR>
+	    <WPT type="bool">0</WPT>
+	    <VORD type="bool">0</VORD>
+	    <NDB type="bool">0</NDB>
+	    <ARPT type="bool">0</ARPT>
+	    <WX type="bool">0</WX>
+	    <TERR type="bool">0</TERR>
+	    <TRAF type="bool">0</TRAF>
+	    <taxi type="bool">0</taxi>
 	  </inputs>
 	</efis>
+
         <radar>
             <switch type="string" archive="y">on</switch>
             <mode-control type="int" archive="y">1</mode-control>
@@ -877,11 +904,28 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
             <minimized type="bool" archive="y">false</minimized>
             <heading-marker type="bool" archive="y">true</heading-marker>
             <limit-deg type="int">360</limit-deg>
+            <!-- airports>
+              <id>TEST</id>
+              <crs type="float">0.0</crs>
+              <brg-offset type="float">0.0</brg-offset>
+              <dist-norm type="float">0.0</dist-norm>
+              <valid type="bool">1</valid>
+            </airports -->
+            <toc>
+              <valid type="bool">0</valid>
+            </toc>
+            <tod>
+              <valid type="bool">0</valid>
+            </tod>
+            <decel>
+              <valid type="bool">0</valid>
+            </decel>
         </radar>
+        
         <groundradar>
-            <id type="string">YSSY</id>
-            <range type="double">1.2</range>
+            <range type="double">1.0</range>
         </groundradar>
+        
         <mk-viii>
             <serviceable>true</serviceable>
             
@@ -927,6 +971,7 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
 	</attitude-indicator -->
 
   <wxradar>
+      <name>radar</name>
       <serviceable>true</serviceable>
       <range type="int" archive="y">20</range>
       <minimized type="bool" archive="y">false</minimized>
@@ -935,6 +980,7 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
       <lightning type="bool" archive="y">false</lightning>
       <display-mode archive="y">arc</display-mode>
   </wxradar>
+  
   <nav n="2">
     <serviceable type="bool">true</serviceable>
     <operable type="bool">true</operable>
@@ -1076,7 +1122,18 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
        </display-nodes>
      </plan>
    </fms>
-
+   <cabin-rate-climb n="1">
+     <serviceable type="bool">true</serviceable>
+     <indicated-speed-fpm type="double">0.0</indicated-speed-fpm>
+   </cabin-rate-climb>
+   <ivsi-adc n="0">
+     <serviceable type="bool">true</serviceable>
+     <indicated-speed-fpm type="double">0.0</indicated-speed-fpm>
+   </ivsi-adc>
+   <vertical-speed-indicator n="0">
+     <serviceable type="bool">true</serviceable>
+     <indicated-speed-fpm type="double">0.0</indicated-speed-fpm>
+   </vertical-speed-indicator>
 </instrumentation>
 
 <nasal>

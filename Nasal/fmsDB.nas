@@ -209,12 +209,14 @@ var fmsDB = {
           if (name == "Speed") {
             #print("[FMS] do Speed");
             var data = pop(xmlStack);
-            wp.spd_csrt = int(data);
+            wp.spd_cstr = int(data);
+            wp.spd_cstr_ind = 1;
           }
           if (name == "Altitude") {
             #print("[FMS] do Alt");
             var data = pop(xmlStack);
-            wp.alt_csrt = int(data);
+            wp.alt_cstr = int(data);
+            wp.alt_cstr_ind = 1;
           }
           if (name == "Latitude") {
             var data = pop(xmlStack);
