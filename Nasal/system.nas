@@ -319,7 +319,7 @@ update_radar = func {
   }
   maxMPCnt = mpPos;
 
-  ## plot waypoints and pseudo wp
+  ## plot waypoints 
   ##
   var wpCnt = 0;
   var wp_points = props.globals.getNode("/autopilot/route-manager/route").getChildren("wp");
@@ -363,47 +363,6 @@ update_radar = func {
       var id = base.getNode("id",1);
       id.setValue(wpId);
     }
-    if (wpId == "(T/C)" or wpId == "(T/D)" or wpId == "(DECEL)") {
-      var id = "null";
-      if (wpId == "(T/C)") {
-        id = "toc";
-      } else if (wpId == "(T/D)") {
-        id = "tod";
-      } else if (wpId == "(DECEL)") {
-        id = "decel";
-      }
-      var base = props.globals.getNode("/instrumentation/radar/"~id,1);
-      var wpPos = geo.Coord.new();
-      wpPos.set_latlon(wpLat, wpLon, 0);
-      var wpCourse = currentPos.course_to(wpPos);
-      wpDistMetre   = currentPos.distance_to(wpPos);
-      wpDist = wpDistMetre*METRE2NM;
-      if (mag_heading < wpCourse) {
-        tgt_offset = wpCourse-mag_heading;
-      } else {
-        tgt_offset = 360-(mag_heading-wpCourse);
-      }
-      if (tgt_offset < 0){
-        tgt_offset = 360-tgt_offset;
-      }
-      if (tgt_offset > 360){
-        tgt_offset -=360;
-      }
-      var valid = base.getNode("valid",1);
-      if (wpDist/radarRange <= 1.0) {
-        valid.setBoolValue(1);
-      } else {
-        valid.setBoolValue(0);
-      }
-      var brg = base.getNode("brg-offset",1);
-      brg.setDoubleValue(tgt_offset);
-      var crs = base.getNode("crs",1);
-      crs.setDoubleValue(wpCourse);
-      var dist = base.getNode("dist-norm", 1);
-      dist.setDoubleValue(wpDist/radarRange);
-      var id = base.getNode("id",1);
-      id.setValue(wpId);
-    }
   }
   if (wpCnt < radarLastCnt) {
     for(i=wpCnt;i<=radarLastCnt;i=i+1) {
@@ -421,6 +380,15 @@ update_radar = func {
     }
   }
   radarLastCnt = wpCnt;
+
+  ######
+  ## plot the three pseudo waypoints
+  var wp = fms.findWPType("T/C");
+  updatePseduo(wp);
+  wp = fms.findWPType("T/D");
+  updatePseduo(wp);
+  wp = fms.findWPType("DECEL");
+  updatePseduo(wp);
 
   ## plot the GPS ref navaid on radar
   ##
@@ -640,15 +608,67 @@ update_toc = func() {
       tocWP.alt_cstr = crzFt;
       tocWP.spd_cstr = getprop("instrumentation/afs/crz_mach");
       fms.replaceAt(tocWP, tocIdx);
-      for(var p = 0; p < getprop("autopilot/route-manager/route/num"); p = p + 1) {
-        var rtId = getprop("autopilot/route-manager/route/wp["~p~"]/id");
-        if (rtId == "(T/C)") {
-          setprop("autopilot/route-manager/route/wp["~p~"]/latitude-deg",tocWP.wp_lat);
-          setprop("autopilot/route-manager/route/wp["~p~"]/longitude-deg", tocWP.wp_lon);
-          p = getprop("autopilot/route-manager/route/num");
-        }
-      }
+      #for(var p = 0; p < getprop("autopilot/route-manager/route/num"); p = p + 1) {
+      #  var rtId = getprop("autopilot/route-manager/route/wp["~p~"]/id");
+      #  if (rtId == "(T/C)") {
+      #    setprop("autopilot/route-manager/route/wp["~p~"]/latitude-deg",tocWP.wp_lat);
+      #    setprop("autopilot/route-manager/route/wp["~p~"]/longitude-deg", tocWP.wp_lon);
+      #    p = getprop("autopilot/route-manager/route/num");
+      #  }
+      #}
     }
+}
+
+
+updatePseduo = func(wp) {
+  if (wp.wp_name == "(T/C)" or wp.wp_name == "(T/D)" or wp.wp_name == "(DECEL)") {
+      var true_heading = getprop("/orientation/heading-deg");
+      var mag_heading  = getprop("orientation/heading-magnetic-deg");
+      var radarRange = getprop("/instrumentation/radar/range");
+      var currentPos = geo.Coord.new();
+      currentPos.set_latlon(getprop("/position/latitude-deg"), getprop("/position/longitude-deg"), getprop("/position/altitude-ft"));
+      var id = "null";
+
+      if (wp.wp_name == "(T/C)") {
+        id = "toc";
+      } else if (wp.wp_name == "(T/D)") {
+        id = "tod";
+      } else if (wp.wp_name == "(DECEL)") {
+        id = "decel";
+      }
+      var base = props.globals.getNode("/instrumentation/radar/"~id,1);
+      var wpPos = geo.Coord.new();
+      wpPos.set_latlon(wp.wp_lat, wp.wp_lon, 0);
+      var wpCourse = currentPos.course_to(wpPos);
+      wpDistMetre   = currentPos.distance_to(wpPos);
+      wpDist = wpDistMetre*METRE2NM;
+      if (mag_heading < wpCourse) {
+        tgt_offset = wpCourse-mag_heading;
+      } else {
+        tgt_offset = 360-(mag_heading-wpCourse);
+      }
+      if (tgt_offset < 0){
+        tgt_offset = 360-tgt_offset;
+      }
+      if (tgt_offset > 360){
+        tgt_offset -=360;
+      }
+      var valid = base.getNode("valid",1);
+      if (wpDist/radarRange <= 1.0) {
+        valid.setBoolValue(1);
+      } else {
+        valid.setBoolValue(0);
+      }
+      var brg = base.getNode("brg-offset",1);
+      brg.setDoubleValue(tgt_offset);
+      var crs = base.getNode("crs",1);
+      crs.setDoubleValue(wpCourse);
+      var dist = base.getNode("dist-norm", 1);
+      dist.setDoubleValue(wpDist/radarRange);
+      var id = base.getNode("id",1);
+      id.setValue(wpId);
+    }
+
 }
 
 
