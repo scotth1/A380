@@ -383,12 +383,18 @@ update_radar = func {
 
   ######
   ## plot the three pseudo waypoints
-  var wp = fms.findWPType("T/C");
-  updatePseduo(wp);
-  wp = fms.findWPType("T/D");
-  updatePseduo(wp);
-  wp = fms.findWPType("DECEL");
-  updatePseduo(wp);
+  var wpIdx = fms.findWPType("T/C");
+  if (wpIdx != nil) {
+    updatePseudo(fms.getWP(wpIdx));
+  }
+  wpIdx = fms.findWPType("T/D");
+  if (wpIdx != nil) {
+    updatePseudo(fms.getWP(wpIdx));
+  }
+  wpIdx = fms.findWPType("DECEL");
+  if (wpIdx != nil) {
+    updatePseudo(fms.getWP(wpIdx));
+  }
 
   ## plot the GPS ref navaid on radar
   ##
@@ -592,6 +598,8 @@ update_toc = func() {
     var tocIdx = fms.findWPType("T/C");
     if (tocIdx != nil) {
       tracer("[updatetoc] tocIDX: "~tocIdx);
+      var fromApt = airportinfo(getprop("instrumentation/afs/FROM"));
+      var crzFt   = getprop("instrumentation/afs/CRZ_FL")*100;
       var tocWP = fms.getWP(tocIdx);
       var tocWpCoord = geo.Coord.new();
       tocWpCoord.set_latlon(fromApt.lat, fromApt.lon, fromApt.elevation);
@@ -605,8 +613,8 @@ update_toc = func() {
       tocWP.wp_lat = tcLat;
       tocWP.wp_lon = tcLon;
       tracer("tocWP.wp_lat: "~tocWP.wp_lat~" / tocWP.wp_lon: "~tocWP.wp_lon);
-      tocWP.alt_cstr = crzFt;
-      tocWP.spd_cstr = getprop("instrumentation/afs/crz_mach");
+      ##tocWP.alt_cstr = crzFt;
+      ##tocWP.spd_cstr = getprop("instrumentation/afs/crz_mach");
       fms.replaceAt(tocWP, tocIdx);
       #for(var p = 0; p < getprop("autopilot/route-manager/route/num"); p = p + 1) {
       #  var rtId = getprop("autopilot/route-manager/route/wp["~p~"]/id");
@@ -620,8 +628,8 @@ update_toc = func() {
 }
 
 
-updatePseduo = func(wp) {
-  if (wp.wp_name == "(T/C)" or wp.wp_name == "(T/D)" or wp.wp_name == "(DECEL)") {
+updatePseudo = func(wp) {
+  if (wp != nil and (wp.wp_name == "(T/C)" or wp.wp_name == "(T/D)" or wp.wp_name == "(DECEL)")) {
       var true_heading = getprop("/orientation/heading-deg");
       var mag_heading  = getprop("orientation/heading-magnetic-deg");
       var radarRange = getprop("/instrumentation/radar/range");
@@ -666,7 +674,7 @@ updatePseduo = func(wp) {
       var dist = base.getNode("dist-norm", 1);
       dist.setDoubleValue(wpDist/radarRange);
       var id = base.getNode("id",1);
-      id.setValue(wpId);
+      id.setValue(wp.wp_name);
     }
 
 }
