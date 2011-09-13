@@ -89,7 +89,7 @@ srsFlapTarget = [263.0, 222.0, 210.0, 196.0, 182.0];   #another copy in system.n
 flapPos       = [0, 0.2424, 0.5151, 0.7878, 1.0];
 
 ##trace = 0;
-version = "1.1.14";
+version = "1.1.18";
 
 strobe_switch = props.globals.getNode("/controls/switches/strobe", 0);
 aircraft.light.new("sim/model/A380/lighting/strobe", [0.05, 1.2], strobe_switch);
@@ -203,7 +203,8 @@ reset_et = func {
 
 update_radar = func {
   var true_heading = getprop("/orientation/heading-deg");
-  var mag_heading  = getprop("orientation/heading-magnetic-deg");
+  ##var mag_heading  = getprop("orientation/heading-magnetic-deg");
+  var mag_heading = getprop("/orientation/heading-deg");
   var myAlt = getprop("/position/altitude-ft");
   var currentPos = geo.Coord.new();
   currentPos.set_latlon(getprop("/position/latitude-deg"), getprop("/position/longitude-deg"), getprop("/position/altitude-ft"));
@@ -593,45 +594,43 @@ update_radar = func {
   settimer(update_radar, 1.0);
 }
 
-
+#############
+## update_toc
 update_toc = func() {
     var tocIdx = fms.findWPType("T/C");
     if (tocIdx != nil) {
       tracer("[updatetoc] tocIDX: "~tocIdx);
       var fromApt = airportinfo(getprop("instrumentation/afs/FROM"));
       var crzFt   = getprop("instrumentation/afs/CRZ_FL")*100;
+      var curAlt  = getprop("position/altitude-ft");
       var tocWP = fms.getWP(tocIdx);
+      var curPosCoord = geo.Coord.new();
       var tocWpCoord = geo.Coord.new();
-      tocWpCoord.set_latlon(fromApt.lat, fromApt.lon, fromApt.elevation);
-      var hdg = getprop("orientation/heading-deg");
-      var climbNM = getprop("instrumentation/afs/top-of-climb-dist");
+      tocWpCoord.set_latlon(tocWP.wp_lat, tocWP.wp_lon, tocWP.alt_cstr);
+      ###tocWpCoord.set_latlon(fromApt.lat, fromApt.lon, fromApt.elevation);
+      curPosCoord.set_latlon(getprop("position/latitude-deg"), getprop("position/longitude-deg"), curAlt); 
+      var hdg = curPosCoord.course_to(tocWpCoord);
+      var climbNM = getprop("instrumentation/afs/top-of-climb-dist-nm")-getprop("instrumentation/gps/odometer");
       tracer("apply course: "~hdg~", distance: "~climbNM*NM2MTRS);
-      tocWpCoord.apply_course_distance(hdg, (climbNM*NM2MTRS));
-      var tcLat = tocWpCoord.lat();
-      var tcLon = tocWpCoord.lon();
-      tracer("tocWpCoord.lat: "~tcLat~" / tocWpCoord.lon: "~tcLon);
+      curPosCoord.apply_course_distance(hdg, (climbNM*NM2MTRS));
+      var tcLat = curPosCoord.lat();
+      var tcLon = curPosCoord.lon();
+      tracer("curPosCoord.lat: "~tcLat~" / curPosCoord.lon: "~tcLon);
       tocWP.wp_lat = tcLat;
       tocWP.wp_lon = tcLon;
       tracer("tocWP.wp_lat: "~tocWP.wp_lat~" / tocWP.wp_lon: "~tocWP.wp_lon);
-      ##tocWP.alt_cstr = crzFt;
-      ##tocWP.spd_cstr = getprop("instrumentation/afs/crz_mach");
-      fms.replaceAt(tocWP, tocIdx);
-      #for(var p = 0; p < getprop("autopilot/route-manager/route/num"); p = p + 1) {
-      #  var rtId = getprop("autopilot/route-manager/route/wp["~p~"]/id");
-      #  if (rtId == "(T/C)") {
-      #    setprop("autopilot/route-manager/route/wp["~p~"]/latitude-deg",tocWP.wp_lat);
-      #    setprop("autopilot/route-manager/route/wp["~p~"]/longitude-deg", tocWP.wp_lon);
-      #    p = getprop("autopilot/route-manager/route/num");
-      #  }
-      #}
+      fms.replaceWPAt(tocWP, tocIdx);
     }
 }
 
 
+###############
+## updatePseudo
 updatePseudo = func(wp) {
   if (wp != nil and (wp.wp_name == "(T/C)" or wp.wp_name == "(T/D)" or wp.wp_name == "(DECEL)")) {
-      var true_heading = getprop("/orientation/heading-deg");
+      ##var true_heading = getprop("/orientation/heading-deg");
       var mag_heading  = getprop("orientation/heading-magnetic-deg");
+      ##var mag_heading  = getprop("orientation/heading-deg");
       var radarRange = getprop("/instrumentation/radar/range");
       var currentPos = geo.Coord.new();
       currentPos.set_latlon(getprop("/position/latitude-deg"), getprop("/position/longitude-deg"), getprop("/position/altitude-ft"));

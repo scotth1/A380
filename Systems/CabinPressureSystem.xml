@@ -15,11 +15,11 @@
     <and>
       <or>
       <greater-than>
-        <property>instrumentation/vertical-speed-indicator/indicated-speed-fpm</property>
+        <property>instrumentation/gps/indicated-vertical-speed</property>
         <value>800</value>
       </greater-than>
       <less-than>
-        <property>instrumentation/vertical-speed-indicator/indicated-speed-fpm</property>
+        <property>instrumentation/gps/indicated-vertical-speed</property>
         <value>-800</value>
       </less-than>
     </or>
@@ -54,7 +54,7 @@
          <value>1</value>
        </equals>
        <less-than>
-         <property>instrumentation/vertical-speed-indicator/indicated-speed-fpm</property>
+         <property>instrumentation/gps/indicated-vertical-speed</property>
          <value>-800</value>
        </less-than>
      </and>
@@ -73,7 +73,7 @@
          <value>1</value>
        </equals>
        <greater-than>
-         <property>instrumentation/vertical-speed-indicator/indicated-speed-fpm</property>
+         <property>instrumentation/gps/indicated-vertical-speed</property>
          <value>800</value>
        </greater-than>
       </and>

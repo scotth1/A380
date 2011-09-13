@@ -1107,6 +1107,10 @@
             <value>200</value>
           </less-than>
           <property>autopilot/route-manager/airborne</property>
+          <not-equals>
+            <property>instrumentation/flightdirector/vnav</property>
+            <value>7</value>
+          </not-equals>
         </and>
     </input>
     <output>
@@ -1134,20 +1138,25 @@
     <property>instrumentation/afs/calc-tc</property>
   </enable>
   <input>
+    <!-- convert all distances to metres -->
     <expression>
       <atan>
         <div>
-          <property>position/altitude-ft</property>
+          <product>
+            <property>position/altitude-ft</property>
+            <value>0.3048</value>
+          </product>
           <product>
             <property>instrumentation/gps/odometer</property>
-            <value>6076</value>
+            <value>1852</value>
+            <!-- value>6076</  nm2ft value -->
           </product>
         </div>
       </atan>
     </expression>
   </input>
   <output>
-    <property>instrumentation/afs/avg-climb-angle</property>
+    <property>instrumentation/afs/avg-climb-angle-rad</property>
   </output>
 </filter>
 
@@ -1165,7 +1174,7 @@
       <div>
         <property>instrumentation/afs/thrust-cruise-alt</property>
         <tan>
-          <property>instrumentation/afs/avg-climb-angle</property>
+          <property>instrumentation/afs/avg-climb-angle-rad</property>
         </tan>
       </div>
       <value>0.000164578834</value>
@@ -1173,7 +1182,7 @@
     </expression>
   </input>
   <output>
-    <property>instrumentation/afs/top-of-climb-dist</property>
+    <property>instrumentation/afs/top-of-climb-dist-nm</property>
   </output>
 </filter>
 
