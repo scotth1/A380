@@ -28,7 +28,8 @@
 currentField = "";
 currentFieldPos = 0;
 inputValue = "";
-trace = 0;         ## Set to 0 to turn off all tracing messages
+inputType  = "";
+trace = 1;         ## Set to 0 to turn off all tracing messages
 depDB = nil;
 arvDB = nil;
 version = "V2.0.3";
@@ -62,6 +63,7 @@ MSEC2KMH=3.6;
 KMH2MSEC=0.28;
 NM2MTRS = 1852;
 METRE2NM = 0.000539956803;
+METRE2FT = 3.2808399;
 lur_koeff1 = 5.661872017348443498;   #=g*tan(30deg)
 CLmax = 2.3;
 
@@ -138,6 +140,13 @@ selectField = func(field) {
    tracer("set current field to: "~currentField);
    var attr = "/instrumentation/afs/"~field;
    inputValue = getprop(attr);
+   inputType = props.globals.getNode(attr).getType();
+   if (inputType == "DOUBLE") {
+     if (inputValue > 0 and inputValue < 1) {
+       inputType = "DECIMAL";
+     }
+   }
+   print("selectField is of type: "~inputType);
    if (inputValue == nil) {
      inputValue = "";
    }
@@ -150,29 +159,54 @@ selectWP = func(idx) {
 
 
 keyPress = func(key) {
+  print("key: "~key~", inputValue: >>>"~inputValue~"<<<");
   if (num(inputValue) != nil) {
-    ##print("convert inputValue to String");
-    if (inputValue > 0 and inputValue < 1) {
-      inputValue = sprintf("%0.2f", inputValue);
+    print("convert inputValue to String");
+    if (inputType == "DECIMAL") {
+      valLen = size(""~inputValue);
+      valLen2 = valLen-2;
+      if (valLen2 < 1) {
+         valLen2 = 1;
+      }
+      var fmtStr = "%0.0"~valLen2~"f";
+      print("fmtStr: "~fmtStr);
+      inputValue = sprintf(fmtStr, inputValue);
     } else {
       inputValue = sprintf("%0.0f",inputValue);
     }
-    #if (inputValue == "0") {
-    #  inputValue = "";
-    #}
   }
+  print("sprintf'd inputValue: "~inputValue);
   if (key == "DEL") {
     var len = (size(inputValue))-1;
     if (len < 0) {
       len = 0;
     }
     inputValue = substr(inputValue,0,len);
+    if (inputValue == "") {
+      if (inputType == "DECIMAL") {
+        inputValue = "0.0";
+      }
+      if (inputType == "INT" or inputType == "DOUBLE") {
+        inputValue = "0";
+      }
+    }
+    print("len: "~len~", new inputValue: >>>"~inputValue~"<<<");
   } else {
-   inputValue = inputValue~key;
+    print("append key...");
+    if (inputType == "DECIMAL") {
+      var tmpStr = substr(inputValue,size(inputValue)-2,2);
+      print("tmpStr: "~tmpStr);
+      if (tmpStr == ".0") {
+        inputValue = substr(inputValue, 0, size(inputValue)-1);
+      }
+    }
+    inputValue = inputValue~key;
+    print("post append: "~inputValue);
   }
-  if (num(inputValue) != nil) {
-    inputValue = num(inputValue);
-  }
+  #if (num(inputValue) != nil) {
+  #  print("convert back to num");
+  #  inputValue = num(inputValue);
+  #}
   ## the to-flaps field is a single digit
   if (currentField == "to-flaps") {
     if (key == "DEL") {
@@ -182,10 +216,14 @@ keyPress = func(key) {
   }
   ## mach values should not exceed Vne
   if (currentField == "crz_mach") {
-    inputValue = num(inputValue);
-    if (inputValue > 0.93) {
+    ##inputValue = num(inputValue)+0.001;
+    if (num(inputValue) > 0.93) {
       inputValue = 0.93;
     }
+    var tocIdx = airbusFMS.findWPType("T/C");
+    var tocWP = airbusFMS.getWP(tocIdx);
+    tocWP.spd_cstr = inputValue;
+    airbusFMS.replaceWPAt(tocWP, tocIdx);
   }
   var attr = "/instrumentation/afs/"~currentField;
   tracer("set field: "~attr~", with value: "~inputValue);
@@ -1039,7 +1077,7 @@ updateApproachAlts = func() {
            tracer("[FMS] prev trans alt: "~prevAlt~", next alt: "~nextAlt);
            var prevDist = gcd2(prevLat, prevLon, rtLat, rtLon, "nm");
            var nextDist = gcd2(rtLat, rtLon, nextLat, nextLon, "nm");
-           if (nextAlt == -1) {
+           if (nextAlt == 0) {
              var lastWpLat = nextLat;
              var lastWpLon = nextLon;
              tracer("[FMS] begin calc intermediate: nextWpAlt: "~nextWpAlt~", nextDist: "~nextDist);
@@ -1058,7 +1096,7 @@ updateApproachAlts = func() {
              nextAlt = nextWpAlt;
            }
 
-           if (nextAlt == -1) {
+           if (nextAlt == 0) {
              var angle = 3;
              if ((prevAlt-5000) < 11000) {
                angle = 2;
@@ -1121,6 +1159,65 @@ updateApproachAlts = func() {
      if (wpMode == "V2" ) {
        var rtSize = airbusFMS.findWPName(getprop("/instrumentation/afs/TO"));
        var todIdx = airbusFMS.findWPType("T/D")+1;
+       var desFPA = 2.7;
+       var appSpeed = 270;
+       for(var r = todIdx; r < rtSize; r=r+1) {
+         var rtWp = airbusFMS.getWP(r);
+         var nextWp = airbusFMS.getWP(r+1);
+         var prevWp = airbusFMS.getWP(r-1);
+         var nextAlt = nextWp.alt_cstr;
+
+         tracer("[FMS] rtWp.id: "~rtWp.wp_name~", alt_cstr: "~rtWp.alt_cstr~", alt_cstr_ind: "~rtWp.alt_cstr_ind);
+         if (rtWp.alt_cstr_ind == 0 and rtWp.alt_cstr == 0) {
+           if (nextWp.alt_cstr != 0) {
+             var prevAlt = prevWp.alt_cstr;
+             var nextAlt = nextWp.alt_cstr;
+             var prevDist = gcd2(prevWp.wp_lat, prevWp.wp_lon, rtWp.wp_lat, rtWp.wp_lon, "nm");
+             var nextDist = gcd2(nextWp.wp_lat, nextWp.wp_lon, rtWp.wp_lat, rtWp.wp_lon, "nm");
+             tracer("[FMS] prevDist: "~prevDist~"nm, nextDist: "~nextDist~"nm, prevAlt: "~prevAlt~", nextAlt: "~nextAlt);
+             var thisAlt = int(prevAlt-(((prevAlt-nextAlt)/(prevDist+nextDist))*prevDist));
+             tracer("[FMS] update alt - tmpHeight: "~tmpHeight~", thisAlt: "~thisAlt~", prevDist: "~prevDist~" prevWp: "~prevWp.wp_name);
+             rtWp.alt_cstr = thisAlt;
+           } else {
+             var prevDist = gcd2(prevWp.wp_lat, prevWp.wp_lon, rtWp.wp_lat, rtWp.wp_lon, "nm");
+             var tmpHeight = calcHeightAtAngle2(desFPA,prevDist);
+             tracer("[FMS] update alt - tmpHeight: "~tmpHeight~", desFPS: "~desFPA~", prevDist: "~prevDist~" prevWp: "~prevWp.wp_name);
+             rtWp.alt_cstr = prevWp.alt_cstr-tmpHeight;
+           }
+         }
+         if (rtWp.spd_cstr != 0 and rtWp.spd_cstr < appSpeed) {
+           tracer("[FMS] rtWp.spd_cstr: "~rtWp.spd_cstr~", appSpeed: "~appSpeed);
+           appSpeed = rtWp.spd_cstr;
+         } 
+         if (rtWp.alt_cstr > 12000 and rtWp.alt_cstr < 25000) {
+           appSpeed = 260;
+         }
+         if (rtWp.alt_cstr > 6000 and rtWp.alt_cstr < 12000) {
+           appSpeed = 250;
+         }
+         if (rtWp.alt_cstr > 3000 and rtWp.alt_cstr < 6000) {
+           appSpeed = 210;
+         }
+         if (rtWp.alt_cstr < 3000) {
+           appSpeed = 180;
+         }
+         ## update the approach speed
+         if (rtWp.spd_cstr == 0) {
+           tracer("[FMS] set new spd_cstr: "~appSpeed);
+           rtWp.spd_cstr = appSpeed;
+         }
+         if (rtWp.alt_cstr < 9000) {
+           desFPA = 2.0;
+         }
+         ## finally replace the current WP even if we haven't modified it.
+         airbusFMS.replaceWPAt(rtWp, r);
+       }
+    }
+}
+
+
+###################################################
+oldUpdateFunc = func() {
        for(var r= todIdx; r < rtSize; r=r+1) {
          var rtWp = airbusFMS.getWP(r);
          var nextWp = airbusFMS.getWP(r+1);
@@ -1167,6 +1264,7 @@ updateApproachAlts = func() {
          }
          tracer("[FMS] end - prev trans Dist: "~prevDist~"nm, nextDist: "~nextDist~"nm");
          var thisAlt = int(prevWp.alt_cstr-(((prevWp.alt_cstr-nextAlt)/(prevDist+nextDist))*prevDist));
+         tracer("[FMS] prevWp.alt_cstr: "~prevWp.alt_cstr~", nextAlt: "~nextAlt);
          if (thisAlt < 100) {
            tracer("***** [FMS] incorrect calculation!!  thisAlt: "~thisAlt);
          }
@@ -1174,7 +1272,7 @@ updateApproachAlts = func() {
          tracer("[FMS] update idx["~r~"] for id: "~rtWp.wp_name~" with new alt: "~thisAlt~", old alt: "~rtWp.alt_cstr);
             var appWP = rtWp;
             var existIdPos = airbusFMS.findWPName(rtWp.wp_name);
-            if (appWP.spd_cstr != nil and appWP.spd_cstr < appSpeed) {
+            if (appWP.spd_cstr != 0 and appWP.spd_cstr < appSpeed) {
               appSpeed = appWP.spd_cstr;
             } 
             if (thisAlt < 11000 and appSpeed > 250) {
@@ -1190,8 +1288,7 @@ updateApproachAlts = func() {
        }
        setprop("instrumentation/afs/thrust-descent-alt", airbusFMS.getWP(todIdx+1).alt_cstr);
      }
-
-}
+#########################################################
 
 
 ##################
@@ -1358,6 +1455,7 @@ insertTopOfDescent = func() {
     var remainDist = gcd2(arvApt.lat, arvApt.lon, starWP.wp_lat, starWP.wp_lon, "nm");
     tracer("T/D is at: "~totalDist~"nm from arrival apt, first wp of STAR is: "~remainDist~"nm from airport");
     if (totalDist > remainDist) {
+      tracer("totalDist: "~totalDist~" > remainDist: "~remainDist);
       var difDist = totalDist-remainDist;
       var prevWP = nil;
       for (var w = starWPIdx-1; w > 0; w=w-1) {
@@ -1366,10 +1464,10 @@ insertTopOfDescent = func() {
           break;
         }
       }
-      var firstWpCoord = geo.Coord.new();
-      firstWpCoord.set_latlon(prevWP.wp_lat, prevWP.wp_lon, crzFt);
+      var prevWpCoord = geo.Coord.new();
+      prevWpCoord.set_latlon(prevWP.wp_lat, prevWP.wp_lon, crzFt);
       
-      var prevHdg = firstWpCoord.course_to(prevCoord); 
+      var prevHdg = prevWpCoord.course_to(prevCoord); 
       var nextCoord = geo.Coord.new();
       var nextStarWp = airbusFMS.getWP(starWPIdx+1);
       nextCoord.set_latlon(nextStarWp.wp_lat, nextStarWp.wp_lon, nextStarWp.alt_cstr);
@@ -1377,12 +1475,23 @@ insertTopOfDescent = func() {
       var difHdg = starHdg-prevHdg;
       tracer("[FMS] diff heading between enroute "~prevHdg~" and star "~starHdg~" is: "~difHdg);
       tracer("[FMS] enroute hdg: "~prevHdg);
-      var hdg = prevHdg;
+      if (difHdg < 0) {
+        difHdg = 360+difHdg;
+      }
+      var hdg = difHdg;
+      if (hdg >= 180) {
+        hdg = hdg-180;
+      } else {
+        hdg = hdg+180;
+      }
+     
  
       ###var hdg = calcOrthHeadingDeg(firstStarWp.wp_lat, firstStarWp.wp_lon, prevRtLat, prevRtLon);
       tracer("[FMS] find point at course: "~hdg~", dist: "~difDist~"nm from: "~firstStarWp.wp_name);
     
       #var tdCoord = calcDistancePointDeg(hdg, difDist, starWP.lat, firstWp.wp_lon);
+      var firstWpCoord = geo.Coord.new();
+      firstWpCoord.set_latlon(firstStarWp.wp_lat, firstStarWp.wp_lon);
       var tdCoord = firstWpCoord.apply_course_distance(hdg, difDist*NM2MTRS);
       var tdLat = tdCoord.lat();
       var tdLon = tdCoord.lon();
@@ -1403,6 +1512,7 @@ insertTopOfDescent = func() {
       var starWPIdx = airbusFMS.findWPType("STAR");
       airbusFMS.insertWP(wp, starWPIdx);
     } else {
+      tracer("totalDist: "~totalDist~" !> remainDist: "~remainDist);
       var difDist = 15;
       var firstWpCoord = geo.Coord.new();
       firstWpCoord.set_latlon(firstStarWp.wp_lat, firstStarWp.wp_lon, crzFt);
@@ -1464,9 +1574,19 @@ var calcDistAtAngle = func(angleX, height) {
 }
 
 var calcHeightAtAngle = func(angleX, dist) {
+    print("math.pi: "~math.pi);
     var anglexinradians = angleX*(math.pi/180);
     var sidec = dist/math.cos(anglexinradians);
+    print("anglexRad: "~anglexinradians~", sideC: "~sidec);
     var sidecNM = sidec/6076;
+    return sidecNM;
+}
+
+var calcHeightAtAngle2 = func(angleDeg, dist) {
+    var angleRad = angleDeg*(math.pi/180);
+    var sidec = (math.tan(angleRad))*dist;
+    print("sideC: "~sidec~", angleRad: "~angleRad);
+    var sidecNM = sidec*6076;
     return sidecNM;
 }
 

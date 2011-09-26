@@ -210,13 +210,17 @@ var fmsDB = {
             #print("[FMS] do Speed");
             var data = pop(xmlStack);
             wp.spd_cstr = int(data);
-            wp.spd_cstr_ind = 1;
+            if (wp.spd_cstr != 0) {
+              wp.spd_cstr_ind = 1;
+            }
           }
           if (name == "Altitude") {
             #print("[FMS] do Alt");
             var data = pop(xmlStack);
             wp.alt_cstr = int(data);
-            wp.alt_cstr_ind = 1;
+            if(wp.alt_cstr != 0) {
+              wp.alt_cstr_ind = 1;
+            }
           }
           if (name == "Latitude") {
             var data = pop(xmlStack);

@@ -724,6 +724,8 @@ setlistener("/instrumentation/flightdirector/vnav", func(n) {
     if(vnav == VNAV_OPCLB) {   # OP CLB  (s)
       #setprop("/autopilot/locks/speed","climb-hold");
       #setprop("/controls/autoflight/vertical-mode",2);
+      setprop("/instrumentation/afs/limit-min-vs-fps", -16.67);
+      setprop("/instrumentation/afs/limit-max-vs-fps", 33.33);
       setprop("/autopilot/locks/altitude","vertical-speed-hold");
       setprop("/instrumentation/flightdirector/alt-acquire-mode",1);
     }
@@ -734,6 +736,8 @@ setlistener("/instrumentation/flightdirector/vnav", func(n) {
       var changeoverAlt = atmos.calculateCrossover(desKIAS, desMach);
       setprop("instrumentation/afs/changeover-alt", changeoverAlt);
       #setprop("/autopilot/locks/speed","climb-hold");
+      setprop("/instrumentation/afs/limit-min-vs-fps", -16.67);
+      setprop("/instrumentation/afs/limit-max-vs-fps", 33.33);
       setprop("/autopilot/locks/altitude","");
       #if (getprop("/instrumentation/afs/changeover-mode") == 1) {
       #  setprop("/autopilot/locks/speed","mach-with-pitch-trim");
@@ -778,11 +782,12 @@ setlistener("/instrumentation/flightdirector/vnav", func(n) {
       curAlt = getprop("/position/altitude-ft");
       var nextWpAlt = getprop("/instrumentation/gps/wp/wp[1]/altitude-ft");
       var alreadyCruise = getprop("instrumentation/afs/acquire_crz");
-      if (curAlt < nextWpAlt and alreadyCruise != 1) {
+      if (alreadyCruise != 1 and curAlt < nextWpAlt) {
         setprop("/autopilot/settings/target-altitude-ft", nextWpAlt);
-        setprop("/instrumentation/afs/limit-min-vs-fps",-9.0);
-        setprop("/instrumentation/afs/limit-max-vs-fps",13.0);
+        
       }
+      setprop("/instrumentation/afs/limit-min-vs-fps",-9.0);
+      setprop("/instrumentation/afs/limit-max-vs-fps",13.0);
       setprop("/autopilot/locks/altitude","altitude-hold");
       setprop("/instrumentation/flightdirector/alt-acquire-mode",0);
       #setprop("/controls/autoflight/vertical-mode",1);
@@ -1124,6 +1129,9 @@ setlistener("/instrumentation/nav[0]/in-range", func(n) {
        var lnavArm = getprop("/instrumentation/flightdirector/lnav-arm");
        var fltMode = getprop("/instrumentation/ecam/flight-mode");
        if (range == 1) {
+         var ilsCat = getILSCategory(getprop("instrumentation/afs/TO"));
+         tracer("ils cat: "~ilsCat);
+         setprop("instrumentation/afs/rwy-cat", ilsCat);
          if (lnavMode != LNAV_LOC and fltMode > 8) {
            setprop("/instrumentation/flightdirector/lnav-arm", LNAV_LOC);
          } else {
@@ -1133,6 +1141,7 @@ setlistener("/instrumentation/nav[0]/in-range", func(n) {
            }
          }
        } else {
+         setprop("instrumentation/afs/rwy-cat", "");
          if (lnavMode == LNAV_LOC) {
            ## we should disable the AP if we loose LOC while active.
          }
@@ -1192,6 +1201,23 @@ var getILS = func(apt, rwy) {
      }
    }
    return mhz;
+}
+
+## get ILS category from nav db
+var getILSCategory = func(id) {
+  var retCat = "";
+  var apt = airportinfo(id);
+  var arvRunway = getprop("instrumentation/afs/arv-rwy");
+  var navList = navinfo(apt.lat, apt.lon, "ils", 3.0);
+  foreach(var ils; navList) {
+    if (ils.runway == arvRunway) {
+      var nmeStr = ils.name;
+      var parts = split(" ", nmeStr);
+      print("rwy: "~nmeStr~", parts[0]: "~parts[0]~", parts[1]: "~parts[1]~", parts[2]: "~parts[2]);
+      retCat = substr(parts[2],4);
+    }
+  }
+  return retCat;
 }
 
 

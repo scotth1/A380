@@ -1345,6 +1345,185 @@
 </text>
 
 
+<!-- active.perf.appr_perf labels -->
+
+<text>
+  <name>label.appr_perf.wind</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.138</x-m>
+      <y-m>0.030</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">literal</type>
+    <text>WIND</text>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0044</character-size>
+    <alignment>right-bottom</alignment>
+</text>
+
+<text>
+  <name>label.appr_perf.wind_kt</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.138</x-m>
+      <y-m>0.070</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">literal</type>
+    <text>kt</text>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0044</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+
+<text>
+  <name>label.appr_perf.wind_deg</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.138</x-m>
+      <y-m>0.045</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">literal</type>
+    <text>°</text>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0044</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+
+<text>
+  <name>label.appr_perf.oat</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.115</x-m>
+      <y-m>0.030</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">literal</type>
+    <text>OAT</text>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0044</character-size>
+    <alignment>right-bottom</alignment>
+</text>
+
+<text>
+  <name>label.appr_perf.oat_c</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.115</x-m>
+      <y-m>0.063</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">literal</type>
+    <text>°C</text>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0044</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+
+<text>
+  <name>label.appr_perf.S_speed</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.131</x-m>
+      <y-m>0.110</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">literal</type>
+    <text>S</text>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0044</character-size>
+    <alignment>right-bottom</alignment>
+</text>
+
+<text>
+  <name>label.appr_perf.F_speed</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.123</x-m>
+      <y-m>0.110</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">literal</type>
+    <text>F</text>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.0044</character-size>
+    <alignment>right-bottom</alignment>
+</text>
+
+<text>
+  <name>label.appr_perf.Vref</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.115</x-m>
+      <y-m>0.110</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">literal</type>
+    <text>Vref</text>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.004</character-size>
+    <alignment>right-bottom</alignment>
+</text>
+
+<text>
+  <name>label.appr_perf.conf3</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.100</x-m>
+      <y-m>0.120</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">literal</type>
+    <text>CONF 3</text>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.004</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+
+<text>
+  <name>label.appr_perf.conf_full</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.090</x-m>
+      <y-m>0.120</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">literal</type>
+    <text>FULL</text>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.004</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+
+<text>
+  <name>label.appr_perf.Vls</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.080</x-m>
+      <y-m>0.110</y-m>
+      <z-m>0.0008</z-m>
+    </offsets>
+    <type type="string">literal</type>
+    <text>VLS</text>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.004</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+
+
 
 <!--   input fields -->
 
@@ -5439,6 +5618,32 @@
   </condition>
 </animation>
 
+<animation>
+  <name>appr_perf</name>
+  <object-name>label.appr_perf.wind</object-name>
+  <object-name>label.appr_perf.wind_kt</object-name>
+  <object-name>label.appr_perf.oat</object-name>
+  <object-name>label.appr_perf.oat_c</object-name>
+  <object-name>label.appr_perf.wind_deg</object-name>
+  <object-name>label.appr_perf.S_speed</object-name>
+  <object-name>label.appr_perf.F_speed</object-name>
+  <object-name>label.appr_perf.Vref</object-name>
+  <object-name>label.appr_perf.conf3</object-name>
+  <object-name>label.appr_perf.conf_full</object-name>
+  <object-name>label.appr_perf.Vls</object-name>
+</animation>
+
+<animation>
+  <type>select</type>
+  <object-name>appr_perf</object-name>
+  <condition>
+    <equals>
+      <property>instrumentation/mcdu[0]/page</property>
+      <value>active.appr_perf</value>
+    </equals>
+  </condition>
+</animation>
+
 <!-- animation>
   <type>select</type>
   <object-name>menu.clb</object-name>
@@ -5781,7 +5986,17 @@
   <object-name>label.crz_perf.dest</object-name>
   <object-name>label.crz_perf.step_alt</object-name>
   <object-name>label.crz_perf.ci</object-name>
-  
+  <object-name>label.appr_perf.wind</object-name>
+  <object-name>label.appr_perf.wind_kt</object-name>
+  <object-name>label.appr_perf.oat</object-name>
+  <object-name>label.appr_perf.oat_c</object-name>
+  <object-name>label.appr_perf.wind_deg</object-name>
+  <object-name>label.appr_perf.S_speed</object-name>
+  <object-name>label.appr_perf.F_speed</object-name>
+  <object-name>label.appr_perf.Vref</object-name>
+  <object-name>label.appr_perf.conf3</object-name>
+  <object-name>label.appr_perf.conf_full</object-name>
+  <object-name>label.appr_perf.Vls</object-name>
 </animation>
 
 <animation>

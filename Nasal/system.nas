@@ -281,7 +281,7 @@ update_radar = func {
     validNode.setBoolValue(valid);
     var idNode = base.getNode("callsign",1);
     idNode.setValue("");
-    var distNode = base.getNode("node-dist",1);
+    var distNode = base.getNode("norm-dist",1);
     distNode.setDoubleValue(-1);
     var brgNode = base.getNode("brg-offset",1);
     brgNode.setDoubleValue(0.0);
@@ -310,7 +310,9 @@ update_radar = func {
         altNode.setIntValue(diffAlt);
         brgNode.setDoubleValue(tgt_offset);
         crsNode.setDoubleValue(aiHdg);
+        distNode.setDoubleValue(norm_dist);
         idNode.setValue(callsign);
+        validNode.setBoolValue(true);
         mpPos += 1;
       }
     }
@@ -318,7 +320,7 @@ update_radar = func {
   for(i=mpPos; i < maxMPCnt; i=i+1) {
     setprop("/instrumentation/radar/mp["~i~"]/valid",0);
   }
-  maxMPCnt = mpPos;
+  maxMPCnt = mpPos+1;
 
   ## plot waypoints 
   ##
@@ -426,10 +428,12 @@ update_radar = func {
   ## plot nearest airports
   ##
   var pos = 0;
-  var aptList = airportinfo("airport", radarRange);
-  var listSize = size(aptList);
-  ##tracer("    airportList size: "~listSize);
-  foreach (var apt; aptList) {
+  var arptData = getprop("instrumentation/efis[0]/inputs/ARPT");
+  
+    var aptList = airportinfo("airport", radarRange);
+    var listSize = size(aptList);
+    tracer("    airportList size: "~listSize);
+    foreach (var apt; aptList) {
     ##debug.dump(apt);
     if (pos < 15) {
       var base = props.globals.getNode("/instrumentation/radar/airports["~pos~"]",1);
@@ -493,7 +497,7 @@ update_radar = func {
     var id = base.getNode("id",1);
     if (closestApt != nil) {
       if (id.getValue() != closeAirportName) {
-        debug.dump(closestApt);
+        ##debug.dump(closestApt);
       }
       var aptPos = geo.Coord.new();
       aptPos.set_latlon(closestApt.tower_lat, closestApt.tower_lon, closestApt.elevation);
@@ -983,7 +987,7 @@ update_engines = func {
     flt_mode = 11;
     setprop("/instrumentation/ecam/flight-mode",flt_mode);
   }
-  alt = getprop("/instrumentation/altimeter/indicated-altitude-ft");
+  alt = getprop("/instrumentation/altimeter/indicated-altitude-ft");   #960
   if (alt > 400 and flt_mode == 6) {
     flt_mode = 7;
     setprop("/instrumentation/ecam/flight-mode",flt_mode);
