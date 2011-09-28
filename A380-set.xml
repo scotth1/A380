@@ -835,6 +835,14 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
           <rwy-cat type="string"></rwy-cat>
           <approach-radio-lh type="string">VOR</approach-radio-lh>
           <approach-radio-rh type="string">VOR</approach-radio-rh>
+          <appr_conf3 type="bool">1</appr_conf3>
+          <appr_full type="bool">0</appr_full>
+          <appr_wind_deg type="int">360</appr_wind_deg>
+          <appr_wind_kts type="int">00</appr_wind_kts>
+          <appr_oat type="int">15</appr_oat>
+          <appr_alt_baro_ft type="int">0</appr_alt_baro_ft>
+          <appr_alt_radio_ft type="int">0</appr_alt_radio_ft>
+          <appr_unknown_temp type="int">15</appr_unknown_temp>
         </afs>
 	<efis n="0">
 	  <display-mode type="int">3</display-mode>

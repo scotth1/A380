@@ -1,6 +1,7 @@
 AC3Db
+MATERIAL "ac3dmat1" rgb 0 0 0  amb 0.2 0.2 0.2  emis 0 0 0  spec 0.2 0.2 0.2  shi 128  trans 0
 MATERIAL "ac3dmat1" rgb 1 1 1  amb 0.2 0.2 0.2  emis 1 1 1  spec 0.2 0.2 0.2  shi 128  trans 0
-MATERIAL "ac3dmat0" rgb 0 0 0  amb 0 0 0  emis 0 0 0  spec 0 0 0  shi 0  trans 0
+MATERIAL "ac3dmat0" rgb 0 0 0  amb 0 0 0  emis 0 0 0  spec 0 0 0  shi 0  trans 1
 MATERIAL "ac3dmat14" rgb 0.8 0.8 0.8  amb 0.2 0.2 0.2  emis 1 1 1  spec 0.2 0.2 0.2  shi 128  trans 0
 MATERIAL "ac3dmat6" rgb 0 1 0  amb 1 1 1  emis 1 1 1  spec 0.2 0.2 0.2  shi 0  trans 0
 MATERIAL "ac3dmat13" rgb 0.533 0.533 0.533  amb 0.2 0.2 0.2  emis 0.129 0.129 0.129  spec 0.2 0.2 0.2  shi 128  trans 0
@@ -25,61 +26,61 @@ numvert 8
 0.185 -0.03 -0.185
 numsurf 10
 SURF 0x0
-mat 6
+mat 7
 refs 3
 4 0 0
 6 0 0
 0 0 0
 SURF 0x0
-mat 6
+mat 7
 refs 3
 2 0 0
 0 0 0
 6 0 0
 SURF 0x0
-mat 6
+mat 7
 refs 3
 5 0 0
 4 0 0
 1 0 0
 SURF 0x0
-mat 6
+mat 7
 refs 3
 0 0 0
 1 0 0
 4 0 0
 SURF 0x0
-mat 6
+mat 7
 refs 3
 7 0 0
 5 0 0
 3 0 0
 SURF 0x0
-mat 6
+mat 7
 refs 3
 1 0 0
 3 0 0
 5 0 0
 SURF 0x0
-mat 6
+mat 7
 refs 3
 6 0 0
 7 0 0
 2 0 0
 SURF 0x0
-mat 6
+mat 7
 refs 3
 3 0 0
 2 0 0
 7 0 0
 SURF 0x0
-mat 6
+mat 7
 refs 3
 4 0 0
 5 0 0
 6 0 0
 SURF 0x0
-mat 6
+mat 7
 refs 3
 7 0 0
 6 0 0
@@ -96,7 +97,7 @@ numvert 4
 -0.134871 0 0.0431601
 numsurf 1
 SURF 0x30
-mat 5
+mat 6
 refs 4
 3 0 0
 2 1 0
@@ -114,7 +115,7 @@ numvert 4
 -0.122383 0 0.0728811
 numsurf 1
 SURF 0x30
-mat 5
+mat 6
 refs 4
 0 0 0
 1 1 0
@@ -132,7 +133,7 @@ numvert 4
 -0.0830986 0 0.102603
 numsurf 1
 SURF 0x30
-mat 5
+mat 6
 refs 4
 3 0 0
 2 1 0
@@ -150,7 +151,7 @@ numvert 4
 -0.0629402 0 0.132324
 numsurf 1
 SURF 0x30
-mat 5
+mat 6
 refs 4
 0 0 0
 1 1 0
@@ -168,7 +169,7 @@ numvert 4
 -0.0236298 0 0.162072
 numsurf 1
 SURF 0x30
-mat 5
+mat 6
 refs 4
 3 0 0
 2 1 0
@@ -177,11 +178,11 @@ refs 4
 kids 0
 OBJECT group
 name "page.INIT"
-loc -0.097724 0.000270458 -0.0954751
+loc -0.120503 0.000270458 -0.0873021
 kids 16
 OBJECT poly
 name "menu.TO_PERF"
-loc -0.039163 0.000228591 0.0851056
+loc -0.016384 0.000228591 0.0769326
 crease 45.000000
 numvert 4
 0.104683 0 -0.019631
@@ -190,7 +191,7 @@ numvert 4
 0.0983481 0 -0.019631
 numsurf 1
 SURF 0x30
-mat 5
+mat 6
 refs 4
 0 0 0
 1 1 0
@@ -199,7 +200,7 @@ refs 4
 kids 0
 OBJECT poly
 name "menu.FUEL_LOAD"
-loc -0.039163 0.000228591 0.076182
+loc -0.016384 0.000228591 0.068009
 crease 45.000000
 numvert 4
 0.0894245 0 -0.0107074
@@ -208,7 +209,7 @@ numvert 4
 0.0957594 0 -0.0107074
 numsurf 1
 SURF 0x30
-mat 5
+mat 6
 refs 4
 3 0 0
 2 1 0
@@ -217,7 +218,7 @@ refs 4
 kids 0
 OBJECT poly
 name "menu.NAVAIDS"
-loc -0.039163 0.000228591 0.0672584
+loc -0.016384 0.000228591 0.0590854
 crease 45.000000
 numvert 4
 0.0868359 0 -0.00178381
@@ -226,7 +227,7 @@ numvert 4
 0.0805008 0 -0.00178381
 numsurf 1
 SURF 0x30
-mat 5
+mat 6
 refs 4
 0 0 0
 1 1 0
@@ -235,16 +236,16 @@ refs 4
 kids 0
 OBJECT poly
 name "menu.DEPARTURE"
-loc -0.039163 0.000228591 0.0581172
+loc -0.016384 0.000228591 0.0499442
 crease 45.000000
 numvert 4
 0.0713597 0 0.00735742
 0.0713597 0 -0.0288676
 0.0776947 0 -0.0288676
-0.0776946 0 0.00735739
+0.0776946 0 0.00735738
 numsurf 1
 SURF 0x30
-mat 5
+mat 6
 refs 4
 3 0 0
 2 1 0
@@ -253,7 +254,7 @@ refs 4
 kids 0
 OBJECT poly
 name "menu.IRS"
-loc -0.039163 0.000228591 0.048976
+loc -0.016384 0.000228591 0.040803
 crease 45.000000
 numvert 4
 0.0685534 0 0.0164986
@@ -262,7 +263,7 @@ numvert 4
 0.0622185 0 0.0164986
 numsurf 1
 SURF 0x30
-mat 5
+mat 6
 refs 4
 0 0 0
 1 1 0
@@ -271,7 +272,7 @@ refs 4
 kids 0
 OBJECT poly
 name "menu.RTE_SUMM"
-loc 0.00454149 0.000228591 0.0585525
+loc 0.0273205 0.000228591 0.0503795
 crease 45.000000
 numvert 4
 0.0280905 0 -0.0367825
@@ -280,7 +281,7 @@ numvert 4
 0.0344255 0 -0.0367825
 numsurf 1
 SURF 0x30
-mat 5
+mat 6
 refs 4
 3 0 0
 2 1 0
@@ -289,7 +290,7 @@ refs 4
 kids 0
 OBJECT poly
 name "menu.RTE_SELECT"
-loc 0.00294329 0.000228591 -0.0290193
+loc 0.0257223 0.000228591 -0.0371923
 crease 45.000000
 numvert 4
 -0.0578829 0 0.0523875
@@ -298,7 +299,7 @@ numvert 4
 -0.0515479 0 0.0523875
 numsurf 1
 SURF 0x30
-mat 5
+mat 6
 refs 4
 3 0 0
 2 1 0
@@ -307,7 +308,7 @@ refs 4
 kids 0
 OBJECT poly
 name "menu.ALT_RTE_SELECT"
-loc 0.00294329 0.000228591 -0.0174063
+loc 0.0257223 0.000228591 -0.0255793
 crease 45.000000
 numvert 4
 -0.0399351 0 0.0407745
@@ -316,7 +317,7 @@ numvert 4
 -0.04627 0 0.0407745
 numsurf 1
 SURF 0x30
-mat 5
+mat 6
 refs 4
 0 0 0
 1 1 0
@@ -325,11 +326,11 @@ refs 4
 kids 0
 OBJECT group
 name "input.ALTN"
-loc 0.0260346 -0.000228591 -0.0422951
+loc -0.0422951 -0.000228591 -0.0260346
 kids 2
 OBJECT poly
 name "mesh"
-loc 8.09878e-05 -4.18667e-05 -1.67936e-05
+loc 0.0911897 -4.18667e-05 -0.0244503
 crease 180.000000
 numvert 4
 -0.0880053 0 0.0150502
@@ -338,13 +339,13 @@ numvert 4
 -0.0943547 0 0.0337396
 numsurf 2
 SURF 0x30
-mat 1
+mat 2
 refs 3
 0 1 0
 3 0 1
 1 0 0
 SURF 0x30
-mat 1
+mat 2
 refs 3
 0 1 0
 2 1 1
@@ -352,7 +353,7 @@ refs 3
 kids 0
 OBJECT poly
 name "BOX"
-loc 2.39909e-05 4.18667e-05 1.61976e-05
+loc 0.0911327 4.18667e-05 -0.0244173
 crease 180.000000
 numvert 4
 -0.0942343 0 0.0339093
@@ -361,7 +362,7 @@ numvert 4
 -0.0879477 0 0.0149304
 numsurf 1
 SURF 0x1
-mat 0
+mat 1
 refs 4
 3 1 0
 1 1 1
@@ -370,11 +371,11 @@ refs 4
 kids 0
 OBJECT group
 name "input.FROM"
-loc -0.0430297 -0.000228591 -0.0422951
+loc -0.0422951 -0.000228591 0.0430297
 kids 2
 OBJECT poly
 name "mesh"
-loc 3.29763e-05 -4.18667e-05 -1.57952e-05
+loc 0.0220774 -4.18667e-05 -0.0935136
 crease 180.000000
 numvert 4
 -0.018893 0 0.0841624
@@ -383,13 +384,13 @@ numvert 4
 -0.0252426 0 0.102852
 numsurf 2
 SURF 0x30
-mat 1
+mat 2
 refs 3
 0 1 0
 3 0 1
 1 0 0
 SURF 0x30
-mat 1
+mat 2
 refs 3
 0 1 0
 2 1 1
@@ -397,7 +398,7 @@ refs 3
 kids 0
 OBJECT poly
 name "BOX"
-loc 7.21812e-05 4.18667e-05 1.61976e-05
+loc 0.0221166 4.18667e-05 -0.0934816
 crease 180.000000
 numvert 4
 -0.0189316 0 0.0840651
@@ -406,7 +407,7 @@ numvert 4
 -0.0252184 0 0.102807
 numsurf 1
 SURF 0x1
-mat 0
+mat 1
 refs 4
 0 1 0
 2 1 1
@@ -415,11 +416,11 @@ refs 4
 kids 0
 OBJECT group
 name "input.TO"
-loc -0.00850475 -0.000228591 -0.0422951
+loc -0.0422951 -0.000228591 0.00850475
 kids 2
 OBJECT poly
 name "mesh"
-loc 8.08313e-05 -4.18667e-05 -1.58548e-05
+loc 0.0566502 -4.18667e-05 -0.0589887
 crease 180.000000
 numvert 4
 -0.0598153 0 0.0682788
@@ -428,13 +429,13 @@ numvert 4
 -0.0534656 0 0.0495896
 numsurf 2
 SURF 0x30
-mat 1
+mat 2
 refs 3
 3 1 0
 1 1 1
 0 0 1
 SURF 0x30
-mat 1
+mat 2
 refs 3
 3 1 0
 0 0 1
@@ -442,7 +443,7 @@ refs 3
 kids 0
 OBJECT poly
 name "BOX"
-loc 2.3827e-05 4.18667e-05 1.62423e-05
+loc 0.0565932 4.18667e-05 -0.0589566
 crease 180.000000
 numvert 4
 -0.0534082 0 0.0494699
@@ -451,7 +452,7 @@ numvert 4
 -0.0596949 0 0.0684486
 numsurf 1
 SURF 0x1
-mat 0
+mat 1
 refs 4
 0 1 0
 2 1 1
@@ -460,11 +461,11 @@ refs 4
 kids 0
 OBJECT group
 name "input.FLT_NBR"
-loc -0.0378438 -0.000228591 -0.0541161
+loc -0.0541161 -0.000228591 0.0378438
 kids 2
 OBJECT poly
 name "mesh"
-loc 5.73844e-05 -4.18667e-05 2.58982e-05
+loc 0.0391082 -4.18667e-05 -0.100107
 crease 180.000000
 numvert 4
 -0.0422321 0 0.114364
@@ -473,13 +474,13 @@ numvert 4
 -0.0358825 0 0.085787
 numsurf 2
 SURF 0x30
-mat 1
+mat 2
 refs 3
 3 1 0
 1 1 1
 0 0 1
 SURF 0x30
-mat 1
+mat 2
 refs 3
 3 1 0
 0 0 1
@@ -487,7 +488,7 @@ refs 3
 kids 0
 OBJECT poly
 name "BOX"
-loc 4.53889e-05 4.18667e-05 -2.50936e-05
+loc 0.0390962 4.18667e-05 -0.100158
 crease 180.000000
 numvert 4
 -0.0359529 0 0.0856078
@@ -496,7 +497,7 @@ numvert 4
 -0.0422397 0 0.114669
 numsurf 1
 SURF 0x31
-mat 0
+mat 1
 refs 4
 0 1 0
 2 1 1
@@ -505,11 +506,11 @@ refs 4
 kids 0
 OBJECT group
 name "input.CRZ_FL"
-loc -0.0434468 -0.000228591 -0.00549497
+loc -0.00549495 -0.000228591 0.0434468
 kids 2
 OBJECT poly
 name "mesh"
-loc 0.000449717 -4.18667e-05 0.00604527
+loc -0.014723 -4.18667e-05 -0.0510695
 crease 180.000000
 numvert 4
 0.0239692 0 0.041301
@@ -518,13 +519,13 @@ numvert 4
 0.0176196 0 0.0599905
 numsurf 2
 SURF 0x30
-mat 1
+mat 2
 refs 3
 0 1 0
 3 0 1
 1 0 0
 SURF 0x30
-mat 1
+mat 2
 refs 3
 0 1 0
 2 1 1
@@ -532,7 +533,7 @@ refs 3
 kids 0
 OBJECT poly
 name "BOX"
-loc -0.000344872 4.18667e-05 -0.00604762
+loc -0.0155177 4.18667e-05 -0.0631623
 crease 45.000000
 numvert 4
 0.0247639 0 0.0721906
@@ -541,7 +542,7 @@ numvert 4
 0.0184291 0 0.0721906
 numsurf 1
 SURF 0x31
-mat 0
+mat 1
 refs 4
 3 0 0.851852
 2 0.948052 1
@@ -550,11 +551,11 @@ refs 4
 kids 0
 OBJECT group
 name "input.ALTN_RTE"
-loc -0.0386047 -0.000228591 -0.0236861
+loc -0.0236861 -0.000228591 0.0386047
 kids 2
 OBJECT poly
 name "mesh"
-loc 0.00068818 -4.18667e-05 0.00604591
+loc 0.00854859 -4.18667e-05 -0.0644179
 crease 180.000000
 numvert 4
 0.00069806 0 0.0494672
@@ -563,13 +564,13 @@ numvert 4
 -0.00565146 0 0.0780441
 numsurf 2
 SURF 0x30
-mat 1
+mat 2
 refs 3
 0 1 0
 3 0 1
 1 0 0
 SURF 0x30
-mat 1
+mat 2
 refs 3
 0 1 0
 2 1 1
@@ -577,7 +578,7 @@ refs 3
 kids 0
 OBJECT poly
 name "BOX"
-loc -0.000582412 4.18667e-05 -0.006047
+loc 0.007278 4.18667e-05 -0.0765108
 crease 45.000000
 numvert 4
 -0.00427407 0 0.0903805
@@ -586,7 +587,7 @@ numvert 4
 0.00194588 0 0.0903805
 numsurf 1
 SURF 0x31
-mat 0
+mat 1
 refs 4
 0 0 0.851852
 1 0.948052 1
@@ -595,11 +596,11 @@ refs 4
 kids 0
 OBJECT group
 name "input.CO_RTE"
-loc -0.0386708 -0.000228591 -0.0352991
+loc -0.0352991 -0.000228591 0.0386708
 kids 2
 OBJECT poly
 name "mesh"
-loc 0.000620991 -4.18667e-05 0.006047
+loc 0.0200283 -4.18667e-05 -0.0760959
 crease 180.000000
 numvert 4
 -0.0171301 0 0.0897893
@@ -608,13 +609,13 @@ numvert 4
 -0.0107805 0 0.0612124
 numsurf 2
 SURF 0x30
-mat 1
+mat 2
 refs 3
 3 1 0
 1 1 1
 0 0 1
 SURF 0x30
-mat 1
+mat 2
 refs 3
 3 1 0
 0 0 1
@@ -622,7 +623,7 @@ refs 3
 kids 0
 OBJECT poly
 name "BOX"
-loc -0.000515997 4.18667e-05 -0.0060458
+loc 0.0188913 4.18667e-05 -0.0881887
 crease 45.000000
 numvert 4
 -0.00966679 0 0.101993
@@ -631,7 +632,7 @@ numvert 4
 -0.0158869 0 0.101993
 numsurf 1
 SURF 0x31
-mat 0
+mat 1
 refs 4
 3 0 0.851852
 2 0.948052 1
@@ -640,11 +641,11 @@ refs 4
 kids 0
 OBJECT group
 name "input.CRZ_TEMP"
-loc 0.0187427 -0.000228591 -0.00549605
+loc -0.00549605 -0.000228591 -0.0187427
 kids 2
 OBJECT poly
 name "mesh"
-loc 0.000468746 -4.18667e-05 0.00604685
+loc 0.0474864 -4.18667e-05 0.0111206
 crease 180.000000
 numvert 4
 -0.038239 0 -0.020908
@@ -653,13 +654,13 @@ numvert 4
 -0.0445886 0 -0.00221849
 numsurf 2
 SURF 0x30
-mat 1
+mat 2
 refs 3
 0 1 0
 3 0 1
 1 0 0
 SURF 0x30
-mat 1
+mat 2
 refs 3
 0 1 0
 2 1 1
@@ -667,7 +668,7 @@ refs 3
 kids 0
 OBJECT poly
 name "BOX"
-loc -0.000362352 4.18667e-05 -0.00604621
+loc 0.0466553 4.18667e-05 -0.000972554
 crease 45.000000
 numvert 4
 -0.0437427 0 0.0100183
@@ -676,7 +677,7 @@ numvert 4
 -0.037408 0 0.0100183
 numsurf 1
 SURF 0x31
-mat 0
+mat 1
 refs 4
 0 0 0.851852
 1 0.948052 1
@@ -685,21 +686,21 @@ refs 4
 kids 0
 OBJECT group
 name "option-list"
-loc -0.102506 7.18711e-05 -0.0294022
+loc -0.0544301 7.18711e-05 -0.0825201
 kids 10
 OBJECT poly
 name "menu.rwy-less"
-loc -0.0458532 0.000358888 -0.0156778
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
+loc -0.0939292 0.000358888 0.0374402
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Common/mcdu_icons.png"
 crease 45.000000
 numvert 4
 0.0807749 0 0.0125427
-0.0807749 0 0.00433754
-0.0757805 0 0.00433754
+0.0807749 0 0.00433755
+0.0757805 0 0.00433755
 0.0757805 0 0.0125427
 numsurf 1
 SURF 0x30
-mat 2
+mat 3
 refs 4
 0 0.238125 0.0990625
 1 0.480938 0.0990625
@@ -708,11 +709,11 @@ refs 4
 kids 0
 OBJECT group
 name "input.RWY08"
-loc 0.0221344 -3.00035e-05 -0.000187635
+loc -0.000187635 -3.00035e-05 -0.0221344
 kids 2
 OBJECT poly
 name "BOX"
-loc -0.0750161 4.18657e-05 -0.0258501
+loc -0.10077 4.18657e-05 0.0492146
 crease 180.000000
 numvert 4
 0.0780891 0 0.0112972
@@ -721,7 +722,7 @@ numvert 4
 0.0718023 0 0.0403586
 numsurf 1
 SURF 0x31
-mat 0
+mat 1
 refs 4
 0 1 0
 2 1 1
@@ -730,7 +731,7 @@ refs 4
 kids 0
 OBJECT poly
 name "mesh"
-loc -0.0750611 -4.18676e-05 -0.0256054
+loc -0.100815 -4.18676e-05 0.0494593
 crease 180.000000
 numvert 4
 0.0720508 0 0.0401589
@@ -739,13 +740,13 @@ numvert 4
 0.07842 0 0.0110975
 numsurf 2
 SURF 0x30
-mat 1
+mat 2
 refs 3
 3 1 0
 1 1 1
 0 0 1
 SURF 0x30
-mat 1
+mat 2
 refs 3
 3 1 0
 0 0 1
@@ -753,11 +754,11 @@ refs 3
 kids 0
 OBJECT group
 name "input.RWY07"
-loc 0.0135506 -3.00035e-05 5.76377e-05
+loc 5.76377e-05 -3.00035e-05 -0.0135506
 kids 2
 OBJECT poly
 name "BOX"
-loc -0.0666771 4.18657e-05 -0.0346789
+loc -0.10126 4.18657e-05 0.0320474
 crease 180.000000
 numvert 4
 0.0634631 0 0.0491871
@@ -766,7 +767,7 @@ numvert 4
 0.06975 0 0.0201257
 numsurf 1
 SURF 0x31
-mat 0
+mat 1
 refs 4
 3 1 0
 1 1 1
@@ -775,7 +776,7 @@ refs 4
 kids 0
 OBJECT poly
 name "mesh"
-loc -0.0667231 -4.18676e-05 -0.0344342
+loc -0.101306 -4.18676e-05 0.0322921
 crease 180.000000
 numvert 4
 0.0700819 0 0.019927
@@ -784,13 +785,13 @@ numvert 4
 0.0637126 0 0.0489884
 numsurf 2
 SURF 0x30
-mat 1
+mat 2
 refs 3
 0 1 0
 3 0 1
 1 0 0
 SURF 0x30
-mat 1
+mat 2
 refs 3
 0 1 0
 2 1 1
@@ -798,11 +799,11 @@ refs 3
 kids 0
 OBJECT group
 name "input.RWY06"
-loc 0.005212 -3.00035e-05 5.76377e-05
+loc 5.76377e-05 -3.00035e-05 -0.005212
 kids 2
 OBJECT poly
 name "BOX"
-loc -0.0583385 4.18657e-05 -0.0430174
+loc -0.10126 4.18657e-05 0.0153703
 crease 180.000000
 numvert 4
 0.0614114 0 0.0284643
@@ -811,7 +812,7 @@ numvert 4
 0.0551246 0 0.0575257
 numsurf 1
 SURF 0x31
-mat 0
+mat 1
 refs 4
 0 1 0
 2 1 1
@@ -820,7 +821,7 @@ refs 4
 kids 0
 OBJECT poly
 name "mesh"
-loc -0.0583845 -4.18676e-05 -0.0427729
+loc -0.101306 -4.18676e-05 0.0156148
 crease 180.000000
 numvert 4
 0.055374 0 0.0573271
@@ -829,13 +830,13 @@ numvert 4
 0.0617432 0 0.0282657
 numsurf 2
 SURF 0x30
-mat 1
+mat 2
 refs 3
 3 1 0
 1 1 1
 0 0 1
 SURF 0x30
-mat 1
+mat 2
 refs 3
 3 1 0
 0 0 1
@@ -843,11 +844,11 @@ refs 3
 kids 0
 OBJECT group
 name "input.RWY05"
-loc -0.003127 -3.00035e-05 5.76377e-05
+loc 5.76377e-05 -3.00035e-05 0.003127
 kids 2
 OBJECT poly
 name "BOX"
-loc -0.0499995 4.18657e-05 -0.0513567
+loc -0.10126 4.18657e-05 -0.00130804
 crease 180.000000
 numvert 4
 0.0467856 0 0.0658647
@@ -856,7 +857,7 @@ numvert 4
 0.0530724 0 0.0368033
 numsurf 1
 SURF 0x31
-mat 0
+mat 1
 refs 4
 3 1 0
 1 1 1
@@ -865,7 +866,7 @@ refs 4
 kids 0
 OBJECT poly
 name "mesh"
-loc -0.0500455 -4.18676e-05 -0.051112
+loc -0.101306 -4.18676e-05 -0.00106334
 crease 180.000000
 numvert 4
 0.0534043 0 0.0366046
@@ -874,13 +875,13 @@ numvert 4
 0.0470351 0 0.065666
 numsurf 2
 SURF 0x30
-mat 1
+mat 2
 refs 3
 0 1 0
 3 0 1
 1 0 0
 SURF 0x30
-mat 1
+mat 2
 refs 3
 0 1 0
 2 1 1
@@ -888,11 +889,11 @@ refs 3
 kids 0
 OBJECT group
 name "input.RWY04"
-loc -0.011956 -3.00035e-05 5.76377e-05
+loc 5.76377e-05 -3.00035e-05 0.011956
 kids 2
 OBJECT poly
 name "BOX"
-loc -0.0411705 4.18657e-05 -0.0601855
+loc -0.10126 4.18657e-05 -0.0189658
 crease 180.000000
 numvert 4
 0.0442434 0 0.0456323
@@ -901,7 +902,7 @@ numvert 4
 0.0379566 0 0.0746937
 numsurf 1
 SURF 0x31
-mat 0
+mat 1
 refs 4
 0 1 0
 2 1 1
@@ -910,7 +911,7 @@ refs 4
 kids 0
 OBJECT poly
 name "mesh"
-loc -0.0412165 -4.18676e-05 -0.0599407
+loc -0.101306 -4.18676e-05 -0.018721
 crease 180.000000
 numvert 4
 0.0382061 0 0.074495
@@ -919,13 +920,13 @@ numvert 4
 0.0445753 0 0.0454336
 numsurf 2
 SURF 0x30
-mat 1
+mat 2
 refs 3
 3 1 0
 1 1 1
 0 0 1
 SURF 0x30
-mat 1
+mat 2
 refs 3
 3 1 0
 0 0 1
@@ -933,11 +934,11 @@ refs 3
 kids 0
 OBJECT group
 name "input.RWY03"
-loc -0.02103 -3.00035e-05 5.76377e-05
+loc 5.76377e-05 -3.00035e-05 0.02103
 kids 2
 OBJECT poly
 name "BOX"
-loc -0.0320965 4.18657e-05 -0.0692595
+loc -0.10126 4.18657e-05 -0.0371138
 crease 180.000000
 numvert 4
 0.0288826 0 0.0837677
@@ -946,7 +947,7 @@ numvert 4
 0.0351694 0 0.0547063
 numsurf 1
 SURF 0x31
-mat 0
+mat 1
 refs 4
 3 1 0
 1 1 1
@@ -955,7 +956,7 @@ refs 4
 kids 0
 OBJECT poly
 name "mesh"
-loc -0.0321425 -4.18676e-05 -0.0690148
+loc -0.101306 -4.18676e-05 -0.0368691
 crease 180.000000
 numvert 4
 0.0355012 0 0.0545076
@@ -964,13 +965,13 @@ numvert 4
 0.0291321 0 0.083569
 numsurf 2
 SURF 0x30
-mat 1
+mat 2
 refs 3
 0 1 0
 3 0 1
 1 0 0
 SURF 0x30
-mat 1
+mat 2
 refs 3
 0 1 0
 2 1 1
@@ -978,11 +979,11 @@ refs 3
 kids 0
 OBJECT group
 name "input.RWY02"
-loc -0.030104 -3.00035e-05 5.77047e-05
+loc 5.77159e-05 -3.00035e-05 0.030104
 kids 2
 OBJECT poly
 name "BOX"
-loc -0.0230224 4.18657e-05 -0.0783337
+loc -0.10126 4.18657e-05 -0.055262
 crease 180.000000
 numvert 4
 0.0260953 0 0.0637803
@@ -991,7 +992,7 @@ numvert 4
 0.0198085 0 0.0928417
 numsurf 1
 SURF 0x31
-mat 0
+mat 1
 refs 4
 0 1 0
 2 1 1
@@ -1000,7 +1001,7 @@ refs 4
 kids 0
 OBJECT poly
 name "mesh"
-loc -0.0230684 -4.18676e-05 -0.0780889
+loc -0.101306 -4.18676e-05 -0.0550172
 crease 180.000000
 numvert 4
 0.0200582 0 0.0926429
@@ -1009,13 +1010,13 @@ numvert 4
 0.0264274 0 0.0635815
 numsurf 2
 SURF 0x30
-mat 1
+mat 2
 refs 3
 3 1 0
 1 1 1
 0 0 1
 SURF 0x30
-mat 1
+mat 2
 refs 3
 3 1 0
 0 0 1
@@ -1023,11 +1024,11 @@ refs 3
 kids 0
 OBJECT group
 name "input.RWY01"
-loc -0.039424 -3.00035e-05 5.77047e-05
+loc 5.77159e-05 -3.00035e-05 0.039424
 kids 2
 OBJECT poly
 name "BOX"
-loc -0.0137024 4.18657e-05 -0.0876537
+loc -0.10126 4.18657e-05 -0.073902
 crease 180.000000
 numvert 4
 0.0104886 0 0.102162
@@ -1036,7 +1037,7 @@ numvert 4
 0.0167754 0 0.0731002
 numsurf 1
 SURF 0x31
-mat 0
+mat 1
 refs 4
 3 1 0
 1 1 1
@@ -1045,7 +1046,7 @@ refs 4
 kids 0
 OBJECT poly
 name "mesh"
-loc -0.0137484 -4.18676e-05 -0.087409
+loc -0.101306 -4.18676e-05 -0.0736573
 crease 180.000000
 numvert 4
 0.0171073 0 0.0729016
@@ -1054,13 +1055,13 @@ numvert 4
 0.0107381 0 0.101963
 numsurf 2
 SURF 0x30
-mat 1
+mat 2
 refs 3
 0 1 0
 3 0 1
 1 0 0
 SURF 0x30
-mat 1
+mat 2
 refs 3
 0 1 0
 2 1 1
@@ -1068,8 +1069,8 @@ refs 3
 kids 0
 OBJECT poly
 name "menu.rwy-more"
-loc -0.0601141 0.000311901 -0.0156778
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
+loc -0.10819 0.000311901 0.0374402
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Common/mcdu_icons.png"
 crease 45.000000
 numvert 4
 0.0900406 0 0.0268028
@@ -1078,7 +1079,7 @@ numvert 4
 0.0950351 0 0.0268028
 numsurf 1
 SURF 0x30
-mat 2
+mat 3
 refs 4
 3 0.053958 0.0941142
 2 0.288855 0.0941142
@@ -1087,11 +1088,11 @@ refs 4
 kids 0
 OBJECT group
 name "page.perf"
-loc -0.105686 0.000383772 -0.138922
+loc -0.16395 0.000383772 -0.0793401
 kids 6
 OBJECT poly
 name "menu.t_o"
-loc -0.0617742 0 7.89762e-06
+loc -0.00351019 0 -0.0595741
 crease 45.000000
 numvert 4
 -0.00086996 0 0.132569
@@ -1100,7 +1101,7 @@ numvert 4
 0.0079568 0 0.133533
 numsurf 1
 SURF 0x30
-mat 4
+mat 5
 refs 4
 3 0 0
 2 1 0
@@ -1109,7 +1110,7 @@ refs 4
 kids 0
 OBJECT poly
 name "menu.clb"
-loc -0.0370828 0 7.89762e-06
+loc 0.0211811 0 -0.0595741
 crease 45.000000
 numvert 4
 -0.0167345 0 0.108842
@@ -1118,7 +1119,7 @@ numvert 4
 -0.0255613 0 0.107877
 numsurf 1
 SURF 0x30
-mat 4
+mat 5
 refs 4
 0 0 0
 1 1 0
@@ -1127,7 +1128,7 @@ refs 4
 kids 0
 OBJECT poly
 name "menu.crz"
-loc -0.0123645 0 7.89762e-06
+loc 0.0458994 0 -0.0595741
 crease 45.000000
 numvert 4
 -0.0502796 0 0.0831591
@@ -1136,7 +1137,7 @@ numvert 4
 -0.0414528 0 0.0841233
 numsurf 1
 SURF 0x30
-mat 4
+mat 5
 refs 4
 3 0 0
 2 1 0
@@ -1145,7 +1146,7 @@ refs 4
 kids 0
 OBJECT poly
 name "menu.des"
-loc 0.0123818 0 7.89762e-06
+loc 0.0706457 0 -0.0595741
 crease 45.000000
 numvert 4
 -0.066199 0 0.0593769
@@ -1154,7 +1155,7 @@ numvert 4
 -0.0750256 0 0.0584128
 numsurf 1
 SURF 0x30
-mat 4
+mat 5
 refs 4
 0 0 0
 1 1 0
@@ -1163,7 +1164,7 @@ refs 4
 kids 0
 OBJECT poly
 name "menu.appr"
-loc 0.0372101 0 -2.21133e-05
+loc 0.095474 0 -0.0596041
 crease 45.000000
 numvert 4
 -0.0998838 0 0.0336142
@@ -1172,7 +1173,7 @@ numvert 4
 -0.0910571 0 0.0345784
 numsurf 1
 SURF 0x30
-mat 4
+mat 5
 refs 4
 3 0 0
 2 1 0
@@ -1181,7 +1182,7 @@ refs 4
 kids 0
 OBJECT poly
 name "menu.ga"
-loc 0.061945 0 -9.08971e-06
+loc 0.120209 0 -0.0595911
 crease 45.000000
 numvert 4
 -0.11578 0 0.00983027
@@ -1190,7 +1191,7 @@ numvert 4
 -0.124607 0 0.00886619
 numsurf 1
 SURF 0x30
-mat 4
+mat 5
 refs 4
 0 0 0
 1 1 0
@@ -1199,11 +1200,11 @@ refs 4
 kids 0
 OBJECT group
 name "page.DEPARTURE"
-loc -0.160695 0.000499049 -0.0855381
+loc -0.110566 0.000499049 -0.0243312
 kids 4
 OBJECT poly
 name "menu.STAR"
-loc 0.0811294 0 -0.0311985
+loc 0.0310004 0 -0.0924053
 crease 45.000000
 numvert 4
 -0.0590051 0 0.0294156
@@ -1212,7 +1213,7 @@ numvert 4
 -0.06534 0 0.0294156
 numsurf 1
 SURF 0x30
-mat 5
+mat 6
 refs 4
 0 0 0
 1 1 0
@@ -1221,7 +1222,7 @@ refs 4
 kids 0
 OBJECT poly
 name "menu.SID"
-loc 0.0811294 0 -0.0311985
+loc 0.0310004 0 -0.0924053
 crease 45.000000
 numvert 4
 -0.06534 0 0.0294156
@@ -1230,7 +1231,7 @@ numvert 4
 -0.0590051 0 0.0294156
 numsurf 1
 SURF 0x30
-mat 5
+mat 6
 refs 4
 3 0 0
 2 1 0
@@ -1239,7 +1240,7 @@ refs 4
 kids 0
 OBJECT poly
 name "menu.DEPARTURE.arv"
-loc 0.0817224 0 -0.0595541
+loc 0.0315934 0 -0.120761
 crease 45.000000
 numvert 4
 -0.0942891 0 0.0692341
@@ -1248,7 +1249,7 @@ numvert 4
 -0.0879541 0 0.0692341
 numsurf 1
 SURF 0x30
-mat 5
+mat 6
 refs 4
 3 0 0
 2 1 0
@@ -1257,7 +1258,7 @@ refs 4
 kids 0
 OBJECT poly
 name "menu.DEPARTURE.dep"
-loc 0.0208525 0 -0.0595541
+loc -0.0292765 0 -0.120761
 crease 45.000000
 numvert 4
 -0.0270842 0 0.130104
@@ -1266,7 +1267,7 @@ numvert 4
 -0.0334192 0 0.130104
 numsurf 1
 SURF 0x30
-mat 5
+mat 6
 refs 4
 0 0 0
 1 1 0
@@ -1275,355 +1276,179 @@ refs 4
 kids 0
 OBJECT group
 name "page.TO_PERF"
-loc -0.125695 0.000121191 -0.0685511
-kids 13
+loc -0.093579 0.000121191 -0.0593312
+kids 8
 OBJECT poly
-name "rect"
-loc 0.0732534 -0.000121191 -0.0143477
-crease 45.000000
-numvert 4
--0.0587975 0 -0.0373057
--0.0587974 0 -0.0620119
--0.0521201 0 -0.0620119
--0.0521201 0 -0.0373057
-numsurf 1
-SURF 0x31
-mat 0
-refs 4
-3 0 0
-2 1 0
-1 1 1
-0 0 1
-kids 0
-OBJECT poly
-name "rect"
-loc 0.0141701 -0.000121191 -0.0143477
-crease 45.000000
-numvert 4
-0.00696318 0 0.0217776
-0.00696318 0 -0.00292859
-0.000285819 0 -0.00292859
-0.000285819 0 0.0217776
-numsurf 1
-SURF 0x31
-mat 0
-refs 4
-0 0 0
-1 1 0
-2 1 1
-3 0 1
-kids 0
-OBJECT poly
-name "rect"
-loc -0.025223 -0.000121191 -0.0277023
-crease 45.000000
-numvert 4
-0.0263243 0 0.0721881
-0.0263243 0 0.0521562
-0.0330017 0 0.0521562
-0.0330017 0 0.0721881
-numsurf 1
-SURF 0x31
-mat 0
-refs 4
-3 0 0
-2 1 0
-1 1 1
-0 0 1
-kids 0
-OBJECT poly
-name "rect"
-loc -0.025223 -0.000121191 -0.0377184
-crease 45.000000
-numvert 4
-0.0229856 0 0.0822043
-0.0229856 0 0.0621723
-0.0163082 0 0.0621723
-0.0163082 0 0.0822043
-numsurf 1
-SURF 0x31
-mat 0
-refs 4
-0 0 0
-1 1 0
-2 1 1
-3 0 1
-kids 0
-OBJECT poly
-name "rect"
-loc 0.0203137 -0.000121191 -0.0024071
-crease 45.000000
-numvert 4
--0.0540926 0 0.0656329
--0.0540926 0 -0.0829523
-0.0729356 0 -0.0829523
-0.0729356 0 0.0656329
-numsurf 1
-SURF 0x31
-mat 4
-refs 4
-3 0 0
-2 1 0
-1 1 1
-0 0 1
-kids 0
-OBJECT poly
-name "rect"
-loc -0.025223 -0.000121191 -0.0477344
-crease 45.000000
-numvert 4
-0.0062923 0 0.0922203
-0.00629227 0 0.0721883
-0.0129696 0 0.0721883
-0.0129696 0 0.0922203
-numsurf 1
-SURF 0x31
-mat 0
-refs 4
-3 0 0
-2 1 0
-1 1 1
-0 0 1
-kids 0
-OBJECT poly
-name "line"
-loc 0.0194014 -0.000121191 -0.0554133
-crease 45.000000
-numvert 2
--0.0416708 0 0.114536
--0.0416708 0 -0.0246864
-numsurf 1
-SURF 0x32
-mat 4
-refs 2
-0 0 0
-1 1 1
-kids 0
-OBJECT poly
-name "line"
-loc 0.026074 -0.000121191 -0.0403893
-crease 45.000000
-numvert 2
--0.0483434 0 0.0237291
--0.0202986 0 0.023708
-numsurf 1
-SURF 0x32
-mat 4
-refs 2
-0 0 1
-1 1 0
-kids 0
-OBJECT group
-name "input.to_flaps"
-loc 0.0176853 -0.000121191 0.0395242
-kids 2
-OBJECT poly
-name "mesh"
-loc -0.0464482 0 -0.0539846
-crease 180.000000
-numvert 4
-0.0499066 0 0.0460638
-0.0499066 0 0.0588752
-0.0429816 0 0.0460638
-0.0429816 0 0.0588752
-numsurf 2
-SURF 0x30
-mat 1
-refs 3
-0 1 0
-3 0 1
-1 0 0
-SURF 0x30
-mat 1
-refs 3
-0 1 0
-2 1 1
-3 0 1
-kids 0
-OBJECT poly
-name "rect"
-loc -0.0462472 0 -0.0538718
-crease 45.000000
-numvert 4
-0.0496946 0 0.0584992
-0.0496946 0 0.0458122
-0.0430172 0 0.0458122
-0.0430172 0 0.0584992
-numsurf 1
-SURF 0x31
-mat 0
-refs 4
-0 0 0
-1 1 0
-2 1 1
-3 0 1
-kids 0
-OBJECT group
-name "input.ths_red"
-loc 0.0331297 -0.000121191 0.0163281
-kids 2
-OBJECT poly
-name "rect"
-loc -0.0405848 0 -0.0152818
-crease 45.000000
-numvert 4
-0.0439823 0 0.030042
-0.0439824 0 0.0012694
-0.037305 0 0.0012694
-0.037305 0 0.0300419
-numsurf 1
-SURF 0x31
-mat 0
-refs 4
-0 0 0
-1 1 0
-2 1 1
-3 0 1
-kids 0
-OBJECT poly
-name "mesh"
-loc -0.0406063 0 -0.0152937
-crease 180.000000
-numvert 4
-0.0442024 0 0.001233
-0.0442024 0 0.0301452
-0.0371042 0 0.001233
-0.0371042 0 0.0301452
-numsurf 2
-SURF 0x30
-mat 1
-refs 3
-0 1 0
-3 0 1
-1 0 0
-SURF 0x30
-mat 1
-refs 3
-0 1 0
-2 1 1
-3 0 1
-kids 0
-OBJECT group
-name "input.ths_accel"
-loc 0.0447817 -0.000121191 0.0163281
-kids 2
-OBJECT poly
-name "rect"
-loc -0.0522367 0 -0.0036637
-crease 45.000000
-numvert 4
-0.0556004 0 0.0184238
-0.0556004 0 -0.0103488
-0.048923 0 -0.0103488
-0.048923 0 0.0184238
-numsurf 1
-SURF 0x31
-mat 0
-refs 4
-0 0 0
-1 1 0
-2 1 1
-3 0 1
-kids 0
-OBJECT poly
-name "mesh"
-loc -0.0522582 0 -0.00360771
-crease 180.000000
-numvert 4
-0.0556286 0 -0.0104531
-0.0556286 0 0.0184591
-0.0490498 0 -0.0104531
-0.0490498 0 0.0184591
-numsurf 2
-SURF 0x30
-mat 1
-refs 3
-0 1 0
-3 0 1
-1 0 0
-SURF 0x30
-mat 1
-refs 3
-0 1 0
-2 1 1
-3 0 1
-kids 0
-OBJECT group
-name "input.eo_accel"
-loc 0.0447817 -0.000121191 -0.0426276
-kids 2
-OBJECT poly
-name "rect"
-loc 0.0107251 0 0.055292
-crease 45.000000
-numvert 4
--0.0140388 0 -0.0445381
--0.0140388 0 -0.0733106
--0.00736133 0 -0.0733106
--0.00736138 0 -0.0445381
-numsurf 1
-SURF 0x31
-mat 0
-refs 4
-3 0 0
-2 1 0
-1 1 1
-0 0 1
-kids 0
-OBJECT poly
-name "mesh"
-loc 0.0106913 0 0.055348
-crease 180.000000
-numvert 4
--0.00714763 0 -0.073316
--0.00714773 0 -0.044577
--0.0140728 0 -0.073316
--0.0140728 0 -0.044577
-numsurf 2
-SURF 0x30
-mat 1
-refs 3
-0 1 0
-3 0 1
-1 0 0
-SURF 0x30
-mat 1
-refs 3
-0 1 0
-2 1 1
-3 0 1
-kids 0
-OBJECT group
 name "input.trans_level"
-loc 0.0726601 -0.000121191 0.016835
-kids 2
-OBJECT poly
-name "rect"
-loc -0.0806961 0 0.0237138
-crease 45.000000
+loc -0.0263754 -0.000121191 0.0338367
+crease 180.000000
 numvert 4
-0.0773877 0 -0.0088789
-0.0773877 0 -0.0376515
-0.0840651 0 -0.0376515
-0.0840651 0 -0.00887891
-numsurf 1
-SURF 0x31
-mat 0
-refs 4
-3 0 0
-2 1 0
-1 1 1
-0 0 1
+0.0667915 0 -0.0346254
+0.0667915 0 -0.00830532
+0.0615565 0 -0.0346254
+0.0615565 0 -0.00830516
+numsurf 2
+SURF 0x30
+mat 2
+refs 3
+0 1 0
+3 0 1
+1 0 0
+SURF 0x30
+mat 2
+refs 3
+0 1 0
+2 1 1
+3 0 1
+kids 0
+OBJECT poly
+name "input.eo_accel"
+loc 0.0224903 -0.000121191 -0.00804456
+crease 180.000000
+numvert 4
+-0.005206 0 -0.0671457
+-0.00520607 0 -0.0408254
+-0.01025 0 -0.0671457
+-0.01025 0 -0.0408254
+numsurf 2
+SURF 0x0
+mat 2
+refs 3
+0 1 0
+3 0 1
+1 0 0
+SURF 0x0
+mat 2
+refs 3
+0 1 0
+2 1 1
+3 0 1
+kids 0
+OBJECT poly
+name "input.ths_accel"
+loc -0.0226106 -0.000121191 0.00871005
+crease 180.000000
+numvert 4
+0.0397217 0 -0.00948147
+0.0397217 0 0.0167433
+0.0350241 0 -0.00948147
+0.0350241 0 0.0167433
+numsurf 2
+SURF 0x30
+mat 2
+refs 3
+0 1 0
+3 0 1
+1 0 0
+SURF 0x30
+mat 2
+refs 3
+0 1 0
+2 1 1
+3 0 1
+kids 0
+OBJECT poly
+name "input.ths_red"
+loc -0.0289529 -0.000121191 -0.00188972
+crease 180.000000
+numvert 4
+0.0324877 0 0.00111838
+0.0324877 0 0.0273432
+0.0272707 0 0.00111838
+0.0272707 0 0.0273432
+numsurf 2
+SURF 0x30
+mat 2
+refs 3
+0 1 0
+3 0 1
+1 0 0
+SURF 0x30
+mat 2
+refs 3
+0 1 0
+2 1 1
+3 0 1
+kids 0
+OBJECT poly
+name "input.to_flaps"
+loc -0.0530208 -0.000121191 -0.0143949
+crease 180.000000
+numvert 4
+0.0382861 0 0.0354348
+0.0382861 0 0.04529
+0.0329735 0 0.0354348
+0.0329735 0 0.04529
+numsurf 2
+SURF 0x30
+mat 2
+refs 3
+0 1 0
+3 0 1
+1 0 0
+SURF 0x30
+mat 2
+refs 3
+0 1 0
+2 1 1
+3 0 1
+kids 0
+OBJECT poly
+name "input.to_shift"
+loc -0.0173951 -0.000121191 -0.0805299
+crease 180.000000
+numvert 4
+0.0026279 0 -0.0125263
+0.00262789 0 0.0125263
+-0.00262789 0 -0.0125263
+-0.00262789 0 0.0125263
+numsurf 2
+SURF 0x30
+mat 2
+refs 3
+0 1 0
+3 0 1
+1 0 0
+SURF 0x30
+mat 2
+refs 3
+0 1 0
+2 1 1
+3 0 1
+kids 0
+OBJECT poly
+name "input.ths_for"
+loc -0.0173075 -0.000121191 -0.0288479
+crease 180.000000
+numvert 4
+0.00254031 0 -0.0105992
+0.00254031 0 0.0105992
+-0.00254031 0 -0.0105992
+-0.00254031 0 0.0105992
+numsurf 2
+SURF 0x30
+mat 2
+refs 3
+0 1 0
+3 0 1
+1 0 0
+SURF 0x30
+mat 2
+refs 3
+0 1 0
+2 1 1
+3 0 1
 kids 0
 OBJECT poly
 name "mesh"
-loc -0.0805695 0 0.0237598
+loc 0.0109698 0.00123925 -0.021334
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/fms/fms_perf_to.png"
 crease 180.000000
 numvert 4
-0.0839352 0 -0.0378073
-0.0839352 0 -0.00906852
-0.0773564 0 -0.0378073
-0.0773564 0 -0.00906832
+0.0753823 0 -0.0753823
+0.0753823 0 0.0753823
+-0.0753823 0 -0.0753823
+-0.0753823 0 0.0753823
 numsurf 2
 SURF 0x30
 mat 1
@@ -1640,143 +1465,58 @@ refs 3
 kids 0
 OBJECT group
 name "page.PERF_CRZ"
-loc -0.0792671 0 -0.0570792
-kids 6
+loc -0.0821071 0 -0.105759
+kids 5
 OBJECT poly
 name "menu.STEP_ALT"
-loc 0.031382 0.000499049 -0.0302539
-crease 45.000000
+loc 0.0648529 0 -0.0275372
+crease 180.000000
 numvert 4
-0.0344255 0 -0.0295624
-0.0344255 0 -0.0586768
-0.0280905 0 -0.0586768
-0.0280905 0 -0.0295624
-numsurf 1
+0.00291474 0 -0.0136021
+0.00291474 0 0.0136021
+-0.00291474 0 -0.0136021
+-0.00291474 0 0.0136021
+numsurf 2
 SURF 0x30
-mat 5
-refs 4
-0 0 0
-1 1 0
+mat 0
+refs 3
+0 1 0
+3 0 1
+1 0 0
+SURF 0x30
+mat 0
+refs 3
+0 1 0
 2 1 1
 3 0 1
 kids 0
 OBJECT poly
-name "box"
-loc -0.00504311 9.85432e-05 0.0150984
-crease 45.000000
-numvert 8
--0.0250755 -9.85432e-05 -4.84288e-08
--0.0250755 -9.85432e-05 -4.84288e-08
-0.0250755 -9.85432e-05 0
-0.0250755 -9.85432e-05 0
-0.0250755 9.85423e-05 0
-0.0250755 9.85423e-05 0
--0.0250755 9.85423e-05 -4.84288e-08
--0.0250755 9.85423e-05 -4.84288e-08
-numsurf 6
-SURF 0x31
-mat 0
-refs 4
-5 0 0
-2 1 0
-1 1 1
-6 0 1
-SURF 0x31
-mat 0
-refs 4
-7 0 0
+name "mesh"
+loc 0.0625586 0.00169743 -0.0766761
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/fms/fms_perf_crz.png"
+crease 180.000000
+numvert 4
+0.0161367 0 0.0250433
+0.0161367 0 0.180026
+-0.123316 0 0.0250433
+-0.123316 0 0.180026
+numsurf 2
+SURF 0x30
+mat 1
+refs 3
 0 1 0
-3 1 1
-4 0 1
-SURF 0x31
-mat 0
-refs 4
-6 0 0
-1 1 0
-0 1 1
-7 0 1
-SURF 0x31
-mat 0
-refs 4
-4 0 0
-3 1 0
-2 1 1
-5 0 1
-SURF 0x31
-mat 0
-refs 4
-7 0 0
-4 1 0
-5 1 1
-6 0 1
-SURF 0x31
-mat 0
-refs 4
-0 0 0
-1 1 0
-2 1 1
 3 0 1
-kids 0
-OBJECT poly
-name "box"
-loc -0.0301186 9.00142e-05 -0.0232417
-crease 45.000000
-numvert 8
-0 -9.00142e-05 0.0752857
-0 -9.00142e-05 -0.0752858
-0 -9.00142e-05 -0.0752858
-0 -9.00142e-05 0.0752857
-0 9.00142e-05 0.0752857
-0 9.00142e-05 -0.0752858
-0 9.00142e-05 -0.0752858
-0 9.00142e-05 0.0752857
-numsurf 6
-SURF 0x21
-mat 0
-refs 4
-5 0 0
-2 1 0
-1 1 1
-6 0 1
-SURF 0x21
-mat 0
-refs 4
-7 0 0
+1 0 0
+SURF 0x30
+mat 1
+refs 3
 0 1 0
-3 1 1
-4 0 1
-SURF 0x21
-mat 0
-refs 4
-6 0 0
-1 1 0
-0 1 1
-7 0 1
-SURF 0x21
-mat 0
-refs 4
-4 0 0
-3 1 0
-2 1 1
-5 0 1
-SURF 0x21
-mat 0
-refs 4
-7 0 0
-4 1 0
-5 1 1
-6 0 1
-SURF 0x21
-mat 0
-refs 4
-0 0 0
-1 1 0
 2 1 1
 3 0 1
 kids 0
 OBJECT poly
 name "input.crz.turb.mach"
-loc -0.015969 0 0.0043712
+loc -0.0131292 0 0.0530512
 crease 180.000000
 numvert 4
 -0.00274669 0 0.00839575
@@ -1785,13 +1525,13 @@ numvert 4
 0.00274669 0 -0.00839578
 numsurf 2
 SURF 0x30
-mat 1
+mat 2
 refs 3
 3 1 0
 1 1 1
 0 0 1
 SURF 0x30
-mat 1
+mat 2
 refs 3
 3 1 0
 0 0 1
@@ -1799,22 +1539,22 @@ refs 3
 kids 0
 OBJECT poly
 name "input.crz.lrc.mach"
-loc 0.000101186 0 0.00437118
+loc 0.002941 0 0.0530512
 crease 180.000000
 numvert 4
-0.00251144 0 -0.00839575
+0.00251144 0 -0.00839578
 0.00251144 0 0.00839579
--0.00251136 0 -0.00839571
+-0.00251134 0 -0.00839572
 -0.00251144 0 0.00839579
 numsurf 2
 SURF 0x30
-mat 1
+mat 2
 refs 3
 0 1 0
 3 0 1
 1 0 0
 SURF 0x30
-mat 1
+mat 2
 refs 3
 0 1 0
 2 1 1
@@ -1822,22 +1562,22 @@ refs 3
 kids 0
 OBJECT poly
 name "input.crz.econ.mach"
-loc -0.00849251 0 0.0043712
+loc -0.0056527 0 0.0530512
 crease 180.000000
 numvert 4
 -0.00262906 0 0.00839575
 -0.00262906 0 -0.00839575
-0.00262895 0 0.00839575
+0.00262893 0 0.00839575
 0.00262906 0 -0.00839575
 numsurf 2
 SURF 0x30
-mat 1
+mat 2
 refs 3
 3 1 0
 1 1 1
 0 0 1
 SURF 0x30
-mat 1
+mat 2
 refs 3
 3 1 0
 0 0 1
@@ -1845,98 +1585,94 @@ refs 3
 kids 0
 OBJECT group
 name "page.PERF_APPR"
-loc -0.10345 0 -0.115958
-kids 13
-OBJECT group
-name "appr.green-dot"
-loc 0.034449 0.000301106 0.057525
-kids 2
+loc -0.140986 0 -0.0815761
+kids 11
 OBJECT poly
-name "disk"
-loc -0.0723375 9.31323e-10 -0.047247
+name "appr.full.enabled"
+loc 0.0567561 0.00120837 -0.0261915
 crease 45.000000
 numvert 13
 0 0 0
--0.000804901 0 -0.00141579
--0.00139414 0 -0.000817403
--0.0016098 0 0
--0.00139414 0 0.000817403
--0.000804901 0 0.00141577
-0 0 0.00163481
-0.000804901 0 0.00141577
-0.00139412 0 0.000817403
-0.0016098 0 0
-0.00139412 0 -0.000817403
-0.000804901 0 -0.00141579
-0 0 -0.00163481
+-0.00117885 0 -0.0018269
+-0.00204183 0 -0.00105475
+-0.0023577 0 0
+-0.00204182 0 0.00105476
+-0.00117885 0 0.0018269
+7.45058e-09 0 0.00210953
+0.00117886 0 0.00182691
+0.00204183 0 0.00105476
+0.00235771 0 0
+0.00204183 0 -0.00105475
+0.00117886 0 -0.0018269
+0 0 -0.00210953
 numsurf 12
-SURF 0x20
+SURF 0x30
 mat 1
 refs 3
 1 0.933013 0.75
 12 1 0.5
 0 0.5 0.5
-SURF 0x20
+SURF 0x30
 mat 1
 refs 3
 2 0.75 0.933013
 1 0.933013 0.75
 0 0.5 0.5
-SURF 0x20
+SURF 0x30
 mat 1
 refs 3
 3 0.5 1
 2 0.75 0.933013
 0 0.5 0.5
-SURF 0x20
+SURF 0x30
 mat 1
 refs 3
 4 0.25 0.933013
 3 0.5 1
 0 0.5 0.5
-SURF 0x20
+SURF 0x30
 mat 1
 refs 3
 5 0.0669873 0.75
 4 0.25 0.933013
 0 0.5 0.5
-SURF 0x20
+SURF 0x30
 mat 1
 refs 3
 6 0 0.5
 5 0.0669873 0.75
 0 0.5 0.5
-SURF 0x20
+SURF 0x30
 mat 1
 refs 3
 7 0.0669873 0.25
 6 0 0.5
 0 0.5 0.5
-SURF 0x20
+SURF 0x30
 mat 1
 refs 3
 8 0.25 0.0669873
 7 0.0669873 0.25
 0 0.5 0.5
-SURF 0x20
+SURF 0x30
 mat 1
 refs 3
 9 0.5 0
 8 0.25 0.0669873
 0 0.5 0.5
-SURF 0x20
+SURF 0x30
 mat 1
 refs 3
 10 0.75 0.0669873
 9 0.5 0
 0 0.5 0.5
-SURF 0x20
+SURF 0x30
 mat 1
 refs 3
 11 0.933013 0.25
 10 0.75 0.0669873
 0 0.5 0.5
-SURF 0x20
+SURF 0x30
 mat 1
 refs 3
 12 1 0.5
@@ -1944,859 +1680,474 @@ refs 3
 0 0.5 0.5
 kids 0
 OBJECT poly
-name "disk"
-loc -0.0723546 9.31323e-10 -0.047247
+name "appr.conf3.enabled"
+loc 0.0480904 0.00107401 -0.0261915
 crease 45.000000
 numvert 13
-0 0 -0.00191912
-0.00095956 0 -0.00166202
-0.00166202 0 -0.00095956
-0.00191912 0 0
-0.00166202 0 0.00095956
-0.00095956 0 0.001662
-0 0 0.00191912
--0.00095956 0 0.001662
--0.001662 0 0.00095956
--0.00191912 0 0
--0.001662 0 -0.00095956
--0.00095956 0 -0.00166202
+0 0 -0.00210953
+0.00117885 0 -0.0018269
+0.00204183 0 -0.00105476
+0.00235771 0 0
+0.00204183 0 0.00105476
+0.00117885 0 0.0018269
+0 0 0.00210953
+-0.00117885 0 0.0018269
+-0.00204183 0 0.00105476
+-0.00235771 0 0
+-0.00204183 0 -0.00105476
+-0.00117885 0 -0.0018269
 0 0 0
 numsurf 12
-SURF 0x20
-mat 0
+SURF 0x30
+mat 1
 refs 3
 0 1 0.5
 1 0.933013 0.25
 12 0.5 0.5
-SURF 0x20
-mat 0
+SURF 0x30
+mat 1
 refs 3
 1 0.933013 0.25
 2 0.75 0.0669873
 12 0.5 0.5
-SURF 0x20
-mat 0
+SURF 0x30
+mat 1
 refs 3
 2 0.75 0.0669873
 3 0.5 0
 12 0.5 0.5
-SURF 0x20
-mat 0
+SURF 0x30
+mat 1
 refs 3
 3 0.5 0
 4 0.25 0.0669873
 12 0.5 0.5
-SURF 0x20
-mat 0
+SURF 0x30
+mat 1
 refs 3
 4 0.25 0.0669873
 5 0.0669873 0.25
 12 0.5 0.5
-SURF 0x20
-mat 0
+SURF 0x30
+mat 1
 refs 3
 5 0.0669873 0.25
 6 0 0.5
 12 0.5 0.5
-SURF 0x20
-mat 0
+SURF 0x30
+mat 1
 refs 3
 6 0 0.5
 7 0.0669873 0.75
 12 0.5 0.5
-SURF 0x20
-mat 0
+SURF 0x30
+mat 1
 refs 3
 7 0.0669873 0.75
 8 0.25 0.933013
 12 0.5 0.5
-SURF 0x20
-mat 0
+SURF 0x30
+mat 1
 refs 3
 8 0.25 0.933013
 9 0.5 1
 12 0.5 0.5
-SURF 0x20
-mat 0
+SURF 0x30
+mat 1
 refs 3
 9 0.5 1
 10 0.75 0.933013
 12 0.5 0.5
-SURF 0x20
-mat 0
+SURF 0x30
+mat 1
 refs 3
 10 0.75 0.933013
 11 0.933013 0.75
 12 0.5 0.5
-SURF 0x20
-mat 0
+SURF 0x30
+mat 1
 refs 3
 11 0.933013 0.75
 0 1 0.5
 12 0.5 0.5
 kids 0
-OBJECT group
+OBJECT poly
 name "appr.conf3"
-kids 2
-OBJECT poly
-name "disk"
-loc 0.00221719 0.000301107 0.00437132
-crease 45.000000
-numvert 13
-0 0 -0.00163479
-0.000804901 0 -0.00141577
-0.00139413 0 -0.000817403
-0.0016098 0 0
-0.00139413 0 0.000817403
-0.000804901 0 0.00141578
-0 0 0.00163481
--0.000804901 0 0.00141578
--0.00139413 0 0.000817403
--0.0016098 0 0
--0.00139413 0 -0.000817403
--0.000804901 0 -0.00141577
-0 0 0
-numsurf 12
-SURF 0x20
-mat 1
-refs 3
-0 1 0.5
-1 0.933013 0.25
-12 0.5 0.5
-SURF 0x20
-mat 1
-refs 3
-1 0.933013 0.25
-2 0.75 0.0669873
-12 0.5 0.5
-SURF 0x20
-mat 1
-refs 3
-2 0.75 0.0669873
-3 0.5 0
-12 0.5 0.5
-SURF 0x20
-mat 1
-refs 3
-3 0.5 0
-4 0.25 0.0669873
-12 0.5 0.5
-SURF 0x20
-mat 1
-refs 3
-4 0.25 0.0669873
-5 0.0669873 0.25
-12 0.5 0.5
-SURF 0x20
-mat 1
-refs 3
-5 0.0669873 0.25
-6 0 0.5
-12 0.5 0.5
-SURF 0x20
-mat 1
-refs 3
-6 0 0.5
-7 0.0669873 0.75
-12 0.5 0.5
-SURF 0x20
-mat 1
-refs 3
-7 0.0669873 0.75
-8 0.25 0.933013
-12 0.5 0.5
-SURF 0x20
-mat 1
-refs 3
-8 0.25 0.933013
-9 0.5 1
-12 0.5 0.5
-SURF 0x20
-mat 1
-refs 3
-9 0.5 1
-10 0.75 0.933013
-12 0.5 0.5
-SURF 0x20
-mat 1
-refs 3
-10 0.75 0.933013
-11 0.933013 0.75
-12 0.5 0.5
-SURF 0x20
-mat 1
-refs 3
-11 0.933013 0.75
-0 1 0.5
-12 0.5 0.5
-kids 0
-OBJECT poly
-name "disk"
-loc 0.0022001 0.000301107 0.00437132
+loc 0.047956 0.00100683 -0.0261915
 crease 45.000000
 numvert 13
 0 0 0
--0.00095956 0 -0.001662
--0.00166201 0 -0.000959545
--0.00191912 0 0
--0.00166201 0 0.00095956
--0.00095956 0 0.00166201
-0 0 0.00191912
-0.00095956 0 0.00166201
-0.00166201 0 0.00095956
-0.00191912 0 0
-0.00166201 0 -0.000959545
-0.00095956 0 -0.001662
-0 0 -0.00191911
+-0.00117885 0 -0.0018269
+-0.00204183 0 -0.00105476
+-0.00235771 0 0
+-0.00204183 0 0.00105476
+-0.00117885 0 0.0018269
+0 0 0.00210953
+0.00117885 0 0.0018269
+0.00204183 0 0.00105476
+0.00235771 0 0
+0.00204183 0 -0.00105476
+0.00117885 0 -0.0018269
+0 0 -0.00210953
 numsurf 12
-SURF 0x20
-mat 0
-refs 3
-1 0.933013 0.75
-12 1 0.5
-0 0.5 0.5
-SURF 0x20
-mat 0
-refs 3
-2 0.75 0.933013
-1 0.933013 0.75
-0 0.5 0.5
-SURF 0x20
-mat 0
-refs 3
-3 0.5 1
-2 0.75 0.933013
-0 0.5 0.5
-SURF 0x20
-mat 0
-refs 3
-4 0.25 0.933013
-3 0.5 1
-0 0.5 0.5
-SURF 0x20
-mat 0
-refs 3
-5 0.0669873 0.75
-4 0.25 0.933013
-0 0.5 0.5
-SURF 0x20
-mat 0
-refs 3
-6 0 0.5
-5 0.0669873 0.75
-0 0.5 0.5
-SURF 0x20
-mat 0
-refs 3
-7 0.0669873 0.25
-6 0 0.5
-0 0.5 0.5
-SURF 0x20
-mat 0
-refs 3
-8 0.25 0.0669873
-7 0.0669873 0.25
-0 0.5 0.5
-SURF 0x20
-mat 0
-refs 3
-9 0.5 0
-8 0.25 0.0669873
-0 0.5 0.5
-SURF 0x20
-mat 0
-refs 3
-10 0.75 0.0669873
-9 0.5 0
-0 0.5 0.5
-SURF 0x20
-mat 0
-refs 3
-11 0.933013 0.25
-10 0.75 0.0669873
-0 0.5 0.5
-SURF 0x20
-mat 0
-refs 3
-12 1 0.5
-11 0.933013 0.25
-0 0.5 0.5
-kids 0
-OBJECT group
-name "appr.conf-full"
-kids 2
-OBJECT poly
-name "disk"
-loc 0.0114554 0.000301107 0.00437132
-crease 45.000000
-numvert 13
-0 0 0
--0.000804901 0 -0.00141576
--0.00139413 0 -0.000817403
--0.0016098 0 0
--0.00139413 0 0.000817403
--0.000804901 0 0.00141578
-0 0 0.00163481
-0.000804901 0 0.00141578
-0.00139413 0 0.000817403
-0.0016098 0 0
-0.00139413 0 -0.000817403
-0.000804901 0 -0.00141576
-0 0 -0.00163481
-numsurf 12
-SURF 0x20
-mat 1
-refs 3
-1 0.933013 0.75
-12 1 0.5
-0 0.5 0.5
-SURF 0x20
-mat 1
-refs 3
-2 0.75 0.933013
-1 0.933013 0.75
-0 0.5 0.5
-SURF 0x20
-mat 1
-refs 3
-3 0.5 1
-2 0.75 0.933013
-0 0.5 0.5
-SURF 0x20
-mat 1
-refs 3
-4 0.25 0.933013
-3 0.5 1
-0 0.5 0.5
-SURF 0x20
-mat 1
-refs 3
-5 0.0669873 0.75
-4 0.25 0.933013
-0 0.5 0.5
-SURF 0x20
-mat 1
-refs 3
-6 0 0.5
-5 0.0669873 0.75
-0 0.5 0.5
-SURF 0x20
-mat 1
-refs 3
-7 0.0669873 0.25
-6 0 0.5
-0 0.5 0.5
-SURF 0x20
-mat 1
-refs 3
-8 0.25 0.0669873
-7 0.0669873 0.25
-0 0.5 0.5
-SURF 0x20
-mat 1
-refs 3
-9 0.5 0
-8 0.25 0.0669873
-0 0.5 0.5
-SURF 0x20
-mat 1
-refs 3
-10 0.75 0.0669873
-9 0.5 0
-0 0.5 0.5
-SURF 0x20
-mat 1
-refs 3
-11 0.933013 0.25
-10 0.75 0.0669873
-0 0.5 0.5
-SURF 0x20
-mat 1
-refs 3
-12 1 0.5
-11 0.933013 0.25
-0 0.5 0.5
-kids 0
-OBJECT poly
-name "disk"
-loc 0.0114382 0.000301107 0.00437132
-crease 45.000000
-numvert 13
-0 0 -0.00191912
-0.00095956 0 -0.001662
-0.00166201 0 -0.00095956
-0.00191912 0 0
-0.00166201 0 0.00095956
-0.00095956 0 0.00166201
-0 0 0.00191912
--0.00095956 0 0.00166201
--0.00166201 0 0.00095956
--0.00191912 0 0
--0.00166201 0 -0.00095956
--0.00095956 0 -0.001662
-0 0 0
-numsurf 12
-SURF 0x20
-mat 0
-refs 3
-0 1 0.5
-1 0.933013 0.25
-12 0.5 0.5
-SURF 0x20
-mat 0
-refs 3
-1 0.933013 0.25
-2 0.75 0.0669873
-12 0.5 0.5
-SURF 0x20
-mat 0
-refs 3
-2 0.75 0.0669873
-3 0.5 0
-12 0.5 0.5
-SURF 0x20
-mat 0
-refs 3
-3 0.5 0
-4 0.25 0.0669873
-12 0.5 0.5
-SURF 0x20
-mat 0
-refs 3
-4 0.25 0.0669873
-5 0.0669873 0.25
-12 0.5 0.5
-SURF 0x20
-mat 0
-refs 3
-5 0.0669873 0.25
-6 0 0.5
-12 0.5 0.5
-SURF 0x20
-mat 0
-refs 3
-6 0 0.5
-7 0.0669873 0.75
-12 0.5 0.5
-SURF 0x20
-mat 0
-refs 3
-7 0.0669873 0.75
-8 0.25 0.933013
-12 0.5 0.5
-SURF 0x20
-mat 0
-refs 3
-8 0.25 0.933013
-9 0.5 1
-12 0.5 0.5
-SURF 0x20
-mat 0
-refs 3
-9 0.5 1
-10 0.75 0.933013
-12 0.5 0.5
-SURF 0x20
-mat 0
-refs 3
-10 0.75 0.933013
-11 0.933013 0.75
-12 0.5 0.5
-SURF 0x20
-mat 0
-refs 3
-11 0.933013 0.75
-0 1 0.5
-12 0.5 0.5
-kids 0
-OBJECT poly
-name "box"
-loc -0.051283 0.000166949 0.0355681
-crease 45.000000
-numvert 8
--0.000451028 -0.000166949 0.0707934
--0.000451058 -0.000166949 -0.0707934
-0.000451088 -0.000166949 -0.0707934
-0.000451148 -0.000166949 0.0707934
-0.000451148 0.000166949 0.0707934
-0.000451088 0.000166949 -0.0707934
--0.000451058 0.000166949 -0.0707934
--0.000451028 0.000166949 0.0707934
-numsurf 6
 SURF 0x30
-mat 4
-refs 4
-5 0 0
-2 1 0
-1 1 1
-6 0 1
+mat 2
+refs 3
+1 0.933013 0.75
+12 1 0.5
+0 0.5 0.5
 SURF 0x30
-mat 4
-refs 4
-7 0 0
+mat 2
+refs 3
+2 0.75 0.933013
+1 0.933013 0.75
+0 0.5 0.5
+SURF 0x30
+mat 2
+refs 3
+3 0.5 1
+2 0.75 0.933013
+0 0.5 0.5
+SURF 0x30
+mat 2
+refs 3
+4 0.25 0.933013
+3 0.5 1
+0 0.5 0.5
+SURF 0x30
+mat 2
+refs 3
+5 0.0669873 0.75
+4 0.25 0.933013
+0 0.5 0.5
+SURF 0x30
+mat 2
+refs 3
+6 0 0.5
+5 0.0669873 0.75
+0 0.5 0.5
+SURF 0x30
+mat 2
+refs 3
+7 0.0669873 0.25
+6 0 0.5
+0 0.5 0.5
+SURF 0x30
+mat 2
+refs 3
+8 0.25 0.0669873
+7 0.0669873 0.25
+0 0.5 0.5
+SURF 0x30
+mat 2
+refs 3
+9 0.5 0
+8 0.25 0.0669873
+0 0.5 0.5
+SURF 0x30
+mat 2
+refs 3
+10 0.75 0.0669873
+9 0.5 0
+0 0.5 0.5
+SURF 0x30
+mat 2
+refs 3
+11 0.933013 0.25
+10 0.75 0.0669873
+0 0.5 0.5
+SURF 0x30
+mat 2
+refs 3
+12 1 0.5
+11 0.933013 0.25
+0 0.5 0.5
+kids 0
+OBJECT poly
+name "appr.full"
+loc 0.0570248 0.00107401 -0.0261915
+crease 45.000000
+numvert 13
+0 0 -0.00210953
+0.00117885 0 -0.0018269
+0.00204183 0 -0.00105475
+0.00235771 0 0
+0.00204183 0 0.00105476
+0.00117885 0 0.00182691
+0 0 0.00210953
+-0.00117885 0 0.0018269
+-0.00204183 0 0.00105476
+-0.00235771 0 0
+-0.00204183 0 -0.00105475
+-0.00117886 0 -0.0018269
+0 0 0
+numsurf 12
+SURF 0x30
+mat 2
+refs 3
+0 1 0.5
+1 0.933013 0.25
+12 0.5 0.5
+SURF 0x30
+mat 2
+refs 3
+1 0.933013 0.25
+2 0.75 0.0669873
+12 0.5 0.5
+SURF 0x30
+mat 2
+refs 3
+2 0.75 0.0669873
+3 0.5 0
+12 0.5 0.5
+SURF 0x30
+mat 2
+refs 3
+3 0.5 0
+4 0.25 0.0669873
+12 0.5 0.5
+SURF 0x30
+mat 2
+refs 3
+4 0.25 0.0669873
+5 0.0669873 0.25
+12 0.5 0.5
+SURF 0x30
+mat 2
+refs 3
+5 0.0669873 0.25
+6 0 0.5
+12 0.5 0.5
+SURF 0x30
+mat 2
+refs 3
+6 0 0.5
+7 0.0669873 0.75
+12 0.5 0.5
+SURF 0x30
+mat 2
+refs 3
+7 0.0669873 0.75
+8 0.25 0.933013
+12 0.5 0.5
+SURF 0x30
+mat 2
+refs 3
+8 0.25 0.933013
+9 0.5 1
+12 0.5 0.5
+SURF 0x30
+mat 2
+refs 3
+9 0.5 1
+10 0.75 0.933013
+12 0.5 0.5
+SURF 0x30
+mat 2
+refs 3
+10 0.75 0.933013
+11 0.933013 0.75
+12 0.5 0.5
+SURF 0x30
+mat 2
+refs 3
+11 0.933013 0.75
+0 1 0.5
+12 0.5 0.5
+kids 0
+OBJECT poly
+name "mesh"
+loc 0.04405 0.000651136 -0.0076636
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/fms/fms_perf_appr.png"
+crease 180.000000
+numvert 4
+0.0665124 0 -0.0665249
+0.0665124 0 0.0665249
+-0.0665124 0 -0.0665249
+-0.0665124 0 0.0665249
+numsurf 2
+SURF 0x30
+mat 1
+refs 3
 0 1 0
-3 1 1
-4 0 1
+3 0 1
+1 0 0
 SURF 0x30
-mat 4
-refs 4
-6 0 0
-1 1 0
-0 1 1
-7 0 1
-SURF 0x30
-mat 4
-refs 4
-4 0 0
-3 1 0
-2 1 1
-5 0 1
-SURF 0x30
-mat 4
-refs 4
-7 0 0
-4 1 0
-5 1 1
-6 0 1
-SURF 0x30
-mat 4
-refs 4
-0 0 0
-1 1 0
+mat 1
+refs 3
+0 1 0
 2 1 1
 3 0 1
 kids 0
 OBJECT group
 name "appr.radio.ft"
-loc -0.0329997 0 -0.0137906
-kids 2
+loc -0.0137906 0 0.0329997
+kids 1
 OBJECT poly
 name "mesh"
-loc 0.0630751 0.000492954 0.0832451
+loc 0.0907106 0.00110318 -0.0133142
 crease 180.000000
 numvert 4
--0.00202991 0 0.0140146
--0.00202991 0 -0.0140146
-0.00202991 0 0.0140146
-0.00202991 0 -0.0140146
+-0.00335902 0 0.0108764
+-0.00335902 0 -0.0108764
+0.003359 0 0.0108764
+0.00335899 0 -0.0108764
 numsurf 2
 SURF 0x30
-mat 1
+mat 2
 refs 3
 3 1 0
 1 1 1
 0 0 1
 SURF 0x30
-mat 1
+mat 2
 refs 3
 3 1 0
 0 0 1
 2 0 0
-kids 0
-OBJECT poly
-name "rect"
-loc 0.0631742 0.000270925 0.0832882
-crease 45.000000
-numvert 4
-0.00254917 0 0.0143512
-0.00254917 0 -0.0143511
--0.00254917 0 -0.0143511
--0.00254917 0 0.0143512
-numsurf 1
-SURF 0x11
-mat 0
-refs 4
-0 0 0
-1 1 0
-2 1 1
-3 0 1
 kids 0
 OBJECT group
 name "appr.baro.ft"
-loc -0.0244658 0 -0.0137906
-kids 2
+loc -0.0137906 0 0.0244658
+kids 1
 OBJECT poly
 name "mesh"
-loc 0.0460073 0.000364393 0.0832451
+loc 0.0778418 0.000974616 -0.0050644
 crease 180.000000
 numvert 4
-0.00202998 0 -0.0140146
-0.00202991 0 0.0140146
--0.0020299 0 -0.0140146
--0.00202991 0 0.0140146
+0.003155 0 -0.0103442
+0.0031549 0 0.0103442
+-0.00315489 0 -0.0103442
+-0.00315492 0 0.0103442
 numsurf 2
 SURF 0x30
-mat 1
+mat 2
 refs 3
 0 1 0
 3 0 1
 1 0 0
 SURF 0x30
-mat 1
+mat 2
 refs 3
 0 1 0
 2 1 1
 3 0 1
-kids 0
-OBJECT poly
-name "rect"
-loc 0.0461064 0.000270925 0.0832882
-crease 45.000000
-numvert 4
--0.00254917 0 0.0143512
--0.00254912 0 -0.0143511
-0.00254922 0 -0.0143511
-0.00254917 0 0.0143512
-numsurf 1
-SURF 0x10
-mat 0
-refs 4
-3 0 0
-2 1 0
-1 1 1
-0 0 1
 kids 0
 OBJECT group
 name "appr.unknown"
-loc 0.00265332 0 -0.0128424
-kids 2
+loc -0.0128424 0 -0.00265332
+kids 1
 OBJECT poly
 name "mesh"
-loc -0.00823103 0.000508283 0.0813487
+loc 0.0502626 0.00111851 0.0223033
 crease 180.000000
 numvert 4
--0.00202991 0 0.0140146
--0.00202991 0 -0.0140146
-0.00202991 0 0.0140146
-0.00202991 0 -0.0140146
+-0.00323492 0 0.0105483
+-0.00323492 0 -0.0105483
+0.00323492 0 0.0105483
+0.00323492 0 -0.0105483
 numsurf 2
 SURF 0x30
-mat 1
+mat 2
 refs 3
 3 1 0
 1 1 1
 0 0 1
 SURF 0x30
-mat 1
+mat 2
 refs 3
 3 1 0
 0 0 1
 2 0 0
-kids 0
-OBJECT poly
-name "rect"
-loc -0.00813193 0.000270925 0.0813918
-crease 45.000000
-numvert 4
-0.00254917 0 0.0143512
-0.00254917 0 -0.0143511
--0.00254917 0 -0.0143511
--0.00254917 0 0.0143512
-numsurf 1
-SURF 0x10
-mat 0
-refs 4
-0 0 0
-1 1 0
-2 1 1
-3 0 1
 kids 0
 OBJECT group
 name "appr.oat"
-loc 0.0109143 0 -0.0132125
-kids 2
+loc -0.0132125 0 -0.0109143
+kids 1
 OBJECT poly
 name "mesh"
-loc -0.0247614 0.000523604 0.0820889
+loc 0.0399615 0.00113383 0.0306062
 crease 180.000000
 numvert 4
-0.0019544 0 -0.0140146
-0.00195441 0 0.0140146
--0.00195441 0 -0.0140146
--0.00195436 0 0.0140146
+0.0030794 0 -0.0107165
+0.00307943 0 0.0107165
+-0.00307943 0 -0.0107165
+-0.00307932 0 0.0107165
 numsurf 2
 SURF 0x30
-mat 1
+mat 2
 refs 3
 0 1 0
 3 0 1
 1 0 0
 SURF 0x30
-mat 1
+mat 2
 refs 3
 0 1 0
 2 1 1
 3 0 1
-kids 0
-OBJECT poly
-name "rect"
-loc -0.0246627 0.000270925 0.082132
-crease 45.000000
-numvert 4
--0.00245433 0 0.0143512
--0.00245435 0 -0.0143511
-0.00245435 0 -0.0143511
-0.00245439 0 0.0143512
-numsurf 1
-SURF 0x10
-mat 0
-refs 4
-3 0 0
-2 1 0
-1 1 1
-0 0 1
 kids 0
 OBJECT group
 name "appr.mag-wind.kts"
-loc 0.0336938 0 -0.00158118
-kids 2
+loc -0.00158118 0 -0.0336938
+kids 1
 OBJECT poly
 name "mesh"
-loc -0.0702108 0.00047564 0.0564764
+loc 0.00500388 0.00108586 0.0393523
 crease 180.000000
 numvert 4
--0.0021739 0 0.00772784
--0.0021739 0 -0.00772786
-0.0021739 0 0.00772784
-0.0021739 0 -0.00772786
+-0.00329891 0 0.00877284
+-0.00329891 0 -0.00877287
+0.00329891 0 0.00877284
+0.00329891 0 -0.00877287
 numsurf 2
 SURF 0x30
-mat 1
+mat 2
 refs 3
 3 1 0
 1 1 1
 0 0 1
 SURF 0x30
-mat 1
+mat 2
 refs 3
 3 1 0
 0 0 1
 2 0 0
 kids 0
-OBJECT poly
-name "rect"
-loc -0.0702215 0.000270925 0.0564805
-crease 45.000000
-numvert 4
-0.00245434 0 0.00791343
-0.00245434 0 -0.00791344
--0.00245434 0 -0.00791344
--0.00245434 0 0.00791343
-numsurf 1
-SURF 0x10
-mat 0
-refs 4
-0 0 0
-1 1 0
-2 1 1
-3 0 1
-kids 0
 OBJECT group
 name "appr.mag-wind.deg"
-loc 0.0336938 0 -0.0237022
-kids 2
+loc -0.0237022 0 -0.0336938
+kids 1
 OBJECT poly
 name "mesh"
-loc -0.0702107 0.000301107 0.100153
+loc 0.027125 0.00091133 0.0593829
 crease 180.000000
 numvert 4
-0.00206415 0 -0.00789419
-0.00206415 0 0.00789422
--0.00206415 0 -0.00789419
--0.00206415 0 0.00789422
+0.00318916 0 -0.00674149
+0.00318916 0 0.00674152
+-0.00318916 0 -0.00674149
+-0.00318916 0 0.00674152
 numsurf 2
 SURF 0x30
-mat 1
+mat 2
 refs 3
 0 1 0
 3 0 1
 1 0 0
 SURF 0x30
-mat 1
+mat 2
 refs 3
 0 1 0
 2 1 1
 3 0 1
 kids 0
-OBJECT poly
-name "rect"
-loc -0.0702217 0.000270925 0.101999
-crease 45.000000
-numvert 4
--0.00245434 0 0.00625494
--0.00245434 0 -0.0101374
-0.00245434 0 -0.0101374
-0.00245434 0 0.00625494
-numsurf 1
-SURF 0x10
-mat 0
-refs 4
-3 0 0
-2 1 0
-1 1 1
-0 0 1
-kids 0
-OBJECT poly
-name "polyline"
-loc -0.0206863 0 0.0736398
-crease 45.000000
-numvert 4
--0.0230691 0 -0.0390885
--0.0231289 0 0.0335669
-0.0239777 0 0.0335639
-0.0239777 0 -0.0391067
-numsurf 1
-SURF 0x31
-mat 4
-refs 4
-0 0.851695 0.990991
-1 0.0169493 1
-2 0 0
-3 1 0
-kids 0
-OBJECT poly
-name "polyline"
-loc 0.0269831 0 0.07005
-crease 45.000000
-numvert 4
--0.0137492 0 0.0366013
--0.0137492 0 -0.0360323
-0.014887 0 -0.036222
-0.014887 0 0.0366013
-numsurf 1
-SURF 0x31
-mat 4
-refs 4
-0 0 0.961784
-1 0.984456 1
-2 1 0.076433
-3 0.0259068 0
-kids 0
-OBJECT poly
-name "polyline"
-loc 0.0077343 0 -0.0068506
-crease 45.000000
-numvert 4
--0.0153611 0 0.0220935
--0.0153611 0 -0.0220935
-0.0161197 0 -0.0220935
-0.0161197 0 0.0220935
-numsurf 1
-SURF 0x31
-mat 4
-refs 4
-0 0 0.97647
-1 0.961373 1
-2 1 0.0764706
-3 0.0472103 0
-kids 0
 OBJECT group
 name "dropdown.menu.active"
-loc -0.164731 0.0019652 -0.151938
+loc -0.176966 0.0019652 -0.0202952
 kids 5
 OBJECT poly
 name "dropdown0.opt4"
-loc -0.00454028 -0.000926546 0.131705
+loc 0.00769481 -0.000926546 6.22012e-05
 crease 180.000000
 numvert 4
 -0.0021227 0 0.0134438
@@ -2805,13 +2156,13 @@ numvert 4
 0.0021227 0 -0.0134438
 numsurf 2
 SURF 0x30
-mat 5
+mat 6
 refs 3
 3 1 0
 1 1 1
 0 0 1
 SURF 0x30
-mat 5
+mat 6
 refs 3
 3 1 0
 0 0 1
@@ -2819,7 +2170,7 @@ refs 3
 kids 0
 OBJECT poly
 name "dropdown0.opt3"
-loc -0.00994329 -0.000926546 0.131705
+loc 0.0022918 -0.000926546 6.22012e-05
 crease 180.000000
 numvert 4
 0.0021227 0 -0.0134438
@@ -2828,13 +2179,13 @@ numvert 4
 -0.0021227 0 0.0134438
 numsurf 2
 SURF 0x30
-mat 5
+mat 6
 refs 3
 0 1 0
 3 0 1
 1 0 0
 SURF 0x30
-mat 5
+mat 6
 refs 3
 0 1 0
 2 1 1
@@ -2842,7 +2193,7 @@ refs 3
 kids 0
 OBJECT poly
 name "dropdown0.opt2"
-loc -0.0152183 -0.000926546 0.131705
+loc -0.00298321 -0.000926546 6.22012e-05
 crease 180.000000
 numvert 4
 -0.0021227 0 0.0134438
@@ -2851,13 +2202,13 @@ numvert 4
 0.0021227 0 -0.0134438
 numsurf 2
 SURF 0x30
-mat 5
+mat 6
 refs 3
 3 1 0
 1 1 1
 0 0 1
 SURF 0x30
-mat 5
+mat 6
 refs 3
 3 1 0
 0 0 1
@@ -2865,7 +2216,7 @@ refs 3
 kids 0
 OBJECT poly
 name "dropdown.active.bkgnd"
-loc -0.0108523 -0.00110238 0.13152
+loc 0.0013828 -0.00110238 -0.000122812
 crease 45.000000
 numvert 4
 -0.0130374 0 0.0144716
@@ -2874,7 +2225,7 @@ numvert 4
 0.0130374 0 0.0144716
 numsurf 1
 SURF 0x30
-mat 5
+mat 6
 refs 4
 3 0 0
 2 1 0
@@ -2883,7 +2234,7 @@ refs 4
 kids 0
 OBJECT poly
 name "dropdown0.opt1"
-loc -0.0204923 -0.000926546 0.131448
+loc -0.00825721 -0.000926546 -0.000194814
 crease 180.000000
 numvert 4
 0.0021227 0 -0.0134438
@@ -2892,13 +2243,13 @@ numvert 4
 -0.0021227 0 0.0134438
 numsurf 2
 SURF 0x30
-mat 5
+mat 6
 refs 3
 0 1 0
 3 0 1
 1 0 0
 SURF 0x30
-mat 5
+mat 6
 refs 3
 0 1 0
 2 1 1
@@ -2906,26 +2257,26 @@ refs 3
 kids 0
 OBJECT group
 name "dropdown.menu.position"
-loc -0.134917 0.0019652 -0.151809
+loc -0.176837 0.0019652 -0.0501092
 kids 5
 OBJECT poly
 name "dropdown1.opt4"
-loc -0.0343543 -0.000440829 0.101748
+loc 0.00756577 -0.000440829 4.82947e-05
 crease 180.000000
 numvert 4
 -0.0021227 0 0.0134438
 -0.0021227 0 -0.0134438
 0.0021227 0 0.0134438
-0.00212269 0 -0.0134438
+0.00212266 0 -0.0134438
 numsurf 2
 SURF 0x30
-mat 5
+mat 6
 refs 3
 3 1 0
 1 1 1
 0 0 1
 SURF 0x30
-mat 5
+mat 6
 refs 3
 3 1 0
 0 0 1
@@ -2933,7 +2284,7 @@ refs 3
 kids 0
 OBJECT poly
 name "dropdown1.opt3"
-loc -0.0396283 -0.000440829 0.101748
+loc 0.00229177 -0.000440829 4.82947e-05
 crease 180.000000
 numvert 4
 0.0021227 0 -0.0134438
@@ -2942,13 +2293,13 @@ numvert 4
 -0.0021227 0 0.0134438
 numsurf 2
 SURF 0x30
-mat 5
+mat 6
 refs 3
 0 1 0
 3 0 1
 1 0 0
 SURF 0x30
-mat 5
+mat 6
 refs 3
 0 1 0
 2 1 1
@@ -2956,7 +2307,7 @@ refs 3
 kids 0
 OBJECT poly
 name "dropdown1.opt2"
-loc -0.0447743 -0.000440829 0.102005
+loc -0.00285423 -0.000440829 0.000305295
 crease 180.000000
 numvert 4
 -0.0021227 0 0.0134438
@@ -2965,13 +2316,13 @@ numvert 4
 0.0021227 0 -0.0134438
 numsurf 2
 SURF 0x30
-mat 5
+mat 6
 refs 3
 3 1 0
 1 1 1
 0 0 1
 SURF 0x30
-mat 5
+mat 6
 refs 3
 3 1 0
 0 0 1
@@ -2979,7 +2330,7 @@ refs 3
 kids 0
 OBJECT poly
 name "dropdown1.opt1"
-loc -0.0500493 -0.000440829 0.101748
+loc -0.00812921 -0.000440829 4.82947e-05
 crease 180.000000
 numvert 4
 0.0021227 0 -0.0134438
@@ -2988,13 +2339,13 @@ numvert 4
 -0.0021227 0 0.0134438
 numsurf 2
 SURF 0x30
-mat 5
+mat 6
 refs 3
 0 1 0
 3 0 1
 1 0 0
 SURF 0x30
-mat 5
+mat 6
 refs 3
 0 1 0
 2 1 1
@@ -3002,7 +2353,7 @@ refs 3
 kids 0
 OBJECT poly
 name "dropdown.position.bkgnd"
-loc -0.0406663 -0.000762377 0.101759
+loc 0.00125378 -0.000762377 5.92917e-05
 crease 45.000000
 numvert 4
 0.0130374 0 0.0144716
@@ -3011,7 +2362,7 @@ numvert 4
 -0.0130374 0 0.0144716
 numsurf 1
 SURF 0x30
-mat 5
+mat 6
 refs 4
 0 0 0
 1 1 0
@@ -3020,26 +2371,26 @@ refs 4
 kids 0
 OBJECT group
 name "dropdown.menu.sec"
-loc -0.105005 0.0019652 -0.151913
+loc -0.176941 0.0019652 -0.0800211
 kids 5
 OBJECT poly
 name "dropdown2.opt4"
-loc -0.0642662 -0.000780832 0.0720527
+loc 0.00766979 -0.000780832 0.000160776
 crease 180.000000
 numvert 4
 -0.00212273 0 0.0134438
 -0.00212273 0 -0.0134438
-0.00212264 0 0.0134438
-0.00212264 0 -0.0134438
+0.00212263 0 0.0134438
+0.00212263 0 -0.0134438
 numsurf 2
 SURF 0x30
-mat 5
+mat 6
 refs 3
 3 1 0
 1 1 1
 0 0 1
 SURF 0x30
-mat 5
+mat 6
 refs 3
 3 1 0
 0 0 1
@@ -3047,7 +2398,7 @@ refs 3
 kids 0
 OBJECT poly
 name "dropdown2.opt3"
-loc -0.0695412 -0.000780832 0.0720527
+loc 0.00239478 -0.000780832 0.000160776
 crease 180.000000
 numvert 4
 0.00212267 0 -0.0134438
@@ -3056,13 +2407,13 @@ numvert 4
 -0.00212273 0 0.0134438
 numsurf 2
 SURF 0x30
-mat 5
+mat 6
 refs 3
 0 1 0
 3 0 1
 1 0 0
 SURF 0x30
-mat 5
+mat 6
 refs 3
 0 1 0
 2 1 1
@@ -3070,7 +2421,7 @@ refs 3
 kids 0
 OBJECT poly
 name "dropdown2.opt2"
-loc -0.0749442 -0.000780832 0.0720527
+loc -0.00300823 -0.000780832 0.000160776
 crease 180.000000
 numvert 4
 -0.0021227 0 0.0134438
@@ -3079,13 +2430,13 @@ numvert 4
 0.00212267 0 -0.0134438
 numsurf 2
 SURF 0x30
-mat 5
+mat 6
 refs 3
 3 1 0
 1 1 1
 0 0 1
 SURF 0x30
-mat 5
+mat 6
 refs 3
 3 1 0
 0 0 1
@@ -3093,7 +2444,7 @@ refs 3
 kids 0
 OBJECT poly
 name "dropdown2.opt1"
-loc -0.0800902 -0.000780832 0.0719241
+loc -0.00815423 -0.000780832 3.21791e-05
 crease 180.000000
 numvert 4
 0.0021227 0 -0.0134438
@@ -3102,13 +2453,13 @@ numvert 4
 -0.0021227 0 0.0134438
 numsurf 2
 SURF 0x30
-mat 5
+mat 6
 refs 3
 0 1 0
 3 0 1
 1 0 0
 SURF 0x30
-mat 5
+mat 6
 refs 3
 0 1 0
 2 1 1
@@ -3116,7 +2467,7 @@ refs 3
 kids 0
 OBJECT poly
 name "dropdown.sec.bkgnd"
-loc -0.0707082 -0.00100523 0.0720203
+loc 0.00122778 -0.00100523 0.000128381
 crease 45.000000
 numvert 4
 -0.0130374 0 0.0144716
@@ -3125,7 +2476,7 @@ numvert 4
 0.0130374 0 0.0144716
 numsurf 1
 SURF 0x30
-mat 5
+mat 6
 refs 4
 3 0 0
 2 1 0
@@ -3134,11 +2485,11 @@ refs 4
 kids 0
 OBJECT group
 name "dropdown.menu.data"
-loc -0.0756061 0.0019652 -0.151609
+loc -0.176637 0.0019652 -0.10942
 kids 5
 OBJECT poly
 name "dropdown3.opt4"
-loc -0.0930222 -0.000537975 0.042191
+loc 0.00800869 -0.000537975 1.90735e-06
 crease 180.000000
 numvert 4
 -0.0021227 0 0.0134438
@@ -3147,13 +2498,13 @@ numvert 4
 0.0021227 0 -0.0134438
 numsurf 2
 SURF 0x30
-mat 5
+mat 6
 refs 3
 3 1 0
 1 1 1
 0 0 1
 SURF 0x30
-mat 5
+mat 6
 refs 3
 3 1 0
 0 0 1
@@ -3161,7 +2512,7 @@ refs 3
 kids 0
 OBJECT poly
 name "dropdown3.opt3"
-loc -0.0985542 -0.000537975 0.042449
+loc 0.00247669 -0.000537975 0.000259906
 crease 180.000000
 numvert 4
 0.0021227 0 -0.0134438
@@ -3170,13 +2521,13 @@ numvert 4
 -0.0021227 0 0.0134438
 numsurf 2
 SURF 0x30
-mat 5
+mat 6
 refs 3
 0 1 0
 3 0 1
 1 0 0
 SURF 0x30
-mat 5
+mat 6
 refs 3
 0 1 0
 2 1 1
@@ -3184,7 +2535,7 @@ refs 3
 kids 0
 OBJECT poly
 name "dropdown3.opt2"
-loc -0.104086 -0.000537975 0.042449
+loc -0.0030553 -0.000537975 0.000259906
 crease 180.000000
 numvert 4
 -0.0021227 0 0.0134438
@@ -3193,13 +2544,13 @@ numvert 4
 0.0021227 0 -0.0134438
 numsurf 2
 SURF 0x30
-mat 5
+mat 6
 refs 3
 3 1 0
 1 1 1
 0 0 1
 SURF 0x30
-mat 5
+mat 6
 refs 3
 3 1 0
 0 0 1
@@ -3207,7 +2558,7 @@ refs 3
 kids 0
 OBJECT poly
 name "dropdown3.opt1"
-loc -0.109361 -0.000537975 0.042191
+loc -0.00833029 -0.000537975 1.8999e-06
 crease 180.000000
 numvert 4
 0.0021227 0 -0.0134438
@@ -3216,13 +2567,13 @@ numvert 4
 -0.00212267 0 0.0134438
 numsurf 2
 SURF 0x30
-mat 5
+mat 6
 refs 3
 0 1 0
 3 0 1
 1 0 0
 SURF 0x30
-mat 5
+mat 6
 refs 3
 0 1 0
 2 1 1
@@ -3230,7 +2581,7 @@ refs 3
 kids 0
 OBJECT poly
 name "dropdown.data.bkgnd"
-loc -0.100005 -0.000762377 0.041924
+loc 0.00102571 -0.000762377 -0.000265092
 crease 45.000000
 numvert 4
 0.0130374 0 0.0144716
@@ -3239,7 +2590,7 @@ numvert 4
 -0.0130374 0 0.0144716
 numsurf 1
 SURF 0x30
-mat 5
+mat 6
 refs 4
 0 0 0
 1 1 0
@@ -3248,11 +2599,11 @@ refs 4
 kids 0
 OBJECT group
 name "page.FLT_PLN"
-loc -0.0413291 0.00124713 -0.0931641
+loc -0.118192 0.00124713 -0.143697
 kids 33
 OBJECT poly
 name "fltpln.field0.id"
-loc -0.125846 -0.001109 0.0752871
+loc -0.0489832 -0.001109 0.12582
 crease 45.000000
 numvert 4
 -0.00358772 0 0.0127435
@@ -3261,7 +2612,7 @@ numvert 4
 0.00358772 0 0.0127435
 numsurf 1
 SURF 0x30
-mat 1
+mat 2
 refs 4
 3 0 0
 2 1 0
@@ -3270,7 +2621,7 @@ refs 4
 kids 0
 OBJECT poly
 name "fltpln.field8.id"
-loc -0.0119529 -0.001109 0.0752871
+loc 0.06491 -0.001109 0.12582
 crease 45.000000
 numvert 4
 -0.00358772 0 0.0127435
@@ -3279,7 +2630,7 @@ numvert 4
 0.00358772 0 0.0127435
 numsurf 1
 SURF 0x30
-mat 1
+mat 2
 refs 4
 3 0 0
 2 1 0
@@ -3288,16 +2639,16 @@ refs 4
 kids 0
 OBJECT poly
 name "fltpln.field7.id"
-loc -0.0261549 -0.001109 0.0752871
+loc 0.050708 -0.001109 0.12582
 crease 45.000000
 numvert 4
-0.00358773 0 0.0127435
+0.00358774 0 0.0127435
 0.00358775 0 -0.0127435
 -0.00358772 0 -0.0127435
 -0.00358772 0 0.0127435
 numsurf 1
 SURF 0x30
-mat 1
+mat 2
 refs 4
 0 0 0
 1 1 0
@@ -3306,16 +2657,16 @@ refs 4
 kids 0
 OBJECT poly
 name "fltpln.field6.id"
-loc -0.0404943 -0.001109 0.0752871
+loc 0.0363685 -0.001109 0.12582
 crease 45.000000
 numvert 4
 -0.00358772 0 0.0127435
 -0.00358772 0 -0.0127435
-0.00358774 0 -0.0127435
-0.00358774 0 0.0127435
+0.00358775 0 -0.0127435
+0.00358777 0 0.0127435
 numsurf 1
 SURF 0x30
-mat 1
+mat 2
 refs 4
 3 0 0
 2 1 0
@@ -3324,16 +2675,16 @@ refs 4
 kids 0
 OBJECT poly
 name "fltpln.field5.id"
-loc -0.0546969 -0.001109 0.0752871
+loc 0.0221659 -0.001109 0.12582
 crease 45.000000
 numvert 4
-0.00358774 0 0.0127435
-0.00358775 0 -0.0127435
+0.00358775 0 0.0127435
+0.00358777 0 -0.0127435
 -0.00358772 0 -0.0127435
 -0.00358772 0 0.0127435
 numsurf 1
 SURF 0x30
-mat 1
+mat 2
 refs 4
 0 0 0
 1 1 0
@@ -3342,7 +2693,7 @@ refs 4
 kids 0
 OBJECT poly
 name "fltpln.field4.id"
-loc -0.0688995 -0.001109 0.0752871
+loc 0.0079633 -0.001109 0.12582
 crease 45.000000
 numvert 4
 -0.00358773 0 0.0127435
@@ -3351,7 +2702,7 @@ numvert 4
 0.00358772 0 0.0127435
 numsurf 1
 SURF 0x30
-mat 1
+mat 2
 refs 4
 3 0 0
 2 1 0
@@ -3360,16 +2711,16 @@ refs 4
 kids 0
 OBJECT poly
 name "fltpln.field3.id"
-loc -0.0832386 -0.001109 0.0752871
+loc -0.0063758 -0.001109 0.12582
 crease 45.000000
 numvert 4
 0.00358772 0 0.0127435
 0.00358772 0 -0.0127435
--0.00358772 0 -0.0127435
--0.00358772 0 0.0127435
+-0.00358774 0 -0.0127435
+-0.00358774 0 0.0127435
 numsurf 1
 SURF 0x30
-mat 1
+mat 2
 refs 4
 0 0 0
 1 1 0
@@ -3378,16 +2729,16 @@ refs 4
 kids 0
 OBJECT poly
 name "fltpln.field2.id"
-loc -0.0970315 -0.001109 0.0752871
+loc -0.0201687 -0.001109 0.12582
 crease 45.000000
 numvert 4
--0.00358775 0 0.0127435
--0.00358775 0 -0.0127435
-0.00358769 0 -0.0127435
-0.00358769 0 0.0127435
+-0.00358778 0 0.0127435
+-0.00358778 0 -0.0127435
+0.00358766 0 -0.0127435
+0.00358766 0 0.0127435
 numsurf 1
 SURF 0x30
-mat 1
+mat 2
 refs 4
 3 0 0
 2 1 0
@@ -3396,13 +2747,463 @@ refs 4
 kids 0
 OBJECT poly
 name "fltpln.field1.id"
-loc -0.111644 -0.001109 0.0752871
+loc -0.0347812 -0.001109 0.12582
 crease 45.000000
 numvert 4
 0.00358772 0 0.0127435
-0.00358769 0 -0.0127435
+0.00358766 0 -0.0127435
 -0.00358772 0 -0.0127435
 -0.00358772 0 0.0127435
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+0 0 0
+1 1 0
+2 1 1
+3 0 1
+kids 0
+OBJECT poly
+name "fltpln.node0"
+loc -0.0491962 0.000559059 0.0240459
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Common/mcdu_icons.png"
+crease 180.000000
+numvert 4
+0.00357667 0 -0.0029037
+0.00357667 0 0.00290367
+-0.00357652 0 -0.0029037
+-0.00357652 0 0.00290367
+numsurf 2
+SURF 0x0
+mat 4
+refs 3
+0 0.498125 0.346683
+3 0.299479 0.436632
+1 0.299479 0.346683
+SURF 0x0
+mat 4
+refs 3
+0 0.498125 0.346683
+2 0.498125 0.436632
+3 0.299479 0.436632
+kids 0
+OBJECT poly
+name "fltpln.node1"
+loc -0.0420592 0.000559059 0.0240459
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Common/mcdu_icons.png"
+crease 180.000000
+numvert 4
+0.00357649 0 -0.0029037
+0.00357644 0 0.00290366
+-0.0035767 0 -0.0029037
+-0.0035767 0 0.00290367
+numsurf 2
+SURF 0x0
+mat 4
+refs 3
+0 0.498125 0.346683
+3 0.299479 0.436631
+1 0.299479 0.346683
+SURF 0x0
+mat 4
+refs 3
+0 0.498125 0.346683
+2 0.498125 0.436631
+3 0.299479 0.436631
+kids 0
+OBJECT poly
+name "fltpln.node2"
+loc -0.0349272 0.000559059 0.0240459
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Common/mcdu_icons.png"
+crease 180.000000
+numvert 4
+-0.00357652 0 0.00290367
+-0.00357646 0 -0.00290366
+0.00357668 0 0.00290367
+0.00357668 0 -0.0029037
+numsurf 2
+SURF 0x0
+mat 4
+refs 3
+3 0.498125 0.346683
+1 0.498125 0.436631
+0 0.299479 0.436631
+SURF 0x0
+mat 4
+refs 3
+3 0.498125 0.346683
+0 0.299479 0.436631
+2 0.299479 0.346683
+kids 0
+OBJECT poly
+name "fltpln.node3"
+loc -0.0277882 0.000559059 0.0240459
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Common/mcdu_icons.png"
+crease 180.000000
+numvert 4
+0.00357652 0 -0.0029037
+0.00357652 0 0.00290367
+-0.00357667 0 -0.00290367
+-0.00357667 0 0.00290367
+numsurf 2
+SURF 0x0
+mat 4
+refs 3
+0 0.498125 0.346683
+3 0.299479 0.436631
+1 0.299479 0.346683
+SURF 0x0
+mat 4
+refs 3
+0 0.498125 0.346683
+2 0.498125 0.436631
+3 0.299479 0.436631
+kids 0
+OBJECT poly
+name "fltpln.node4"
+loc -0.0206441 0.000559059 0.0240459
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Common/mcdu_icons.png"
+crease 180.000000
+numvert 4
+-0.00357665 0 0.00290367
+-0.00357665 0 -0.0029037
+0.00357653 0 0.00290367
+0.00357653 0 -0.0029037
+numsurf 2
+SURF 0x0
+mat 4
+refs 3
+3 0.498125 0.346683
+1 0.498125 0.436631
+0 0.299479 0.436631
+SURF 0x0
+mat 4
+refs 3
+3 0.498125 0.346683
+0 0.299479 0.436631
+2 0.299479 0.346683
+kids 0
+OBJECT poly
+name "fltpln.node5"
+loc -0.0136164 0.000559059 0.0240459
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Common/mcdu_icons.png"
+crease 180.000000
+numvert 4
+0.00357665 0 -0.00290367
+0.00357665 0 0.00290367
+-0.00357653 0 -0.0029037
+-0.00357653 0 0.00290367
+numsurf 2
+SURF 0x0
+mat 4
+refs 3
+0 0.498125 0.346683
+3 0.299479 0.436631
+1 0.299479 0.346683
+SURF 0x0
+mat 4
+refs 3
+0 0.498125 0.346683
+2 0.498125 0.436631
+3 0.299479 0.436631
+kids 0
+OBJECT poly
+name "fltpln.node6"
+loc -0.00661021 0.000559059 0.0240459
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Common/mcdu_icons.png"
+crease 180.000000
+numvert 4
+-0.00357665 0 0.00290367
+-0.00357665 0 -0.00290367
+0.00357653 0 0.00290367
+0.00357653 0 -0.00290367
+numsurf 2
+SURF 0x0
+mat 4
+refs 3
+3 0.517656 0.347659
+1 0.517656 0.435655
+0 0.279948 0.435655
+SURF 0x0
+mat 4
+refs 3
+3 0.517656 0.347659
+0 0.279948 0.435655
+2 0.279948 0.347659
+kids 0
+OBJECT poly
+name "fltpln.node7"
+loc 0.000554599 0.000559059 0.0240459
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Common/mcdu_icons.png"
+crease 180.000000
+numvert 4
+0.00357653 0 -0.00290366
+0.00357653 0 0.00290367
+-0.00357664 0 -0.00290367
+-0.00357664 0 0.00290367
+numsurf 2
+SURF 0x0
+mat 4
+refs 3
+0 0.498125 0.346683
+3 0.299479 0.436631
+1 0.299479 0.346683
+SURF 0x0
+mat 4
+refs 3
+0 0.498125 0.346683
+2 0.498125 0.436631
+3 0.299479 0.436631
+kids 0
+OBJECT poly
+name "fltpln.node8"
+loc 0.007602 0.000559059 0.0240459
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Common/mcdu_icons.png"
+crease 180.000000
+numvert 4
+-0.00357668 0 0.00290367
+-0.00357668 0 -0.00290366
+0.00357651 0 0.00290367
+0.00357651 0 -0.00290366
+numsurf 2
+SURF 0x0
+mat 4
+refs 3
+3 0.498125 0.346683
+1 0.498125 0.436631
+0 0.299479 0.436631
+SURF 0x0
+mat 4
+refs 3
+3 0.498125 0.346683
+0 0.299479 0.436631
+2 0.299479 0.346683
+kids 0
+OBJECT poly
+name "fltpln.node9"
+loc 0.0147421 0.000559059 0.0240459
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Common/mcdu_icons.png"
+crease 180.000000
+numvert 4
+0.00357665 0 -0.00290366
+0.00357666 0 0.00290367
+-0.00357652 0 -0.00290366
+-0.00357652 0 0.00290367
+numsurf 2
+SURF 0x0
+mat 4
+refs 3
+0 0.498125 0.346683
+3 0.299479 0.436631
+1 0.299479 0.346683
+SURF 0x0
+mat 4
+refs 3
+0 0.498125 0.346683
+2 0.498125 0.436631
+3 0.299479 0.436631
+kids 0
+OBJECT poly
+name "fltpln.node10"
+loc 0.0217856 0.000559059 0.0240459
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Common/mcdu_icons.png"
+crease 180.000000
+numvert 4
+-0.00357651 0 0.00290367
+-0.00357653 0 -0.00290366
+0.00357665 0 0.00290367
+0.00357664 0 -0.00290367
+numsurf 2
+SURF 0x0
+mat 4
+refs 3
+3 0.498125 0.346683
+1 0.498125 0.436631
+0 0.299479 0.436631
+SURF 0x0
+mat 4
+refs 3
+3 0.498125 0.346683
+0 0.299479 0.436631
+2 0.299479 0.346683
+kids 0
+OBJECT poly
+name "fltpln.node11"
+loc 0.0289296 0.000559059 0.0240459
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Common/mcdu_icons.png"
+crease 180.000000
+numvert 4
+0.00357652 0 -0.00290367
+0.00357652 0 0.00290367
+-0.00357668 0 -0.00290367
+-0.00357667 0 0.00290367
+numsurf 2
+SURF 0x0
+mat 4
+refs 3
+0 0.498125 0.346683
+3 0.299479 0.436631
+1 0.299479 0.346683
+SURF 0x0
+mat 4
+refs 3
+0 0.498125 0.346683
+2 0.498125 0.436631
+3 0.299479 0.436631
+kids 0
+OBJECT poly
+name "fltpln.node12"
+loc 0.0360217 0.000559059 0.0240459
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Common/mcdu_icons.png"
+crease 180.000000
+numvert 4
+-0.00357666 0 0.00290367
+-0.00357666 0 -0.00290367
+0.00357651 0 0.00290367
+0.00357651 0 -0.00290367
+numsurf 2
+SURF 0x0
+mat 4
+refs 3
+3 0.498125 0.346683
+1 0.498125 0.436631
+0 0.299479 0.436631
+SURF 0x0
+mat 4
+refs 3
+3 0.498125 0.346683
+0 0.299479 0.436631
+2 0.299479 0.346683
+kids 0
+OBJECT poly
+name "fltpln.node13"
+loc 0.0431656 0.000559059 0.0240459
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Common/mcdu_icons.png"
+crease 180.000000
+numvert 4
+0.00357652 0 -0.00290367
+0.00357652 0 0.00290367
+-0.00357664 0 -0.00290367
+-0.00357664 0 0.00290367
+numsurf 2
+SURF 0x0
+mat 4
+refs 3
+0 0.498125 0.346683
+3 0.299479 0.436631
+1 0.299479 0.346683
+SURF 0x0
+mat 4
+refs 3
+0 0.498125 0.346683
+2 0.498125 0.436631
+3 0.299479 0.436631
+kids 0
+OBJECT poly
+name "fltpln.node14"
+loc 0.050213 0.000559059 0.0240459
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Common/mcdu_icons.png"
+crease 180.000000
+numvert 4
+-0.00357659 0 0.00290367
+-0.00357659 0 -0.00290367
+0.00357659 0 0.00290367
+0.00357658 0 -0.00290367
+numsurf 2
+SURF 0x0
+mat 4
+refs 3
+3 0.498125 0.346683
+1 0.498125 0.436631
+0 0.299479 0.436631
+SURF 0x0
+mat 4
+refs 3
+3 0.498125 0.346683
+0 0.299479 0.436631
+2 0.299479 0.346683
+kids 0
+OBJECT poly
+name "fltpln.node15"
+loc 0.057256 0.000559059 0.0240459
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Common/mcdu_icons.png"
+crease 180.000000
+numvert 4
+0.00357666 0 -0.00290367
+0.00357666 0 0.00290367
+-0.00357655 0 -0.00290367
+-0.00357652 0 0.00290367
+numsurf 2
+SURF 0x0
+mat 4
+refs 3
+0 0.498125 0.346683
+3 0.299479 0.436631
+1 0.299479 0.346683
+SURF 0x0
+mat 4
+refs 3
+0 0.498125 0.346683
+2 0.498125 0.436631
+3 0.299479 0.436631
+kids 0
+OBJECT poly
+name "fltpln.node16"
+loc 0.0644 0.000559059 0.0240459
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Common/mcdu_icons.png"
+crease 180.000000
+numvert 4
+-0.00357666 0 0.00290367
+-0.00357666 0 -0.00290367
+0.00357653 0 0.00290367
+0.00357652 0 -0.00290366
+numsurf 2
+SURF 0x0
+mat 4
+refs 3
+3 0.498125 0.346683
+1 0.498125 0.436631
+0 0.299479 0.436631
+SURF 0x0
+mat 4
+refs 3
+3 0.498125 0.346683
+0 0.299479 0.436631
+2 0.299479 0.346683
+kids 0
+OBJECT poly
+name "fltpln.node17"
+loc 0.071491 0.000559059 0.0240459
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Common/mcdu_icons.png"
+crease 180.000000
+numvert 4
+0.00357653 0 -0.00290368
+0.00357653 0 0.00290368
+-0.00357666 0 -0.00290368
+-0.00357665 0 0.00290366
+numsurf 2
+SURF 0x0
+mat 4
+refs 3
+0 0.498125 0.346683
+3 0.299479 0.436631
+1 0.299479 0.346683
+SURF 0x0
+mat 4
+refs 3
+0 0.498125 0.346683
+2 0.498125 0.436631
+3 0.299479 0.436631
+kids 0
+OBJECT poly
+name "rect"
+loc 0.090623 -0.000344036 0.0633582
+crease 45.000000
+numvert 4
+5.465e-05 0 0.0726897
+5.465e-05 0 -0.0726897
+-5.44712e-05 0 -0.0726897
+-5.44712e-05 0 0.0726897
 numsurf 1
 SURF 0x30
 mat 1
@@ -3413,458 +3214,8 @@ refs 4
 3 0 1
 kids 0
 OBJECT poly
-name "fltpln.node0"
-loc -0.126059 0.000559059 -0.026487
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
-crease 180.000000
-numvert 4
-0.00357667 0 -0.0029037
-0.00357667 0 0.00290367
--0.00357652 0 -0.0029037
--0.00357652 0 0.00290367
-numsurf 2
-SURF 0x0
-mat 3
-refs 3
-0 0.498125 0.346683
-3 0.299479 0.436632
-1 0.299479 0.346683
-SURF 0x0
-mat 3
-refs 3
-0 0.498125 0.346683
-2 0.498125 0.436632
-3 0.299479 0.436632
-kids 0
-OBJECT poly
-name "fltpln.node1"
-loc -0.118922 0.000559059 -0.026487
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
-crease 180.000000
-numvert 4
-0.00357649 0 -0.0029037
-0.00357646 0 0.00290366
--0.0035767 0 -0.0029037
--0.0035767 0 0.00290367
-numsurf 2
-SURF 0x0
-mat 3
-refs 3
-0 0.498125 0.346683
-3 0.299479 0.436631
-1 0.299479 0.346683
-SURF 0x0
-mat 3
-refs 3
-0 0.498125 0.346683
-2 0.498125 0.436631
-3 0.299479 0.436631
-kids 0
-OBJECT poly
-name "fltpln.node2"
-loc -0.11179 0.000559059 -0.026487
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
-crease 180.000000
-numvert 4
--0.00357652 0 0.00290367
--0.00357649 0 -0.00290366
-0.00357668 0 0.00290367
-0.00357668 0 -0.0029037
-numsurf 2
-SURF 0x0
-mat 3
-refs 3
-3 0.498125 0.346683
-1 0.498125 0.436631
-0 0.299479 0.436631
-SURF 0x0
-mat 3
-refs 3
-3 0.498125 0.346683
-0 0.299479 0.436631
-2 0.299479 0.346683
-kids 0
-OBJECT poly
-name "fltpln.node3"
-loc -0.104651 0.000559059 -0.026487
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
-crease 180.000000
-numvert 4
-0.00357652 0 -0.0029037
-0.00357652 0 0.00290367
--0.00357667 0 -0.00290367
--0.00357667 0 0.00290367
-numsurf 2
-SURF 0x0
-mat 3
-refs 3
-0 0.498125 0.346683
-3 0.299479 0.436631
-1 0.299479 0.346683
-SURF 0x0
-mat 3
-refs 3
-0 0.498125 0.346683
-2 0.498125 0.436631
-3 0.299479 0.436631
-kids 0
-OBJECT poly
-name "fltpln.node4"
-loc -0.0975069 0.000559059 -0.026487
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
-crease 180.000000
-numvert 4
--0.00357665 0 0.00290367
--0.00357665 0 -0.0029037
-0.00357653 0 0.00290367
-0.00357653 0 -0.0029037
-numsurf 2
-SURF 0x0
-mat 3
-refs 3
-3 0.498125 0.346683
-1 0.498125 0.436631
-0 0.299479 0.436631
-SURF 0x0
-mat 3
-refs 3
-3 0.498125 0.346683
-0 0.299479 0.436631
-2 0.299479 0.346683
-kids 0
-OBJECT poly
-name "fltpln.node5"
-loc -0.0904792 0.000559059 -0.026487
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
-crease 180.000000
-numvert 4
-0.00357665 0 -0.00290367
-0.00357665 0 0.00290367
--0.00357653 0 -0.0029037
--0.00357653 0 0.00290367
-numsurf 2
-SURF 0x0
-mat 3
-refs 3
-0 0.498125 0.346683
-3 0.299479 0.436631
-1 0.299479 0.346683
-SURF 0x0
-mat 3
-refs 3
-0 0.498125 0.346683
-2 0.498125 0.436631
-3 0.299479 0.436631
-kids 0
-OBJECT poly
-name "fltpln.node6"
-loc -0.083473 0.000559059 -0.026487
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
-crease 180.000000
-numvert 4
--0.00357665 0 0.00290367
--0.00357665 0 -0.00290367
-0.00357653 0 0.00290367
-0.00357653 0 -0.00290367
-numsurf 2
-SURF 0x0
-mat 3
-refs 3
-3 0.517656 0.347659
-1 0.517656 0.435655
-0 0.279948 0.435655
-SURF 0x0
-mat 3
-refs 3
-3 0.517656 0.347659
-0 0.279948 0.435655
-2 0.279948 0.347659
-kids 0
-OBJECT poly
-name "fltpln.node7"
-loc -0.0763082 0.000559059 -0.026487
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
-crease 180.000000
-numvert 4
-0.00357653 0 -0.00290366
-0.00357653 0 0.00290367
--0.00357664 0 -0.00290367
--0.00357664 0 0.00290367
-numsurf 2
-SURF 0x0
-mat 3
-refs 3
-0 0.498125 0.346683
-3 0.299479 0.436631
-1 0.299479 0.346683
-SURF 0x0
-mat 3
-refs 3
-0 0.498125 0.346683
-2 0.498125 0.436631
-3 0.299479 0.436631
-kids 0
-OBJECT poly
-name "fltpln.node8"
-loc -0.0692608 0.000559059 -0.026487
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
-crease 180.000000
-numvert 4
--0.00357668 0 0.00290367
--0.00357668 0 -0.00290366
-0.00357651 0 0.00290367
-0.00357651 0 -0.00290366
-numsurf 2
-SURF 0x0
-mat 3
-refs 3
-3 0.498125 0.346683
-1 0.498125 0.436631
-0 0.299479 0.436631
-SURF 0x0
-mat 3
-refs 3
-3 0.498125 0.346683
-0 0.299479 0.436631
-2 0.299479 0.346683
-kids 0
-OBJECT poly
-name "fltpln.node9"
-loc -0.0621207 0.000559059 -0.026487
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
-crease 180.000000
-numvert 4
-0.00357665 0 -0.00290366
-0.00357666 0 0.00290367
--0.00357652 0 -0.00290366
--0.00357652 0 0.00290367
-numsurf 2
-SURF 0x0
-mat 3
-refs 3
-0 0.498125 0.346683
-3 0.299479 0.436631
-1 0.299479 0.346683
-SURF 0x0
-mat 3
-refs 3
-0 0.498125 0.346683
-2 0.498125 0.436631
-3 0.299479 0.436631
-kids 0
-OBJECT poly
-name "fltpln.node10"
-loc -0.0550772 0.000559059 -0.026487
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
-crease 180.000000
-numvert 4
--0.00357651 0 0.00290367
--0.00357653 0 -0.00290366
-0.00357665 0 0.00290367
-0.00357664 0 -0.00290367
-numsurf 2
-SURF 0x0
-mat 3
-refs 3
-3 0.498125 0.346683
-1 0.498125 0.436631
-0 0.299479 0.436631
-SURF 0x0
-mat 3
-refs 3
-3 0.498125 0.346683
-0 0.299479 0.436631
-2 0.299479 0.346683
-kids 0
-OBJECT poly
-name "fltpln.node11"
-loc -0.0479332 0.000559059 -0.026487
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
-crease 180.000000
-numvert 4
-0.00357652 0 -0.00290367
-0.00357652 0 0.00290367
--0.00357668 0 -0.00290367
--0.00357667 0 0.00290367
-numsurf 2
-SURF 0x0
-mat 3
-refs 3
-0 0.498125 0.346683
-3 0.299479 0.436631
-1 0.299479 0.346683
-SURF 0x0
-mat 3
-refs 3
-0 0.498125 0.346683
-2 0.498125 0.436631
-3 0.299479 0.436631
-kids 0
-OBJECT poly
-name "fltpln.node12"
-loc -0.0408411 0.000559059 -0.026487
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
-crease 180.000000
-numvert 4
--0.00357666 0 0.00290367
--0.00357666 0 -0.00290367
-0.00357652 0 0.00290367
-0.00357651 0 -0.00290367
-numsurf 2
-SURF 0x0
-mat 3
-refs 3
-3 0.498125 0.346683
-1 0.498125 0.436631
-0 0.299479 0.436631
-SURF 0x0
-mat 3
-refs 3
-3 0.498125 0.346683
-0 0.299479 0.436631
-2 0.299479 0.346683
-kids 0
-OBJECT poly
-name "fltpln.node13"
-loc -0.0336972 0.000559059 -0.026487
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
-crease 180.000000
-numvert 4
-0.00357652 0 -0.00290367
-0.00357652 0 0.00290367
--0.00357665 0 -0.00290367
--0.00357664 0 0.00290367
-numsurf 2
-SURF 0x0
-mat 3
-refs 3
-0 0.498125 0.346683
-3 0.299479 0.436631
-1 0.299479 0.346683
-SURF 0x0
-mat 3
-refs 3
-0 0.498125 0.346683
-2 0.498125 0.436631
-3 0.299479 0.436631
-kids 0
-OBJECT poly
-name "fltpln.node14"
-loc -0.0266499 0.000559059 -0.026487
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
-crease 180.000000
-numvert 4
--0.00357659 0 0.00290367
--0.00357659 0 -0.00290367
-0.00357659 0 0.00290367
-0.00357658 0 -0.00290367
-numsurf 2
-SURF 0x0
-mat 3
-refs 3
-3 0.498125 0.346683
-1 0.498125 0.436631
-0 0.299479 0.436631
-SURF 0x0
-mat 3
-refs 3
-3 0.498125 0.346683
-0 0.299479 0.436631
-2 0.299479 0.346683
-kids 0
-OBJECT poly
-name "fltpln.node15"
-loc -0.0196069 0.000559059 -0.026487
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
-crease 180.000000
-numvert 4
-0.00357666 0 -0.00290367
-0.00357666 0 0.00290367
--0.00357654 0 -0.00290367
--0.00357651 0 0.00290367
-numsurf 2
-SURF 0x0
-mat 3
-refs 3
-0 0.498125 0.346683
-3 0.299479 0.436631
-1 0.299479 0.346683
-SURF 0x0
-mat 3
-refs 3
-0 0.498125 0.346683
-2 0.498125 0.436631
-3 0.299479 0.436631
-kids 0
-OBJECT poly
-name "fltpln.node16"
-loc -0.0124629 0.000559059 -0.026487
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
-crease 180.000000
-numvert 4
--0.00357666 0 0.00290367
--0.00357666 0 -0.00290367
-0.00357653 0 0.00290367
-0.00357652 0 -0.00290366
-numsurf 2
-SURF 0x0
-mat 3
-refs 3
-3 0.498125 0.346683
-1 0.498125 0.436631
-0 0.299479 0.436631
-SURF 0x0
-mat 3
-refs 3
-3 0.498125 0.346683
-0 0.299479 0.436631
-2 0.299479 0.346683
-kids 0
-OBJECT poly
-name "fltpln.node17"
-loc -0.0053719 0.000559059 -0.026487
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
-crease 180.000000
-numvert 4
-0.00357653 0 -0.00290368
-0.00357653 0 0.00290368
--0.00357666 0 -0.00290368
--0.00357665 0 0.00290366
-numsurf 2
-SURF 0x0
-mat 3
-refs 3
-0 0.498125 0.346683
-3 0.299479 0.436631
-1 0.299479 0.346683
-SURF 0x0
-mat 3
-refs 3
-0 0.498125 0.346683
-2 0.498125 0.436631
-3 0.299479 0.436631
-kids 0
-OBJECT poly
-name "rect"
-loc 0.0137601 -0.000344036 0.0128252
-crease 45.000000
-numvert 4
-5.46277e-05 0 0.0726897
-5.46277e-05 0 -0.0726897
--5.44935e-05 0 -0.0726897
--5.44935e-05 0 0.0726897
-numsurf 1
-SURF 0x30
-mat 0
-refs 4
-0 0 0
-1 1 0
-2 1 1
-3 0 1
-kids 0
-OBJECT poly
 name "fltpln.button2"
-loc 0.0277931 -4.30048e-05 0.0113671
+loc 0.104656 -4.30048e-05 0.0619001
 crease 45.000000
 numvert 4
 0.00359087 0 0.0168466
@@ -3873,7 +3224,7 @@ numvert 4
 -0.00359087 0 0.0168466
 numsurf 1
 SURF 0x10
-mat 5
+mat 6
 refs 4
 0 0 0
 1 1 0
@@ -3882,7 +3233,7 @@ refs 4
 kids 0
 OBJECT poly
 name "fltpln.button1"
-loc 0.0277931 -4.30048e-05 0.0642551
+loc 0.104656 -4.30048e-05 0.114788
 crease 45.000000
 numvert 4
 -0.00359087 0 0.0107726
@@ -3891,7 +3242,7 @@ numvert 4
 0.00359087 0 0.0107726
 numsurf 1
 SURF 0x10
-mat 5
+mat 6
 refs 4
 3 0 0
 2 1 0
@@ -3900,17 +3251,17 @@ refs 4
 kids 0
 OBJECT poly
 name "fltpln.up"
-loc 0.0182221 -4.30048e-05 -0.03722
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
+loc 0.095085 -4.30048e-05 0.0133129
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Common/mcdu_icons.png"
 crease 45.000000
 numvert 4
 0.00359087 0 0.00345787
 0.00359087 0 -0.00345787
--0.00359087 0 -0.00345784
+-0.00359087 0 -0.00345781
 -0.00359087 0 0.00345787
 numsurf 1
 SURF 0x0
-mat 2
+mat 3
 refs 4
 0 0.630702 0.0947263
 1 0.814296 0.0947263
@@ -3919,8 +3270,8 @@ refs 4
 kids 0
 OBJECT poly
 name "fltpln.down"
-loc 0.0182221 0.000258028 -0.030038
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
+loc 0.095085 0.000258028 0.0204949
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Common/mcdu_icons.png"
 crease 45.000000
 numvert 4
 -0.00359087 0 0.00345787
@@ -3929,7 +3280,7 @@ numvert 4
 0.00359087 0 0.00345787
 numsurf 1
 SURF 0x0
-mat 2
+mat 3
 refs 4
 3 0.484375 0.0996094
 2 0.667969 0.0996094
@@ -3938,16 +3289,16 @@ refs 4
 kids 0
 OBJECT poly
 name "rect"
-loc 0.0231361 -0.000344036 0.0126483
+loc 0.099999 -0.000344036 0.0631813
 crease 45.000000
 numvert 4
--5.44935e-05 0 0.0726897
--5.44861e-05 0 -0.0726897
-5.46277e-05 0 -0.0726897
-5.46202e-05 0 0.0726897
+-5.44712e-05 0 0.0726897
+-5.44637e-05 0 -0.0726897
+5.465e-05 0 -0.0726897
+5.46426e-05 0 0.0726897
 numsurf 1
 SURF 0x30
-mat 0
+mat 1
 refs 4
 3 0 0
 2 1 0
@@ -3965,13 +3316,13 @@ numvert 4
 0.185 0 -0.025
 numsurf 2
 SURF 0x10
-mat 7
+mat 8
 refs 3
 1 0 0
 0 0 0
 3 0 0
 SURF 0x10
-mat 7
+mat 8
 refs 3
 3 0 0
 2 0 0
@@ -3992,61 +3343,61 @@ numvert 8
 -0.02 -0.005 -0.03
 numsurf 10
 SURF 0x10
-mat 8
+mat 9
 refs 3
 0 0 0
 2 0 0
 7 0 0
 SURF 0x10
-mat 8
+mat 9
 refs 3
 6 0 0
 7 0 0
 2 0 0
 SURF 0x10
-mat 8
+mat 9
 refs 3
 1 0 0
 0 0 0
 5 0 0
 SURF 0x10
-mat 8
+mat 9
 refs 3
 7 0 0
 5 0 0
 0 0 0
 SURF 0x10
-mat 8
+mat 9
 refs 3
 3 0 0
 1 0 0
 4 0 0
 SURF 0x10
-mat 8
+mat 9
 refs 3
 5 0 0
 4 0 0
 1 0 0
 SURF 0x10
-mat 8
+mat 9
 refs 3
 2 0 0
 3 0 0
 6 0 0
 SURF 0x10
-mat 8
+mat 9
 refs 3
 4 0 0
 6 0 0
 3 0 0
 SURF 0x10
-mat 8
+mat 9
 refs 3
 4 0 0
 5 0 0
 6 0 0
 SURF 0x10
-mat 8
+mat 9
 refs 3
 7 0 0
 6 0 0

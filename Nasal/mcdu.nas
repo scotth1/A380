@@ -221,9 +221,11 @@ keyPress = func(key) {
       inputValue = 0.93;
     }
     var tocIdx = airbusFMS.findWPType("T/C");
-    var tocWP = airbusFMS.getWP(tocIdx);
-    tocWP.spd_cstr = inputValue;
-    airbusFMS.replaceWPAt(tocWP, tocIdx);
+    if (tocIdx != nil) {
+      var tocWP = airbusFMS.getWP(tocIdx);
+      tocWP.spd_cstr = inputValue;
+      airbusFMS.replaceWPAt(tocWP, tocIdx);
+    }
   }
   var attr = "/instrumentation/afs/"~currentField;
   tracer("set field: "~attr~", with value: "~inputValue);
