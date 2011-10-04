@@ -1538,7 +1538,7 @@ insertTopOfDescent = func() {
       wp.spd_cstr = getprop("/instrumentation/afs/des_mach");
       ##var disIdx = airbusFMS.findWPType("DISC");
       airbusFMS.clearWPType("T/D");
-      var starWPIdx = airbusFMS.findWpType("STAR");
+      var starWPIdx = airbusFMS.findWPType("STAR");
       airbusFMS.insertWP(wp, starWPIdx);
       ##wpLen = getprop("/autopilot/route-manager/route/num");
       ##tracer("wpLen now: "~wpLen);

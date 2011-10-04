@@ -393,7 +393,17 @@
    </axis>
  </animation>
  
- 
+ <animation>
+   <type>translate</type>
+   <object-name>VLSribbon</object-name>
+   <property>/instrumentation/airspeed-indicator/vls-pos-norm</property>
+   <factor>-0.086</factor>
+   <axis>
+     <x>1</x>
+     <y>0</y>
+     <z>0</z>
+   </axis>
+ </animation>
  
  <animation>
    <type>textranslate</type>

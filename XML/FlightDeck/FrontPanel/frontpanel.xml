@@ -57,7 +57,7 @@
 		<path>Aircraft/A380/XML/FlightDeck/FrontPanel/pfd_fo.xml</path>
 		<offsets>
 			<!-- uncomment SAH 2009-05-27 -->
-			<x-m>-0.015</x-m>
+			<x-m>-0.0134</x-m>
 			<y-m>0.47</y-m>   <!-- was 0.45625 SAH 2010-11-18 -->
 			<z-m>-0.0075</z-m>
 			<!-- commented SAH 2009-05-27
@@ -97,7 +97,7 @@
 		<path>Aircraft/A380/XML/FlightDeck/FrontPanel/pfd_c.xml</path>
 		<name>pfd_c</name>
 		<offsets>
-			<x-m>-0.015</x-m>
+			<x-m>-0.0134</x-m>
 			<y-m>-0.63</y-m>
 			<z-m>-0.0075</z-m>
 		</offsets>

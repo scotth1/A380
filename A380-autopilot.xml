@@ -1186,4 +1186,43 @@
   </output>
 </filter>
 
+<filter>
+  <debug>false</debug>
+  <type>gain</type>
+  <gain>1.0</gain>
+  <input>
+    <expression>
+      <product>
+        <property>velocities/Vso</property>
+        <property>velocities/vls-factor</property>
+      </product>
+    </expression>
+  </input>
+  <output>
+    <property>velocities/Vls</property>
+  </output>
+</filter>
+
+<filter>
+  <debug>false</debug>
+  <type>gain</type>
+  <gain>1.0</gain>
+  <input>
+    <expression>
+      <div>
+        <dif>
+          <property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+          <property>velocities/Vls</property>
+        </dif>
+        <value>120</value>
+      </div>
+    </expression>
+  </input>
+  <output>
+    <property>instrumentation/airspeed-indicator/vls-pos-norm</property>
+  </output>
+  <min>0.0</min>
+    <max>1.0</max>
+</filter>
+
 </PropertyList>

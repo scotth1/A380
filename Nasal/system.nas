@@ -155,6 +155,7 @@ init_controls = func {
   setprop("/instrumentation/clock/ET-hr",0);
   ##setprop("/instrumentation/mk-viii/speaker/volume",5);
   setprop("/instrumentation/wxradar/display-mode",2);   #is 'arc'
+  setprop("/velocities/vls-factor", 1.23);
 
   #payload - Crew, PAX, Cargo
   setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[0]",350);
@@ -179,7 +180,7 @@ init_controls = func {
   settimer(update_systems,0);
   setprop("/systems/electrical/apu-test",0);
   print("Aircraft systems initialised");
-  settimer(update_cabin_pressure, 2);
+  settimer(update_cabin_pressure, 3);
 }
 
 
@@ -189,6 +190,8 @@ update_cabin_pressure = func {
   setprop("/instrumentation/pressurisation/cabin-altitude-ft", getprop("/position/altitude-ft"));
   setprop("/instrumentation/pressurisation/cabin-pressure-psi", atmos.convertAltitudePressure("feet", getprop("/position/altitude-ft"), "psi"));
   ###print("Reset cabin pressure and altitude");
+  ## reset our indicated airspeed, otherwise it starts with an error value and doesn't settle down
+  setprop("instrumentation/airspeed-indicator/indicated-speed-kt",0.0);
 }
 
 
@@ -312,7 +315,7 @@ update_radar = func {
         crsNode.setDoubleValue(aiHdg);
         distNode.setDoubleValue(norm_dist);
         idNode.setValue(callsign);
-        validNode.setBoolValue(true);
+        validNode.setBoolValue(1);
         mpPos += 1;
       }
     }
@@ -432,7 +435,7 @@ update_radar = func {
   
     var aptList = airportinfo("airport", radarRange);
     var listSize = size(aptList);
-    tracer("    airportList size: "~listSize);
+    ##tracer("    airportList size: "~listSize);
     foreach (var apt; aptList) {
     ##debug.dump(apt);
     if (pos < 15) {
@@ -843,9 +846,10 @@ update_ewd = func {
   if (getprop("/consumables/fuel/total-fuel-kg") < 10000) {
     ewdChecklist.append("FUEL LOW", 0.8, 0.1, 0.1);
   }
-
-
   ewdChecklist.reset();
+
+  
+
   settimer(update_ewd, 2);
 }
 
@@ -1566,6 +1570,26 @@ setlistener("/instrumentation/gear/wow", func(n) {
       settimer(increment_flight_mode2, 120);
     }
   }
+});
+
+#setlistener("controls/gear/gear-down", func(n) {
+#   position = n.getValue();
+#});
+
+setlistener("controls/flight/flaps", func(n) {
+   var pos = n.getValue();
+   var posnorm = int(pos*10);
+   var fltMode = getprop("instrumentation/ecam/flight-mode");
+   tracer("flap change - pos: "~pos~", posnorm: "~posnorm~", fltMode: "~fltMode);
+   if (posnorm == 0 and fltMode > 5) {
+     setprop("velocities/vls-factor",1.29);
+   }
+   if (posnorm == 2) {
+     setprop("velocities/vls-factor", 1.26);
+   }
+   if (posnorm > 2 and fltMode < 6) {
+     setprop("velocities/vls-factor", 1.14);
+   }
 });
 
 #  SD page will revert to synoptic page 30sec after manual change
