@@ -606,26 +606,40 @@ update_radar = func {
 update_toc = func() {
     var tocIdx = fms.findWPType("T/C");
     if (tocIdx != nil) {
-      tracer("[updatetoc] tocIDX: "~tocIdx);
+      #tracer("[updatetoc] tocIDX: "~tocIdx);
       var fromApt = airportinfo(getprop("instrumentation/afs/FROM"));
       var crzFt   = getprop("instrumentation/afs/CRZ_FL")*100;
-      var curAlt  = getprop("position/altitude-ft");
+      var curAlt  = getprop("position/altitude-ft"); 
+      var curVS = getprop("instrumentation/vertical-speed-indicator[1]/indicated-speed-fpm"); 
+      var gSpeed = getprop("velocities/groundspeed-kt");
+
+      var diffAlt = crzFt-curAlt;
+      var vsMins = diffAlt/curVS;
+      var vsHrs  = vsMins/60;
+      var distNm = gSpeed*vsHrs;
+      #tracer("[T/C] diffAlt: "~diffAlt~", vsMins: "~vsMins~", gSpeed: "~(gSpeed)~", distNm: "~distNm);
+      #setprop("/debug/toc/diff-alt",diffAlt);
+      #setprop("/debug/toc/vs-mins", vsMins);
+      #setprop("/debug/toc/vs-hours", vsHrs);
+      #setprop("/debug/toc/dist-nm", distNm);
+
       var tocWP = fms.getWP(tocIdx);
       var curPosCoord = geo.Coord.new();
       var tocWpCoord = geo.Coord.new();
       tocWpCoord.set_latlon(tocWP.wp_lat, tocWP.wp_lon, tocWP.alt_cstr);
       ###tocWpCoord.set_latlon(fromApt.lat, fromApt.lon, fromApt.elevation);
       curPosCoord.set_latlon(getprop("position/latitude-deg"), getprop("position/longitude-deg"), curAlt); 
+
       var hdg = curPosCoord.course_to(tocWpCoord);
       var climbNM = getprop("instrumentation/afs/top-of-climb-dist-nm")-getprop("instrumentation/gps/odometer");
-      tracer("apply course: "~hdg~", distance: "~climbNM*NM2MTRS);
-      curPosCoord.apply_course_distance(hdg, (climbNM*NM2MTRS));
+      ##tracer("apply course: "~hdg~", distance: "~distNm*NM2MTRS);
+      curPosCoord.apply_course_distance(hdg, (distNm*NM2MTRS));
       var tcLat = curPosCoord.lat();
       var tcLon = curPosCoord.lon();
       tracer("curPosCoord.lat: "~tcLat~" / curPosCoord.lon: "~tcLon);
       tocWP.wp_lat = tcLat;
       tocWP.wp_lon = tcLon;
-      tracer("tocWP.wp_lat: "~tocWP.wp_lat~" / tocWP.wp_lon: "~tocWP.wp_lon);
+      ##tracer("tocWP.wp_lat: "~tocWP.wp_lat~" / tocWP.wp_lon: "~tocWP.wp_lon);
       fms.replaceWPAt(tocWP, tocIdx);
     }
 }
@@ -635,7 +649,7 @@ update_toc = func() {
 ## updatePseudo
 updatePseudo = func(wp) {
   if (wp != nil and (wp.wp_name == "(T/C)" or wp.wp_name == "(T/D)" or wp.wp_name == "(DECEL)")) {
-      ##var true_heading = getprop("/orientation/heading-deg");
+      var true_heading = getprop("/orientation/heading-deg");
       var mag_heading  = getprop("orientation/heading-magnetic-deg");
       ##var mag_heading  = getprop("orientation/heading-deg");
       var radarRange = getprop("/instrumentation/radar/range");
@@ -657,9 +671,11 @@ updatePseudo = func(wp) {
       wpDistMetre   = currentPos.distance_to(wpPos);
       wpDist = wpDistMetre*METRE2NM;
       if (mag_heading < wpCourse) {
-        tgt_offset = wpCourse-mag_heading;
+        ##tgt_offset = wpCourse-mag_heading;
+        tgt_offset = wpCourse-true_heading;
       } else {
-        tgt_offset = 360-(mag_heading-wpCourse);
+        ##tgt_offset = 360-(mag_heading-wpCourse);
+        tgt_offset = 360-(true_heading-wpCourse);
       }
       if (tgt_offset < 0){
         tgt_offset = 360-tgt_offset;

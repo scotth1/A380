@@ -578,6 +578,7 @@ calcVSpeeds = func() {
      }
      var Vr  = (Vso*flapFactor);
      var V2  = (Vso*(flapFactor+0.05))+10;
+     var Vf  = (0*0);
      setprop("/instrumentation/afs/Vr", Vr);
      setprop("/instrumentation/afs/V2", V2);
      tracer("  Vso: "~Vso~", Vr: "~Vr~", V2: "~V2~", flapFactor: "~flapFactor);
@@ -773,7 +774,7 @@ selectSidAction = func(opt, unit) {
         insertAbsWP("(T/C)",wpLen-1,tocWP.wp_lat,tocWP.wp_lon, tocWP.alt_cstr);
       }
     } else {
-      airbusFMS.replaceAt(tocWP, existIdx);
+      airbusFMS.replaceWPAt(tocWP, existIdx);
     }
   }
   if (direct == "star") {
@@ -1178,7 +1179,7 @@ updateApproachAlts = func() {
              var nextDist = gcd2(nextWp.wp_lat, nextWp.wp_lon, rtWp.wp_lat, rtWp.wp_lon, "nm");
              tracer("[FMS] prevDist: "~prevDist~"nm, nextDist: "~nextDist~"nm, prevAlt: "~prevAlt~", nextAlt: "~nextAlt);
              var thisAlt = int(prevAlt-(((prevAlt-nextAlt)/(prevDist+nextDist))*prevDist));
-             tracer("[FMS] update alt - tmpHeight: "~tmpHeight~", thisAlt: "~thisAlt~", prevDist: "~prevDist~" prevWp: "~prevWp.wp_name);
+             tracer("[FMS] update alt - thisAlt: "~thisAlt~", prevDist: "~prevDist~" prevWp: "~prevWp.wp_name);
              rtWp.alt_cstr = thisAlt;
            } else {
              var prevDist = gcd2(prevWp.wp_lat, prevWp.wp_lon, rtWp.wp_lat, rtWp.wp_lon, "nm");
@@ -1461,8 +1462,8 @@ insertTopOfDescent = func() {
       var difDist = totalDist-remainDist;
       var prevWP = nil;
       for (var w = starWPIdx-1; w > 0; w=w-1) {
-        var prevWP = airbusFMS.getWP(w);
-        if (prevWP.wp_type != "DISC") {
+        prevWP = airbusFMS.getWP(w);
+        if (prevWP.wp_type != "DISC" and prevWP.wp_type != "STAR") {
           break;
         }
       }
@@ -1476,17 +1477,34 @@ insertTopOfDescent = func() {
       var starHdg = prevCoord.course_to(nextCoord);
       var difHdg = starHdg-prevHdg;
       tracer("[FMS] diff heading between enroute "~prevHdg~" and star "~starHdg~" is: "~difHdg);
-      tracer("[FMS] enroute hdg: "~prevHdg);
-      if (difHdg < 0) {
-        difHdg = 360+difHdg;
-      }
-      var hdg = difHdg;
+      var hdg = prevHdg;
+      ## invert our heading (we are looking from first STAR WP) using our en-route heading.
       if (hdg >= 180) {
         hdg = hdg-180;
       } else {
         hdg = hdg+180;
       }
-     
+      ## if we need to turn too much, then make new heading along starHdg
+      var absHdg = math.abs(difHdg);
+      if (absHdg > 80) {
+        if (difHdg < 0) {
+          hdg = starHdg-80;
+        } else {
+          hdg = starHdg+80;
+        }
+      }
+
+      #if (difHdg < 0) {
+      #  difHdg = 360+difHdg;
+      #}
+      if (hdg > 360) {
+        hdg = 360-hdg;
+      }
+      if (hdg < 0) {
+        hdg = 360+hdg;
+      }
+      
+     tracer("[FMS] enroute hdg: "~prevHdg~", difHdg: "~difHdg~", hdg: "~hdg~", absHdg: "~absHdg);
  
       ###var hdg = calcOrthHeadingDeg(firstStarWp.wp_lat, firstStarWp.wp_lon, prevRtLat, prevRtLon);
       tracer("[FMS] find point at course: "~hdg~", dist: "~difDist~"nm from: "~firstStarWp.wp_name);

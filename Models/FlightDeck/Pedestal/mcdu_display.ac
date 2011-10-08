@@ -691,7 +691,7 @@ kids 10
 OBJECT poly
 name "menu.rwy-less"
 loc -0.0939292 0.000358888 0.0374402
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
+texture "mcdu_icons.png"
 crease 45.000000
 numvert 4
 0.0807749 0 0.0125427
@@ -1070,7 +1070,7 @@ kids 0
 OBJECT poly
 name "menu.rwy-more"
 loc -0.10819 0.000311901 0.0374402
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
+texture "mcdu_icons.png"
 crease 45.000000
 numvert 4
 0.0900406 0 0.0268028
@@ -1442,7 +1442,7 @@ kids 0
 OBJECT poly
 name "mesh"
 loc 0.0109698 0.00123925 -0.021334
-texture "Aircraft/A380/Textures/Panels/fms/fms_perf_to.png"
+texture "fms_perf_to.png"
 crease 180.000000
 numvert 4
 0.0753823 0 -0.0753823
@@ -1493,7 +1493,7 @@ kids 0
 OBJECT poly
 name "mesh"
 loc 0.0625586 0.00169743 -0.0766761
-texture "Aircraft/A380/Textures/Panels/fms/fms_perf_crz.png"
+texture "fms_perf_crz.png"
 crease 180.000000
 numvert 4
 0.0161367 0 0.0250433
@@ -1958,7 +1958,7 @@ kids 0
 OBJECT poly
 name "mesh"
 loc 0.04405 0.000651136 -0.0076636
-texture "Aircraft/A380/Textures/Panels/fms/fms_perf_appr.png"
+texture "fms_perf_appr.png"
 crease 180.000000
 numvert 4
 0.0665124 0 -0.0665249
@@ -2766,7 +2766,7 @@ kids 0
 OBJECT poly
 name "fltpln.node0"
 loc -0.0491962 0.000559059 0.0240459
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
+texture "mcdu_icons.png"
 crease 180.000000
 numvert 4
 0.00357667 0 -0.0029037
@@ -2790,7 +2790,7 @@ kids 0
 OBJECT poly
 name "fltpln.node1"
 loc -0.0420592 0.000559059 0.0240459
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
+texture "mcdu_icons.png"
 crease 180.000000
 numvert 4
 0.00357649 0 -0.0029037
@@ -2814,7 +2814,7 @@ kids 0
 OBJECT poly
 name "fltpln.node2"
 loc -0.0349272 0.000559059 0.0240459
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
+texture "mcdu_icons.png"
 crease 180.000000
 numvert 4
 -0.00357652 0 0.00290367
@@ -2838,7 +2838,7 @@ kids 0
 OBJECT poly
 name "fltpln.node3"
 loc -0.0277882 0.000559059 0.0240459
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
+texture "mcdu_icons.png"
 crease 180.000000
 numvert 4
 0.00357652 0 -0.0029037
@@ -2862,7 +2862,7 @@ kids 0
 OBJECT poly
 name "fltpln.node4"
 loc -0.0206441 0.000559059 0.0240459
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
+texture "mcdu_icons.png"
 crease 180.000000
 numvert 4
 -0.00357665 0 0.00290367
@@ -2886,7 +2886,7 @@ kids 0
 OBJECT poly
 name "fltpln.node5"
 loc -0.0136164 0.000559059 0.0240459
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
+texture "mcdu_icons.png"
 crease 180.000000
 numvert 4
 0.00357665 0 -0.00290367
@@ -2910,7 +2910,7 @@ kids 0
 OBJECT poly
 name "fltpln.node6"
 loc -0.00661021 0.000559059 0.0240459
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
+texture "mcdu_icons.png"
 crease 180.000000
 numvert 4
 -0.00357665 0 0.00290367
@@ -2934,7 +2934,7 @@ kids 0
 OBJECT poly
 name "fltpln.node7"
 loc 0.000554599 0.000559059 0.0240459
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
+texture "mcdu_icons.png"
 crease 180.000000
 numvert 4
 0.00357653 0 -0.00290366
@@ -2958,7 +2958,7 @@ kids 0
 OBJECT poly
 name "fltpln.node8"
 loc 0.007602 0.000559059 0.0240459
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
+texture "mcdu_icons.png"
 crease 180.000000
 numvert 4
 -0.00357668 0 0.00290367
@@ -2982,7 +2982,7 @@ kids 0
 OBJECT poly
 name "fltpln.node9"
 loc 0.0147421 0.000559059 0.0240459
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
+texture "mcdu_icons.png"
 crease 180.000000
 numvert 4
 0.00357665 0 -0.00290366
@@ -3006,7 +3006,7 @@ kids 0
 OBJECT poly
 name "fltpln.node10"
 loc 0.0217856 0.000559059 0.0240459
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
+texture "mcdu_icons.png"
 crease 180.000000
 numvert 4
 -0.00357651 0 0.00290367
@@ -3030,7 +3030,7 @@ kids 0
 OBJECT poly
 name "fltpln.node11"
 loc 0.0289296 0.000559059 0.0240459
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
+texture "mcdu_icons.png"
 crease 180.000000
 numvert 4
 0.00357652 0 -0.00290367
@@ -3054,7 +3054,7 @@ kids 0
 OBJECT poly
 name "fltpln.node12"
 loc 0.0360217 0.000559059 0.0240459
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
+texture "mcdu_icons.png"
 crease 180.000000
 numvert 4
 -0.00357666 0 0.00290367
@@ -3078,7 +3078,7 @@ kids 0
 OBJECT poly
 name "fltpln.node13"
 loc 0.0431656 0.000559059 0.0240459
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
+texture "mcdu_icons.png"
 crease 180.000000
 numvert 4
 0.00357652 0 -0.00290367
@@ -3102,7 +3102,7 @@ kids 0
 OBJECT poly
 name "fltpln.node14"
 loc 0.050213 0.000559059 0.0240459
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
+texture "mcdu_icons.png"
 crease 180.000000
 numvert 4
 -0.00357659 0 0.00290367
@@ -3126,7 +3126,7 @@ kids 0
 OBJECT poly
 name "fltpln.node15"
 loc 0.057256 0.000559059 0.0240459
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
+texture "mcdu_icons.png"
 crease 180.000000
 numvert 4
 0.00357666 0 -0.00290367
@@ -3150,7 +3150,7 @@ kids 0
 OBJECT poly
 name "fltpln.node16"
 loc 0.0644 0.000559059 0.0240459
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
+texture "mcdu_icons.png"
 crease 180.000000
 numvert 4
 -0.00357666 0 0.00290367
@@ -3174,7 +3174,7 @@ kids 0
 OBJECT poly
 name "fltpln.node17"
 loc 0.071491 0.000559059 0.0240459
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
+texture "mcdu_icons.png"
 crease 180.000000
 numvert 4
 0.00357653 0 -0.00290368
@@ -3252,7 +3252,7 @@ kids 0
 OBJECT poly
 name "fltpln.up"
 loc 0.095085 -4.30048e-05 0.0133129
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
+texture "mcdu_icons.png"
 crease 45.000000
 numvert 4
 0.00359087 0 0.00345787
@@ -3271,7 +3271,7 @@ kids 0
 OBJECT poly
 name "fltpln.down"
 loc 0.095085 0.000258028 0.0204949
-texture "Aircraft/A380/Textures/Common/mcdu_icons.png"
+texture "mcdu_icons.png"
 crease 45.000000
 numvert 4
 -0.00359087 0 0.00345787
