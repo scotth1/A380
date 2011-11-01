@@ -5268,18 +5268,6 @@
   </condition>
 </animation>
 
-
-<animation>
-  <type>select</type>
-  <object-name>appr_perf</object-name>
-  <condition>
-    <equals>
-      <property>instrumentation/mcdu[0]/page</property>
-      <value>active.appr_perf</value>
-    </equals>
-  </condition>
-</animation>
-
 <!-- animation>
   <type>select</type>
   <object-name>menu.clb</object-name>

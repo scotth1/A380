@@ -1042,7 +1042,18 @@ selectSidTransAction = func(val, unit) {
   changePage(unit, "active.departure.dep");
 }
 
-
+######################################
+#
+#
+selectApprConf = func(mode) {
+  setprop("instrumentation/afs/appr_conf3", 0);
+  setprop("instrumentation/afs/appr_full", 0);
+  if (mode == "appr_full") {
+    setprop("instrumentation/afs/appr_full", 1);
+  } else {
+    setprop("instrumentation/afs/appr_conf3", 1);
+  }
+}
 
 
 updateApproachAlts = func() {
