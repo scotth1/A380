@@ -895,7 +895,7 @@ adjust_thrust = func(n) {
 }
 
 change_radar_range = func(n) {
-  var curRange = getprop("/instrumentation/radar/range");
+  var curRange = getprop("/instrumentation/nd[0]/range");
   var newRange = curRange;
   if (n == 1) {
     newRange = curRange*2;
@@ -908,7 +908,7 @@ change_radar_range = func(n) {
       newRange = 5;
     }
   }
-  setprop("/instrumentation/radar/range",newRange);
+  setprop("/instrumentation/nd[0]/range",newRange);
 }
 
 

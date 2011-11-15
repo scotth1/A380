@@ -7,22 +7,12 @@
     <h-base>256</h-base>
 
     <layers>
-
-        <layer>
-            <condition>
-              <and>
-                <equals>
-                    <property>instrumentation/efis[0]/mfd/display-mode</property>
-                    <value>ARC</value>
-                </equals>
-                <property>instrumentation/efis[0]/inputs/WX</property>
-              </and>
-            </condition>
-            <name>radararc</name>
+      <layer>
+            <name>radarfull</name>
             <w>350</w>
             <h>350</h>
             <texture>
-                <path>Aircraft/Instruments/Textures/od_wxradar.rgb</path>
+                <path>Aircraft/A380/Models/Instruments/MFD/od_wxradar.png</path>
                 <x1>0.0</x1>
                 <y1>0.0</y1>
                 <x2>1</x2>
@@ -40,40 +30,6 @@
             </transformations>
             <emissive>true</emissive>
         </layer>
-
-        <layer>
-            <condition>
-              <and>
-                <equals>
-                    <property>instrumentation/efis[0]/mfd/display-mode</property>
-                    <value>ROSE</value>
-                </equals>
-                <property>instrumentation/efis[0]/inputs/WX</property>
-              </and>
-            </condition>
-            <name>radarfull</name>
-            <w>220</w>
-            <h>220</h>
-            <texture>
-                <path>Aircraft/Instruments/Textures/od_wxradar.rgb</path>
-                <x1>0.0</x1>
-                <y1>0.0</y1>
-                <x2>1</x2>
-                <y2>1</y2>
-            </texture>
-            <transformations>
-                <transformation>
-                    <type>y-shift</type>
-                    <offset>-12</offset>
-                </transformation>
-                <transformation>
-                    <type>x-shift</type>
-                    <offset>1</offset>
-                </transformation>
-            </transformations>
-            <emissive>true</emissive>
-        </layer>
-
     </layers>
 
 </PropertyList>

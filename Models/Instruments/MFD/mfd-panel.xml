@@ -137,11 +137,13 @@
                     <property>systems/electrical/outputs/efis</property>
                     <value>15</value>
                 </greater-than>
+                <!-- 
                 <equals>
                     <property>instrumentation/radar/switch</property>
                     <value>on</value>
                 </equals>
                 <property>instrumentation/efis[0]/inputs/WX</property>
+                -->
             </and>
         </condition> 
         <name>radar</name>

@@ -253,7 +253,7 @@ update_radar = func {
         tgt_offset -=360;
       }
       setprop("/instrumentation/radar/ai[" ~ aiPos ~ "]/brg-offset",tgt_offset);
-      test_dist=getprop("/instrumentation/radar/range");
+      test_dist=getprop("/instrumentation/nd[0]/range");
       test1_dist = getprop("/ai/models/aircraft[" ~ i ~ "]/radar/range-nm");
       if(test1_dist == nil) {
         test1_dist=0.0;
@@ -271,7 +271,7 @@ update_radar = func {
 
   ## plot multiplayer aircraft
   ##
-  var radarRange = getprop("/instrumentation/radar/range");
+  var radarRange = getprop("/instrumentation/nd[0]/range");
   var mpPos = 0;
   var playerNum = getprop("ai/models/num-players");
   for(i=0;i<playerNum;i=i+1) {
@@ -370,6 +370,7 @@ update_radar = func {
       id.setValue(wpId);
     }
   }
+
   if (wpCnt < radarLastCnt) {
     for(i=wpCnt;i<=radarLastCnt;i=i+1) {
       var base = props.globals.getNode("/instrumentation/radar/wp["~i~"]",0);
@@ -652,7 +653,7 @@ updatePseudo = func(wp) {
       var true_heading = getprop("/orientation/heading-deg");
       var mag_heading  = getprop("orientation/heading-magnetic-deg");
       ##var mag_heading  = getprop("orientation/heading-deg");
-      var radarRange = getprop("/instrumentation/radar/range");
+      var radarRange = getprop("/instrumentation/nd[0]/range");
       var currentPos = geo.Coord.new();
       currentPos.set_latlon(getprop("/position/latitude-deg"), getprop("/position/longitude-deg"), getprop("/position/altitude-ft"));
       var id = "null";

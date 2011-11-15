@@ -384,6 +384,7 @@ changePage = func(unit,page) {
     if (max > (rwyScroll*8)+8) {
       max = (rwyScroll*8)+8;
     }
+    tracer("runways max: "~max~", rwyScroll: "~rwyScroll);
     var pos = 0;
     for(r = (rwyScroll*8); r != max; r=r+1) {
       var key = ks[r];

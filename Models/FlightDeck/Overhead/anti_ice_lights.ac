@@ -6,7 +6,7 @@ OBJECT world
 kids 56
 OBJECT poly
 name "ANN_LT"
-loc -0.149476 0 -0.311096
+loc -0.149476 0 -0.310061
 data 12
 Cylinder.013
 texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/metal.png"
@@ -156,7 +156,7 @@ refs 4
 kids 0
 OBJECT poly
 name "ANTI_ICE1"
-loc -0.152869 -0.000735913 -0.311342
+loc -0.152869 -5.34292e-05 -0.311342
 data 14
 APU_MASTER.011
 texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
@@ -177,7 +177,7 @@ refs 4
 kids 0
 OBJECT poly
 name "ANTI_ICE1.fault"
-loc -0.152869 -0.000735913 -0.311342
+loc -0.152869 -5.34292e-05 -0.311342
 data 14
 APU_MASTER.012
 texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
@@ -198,7 +198,7 @@ refs 4
 kids 0
 OBJECT poly
 name "ANTI_ICE2"
-loc -0.152869 -0.000735913 -0.311342
+loc -0.152869 -5.34292e-05 -0.311342
 data 14
 APU_MASTER.010
 texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
@@ -219,7 +219,7 @@ refs 4
 kids 0
 OBJECT poly
 name "ANTI_ICE2.fault"
-loc -0.152869 -0.000735913 -0.311342
+loc -0.152869 -5.34292e-05 -0.311342
 data 14
 APU_MASTER.009
 texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
@@ -240,7 +240,7 @@ refs 4
 kids 0
 OBJECT poly
 name "ANTI_ICE3"
-loc -0.152869 -0.000735913 -0.311342
+loc -0.152869 -5.34292e-05 -0.311342
 data 14
 APU_MASTER.007
 texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
@@ -261,7 +261,7 @@ refs 4
 kids 0
 OBJECT poly
 name "ANTI_ICE3.fault"
-loc -0.152869 -0.000735913 -0.311342
+loc -0.152869 -5.34292e-05 -0.311342
 data 14
 APU_MASTER.008
 texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
@@ -282,7 +282,7 @@ refs 4
 kids 0
 OBJECT poly
 name "ANTI_ICE4"
-loc -0.152869 -0.000735913 -0.311342
+loc -0.152869 -5.34292e-05 -0.311342
 data 14
 APU_MASTER.006
 texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
@@ -303,7 +303,7 @@ refs 4
 kids 0
 OBJECT poly
 name "ANTI_ICE4.fault"
-loc -0.152869 -0.000735913 -0.311342
+loc -0.152869 -5.34292e-05 -0.311342
 data 14
 APU_MASTER.005
 texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
@@ -324,7 +324,7 @@ refs 4
 kids 0
 OBJECT poly
 name "APU_MASTER"
-loc -0.151596 -0.000735913 -0.310957
+loc -0.150655 -5.34293e-05 -0.310957
 data 10
 APU_MASTER
 texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
@@ -352,7 +352,7 @@ crease 30.000000
 kids 0
 OBJECT poly
 name "APU_MASTER.fault"
-loc -0.151596 -0.000735913 -0.310957
+loc -0.150655 -5.34293e-05 -0.310957
 data 14
 APU_MASTER.002
 texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
@@ -373,7 +373,7 @@ refs 4
 kids 0
 OBJECT poly
 name "APU_START"
-loc -0.152479 -0.000735913 -0.3109
+loc -0.150221 -5.34293e-05 -0.3109
 data 14
 APU_MASTER.004
 texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
@@ -394,7 +394,7 @@ refs 4
 kids 0
 OBJECT poly
 name "APU_START.fault"
-loc -0.152479 -0.000735913 -0.3109
+loc -0.150221 -5.34293e-05 -0.3109
 data 14
 APU_MASTER.003
 texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
@@ -1133,7 +1133,7 @@ refs 4
 kids 0
 OBJECT poly
 name "COMPASS"
-loc -0.151596 0 -0.310843
+loc -0.151596 0 -0.310279
 data 12
 Cylinder.012
 texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/metal.png"
@@ -1369,7 +1369,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Cylinder"
-loc -0.151596 0 -0.311096
+loc -0.151855 0 -0.310837
 data 8
 Mesh.001
 texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
@@ -1742,7 +1742,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Cylinder.001"
-loc -0.151596 0 -0.311096
+loc -0.151596 0 -0.310837
 data 8
 Mesh.002
 texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
@@ -2115,7 +2115,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Cylinder.002"
-loc -0.151596 0 -0.311096
+loc -0.151855 0 -0.310837
 data 4
 Mesh
 texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
@@ -3980,7 +3980,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Cylinder.007"
-loc -0.150838 0 -0.311349
+loc -0.151097 0 -0.31109
 data 8
 Mesh.007
 texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
@@ -4353,7 +4353,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Cylinder.012"
-loc -0.151596 0 -0.311096
+loc -0.151784 0 -0.310343
 data 8
 Mesh.008
 texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
@@ -4726,7 +4726,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Cylinder.013"
-loc -0.151849 0 -0.311096
+loc -0.152037 0 -0.310532
 data 8
 Mesh.009
 texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
@@ -5099,7 +5099,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Cylinder.016"
-loc -0.15202 0 -0.310843
+loc -0.152208 0 -0.31009
 data 8
 Mesh.010
 texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
@@ -5472,7 +5472,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Cylinder.017"
-loc -0.151596 0 -0.310843
+loc -0.151596 0 -0.310279
 data 8
 Mesh.011
 texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
@@ -5845,7 +5845,7 @@ refs 4
 kids 0
 OBJECT poly
 name "Cylinder.019"
-loc -0.149476 0 -0.311096
+loc -0.149476 0 -0.310061
 data 8
 Mesh.012
 texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
@@ -7089,7 +7089,7 @@ refs 3
 kids 0
 OBJECT poly
 name "LAND"
-loc -0.151596 0 -0.311096
+loc -0.151855 0 -0.310837
 data 12
 Cylinder.002
 texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/metal.png"
@@ -7239,7 +7239,7 @@ refs 4
 kids 0
 OBJECT poly
 name "LOGO"
-loc -0.150838 0 -0.311349
+loc -0.151097 0 -0.31109
 data 12
 Cylinder.005
 texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/metal.png"
@@ -7539,7 +7539,7 @@ refs 4
 kids 0
 OBJECT poly
 name "NOSE"
-loc -0.151596 0 -0.311096
+loc -0.151855 0 -0.310837
 data 12
 Cylinder.008
 texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/metal.png"
@@ -7775,7 +7775,7 @@ refs 4
 kids 0
 OBJECT poly
 name "RWY"
-loc -0.151596 0 -0.311096
+loc -0.151596 0 -0.310837
 data 12
 Cylinder.001
 texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/metal.png"
@@ -8011,7 +8011,7 @@ refs 4
 kids 0
 OBJECT poly
 name "SEAT_BELT"
-loc -0.151596 0 -0.311096
+loc -0.151784 0 -0.310343
 data 12
 Cylinder.009
 texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/metal.png"
@@ -8247,7 +8247,7 @@ refs 4
 kids 0
 OBJECT poly
 name "SMOKING"
-loc -0.151849 0 -0.311096
+loc -0.152037 0 -0.310532
 data 12
 Cylinder.010
 texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/metal.png"
@@ -8483,7 +8483,7 @@ refs 4
 kids 0
 OBJECT poly
 name "STORM"
-loc -0.15202 0 -0.310843
+loc -0.152208 0 -0.31009
 data 12
 Cylinder.011
 texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/metal.png"
@@ -9019,7 +9019,7 @@ refs 4
 kids 0
 OBJECT poly
 name "WING_ICE"
-loc -0.151172 -0.00213813 -0.310069
+loc -0.151172 -0.00145565 -0.310069
 data 14
 APU_MASTER.014
 texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
@@ -9040,7 +9040,7 @@ refs 4
 kids 0
 OBJECT poly
 name "WING_ICE.fault"
-loc -0.151172 -0.00190443 -0.310069
+loc -0.151172 -0.00122195 -0.310069
 data 14
 APU_MASTER.013
 texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"

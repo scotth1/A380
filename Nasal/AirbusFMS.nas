@@ -15,7 +15,7 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-fms_trace = 0;
+fms_trace = 1;
 
 
 ## mode constants
