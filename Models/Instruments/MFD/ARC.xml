@@ -1326,7 +1326,7 @@
 
 <!-- nearest airports -->
 
-      <layer>
+      <!-- layer>
           <condition>
             <and>
               <equals>
@@ -1830,12 +1830,12 @@
                 <scale>-1.0</scale>
             </transformation>
           </transformations>
-        </layer>
+        </layer -->
 
 
 <!-- -->
 
-       <layer>
+       <!-- layer>
             <name>mask</name>
             <emissive>false</emissive>
             <w>256</w>
@@ -1847,7 +1847,7 @@
                 <x2>1.0</x2>
                 <y2>1.0</y2>
             </texture>
-        </layer>
+        </layer -->
 
         <layer>
             <condition>

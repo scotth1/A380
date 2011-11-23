@@ -718,7 +718,7 @@
     <type>literal</type>
     <text type="string">CSTR</text>
     <font>lcd.txf</font>
-    <character-size type="double">0.008</character-size>
+    <character-size type="double">0.006</character-size>
   </text>
   <text>
     <name>label.wpt</name>
@@ -733,7 +733,7 @@
     <type>literal</type>
     <text type="string">WPT</text>
     <font>lcd.txf</font>
-    <character-size type="double">0.008</character-size>
+    <character-size type="double">0.006</character-size>
   </text>
   <text>
     <name>label.vord</name>
@@ -748,7 +748,7 @@
     <type>literal</type>
     <text type="string">VORD</text>
     <font>lcd.txf</font>
-    <character-size type="double">0.008</character-size>
+    <character-size type="double">0.006</character-size>
   </text>
   <text>
     <name>label.ndb</name>
@@ -763,7 +763,7 @@
     <type>literal</type>
     <text type="string">NDB</text>
     <font>lcd.txf</font>
-    <character-size type="double">0.008</character-size>
+    <character-size type="double">0.006</character-size>
   </text>
   <text>
     <name>label.arpt</name>
@@ -778,7 +778,7 @@
     <type>literal</type>
     <text type="string">ARPT</text>
     <font>lcd.txf</font>
-    <character-size type="double">0.008</character-size>
+    <character-size type="double">0.006</character-size>
   </text>
   
   <text>
@@ -794,7 +794,7 @@
     <type>text-value</type>
     <property>instrumentation/afs/approach-radio-lh</property>
     <font>lcd.txf</font>
-    <character-size type="double">0.008</character-size>
+    <character-size type="double">0.006</character-size>
   </text>
   <text>
     <name>label.wx</name>
@@ -809,7 +809,7 @@
     <type>literal</type>
     <text type="string">WX</text>
     <font>lcd.txf</font>
-    <character-size type="double">0.008</character-size>
+    <character-size type="double">0.006</character-size>
   </text>
   <text>
     <name>label.terr</name>
@@ -824,7 +824,7 @@
     <type>literal</type>
     <text type="string">TERR</text>
     <font>lcd.txf</font>
-    <character-size type="double">0.008</character-size>
+    <character-size type="double">0.006</character-size>
   </text>
   <text>
     <name>label.traf</name>
@@ -839,7 +839,7 @@
     <type>literal</type>
     <text type="string">TRAF</text>
     <font>lcd.txf</font>
-    <character-size type="double">0.008</character-size>
+    <character-size type="double">0.006</character-size>
   </text>
   <text>
     <name>label.arrow2</name>
@@ -854,7 +854,7 @@
     <type>text-value</type>
     <property>instrumentation/afs/approach-radio-rh</property>
     <font>lcd.txf</font>
-    <character-size type="double">0.008</character-size>
+    <character-size type="double">0.006</character-size>
   </text>
   
   

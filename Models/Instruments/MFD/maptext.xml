@@ -251,7 +251,7 @@
             <chunks>
                 <chunk>
                     <type>number-value</type>
-                    <property>instrumentation/radar/range</property>
+                    <property>instrumentation/nd[0]/range</property>
                     <format>%3.0f</format>
                 </chunk>
             </chunks>
@@ -285,7 +285,7 @@
             <chunks>
                 <chunk>
                     <type>number-value</type>
-                    <property>instrumentation/radar/range</property>
+                    <property>instrumentation/nd[0]/range</property>
                     <format>%3.0f</format>
                 </chunk>
             </chunks>
@@ -419,7 +419,7 @@
             <chunks>
                 <chunk>
                     <type>number-value</type>
-                    <property>instrumentation/radar/range</property>
+                    <property>instrumentation/nd[0]/range</property>
                     <format>%3.0f</format>
                 </chunk>
             </chunks>
@@ -959,7 +959,7 @@
         </layer>
         
     <!--   AI object FL -->
-        <layer>
+        <!-- layer>
           <condition>
             <equals>
 	      <property>instrumentation/radar/mp[0]/valid</property>
@@ -1306,7 +1306,7 @@
               <offset>5</offset>
             </transformation>
           </transformations>
-        </layer>
+        </layer -->
         
         <!-- navaid ref -->
         <layer>
@@ -1359,7 +1359,7 @@
         
         
         <!-- waypoint identifiers -->
-        <layer>
+        <!-- layer>
           <condition>
             <equals>
 	      <property>instrumentation/radar/wp[0]/valid</property>
@@ -1557,7 +1557,7 @@
               <offset>-15</offset>
             </transformation>
           </transformations>
-        </layer>
+        </layer -->
         
         
         

@@ -1,6 +1,6 @@
 AC3Db
 MATERIAL "1 - Default" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 1 1 1  shi 32  trans 0
-MATERIAL "1 - Default" rgb 0.431 0.522 0.565  amb 1 1 1  emis 0 0 0  spec 0.384 0.467 0.557  shi 32  trans 0
+MATERIAL "1 - Default" rgb 0.431 0.522 0.565  amb 1 1 1  emis 0 0 0  spec 0.384 0.467 0.557  shi 0  trans 0
 OBJECT world
 kids 76
 OBJECT poly
@@ -2832,10 +2832,10 @@ refs 4
 kids 0
 OBJECT poly
 name "ELEC_AIR"
-loc -7.45058e-09 0 -1.49012e-08
+loc -0.000307605 -0.00215318 -1.49012e-08
 data 10
 Rectangle0
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/overhead3.png"
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/overhead3_02_base.png"
 crease 30.000000
 numvert 4
 0.000999995 0.001 -0.001
@@ -4352,7 +4352,7 @@ refs 3
 kids 0
 OBJECT poly
 name "backlight.main"
-loc -0.0940784 0.00122733 -0.156172
+loc -0.094386 0.00122733 -0.156172
 texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/overhead3_02_backlight-y.png"
 crease 180.000000
 numvert 4

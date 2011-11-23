@@ -414,19 +414,27 @@ setlistener("/autopilot/settings/vertical-speed-fpm", func(n) {
 
 setlistener("instrumentation/efis[0]/display-mode", func(n) {
     var val = n.getValue();
+    var y = 0.182;
+    var x = 0.499;
     var mode = "MAP";
     var modeStr = "";
     if (val == 0) {
       mode = "ROSE";
       modeStr = "LS";
+      y = 0.427;
+      x = 0.503;
     }
     if (val == 1) {
       mode = "ROSE";
       modeStr = "VOR";
+      y = 0.427;
+      x = 0.503;
     }
     if (val == 2) {
       mode = "ROSE";
       modeStr = "NAV";
+      y = 0.427;
+      x = 0.503;
     }
     if (val == 3) {
       mode = "ARC";
@@ -438,6 +446,47 @@ setlistener("instrumentation/efis[0]/display-mode", func(n) {
     }
     setprop("instrumentation/efis[0]/mfd/display-mode", mode);
     setprop("instrumentation/efis[0]/nd-mode", modeStr);
+    setprop("instrumentation/nd[0]/x-center", x);
+    setprop("instrumentation/nd[0]/y-center", y);
+});
+
+
+setlistener("instrumentation/efis[1]/display-mode", func(n) {
+    var val = n.getValue();
+    var y = 0.182;
+    var x = 0.499;
+    var mode = "MAP";
+    var modeStr = "";
+    if (val == 0) {
+      mode = "ROSE";
+      modeStr = "LS";
+      y = 0.427;
+      x = 0.503;
+    }
+    if (val == 1) {
+      mode = "ROSE";
+      modeStr = "VOR";
+      y = 0.427;
+      x = 0.503;
+    }
+    if (val == 2) {
+      mode = "ROSE";
+      modeStr = "NAV";
+      y = 0.427;
+      x = 0.503;
+    }
+    if (val == 3) {
+      mode = "ARC";
+      modeStr = "ARC";
+    }
+    if (val == 4) {
+      mode = "PLAN";
+      modeStr = "PLAN";
+    }
+    setprop("instrumentation/efis[1]/mfd/display-mode", mode);
+    setprop("instrumentation/efis[1]/nd-mode", modeStr);
+    setprop("instrumentation/nd[1]/x-center", x);
+    setprop("instrumentation/nd[1]/y-center", y);
 });
 
 

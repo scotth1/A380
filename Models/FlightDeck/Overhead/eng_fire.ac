@@ -1,6 +1,6 @@
 AC3Db
 MATERIAL "ac3dmat1" rgb 1 1 1  amb 0.2 0.2 0.2  emis 0 0 0  spec 0.2 0.2 0.2  shi 128  trans 0
-MATERIAL "1 - Default.001" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 1 1 1  shi 32  trans 0
+MATERIAL "1 - Default.001" rgb 0.384 0.467 0.557  amb 1 1 1  emis 0 0 0  spec 1 1 1  shi 0  trans 0
 MATERIAL "12 - Default" rgb 0 0 0  amb 1 1 1  emis 0 0 0  spec 0 0 0  shi 32  trans 0
 MATERIAL "11 - Default" rgb 0.12549 0.12549 0.12549  amb 1 1 1  emis 0 0 0  spec 0.25098 0.25098 0.25098  shi 32  trans 0
 OBJECT world

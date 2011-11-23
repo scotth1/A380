@@ -99,7 +99,7 @@
        <binding>
          <command>property-adjust</command>
 	<property>/controls/lighting/panel-norm</property>
-	<step>0.1</step>
+	<step>0.05</step>
 	<max>0.60</max>
 	<min>0.00</min>
        </binding>
@@ -111,7 +111,7 @@
        <binding>
          <command>property-adjust</command>
 	<property>/controls/lighting/panel-norm</property>
-	<step>-0.1</step>
+	<step>-0.05</step>
 	<max>0.60</max>
 	<min>0.00</min>
        </binding>

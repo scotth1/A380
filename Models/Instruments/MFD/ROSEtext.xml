@@ -247,7 +247,7 @@
             <chunks>
                 <chunk>
                     <type>number-value</type>
-                    <property>instrumentation/radar/range</property>
+                    <property>instrumentation/nd/range</property>
                     <format>%3.0f</format>
                 </chunk>
             </chunks>
