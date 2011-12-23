@@ -125,7 +125,7 @@
                 <type>rotation</type>
                 <property>environment/wind-from-heading-deg</property>
             </transformation>
-            </transformations>
+          </transformations>
         </layer>
 
 </layers>

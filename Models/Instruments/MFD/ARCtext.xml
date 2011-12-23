@@ -1206,7 +1206,7 @@
         
         
         <!-- waypoint identifiers -->
-        <layer>
+        <!-- layer>
           <condition>
             <equals>
 	      <property>instrumentation/radar/wp[0]/valid</property>
@@ -1404,7 +1404,7 @@
               <offset>-15</offset>
             </transformation>
           </transformations>
-        </layer>
+        </layer -->
         
         
         

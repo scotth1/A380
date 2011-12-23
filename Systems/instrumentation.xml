@@ -88,11 +88,6 @@ This file selects the instrumentation modules that should be available.
         <number>0</number>        
         <symbols include="nav-display-c.xml"/>
     </navigation-display>
-    <!-- navigation-display>
-        <name>nd</name>
-        <number>1</number>        
-        <symbols include="nav-display-fo.xml"/>
-    </navigation-display -->
     
 
     <groundradar>

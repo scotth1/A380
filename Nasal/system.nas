@@ -434,12 +434,12 @@ update_radar = func {
   var pos = 0;
   var arptData = getprop("instrumentation/efis[0]/inputs/ARPT");
   
-    var aptList = airportinfo("airport", radarRange);
-    var listSize = size(aptList);
+    ##var aptList = airportinfo("airport", radarRange);
+    ##var listSize = size(aptList);
     ##tracer("    airportList size: "~listSize);
-    foreach (var apt; aptList) {
+    ##foreach (var apt; aptList) {
     ##debug.dump(apt);
-    if (pos < 15) {
+    if (pos > 0) {
       var base = props.globals.getNode("/instrumentation/radar/airports["~pos~"]",1);
       var valid = base.getNode("valid",1);
       valid.setBoolValue(0);
@@ -474,24 +474,25 @@ update_radar = func {
         }
       }
     }
-  }
-  for(var r = pos; r <= radarLastAirportCnt; r=r+1) {
-    var base = props.globals.getNode("/instrumentation/radar/airports["~r~"]",1);
-    var valid = base.getNode("valid",1);
-    valid.setBoolValue(0);
-    var brg = base.getNode("brg-offset",1);
-    brg.setDoubleValue(0.0);
-    var dist = base.getNode("dist-norm", 1);
-    dist.setDoubleValue(0.0);
-    var id = base.getNode("id",1);
-    id.setValue("");
-  }
-  radarLastAirportCnt = pos;
+  ##}
+  #for(var r = pos; r <= radarLastAirportCnt; r=r+1) {
+  #  var base = props.globals.getNode("/instrumentation/radar/airports["~r~"]",1);
+  #  var valid = base.getNode("valid",1);
+  #  valid.setBoolValue(0);
+  #  var brg = base.getNode("brg-offset",1);
+  #  brg.setDoubleValue(0.0);
+  #  var dist = base.getNode("dist-norm", 1);
+  #  dist.setDoubleValue(0.0);
+  #  var id = base.getNode("id",1);
+  #  id.setValue("");
+  #}
+  #radarLastAirportCnt = pos;
 
   ##
   #  plot nearest airport in PLAN mode on ND.
   #
   var closeAirportName = getprop("sim/airport/closest-airport-id");
+  ##var closeAirportName = nil;
   if (closeAirportName != nil) {
     var closestApt = airportinfo(closeAirportName);
     var base = props.globals.getNode("/instrumentation/groundradar/airport",1);
@@ -865,6 +866,27 @@ update_ewd = func {
   }
   ewdChecklist.reset();
 
+  var mach = getprop("velocities/mach");
+  var alt  = getprop("position/altitude-ft");
+  var crzAlt = getprop("instrumentation/afs/thrust-cruise-alt");
+  var chngAlt = getprop("instrumentation/afs/changeover-alt");
+  if (chngAlt == nil) {
+    chngAlt = 999999;
+  }
+  if (alt > chngAlt and getprop("instrumentation/flightdirector/spd") == SPD_THRCLB) {
+    var diffAlt = (crzAlt-chngAlt)/3;
+    var crzMach = getprop("instrumentation/afs/crz_mach");
+    var clbMach = getprop("instrumentation/afs/climb_mach");
+    var diffMach = (crzMach-clbMach)/3;
+    var afsTargetMach = getprop("instrumentation/afs/target-speed-mach");
+    var apTargetMach  = getprop("autopilot/settings/target-speed-mach");
+    if (alt > chngAlt+diffAlt and alt < chngAlt+diffAlt+1000 and apTargetMach != clbMach+diffMach) {
+      interpolate("autopilot/settings/target-speed-mach", clbMach+diffMach, 20);
+    }
+    if (alt > chngAlt+(diffAlt*2) and alt < chngAlt+(diffAlt*2)+1000 and apTargetMach != clbMach+(diffMach*2)) {
+      interpolate("autopilot/settings/target-speed-mach", clbMach+(diffMach*2), 20);
+    }
+  }
   
 
   settimer(update_ewd, 2);
@@ -1214,6 +1236,26 @@ update_systems = func {
   var jsbsimGrossWgt = getprop("/fdm/jsbsim/inertia/weight-lbs");
   var grossWgtKg    = jsbsimGrossWgt*0.45359237;
   setprop("/fdm/jsbsim/inertia/weight-kg",grossWgtKg);
+
+  var mach = getprop("velocities/mach");
+  var alt  = getprop("position/altitude-ft");
+  var chngAlt = getprop("instrumentation/afs/changeover-alt");
+  if (chngAlt == nil) {
+    chngAlt = 999999;
+  }
+  if (alt > chngAlt) {
+    if (mach > 0.80) {
+      setprop("instrumentation/afs/limit-bank-angle-max", 20);
+      setprop("instrumentation/afs/limit-bank-angle-min", -20);
+    }
+    if (mach < 0.80 and mach > 0.60) {
+      setprop("instrumentation/afs/limit-bank-angle-max", 25);
+      setprop("instrumentation/afs/limit-bank-angle-min", -25);
+    }
+  } else {
+    setprop("instrumentation/afs/limit-bank-angle-max", 30);
+    setprop("instrumentation/afs/limit-bank-angle-min", -30);
+  }
 
   settimer(update_systems,0.5);
 }

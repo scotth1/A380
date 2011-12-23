@@ -122,12 +122,14 @@ init_mcdu = func() {
     setprop("/controls/pressurisation/landing-elev-ft", 0);
 
     var depapt = airportinfo();
-    setprop("/instrumentation/afs/FROM",depapt["id"]);
-    #setprop("/instrumentation/afs/depart-runway","");
-    var multiCall = getprop("/sim/multiplay/callsign");
-    if (getprop("/sim/multiplay/rxhost") != "0" and getprop("/sim/multiplay/txhost") != "0" and multiCall != "callsign") {
-      setprop("/instrumentation/afs/FLT_NBR", multiCall);
-      setprop("sim/multiplay/generic/string[0]", multiCall);
+    if (depapt != nil) {
+      setprop("/instrumentation/afs/FROM",depapt["id"]);
+      #setprop("/instrumentation/afs/depart-runway","");
+      var multiCall = getprop("/sim/multiplay/callsign");
+      if (getprop("/sim/multiplay/rxhost") != "0" and getprop("/sim/multiplay/txhost") != "0" and multiCall != "callsign") {
+        setprop("/instrumentation/afs/FLT_NBR", multiCall);
+        setprop("sim/multiplay/generic/string[0]", multiCall);
+      }
     }
     airbusFMS = A380.fms;
     ###foreach(i; keys(globals)) { print("  ", i); }

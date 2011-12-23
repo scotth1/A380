@@ -745,6 +745,7 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
     </engine>
     <engine n="1">
       <thrust-lever>0</thrust-lever>
+      <starter-sound type="double">0.0</starter-sound>
     </engine>
     <engine n="2">
       <thrust-lever>0</thrust-lever>
@@ -847,6 +848,8 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
           <appr_alt_baro_ft type="int">0</appr_alt_baro_ft>
           <appr_alt_radio_ft type="int">0</appr_alt_radio_ft>
           <appr_unknown_temp type="int">15</appr_unknown_temp>
+          <limit-bank-angle-max type="double">30</limit-bank-angle-max>
+          <limit-bank-angle-min type="double">-30</limit-bank-angle-min>
         </afs>
 	<efis n="0">
 	  <display-mode type="int">3</display-mode>
@@ -928,7 +931,7 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
         </radar -->
         <nd n="0">
            <radar-texture-path type="string">Aircraft/A380/Models/Instruments/MFD/od_ndradar_1.png</radar-texture-path>
-          <symbol-texture-path type="string">Aircraft/A380/Models/Instruments/MFD/boeing-nd.png</symbol-texture-path>
+          <symbol-texture-path type="string">Aircraft/A380/Models/Instruments/MFD/airbus_symbols-bgnd.png</symbol-texture-path>
             <font>
                 <color>
                    <red type="float">0.7</red>
@@ -1230,5 +1233,11 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
       <file>Aircraft/A380/Nasal/fmsTransition.nas</file>
     </MCDU2>
 </nasal>
+
+<consumables>
+    <fuel>
+      <numtanks>11</numtanks>
+    </fuel>
+</consumables>
 
 </PropertyList>

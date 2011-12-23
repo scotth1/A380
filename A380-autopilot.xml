@@ -172,15 +172,19 @@
       <prop>/autopilot/internal/target-roll-deg</prop>
     </output>
     <config>
-      <Kp>-1.5</Kp>        <!-- proportional gain --> <!-- was -1.5 SAH 2010-12-13 --> <!-- was -1.0 2011-04-26 --> <!-- was -1.7 2011-04-27 -->
+      <Kp>-1.45</Kp>        <!-- proportional gain --> <!-- was -1.5 SAH 2010-12-13 --> <!-- was -1.0 2011-04-26 --> <!-- was -1.7 2011-04-27 -->
       <beta>1.0</beta>     <!-- input value weighing factor -->
       <alpha>0.1</alpha>   <!-- low pass filter weighing factor -->
       <gamma>0.0</gamma>   <!-- input value weighing factor for -->
                            <!-- unfiltered derivative error -->
-      <Ti>15.0</Ti>        <!-- integrator time -->   <!-- was 30 2011-04-26 -->
+      <Ti>25.0</Ti>        <!-- integrator time -->   <!-- was 30 2011-04-26 -->  <!-- was 15 2011-12-23 -->
       <Td>0.00001</Td>     <!-- derivator time -->
-      <u_min>-30.0</u_min> <!-- minimum output clamp -->
-      <u_max>30.0</u_max>  <!-- maximum output clamp -->
+      <u_min>
+        <prop>/instrumentation/afs/limit-bank-angle-min</prop>
+      </u_min> <!-- minimum output clamp -->
+      <u_max>
+        <prop>/instrumentation/afs/limit-bank-angle-max</prop>
+      </u_max>  <!-- maximum output clamp -->
     </config>
   </pid-controller>
 
@@ -1224,5 +1228,76 @@
   <min>0.0</min>
     <max>1.0</max>
 </filter>
+
+<flipflop>
+   <type>JK</type>
+   <J>
+     <property>controls/engines/engine[1]/starter</property>
+   </J>
+   <K>
+     <property>controls/engines/engine[1]/ignition</property>
+   </K>
+   <clock>
+       <property>controls/engines/engine[1]/starter</property>
+   </clock>
+   <output>controls/engines/engine[1]/flipJK</output>
+ </flipflop>
+ 
+ <flipflop>
+   <type>SR</type> <!-- or SR -->
+   <S>
+     <property>controls/engines/engine[1]/starter</property>
+   </S>
+   <R>
+     <property>controls/engines/engine[1]/ignition</property>
+   </R>
+   <output>controls/engines/engine[1]/flipRS</output>
+ </flipflop>
+ 
+<flipflop>
+   <name>Test mf</name>
+   <type>monostable</type>
+   <time>
+     <value>10</value>
+   </time>
+   <J>
+     <property>controls/engines/engine[1]/starter</property>
+   </J>
+   <K>
+     <property>controls/engines/engine[1]/ignition</property>
+   </K>
+   <clock>
+     <property>/controls/engines/engine[1]/master</property>
+   </clock>
+   <output>controls/engines/engine[1]/flipMF</output>
+ </flipflop>
+ 
+ <filter>
+   <type>gain</type>
+   <enable>
+     <condition>
+       <property>controls/engines/engine[1]/starter</property>
+     </condition>
+   </enable>
+   <input>
+     <expression>
+     <table>
+                    <property>/engines/engine[1]/n2</property>
+                    <entry><ind>0</ind><dep>0</dep></entry>
+                    <entry><ind>30</ind><dep>1</dep></entry>
+                    <entry><ind>40</ind><dep>0</dep></entry>
+                    <entry><ind>60</ind><dep>0</dep></entry>
+                </table>
+
+     </expression>
+   </input>
+   <gain>
+     <value>1.0</value>
+   </gain>
+ <output>
+   <property>controls/engines/engine[1]/starter-sound</property>
+ </output>
+ </filter>
+ 
 
 </PropertyList>
