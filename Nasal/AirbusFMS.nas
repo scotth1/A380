@@ -15,7 +15,7 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-fms_trace = 1;
+fms_trace = 0;
 
 
 ## mode constants
@@ -548,7 +548,7 @@ tracer : func(msg) {
     # replace a WP in plan at specified index
     #
     replaceWPAt : func(wp, idx) {
-      me.tracer("replace WP: "~wp.wp_name~" at pos: "~idx);
+      ##me.tracer("replace WP: "~wp.wp_name~" at pos: "~idx);
       if (idx > size(me.activePlan)-1) {
         append(me.activePlan, wp);
       } else {

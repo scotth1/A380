@@ -2,7 +2,7 @@ AC3Db
 MATERIAL "11 - Default" rgb 0.25098 0.25098 0.25098  amb 0.5 0.5 0.5  emis 0 0 0  spec 0.376471 0.376471 0.376471  shi 32  trans 0
 MATERIAL "1 - Default" rgb 0.384 0.467 0.557  amb 1 1 1  emis 0 0 0  spec 1 1 1  shi 0  trans 0
 OBJECT world
-kids 21
+kids 22
 OBJECT poly
 name "00"
 data 2
@@ -441,6 +441,26 @@ refs 4
 1 0 0
 2 0 0
 3 0 0
+kids 0
+OBJECT poly
+name "backlight"
+data 10
+Rectangle0
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/overhead1.png"
+crease 30.000000
+numvert 4
+-0.13375 0.001 -0.001
+-0.13375 0.001 -0.312
+0.001 0.001 -0.312
+0.001 0.001 -0.001
+numsurf 1
+SURF 0x0
+mat 1
+refs 4
+3 0.000171751 -6.44225e-05
+2 1.00006 -6.44225e-05
+1 1.00006 0.457879
+0 0.000171751 0.457879
 kids 0
 OBJECT poly
 name "Rectangle0"

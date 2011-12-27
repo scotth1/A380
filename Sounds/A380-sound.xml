@@ -457,18 +457,21 @@
       </and>
     </condition>
     <volume>
-      <property>/engines/engine[0]/n2</property>
-      <factor>0.01</factor>
-      <offset>0.05</offset>
-      <min>0.0</min>
-      <max>0.35</max>
-   </volume>
-   <pitch>
+      <property>controls/engines/engine[0]/starter-sound</property>
+    </volume>
+    <pitch>
+     <property>engines/engine[0]/n1</property>
+     <factor>0.1</factor>
+     <offset>-0.5</offset>
+     <min>-10.0</min>
+     <max>1.5</max>
+    </pitch>
+   <!-- pitch>
      <property>/engines/engine[0]/n2</property>
      <factor>0.02</factor>
      <min>0.0</min>
      <max>3.0</max>
-    </pitch>
+    </pitch -->
     <position>
       <x>-7.3</x>
       <y>-1.0</y>
@@ -536,17 +539,14 @@
       </and>
     </condition>
     <volume>
-      <property>/engines/engine[2]/n2</property>
-      <factor>0.01</factor>
-      <offset>0.05</offset>
-      <min>0.0</min>
-      <max>0.35</max>
-   </volume>
-   <pitch>
-     <property>/engines/engine[2]/n2</property>
-     <factor>0.01</factor>
-     <min>0.0</min>
-     <max>3.0</max>
+      <property>controls/engines/engine[2]/starter-sound</property>
+    </volume>
+    <pitch>
+     <property>engines/engine[2]/n1</property>
+     <factor>0.1</factor>
+     <offset>-0.5</offset>
+     <min>-10.0</min>
+     <max>1.5</max>
     </pitch>
     <position>
       <x>-7.3</x>
@@ -577,17 +577,14 @@
       </and>
     </condition>
     <volume>
-      <property>/engines/engine[3]/n2</property>
-      <factor>0.01</factor>
-      <offset>0.05</offset>
-      <min>0.0</min>
-      <max>0.35</max>
-   </volume>
-   <pitch>
-     <property>/engines/engine[3]/n2</property>
-     <factor>0.01</factor>
-     <min>0.0</min>
-     <max>3.0</max>
+      <property>controls/engines/engine[3]/starter-sound</property>
+    </volume>
+    <pitch>
+     <property>engines/engine[3]/n1</property>
+     <factor>0.1</factor>
+     <offset>-0.5</offset>
+     <min>-10.0</min>
+     <max>1.5</max>
     </pitch>
     <position>
       <x>-7.3</x>
@@ -613,14 +610,10 @@
 	    <property>/sim/current-view/view-number</property>
 	    <value>5</value>
 	  </equals>
-	  <equals>
+	  <greater-than>
 	    <property>/sim/current-view/view-number</property>
-	    <value>8</value>
-	  </equals>
-	  <equals>
-	    <property>/sim/current-view/view-number</property>
-	    <value>9</value>
-	  </equals>
+	    <value>7</value>
+	  </greater-than>
 	</or>
 	<not>
 	  <property>sim/crashed</property>
@@ -653,14 +646,10 @@
 	    <property>/sim/current-view/view-number</property>
 	    <value>0</value>
 	  </equals>
-	  <equals>
+	  <greater-than>
 	    <property>/sim/current-view/view-number</property>
-	    <value>8</value>
-	  </equals>
-	  <equals>
-	    <property>/sim/current-view/view-number</property>
-	    <value>9</value>
-	  </equals>
+	    <value>7</value>
+	  </greater-than>
 	</or>
 	<not>
 	  <property>sim/crashed</property>
@@ -696,14 +685,10 @@
 	  <property>/sim/current-view/view-number</property>
 	  <value>0</value>
 	</equals>
-	<equals>
+	<greater-than>
 	  <property>/sim/current-view/view-number</property>
-	  <value>8</value>
-	</equals>
-	<equals>
-	  <property>/sim/current-view/view-number</property>
-	  <value>9</value>
-	</equals>
+	  <value>7</value>
+	</greater-than>
       </or>
       <not>
       <property>sim/crashed</property>
@@ -736,14 +721,10 @@
 	  <property>/sim/current-view/view-number</property>
 	  <value>0</value>
 	</equals>
-	<equals>
+	<greater-than>
 	  <property>/sim/current-view/view-number</property>
-	  <value>8</value>
-	</equals>
-	<equals>
-	  <property>/sim/current-view/view-number</property>
-	  <value>9</value>
-	</equals>
+	  <value>7</value>
+	</greater-than>
       </or>
       <not>
 	<property>sim/crashed</property>
@@ -785,14 +766,10 @@
 					<property>/sim/current-view/view-number</property>
 					<value>5</value>
 				</equals>
-				<equals>
+				<greater-than>
 					<property>/sim/current-view/view-number</property>
-					<value>8</value>
-				</equals>
-				<equals>
-					<property>/sim/current-view/view-number</property>
-					<value>9</value>
-				</equals>
+					<value>7</value>
+				</greater-than>
 			</or>
 			<not>
 				<property>sim/crashed</property>
@@ -829,14 +806,10 @@
 					<property>/sim/current-view/view-number</property>
 					<value>5</value>
 				</equals>
-				<equals>
+				<greater-than>
 					<property>/sim/current-view/view-number</property>
-					<value>8</value>
-				</equals>
-				<equals>
-					<property>/sim/current-view/view-number</property>
-					<value>9</value>
-				</equals>
+					<value>7</value>
+				</greater-than>
 			</or>
 			<not>
 				<property>sim/crashed</property>
@@ -877,14 +850,10 @@
 					<property>/sim/current-view/view-number</property>
 					<value>5</value>
 				</equals>
-				<equals>
+				<greater-than>
 					<property>/sim/current-view/view-number</property>
-					<value>8</value>
-				</equals>
-				<equals>
-					<property>/sim/current-view/view-number</property>
-					<value>9</value>
-				</equals>
+					<value>7</value>
+				</greater-than>
 			</or>
 			<not>
 				<property>sim/crashed</property>
@@ -922,14 +891,10 @@
 					<property>/sim/current-view/view-number</property>
 					<value>5</value>
 				</equals>
-				<equals>
+				<greater-than>
 					<property>/sim/current-view/view-number</property>
-					<value>8</value>
-				</equals>
-				<equals>
-					<property>/sim/current-view/view-number</property>
-					<value>9</value>
-				</equals>
+					<value>7</value>
+				</greater-than>
 			</or>
 			<not>
 				<property>sim/crashed</property>
@@ -1016,14 +981,10 @@
 					<property>/sim/current-view/view-number</property>
 					<value>5</value>
 				</equals>
-				<equals>
+				<greater-than>
 					<property>/sim/current-view/view-number</property>
-					<value>8</value>
-				</equals>
-				<equals>
-					<property>/sim/current-view/view-number</property>
-					<value>9</value>
-				</equals>
+					<value>7</value>
+				</greater-than>
 			</or>
 			<not>
 				<property>sim/crashed</property>
@@ -1415,14 +1376,16 @@
 	  <property>/engines/engine[1]/reverser-pos-norm</property>
 	  <value>1</value>
 	</equals>
-	<equals>
-	  <property>/sim/current-view/view-number</property>
-	  <value>0</value>
-	</equals>
-	<equals>
-	  <property>/sim/current-view/view-number</property>
-	  <value>9</value>
-	</equals>
+	<or>
+	  <equals>
+	    <property>/sim/current-view/view-number</property>
+	    <value>0</value>
+	  </equals>
+	  <greater-than>
+	    <property>/sim/current-view/view-number</property>
+	    <value>7</value>
+	  </greater-than>
+	</or>
 	<not>
 	  <property>sim/crashed</property>
 	</not>
@@ -1456,7 +1419,7 @@
 	</greater-than>
 	<less-than>
 	  <property>/sim/current-view/view-number</property>
-	  <value>9</value>
+	  <value>8</value>
 	</less-than>
 	<not>
 	  <property>sim/crashed</property>

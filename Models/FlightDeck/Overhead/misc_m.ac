@@ -61,7 +61,7 @@ OBJECT poly
 name "Rectangle0"
 data 10
 Rectangle0
-texture "overhead4.png"
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/overhead4.png"
 texrep 1 1
 crease 30.000000
 numvert 29

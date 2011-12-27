@@ -1272,6 +1272,36 @@
    <output>controls/engines/engine[1]/flipMF</output>
  </flipflop>
  
+ <!--  engine starter volume control -->
+ <!-- engine 0 -->
+ <filter>
+   <type>gain</type>
+   <enable>
+     <condition>
+       <property>controls/engines/engine[0]/starter</property>
+     </condition>
+   </enable>
+   <input>
+     <expression>
+     <table>
+                    <property>/engines/engine[0]/n2</property>
+                    <entry><ind>0</ind><dep>0</dep></entry>
+                    <entry><ind>5</ind><dep>0.6</dep></entry>
+                    <entry><ind>30</ind><dep>1</dep></entry>
+                    <entry><ind>40</ind><dep>0</dep></entry>
+                    <entry><ind>60</ind><dep>0</dep></entry>
+                </table>
+
+     </expression>
+   </input>
+   <gain>
+     <value>1.0</value>
+   </gain>
+   <output>
+     <property>controls/engines/engine[0]/starter-sound</property>
+   </output>
+ </filter>
+ <!-- engine 1 -->
  <filter>
    <type>gain</type>
    <enable>
@@ -1284,6 +1314,7 @@
      <table>
                     <property>/engines/engine[1]/n2</property>
                     <entry><ind>0</ind><dep>0</dep></entry>
+                    <entry><ind>5</ind><dep>0.6</dep></entry>
                     <entry><ind>30</ind><dep>1</dep></entry>
                     <entry><ind>40</ind><dep>0</dep></entry>
                     <entry><ind>60</ind><dep>0</dep></entry>
@@ -1294,9 +1325,65 @@
    <gain>
      <value>1.0</value>
    </gain>
- <output>
-   <property>controls/engines/engine[1]/starter-sound</property>
- </output>
+   <output>
+     <property>controls/engines/engine[1]/starter-sound</property>
+   </output>
+ </filter>
+ <!-- engine 2 -->
+ <filter>
+   <type>gain</type>
+   <enable>
+     <condition>
+       <property>controls/engines/engine[2]/starter</property>
+     </condition>
+   </enable>
+   <input>
+     <expression>
+     <table>
+                    <property>/engines/engine[2]/n2</property>
+                    <entry><ind>0</ind><dep>0</dep></entry>
+                    <entry><ind>5</ind><dep>0.6</dep></entry>
+                    <entry><ind>30</ind><dep>1</dep></entry>
+                    <entry><ind>40</ind><dep>0</dep></entry>
+                    <entry><ind>60</ind><dep>0</dep></entry>
+                </table>
+
+     </expression>
+   </input>
+   <gain>
+     <value>1.0</value>
+   </gain>
+   <output>
+     <property>controls/engines/engine[2]/starter-sound</property>
+   </output>
+ </filter>
+ <!-- engine 3 -->
+ <filter>
+   <type>gain</type>
+   <enable>
+     <condition>
+       <property>controls/engines/engine[3]/starter</property>
+     </condition>
+   </enable>
+   <input>
+     <expression>
+     <table>
+                    <property>/engines/engine[3]/n2</property>
+                    <entry><ind>0</ind><dep>0</dep></entry>
+                    <entry><ind>5</ind><dep>0.6</dep></entry>
+                    <entry><ind>30</ind><dep>1</dep></entry>
+                    <entry><ind>40</ind><dep>0</dep></entry>
+                    <entry><ind>60</ind><dep>0</dep></entry>
+                </table>
+
+     </expression>
+   </input>
+   <gain>
+     <value>1.0</value>
+   </gain>
+   <output>
+     <property>controls/engines/engine[3]/starter-sound</property>
+   </output>
  </filter>
  
 

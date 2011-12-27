@@ -68,7 +68,7 @@ vnavStr = ["off","ALT(s)","V/S","OP CLB","FPA","OP DES","CLB","ALT CRZ","DES","G
 spdStr  = ["off","TOGA","FLEX","THR CLB","SPEED","MACH","CRZ","THR DES","THR IDL"];
 
 version="V1.1.9";
-trace=1;
+trace=0;
 
 #trigonometric values for glideslope calculations
 FD_TAN3DEG = 0.052407779283;
@@ -1213,8 +1213,8 @@ var getILSCategory = func(id) {
     if (ils.runway == arvRunway) {
       var nmeStr = ils.name;
       var parts = split(" ", nmeStr);
-      print("rwy: "~nmeStr~", parts[0]: "~parts[0]~", parts[1]: "~parts[1]~", parts[2]: "~parts[2]);
-      retCat = substr(parts[2],4);
+      print("rwy: "~nmeStr~", parts[0]: "~parts[0]~", parts[1]: "~parts[1]~", parts[2]: "~parts[2]~", parts[3]: "~parts[3]);
+      retCat = substr(parts[3],4);
     }
   }
   return retCat;

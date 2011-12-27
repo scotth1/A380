@@ -14,6 +14,7 @@
      2009	SHamilton	AFS, FMS, Flight Guidance, Doors, weight and other stuff
      2009	SHamilton	MFD, STAR/SID, updated PFD, Pre-flight Tutorial
      2010	SHamilton	Electrical system
+     2011	SHamilton	added AFS, autobrake
      
 
 -->
@@ -49,6 +50,10 @@
 	<path>Aircraft/A380/Systems/CabinPressureSystem.xml</path>
       </autopilot>
       <autopilot>
+        <name>autobrake</name>
+        <path>Aircraft/A380/Systems/autobrake.xml</path>
+      </autopilot>
+      <autopilot>
         <name>helper</name>
         <path>Aircraft/Generic/generic-autopilot-helper.xml</path>
       </autopilot>
@@ -80,6 +85,7 @@
   	<kp type="double">900</kp>
 	<ki type="double">100</ki>  <!-- was 25 -->
 	<kd type="double">0</kd>
+	<target-speed-fps>35</target-speed-fps>
 	<position-norm type="double">0</position-norm>
      </pushback>
    </model>
@@ -100,11 +106,14 @@
     <view n="1">
       <config>
         <z-offset-m archive="y" type="double">-100.0</z-offset-m>
+        <default-field-of-view-deg type="double">60</default-field-of-view-deg>
       </config>
     </view>
     <view n="2">
       <config>
         <z-offset-m archive="y" type="double">-100.0</z-offset-m>
+        <default-field-of-view-deg type="double">62</default-field-of-view-deg>
+        <pitch-offset-deg>5.5</pitch-offset-deg>
       </config>
     </view>
     <view n="5">
@@ -152,10 +161,17 @@
   <view n="102">
     <name>jump seat</name>
     <enabled type="bool">false</enabled>
-  </view>
-  <view n="103">
-    <name>unused</name>
-    <enabled type="bool">false</enabled>
+    <type>lookfrom</type>
+     <config>
+       <from-model type="bool">true</from-model>
+       <from-model-idx type="int">0</from-model-idx>
+       <x-offset-m type="double"> -0.0  </x-offset-m>
+       <y-offset-m type="double"> -1.5  </y-offset-m>
+       <z-offset-m type="double"> -18.5 </z-offset-m>
+       <pitch-offset-deg>-10.2</pitch-offset-deg>   
+       <default-field-of-view-deg type="double">75.0</default-field-of-view-deg>
+       <heading-offset-deg type="double">0.0</heading-offset-deg>
+     </config>
   </view>
   <chase-distance-m>-100</chase-distance-m> <!-- -75 -->
   
@@ -303,12 +319,12 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
       </text>
     </help>
     
-<rendering>
-<line-smooth type="bool">true</line-smooth>
-<point-sprite type="bool">true</point-sprite>
-</rendering>
+  <rendering>
+    <line-smooth type="bool">true</line-smooth>
+    <point-sprite type="bool">true</point-sprite>
+  </rendering>
 
-<tutorials include="A380-tutorial.xml"/>
+  <tutorials include="A380-tutorial.xml"/>
 
   <menubar>
         <default>
@@ -463,6 +479,21 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
   <hood-rot>3</hood-rot>
  </jetway3-pos>
 </aircraft>
+
+
+<autopilot>
+  <autobrake>
+    <step type="int">-1</step> <!-- OFF on selection -->
+    <config>
+      <idle-throttle type="double">0.10</idle-throttle>
+      <pilot-input type="double">0.25</pilot-input>   <!-- 25% input cancel AB operation -->
+    </config>
+  </autobrake>
+  <locks>
+    <pitch-engaged type="bool">1</pitch-engaged>
+    <roll-engaged type="bool">1</roll-engaged>
+  </locks>
+</autopilot>
 
 
 

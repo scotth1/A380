@@ -638,10 +638,10 @@ update_toc = func() {
       curPosCoord.apply_course_distance(hdg, (distNm*NM2MTRS));
       var tcLat = curPosCoord.lat();
       var tcLon = curPosCoord.lon();
-      tracer("curPosCoord.lat: "~tcLat~" / curPosCoord.lon: "~tcLon);
+      ##tracer("[TOC] curPosCoord.lat: "~tcLat~" / curPosCoord.lon: "~tcLon);
       tocWP.wp_lat = tcLat;
       tocWP.wp_lon = tcLon;
-      ##tracer("tocWP.wp_lat: "~tocWP.wp_lat~" / tocWP.wp_lon: "~tocWP.wp_lon);
+      ##tracer("[TOC] tocWP.wp_lat: "~tocWP.wp_lat~" / tocWP.wp_lon: "~tocWP.wp_lon);
       fms.replaceWPAt(tocWP, tocIdx);
     }
 }
@@ -876,14 +876,17 @@ update_ewd = func {
   if (alt > chngAlt and getprop("instrumentation/flightdirector/spd") == SPD_THRCLB) {
     var diffAlt = (crzAlt-chngAlt)/3;
     var crzMach = getprop("instrumentation/afs/crz_mach");
-    var clbMach = getprop("instrumentation/afs/climb_mach");
+    var clbMach = getprop("instrumentation/afs/clb_mach");
     var diffMach = (crzMach-clbMach)/3;
     var afsTargetMach = getprop("instrumentation/afs/target-speed-mach");
     var apTargetMach  = getprop("autopilot/settings/target-speed-mach");
+    tracer("alt: "~alt~", chngAlt: "~chngAlt~", diffAlt: "~diffAlt~", apTargetMach: "~apTargetMach);
     if (alt > chngAlt+diffAlt and alt < chngAlt+diffAlt+1000 and apTargetMach != clbMach+diffMach) {
+      tracer("[UPDEWD] clbMach: "~clbMach~", diffMach: "~diffMach);
       interpolate("autopilot/settings/target-speed-mach", clbMach+diffMach, 20);
     }
     if (alt > chngAlt+(diffAlt*2) and alt < chngAlt+(diffAlt*2)+1000 and apTargetMach != clbMach+(diffMach*2)) {
+      tracer("[UPDEWD] clbMach: "~clbMach~", diffMach: "~diffMach);
       interpolate("autopilot/settings/target-speed-mach", clbMach+(diffMach*2), 20);
     }
   }
@@ -1629,6 +1632,21 @@ setlistener("/instrumentation/gear/wow", func(n) {
       settimer(increment_flight_mode2, 120);
     }
   }
+});
+
+## copy the autobrake control to autopilot settings
+# 
+setlistener("controls/gear/autobrakes", func(n) {
+  var pos = n.getValue();
+  var step = getprop("autopilot/autobrake/step");
+  step = pos;
+  if (pos == 0) {   ## OFF
+    step = -1;
+  }
+  if (pos == 5) {  ## RTO
+   step = -2;
+  }
+  setprop("autopilot/autobrake/step", step);
 });
 
 #setlistener("controls/gear/gear-down", func(n) {
