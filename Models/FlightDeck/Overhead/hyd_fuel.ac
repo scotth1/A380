@@ -7,7 +7,7 @@ OBJECT poly
 name "Cylinder.001"
 data 8
 Mesh.002
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 39
 -0.0136 0.000804 -0.243536
@@ -380,7 +380,7 @@ name "ENG1_PUMP"
 loc 0.00149086 0 0
 data 14
 APU_MASTER.030
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons5.png"
+texture "buttons5.png"
 crease 30.000000
 numvert 4
 -0.162492 0.001261 -0.052901
@@ -401,7 +401,7 @@ name "ENG1_PUMP.fault"
 loc 0.00149086 0 0
 data 14
 APU_MASTER.031
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.172493 0.001261 -0.052901
@@ -422,7 +422,7 @@ name "ENG1_PUMPA"
 loc 0.00149086 0 0
 data 14
 APU_MASTER.009
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.172342 0.001261 -0.031449
@@ -443,7 +443,7 @@ name "ENG1_PUMPA.fault"
 loc 0.00149086 0 0
 data 14
 APU_MASTER.008
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.182343 0.001261 -0.031449
@@ -464,7 +464,7 @@ name "ENG1_PUMPB"
 loc 0.00149086 0 0
 data 10
 APU_MASTER
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.172342 0.001261 -0.073729
@@ -485,7 +485,7 @@ name "ENG1_PUMPB.fault"
 loc 0.00149086 0 0
 data 14
 APU_MASTER.001
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.182343 0.001261 -0.073729
@@ -506,7 +506,7 @@ name "ENG2_PUMP"
 loc 0.00149086 0 0
 data 14
 APU_MASTER.004
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons5.png"
+texture "buttons5.png"
 crease 30.000000
 numvert 4
 -0.162492 0.001261 -0.123504
@@ -527,7 +527,7 @@ name "ENG2_PUMP.fault"
 loc 0.00149086 0 0
 data 14
 APU_MASTER.005
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.172493 0.001261 -0.123504
@@ -548,7 +548,7 @@ name "ENG2_PUMPA"
 loc 0.00149086 0 0
 data 14
 APU_MASTER.006
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.172342 0.001261 -0.102052
@@ -569,7 +569,7 @@ name "ENG2_PUMPA.fault"
 loc 0.00149086 0 0
 data 14
 APU_MASTER.007
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.182343 0.001261 -0.102052
@@ -590,7 +590,7 @@ name "ENG2_PUMPB"
 loc 0.00149086 0 0
 data 14
 APU_MASTER.003
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.172342 0.001261 -0.144332
@@ -611,7 +611,7 @@ name "ENG2_PUMPB.fault"
 loc 0.00149086 0 0
 data 14
 APU_MASTER.002
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.182343 0.001261 -0.144332
@@ -632,7 +632,7 @@ name "ENG3_PUMP"
 loc 0.00149086 0 0
 data 14
 APU_MASTER.018
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons5.png"
+texture "buttons5.png"
 crease 30.000000
 numvert 4
 -0.162492 0.001261 -0.208073
@@ -653,7 +653,7 @@ name "ENG3_PUMP.fault"
 loc 0.00149086 0 0
 data 14
 APU_MASTER.019
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.172493 0.001261 -0.208073
@@ -674,7 +674,7 @@ name "ENG3_PUMPA"
 loc 0.00149086 0 0
 data 14
 APU_MASTER.020
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.172342 0.001261 -0.186621
@@ -695,7 +695,7 @@ name "ENG3_PUMPA.fault"
 loc 0.00149086 0 0
 data 14
 APU_MASTER.021
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.182343 0.001261 -0.186621
@@ -716,7 +716,7 @@ name "ENG3_PUMPB"
 loc 0.00149086 0 0
 data 14
 APU_MASTER.017
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.172342 0.001261 -0.229383
@@ -737,7 +737,7 @@ name "ENG3_PUMPB.fault"
 loc 0.00149086 0 0
 data 14
 APU_MASTER.016
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.182343 0.001261 -0.229383
@@ -758,7 +758,7 @@ name "ENG4_PUMP"
 loc 0.00149086 0 0
 data 14
 APU_MASTER.013
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons5.png"
+texture "buttons5.png"
 crease 30.000000
 numvert 4
 -0.162492 0.001261 -0.277936
@@ -779,7 +779,7 @@ name "ENG4_PUMP.fault"
 loc 0.00149086 0 0
 data 14
 APU_MASTER.012
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.172493 0.001261 -0.277936
@@ -800,7 +800,7 @@ name "ENG4_PUMPA"
 loc 0.00149086 0 0
 data 14
 APU_MASTER.011
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.172342 0.001261 -0.256729
@@ -821,7 +821,7 @@ name "ENG4_PUMPA.fault"
 loc 0.00149086 0 0
 data 14
 APU_MASTER.010
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.182343 0.001261 -0.256729
@@ -842,7 +842,7 @@ name "ENG4_PUMPB"
 loc 0.00149086 0 0
 data 14
 APU_MASTER.014
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.172342 0.001261 -0.299986
@@ -863,7 +863,7 @@ name "ENG4_PUMPB.fault"
 loc 0.00149086 0 0
 data 14
 APU_MASTER.015
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.182343 0.001261 -0.299986
@@ -883,7 +883,7 @@ OBJECT poly
 name "FEEDTK1_M"
 data 14
 APU_MASTER.022
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.086021 0.001261 -0.037432
@@ -903,7 +903,7 @@ OBJECT poly
 name "FEEDTK1_M.fault"
 data 14
 APU_MASTER.023
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.096022 0.001261 -0.037432
@@ -923,7 +923,7 @@ OBJECT poly
 name "FEEDTK1_S"
 data 14
 APU_MASTER.025
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.085539 0.001261 -0.059923
@@ -943,7 +943,7 @@ OBJECT poly
 name "FEEDTK1_S.fault"
 data 14
 APU_MASTER.024
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.09554 0.001261 -0.059923
@@ -964,7 +964,7 @@ name "FEEDTK2_M"
 loc 0.000372715 0 0
 data 14
 APU_MASTER.029
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.092352 0.001261 -0.104191
@@ -985,7 +985,7 @@ name "FEEDTK2_M.fault"
 loc 0.000372715 0 0
 data 14
 APU_MASTER.028
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.102353 0.001261 -0.104191
@@ -1006,7 +1006,7 @@ name "FEEDTK2_S"
 loc 0.000372715 0 0
 data 14
 APU_MASTER.026
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.09187 0.001261 -0.126682
@@ -1027,7 +1027,7 @@ name "FEEDTK2_S.fault"
 loc 0.000372715 0 0
 data 14
 APU_MASTER.027
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.101871 0.001261 -0.126682
@@ -1048,7 +1048,7 @@ name "FEEDTK3_M"
 loc 0.000372715 0 0
 data 14
 APU_MASTER.035
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.092607 0.001261 -0.196978
@@ -1069,7 +1069,7 @@ name "FEEDTK3_M.fault"
 loc 0.000372715 0 0
 data 14
 APU_MASTER.034
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.102608 0.001261 -0.196978
@@ -1090,7 +1090,7 @@ name "FEEDTK3_S"
 loc 0.000372715 0 0
 data 14
 APU_MASTER.032
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.092125 0.001261 -0.219469
@@ -1111,7 +1111,7 @@ name "FEEDTK3_S.fault"
 loc 0.000372715 0 0
 data 14
 APU_MASTER.033
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.102126 0.001261 -0.219469
@@ -1131,7 +1131,7 @@ OBJECT poly
 name "FEEDTK4_M"
 data 14
 APU_MASTER.036
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.085864 0.001261 -0.264693
@@ -1151,7 +1151,7 @@ OBJECT poly
 name "FEEDTK4_M.fault"
 data 14
 APU_MASTER.037
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.095865 0.001261 -0.264693
@@ -1171,7 +1171,7 @@ OBJECT poly
 name "FEEDTK4_S"
 data 14
 APU_MASTER.039
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.085382 0.001261 -0.287185
@@ -1191,7 +1191,7 @@ OBJECT poly
 name "FEEDTK4_S.fault"
 data 14
 APU_MASTER.038
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.095383 0.001261 -0.287185
@@ -1212,7 +1212,7 @@ name "HYD/FUEL"
 loc 0.000334665 -0.00117453 0
 data 8
 HYD/FUEL
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/overhead3_02_base.png"
+texture "overhead3_02_base.png"
 crease 30.000000
 numvert 4
 0.001 0.001 -0.001
@@ -1232,7 +1232,7 @@ OBJECT poly
 name "ITX_PUMP"
 data 14
 APU_MASTER.070
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons5.png"
+texture "buttons5.png"
 crease 30.000000
 numvert 4
 -0.010274 0.001261 -0.113065
@@ -1252,7 +1252,7 @@ OBJECT poly
 name "ITX_PUMP.fault"
 data 14
 APU_MASTER.071
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.020275 0.001261 -0.113065
@@ -1272,7 +1272,7 @@ OBJECT poly
 name "LIT_PUMP1"
 data 14
 APU_MASTER.049
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.053256 0.001261 -0.114157
@@ -1292,7 +1292,7 @@ OBJECT poly
 name "LIT_PUMP1.fault"
 data 14
 APU_MASTER.048
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.063257 0.001261 -0.114157
@@ -1312,7 +1312,7 @@ OBJECT poly
 name "LIT_PUMP2"
 data 14
 APU_MASTER.046
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.049007 0.001261 -0.134849
@@ -1332,7 +1332,7 @@ OBJECT poly
 name "LIT_PUMP2.fault"
 data 14
 APU_MASTER.047
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.059008 0.001261 -0.134849
@@ -1352,7 +1352,7 @@ OBJECT poly
 name "LMT_PUMP1"
 data 14
 APU_MASTER.042
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.053256 0.001261 -0.062134
@@ -1372,7 +1372,7 @@ OBJECT poly
 name "LMT_PUMP1.fault"
 data 14
 APU_MASTER.043
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.063257 0.001261 -0.062134
@@ -1392,7 +1392,7 @@ OBJECT poly
 name "LMT_PUMP2"
 data 14
 APU_MASTER.045
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.049007 0.001261 -0.082825
@@ -1412,7 +1412,7 @@ OBJECT poly
 name "LMT_PUMP2.fault"
 data 14
 APU_MASTER.044
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.059008 0.001261 -0.082825
@@ -1432,7 +1432,7 @@ OBJECT poly
 name "LOT_PUMP"
 data 14
 APU_MASTER.041
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.053116 0.001261 -0.03615
@@ -1452,7 +1452,7 @@ OBJECT poly
 name "LOT_PUMP.fault"
 data 14
 APU_MASTER.040
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.063117 0.001261 -0.03615
@@ -1472,7 +1472,7 @@ OBJECT poly
 name "L_TRIMTK"
 data 14
 APU_MASTER.064
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.009118 0.001261 -0.150722
@@ -1492,7 +1492,7 @@ OBJECT poly
 name "L_TRIMTK.fault"
 data 14
 APU_MASTER.065
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.019119 0.001261 -0.150722
@@ -1512,7 +1512,7 @@ OBJECT poly
 name "MTX_PUMP"
 data 14
 APU_MASTER.069
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons5.png"
+texture "buttons5.png"
 crease 30.000000
 numvert 4
 -0.010274 0.001261 -0.075551
@@ -1532,7 +1532,7 @@ OBJECT poly
 name "MTX_PUMP.fault"
 data 14
 APU_MASTER.068
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.020275 0.001261 -0.075551
@@ -1552,7 +1552,7 @@ OBJECT poly
 name "OTX_PUMP"
 data 14
 APU_MASTER.066
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons5.png"
+texture "buttons5.png"
 crease 30.000000
 numvert 4
 -0.010274 0.001261 -0.038168
@@ -1572,7 +1572,7 @@ OBJECT poly
 name "OTX_PUMP.fault"
 data 14
 APU_MASTER.067
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.020275 0.001261 -0.038168
@@ -1592,7 +1592,7 @@ OBJECT poly
 name "RIT_PUMP1"
 data 14
 APU_MASTER.050
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.053256 0.001261 -0.19211
@@ -1612,7 +1612,7 @@ OBJECT poly
 name "RIT_PUMP1.fault"
 data 14
 APU_MASTER.051
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.063257 0.001261 -0.19211
@@ -1632,7 +1632,7 @@ OBJECT poly
 name "RIT_PUMP2"
 data 14
 APU_MASTER.053
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.049007 0.001261 -0.212802
@@ -1652,7 +1652,7 @@ OBJECT poly
 name "RIT_PUMP2.fault"
 data 14
 APU_MASTER.052
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.059008 0.001261 -0.212802
@@ -1672,7 +1672,7 @@ OBJECT poly
 name "RMT_PUMP1"
 data 14
 APU_MASTER.057
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.053256 0.001261 -0.242526
@@ -1692,7 +1692,7 @@ OBJECT poly
 name "RMT_PUMP1.fault"
 data 14
 APU_MASTER.056
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.063257 0.001261 -0.242526
@@ -1712,7 +1712,7 @@ OBJECT poly
 name "RMT_PUMP2"
 data 14
 APU_MASTER.054
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.049007 0.001261 -0.263218
@@ -1732,7 +1732,7 @@ OBJECT poly
 name "RMT_PUMP2.fault"
 data 14
 APU_MASTER.055
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.059008 0.001261 -0.263218
@@ -1752,7 +1752,7 @@ OBJECT poly
 name "ROT_PUMP"
 data 14
 APU_MASTER.058
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.053116 0.001261 -0.292158
@@ -1772,7 +1772,7 @@ OBJECT poly
 name "ROT_PUMP.fault"
 data 14
 APU_MASTER.059
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.063117 0.001261 -0.292158
@@ -1792,7 +1792,7 @@ OBJECT poly
 name "R_TRIMTK"
 data 14
 APU_MASTER.063
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.009118 0.001261 -0.176377
@@ -1812,7 +1812,7 @@ OBJECT poly
 name "R_TRIMTK.fault"
 data 14
 APU_MASTER.062
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.019119 0.001261 -0.176377
@@ -1832,7 +1832,7 @@ OBJECT poly
 name "TRIM_FEED"
 data 12
 Cylinder.001
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/metal.png"
+texture "metal.png"
 crease 30.000000
 numvert 31
 -0.01228 0.001285 -0.24492
@@ -2067,7 +2067,7 @@ OBJECT poly
 name "TTX_PUMP"
 data 14
 APU_MASTER.073
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/overhead3.png"
+texture "overhead3.png"
 crease 30.000000
 numvert 4
 -0.010274 0.001261 -0.218432
@@ -2087,7 +2087,7 @@ OBJECT poly
 name "TTX_PUMP.fault"
 data 14
 APU_MASTER.072
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.020275 0.001261 -0.218432
@@ -2107,7 +2107,7 @@ OBJECT poly
 name "XFEED1"
 data 14
 APU_MASTER.077
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.121835 0.001261 -0.067404
@@ -2127,7 +2127,7 @@ OBJECT poly
 name "XFEED1.open"
 data 14
 APU_MASTER.076
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons6.png"
+texture "buttons6.png"
 crease 30.000000
 numvert 4
 -0.131836 0.001261 -0.067404
@@ -2148,7 +2148,7 @@ name "XFEED2"
 loc 0.000745431 0 0.00149089
 data 14
 APU_MASTER.074
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.130533 0.001261 -0.132387
@@ -2169,7 +2169,7 @@ name "XFEED2.open"
 loc 0.000745431 0 0.00149089
 data 14
 APU_MASTER.075
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons6.png"
+texture "buttons6.png"
 crease 30.000000
 numvert 4
 -0.140534 0.001261 -0.132387
@@ -2190,7 +2190,7 @@ name "XFEED3"
 loc 0.000745431 0 0.00149089
 data 14
 APU_MASTER.078
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.130728 0.001261 -0.198348
@@ -2211,7 +2211,7 @@ name "XFEED3.open"
 loc 0.000745431 0 0.00149089
 data 14
 APU_MASTER.079
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons6.png"
+texture "buttons6.png"
 crease 30.000000
 numvert 4
 -0.140729 0.001261 -0.198348
@@ -2232,7 +2232,7 @@ name "XFEED4"
 loc 0.000745431 0 0.00149089
 data 14
 APU_MASTER.081
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.121681 0.001261 -0.263942
@@ -2253,7 +2253,7 @@ name "XFEED4.open"
 loc 0.000745431 0 0.00149089
 data 14
 APU_MASTER.080
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons6.png"
+texture "buttons6.png"
 crease 30.000000
 numvert 4
 -0.131682 0.001261 -0.263942
@@ -2272,7 +2272,7 @@ kids 0
 OBJECT poly
 name "backlight.main"
 loc -0.102807 0.000479923 -0.1565
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/overhead3_02_backlight-y.png"
+texture "overhead3_02_backlight-y.png"
 crease 180.000000
 numvert 4
 0.102843 0 0.155618
@@ -2296,7 +2296,7 @@ kids 0
 OBJECT poly
 name "backlight.second"
 loc -0.102848 0.000562731 -0.1565
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/overhead3_02_backlight-w.png"
+texture "overhead3_02_backlight-w.png"
 crease 180.000000
 numvert 4
 -0.102843 0 -0.155618

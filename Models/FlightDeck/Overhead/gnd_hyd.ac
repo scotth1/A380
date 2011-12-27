@@ -446,7 +446,7 @@ OBJECT poly
 name "backlight"
 data 10
 Rectangle0
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/overhead1.png"
+texture "overhead1.png"
 crease 30.000000
 numvert 4
 -0.13375 0.001 -0.001
@@ -466,7 +466,7 @@ OBJECT poly
 name "Rectangle0"
 data 10
 Rectangle0
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/overhead1.png"
+texture "overhead1.png"
 crease 30.000000
 numvert 4
 0.001 0.001 -0.001

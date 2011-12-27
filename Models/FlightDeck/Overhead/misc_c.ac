@@ -9,7 +9,7 @@ OBJECT poly
 name "ACTIVE"
 data 14
 APU_MASTER.017
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 4
 -0.342077 0.001261 -0.134134
@@ -29,7 +29,7 @@ OBJECT poly
 name "ACTIVE.dummy"
 data 14
 APU_MASTER.016
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons2.png"
+texture "buttons2.png"
 crease 30.000000
 numvert 4
 -0.352078 0.001261 -0.134134
@@ -49,7 +49,7 @@ OBJECT poly
 name "ARM"
 data 14
 APU_MASTER.018
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 4
 -0.342218 0.001261 -0.103092
@@ -69,7 +69,7 @@ OBJECT poly
 name "ARM.fault"
 data 14
 APU_MASTER.019
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 4
 -0.352219 0.001261 -0.103092
@@ -89,7 +89,7 @@ OBJECT poly
 name "CALLS_ALL"
 data 12
 FIRETEST.001
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 17
 -0.145169 0.00675 -0.101249
@@ -219,7 +219,7 @@ OBJECT poly
 name "COMMAND"
 data 14
 APU_MASTER.011
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 4
 -0.306521 0.001261 -0.066043
@@ -239,7 +239,7 @@ OBJECT poly
 name "COMMAND.fault"
 data 14
 APU_MASTER.012
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 4
 -0.316522 0.001261 -0.066043
@@ -259,7 +259,7 @@ OBJECT poly
 name "Cube"
 data 4
 Cube
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 16
 -0.175467 0.001357 -0.071374
@@ -354,7 +354,7 @@ OBJECT poly
 name "Cube.001"
 data 8
 Cube.001
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 16
 -0.260766 0.001357 -0.133952
@@ -449,7 +449,7 @@ OBJECT poly
 name "Cylinder.001"
 data 8
 Mesh.002
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 39
 -0.316738 0.002286 -0.120946
@@ -821,7 +821,7 @@ OBJECT poly
 name "EMER"
 data 14
 APU_MASTER.010
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 4
 -0.133646 0.001261 -0.139338
@@ -841,7 +841,7 @@ OBJECT poly
 name "EMER.001"
 data 10
 APU_MASTER
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 4
 -0.174702 0.001261 -0.034744
@@ -861,7 +861,7 @@ OBJECT poly
 name "EMER.fault"
 data 14
 APU_MASTER.013
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 4
 -0.143647 0.001261 -0.139338
@@ -881,7 +881,7 @@ OBJECT poly
 name "EMER.fault.001"
 data 14
 APU_MASTER.001
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons2.png"
+texture "buttons2.png"
 crease 30.000000
 numvert 4
 -0.184703 0.001261 -0.034744
@@ -901,7 +901,7 @@ OBJECT poly
 name "EMER_GEN"
 data 14
 APU_MASTER.009
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 4
 -0.26001 0.001261 -0.110058
@@ -921,7 +921,7 @@ OBJECT poly
 name "EMER_GEN.fault"
 data 14
 APU_MASTER.008
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 4
 -0.270011 0.001261 -0.110058
@@ -941,7 +941,7 @@ OBJECT poly
 name "ENTER"
 data 14
 APU_MASTER.004
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 4
 -0.223255 0.001261 -0.123231
@@ -961,7 +961,7 @@ OBJECT poly
 name "ENTER.fault"
 data 14
 APU_MASTER.005
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 4
 -0.233256 0.001261 -0.123231
@@ -981,7 +981,7 @@ OBJECT poly
 name "EVAC.SW"
 data 8
 Cylinder
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/metal.png"
+texture "metal.png"
 crease 30.000000
 numvert 31
 -0.315784 0.002633 -0.121946
@@ -1216,7 +1216,7 @@ OBJECT poly
 name "FIRETEST1"
 data 9
 FIRETEST1
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 8
 -0.3217 0.002 -0.098651
@@ -1269,7 +1269,7 @@ OBJECT poly
 name "FIRETEST1.001"
 data 13
 FIRETEST1.001
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 8
 -0.150294 0.002 -0.106374
@@ -1322,7 +1322,7 @@ OBJECT poly
 name "FIRETEST1.002"
 data 13
 FIRETEST1.002
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 8
 -0.116116 0.002 -0.132054
@@ -1375,7 +1375,7 @@ OBJECT poly
 name "FIRETEST1.003"
 data 13
 FIRETEST1.003
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 8
 -0.115554 0.002 -0.080635
@@ -1428,7 +1428,7 @@ OBJECT poly
 name "FIRETEST1.004"
 data 13
 FIRETEST1.004
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 8
 -0.115546 0.002 -0.054554
@@ -1481,7 +1481,7 @@ OBJECT poly
 name "FIRETEST1.005"
 data 13
 FIRETEST1.005
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 8
 -0.149115 0.002 -0.035432
@@ -1534,7 +1534,7 @@ OBJECT poly
 name "FIRETEST1.006"
 data 13
 FIRETEST1.006
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 8
 -0.149123 0.002 -0.061514
@@ -1587,7 +1587,7 @@ OBJECT poly
 name "FIRETEST1.007"
 data 13
 FIRETEST1.007
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 8
 -0.115615 0.002 -0.027988
@@ -1640,7 +1640,7 @@ OBJECT poly
 name "FIRETEST1.008"
 data 13
 FIRETEST1.008
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 8
 -0.074227 0.002 -0.123765
@@ -1693,7 +1693,7 @@ OBJECT poly
 name "FWD"
 data 12
 FIRETEST.005
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 17
 -0.143989 0.00675 -0.030307
@@ -1823,7 +1823,7 @@ OBJECT poly
 name "HORN_OFF"
 data 8
 FIRETEST
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 17
 -0.316575 0.00675 -0.093526
@@ -1953,7 +1953,7 @@ OBJECT poly
 name "MAIN"
 data 12
 FIRETEST.003
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 17
 -0.110429 0.00675 -0.07551
@@ -2083,7 +2083,7 @@ OBJECT poly
 name "MECH"
 data 12
 FIRETEST.007
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 17
 -0.11049 0.00675 -0.022863
@@ -2213,7 +2213,7 @@ OBJECT poly
 name "PAX"
 data 14
 APU_MASTER.002
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 4
 -0.185231 0.001261 -0.094839
@@ -2233,7 +2233,7 @@ OBJECT poly
 name "PAX.dummy"
 data 14
 APU_MASTER.003
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons2.png"
+texture "buttons2.png"
 crease 30.000000
 numvert 4
 -0.17523 0.001261 -0.094839
@@ -2253,7 +2253,7 @@ OBJECT poly
 name "PRIM1"
 data 14
 APU_MASTER.021
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 4
 -0.38743 0.001261 -0.035748
@@ -2273,7 +2273,7 @@ OBJECT poly
 name "PRIM1.fault"
 data 14
 APU_MASTER.020
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 4
 -0.397431 0.001261 -0.035748
@@ -2293,7 +2293,7 @@ OBJECT poly
 name "PRIM3"
 data 14
 APU_MASTER.026
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 4
 -0.38743 0.001261 -0.103245
@@ -2313,7 +2313,7 @@ OBJECT poly
 name "PRIM3.fault"
 data 14
 APU_MASTER.027
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 4
 -0.397431 0.001261 -0.103245
@@ -2333,7 +2333,7 @@ OBJECT poly
 name "PURS"
 data 12
 FIRETEST.002
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 17
 -0.110991 0.00675 -0.126929
@@ -2463,7 +2463,7 @@ OBJECT poly
 name "RAIN_PLANT"
 data 12
 FIRETEST.008
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 17
 -0.069102 0.00675 -0.11864
@@ -2593,7 +2593,7 @@ OBJECT poly
 name "RCDR"
 data 14
 APU_MASTER.015
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 4
 -0.306197 0.001261 -0.036315
@@ -2613,7 +2613,7 @@ OBJECT poly
 name "RCDR.fault"
 data 14
 APU_MASTER.014
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 4
 -0.316198 0.001261 -0.036315
@@ -2633,7 +2633,7 @@ OBJECT poly
 name "REC"
 data 14
 APU_MASTER.007
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 4
 -0.223386 0.001261 -0.09575
@@ -2653,7 +2653,7 @@ OBJECT poly
 name "REC.fault"
 data 14
 APU_MASTER.006
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 4
 -0.233387 0.001261 -0.09575
@@ -2673,7 +2673,7 @@ OBJECT poly
 name "REST_MAIN"
 data 12
 FIRETEST.006
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 17
 -0.143997 0.00675 -0.056388
@@ -2803,7 +2803,7 @@ OBJECT poly
 name "SEC1"
 data 14
 APU_MASTER.022
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 4
 -0.388165 0.001261 -0.066285
@@ -2823,7 +2823,7 @@ OBJECT poly
 name "SEC1.fault"
 data 14
 APU_MASTER.023
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 4
 -0.398166 0.001261 -0.066285
@@ -2843,7 +2843,7 @@ OBJECT poly
 name "SEC3"
 data 14
 APU_MASTER.025
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 4
 -0.388165 0.001261 -0.133782
@@ -2863,7 +2863,7 @@ OBJECT poly
 name "SEC3.fault"
 data 14
 APU_MASTER.024
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 4
 -0.398166 0.001261 -0.133782
@@ -2883,7 +2883,7 @@ OBJECT poly
 name "UPPER"
 data 12
 FIRETEST.004
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 17
 -0.11042 0.00675 -0.049429
@@ -3014,7 +3014,7 @@ name "backlight"
 loc 0 -0.000692195 0
 data 10
 Rectangle0
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/overhead2_02_backlight.png"
+texture "overhead2_02_backlight.png"
 crease 30.000000
 numvert 4
 -0.4265 0.001 -0.001
@@ -3035,7 +3035,7 @@ name "Rectangle0"
 loc 0 -0.00138439 0
 data 10
 Rectangle0
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/overhead2_02_base.png"
+texture "overhead2_02_base.png"
 crease 30.000000
 numvert 4
 -0.033269 0.001 -0.001
@@ -3689,7 +3689,7 @@ OBJECT poly
 name "WIPER_1"
 data 12
 Cylinder.001
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/overhead4.png"
+texture "overhead4.png"
 crease 30.000000
 numvert 21
 -0.075573 0.004141 -0.073547

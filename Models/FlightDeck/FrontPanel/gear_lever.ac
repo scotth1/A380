@@ -579,7 +579,7 @@ kids 2
 OBJECT poly
 name "backlight_down"
 loc 0.0143244 0.00966151 -0.000125701
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/overhead4_02_backlight.png"
+texture "overhead4_02_backlight.png"
 crease 45.000000
 numvert 4
 0.0157908 0.011815 0.00867341
@@ -598,7 +598,7 @@ kids 0
 OBJECT poly
 name "backlight_up"
 loc -0.0150092 -0.0115703 0.000125701
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/overhead4_02_backlight.png"
+texture "overhead4_02_backlight.png"
 crease 45.000000
 numvert 4
 -0.0133499 -0.00926548 -0.0086734

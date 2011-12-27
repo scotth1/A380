@@ -9,7 +9,7 @@ name "ANN_LT"
 loc -0.149476 0 -0.310061
 data 12
 Cylinder.013
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/metal.png"
+texture "metal.png"
 crease 30.000000
 numvert 28
 0.087509 0.010941 0.062367
@@ -159,7 +159,7 @@ name "ANTI_ICE1"
 loc -0.152869 -5.34292e-05 -0.311342
 data 14
 APU_MASTER.011
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 0.059178 0.001261 0.255817
@@ -180,7 +180,7 @@ name "ANTI_ICE1.fault"
 loc -0.152869 -5.34292e-05 -0.311342
 data 14
 APU_MASTER.012
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 0.049177 0.001261 0.255817
@@ -201,7 +201,7 @@ name "ANTI_ICE2"
 loc -0.152869 -5.34292e-05 -0.311342
 data 14
 APU_MASTER.010
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 0.050738 0.001261 0.234691
@@ -222,7 +222,7 @@ name "ANTI_ICE2.fault"
 loc -0.152869 -5.34292e-05 -0.311342
 data 14
 APU_MASTER.009
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 0.040738 0.001261 0.234691
@@ -243,7 +243,7 @@ name "ANTI_ICE3"
 loc -0.152869 -5.34292e-05 -0.311342
 data 14
 APU_MASTER.007
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 0.050738 0.001261 0.213967
@@ -264,7 +264,7 @@ name "ANTI_ICE3.fault"
 loc -0.152869 -5.34292e-05 -0.311342
 data 14
 APU_MASTER.008
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 0.040738 0.001261 0.213967
@@ -285,7 +285,7 @@ name "ANTI_ICE4"
 loc -0.152869 -5.34292e-05 -0.311342
 data 14
 APU_MASTER.006
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 0.059178 0.001261 0.192841
@@ -306,7 +306,7 @@ name "ANTI_ICE4.fault"
 loc -0.152869 -5.34292e-05 -0.311342
 data 14
 APU_MASTER.005
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 0.049177 0.001261 0.192841
@@ -327,7 +327,7 @@ name "APU_MASTER"
 loc -0.150655 -5.34293e-05 -0.310957
 data 10
 APU_MASTER
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 0.097794 0.001261 0.145683
@@ -355,7 +355,7 @@ name "APU_MASTER.fault"
 loc -0.150655 -5.34293e-05 -0.310957
 data 14
 APU_MASTER.002
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 0.087793 0.001261 0.145683
@@ -376,7 +376,7 @@ name "APU_START"
 loc -0.150221 -5.34293e-05 -0.3109
 data 14
 APU_MASTER.004
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 0.141025 0.001261 0.145683
@@ -397,7 +397,7 @@ name "APU_START.fault"
 loc -0.150221 -5.34293e-05 -0.3109
 data 14
 APU_MASTER.003
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 0.131024 0.001261 0.145683
@@ -418,7 +418,7 @@ name "AUTO"
 loc 0.07975 0 -0.23125
 data 14
 APU_MASTER.015
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.270597 0.001261 0.027369
@@ -439,7 +439,7 @@ name "AUTO.fault"
 loc 0.07975 0 -0.23125
 data 14
 APU_MASTER.016
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 -0.270597 0.001261 0.017368
@@ -460,7 +460,7 @@ name "BEACON"
 loc -0.151091 0 -0.311096
 data 12
 Cylinder.003
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/metal.png"
+texture "metal.png"
 crease 30.000000
 numvert 28
 0.089967 0.010941 0.257431
@@ -610,7 +610,7 @@ name "CABIN.dummy"
 loc -0.151155 -0.000735913 -0.309953
 data 14
 APU_MASTER.025
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons5.png"
+texture "buttons5.png"
 crease 30.000000
 numvert 4
 0.046862 0.001261 0.037023
@@ -631,7 +631,7 @@ name "CABIN_ALT"
 loc -0.151849 -0.000735913 -0.309896
 data 14
 APU_MASTER.027
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons5.png"
+texture "buttons5.png"
 crease 30.000000
 numvert 4
 0.056863 0.001261 0.071275
@@ -652,7 +652,7 @@ name "CABIN_ALT.dummy"
 loc -0.151849 -0.000735913 -0.309896
 data 14
 APU_MASTER.028
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons5.png"
+texture "buttons5.png"
 crease 30.000000
 numvert 4
 0.046862 0.001261 0.071275
@@ -894,7 +894,7 @@ name "CABIN_VS"
 loc -0.151155 -0.000735913 -0.309953
 data 14
 APU_MASTER.026
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons5.png"
+texture "buttons5.png"
 crease 30.000000
 numvert 4
 0.056863 0.001261 0.037023
@@ -1136,7 +1136,7 @@ name "COMPASS"
 loc -0.151596 0 -0.310279
 data 12
 Cylinder.012
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/metal.png"
+texture "metal.png"
 crease 30.000000
 numvert 31
 0.08953 0.001285 0.119687
@@ -1372,7 +1372,7 @@ name "Cylinder"
 loc -0.151855 0 -0.310837
 data 8
 Mesh.001
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 39
 0.130217 0.000804 0.194123
@@ -1745,7 +1745,7 @@ name "Cylinder.001"
 loc -0.151596 0 -0.310837
 data 8
 Mesh.002
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 39
 0.130217 0.000804 0.256707
@@ -2118,7 +2118,7 @@ name "Cylinder.002"
 loc -0.151855 0 -0.310837
 data 4
 Mesh
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 39
 0.130217 0.000804 0.224594
@@ -2491,7 +2491,7 @@ name "Cylinder.003"
 loc -0.151343 0 -0.310843
 data 8
 Mesh.003
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 39
 0.130217 0.000804 0.297496
@@ -2864,7 +2864,7 @@ name "Cylinder.004"
 loc -0.151596 0 -0.311349
 data 8
 Mesh.004
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 39
 0.089919 0.000804 0.297496
@@ -3237,7 +3237,7 @@ name "Cylinder.005"
 loc -0.151091 0 -0.311096
 data 8
 Mesh.005
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 39
 0.089176 0.000804 0.256707
@@ -3610,7 +3610,7 @@ name "Cylinder.006"
 loc -0.151596 0 -0.311096
 data 8
 Mesh.006
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 39
 0.089044 0.000804 0.224594
@@ -3983,7 +3983,7 @@ name "Cylinder.007"
 loc -0.151097 0 -0.31109
 data 8
 Mesh.007
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 39
 0.088203 0.000804 0.196811
@@ -4356,7 +4356,7 @@ name "Cylinder.012"
 loc -0.151784 0 -0.310343
 data 8
 Mesh.008
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 39
 0.130217 0.000804 0.124614
@@ -4729,7 +4729,7 @@ name "Cylinder.013"
 loc -0.152037 0 -0.310532
 data 8
 Mesh.009
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 39
 0.130217 0.000804 0.0839
@@ -5102,7 +5102,7 @@ name "Cylinder.016"
 loc -0.152208 0 -0.31009
 data 8
 Mesh.010
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 39
 0.08821 0.000804 0.093271
@@ -5475,7 +5475,7 @@ name "Cylinder.017"
 loc -0.151596 0 -0.310279
 data 8
 Mesh.011
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 39
 0.08821 0.000804 0.122029
@@ -5848,7 +5848,7 @@ name "Cylinder.019"
 loc -0.149476 0 -0.310061
 data 8
 Mesh.012
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons.png"
+texture "buttons.png"
 crease 30.000000
 numvert 39
 0.085746 0.000804 0.062158
@@ -6221,7 +6221,7 @@ name "DITCHING"
 loc -0.151596 0.000735913 -0.311096
 data 14
 APU_MASTER.019
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 0.088853 0.001261 0.00794208
@@ -6242,7 +6242,7 @@ name "DITCHING.dummy"
 loc -0.151596 0.000735913 -0.311096
 data 14
 APU_MASTER.020
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons5.png"
+texture "buttons5.png"
 crease 30.000000
 numvert 4
 0.078852 0.001261 0.00794208
@@ -6263,7 +6263,7 @@ name "EMER_EXIT"
 loc -0.152038 -0.000735913 -0.310018
 data 14
 APU_MASTER.018
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 0.140407 0.001261 0.031886
@@ -6284,7 +6284,7 @@ name "EMER_EXIT.fault"
 loc -0.152038 -0.000735913 -0.310018
 data 14
 APU_MASTER.017
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 0.130406 0.001261 0.031886
@@ -6941,7 +6941,7 @@ name "ENG_START_1"
 loc -0.151693 0 -0.310999
 data 12
 Cylinder.007
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/overhead4.png"
+texture "overhead4.png"
 crease 30.000000
 numvert 21
 0.027911 0.01632 0.161247
@@ -7092,7 +7092,7 @@ name "LAND"
 loc -0.151855 0 -0.310837
 data 12
 Cylinder.002
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/metal.png"
+texture "metal.png"
 crease 30.000000
 numvert 28
 0.130991 0.010941 0.223535
@@ -7242,7 +7242,7 @@ name "LOGO"
 loc -0.151097 0 -0.31109
 data 12
 Cylinder.005
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/metal.png"
+texture "metal.png"
 crease 30.000000
 numvert 28
 0.089967 0.010941 0.197021
@@ -7392,7 +7392,7 @@ name "NAV"
 loc -0.151596 0 -0.311096
 data 8
 Cylinder
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/metal.png"
+texture "metal.png"
 crease 30.000000
 numvert 28
 0.089967 0.010941 0.224819
@@ -7542,7 +7542,7 @@ name "NOSE"
 loc -0.151855 0 -0.310837
 data 12
 Cylinder.008
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/metal.png"
+texture "metal.png"
 crease 30.000000
 numvert 31
 0.131537 0.001285 0.191781
@@ -7778,7 +7778,7 @@ name "RWY"
 loc -0.151596 0 -0.310837
 data 12
 Cylinder.001
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/metal.png"
+texture "metal.png"
 crease 30.000000
 numvert 31
 0.131537 0.001285 0.255324
@@ -8014,7 +8014,7 @@ name "SEAT_BELT"
 loc -0.151784 0 -0.310343
 data 12
 Cylinder.009
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/metal.png"
+texture "metal.png"
 crease 30.000000
 numvert 31
 0.131537 0.001285 0.122272
@@ -8250,7 +8250,7 @@ name "SMOKING"
 loc -0.152037 0 -0.310532
 data 12
 Cylinder.010
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/metal.png"
+texture "metal.png"
 crease 30.000000
 numvert 31
 0.131537 0.001285 0.081558
@@ -8486,7 +8486,7 @@ name "STORM"
 loc -0.152208 0 -0.31009
 data 12
 Cylinder.011
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/metal.png"
+texture "metal.png"
 crease 30.000000
 numvert 31
 0.08953 0.001285 0.090928
@@ -8722,7 +8722,7 @@ name "STROBE"
 loc -0.151596 0 -0.311349
 data 12
 Cylinder.004
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/metal.png"
+texture "metal.png"
 crease 30.000000
 numvert 28
 0.089967 0.010941 0.298173
@@ -8872,7 +8872,7 @@ name "WING"
 loc -0.151343 0 -0.310843
 data 12
 Cylinder.006
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/metal.png"
+texture "metal.png"
 crease 30.000000
 numvert 28
 0.13099 0.010941 0.298173
@@ -9022,7 +9022,7 @@ name "WING_ICE"
 loc -0.151172 -0.00145565 -0.310069
 data 14
 APU_MASTER.014
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 0.059178 0.00266322 0.280782
@@ -9043,7 +9043,7 @@ name "WING_ICE.fault"
 loc -0.151172 -0.00122195 -0.310069
 data 14
 APU_MASTER.013
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttons4.png"
+texture "buttons4.png"
 crease 30.000000
 numvert 4
 0.049177 0.00242952 0.280791
@@ -9064,7 +9064,7 @@ name "Rectangle0"
 loc -0.151596 -0.00171713 -0.311587
 data 10
 Rectangle0
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/overhead1_02_base.png"
+texture "overhead1_02_base.png"
 crease 30.000000
 numvert 4
 0.1515 0.001 0.311
@@ -9087,7 +9087,7 @@ kids 1
 OBJECT poly
 name "mesh"
 loc -0.143489 0.00115728 0.0632549
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/overhead1_02_backlight.png"
+texture "overhead1_02_backlight.png"
 crease 180.000000
 numvert 4
 -0.0754915 0 0.155448

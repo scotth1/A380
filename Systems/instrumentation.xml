@@ -4,10 +4,10 @@
 **********************************************************************
 This file selects the instrumentation modules that should be available.
 **********************************************************************
+
 -->
 
 <PropertyList>
-
     <adf>
         <name>adf</name>
         <number>0</number>

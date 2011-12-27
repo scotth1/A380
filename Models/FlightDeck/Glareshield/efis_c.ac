@@ -14,7 +14,7 @@ name "EMPTY.toggle"
 loc -0.000528764 0 -0.0230354
 data 5
 TAXI1
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttonlight.png"
+texture "buttonlight.png"
 crease 30.000000
 numvert 4
 -0.098506 0.00304 -0.025897
@@ -35,7 +35,7 @@ name "empty"
 loc 0.00275146 0 -0.0230354
 data 4
 TAXI
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/glareshield_02_base.png"
+texture "glareshield_02_base.png"
 crease 30.000000
 numvert 10
 -0.0971629 0.00304 -0.014355
@@ -97,7 +97,7 @@ name "ARPT"
 loc 0.00102371 0 -0.000487231
 data 7
 WPT.003
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/glareshield_02_base.png"
+texture "glareshield_02_base.png"
 crease 30.000000
 numvert 10
 -0.0902133 -0.000372998 -0.163541
@@ -159,7 +159,7 @@ name "ARPT.toggle"
 loc 0.00102371 0 -0.000487231
 data 8
 WPT1.003
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttonlight.png"
+texture "buttonlight.png"
 crease 30.000000
 numvert 4
 -0.0956119 0.00304 -0.162329
@@ -180,7 +180,7 @@ name "Arrow1"
 loc 0.000712033 0 -0.00100978
 data 7
 WPT.001
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/glareshield_02_base.png"
+texture "glareshield_02_base.png"
 crease 30.000000
 numvert 10
 -0.0601544 -0.000372998 -0.0619356
@@ -242,7 +242,7 @@ name "Arrow1.toggle"
 loc -0.000176258 0 -0.00100484
 data 8
 WPT1.001
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttonlight.png"
+texture "buttonlight.png"
 crease 30.000000
 numvert 4
 -0.053868 0.00304 -0.063152
@@ -263,7 +263,7 @@ name "Arrow2"
 loc 0.00053579 0 -0.000123523
 data 8
 CSTR.001
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/glareshield_02_base.png"
+texture "glareshield_02_base.png"
 crease 30.000000
 numvert 10
 -0.0601544 -0.000372998 -0.149109
@@ -325,7 +325,7 @@ name "Arrow2.toggle"
 loc -0.000352502 0 -0.000123613
 data 9
 CSTR1.001
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttonlight.png"
+texture "buttonlight.png"
 crease 30.000000
 numvert 4
 -0.053868 0.00304 -0.150321
@@ -346,7 +346,7 @@ name "CSTR"
 loc 0.00111136 0 -0.00100484
 data 4
 CSTR
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/glareshield_02_base.png"
+texture "glareshield_02_base.png"
 crease 30.000000
 numvert 10
 -0.0902129 -0.000372998 -0.076384
@@ -408,7 +408,7 @@ name "CSTR.toggle"
 loc 0.00111136 0 -0.00100484
 data 5
 CSTR1
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttonlight.png"
+texture "buttonlight.png"
 crease 30.000000
 numvert 4
 -0.0956115 0.00304 -0.075172
@@ -1130,7 +1130,7 @@ name "LS"
 loc 0.000101898 0 -0.00135732
 data 2
 LS
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/glareshield_02_base.png"
+texture "glareshield_02_base.png"
 crease 30.000000
 numvert 10
 -0.00815693 -4.00096e-06 -0.029428
@@ -1192,7 +1192,7 @@ name "LS.toggle"
 loc 0.000101898 0 -0.00135732
 data 3
 LS1
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttonlight.png"
+texture "buttonlight.png"
 crease 30.000000
 numvert 4
 -0.0151675 0.004491 -0.02776
@@ -1213,7 +1213,7 @@ name "NDB"
 loc -0.000352502 0 -0.000828587
 data 7
 WPT.002
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/glareshield_02_base.png"
+texture "glareshield_02_base.png"
 crease 30.000000
 numvert 10
 -0.088749 -0.000372998 -0.141881
@@ -1275,7 +1275,7 @@ name "NDB.toggle"
 loc -0.000352502 0 -0.000828587
 data 8
 WPT1.002
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttonlight.png"
+texture "buttonlight.png"
 crease 30.000000
 numvert 4
 -0.09406 0.00304 -0.140669
@@ -1454,7 +1454,7 @@ name "Object01.001"
 loc -0.00458869 0 -0.00108965
 data 12
 Object01.001
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/glareshield.png"
+texture "glareshield.png"
 crease 30.000000
 subdiv 1
 numvert 16
@@ -1613,7 +1613,7 @@ name "Object01.002"
 loc -0.000362277 0 -0.000968896
 data 12
 Object01.003
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/glareshield.png"
+texture "glareshield.png"
 crease 30.000000
 subdiv 1
 numvert 16
@@ -1772,7 +1772,7 @@ name "Object05"
 loc -1.49012e-08 0 -0.000123613
 data 8
 Object05
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/glareshield_02_base.png"
+texture "glareshield_02_base.png"
 crease 30.000000
 numvert 24
 -0.1066 -0.25 -0.1778
@@ -1980,7 +1980,7 @@ name "Rectangl15"
 loc -1.49012e-08 0 -0.000123613
 data 10
 Rectangl15
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/glareshield.png"
+texture "glareshield.png"
 crease 30.000000
 numvert 4
 -0.084248 -0.001 -0.014786
@@ -2001,7 +2001,7 @@ name "TAXI"
 loc 0.00257522 0 -0.00170981
 data 4
 TAXI
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/glareshield_02_base.png"
+texture "glareshield_02_base.png"
 crease 30.000000
 numvert 10
 -0.0916767 -0.000372998 -0.027109
@@ -2063,7 +2063,7 @@ name "TAXI.toggle"
 loc -0.000704996 0 -0.00170981
 data 5
 TAXI1
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttonlight.png"
+texture "buttonlight.png"
 crease 30.000000
 numvert 4
 -0.09406 0.00304 -0.025897
@@ -2084,7 +2084,7 @@ name "TERR"
 loc 0.000888277 0 -0.000652306
 data 8
 VORD.001
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/glareshield_02_base.png"
+texture "glareshield_02_base.png"
 crease 30.000000
 numvert 10
 -0.0601544 -0.000372998 -0.105405
@@ -2146,7 +2146,7 @@ name "TERR.toggle"
 loc -1.49012e-08 0 -0.000652365
 data 9
 VORD1.001
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttonlight.png"
+texture "buttonlight.png"
 crease 30.000000
 numvert 4
 -0.053868 0.00304 -0.106617
@@ -2167,7 +2167,7 @@ name "TRAF"
 loc 0.00053579 0 -0.000662051
 data 7
 WPT.005
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/glareshield_02_base.png"
+texture "glareshield_02_base.png"
 crease 30.000000
 numvert 10
 -0.0601544 -0.000372998 -0.127354
@@ -2229,7 +2229,7 @@ name "TRAF.toggle"
 loc -0.000352502 0 -0.000652365
 data 8
 WPT1.005
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttonlight.png"
+texture "buttonlight.png"
 crease 30.000000
 numvert 4
 -0.053868 0.00304 -0.128576
@@ -2250,7 +2250,7 @@ name "VORD"
 loc 0.00119994 0 -0.000652365
 data 4
 VORD
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/glareshield_02_base.png"
+texture "glareshield_02_base.png"
 crease 30.000000
 numvert 10
 -0.0902133 -0.000372998 -0.120088
@@ -2312,7 +2312,7 @@ name "VORD.toggle"
 loc 0.00119994 0 -0.000652365
 data 5
 VORD1
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttonlight.png"
+texture "buttonlight.png"
 crease 30.000000
 numvert 4
 -0.0956119 0.00304 -0.118876
@@ -2333,7 +2333,7 @@ name "VV"
 loc 0.000101894 0 -0.00135732
 data 2
 VV
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/glareshield_02_base.png"
+texture "glareshield_02_base.png"
 crease 30.000000
 numvert 10
 -0.00815691 -4.00096e-06 -0.051401
@@ -2395,7 +2395,7 @@ name "VV.toggle"
 loc -0.000176262 0 -0.00135732
 data 3
 VV1
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttonlight.png"
+texture "buttonlight.png"
 crease 30.000000
 numvert 4
 -0.014978 0.004491 -0.049733
@@ -2416,7 +2416,7 @@ name "WPT"
 loc 0.00137612 0 -0.000482641
 data 3
 WPT
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/glareshield_02_base.png"
+texture "glareshield_02_base.png"
 crease 30.000000
 numvert 10
 -0.0902132 -0.000372998 -0.098123
@@ -2478,7 +2478,7 @@ name "WPT.toggle"
 loc 0.00137612 0 -0.000482641
 data 4
 WPT1
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttonlight.png"
+texture "buttonlight.png"
 crease 30.000000
 numvert 4
 -0.0956118 0.00304 -0.0969101
@@ -2499,7 +2499,7 @@ name "WX"
 loc 0.00088824 0 -0.000658832
 data 7
 WPT.004
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/glareshield_02_base.png"
+texture "glareshield_02_base.png"
 crease 30.000000
 numvert 10
 -0.0601544 -0.000372998 -0.083606
@@ -2561,7 +2561,7 @@ name "WX.toggle"
 loc -1.49012e-08 0 -0.000652365
 data 8
 WPT1.004
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttonlight.png"
+texture "buttonlight.png"
 crease 30.000000
 numvert 4
 -0.053868 0.00304 -0.084824
@@ -3672,7 +3672,7 @@ kids 14
 OBJECT poly
 name "mesh"
 loc 0.0734336 0.00478463 0.0232
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/glareshield_02_backlight.png"
+texture "glareshield_02_backlight.png"
 crease 180.000000
 numvert 4
 0.00585355 0 -0.0079441
@@ -3696,7 +3696,7 @@ kids 0
 OBJECT poly
 name "mesh"
 loc 0.073573 0.00504679 0.0449584
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/glareshield_02_backlight.png"
+texture "glareshield_02_backlight.png"
 crease 180.000000
 numvert 4
 0.00585356 0 -0.00794411
@@ -3720,7 +3720,7 @@ kids 0
 OBJECT poly
 name "mesh"
 loc -0.0060451 0.00347853 0.0446043
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/glareshield_02_backlight.png"
+texture "glareshield_02_backlight.png"
 crease 180.000000
 numvert 4
 0.0047586 0 -0.00572795
@@ -3744,7 +3744,7 @@ kids 0
 OBJECT poly
 name "mesh"
 loc 0.0342268 0.00365815 -0.0897821
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/glareshield_02_backlight.png"
+texture "glareshield_02_backlight.png"
 crease 180.000000
 numvert 4
 0.00458236 0 -0.00572795
@@ -3768,7 +3768,7 @@ kids 0
 OBJECT poly
 name "mesh"
 loc 0.0342268 0.00347853 -0.0688158
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/glareshield_02_backlight.png"
+texture "glareshield_02_backlight.png"
 crease 180.000000
 numvert 4
 0.00458236 0 -0.00572795
@@ -3792,7 +3792,7 @@ kids 0
 OBJECT poly
 name "mesh"
 loc 0.0345793 0.00347853 -0.0467785
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/glareshield_02_backlight.png"
+texture "glareshield_02_backlight.png"
 crease 180.000000
 numvert 4
 0.00458236 0 -0.00572795
@@ -3816,7 +3816,7 @@ kids 0
 OBJECT poly
 name "mesh"
 loc 0.0345793 0.00347853 -0.024836
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/glareshield_02_backlight.png"
+texture "glareshield_02_backlight.png"
 crease 180.000000
 numvert 4
 0.00458236 0 -0.00572795
@@ -3840,7 +3840,7 @@ kids 0
 OBJECT poly
 name "mesh"
 loc 0.034403 0.00365815 -0.00360189
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/glareshield_02_backlight.png"
+texture "glareshield_02_backlight.png"
 crease 180.000000
 numvert 4
 0.00458236 0 -0.00572795
@@ -3864,7 +3864,7 @@ kids 0
 OBJECT poly
 name "mesh"
 loc -0.0061332 0.00365815 -0.0907517
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/glareshield_02_backlight.png"
+texture "glareshield_02_backlight.png"
 crease 180.000000
 numvert 4
 0.00458236 0 -0.00572795
@@ -3888,7 +3888,7 @@ kids 0
 OBJECT poly
 name "mesh"
 loc -0.00586881 0.00365815 -0.0695174
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/glareshield_02_backlight.png"
+texture "glareshield_02_backlight.png"
 crease 180.000000
 numvert 4
 0.00458236 0 -0.00572796
@@ -3912,7 +3912,7 @@ kids 0
 OBJECT poly
 name "mesh"
 loc -0.00604509 0.00347853 -0.0473953
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/glareshield_02_backlight.png"
+texture "glareshield_02_backlight.png"
 crease 180.000000
 numvert 4
 0.00458235 0 -0.00572795
@@ -3936,7 +3936,7 @@ kids 0
 OBJECT poly
 name "mesh"
 loc -0.00586879 0.00365815 -0.0252766
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/glareshield_02_backlight.png"
+texture "glareshield_02_backlight.png"
 crease 180.000000
 numvert 4
 0.00458235 0 -0.00572795
@@ -3960,7 +3960,7 @@ kids 0
 OBJECT poly
 name "mesh"
 loc -0.0060451 0.00365815 -0.0040392
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/glareshield_02_backlight.png"
+texture "glareshield_02_backlight.png"
 crease 180.000000
 numvert 4
 0.00458236 0 -0.00572794
@@ -3984,7 +3984,7 @@ kids 0
 OBJECT poly
 name "panel mesh"
 loc 0.0325363 0.00036411 -0.022591
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/glareshield_02_backlight.png"
+texture "glareshield_02_backlight.png"
 crease 180.000000
 numvert 4
 -0.0508 0 0.0889
