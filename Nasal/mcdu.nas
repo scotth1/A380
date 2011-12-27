@@ -148,7 +148,7 @@ selectField = func(field) {
        inputType = "DECIMAL";
      }
    }
-   print("selectField is of type: "~inputType);
+   ##print("selectField is of type: "~inputType);
    if (inputValue == nil) {
      inputValue = "";
    }
@@ -156,14 +156,14 @@ selectField = func(field) {
 
 selectWP = func(idx) {
    var wp = airbusFMS.getWPIdx(idx);
-   print("[selectWP] Got back WP: "~wp.wp_name);
+   ##print("[selectWP] Got back WP: "~wp.wp_name);
 }
 
 
 keyPress = func(key) {
-  print("key: "~key~", inputValue: >>>"~inputValue~"<<<");
+  ##print("key: "~key~", inputValue: >>>"~inputValue~"<<<");
   if (num(inputValue) != nil) {
-    print("convert inputValue to String");
+    ##print("convert inputValue to String");
     if (inputType == "DECIMAL") {
       valLen = size(""~inputValue);
       valLen2 = valLen-2;
@@ -171,13 +171,13 @@ keyPress = func(key) {
          valLen2 = 1;
       }
       var fmtStr = "%0.0"~valLen2~"f";
-      print("fmtStr: "~fmtStr);
+      ##print("fmtStr: "~fmtStr);
       inputValue = sprintf(fmtStr, inputValue);
     } else {
       inputValue = sprintf("%0.0f",inputValue);
     }
   }
-  print("sprintf'd inputValue: "~inputValue);
+  ##print("sprintf'd inputValue: "~inputValue);
   if (key == "DEL") {
     var len = (size(inputValue))-1;
     if (len < 0) {
@@ -192,18 +192,18 @@ keyPress = func(key) {
         inputValue = "0";
       }
     }
-    print("len: "~len~", new inputValue: >>>"~inputValue~"<<<");
+    ##print("len: "~len~", new inputValue: >>>"~inputValue~"<<<");
   } else {
-    print("append key...");
+    ##print("append key...");
     if (inputType == "DECIMAL") {
       var tmpStr = substr(inputValue,size(inputValue)-2,2);
-      print("tmpStr: "~tmpStr);
+      ##print("tmpStr: "~tmpStr);
       if (tmpStr == ".0") {
         inputValue = substr(inputValue, 0, size(inputValue)-1);
       }
     }
     inputValue = inputValue~key;
-    print("post append: "~inputValue);
+    ##print("post append: "~inputValue);
   }
   #if (num(inputValue) != nil) {
   #  print("convert back to num");
@@ -1608,10 +1608,10 @@ var calcDistAtAngle = func(angleX, height) {
 }
 
 var calcHeightAtAngle = func(angleX, dist) {
-    print("math.pi: "~math.pi);
+    ##print("math.pi: "~math.pi);
     var anglexinradians = angleX*(math.pi/180);
     var sidec = dist/math.cos(anglexinradians);
-    print("anglexRad: "~anglexinradians~", sideC: "~sidec);
+    ##print("anglexRad: "~anglexinradians~", sideC: "~sidec);
     var sidecNM = sidec/6076;
     return sidecNM;
 }
@@ -1619,7 +1619,7 @@ var calcHeightAtAngle = func(angleX, dist) {
 var calcHeightAtAngle2 = func(angleDeg, dist) {
     var angleRad = angleDeg*(math.pi/180);
     var sidec = (math.tan(angleRad))*dist;
-    print("sideC: "~sidec~", angleRad: "~angleRad);
+    ##print("sideC: "~sidec~", angleRad: "~angleRad);
     var sidecNM = sidec*6076;
     return sidecNM;
 }

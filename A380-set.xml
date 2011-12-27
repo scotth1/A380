@@ -85,7 +85,7 @@
   	<kp type="double">900</kp>
 	<ki type="double">100</ki>  <!-- was 25 -->
 	<kd type="double">0</kd>
-	<target-speed-fps>35</target-speed-fps>
+	<target-speed-fps>0</target-speed-fps>
 	<position-norm type="double">0</position-norm>
      </pushback>
    </model>
