@@ -1782,10 +1782,16 @@
            <property>instrumentation/flightdirector/autopilot-on</property>
            <value>1</value>
          </equals>
-         <greater-than>
-           <property>instrumentation/ecam/flight-mode</property>
-           <value>8</value>
-         </greater-than>
+         <or>
+           <equals>
+             <property>instrumentation/flightdirector/lnav</property>
+             <value>3</value>
+           </equals>
+           <equals>
+             <property>instrumentation/flightdirector/lnav-arm</property>
+             <value>3</value>
+           </equals>
+         </or>
          <greater-than>
            <property>systems/electrical/outputs/efis</property>
            <value>15</value>

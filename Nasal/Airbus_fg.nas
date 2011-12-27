@@ -1123,7 +1123,7 @@ setlistener("/instrumentation/nav[0]/in-range", func(n) {
    var apMode = getprop("/instrumentation/flightdirector/autopilot-on");
    if (apMode == 1) {
      if (range != lastNavStatus) {
-       tracer("[NAV1] NAV1 range status: "~range);
+       tracer("[NAV0] NAV0 range status: "~range);
        lastNavStatus = range;
        var lnavMode = getprop("/instrumentation/flightdirector/lnav");
        var lnavArm = getprop("/instrumentation/flightdirector/lnav-arm");
@@ -1137,7 +1137,7 @@ setlistener("/instrumentation/nav[0]/in-range", func(n) {
          } else {
            if (lnavArm == LNAV_LOC) {
              setprop("/instrumentation/flightdirector/lnav-arm", VNAV_OFF);
-             setprop("/instrumentation/flightdirector/lnav", VNAV_LOC);
+             setprop("/instrumentation/flightdirector/lnav", LNAV_LOC);
            }
          }
        } else {

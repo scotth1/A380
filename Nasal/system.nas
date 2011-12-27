@@ -1047,7 +1047,7 @@ update_engines = func {
   #if (flt_mode > 4 and flt_mode < 10 and flt_mode != 8) {
   #tracer("flt_mode: "~flt_mode~", alt: "~alt~", gear: "~gear_pos~", fpm: "~fpm); 
   #}
-  if (flt_mode == 8 and (alt < 800 and gear_pos == 1)) {
+  if (flt_mode == 8 and (alt < 1000 and gear_pos == 1)) {
     flt_mode = 9;
     setprop("/instrumentation/ecam/flight-mode",flt_mode);
   }
