@@ -1156,7 +1156,7 @@
         </layer>
         
         <!-- navaid ref -->
-        <layer>
+        <!-- layer>
           <condition>
             <equals>
 	      <property>instrumentation/radar/navaid-valid</property>
@@ -1202,7 +1202,7 @@
               <offset>-14</offset>
             </transformation>
           </transformations>
-        </layer>
+        </layer -->
         
         
         <!-- waypoint identifiers -->

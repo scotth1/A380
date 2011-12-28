@@ -561,7 +561,11 @@ setlistener("/autopilot/route-manager/current-wp", func(n) {
       }
     }
   }
-  
+  ## check autopilot controls match AP modes.
+  var vnav = getprop("instrumentation/flightdirector/vnav");
+  if (vnav != 0) {
+    setprop("/instrumentation/flightdirector/vnav", vnav);
+  }
 });
 
 

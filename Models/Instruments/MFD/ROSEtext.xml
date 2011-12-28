@@ -1158,7 +1158,7 @@
         </layer>
         
         <!-- navaid ref -->
-        <layer>
+        <!-- layer>
           <condition>
             <equals>
 	      <property>instrumentation/radar/navaid-valid</property>
@@ -1185,11 +1185,6 @@
                <type>y-shift</type>
                <offset>-12</offset>
             </transformation>
-            <!-- transformation>
-              <type>rotation</type>
-              <property>orientation/heading-magnetic-deg</property>
-              <scale>-1.0</scale>
-            </transformation -->
             <transformation>
                 <type>rotation</type>
                 <property>instrumentation/radar/navaid-brg</property>
@@ -1209,11 +1204,11 @@
               <offset>-14</offset>
             </transformation>
           </transformations>
-        </layer>
+        </layer -->
         
         
         <!-- waypoint identifiers -->
-        <layer>
+        <!-- layer>
           <condition>
             <equals>
 	      <property>instrumentation/radar/wp[0]/valid</property>
@@ -1242,11 +1237,6 @@
                <type>y-shift</type>
                <offset>-12</offset>
             </transformation>
-            <!-- transformation>
-              <type>rotation</type>
-              <property>orientation/heading-magnetic-deg</property>
-              <scale>-1.0</scale>
-            </transformation -->
             <transformation>
                 <type>rotation</type>
                 <property>instrumentation/radar/wp[0]/brg-offset</property>
@@ -1301,11 +1291,6 @@
                 <type>rotation</type>
                 <property>instrumentation/radar/wp[1]brg-offset</property>
             </transformation>
-            <!-- transformation>
-              <type>rotation</type>
-              <property>orientation/heading-magnetic-deg</property>
-              <scale>-1.0</scale>
-            </transformation -->
             <transformation>
                <type>y-shift</type>
                <property>instrumentation/radar/wp[1]/dist-norm</property>
@@ -1352,11 +1337,6 @@
                <type>y-shift</type>
                <offset>-12</offset>
             </transformation>
-            <!-- transformation>
-              <type>rotation</type>
-              <property>orientation/heading-magnetic-deg</property>
-              <scale>-1.0</scale>
-            </transformation -->
             <transformation>
                 <type>rotation</type>
                 <property>instrumentation/radar/wp[2]/brg-offset</property>
@@ -1407,11 +1387,6 @@
                <type>y-shift</type>
                <offset>-12</offset>
             </transformation>
-            <!-- transformation>
-              <type>rotation</type>
-              <property>orientation/heading-magnetic-deg</property>
-              <scale>-1.0</scale>
-            </transformation -->
             <transformation>
                 <type>rotation</type>
                 <property>instrumentation/radar/wp[3]/brg-offset</property>
@@ -1431,7 +1406,7 @@
               <offset>-15</offset>
             </transformation>
           </transformations>
-        </layer>
+        </layer -->
         
         
         

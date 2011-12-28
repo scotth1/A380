@@ -1277,6 +1277,9 @@ update_metric = func {
   setprop("/systems/static/pressure-psi",static_psi);
   setprop("/systems/static/pressure-pa", static_pascal);
   var cabin_psi   = getprop("/instrumentation/pressurisation/cabin-pressure-psi");
+  if (cabin_psi < 0) {
+    cabin_psi = 0.0;
+  }
   var h = atmos.convertPressureAltitude("psi",cabin_psi,"feet");
   setprop("/instrumentation/pressurisation/cabin-altitude-ft", h);
   var delta_psi   = cabin_psi-static_psi;

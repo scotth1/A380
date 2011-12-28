@@ -1270,7 +1270,7 @@
         
         
         <!-- ref navaid RH NAV2 -->
-        <layer>
+        <!-- layer>
           <condition>
                 <property>instrumentation/radar/navaid-valid</property>
                 <value>1</value>
@@ -1306,7 +1306,7 @@
                 <scale>-1.0</scale>
             </transformation>
           </transformations>
-        </layer>
+        </layer -->
 
 
 <!-- nearest airports -->
