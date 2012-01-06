@@ -864,6 +864,12 @@ update_ewd = func {
   if (getprop("/consumables/fuel/total-fuel-kg") < 10000) {
     ewdChecklist.append("FUEL LOW", 0.8, 0.1, 0.1);
   }
+  if (flt_mode == 8 and getprop("autopilot/autobrake/step") != -1) {
+    ewdChecklist.append("AUTOBRK CHECK");
+  }
+  if (flt_mode > 8 and flt_mode < 12 and getprop("autopilot/autobrake/step") == -1) {
+    ewdChecklist.append("AUTOBRK CHECK");
+  }
   ewdChecklist.reset();
 
   var mach = getprop("velocities/mach");
