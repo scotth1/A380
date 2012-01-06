@@ -1213,6 +1213,8 @@ var getILSCategory = func(id) {
   var apt = airportinfo(id);
   var arvRunway = getprop("instrumentation/afs/arv-rwy");
   var navList = navinfo(apt.lat, apt.lon, "ils", 3.0);
+  var navListSize = size(navList);
+  print("size navList: "~navListSize);
   foreach(var ils; navList) {
     if (ils.runway == arvRunway) {
       var nmeStr = ils.name;

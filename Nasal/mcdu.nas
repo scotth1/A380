@@ -29,7 +29,7 @@ currentField = "";
 currentFieldPos = 0;
 inputValue = "";
 inputType  = "";
-trace = 0;         ## Set to 0 to turn off all tracing messages
+trace = 1;         ## Set to 0 to turn off all tracing messages
 depDB = nil;
 arvDB = nil;
 version = "V2.0.3";
@@ -391,7 +391,7 @@ changePage = func(unit,page) {
     for(r = (rwyScroll*8); r != max; r=r+1) {
       var key = ks[r];
       var run = runWays[key];
-      if (run["length"] > 2000) {
+      if (run["length"] > 1900) {
         pos = pos+1;
         var rwyAttr = sprintf("/instrumentation/mcdu[%i]/opt%02i",unit,pos);
         var rwyLenAttr = sprintf("/instrumentation/mcdu[%i]/col01-opt%02i",unit,pos);

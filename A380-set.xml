@@ -88,6 +88,24 @@
 	<target-speed-fps>0</target-speed-fps>
 	<position-norm type="double">0</position-norm>
      </pushback>
+     <door>
+       <position-x-m type="float">13.136</position-x-m>
+       <position-y-m type="float">5.0626</position-y-m>
+       <position-z-m type="float">2.9947</position-z-m>
+       <jetway-hood-deg type="float">9</jetway-hood-deg>
+     </door>
+     <door>
+       <position-x-m type="float">23.359</position-x-m>
+       <position-y-m type="float">4.928</position-y-m>
+       <position-z-m type="float">3.706</position-z-m>
+       <jetway-hood-deg type="float">9</jetway-hood-deg>
+     </door>
+     <door>
+       <position-x-m type="float">27.978</position-x-m>
+       <position-y-m type="float">7.353</position-y-m>
+       <position-z-m type="float">3.454</position-z-m>
+       <jetway-hood-deg type="float">5</jetway-hood-deg>
+     </door>
    </model>
 
          
@@ -962,7 +980,7 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
         </radar -->
         <nd n="0">
            <radar-texture-path type="string">Aircraft/A380/Models/Instruments/MFD/od_ndradar_1.png</radar-texture-path>
-          <symbol-texture-path type="string">Aircraft/A380/Models/Instruments/MFD/airbus_symbols-bgnd.png</symbol-texture-path>
+          <symbol-texture-path type="string">Aircraft/A380/Models/Instruments/MFD/airbus_symbols.png</symbol-texture-path>
             <font>
                 <color>
                    <red type="float">0.7</red>
@@ -1084,10 +1102,9 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
      <inputs>
          <mode type="int">3</mode>       <!-- 0=off, 1=standby, 2=TA-only, 3=auto(TA/RA) -->
      </inputs>
-     <voice>
+     <!-- voice>
          <file-prefix type="string">Sounds/tcas/</file-prefix>
-                                         <!-- sound file path and prefix -->
-     </voice>
+     </voice -->
      <speaker>                           <!-- Speaker Configuration -->
        <max-dist> 2 </max-dist>          <!-- Max. distance where speaker is heard -->
        <reference-dist> 1 </reference-dist> <!-- Distance to pilot -->

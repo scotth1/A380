@@ -1353,6 +1353,14 @@ toggleExternalServices = func() {
    setprop("/controls/electric/ground/external_4", extAvail);
 }
 
+testFunction = func() {
+
+  var list = [{ id: 'HAM', type: 'VOR', distance: 13102184.19392603, frequency: 11790, bearing: 294.888738064345, elevation: 1754.124, lat: 34.86680599999999, name: 'HAMADAN VOR-DME', lon: 48.550611 }, { id: 'HAM', type: 'NDB', distance: 13102977.61851923, frequency: 31700, bearing: 294.8840878802988, elevation: 1754.124, lat: 34.865889, name: 'HAMADAN NDB', lon: 48.54066699999999 }, { id: 'HAM', type: 'VOR', distance: 16256266.62669764, frequency: 11310, bearing: 317.8553711815206, elevation: 56.99760000000001, lat: 53.68557499999999, name: 'HAMBURG VORTAC', lon: 10.204997 }];
+  foreach(nav; list) {
+    print("Id: "~nav.id);
+  }
+}
+
 
 ## FDM init
 setlistener("/sim/signals/fdm-initialized", func {

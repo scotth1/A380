@@ -27,7 +27,7 @@ Configure the nav-display symbology
     </color>
     <text type="string">{id}</text>
     <text-align type="string">left-top</text-align>
-    <text-offset-x>18</text-offset-x>
+    <text-offset-x>10</text-offset-x>
     <text-offset-y>0</text-offset-y>
 </symbol>
 
@@ -52,8 +52,8 @@ Configure the nav-display symbology
     </color>
     <text type="string">{id}</text>
     <text-align type="string">left-top</text-align>
-    <text-offset-x>18</text-offset-x>
-    <text-offset-y>0</text-offset-y>
+    <text-offset-x>8</text-offset-x>
+    <text-offset-y>5</text-offset-y>
 </symbol>
 
 <symbol>
@@ -99,8 +99,8 @@ Configure the nav-display symbology
     
     <text type="string">{id}</text>
     <text-align type="string">left-top</text-align>
-    <text-offset-x>18</text-offset-x>
-    <text-offset-y>18</text-offset-y>
+    <text-offset-x>13</text-offset-x>
+    <text-offset-y>13</text-offset-y>
 </symbol>
     
 <symbol>
@@ -127,8 +127,8 @@ Configure the nav-display symbology
     
     <text type="string">{id}</text>
     <text-align type="string">left-top</text-align>
-    <text-offset-x>18</text-offset-x>
-    <text-offset-y>18</text-offset-y>
+    <text-offset-x>13</text-offset-x>
+    <text-offset-y>13</text-offset-y>
     <character-size type="double">0.01</character-size>
 </symbol>
     
@@ -149,9 +149,9 @@ Configure the nav-display symbology
         <blue type="float">0.961</blue>
     </color>
     <text type="string">{id}</text>
-    <text-align type="string">left-top</text-align>
-    <text-offset-x>18</text-offset-x>
-    <text-offset-y>18</text-offset-y>
+    <text-align type="string">right-bottom</text-align>
+    <text-offset-x>-12</text-offset-x>
+    <text-offset-y>-5</text-offset-y>
 </symbol>
 
 <!-- symbol>
@@ -184,10 +184,15 @@ Configure the nav-display symbology
     <v0 type="float">454.31</v0>
     <u1 type="float">273.28</u1>
     <v1 type="float">490.52</v1>
+    <color>
+        <red type="float">1</red>
+        <green type="float">1</green>
+        <blue type="float">1</blue>
+    </color>
     <text type="string">{id}</text>
-    <text-align type="string">left-top</text-align>
-    <text-offset-x>18</text-offset-x>
-    <text-offset-y>18</text-offset-y>
+    <text-align type="string">right-bottom</text-align>
+    <text-offset-x>8</text-offset-x>
+    <text-offset-y>8</text-offset-y>
 </symbol>
 
 

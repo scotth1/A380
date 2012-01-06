@@ -676,7 +676,6 @@
               </range>
               <output>fcs/flap-pos-norm</output>
             </aerosurface_scale>
-
         </kinematic>
 
         <kinematic name="Gear Control">
@@ -1072,7 +1071,7 @@
 		   <z>1.641</z>
 		</location>
 	      <direction>
-		   <x>-1</x>
+		   <x>1</x>
 		   <y>0</y>
 		   <z>0</z>
 		</direction>
