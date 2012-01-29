@@ -267,6 +267,8 @@ setlistener("/sim/signals/fdm-initialized", func {
     setprop("/instrumentation/afs/to-F",180);
     setprop("/instrumentation/afs/to-S",220);
     setprop("/instrumentation/afs/to-greendot",240);
+    setprop("/instrumentation/afs/Vls", 170);
+    setprop("/instrumentation/afs/Vapp", 190);
     setprop("/instrumentation/afs/lateral-mode",0);
     setprop("/instrumentation/afs/vertical-vs-mode",-1);
     setprop("/instrumentation/afs/vertical-alt-mode",-1);

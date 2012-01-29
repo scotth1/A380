@@ -431,7 +431,7 @@
       <prop>/autopilot/internal/target-climb-rate-fps</prop>
     </output>
     <config>
-      <Kp>0.15</Kp>          <!-- proportional gain -->
+      <Kp>0.13</Kp>          <!-- proportional gain -->
       <Ki>0.0</Ki>          <!-- integral gain -->
       <u_min>
         <!-- -16.67 -->

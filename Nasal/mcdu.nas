@@ -20,6 +20,7 @@
 # 28-APR-2010	S.H.	V1.0.6		Roughly calculate Vr and V2 based on Vso
 # 12-APR-2011	S.H.	V1.0.19		build internal flightplan
 # 09-SEP-2011	S.H.	V2.0.0		move to using internal FlightPlan
+# 29-JAN-2012	S.H.	V2.0.5		add Vref and landing speed calculations
 #
 # 
 
@@ -29,10 +30,10 @@ currentField = "";
 currentFieldPos = 0;
 inputValue = "";
 inputType  = "";
-trace = 0;         ## Set to 0 to turn off all tracing messages
+trace = 1;         ## Set to 0 to turn off all tracing messages
 depDB = nil;
 arvDB = nil;
-version = "V2.0.3";
+version = "V2.0.5";
 wpMode = "V2";    ## set to "V2" for new mode (airbusFMS) or "V1" for old mode (route-manager)
 
 routeClearArm = 0;
@@ -547,6 +548,7 @@ changePage = func(unit,page) {
 
      tracer(" active.to-perf calc Vso, Vr, V2");
      calcVSpeeds();
+     calcVapp();
 
      var fltMode    = getprop("/instrumentation/ecam/flight-mode");
      if (fltMode == 2) {
@@ -557,6 +559,9 @@ changePage = func(unit,page) {
 
   if (page == "active.crz.stepalt") {
   
+  }
+  if (page == "active.appr_perf") {
+    calcVapp();
   }
 
 
@@ -749,7 +754,9 @@ selectSidAction = func(opt, unit) {
     var tocWP = fmsWP.new();
     tocWP.wp_name="(T/C)";
     tocWP.wp_type = "T/C";
-    var climbNM = calcDistAtAngle(3, crzFt);
+    ###var climbNM = calcDistAtAngle(3, crzFt);
+    var climbTime = crzFt/1570;
+    var climbNM = climbTime*5.095;
     var tocWpCoord = geo.Coord.new();
     tocWpCoord.set_latlon(fromApt.lat, fromApt.lon, fromApt.elevation);
     var prevCoord = geo.Coord.new();
@@ -1055,6 +1062,55 @@ selectApprConf = func(mode) {
     setprop("instrumentation/afs/appr_full", 1);
   } else {
     setprop("instrumentation/afs/appr_conf3", 1);
+  }
+  calcVapp();
+}
+
+
+#########################################
+#
+#
+calcVapp = func() {
+  var flapConfigExtra = 0;
+  var speedDif = 1;
+  var gwNow = getprop("fdm/jsbsim/inertia/weight-kg");
+  tracer("Calculate Vref and Vls");
+  var flt_mode = getprop("instrumentation/ecam/flight-mode");
+  if (flt_mode < 10) {
+    if (flt_mode > 7) {
+      var timeToTouchdown = getprop("autopilot/route-manager/wp-last/eta");
+      var timeParts = split(":", timeToTouchdown);
+      var minsToTouch = timeParts[0]*60+timeParts[1];
+      var ffph = getprop("fdm/jsbsim/propulsion/engine[0]/fuel-flow-rate-kgph")+getprop("fdm/jsbsim/propulsion/engine[1]/fuel-flow-rate-kgph")+getprop("fdm/jsbsim/propulsion/engine[2]/fuel-flow-rate-kgph")+getprop("fdm/jsbsim/propulsion/engine[3]/fuel-flow-rate-kgph");
+      var ffpm = ffph/60;
+      var fuelToBeUsed = ffpm*minsToTouch;
+      var estGW = gwNow-fuelToBeUsed;
+      tracer("[calcVapp] estGW: "~estGW~", minToTouch: "~minsToTouch);
+      speedDif = (470000-estGW)/3333;
+    } else {
+      var wpNum = getprop("autopilot/route-manager/route/num");
+      if (wpNum != nil and wpNum > 0) {
+        var totalDist = 0;
+        for(var p = 0; p < (wpNum-1); p = p+1) {
+          var nextNM =getprop("autopilot/route-manager/route/wp["~p~"]/leg-distance-nm");
+          totalDist = totalDist+nextNM;
+        }
+        tracer("[calcVapp] totalDist: "~totalDist);
+        var fu = (totalDist/380)*8600;
+        var estGW = gwNow-fu;
+        tracer("[calcVapp] route based forecast - fuel est: "~fu~", gw est: "~estGW);
+        speedDif = (470000-estGW)/3333;
+      }
+    }
+    tracer("[calcVapp] speedDif: "~speedDif);
+    var Vref = 221-speedDif;
+    if (getprop("instrumentation/afs/appr_full") == 1) {
+      flapConfigExtra = 9;
+    }
+    Vref = Vref-flapConfigExtra;
+    Vls = Vref-15;
+    setprop("instrumentation/afs/Vref", Vref);
+    setprop("instrumentation/afs/Vls", Vls);
   }
 }
 

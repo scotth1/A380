@@ -89,7 +89,7 @@ srsFlapTarget = [263.0, 222.0, 210.0, 196.0, 182.0];   #another copy in system.n
 flapPos       = [0, 0.2424, 0.5151, 0.7878, 1.0];
 
 ##trace = 0;
-version = "1.1.18";
+version = "1.1.21";
 
 strobe_switch = props.globals.getNode("/controls/switches/strobe", 0);
 aircraft.light.new("sim/model/A380/lighting/strobe", [0.05, 1.2], strobe_switch);
@@ -864,12 +864,16 @@ update_ewd = func {
   if (getprop("/consumables/fuel/total-fuel-kg") < 10000) {
     ewdChecklist.append("FUEL LOW", 0.8, 0.1, 0.1);
   }
-  if (flt_mode == 8 and getprop("autopilot/autobrake/step") != -1) {
+  if (flt_mode == 8 and getprop("controls/gear/autobrakes") != 0) {
     ewdChecklist.append("AUTOBRK CHECK");
   }
-  if (flt_mode > 8 and flt_mode < 12 and getprop("autopilot/autobrake/step") == -1) {
+  if (flt_mode > 8 and flt_mode < 12 and getprop("controls/gear/autobrakes") == 0) {
     ewdChecklist.append("AUTOBRK CHECK");
   }
+  if (flt_mode > 8  and flt_mode < 10 and getprop("fdm/jsbsim/inertia/weight-kg") > 396000) {
+    ewdChecklist.append("CHK LAND GW", 0.8, 0.1, 0.1);
+  }
+
   ewdChecklist.reset();
 
   var mach = getprop("velocities/mach");
@@ -1676,7 +1680,7 @@ setlistener("controls/flight/flaps", func(n) {
    var fltMode = getprop("instrumentation/ecam/flight-mode");
    tracer("flap change - pos: "~pos~", posnorm: "~posnorm~", fltMode: "~fltMode);
    if (posnorm == 0 and fltMode > 5) {
-     setprop("velocities/vls-factor",1.29);
+     setprop("velocities/vls-factor",1.7);
    }
    if (posnorm == 2) {
      setprop("velocities/vls-factor", 1.26);
