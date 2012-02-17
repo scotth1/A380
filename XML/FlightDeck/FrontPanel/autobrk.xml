@@ -2,7 +2,7 @@
 <PropertyList>
 
   <path>../../../Models/FlightDeck/FrontPanel/autobrk.ac</path> 
-  <texture-path>../../../Textures/Panels/autbrk</texture-path>  
+  <texture-path>Aircraft/A380/Textures/Panels/autbrk</texture-path>  
   <offsets>
     <z-m>-0.005</z-m>
   </offsets>

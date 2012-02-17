@@ -19,7 +19,7 @@
 <PropertyList>
 
 	<path>../../../Models/FlightDeck/Pedestal/mcdu_display.ac</path> 
-	<texture-path>../../../Textures/Panels/fms/</texture-path>
+	<texture-path>Aircraft/A380/Textures/Panels/fms/</texture-path>
 
 <!--  Text labels -->
 

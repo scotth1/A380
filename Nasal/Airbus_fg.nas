@@ -1138,7 +1138,7 @@ setlistener("/instrumentation/nav[0]/in-range", func(n) {
          var ilsCat = getILSCategory(getprop("instrumentation/afs/TO"));
          tracer("ils cat: "~ilsCat);
          setprop("instrumentation/afs/rwy-cat", ilsCat);
-         if (lnavMode != LNAV_LOC and fltMode > 8) {
+         if (lnavMode != LNAV_LOC and fltMode > 7) {
            setprop("/instrumentation/flightdirector/lnav-arm", LNAV_LOC);
          } else {
            if (lnavArm == LNAV_LOC) {
@@ -1213,19 +1213,21 @@ var getILS = func(apt, rwy) {
 # requires patch to airportinfo() (merge request 14)
 var getILSCategory = func(id) {
   var retCat = "";
-  var apt = airportinfo(id);
-  var arvRunway = getprop("instrumentation/afs/arv-rwy");
-  #var navList = navinfo(apt.lat, apt.lon, "ils", 3.0);
-  #var navListSize = size(navList);
-  #print("size navList: "~navListSize);
-  #foreach(var ils; navList) {
-  #  if (ils.runway == arvRunway) {
-  #    var nmeStr = ils.name;
-  #    var parts = split(" ", nmeStr);
-  #    print("rwy: "~nmeStr~", parts[0]: "~parts[0]~", parts[1]: "~parts[1]~", parts[2]: "~parts[2]~", parts[3]: "~parts[3]);
-  #    retCat = substr(parts[3],4);
-  #  }
-  #}
+  if (id != nil) {
+    var apt = airportinfo(id);
+    var arvRunway = getprop("instrumentation/afs/arv-rwy");
+    #var navList = navinfo(apt.lat, apt.lon, "ils", 3.0);
+    #var navListSize = size(navList);
+    #print("size navList: "~navListSize);
+    #foreach(var ils; navList) {
+    #  if (ils.runway == arvRunway) {
+    #    var nmeStr = ils.name;
+    #    var parts = split(" ", nmeStr);
+    #    print("rwy: "~nmeStr~", parts[0]: "~parts[0]~", parts[1]: "~parts[1]~", parts[2]: "~parts[2]~", parts[3]: "~parts[3]);
+    #    retCat = substr(parts[3],4);
+    #  }
+    #}
+  }
   return retCat;
 }
 

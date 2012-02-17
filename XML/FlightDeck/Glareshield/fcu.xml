@@ -11,7 +11,7 @@
 <PropertyList>
 
 	<path>../../../Models/FlightDeck/Glareshield/fcu_03.ac</path> 
-	<texture-path>../../../Textures/Instruments</texture-path>
+	<texture-path>Aircraft/A380/Textures/Instruments</texture-path>
 	<offsets>
 		<z-m>0.25</z-m>
 	</offsets>

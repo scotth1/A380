@@ -3,7 +3,7 @@
 <PropertyList>
 
     <path>../../../Models/FlightDeck/Overhead/anti_ice_lights.ac</path> 
-    <texture-path>../../../Textures/Instruments</texture-path>
+    <texture-path>Aircraft/A380/Textures/Instruments</texture-path>
 
     <model>
         <path>Aircraft/A380/XML/FlightDeck/Overhead/guard_red.xml</path>

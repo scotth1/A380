@@ -3,7 +3,7 @@
 	<PropertyList>
 
 	<path>../Models/a380.ac</path> 
-	<texture-path>../Textures/Livery/House/</texture-path>
+	<texture-path>Aircraft/A380/Textures/Livery/House/</texture-path>
 	<offsets>
   		<z-m>-8.7</z-m>
    		<y-m>0</y-m>
@@ -108,6 +108,15 @@
   	<model>
    		<path>Aircraft/A380/XML/Wings/wings.xml</path>
   	</model>
+
+       <model>
+           <path>Aircraft/A380/XML/cabin.xml</path>
+           <offsets>
+               <x-m>11.6</x-m>
+               <y-m>0.0</y-m>
+               <z-m>4.9</z-m>
+           </offsets>
+       </model>
 
   	<model>
    		<path>Aircraft/A380/XML/htp.xml</path>

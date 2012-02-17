@@ -3,7 +3,7 @@
 <PropertyList>
 	
 	<path>../../Models/Wings/wings.ac</path> 
-	<texture-path>../../Textures/Livery/</texture-path>
+	<texture-path>Aircraft/A380/Textures/Livery/</texture-path>
 	
 	<offsets>
 		<x-m>31.496</x-m>

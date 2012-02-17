@@ -14,7 +14,7 @@
 	
 	<!-- path>../../../Models/FlightDeck/Pedestal/ecam/sdisplay.ac</path -->
 	<path>../../../Textures/Panels/ecam/sdisplay.ac</path>
-	<texture-path>../../../Textures/Panels/ecam</texture-path>
+	<texture-path>Aircraft/A380/Textures/Panels/ecam</texture-path>
 
 
 

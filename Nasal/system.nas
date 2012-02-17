@@ -133,7 +133,7 @@ init_controls = func {
   setprop("/controls/engines/engine[3]/thrust-lever",0);
   setprop("/environment/turbulence/use-cloud-turbulence","true");
   setprop("/sim/current-view/field-of-view",60.0);
-  setprop("/sim/view[102]/enabled", 0);
+  setprop("/sim/view[101]/enabled", 0);
   setprop("/sim/view[103]/enabled", 0);
   setprop("/controls/gear/brake-parking",1.0);
   setprop("/controls/engines/ign-start",0);        # the IGN start switch on the OH

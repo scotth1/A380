@@ -11,7 +11,7 @@
      <layer1>
        <name>FD on</name>
        <texture>
-         <path>../../Textures/Common/flightdeck.rgb</path>
+         <path>Aircraft/A380/Textures/Common/flightdeck.rgb</path>
 	 <x1>1.5390625</x1>  // lower 
 	 <y1>0.0390625</y1>  // left
 	 <x2>1.64453125</x2>  // upper
@@ -23,7 +23,7 @@
      <layer2>
        <name>FD off</name>
        <texture>
-         <path>../Textures/Common/flightdeck.rgb</path>
+         <path>Aircraft/A380/Textures/Common/flightdeck.rgb</path>
 	 <x1>1.25</x1>
 	 <y1>0.1015625</y1>
 	 <x2>1.359375</x2>
