@@ -377,6 +377,7 @@ changePage = func(unit,page) {
     var ldgElevPSI = atmos.convertAltitudePressure("feet",ldgElev,"psi");
     setprop("/controls/pressurisation/landing-elev-ft", ldgElev);
     setprop("/controls/pressurisation/landing-elev-psi", ldgElevPSI);
+    setprop("environment/metar[1]/station-id", getprop("/instrumentation/afs/TO"));
     
 
     var runWays = arvApt["runways"];
@@ -549,6 +550,14 @@ changePage = func(unit,page) {
      tracer(" active.to-perf calc Vso, Vr, V2");
      calcVSpeeds();
      calcVapp();
+     if (getprop("instrumentation/afs/dep-rwy") != nil) {
+       var depApt = airportinfo(getprop("/instrumentation/afs/FROM"));
+       var runWays = depApt["runways"];
+       var rwy = getprop("instrumentation/afs/dep-rwy");
+       var run = runWays[rwy];
+       var rwyLen = run["length"];
+       var rwyLenHalf = (rwyLen/2);
+     }
 
      var fltMode    = getprop("/instrumentation/ecam/flight-mode");
      if (fltMode == 2) {
@@ -583,7 +592,7 @@ calcVSpeeds = func() {
      }
      if (flapConfig == 3) {
        flapFactor = 1.3;
-     }
+     } 
      var Vr  = (Vso*flapFactor);
      var V2  = (Vso*(flapFactor+0.05))+10;
      var Vf  = (0*0);
@@ -1077,7 +1086,7 @@ calcVapp = func() {
   tracer("Calculate Vref and Vls");
   var flt_mode = getprop("instrumentation/ecam/flight-mode");
   if (flt_mode < 10) {
-    if (flt_mode > 7) {
+    if (flt_mode > 7) {    ## if we are airborne
       var timeToTouchdown = getprop("autopilot/route-manager/wp-last/eta");
       var timeParts = split(":", timeToTouchdown);
       var minsToTouch = timeParts[0]*60+timeParts[1];
@@ -1111,6 +1120,9 @@ calcVapp = func() {
     Vls = Vref-15;
     setprop("instrumentation/afs/Vref", Vref);
     setprop("instrumentation/afs/Vls", Vls);
+    setprop("instrumentation/afs/appr_wind_deg", getprop("environment/metar[1]/base-wind-dir-deg"));
+    setprop("instrumentation/afs/appr_wind_kts", getprop("environment/metar[1]/base-wind-speed-kt"));
+    setprop("instrumentation/afs/appr_oat", getprop("environment/metar[1]/temperature-degc"));
   }
 }
 

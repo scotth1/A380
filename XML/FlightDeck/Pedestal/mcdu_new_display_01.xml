@@ -1190,6 +1190,8 @@
 
 <!--   input fields -->
 
+
+
 <!--  active.init fields -->
 
 <text>
@@ -2796,7 +2798,60 @@
     <alignment>left-bottom</alignment>
 </text>
  
-
+ <text>
+   <name>value.appr_perf.appr_wind_deg</name>
+   <axis-alignment>yz-plane</axis-alignment>
+   <offsets>
+     <pitch-deg>-90</pitch-deg>
+     <x-m>-0.136</x-m>
+     <y-m>0.057</y-m>
+     <z-m>0.0008</z-m>
+   </offsets>
+   <type type="string">number-value</type>
+   <property>instrumentation/afs/appr_wind_deg</property>
+   <format>%1.0f</format>
+   <truncate type="bool">true</truncate>
+   <font>helvetica_medium.txf</font>
+   <character-size type="double">0.005</character-size>
+   <alignment>right-bottom</alignment>
+ </text>
+ 
+ 
+ <text>
+   <name>value.appr_perf.appr_wind_kts</name>
+   <axis-alignment>yz-plane</axis-alignment>
+   <offsets>
+     <pitch-deg>-90</pitch-deg>
+     <x-m>-0.136</x-m>
+     <y-m>0.077</y-m>
+     <z-m>0.0008</z-m>
+   </offsets>
+   <type type="string">number-value</type>
+   <property>instrumentation/afs/appr_wind_kts</property>
+   <format>%1.0f</format>
+   <truncate type="bool">true</truncate>
+   <font>helvetica_medium.txf</font>
+   <character-size type="double">0.005</character-size>
+   <alignment>right-bottom</alignment>
+ </text>
+ 
+ <text>
+   <name>value.appr_perf.appr_oat</name>
+   <axis-alignment>yz-plane</axis-alignment>
+   <offsets>
+     <pitch-deg>-90</pitch-deg>
+     <x-m>-0.113</x-m>
+     <y-m>0.064</y-m>
+     <z-m>0.0008</z-m>
+   </offsets>
+   <type type="string">number-value</type>
+   <property>instrumentation/afs/appr_oat</property>
+   <format>%1.0f</format>
+   <truncate type="bool">true</truncate>
+   <font>helvetica_medium.txf</font>
+   <character-size type="double">0.005</character-size>
+   <alignment>right-bottom</alignment>
+ </text>
 
 
 
@@ -2966,6 +3021,9 @@
     <object-name>value.to_perf.turb_mach</object-name>
     <object-name>value.appr_perf.Vls</object-name>
     <object-name>value.appr_perf.Vref</object-name>
+    <object-name>value.appr_perf.appr_wind_deg</object-name>
+    <object-name>value.appr_perf.appr_wind_kts</object-name>
+    <object-name>value.appr_perf.appr_oat</object-name>
     <ambient>
       <red>0.1</red>
       <green>0.8</green>
@@ -3213,6 +3271,9 @@
   <object-name>page.PERF_APPR</object-name>
   <object-name>value.appr_perf.Vls</object-name>
   <object-name>value.appr_perf.Vref</object-name>
+  <object-name>value.appr_perf.appr_wind_deg</object-name>
+  <object-name>value.appr_perf.appr_wind_kts</object-name>
+  <object-name>value.appr_perf.appr_oat</object-name>
   <condition>
     <equals>
       <property>/instrumentation/mcdu[0]/page</property>
