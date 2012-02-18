@@ -169,7 +169,7 @@
       <pitch-offset-deg>-17.184</pitch-offset-deg>
       <heading-offset-deg type="double">96.97</heading-offset-deg> <!-- parallel to the panel -->
       <x-offset-m archive="y"> -3.205 </x-offset-m> <!-- Left/Right -->
-      <y-offset-m archive="y"> -2.77 </y-offset-m> <!-- Up/Down -->
+      <y-offset-m archive="y"> -2.60 </y-offset-m> <!-- Up/Down -->
       <z-offset-m archive="y"> 13.701 </z-offset-m> <!-- Fdw/Back -->
     </config>
   </view>
