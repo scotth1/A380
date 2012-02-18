@@ -75,7 +75,7 @@ var AirbusFMS = {
      m.arvDB = nil;
      setprop("instrumentation/fms/plan[0]/display-nodes/current-page",0);
      setprop("instrumentation/fms/plan[0]/display-nodes/current-wp",0);
-     m.version = "V1.1.2";
+     m.version = "V1.1.3";
 
      setlistener("/sim/signals/fdm-initialized", func m.init());
      setlistener("/autopilot/route-manager/current-wp", func m.updateCurrentWP());
@@ -626,9 +626,11 @@ tracer : func(msg) {
         var wp = me.activePlan[i];
         if (wp.wp_type != type) {
           append(tmpPlan, wp);
+          tmpPos = tmpPos+1;
         }
       }
       me.activePlan = tmpPlan;
+      me.lastPost = tmpPos;
     }
 
 };

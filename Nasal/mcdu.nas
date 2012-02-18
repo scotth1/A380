@@ -33,7 +33,7 @@ inputType  = "";
 trace = 0;         ## Set to 0 to turn off all tracing messages
 depDB = nil;
 arvDB = nil;
-version = "V2.0.5";
+version = "V2.0.7";
 wpMode = "V2";    ## set to "V2" for new mode (airbusFMS) or "V1" for old mode (route-manager)
 
 routeClearArm = 0;
@@ -456,6 +456,7 @@ changePage = func(unit,page) {
       }
       setprop("/autopilot/route-manager/departure/airport",getprop("/instrumentation/afs/FROM"));
       setprop("/autopilot/route-manager/departure/runway",getprop("/instrumentation/afs/dep-rwy"));
+
     } else {
       print("[MCDU] failed to find Depart Airport in FMS data");
       print("  check the README file on how to add FMS database files");
@@ -704,6 +705,7 @@ selectSidAction = func(opt, unit) {
     tracer("Got back sid: "~sid.wp_name~", with: "~size(sid.wpts)~" wp");
     var toSpd = 200;
     airbusFMS.clearWPType("SID");
+    airbusFMS.clearWPType("T/C");
     var discontIdx = airbusFMS.findWPType("DISC");
     for(var w=0; w != size(sid.wpts);w=w+1) {
       var wpIns = "";
@@ -751,6 +753,7 @@ selectSidAction = func(opt, unit) {
       nextPage = "active.departure.sid.trans";
     } else {
       nextPage = "active.departure.arv";
+      copyPlanToRoute();
     }
 
     #
@@ -804,6 +807,7 @@ selectSidAction = func(opt, unit) {
     var appSpd = 270;
     airbusFMS.clearWPType("STAR");
     airbusFMS.clearWPType("IAP");
+    airbusFMS.clearWPType("T/D");
     foreach(var w; star.wpts) {
       if (wpMode == "V1") {
         var wpIns = "";
@@ -980,13 +984,31 @@ selectSidAction = func(opt, unit) {
     
     updateApproachAlts();
     
+    copyPlanToRoute();
+
+    tracer("/autopilot/route-manager/input, @ACTIVATE");
+    setprop("/autopilot/route-manager/input", "@ACTIVATE");
+    ##setprop("/autopilot/route-manager/active",1);
+  }
+  setprop("/instrumentation/mcdu["~unit~"]/opt-scroll", 0);
+  changePage(unit, nextPage);
+}
+
+
+####################################
+## copy from airbusFMS to Route Manager plan.
+##
+copyPlanToRoute = func() {
     tracer("clear route-manager and copy from FMS plan");
+    var crzFl = getprop("/instrumentation/afs/CRZ_FL");
     setprop("/autopilot/route-manager/active",0);
     setprop("autopilot/route-manager/input", "@CLEAR");
     setprop("/autopilot/route-manager/departure/airport",getprop("/instrumentation/afs/FROM"));
     setprop("/autopilot/route-manager/departure/runway",getprop("/instrumentation/afs/dep-rwy"));
     setprop("/autopilot/route-manager/destination/airport",getprop("/instrumentation/afs/TO"));
-    setprop("/autopilot/route-manager/destination/runway",getprop("/instrumentation/afs/arv-rwy"));
+    if (getprop("/instrumentation/afs/arv-rwy") != nil) {
+      setprop("/autopilot/route-manager/destination/runway",getprop("/instrumentation/afs/arv-rwy"));
+    }
 
     var maxWP = airbusFMS.getPlanSize();
     var idx = 1;
@@ -1001,15 +1023,7 @@ selectSidAction = func(opt, unit) {
     setprop("/autopilot/route-manager/cruise/flight-level",crzFl);
     setprop("/autopilot/route-manager/cruise/altitude-ft",(crzFl*100));
     setprop("/autopilot/route-manager/cruise/speed-kts",480);
-
-    tracer("/autopilot/route-manager/input, @ACTIVATE");
-    setprop("/autopilot/route-manager/input", "@ACTIVATE");
-    ##setprop("/autopilot/route-manager/active",1);
-  }
-  setprop("/instrumentation/mcdu["~unit~"]/opt-scroll", 0);
-  changePage(unit, nextPage);
 }
-
 
 
 #####################################
@@ -1057,7 +1071,7 @@ selectSidTransAction = func(val, unit) {
         }
       }
     }
-
+  copyPlanToRoute();
   changePage(unit, "active.departure.dep");
 }
 
