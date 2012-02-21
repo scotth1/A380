@@ -33,7 +33,7 @@ inputType  = "";
 trace = 0;         ## Set to 0 to turn off all tracing messages
 depDB = nil;
 arvDB = nil;
-version = "V2.0.7";
+version = "V2.0.9";
 wpMode = "V2";    ## set to "V2" for new mode (airbusFMS) or "V1" for old mode (route-manager)
 
 routeClearArm = 0;
@@ -537,6 +537,34 @@ changePage = func(unit,page) {
     }
   }
 
+  ### active.departure.sid.trans
+  if (page == "active.departure.star.trans") {
+     if (arvDB == nil) {
+      arvDB = fmsDB.new(getprop("/instrumentation/afs/TO"));
+    }
+    if (arvDB != nil) {
+      var sidVal = getprop("/instrumentation/afs/star");
+      var star = arvDB.getStar(sidVal);
+      setprop("/instrumentation/mcdu["~unit~"]/opt-size",size(star.transitions));
+      var pos = 1;
+      foreach(var proc; star.transitions) {
+        if (proc.trans_type == "star") {
+          var starAttr = sprintf("/instrumentation/mcdu[%i]/opt%02i",unit,pos);
+          var starNumWptAttr = sprintf("/instrumentation/mcdu[%i]/col01-opt%02i",unit,pos);
+          var starTransAttr = sprintf("/instrumentation/mcdu[%i]/col02-opt%02i",unit,pos);
+          setprop(starAttr, proc.trans_name);
+          setprop(starNumWptAttr, size(proc.trans_wpts));
+          pos = pos+1;
+        }
+      }
+    } else {
+      print("[MCDU] failed to find Arrival Airport in FMS data");
+      print("  check the README file on how to add FMS database files");
+      setprop("/instrumentation/mcdu["~unit~"]/opt-error","ARPT NOT IN DB");
+      setprop("/instrumentation/mcdu["~unit~"]/opt-error-display", CODE_WARN);
+    }
+  }
+
   if (page == "active.to_perf") {
      #V = √( 2 W g / ρ S Clmax )
      #
@@ -617,7 +645,7 @@ dispatchAction = func(val, unit) {
    if (page == "active.departure.sid" or page == "active.departure.star") {
      selectSidAction(val, unit);
    }
-   if (page == "active.departure.sid.trans") {
+   if (page == "active.departure.sid.trans" or page == "active.departure.star.trans") {
      selectSidTransAction(val, unit);
    }
    tracer("**** End dispatchAction("~val~")");
@@ -826,7 +854,8 @@ selectSidAction = func(opt, unit) {
           setprop("/autopilot/route-manager/input", "@insert "~wpIns);
           checkInsert(w, wpLen-1);
         }
-        var wpt = w;
+        var wpt = fmsWP.new();
+        wpt.copy(w);
         wpt.wp_parent_name = getprop("instrumentation/afs/star");
         wpt.wp_type = "STAR";
         if (wpt.alt_cstr != nil and wpt.alt_cstr < 11000) {
@@ -865,7 +894,16 @@ selectSidAction = func(opt, unit) {
     } else {
       nextPage = "active.departure.arv";
     }
-    var appr = arvDB.getApproachList(getprop("/instrumentation/afs/arv-rwy"));
+    var appr = arvDB.getApproachList(getprop("/instrumentation/afs/arv-rwy"), "ILS");
+    if (appr == nil or size(appr) == 0) {
+      tracer("No ILS approach found, try RNAV...");
+      appr = arvDB.getApproachList(getprop("/instrumentation/afs/arv-rwy"), "RNAV");
+    }
+    if (appr == nil or size(appr) == 0) {
+      tracer("No ILS approach found, try RNAV...");
+      appr = arvDB.getApproachList(getprop("/instrumentation/afs/arv-rwy"), "VOR");
+    }
+    tracer("Approaches found: "~size(appr));
     if (size(appr) == 1) {
       var iap = appr[0];
       airbusFMS.clearWPType("IAP");
@@ -875,7 +913,8 @@ selectSidAction = func(opt, unit) {
           tracer("transition to approach has "~size(trans.trans_wpts)~" wps");
           foreach(var twp; trans.trans_wpts) {
             if (twp.wp_type == "Normal" or twp.wp_type == "Outer Marker") {
-              iapWP = twp;
+              var iapWP =  fmsWP.new();
+              iapWP.copy(twp);
               iapWP.wp_type = "IAP";
               if (wpMode == "V1") {   ## V1
                 var wpLen = getprop("/autopilot/route-manager/route/num");
@@ -943,7 +982,8 @@ selectSidAction = func(opt, unit) {
           }
           var idExists = airbusFMS.findWPName(awp.wp_name);
           if (idExists == nil) {
-            var iapWP = awp;
+            var iapWP = fmsWP.new();
+            iapWP.copy(awp);
             iapWP.wp_type = "IAP";
             var wpAlt = -1;
             if (awp.alt_cstr >0) {
@@ -1535,6 +1575,10 @@ insertTopOfDescent = func() {
     var crzFl = getprop("/instrumentation/afs/CRZ_FL");
     var firstStarWp = star.wpts[0];
     var starWPIdx = airbusFMS.findWPType("STAR");
+    if (starWPIdx == nil) {
+      print("Can't calculate T/D, no STAR.");
+      return;
+    }
     var starWP = airbusFMS.getWP(starWPIdx);
     var arvApt = airportinfo(getprop("/instrumentation/afs/TO"));
     var crzFt  = getprop("/instrumentation/afs/thrust-cruise-alt");
@@ -1850,6 +1894,41 @@ insertAbsWP = func(id, index, lat, lon, alt) {
 setlistener("instrumentation/afs/to-flaps", func(n) {
   calcVSpeeds();
 });
+
+
+################################
+##  deep copy
+##
+deepcopy = func(o) {
+    result = "";
+    if(typeof(o) == "scalar") {
+        n = num(o);
+        if(n == nil) { result = result ~ '"' ~ o ~ '"'; }
+        else { result = result ~ o; }
+    } elsif(typeof(o) == "vector") {
+        result = result ~ "[ ";
+        if(size(o) > 0) { result = result ~ deepcopy(o[0]); }
+        for(i=1; i<size(o); i=i+1) {
+            result = result ~ ", " ~ deepcopy(o[i]);
+        }
+        result = result ~ " ]";
+    } elsif(typeof(o) == "hash") {
+        ks = keys(o);
+        result = result ~ "{ ";
+        if(size(o) > 0) {
+            k = ks[0];
+            result = result ~ k ~ ":" ~ deepcopy(o[k]);
+        }
+        for(i=1; i<size(o); i=i+1) {
+            k = ks[i];
+            result = result ~ ", " ~ k ~ " : " ~ deepcopy(o[k]);
+        }
+        result = result ~ " }";
+    } else {
+        result = result ~ "nil";
+    }
+    return result;
+}
 
 
 ### Call the init_mcdu after a few seconds to give time for other systems to settle.

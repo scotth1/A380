@@ -131,17 +131,22 @@ var fmsDB = {
           }
           if (substr(tp.wp_name,0,3) == "ILS") {
             var len = size(tp.wp_name);
-            var pos = int(len-3);
-            #if (len == 6) {
-            #  pos = int(len-3);
-            #}
-            #if (len == 8) {
-            #  pos = int(len-2);
-            #}
-            #if (len == 9) {
-            #  pos = int(len-3);
-            #}
             var run = substr(tp.wp_name,3);
+            tp.radio = "ILS";
+            ##print("   set approach runway: "~run);
+            append(tp.runways,run);
+          }
+          if (substr(tp.wp_name,0,4) == "VORD") {
+            var len = size(tp.wp_name);
+            var run = substr(tp.wp_name,4);
+            tp.radio = "VOR";
+            ##print("   set approach runway: "~run);
+            append(tp.runways,run);
+          }
+          if (substr(tp.wp_name,0,4) == "RNAV") {
+            var len = size(tp.wp_name);
+            var run = substr(tp.wp_name,4);
+            tp.radio = "RNAV";
             ##print("   set approach runway: "~run);
             append(tp.runways,run);
           }
@@ -332,10 +337,10 @@ var fmsDB = {
     ##############################
     # getApproachList
     #
-    getApproachList : func(runway) {
+    getApproachList : func(runway, radio) {
       var iapList = [];
       foreach(var s; me.wptps) {
-        if (s.tp_type == "Approach") {
+        if (s.tp_type == "Approach" and s.radio == radio) {
           foreach(var r; s.runways) {
             if (r == runway or r == "All") {
               append(iapList, s);
