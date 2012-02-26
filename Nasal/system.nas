@@ -181,6 +181,8 @@ init_controls = func {
   setprop("/systems/electrical/apu-test",0);
   print("Aircraft systems initialised");
   settimer(update_cabin_pressure, 3);
+
+  print("If you receive a Nasal error about missing member tower_lat and tower_lon, you will need to comment out the 'plot nearest airport in PLAN mode on ND.' section in this file");
 }
 
 
@@ -219,277 +221,18 @@ update_radar = func {
   #var departDistMetre   = currentPos.distance_to(departPos);
   
 
-
   ## set NAV[1] (R VOR) to always be our ref navaid
   #
   var refNavFreq = getprop("/instrumentation/gps/ref-navaid/frequency-mhz");
   var currNav1Freq = getprop("/instrumentation/nav[1]/frequencies/selected-mhz");
-  if (refNavFreq != nil and refNavFreq != currNav1Freq) {
+  var autoTuned    = getprop("/instrumentation/nav[1]/auto-tuned");
+  if (refNavFreq != nil and refNavFreq != currNav1Freq and autoTuned == 1) {
     setprop("/instrumentation/nav[1]/frequencies/selected-mhz", refNavFreq);
   }
 
-
-  ## plot AI aircraft on radar
-  ##
-  ai_craft = props.globals.getNode("/ai/models").getChildren("aircraft");
-  var aiPos = 0;
-  for(i=0; i<size(ai_craft);i=i+1) {
-    var inRange = getprop("/ai/models/aircraft["~i~"]/radar/in-range");
-    setprop("instrumentation/radar/ai["~aiPos~"]/valid",0);
-    setprop("instrumentation/radar/ai["~aiPos~"]/brg-offset",0);
-    setprop("instrumentation/radar/ai["~aiPos~"]/norm-dist",0);
-    setprop("instrumentation/radar/ai["~aiPos~"]/diff-alt-fl",0);
-    setprop("instrumentation/radar/ai["~aiPos~"]/callsign","");
-    if (inRange == 1) {
-      tgt_offset=getprop("/ai/models/aircraft[" ~ i ~ "]/radar/bearing-deg");
-      if(tgt_offset == nil) {
-        tgt_offset = 0.0;
-      }
-      tgt_offset -= true_heading;
-      if (tgt_offset < 0){
-        tgt_offset = 360-tgt_offset;
-      }
-      if (tgt_offset > 360){
-        tgt_offset -=360;
-      }
-      setprop("/instrumentation/radar/ai[" ~ aiPos ~ "]/brg-offset",tgt_offset);
-      test_dist=getprop("/instrumentation/nd[0]/range");
-      test1_dist = getprop("/ai/models/aircraft[" ~ i ~ "]/radar/range-nm");
-      if(test1_dist == nil) {
-        test1_dist=0.0;
-      }
-      norm_dist = (1 / test_dist) * test1_dist;
-      setprop("/instrumentation/radar/ai[" ~ aiPos ~ "]/norm-dist", norm_dist);
-      var aiAlt = getprop("ai/models/aircraft["~i~"]/position/altitude-ft");
-      var diffAlt = (myAlt-aiAlt)/100;
-      setprop("/instrumentation/radar/ai["~aiPos~"]/diff-alt-fl", diffAlt);
-      setprop("/instrumentation/radar/ai["~aiPos~"]/valid",1);
-      setprop("/instrumentation/radar/ai["~aiPos~"]/callsign", getprop("/ai/models/aircraft["~i~"]/callsign"));
-      aiPos = aiPos + 1;
-    }
-  }
-
-  ## plot multiplayer aircraft
-  ##
-  var radarRange = getprop("/instrumentation/nd[0]/range");
-  var mpPos = 0;
-  var playerNum = getprop("ai/models/num-players");
-  for(i=0;i<playerNum;i=i+1) {
-    ##var aiHdg = getprop("/ai/models/multiplayer["~i~"]/radar/bearing-deg");
-    var aiHdg = getprop("ai/models/multiplayer["~i~"]/bearing-to");
-    ##var aiHdg = getprop("ai/models/multiplayer["~i~"]/radar/rotation");
-    var valid    = getprop("/ai/models/multiplayer["~i~"]/valid");
-    var base = props.globals.getNode("/instrumentation/radar/mp["~mpPos~"]",1);
-    var validNode = base.getNode("valid",1);
-    validNode.setBoolValue(valid);
-    var idNode = base.getNode("callsign",1);
-    idNode.setValue("");
-    var distNode = base.getNode("norm-dist",1);
-    distNode.setDoubleValue(-1);
-    var brgNode = base.getNode("brg-offset",1);
-    brgNode.setDoubleValue(0.0);
-    var crsNode = base.getNode("crs",1);
-    crsNode.setDoubleValue(0.0);
-    var altNode = base.getNode("altitude-offset",1);
-    altNode.setIntValue(0);
-    if (aiHdg != nil and valid == 1) {
-      var callsign = getprop("/ai/models/multiplayer["~i~"]/callsign");
-      var tgt_offset = aiHdg;
-      if (mag_heading > 180) {
-        var dif = 360-mag_heading;
-        tgt_offset = aiHdg+dif;
-      } else {
-        var dif = mag_heading;
-        tgt_offset = aiHdg-dif;
-      }
-      test1_dist = getprop("ai/models/multiplayer["~i~"]/distance-to-nm");
-      if(test1_dist == nil) {
-        test1_dist=0.0;
-      }
-      norm_dist= (1 / radarRange) * test1_dist;
-      if (norm_dist <= 1) {
-        var aiAlt = getprop("/ai/models/multiplayer["~i~"]/position/altitude-ft");
-        var diffAlt = (aiAlt-myAlt)/100;
-        altNode.setIntValue(diffAlt);
-        brgNode.setDoubleValue(tgt_offset);
-        crsNode.setDoubleValue(aiHdg);
-        distNode.setDoubleValue(norm_dist);
-        idNode.setValue(callsign);
-        validNode.setBoolValue(1);
-        mpPos += 1;
-      }
-    }
-  }
-  for(i=mpPos; i < maxMPCnt; i=i+1) {
-    setprop("/instrumentation/radar/mp["~i~"]/valid",0);
-  }
-  maxMPCnt = mpPos+1;
-
-  ## plot waypoints 
-  ##
-  var wpCnt = 0;
-  var wp_points = props.globals.getNode("/autopilot/route-manager/route").getChildren("wp");
-  for(i=1;i <size(wp_points); i=i+1) {
-    var tgt_offset = -9999;
-    var wpDist = 9999;
-    var wpLat = getprop("/autopilot/route-manager/route/wp["~i~"]/latitude-deg");
-    var wpLon = getprop("/autopilot/route-manager/route/wp["~i~"]/longitude-deg");
-    var wpId  = getprop("/autopilot/route-manager/route/wp["~i~"]/id");
-    if (wpLat != nil and wpLon != nil and find("(",wpId) == -1 and find(")",wpId) == -1) {
-      var wpPos = geo.Coord.new();
-      wpPos.set_latlon(wpLat, wpLon, 0);
-      var wpCourse = currentPos.course_to(wpPos);
-      wpDistMetre   = currentPos.distance_to(wpPos);
-      wpDist = wpDistMetre*METRE2NM;
-      if (mag_heading < wpCourse) {
-        tgt_offset = wpCourse-mag_heading;
-        #print("[radar] "~wpId~" mag_head: "~mag_heading~", wpCourse: "~wpCourse~", tgt_offset: "~tgt_offset);
-      } else {
-        tgt_offset = 360-(mag_heading-wpCourse);
-        #print("[radar] "~wpId~" mag_head: "~mag_heading~", wpCourse: "~wpCourse~", tgt_offset: "~tgt_offset);
-      }
-      if (tgt_offset < 0){
-        tgt_offset = 360-tgt_offset;
-      }
-      if (tgt_offset > 360){
-        tgt_offset -=360;
-      }
-    }
-    if (wpDist <= radarRange) {
-      var base = props.globals.getNode("/instrumentation/radar/wp["~wpCnt~"]",1);
-      wpCnt = wpCnt + 1;
-      var valid = base.getNode("valid",1);
-      valid.setBoolValue(1);
-      var brg = base.getNode("brg-offset",1);
-      brg.setDoubleValue(tgt_offset);
-      var crs = base.getNode("crs",1);
-      crs.setDoubleValue(wpCourse);
-      var dist = base.getNode("dist-norm", 1);
-      dist.setDoubleValue(wpDist/radarRange);
-      var id = base.getNode("id",1);
-      id.setValue(wpId);
-    }
-  }
-
-  if (wpCnt < radarLastCnt) {
-    for(i=wpCnt;i<=radarLastCnt;i=i+1) {
-      var base = props.globals.getNode("/instrumentation/radar/wp["~i~"]",0);
-      if (base != nil) {
-        var valid = base.getNode("valid",1);
-        valid.setBoolValue(0);
-        var brg = base.getNode("brg-offset",1);
-        brg.setDoubleValue(0);
-        var dist = base.getNode("dist-norm", 1);
-        dist.setDoubleValue(0);
-        var id = base.getNode("id",1);
-        id.setValue("");
-      }
-    }
-  }
-  radarLastCnt = wpCnt;
-
-  ######
-  ## plot the three pseudo waypoints
-  var wpIdx = fms.findWPType("T/C");
-  if (wpIdx != nil) {
-    updatePseudo(fms.getWP(wpIdx));
-  }
-  wpIdx = fms.findWPType("T/D");
-  if (wpIdx != nil) {
-    updatePseudo(fms.getWP(wpIdx));
-  }
-  wpIdx = fms.findWPType("DECEL");
-  if (wpIdx != nil) {
-    updatePseudo(fms.getWP(wpIdx));
-  }
-
-  ## plot the GPS ref navaid on radar
-  ##
-  var navBrg  = getprop("/instrumentation/gps/ref-navaid/bearing-deg");
-  var navBrgMag  = getprop("/instrumentation/gps/ref-navaid/mag-bearing-deg");
-  var navDist = getprop("/instrumentation/gps/ref-navaid/distance-nm");
-  if (navBrg != nil) {
-    var tgt_offset = navBrg-mag_heading;    ##+true_heading;
-    if (tgt_offset < 0) {
-      tgt_offset +=360;
-    }
-    if (tgt_offset > 360) {
-      tgt_offset -=360;
-    }
-    var navaidId = getprop("/instrumentation/gps/ref-navaid/id");
-    if (navDist < radarRange and navaidId != '') {
-      setprop("/instrumentation/radar/navaid-valid",1);
-      setprop("/instrumentation/radar/navaid-id", navaidId);
-    } else {
-      setprop("/instrumentation/radar/navaid-valid",0);
-      setprop("/instrumentation/radar/navaid-id", "");
-    }
-    setprop("/instrumentation/radar/navaid-brg",tgt_offset);
-    setprop("/instrumentation/radar/navaid-dist-norm",navDist/radarRange);
-  }
-  
-
-  ## plot nearest airports
-  ##
-  var pos = 0;
-  var arptData = getprop("instrumentation/efis[0]/inputs/ARPT");
-  
-    ##var aptList = airportinfo("airport", radarRange);
-    ##var listSize = size(aptList);
-    ##tracer("    airportList size: "~listSize);
-    ##foreach (var apt; aptList) {
-    ##debug.dump(apt);
-    if (pos > 0) {
-      var base = props.globals.getNode("/instrumentation/radar/airports["~pos~"]",1);
-      var valid = base.getNode("valid",1);
-      valid.setBoolValue(0);
-      var brg = base.getNode("brg-offset",1);
-      brg.setDoubleValue(0.0);
-      var crs = base.getNode("crs", 1);
-      crs.setDoubleValue(0.0);
-      var dist = base.getNode("dist-norm", 1);
-      dist.setDoubleValue(0.0);
-      var id = base.getNode("id",1);
-      id.setValue("");
-      if (apt != nil) {
-        var aptPos = geo.Coord.new();
-        aptPos.set_latlon(apt.lat, apt.lon, apt.elevation);
-        var aptCourse = currentPos.course_to(aptPos);
-        if (mag_heading > 180) {
-          var dif = 360-mag_heading;
-          tgt_offset = aptCourse+dif;
-        } else {
-          var dif = mag_heading;
-          tgt_offset = aptCourse-dif;
-        }
-        aptDistMetre   = currentPos.distance_to(aptPos);
-        aptDist = aptDistMetre*METRE2NM;
-        if (aptDist > 2) {
-          id.setValue(apt.id);
-          dist.setDoubleValue(aptDist/radarRange);
-          brg.setDoubleValue(tgt_offset);
-          crs.setDoubleValue(aptCourse);
-          valid.setBoolValue(1);
-          pos = pos + 1;
-        }
-      }
-    }
-  ##}
-  #for(var r = pos; r <= radarLastAirportCnt; r=r+1) {
-  #  var base = props.globals.getNode("/instrumentation/radar/airports["~r~"]",1);
-  #  var valid = base.getNode("valid",1);
-  #  valid.setBoolValue(0);
-  #  var brg = base.getNode("brg-offset",1);
-  #  brg.setDoubleValue(0.0);
-  #  var dist = base.getNode("dist-norm", 1);
-  #  dist.setDoubleValue(0.0);
-  #  var id = base.getNode("id",1);
-  #  id.setValue("");
-  #}
-  #radarLastAirportCnt = pos;
-
   ##
   #  plot nearest airport in PLAN mode on ND.
+  #  NOTE: this requires the patch to airportinfo() and navinfo() as merge-request #14 in the flightgear repository.
   #
   var closeAirportName = getprop("sim/airport/closest-airport-id");
   ##var closeAirportName = nil;
@@ -519,6 +262,21 @@ update_radar = func {
       dist.setDoubleValue(0.0);
       id.setValue("");
     }
+  }
+
+  ######
+  ## plot the three pseudo waypoints
+  var wpIdx = fms.findWPType("T/C");
+  if (wpIdx != nil) {
+    updatePseudo(fms.getWP(wpIdx));
+  }
+  wpIdx = fms.findWPType("T/D");
+  if (wpIdx != nil) {
+    updatePseudo(fms.getWP(wpIdx));
+  }
+  wpIdx = fms.findWPType("DECEL");
+  if (wpIdx != nil) {
+    updatePseudo(fms.getWP(wpIdx));
   }
   
   var acqCL = getprop("instrumentation/afs/acquire_cl");
@@ -1897,6 +1655,258 @@ setlistener("/controls/anti-ice/engine[3]/inlet-heat", func(n) {
    setprop("fdm/jsbsim/propulsion/engine[3]/bleed-factor", currBleed+anti);
 });
 
+
+#################################
+# old radar codebase
+#
+old_radar = func() {
+  ## plot AI aircraft on radar
+  ##
+  ai_craft = props.globals.getNode("/ai/models").getChildren("aircraft");
+  var aiPos = 0;
+  for(i=0; i<size(ai_craft);i=i+1) {
+    var inRange = getprop("/ai/models/aircraft["~i~"]/radar/in-range");
+    setprop("instrumentation/radar/ai["~aiPos~"]/valid",0);
+    setprop("instrumentation/radar/ai["~aiPos~"]/brg-offset",0);
+    setprop("instrumentation/radar/ai["~aiPos~"]/norm-dist",0);
+    setprop("instrumentation/radar/ai["~aiPos~"]/diff-alt-fl",0);
+    setprop("instrumentation/radar/ai["~aiPos~"]/callsign","");
+    if (inRange == 1) {
+      tgt_offset=getprop("/ai/models/aircraft[" ~ i ~ "]/radar/bearing-deg");
+      if(tgt_offset == nil) {
+        tgt_offset = 0.0;
+      }
+      tgt_offset -= true_heading;
+      if (tgt_offset < 0){
+        tgt_offset = 360-tgt_offset;
+      }
+      if (tgt_offset > 360){
+        tgt_offset -=360;
+      }
+      setprop("/instrumentation/radar/ai[" ~ aiPos ~ "]/brg-offset",tgt_offset);
+      test_dist=getprop("/instrumentation/nd[0]/range");
+      test1_dist = getprop("/ai/models/aircraft[" ~ i ~ "]/radar/range-nm");
+      if(test1_dist == nil) {
+        test1_dist=0.0;
+      }
+      norm_dist = (1 / test_dist) * test1_dist;
+      setprop("/instrumentation/radar/ai[" ~ aiPos ~ "]/norm-dist", norm_dist);
+      var aiAlt = getprop("ai/models/aircraft["~i~"]/position/altitude-ft");
+      var diffAlt = (myAlt-aiAlt)/100;
+      setprop("/instrumentation/radar/ai["~aiPos~"]/diff-alt-fl", diffAlt);
+      setprop("/instrumentation/radar/ai["~aiPos~"]/valid",1);
+      setprop("/instrumentation/radar/ai["~aiPos~"]/callsign", getprop("/ai/models/aircraft["~i~"]/callsign"));
+      aiPos = aiPos + 1;
+    }
+  }
+
+  ## plot multiplayer aircraft
+  ##
+  var radarRange = getprop("/instrumentation/nd[0]/range");
+  var mpPos = 0;
+  var playerNum = getprop("ai/models/num-players");
+  for(i=0;i<playerNum;i=i+1) {
+    ##var aiHdg = getprop("/ai/models/multiplayer["~i~"]/radar/bearing-deg");
+    var aiHdg = getprop("ai/models/multiplayer["~i~"]/bearing-to");
+    ##var aiHdg = getprop("ai/models/multiplayer["~i~"]/radar/rotation");
+    var valid    = getprop("/ai/models/multiplayer["~i~"]/valid");
+    var base = props.globals.getNode("/instrumentation/radar/mp["~mpPos~"]",1);
+    var validNode = base.getNode("valid",1);
+    validNode.setBoolValue(valid);
+    var idNode = base.getNode("callsign",1);
+    idNode.setValue("");
+    var distNode = base.getNode("norm-dist",1);
+    distNode.setDoubleValue(-1);
+    var brgNode = base.getNode("brg-offset",1);
+    brgNode.setDoubleValue(0.0);
+    var crsNode = base.getNode("crs",1);
+    crsNode.setDoubleValue(0.0);
+    var altNode = base.getNode("altitude-offset",1);
+    altNode.setIntValue(0);
+    if (aiHdg != nil and valid == 1) {
+      var callsign = getprop("/ai/models/multiplayer["~i~"]/callsign");
+      var tgt_offset = aiHdg;
+      if (mag_heading > 180) {
+        var dif = 360-mag_heading;
+        tgt_offset = aiHdg+dif;
+      } else {
+        var dif = mag_heading;
+        tgt_offset = aiHdg-dif;
+      }
+      test1_dist = getprop("ai/models/multiplayer["~i~"]/distance-to-nm");
+      if(test1_dist == nil) {
+        test1_dist=0.0;
+      }
+      norm_dist= (1 / radarRange) * test1_dist;
+      if (norm_dist <= 1) {
+        var aiAlt = getprop("/ai/models/multiplayer["~i~"]/position/altitude-ft");
+        var diffAlt = (aiAlt-myAlt)/100;
+        altNode.setIntValue(diffAlt);
+        brgNode.setDoubleValue(tgt_offset);
+        crsNode.setDoubleValue(aiHdg);
+        distNode.setDoubleValue(norm_dist);
+        idNode.setValue(callsign);
+        validNode.setBoolValue(1);
+        mpPos += 1;
+      }
+    }
+  }
+  for(i=mpPos; i < maxMPCnt; i=i+1) {
+    setprop("/instrumentation/radar/mp["~i~"]/valid",0);
+  }
+  maxMPCnt = mpPos+1;
+
+## plot waypoints 
+  ##
+  var wpCnt = 0;
+  var wp_points = props.globals.getNode("/autopilot/route-manager/route").getChildren("wp");
+  for(i=1;i <size(wp_points); i=i+1) {
+    var tgt_offset = -9999;
+    var wpDist = 9999;
+    var wpLat = getprop("/autopilot/route-manager/route/wp["~i~"]/latitude-deg");
+    var wpLon = getprop("/autopilot/route-manager/route/wp["~i~"]/longitude-deg");
+    var wpId  = getprop("/autopilot/route-manager/route/wp["~i~"]/id");
+    if (wpLat != nil and wpLon != nil and find("(",wpId) == -1 and find(")",wpId) == -1) {
+      var wpPos = geo.Coord.new();
+      wpPos.set_latlon(wpLat, wpLon, 0);
+      var wpCourse = currentPos.course_to(wpPos);
+      wpDistMetre   = currentPos.distance_to(wpPos);
+      wpDist = wpDistMetre*METRE2NM;
+      if (mag_heading < wpCourse) {
+        tgt_offset = wpCourse-mag_heading;
+        #print("[radar] "~wpId~" mag_head: "~mag_heading~", wpCourse: "~wpCourse~", tgt_offset: "~tgt_offset);
+      } else {
+        tgt_offset = 360-(mag_heading-wpCourse);
+        #print("[radar] "~wpId~" mag_head: "~mag_heading~", wpCourse: "~wpCourse~", tgt_offset: "~tgt_offset);
+      }
+      if (tgt_offset < 0){
+        tgt_offset = 360-tgt_offset;
+      }
+      if (tgt_offset > 360){
+        tgt_offset -=360;
+      }
+    }
+    if (wpDist <= radarRange) {
+      var base = props.globals.getNode("/instrumentation/radar/wp["~wpCnt~"]",1);
+      wpCnt = wpCnt + 1;
+      var valid = base.getNode("valid",1);
+      valid.setBoolValue(1);
+      var brg = base.getNode("brg-offset",1);
+      brg.setDoubleValue(tgt_offset);
+      var crs = base.getNode("crs",1);
+      crs.setDoubleValue(wpCourse);
+      var dist = base.getNode("dist-norm", 1);
+      dist.setDoubleValue(wpDist/radarRange);
+      var id = base.getNode("id",1);
+      id.setValue(wpId);
+    }
+  }
+
+  if (wpCnt < radarLastCnt) {
+    for(i=wpCnt;i<=radarLastCnt;i=i+1) {
+      var base = props.globals.getNode("/instrumentation/radar/wp["~i~"]",0);
+      if (base != nil) {
+        var valid = base.getNode("valid",1);
+        valid.setBoolValue(0);
+        var brg = base.getNode("brg-offset",1);
+        brg.setDoubleValue(0);
+        var dist = base.getNode("dist-norm", 1);
+        dist.setDoubleValue(0);
+        var id = base.getNode("id",1);
+        id.setValue("");
+      }
+    }
+  }
+  radarLastCnt = wpCnt;
+
+  ## plot the GPS ref navaid on radar
+  ##
+  var navBrg  = getprop("/instrumentation/gps/ref-navaid/bearing-deg");
+  var navBrgMag  = getprop("/instrumentation/gps/ref-navaid/mag-bearing-deg");
+  var navDist = getprop("/instrumentation/gps/ref-navaid/distance-nm");
+  if (navBrg != nil) {
+    var tgt_offset = navBrg-mag_heading;    ##+true_heading;
+    if (tgt_offset < 0) {
+      tgt_offset +=360;
+    }
+    if (tgt_offset > 360) {
+      tgt_offset -=360;
+    }
+    var navaidId = getprop("/instrumentation/gps/ref-navaid/id");
+    if (navDist < radarRange and navaidId != '') {
+      setprop("/instrumentation/radar/navaid-valid",1);
+      setprop("/instrumentation/radar/navaid-id", navaidId);
+    } else {
+      setprop("/instrumentation/radar/navaid-valid",0);
+      setprop("/instrumentation/radar/navaid-id", "");
+    }
+    setprop("/instrumentation/radar/navaid-brg",tgt_offset);
+    setprop("/instrumentation/radar/navaid-dist-norm",navDist/radarRange);
+  }
+  
+
+  ## plot nearest airports
+  ##
+  var pos = 0;
+  var arptData = getprop("instrumentation/efis[0]/inputs/ARPT");
+  
+    ##var aptList = airportinfo("airport", radarRange);
+    ##var listSize = size(aptList);
+    ##tracer("    airportList size: "~listSize);
+    ##foreach (var apt; aptList) {
+    ##debug.dump(apt);
+    if (pos > 0) {
+      var base = props.globals.getNode("/instrumentation/radar/airports["~pos~"]",1);
+      var valid = base.getNode("valid",1);
+      valid.setBoolValue(0);
+      var brg = base.getNode("brg-offset",1);
+      brg.setDoubleValue(0.0);
+      var crs = base.getNode("crs", 1);
+      crs.setDoubleValue(0.0);
+      var dist = base.getNode("dist-norm", 1);
+      dist.setDoubleValue(0.0);
+      var id = base.getNode("id",1);
+      id.setValue("");
+      if (apt != nil) {
+        var aptPos = geo.Coord.new();
+        aptPos.set_latlon(apt.lat, apt.lon, apt.elevation);
+        var aptCourse = currentPos.course_to(aptPos);
+        if (mag_heading > 180) {
+          var dif = 360-mag_heading;
+          tgt_offset = aptCourse+dif;
+        } else {
+          var dif = mag_heading;
+          tgt_offset = aptCourse-dif;
+        }
+        aptDistMetre   = currentPos.distance_to(aptPos);
+        aptDist = aptDistMetre*METRE2NM;
+        if (aptDist > 2) {
+          id.setValue(apt.id);
+          dist.setDoubleValue(aptDist/radarRange);
+          brg.setDoubleValue(tgt_offset);
+          crs.setDoubleValue(aptCourse);
+          valid.setBoolValue(1);
+          pos = pos + 1;
+        }
+      }
+    }
+  ##}
+  #for(var r = pos; r <= radarLastAirportCnt; r=r+1) {
+  #  var base = props.globals.getNode("/instrumentation/radar/airports["~r~"]",1);
+  #  var valid = base.getNode("valid",1);
+  #  valid.setBoolValue(0);
+  #  var brg = base.getNode("brg-offset",1);
+  #  brg.setDoubleValue(0.0);
+  #  var dist = base.getNode("dist-norm", 1);
+  #  dist.setDoubleValue(0.0);
+  #  var id = base.getNode("id",1);
+  #  id.setValue("");
+  #}
+  #radarLastAirportCnt = pos;
+
+
+
+}
 
 
 settimer(init_controls, 0);

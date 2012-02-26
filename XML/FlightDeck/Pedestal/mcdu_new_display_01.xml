@@ -5327,6 +5327,20 @@
   <transparency><alpha>0.7</alpha></transparency>
 </animation>
 
+ <!-- can not use properties to name the object
+ <animation>
+   <type>material</type>
+   <object-name-prop>instrumentation/afs/current-field</object-name-prop>
+   <emission>
+     <red>0.8</red>
+     <green>0.8</green>
+     <blue>0.8</blue>
+   </emission>
+   <transparency>
+     <alpha>0.4</alpha>
+   </transparency>
+ </animation -->
+
 <animation>
   <type>select</type>
   <object-name>page.perf</object-name>

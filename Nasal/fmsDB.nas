@@ -19,6 +19,7 @@
 #  Who		When		What
 #  S.H		01-SEP-2009	Initial version
 #  S.H.		21-OCT-2010	add WP parent_name to support FPLN display
+#  S.H.		20-FEB-2012	support ILS, VOR, RNAV approaches 
 #
 
 var fmsDB = {

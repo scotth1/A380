@@ -142,6 +142,7 @@ selectField = func(field) {
    currentField = field;
    tracer("set current field to: "~currentField);
    var attr = "/instrumentation/afs/"~field;
+   setprop("instrumentation/afs/current-field", "input."~currentField);
    inputValue = getprop(attr);
    inputType = props.globals.getNode(attr).getType();
    if (inputType == "DOUBLE") {
