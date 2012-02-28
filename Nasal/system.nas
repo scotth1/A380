@@ -232,10 +232,12 @@ update_radar = func {
 
   ##
   #  plot nearest airport in PLAN mode on ND.
-  #  NOTE: this requires the patch to airportinfo() and navinfo() as merge-request #14 in the flightgear repository.
+  #  NOTE: this requires the patch to airportinfo() and navinfo() contained in merge-request #14 in the flightgear repository.
   #
+  #  UNcomment the line below
+  ##var closeAirportName = nil; 
+  #  and then comment the line below
   var closeAirportName = getprop("sim/airport/closest-airport-id");
-  ##var closeAirportName = nil;
   if (closeAirportName != nil) {
     var closestApt = airportinfo(closeAirportName);
     var base = props.globals.getNode("/instrumentation/groundradar/airport",1);

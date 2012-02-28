@@ -1138,7 +1138,7 @@ setlistener("/instrumentation/nav[0]/in-range", func(n) {
          var ilsCat = getILSCategory(getprop("instrumentation/afs/TO"));
          tracer("ils cat: "~ilsCat);
          setprop("instrumentation/afs/rwy-cat", ilsCat);
-         var alt = getprop("positoon/altitude-ft");
+         var alt = getprop("position/altitude-ft");
          if (lnavMode != LNAV_LOC and fltMode > 7 and alt < 8000 ) {
            setprop("/instrumentation/flightdirector/lnav-arm", LNAV_LOC);
          } else {
@@ -1171,7 +1171,7 @@ setlistener("/instrumentation/nav[0]/gs-in-range", func(n) {
        lastGSStatus = range;
      
        if (range == 1) {
-         var alt = getprop("positoon/altitude-ft");
+         var alt = getprop("position/altitude-ft");
          if (vnavMode != VNAV_GS and alt < 8000) {
            setprop("/instrumentation/flightdirector/vnav-arm", VNAV_GS);
          } else {
