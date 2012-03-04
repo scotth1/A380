@@ -30,10 +30,10 @@ currentField = "";
 currentFieldPos = 0;
 inputValue = "";
 inputType  = "";
-trace = 0;         ## Set to 0 to turn off all tracing messages
+trace = 1;         ## Set to 0 to turn off all tracing messages
 depDB = nil;
 arvDB = nil;
-version = "V2.0.9";
+version = "V2.0.10";
 wpMode = "V2";    ## set to "V2" for new mode (airbusFMS) or "V1" for old mode (route-manager)
 
 routeClearArm = 0;
@@ -1001,7 +1001,7 @@ selectSidAction = func(opt, unit) {
                 var wpName = awp.wp_name;
                 insertAbsWP(type,wpLen-1,awp.wp_lat,awp.wp_lon,wpAlt);
               }
-              var arpIdx = airbus.findWPName(getprop("/instrumentation/afs/TO"));
+              var arpIdx = airbusFMS.findWPName(getprop("/instrumentation/afs/TO"));
               iapWP.wp_type = "IAP";
               iapWP.wp_name = type;
               airbusFMS.insertWP(iapWP, arpIdx);
@@ -1025,11 +1025,17 @@ selectSidAction = func(opt, unit) {
     
     updateApproachAlts();
     
-    copyPlanToRoute();
+    var newIdx = copyPlanToRoute();
 
-    tracer("/autopilot/route-manager/input, @ACTIVATE");
-    setprop("/autopilot/route-manager/input", "@ACTIVATE");
-    ##setprop("/autopilot/route-manager/active",1);
+    if (getprop("autopilot/route-manager/active") == 0) {
+      tracer("@ACTIVATE");
+      setprop("/autopilot/route-manager/input", "@ACTIVATE");
+      ##setprop("/autopilot/route-manager/active",1);
+    }
+    if (newIdx > 0) {
+      tracer("@JUMP"~newIdx);
+      setprop("autopilot/route-manager/input", "@JUMP"~newIdx);
+    }
   }
   setprop("/instrumentation/mcdu["~unit~"]/opt-scroll", 0);
   changePage(unit, nextPage);
@@ -1039,10 +1045,20 @@ selectSidAction = func(opt, unit) {
 ####################################
 ## copy from airbusFMS to Route Manager plan.
 ##
-copyPlanToRoute = func() {
+var copyPlanToRoute = func() {
     tracer("clear route-manager and copy from FMS plan");
     var crzFl = getprop("/instrumentation/afs/CRZ_FL");
-    setprop("/autopilot/route-manager/active",0);
+    var curWPIdx = getprop("autopilot/route-manager/current-wp");
+    var curWPId = "";
+    if (curWPIdx == nil) {
+      curWPIdx = -1;
+    }
+    if (curWPIdx > 0) {
+      tracer("[copyPlan] Get current WP at "~curWPIdx);
+      curWPId  = getprop("autopilot/route-manager/route/wp["~curWPIdx~"]/id");
+    }
+    var newCurIdx = curWPIdx;
+    ###setprop("/autopilot/route-manager/active",0);
     setprop("autopilot/route-manager/input", "@CLEAR");
     setprop("/autopilot/route-manager/departure/airport",getprop("/instrumentation/afs/FROM"));
     setprop("/autopilot/route-manager/departure/runway",getprop("/instrumentation/afs/dep-rwy"));
@@ -1055,15 +1071,21 @@ copyPlanToRoute = func() {
     var idx = 1;
     for(var w = 0; w < maxWP; w=w+1) {
       var wp = airbusFMS.getWP(w);
-      if (wp.wp_type == "APT" or wp.wp_type == "DISC") {
+      if (wp.wp_type == "APT" or wp.wp_type == "DISC" or wp.wp_type == "END") {
+        ##
       } else {
         insertAbsWP(wp.wp_name,idx,wp.wp_lat,wp.wp_lon,wp.alt_cstr);
+        if (curWPIdx > 0 and wp.wp_name == curWPId) {
+          tracer("[copyPlan] set new index for WP: "~curWPId~", to: "~idx);
+          newCurIdx = idx;
+        }
         idx=idx+1;
       }
     }
     setprop("/autopilot/route-manager/cruise/flight-level",crzFl);
     setprop("/autopilot/route-manager/cruise/altitude-ft",(crzFl*100));
     setprop("/autopilot/route-manager/cruise/speed-kts",480);
+    return newCurIdx;
 }
 
 
