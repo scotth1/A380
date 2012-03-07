@@ -31,17 +31,37 @@
     <instrument include="ROSEtext.xml">      
         <condition>
             <and>
+              <greater-than>
+                <property>systems/electrical/outputs/efis</property>
+                <value>15</value>
+              </greater-than>
+              <equals>
+                  <property>instrumentation/efis[0]/mfd/display-mode</property>
+                  <value>ROSE</value>
+              </equals>
+            </and>
+        </condition>        
+        <name>MFD</name>
+        <x>200</x>
+        <y>128</y>
+        <w>400</w>
+        <h>256</h>
+    </instrument>
+    
+    <instrument include="navtext.xml">
+      <condition>
+            <and>
             <greater-than>
                 <property>systems/electrical/outputs/efis</property>
                 <value>15</value>
             </greater-than>
                 <equals>
-                    <property>instrumentation/efis/mfd/display-mode</property>
-                    <value>ROSE</value>
+                    <property>instrumentation/efis[0]/nd-mode</property>
+                    <value>NAV</value>
                 </equals>
             </and>
-        </condition>        
-        <name>MFD</name>
+        </condition>
+        <name>ILSinfo</name>
         <x>200</x>
         <y>128</y>
         <w>400</w>
@@ -56,7 +76,7 @@
                 <value>15</value>
             </greater-than>
                 <equals>
-                    <property>instrumentation/efis/nd-mode</property>
+                    <property>instrumentation/efis[0]/nd-mode</property>
                     <value>LS</value>
                 </equals>
             </and>

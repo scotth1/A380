@@ -22,7 +22,7 @@
         <emissive>true</emissive>
         </layer>
 
-        <layer>
+        <!-- layer>
             <condition>
                 <greater-than>
                     <property>autopilot/route-manager/route/num</property>
@@ -32,7 +32,6 @@
             <name>WP ID</name>
             <type>text</type>
             <font>arial_black</font>
-            <!-- font>helvetica_bold</font -->
             <point-size>9</point-size>
             <color>
                 <red>1.0</red>
@@ -48,11 +47,11 @@
             <transformations>
                 <transformation>
                     <type>x-shift</type>
-                    <offset>75</offset>       <!-- was 95 SAH 2010-12-04 -->
+                    <offset>75</offset>       
                 </transformation>
                 <transformation>
                     <type>y-shift</type>
-                    <offset>115</offset>      <!-- was 115 SAH 2011-04-24 -->
+                    <offset>115</offset>     
                 </transformation>
             </transformations>
         </layer>
@@ -66,8 +65,7 @@
             </condition>
             <name>WP ETA</name>
             <type>text</type>
-            <font>arial_black</font>
-            <!-- font>helvetica_bold</font -->
+	    <font>arial_black</font>
             <point-size>9</point-size>
             <color>
                 <red>0.1</red>
@@ -78,17 +76,16 @@
                 <chunk>
                     <type>text-value</type>
                     <property>instrumentation/gps/wp/wp[1]/TTW</property>
-                    <!-- property>autopilot/route-manager/wp/eta</property -->
                 </chunk>
             </chunks>
             <transformations>
                 <transformation>
                     <type>x-shift</type>
-                    <offset>75</offset>   <!-- was 95 SAH 2010-12-04 -->
+                    <offset>75</offset>   
                 </transformation>
                 <transformation>
                     <type>y-shift</type>
-                    <offset>100</offset> <!-- was 100 SAH 2011-04-24 -->
+                    <offset>100</offset>
                 </transformation>
             </transformations>
         </layer>
@@ -103,7 +100,6 @@
             <name>WP DIST</name>
             <type>text</type>
             <font>arial_black</font>
-            <!-- font>helvetica_bold</font -->
             <point-size>9</point-size>
             <color>
                 <red>0.1</red>
@@ -120,14 +116,14 @@
             <transformations>
                 <transformation>
                     <type>x-shift</type>
-                    <offset>75</offset>  <!-- was 95 SAH 2010-12-04 -->
+                    <offset>75</offset>  
                 </transformation>
                 <transformation>
                     <type>y-shift</type>
-                    <offset>85</offset>   <!-- was 85 SAH 2011-04-24 -->
+                    <offset>85</offset>   
                 </transformation>
             </transformations>
-        </layer>
+        </layer -->
 
         <layer>
             <name>GSPD</name>

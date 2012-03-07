@@ -488,17 +488,16 @@
 	</layer>
 
        
-
         <layer>
             <name>aircraft symbol</name>
-            <w>20</w>
-            <h>20</h>
+            <w>30</w>
+            <h>30</h>
             <texture>
-                <path>Aircraft/A380/Models/Instruments/MFD/symbols.png</path>
-                <x1>0.654</x1>
-                <y1>0.686</y1>
-                <x2>0.790</x2>
-                <y2>0.833</y2>
+                <path>Aircraft/A380/Models/Instruments/MFD/airbus_symbols.png</path>
+                <x1>0.332</x1>
+                <y1>0.111</y1>
+                <x2>0.494</x2>
+                <y2>0.326</y2>
             </texture>
             <transformations>
                 <transformation>
@@ -508,8 +507,9 @@
             </transformations>
             <emissive>true</emissive>
         </layer>
+	
         
-        <layer>
+        <!-- layer>
           <condition>
             <and>
             <equals>
@@ -798,7 +798,7 @@
                <scale>80</scale>
             </transformation>
           </transformations>
-        </layer>
+        </layer -->
         
         <!-- the three pseudo WPTs -->
         <layer>

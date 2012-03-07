@@ -3,14 +3,14 @@
 
 <PropertyList>
     <name>RADAR</name>
-    <w-base>512</w-base>
-    <h-base>512</h-base>
+    <w-base>256</w-base>
+    <h-base>256</h-base>
 
     <layers>
       <layer>
             <name>radarfull</name>
-            <w>512</w>
-            <h>512</h>
+            <w>256</w>
+            <h>256</h>
             <!-- w>350</w>
             <h>350</h -->
             <texture>
