@@ -87,12 +87,22 @@ This file selects the instrumentation modules that should be available.
         <name>radar</name>
         <number>0</number>
     </radar -->
+    <air-ground-radar>
+      <name>terrain-radar</name>
+      <number>0</number>
+    </air-ground-radar>
     
     <navigation-display>
         <name>nd</name>
         <number>0</number>        
         <symbols include="nav-display-c.xml"/>
     </navigation-display>
+    
+    <!-- navigation-display>
+        <name>nd</name>
+        <number>1</number>        
+        <symbols include="nav-display-fo.xml"/>
+    </navigation-display -->
     
 
     <groundradar>

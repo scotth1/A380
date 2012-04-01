@@ -2,7 +2,7 @@
 
 
 <PropertyList>
-    <name>PLAN</name>
+    <name>TAXI</name>
     <w-base>256</w-base>
     <h-base>256</h-base>
     <params>
@@ -14,7 +14,7 @@
 
     <layers>
     
-        <!-- layer>
+        <layer>
           <condition>
             <less-than>
               <property>instrumentation/radar/range</property>
@@ -48,7 +48,7 @@
             </transformations>
             <w>512</w>
             <h>512</h>
-        </layer -->
+        </layer>
     
         <layer>
             <name>hdg</name>

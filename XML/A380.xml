@@ -349,7 +349,7 @@
  </animation>
  
   <!--END OF NOSE GEAR -->
-  <!--START OF MAIN GEAR LEFT -->
+  <!--START OF MAIN INNER GEAR LEFT -->
 
   <animation>
   <type>rotate</type>
@@ -365,7 +365,7 @@
   <object-name>btyrelm</object-name>   
   <object-name>btyrera</object-name>   
   <object-name>btyrela</object-name> 
-    <property>gear/gear[1]/position-norm</property>   
+    <property>gear/gear[2]/position-norm</property>   
   <interpolation>
     <entry>
       <ind>0.0</ind>
@@ -412,7 +412,7 @@
   <object-name>btyrelm</object-name>   
   <object-name>btyrera</object-name>   
   <object-name>btyrela</object-name>      
-  <property>gear/gear[1]/position-norm</property>   
+  <property>gear/gear[2]/position-norm</property>   
   <interpolation>
     <entry>
       <ind>0.0</ind>
@@ -452,7 +452,7 @@
   <type>translate</type> 
   <object-name>blowerstrut</object-name>   
   <object-name>btruck</object-name>   
-  <property>gear/gear[1]/position-norm</property>
+  <property>gear/gear[2]/position-norm</property>
  <factor>0.1</factor>
   <offset-deg>-90</offset-deg>
   <min-deg>-80</min-deg>
@@ -469,6 +469,7 @@
   </axis>
  </animation>
 
+ <!-- START OF LEFT OUTER GEAR -->
  <animation>
   <type>rotate</type>
   <object-name>wouterstrut</object-name>
@@ -559,7 +560,7 @@
  <animation>
   <type>rotate</type>
   <object-name>innerbgdoor</object-name>  
-  <property>gear/gear[1]/position-norm</property>
+  <property>gear/gear[2]/position-norm</property>
   <interpolation>
     <entry>
       <ind>0.0</ind>
@@ -628,7 +629,7 @@
   <type>rotate</type>
   <object-name>outerbgdoor</object-name>
   <object-name>midbgdoor</object-name>    
-  <property>gear/gear[1]/position-norm</property>
+  <property>gear/gear[2]/position-norm</property>
   <interpolation>
     <entry>
       <ind>0.0</ind>
@@ -662,7 +663,7 @@
  <animation>
   <type>rotate</type>
   <object-name>midbgdoor</object-name>  
-  <property>gear/gear[1]/position-norm</property>
+  <property>gear/gear[2]/position-norm</property>
   <interpolation>
     <entry>
       <ind>0.0</ind>
@@ -694,7 +695,7 @@
  </animation>
 
  <!--END OF MAIN GEAR LEFT -->
- <!--START OF MAIN GEAR RIGHT -->
+ <!--START OF MAIN INNER GEAR RIGHT -->
 
  <animation>
   <type>rotate</type>
@@ -745,6 +746,7 @@
   </axis>
  </animation>
   
+
  <animation>
   <type>translate</type> 
   <object-name>rblowerstrut</object-name>   
@@ -813,6 +815,7 @@
   </axis>
  </animation>
 
+ <!-- START RIGHT OUTER GEAR --> 
  <animation>
   <type>rotate</type>
   <object-name>rwouterstrut</object-name>
@@ -824,7 +827,7 @@
   <object-name>tyrerwlf</object-name>   
   <object-name>tyrerwra</object-name>   
   <object-name>tyrerwla</object-name>        
-  <property>gear/gear[2]/position-norm</property>
+  <property>gear/gear[1]/position-norm</property>
   <interpolation>
     <entry>
       <ind>0.0</ind>
@@ -869,7 +872,7 @@
   <object-name>tyrerwlf</object-name>   
   <object-name>tyrerwra</object-name>   
   <object-name>tyrerwla</object-name>        
-  <property>gear/gear[2]/position-norm</property>
+  <property>gear/gear[1]/position-norm</property>
   <interpolation>
     <entry>
       <ind>0.0</ind>
@@ -937,7 +940,7 @@
  <animation>
   <type>rotate</type>
   <object-name>rhwgdoor</object-name>  
-  <property>gear/gear[2]/position-norm</property>
+  <property>gear/gear[1]/position-norm</property>
   <interpolation>
     <entry>
       <ind>0.0</ind>

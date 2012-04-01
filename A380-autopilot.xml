@@ -1103,6 +1103,122 @@
   </pid-controller>
   
   <logic>
+    <name>check turn co-ord enabled</name>
+    <input>
+      <and>
+      <or>
+	<greater-than>
+	  <property>autopilot/internal/target-roll-deg</property>
+	  <value>15</value>
+	</greater-than>
+	<less-than>
+	  <property>autopilot/internal/target-roll-deg</property>
+	  <value>-15</value>
+	</less-than>
+      </or>
+      <property>instrumentation/flightdirector/autopilot-on</property>
+      <value>1</value>
+    </and>
+    </input>
+    <output>
+      <property>autopilot/settings/turn-coord-enabled</property>
+    </output>
+  </logic>
+  
+  <pid-controller>
+    <name>rudder turn co-ordinator left</name>
+    <debug>true</debug>
+    <enable>
+      <condition>
+	  <greater-than>
+	    <property>autopilot/internal/target-roll-deg</property>
+	    <value>15</value>
+	</greater-than>
+    </condition>
+    </enable>
+    <input>
+      <expression>
+	<dif>
+	  <property>autopilot/internal/target-roll-deg</property>
+	  <value>15</value>
+	</dif>
+      </expression>
+    </input>
+    <reference>
+      <value>0.0</value>
+    </reference>
+    <output>
+      <property>autopilot/internal/target-rudder-rate-deg</property>
+    </output>
+    <config>
+		  <Kp>-0.01</Kp>        <!-- proportional gain -->
+		  <beta>1.0</beta>     <!-- input value weighing factor -->
+		  <alpha>0.1</alpha>   <!-- low pass filter weighing factor -->
+		  <gamma>0.0</gamma>   <!-- input value weighing factor for -->
+		  <!-- unfiltered derivative error -->
+		  <Ti>10.0</Ti>        <!-- integrator time -->
+		  <Td>0.00001</Td>     <!-- derivator time -->
+		  <u_min>-1.0</u_min> <!-- minimum output clamp -->
+		  <u_max>1.0</u_max>  <!-- maximum output clamp -->
+	  </config>
+  </pid-controller>
+  
+  
+  <pid-controller>
+    <name>rudder turn co-ordinator right</name>
+    <debug>false</debug>
+    <enable>
+      <condition>
+	  <less-than>
+	    <property>autopilot/internal/target-roll-deg</property>
+	    <value>0</value>
+	</less-than>
+    </condition>
+    </enable>
+    <input>
+      <expression>
+	<sum>
+	  <property>autopilot/internal/target-roll-deg</property>
+	  <value>15</value>
+	</sum>
+      </expression>
+    </input>
+    <reference>
+      <value>0.0</value>
+    </reference>
+    <output>
+      <property>autopilot/internal/target-rudder-rate-deg</property>
+    </output>
+    <config>
+		  <Kp>0.1</Kp>        <!-- proportional gain -->
+		  <beta>1.0</beta>     <!-- input value weighing factor -->
+		  <alpha>0.1</alpha>   <!-- low pass filter weighing factor -->
+		  <gamma>0.0</gamma>   <!-- input value weighing factor for -->
+		  <!-- unfiltered derivative error -->
+		  <Ti>10.0</Ti>        <!-- integrator time -->
+		  <Td>0.00001</Td>     <!-- derivator time -->
+		  <u_min>-1.0</u_min> <!-- minimum output clamp -->
+		  <u_max>1.0</u_max>  <!-- maximum output clamp -->
+	  </config>
+  </pid-controller>
+  
+  
+  <!-- filter>
+    <name>SERVO-DRIVER:rudder co-ord</name>
+    <debug>false</debug>
+    <feedback-if-disabled>false</feedback-if-disabled>
+    <enable>
+      <property>autopilot/settings/turn-coord-enabled</property>
+    </enable>
+    <input>/autopilot/internal/target-rudder-rate-deg</input>
+    <output>
+      <prop>/controls/flight/rudder</prop>
+    </output>
+    <type>noise-spike</type>
+    <max-rate-of-change>0.15</max-rate-of-change>
+</filter -->
+  
+  <logic>
     <name>check tc true</name>
     <input>
       <and>
@@ -1119,6 +1235,80 @@
     </input>
     <output>
       <property>instrumentation/afs/calc-tc</property>
+    </output>
+  </logic>
+  
+  <logic>
+    <name>flare mode</name>
+    <input>
+      <and>
+	<equals>
+	  <property>instrumentation/afs/flight-control-law</property>
+	  <value>normal</value>
+	</equals>
+	<equals>
+	  <property>/instrumentation/ecam/flight-mode</property>
+	  <value>9</value>
+	</equals>
+	<less-than>
+	  <property>position/ground-elev-ft</property>
+	  <value>100</value>
+	</less-than>
+      </and>
+    </input>
+    <output>
+      <property>instrumentation/afs/flight-control-flare-mode</property>
+    </output>
+  </logic>
+  
+  <logic>
+    <name>ground mode</name>
+    <input>
+      <and>
+	<equals>
+	  <property>instrumentation/afs/flight-control-law</property>
+	  <value>normal</value>
+	</equals>
+	<or>
+	  <less-than>
+	    <property>/instrumentation/ecam/flight-mode</property>
+	    <value>5</value>
+	  </less-than>
+	  <greater-than>
+	    <property>/instrumentation/ecam/flight-mode</property>
+	    <value>9</value>
+	  </greater-than>
+        </or>
+      </and>
+    </input>
+    <output>
+      <property>instrumentation/afs/flight-control-ground-mode</property>
+    </output>
+  </logic>
+  
+  <logic>
+    <name>flight mode</name>
+    <input>
+      <and>
+	<equals>
+	  <property>instrumentation/afs/flight-control-law</property>
+	  <value>normal</value>
+	</equals>
+	<not>
+	  <property>instrumentation/afs/flight-control-ground-mode</property>
+	</not>
+	<greater-than>
+	  <property>/instrumentation/ecam/flight-mode</property>
+	  <value>5</value>
+	</greater-than>
+	<less-than>
+	    <property>/instrumentation/ecam/flight-mode</property>
+	    <value>10</value>
+	  </less-than>
+      </and>
+    </input>
+    <output>
+      <property>instrumentation/afs/flight-control-flight-mode</property>
     </output>
   </logic>
   
@@ -1228,6 +1418,8 @@
   <min>0.0</min>
     <max>1.0</max>
 </filter>
+
+
 
 <flipflop>
    <type>JK</type>

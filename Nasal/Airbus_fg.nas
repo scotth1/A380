@@ -606,6 +606,12 @@ setlistener("/instrumentation/flightdirector/autopilot-on", func {
       evaluateVS();
     } else {
       tracer("AP dis-engaged");
+      var rwyCat = getprop("instrumentation/afs/rwy-cat");
+      var fltMode = getprop("instrumentation/ecam/flight-mode");
+      if (rwyCat != "CAT I" and fltMode > 8) {
+        setprop("instrumentation/afs/rwy-cat", "CAT I");
+        setprop("instrumentation/flightdirector/mode-reversion", 1);
+      }
     };
  if (ap_on == 0) {
    setprop("autopilot/locks/heading","");
@@ -777,7 +783,7 @@ setlistener("/instrumentation/flightdirector/vnav", func(n) {
       }
       if (curAlt > accAlt and curAlt < 15000 and getprop("/instrumentation/flightdirector/climb-arm") == 1) {
           tracer("Acquire CLIMB speed");
-          setprop("/autopilot/settings/vertical-speed-fpm",2000);
+          setprop("/autopilot/settings/vertical-speed-fpm",1800);
       }
       if (curAlt > 15000 and curAlt < 24000) {
         tracer("Phase 2 CLIMB");
@@ -1137,24 +1143,34 @@ setlistener("/instrumentation/nav[0]/in-range", func(n) {
        lastNavStatus = range;
        var lnavMode = getprop("/instrumentation/flightdirector/lnav");
        var lnavArm = getprop("/instrumentation/flightdirector/lnav-arm");
+       var crzAcq = getprop("instrumentation/afs/acquire_crz");
        var fltMode = getprop("/instrumentation/ecam/flight-mode");
+       var locMode = getprop("instrumentation/nav[0]/nav-loc");
+       var alt = getprop("position/altitude-ft");
+       tracer("[NAV0] locMode: "~locMode~", crzAcq: "~crzAcq~", alt: "~alt);
        if (range == 1) {
-         var ilsCat = getILSCategory(getprop("instrumentation/afs/TO"));
-         tracer("ils cat: "~ilsCat);
-         setprop("instrumentation/afs/rwy-cat", ilsCat);
-         var alt = getprop("position/altitude-ft");
-         if (lnavMode != LNAV_LOC and fltMode > 7 and alt < 8000 ) {
-           setprop("/instrumentation/flightdirector/lnav-arm", LNAV_LOC);
-         } else {
-           if (lnavArm == LNAV_LOC) {
-             setprop("/instrumentation/flightdirector/lnav-arm", VNAV_OFF);
-             setprop("/instrumentation/flightdirector/lnav", LNAV_LOC);
+         if (locMode == 1 and crzAcq == 1 and alt < 15000) {
+           var ilsCat = getILSCategory(getprop("instrumentation/afs/TO"));
+           tracer("ils cat: "~ilsCat);
+           setprop("instrumentation/afs/rwy-cat", ilsCat);
+           if (lnavMode != LNAV_LOC and alt < 8000 ) {
+             setprop("/instrumentation/flightdirector/lnav-arm", LNAV_LOC);
+           } else {
+             if (lnavArm == LNAV_LOC) {
+               setprop("/instrumentation/flightdirector/lnav-arm", VNAV_OFF);
+               setprop("/instrumentation/flightdirector/lnav", LNAV_LOC);
+             }
            }
          }
        } else {
          setprop("instrumentation/afs/rwy-cat", "");
          if (lnavMode == LNAV_LOC) {
-           ## we should disable the AP if we loose LOC while active.
+           ## revert lateral mode if we loose LOC while active.
+           if (fltMode > 8) {
+             setprop("instrumentation/flightdirector/vnav", LNAV_FMS);
+             setprop("instrumentation/flightdirector/mode-reversion", 1);
+           }
+           setprop("instrumentation/annunciator/master-caution", 1);
          }
          if (lnavArm == LNAV_LOC) {
            setprop("/instrumentation/flightdirector/lnav-arm", LNAV_OFF);
@@ -1216,23 +1232,23 @@ var getILS = func(apt, rwy) {
 }
 
 ## get ILS category from nav db
-# requires patch to airportinfo() (merge request 14)
+# requires patch to airportinfo() (see merge request #14)
 var getILSCategory = func(id) {
   var retCat = "";
   if (id != nil) {
     var apt = airportinfo(id);
     var arvRunway = getprop("instrumentation/afs/arv-rwy");
-    #var navList = navinfo(apt.lat, apt.lon, "ils", 3.0);
-    #var navListSize = size(navList);
-    #print("size navList: "~navListSize);
-    #foreach(var ils; navList) {
-    #  if (ils.runway == arvRunway) {
-    #    var nmeStr = ils.name;
-    #    var parts = split(" ", nmeStr);
-    #    print("rwy: "~nmeStr~", parts[0]: "~parts[0]~", parts[1]: "~parts[1]~", parts[2]: "~parts[2]~", parts[3]: "~parts[3]);
-    #    retCat = substr(parts[3],4);
-    #  }
-    #}
+    var navList = navinfo(apt.lat, apt.lon, "ils", 3.0);
+    var navListSize = size(navList);
+    print("size navList: "~navListSize);
+    foreach(var ils; navList) {
+      if (ils.runway == arvRunway) {
+        var nmeStr = ils.name;
+        var parts = split(" ", nmeStr);
+        print("rwy: "~nmeStr~", parts[0]: "~parts[0]~", parts[1]: "~parts[1]~", parts[2]: "~parts[2]~", parts[3]: "~parts[3]);
+        retCat = string.uc(substr(parts[3],4));
+      }
+    }
   }
   return retCat;
 }
@@ -1338,11 +1354,15 @@ handle_inputs = func {
     if(maxroll > 45 or maxroll < -45) {
       ap_on = 0;
       setprop("/instrumentation/flightdirector/autopilot-on",ap_on);
+      setprop("instrumentation/afs/flight-control-law", "direct");
+      setprop("instrumentation/flightdirector/mode-reversion", 1);
     }
     maxpitch = getprop("/orientation/pitch-deg");
     if(maxpitch > 45 or maxpitch < -45){
       ap_on = 0;
       setprop("/instrumentation/flightdirector/autopilot-on",ap_on);
+      setprop("instrumentation/afs/flight-control-law", "direct");
+      setprop("instrumentation/flightdirector/mode-reversion", 1);
     }
       #if(getprop("/position/altitude-agl-ft") < 50){ap_on = 0;}
   }
@@ -1565,7 +1585,8 @@ update_mode = func {
     } 
  
     var distToTD = getprop("/autopilot/route-manager/wp[0]/dist");
-    var nextId   = getprop("/instrumentation/gps/wp/wp[1]/ID");
+    var nextId   = getprop("/autopilot/route-manager/wp[0]/id");
+    #####var nextId   = getprop("/instrumentation/gps/wp/wp[1]/ID");
 
     if (nextId == "(T/D)" and nextTD == 0) {
       nextTD = 1;
@@ -1612,22 +1633,22 @@ update_mode = func {
           etaMin = etaSec;
           etaSec = 0;
         }
-        tracer("[updateMode] ETA min: "~etaMin~", ETA sec: "~etaSec~", difAlt: "~diffAlt);
+        ##tracer("[updateMode] ETA min: "~etaMin~", ETA sec: "~etaSec~", difAlt: "~diffAlt);
         var gap = 10;
         if (nextAlt < 15000) {
           gap = 20;
         }
         eta = (etaSec+(etaMin*60))-gap;
-        tracer("[updateMode] eta: "~eta~", difAlt: "~diffAlt);
+        ##tracer("[updateMode] eta: "~eta~", difAlt: "~diffAlt);
         if (eta <= 0 ) { 
           if (getprop("/autopilot/locks/altitude") != "altitude-hold") {
-            tracer("[updateMode] ETA min: "~etaMin~", ETA sec: "~etaSec~", difAlt: "~diffAlt);
-            tracer("reached alt, holding");
+            ##tracer("[updateMode] ETA min: "~etaMin~", ETA sec: "~etaSec~", difAlt: "~diffAlt);
+            ##tracer("reached alt, holding");
             setprop("autopilot/settings/target-altitude-ft", nextAlt);
             setprop("/autopilot/locks/altitude","altitude-hold");
           }
         } else {
-          tracer("ETA seconds: "~eta);
+          ##tracer("ETA seconds: "~eta);
           fmsVS = (diffAlt/eta)*60;
           if (fmsVS < -3000) {
             fmsVS = -3000;
@@ -1635,7 +1656,7 @@ update_mode = func {
           if (fmsVS > 3000) {
             fmsVS = 3000;
           }
-          tracer("Set DESCENT VNAV #1: "~fmsVS);
+          ##tracer("Set DESCENT VNAV #1: "~fmsVS);
           setprop("/autopilot/settings/vertical-speed-fpm",fmsVS);
           if (getprop("/autopilot/locks/altitude") != "vertical-speed-hold") {
             setprop("/autopilot/locks/altitude","vertical-speed-hold");
@@ -1643,7 +1664,7 @@ update_mode = func {
         }
       } else {
         if (getprop("/autopilot/locks/altitude") != "altitude-hold") {
-          tracer("else; set alt-hold");
+          ##tracer("else; set alt-hold");
           setprop("autopilot/settings/target-altitude-ft", nextAlt);
           setprop("/autopilot/locks/altitude","altitude-hold");
         }

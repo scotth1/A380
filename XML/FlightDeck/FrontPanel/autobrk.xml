@@ -66,7 +66,7 @@
     <object-name>gear3.ind</object-name>
     <condition>
       <greater-than>
-        <property>gear/gear[1]/position-norm</property>
+        <property>gear/gear[2]/position-norm</property>
         <value>0.4</value>
       </greater-than>
     </condition>
@@ -77,11 +77,11 @@
     <condition>
       <and>
       <greater-than>
-        <property>gear/gear[1]/position-norm</property>
+        <property>gear/gear[2]/position-norm</property>
         <value>0.0</value>
       </greater-than>
       <less-than>
-        <property>gear/gear[1]/position-norm</property>
+        <property>gear/gear[2]/position-norm</property>
         <value>0.4</value>
       </less-than>
       </and>
@@ -120,7 +120,7 @@
     <object-name>gear5.ind</object-name>
     <condition>
       <greater-than>
-        <property>gear/gear[2]/position-norm</property>
+        <property>gear/gear[1]/position-norm</property>
         <value>0.4</value>
       </greater-than>
     </condition>
@@ -131,11 +131,11 @@
     <condition>
       <and>
       <greater-than>
-        <property>gear/gear[2]/position-norm</property>
+        <property>gear/gear[1]/position-norm</property>
         <value>0.0</value>
       </greater-than>
       <less-than>
-        <property>gear/gear[2]/position-norm</property>
+        <property>gear/gear[1]/position-norm</property>
         <value>0.4</value>
       </less-than>
       </and>
@@ -258,7 +258,7 @@
   <animation>
     <type>material</type>
     <object-name>gear2.ind</object-name>
-    <object-name>gear3.ind</object-name>
+    <object-name>gear5.ind</object-name>
     <condition>
       <and>
         <greater-than>
@@ -290,7 +290,7 @@
   <animation>
     <type>material</type>
     <object-name>gear2.ind</object-name>
-    <object-name>gear3.ind</object-name>
+    <object-name>gear5.ind</object-name>
     <condition>
         <greater-than>
           <property>gear/gear[1]/position-norm</property>
@@ -317,8 +317,8 @@
   <!-- unit [2] -->
   <animation>
     <type>material</type>
+    <object-name>gear3.ind</object-name>
     <object-name>gear4.ind</object-name>
-    <object-name>gear5.ind</object-name>
     <condition>
       <and>
         <greater-than>
@@ -349,8 +349,8 @@
   </animation>
   <animation>
     <type>material</type>
+    <object-name>gear3.ind</object-name>
     <object-name>gear4.ind</object-name>
-    <object-name>gear5.ind</object-name>
     <condition>
         <greater-than>
           <property>gear/gear[2]/position-norm</property>

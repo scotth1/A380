@@ -1521,6 +1521,17 @@
       <factor>3.0</factor>
     </volume>
   </v1>
+  
+  <mode-reversion>
+    <name>mode-reversion</name>
+    <mode>once</mode>
+    <type>avionics</type>
+    <path>Aircraft/A380/Sounds/triple-click_01.wav</path>
+    <property>instrumentation/flightdirector/mode-reversion</property>
+    <volume>
+      <factor>1</factor>
+    </volume>
+  </mode-reversion>
 
 </fx>
 

@@ -5,6 +5,12 @@
     <name>APPR</name>
     <w-base>256</w-base>
     <h-base>256</h-base>
+    <params>
+      <inputs>
+        <lh-vor-adf>instrumentation/efis[0]/inputs/lh-vor-adf</lh-vor-adf>
+        <rh-vor-adf>instrumentation/efis[0]/inputs/rh-vor-adf</rh-vor-adf>
+      </inputs>
+    </params>
 
     <layers>
       

@@ -682,7 +682,7 @@
             </aerosurface_scale>
         </kinematic>
 
-        <kinematic name="Gear Control">
+        <!-- kinematic name="Gear Control">
             <input>gear/gear-cmd-norm</input>
             <traverse>
                 <setting>
@@ -691,11 +691,56 @@
                 </setting>
                 <setting>
                     <position>1.0000</position>
-                    <time>5.0000</time>
+                    <time>15.0000</time>
                 </setting>
             </traverse>
             <output>gear/gear-pos-norm</output>
+        </kinematic -->
+	
+	<kinematic name="gear/unit[0]/pos">
+	    <input>gear/gear-cmd-norm</input>
+            <traverse>
+                <setting>
+                    <position>0.0000</position>
+                    <time>0.0000</time>
+                </setting>  
+                <setting>
+                    <position>1.0000</position>
+                    <time>16.0000</time>
+                </setting>  
+            </traverse>
+            <output>gear/unit[0]/pos-norm</output>
         </kinematic>
+        <kinematic name="gear/unit[1]/pos">
+            <input>gear/gear-cmd-norm</input>
+            <traverse>
+                <setting>
+                    <position>0.0000</position>
+                    <time>0.0000</time>
+                </setting>
+                <setting> 
+                    <position>1.0000</position>
+                    <time>13.0000</time>
+                </setting>
+            </traverse>
+            <output>gear/unit[1]/pos-norm</output>
+        </kinematic>
+        <kinematic name="gear/unit[2]/pos">
+            <input>gear/gear-cmd-norm</input>
+            <traverse>
+                <setting>
+                    <position>0.0000</position>
+                    <time>0.0000</time>
+                </setting>
+                <setting>
+                    <position>1.0000</position>
+                    <time>25.0000</time>
+                </setting>
+            </traverse>
+            <output>gear/unit[2]/pos-norm</output>
+        </kinematic>
+
+	
 
         <kinematic name="Speedbrake Control">
             <input>fcs/speedbrake-cmd-norm</input>
@@ -791,7 +836,7 @@
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
-                    <property>gear/gear-pos-norm</property>
+		    <property>gear/unit[2]/pos-norm</property>
                     <value>0.0110</value>
                 </product>
             </function>

@@ -89,7 +89,7 @@ srsFlapTarget = [263.0, 222.0, 210.0, 196.0, 182.0];   #another copy in system.n
 flapPos       = [0, 0.2424, 0.5151, 0.7878, 1.0];
 
 ##trace = 0;
-version = "1.1.21";
+version = "1.1.22";
 
 strobe_switch = props.globals.getNode("/controls/switches/strobe", 0);
 aircraft.light.new("sim/model/A380/lighting/strobe", [0.05, 1.2], strobe_switch);
@@ -293,11 +293,11 @@ update_radar = func {
     curAlt   = getprop("/position/altitude-ft");
     seatStat = getprop("/instrumentation/switches/seatbelt-sign");
     if (curAlt > 10000 and seatStat > 0) {
-      tracer("SeatCtrl: "~seatCtrl~", curAlt: "~curAlt~", seatStat: "~seatStat);
+      tracer("[SYS] SeatCtrl: "~seatCtrl~", curAlt: "~curAlt~", seatStat: "~seatStat);
       setprop("/instrumentation/switches/seatbelt-sign",0);
     }
     if (curAlt < 10000 and seatStat == 0) {
-      tracer("SeatCtrl: "~seatCtrl~", curAlt: "~curAlt~", seatStat: "~seatStat);
+      tracer("[SYS] SeatCtrl: "~seatCtrl~", curAlt: "~curAlt~", seatStat: "~seatStat);
       setprop("/instrumentation/switches/seatbelt-sign",1);
     }
   }
@@ -320,7 +320,7 @@ update_radar = func {
     #tracer("flapConfig: "~flapConfig);
     var iasKt = int(getprop("/instrumentation/airspeed-indicator/indicated-speed-kt"));
     if (iasKt != nil and iasKt != 0) {
-      tracer("ias: "~iasKt);
+      tracer("[SYS] ias: "~iasKt);
       flapSpd = int(srsFlapTarget[flapConfig])+10;
       #tracer("flapSpd: "~flapSpd);
       if (iasKt > flapSpd) {
@@ -650,7 +650,7 @@ update_ewd = func {
     var diffMach = (crzMach-clbMach)/3;
     var afsTargetMach = getprop("instrumentation/afs/target-speed-mach");
     var apTargetMach  = getprop("autopilot/settings/target-speed-mach");
-    tracer("alt: "~alt~", chngAlt: "~chngAlt~", diffAlt: "~diffAlt~", apTargetMach: "~apTargetMach);
+    tracer("[SYS] alt: "~alt~", chngAlt: "~chngAlt~", diffAlt: "~diffAlt~", apTargetMach: "~apTargetMach);
     if (alt > chngAlt+diffAlt and alt < chngAlt+diffAlt+1000 and apTargetMach != clbMach+diffMach) {
       tracer("[UPDEWD] clbMach: "~clbMach~", diffMach: "~diffMach);
       interpolate("autopilot/settings/target-speed-mach", clbMach+diffMach, 20);
@@ -708,18 +708,18 @@ update_engines = func {
     }
     
     if (ign == 1 and e_start == 1 and e_master == 1) {
-      tracer("Engine "~e~" in start phase, N2: "~hpsi);
+      tracer("[SYS] Engine "~e~" in start phase, N2: "~hpsi);
       if (hpsi > 20 and hpsi < 22 and getprop("/controls/engines/engine["~e~"]/cutoff") == 1) {
         setprop("/controls/engines/engine["~e~"]/cutoff",0);
       }
       if (hpsi >= 26 and hpsi < 50) {
-        tracer("engine igniter");
+        tracer("[SYS] engine igniter");
         setprop("/controls/engines/engine["~e~"]/ignition",1);
         #setprop("/controls/engines/engine["~e~"]/starter",0);
       }
     }
     if (hpsi >= 50 and ign == 1 and e_ign == 1) {
-         tracer("shut engine igniter");
+         tracer("[SYS] shut engine igniter");
          setprop("/controls/engines/engine["~e~"]/ignition",0);
          setprop("/controls/engines/engine["~e~"]/generator",1);
          settimer(check_all_start, 10);
@@ -827,14 +827,14 @@ update_engines = func {
 
 check_acquire_mode = func {
    var acquireMode = getprop("/instrumentation/flightdirector/alt-acquire-mode");
+   var alt = getprop("/position/altitude-ft");
    if (acquireMode == 1) {
      var vnavMode = getprop("instrumentation/flightdirector/vnav");
-     var alt = getprop("/position/altitude-ft");
      var vsSpeed = (getprop("/velocities/vertical-speed-fps")*60);
      var selectAlt = getprop("/instrumentation/afs/target-altitude-ft");
      if (vsSpeed > 200 and vnavMode != VNAV_DES and vnavMode != VNAV_OPDES) {
        if (alt >= (selectAlt-400)) {
-         tracer("[ACQ] reached selected alt: "~selectAlt);
+         tracer("[SYS] ACQ - reached selected alt: "~selectAlt);
          setprop("autopilot/settings/target-altitude-ft", getprop("instrumentation/afs/target-altitude-ft"));
          setprop("autopilot/locks/altitude","altitude-hold");
          ##setprop("/instrumentation/flightdirector/vnav", VNAV_ALT);
@@ -849,7 +849,7 @@ check_acquire_mode = func {
      }
      if (vsSpeed < 200) {
        if (alt <= (selectAlt+400) and vnavMode != VNAV_CLB and vnavMode != VNAV_OPCLB) {
-         tracer("[ACQ] reached selectAlt: "~selectAlt);
+         tracer("[SYS] ACQ - reached selectAlt: "~selectAlt);
          setprop("autopilot/settings/target-altitude-ft", getprop("instrumentation/afs/target-altitude-ft"));
          setprop("autopilot/locks/altitude","altitude-hold");
          ##setprop("/instrumentation/flightdirector/vnav", VNAV_ALT);
@@ -903,19 +903,19 @@ check_all_start = func {
 
 start_apu = func {
   n2 = getprop("/engines/engine[4]/n2");
-  tracer("APU n2: "~n2);
+  tracer("[SYS] APU n2: "~n2);
   if (n2 > 25 and n2 < 27 and getprop("/controls/engines/engine[4]/cutoff") == 1) {
-    tracer("start APU fuel flow");
+    tracer("[SYS] start APU fuel flow");
     setprop("/controls/engines/engine[4]/cutoff",0);
   }
   if (n2 > 25 and n2 < 50) {
-    tracer("start APU ignition");
+    tracer("[SYS] start APU ignition");
     setprop("/controls/engines/engine[4]/ignition",1);
     #setprop("/controls/engines/engine[4]/starter",0);
     #setprop("/controls/engines/engine[4]/bleed",1);
   }
   if (n2 > 50) {
-    tracer("stop APU ignition");
+    tracer("[SYS] stop APU ignition");
     setprop("/controls/engines/engine[4]/ignition",0);
     ##setprop("/controls/engines/engine[4]/starter",0);
     setprop("/engines/engine[4]/off-start-run",2);
@@ -1168,7 +1168,7 @@ setlistener("/controls/engines/engine[0]/master", func(n) {
   ign = getprop("/controls/engines/ign-start");
   apu = getprop("/engines/engine[4]/off-start-run");  # 2 for run.
   if (master == 1 and ign == 1 and apu == 2) {
-    tracer("start and ignite engine 0");
+    tracer("[SYS] start and ignite engine 0");
     if (getprop("/instrumentation/ecam/flight-mode") == 1) {
       #print("[ECAM] set SD page: engine");
       setprop("/instrumentation/ecam/flight-mode",2);
@@ -1176,7 +1176,7 @@ setlistener("/controls/engines/engine[0]/master", func(n) {
     setprop("/controls/engines/engine[0]/starter",1);
   }
   if (master == 0 and ign == 0) {
-    tracer("cutoff engine 0");
+    tracer("[SYS] cutoff engine 0");
     setprop("/controls/engines/engine[0]/cutoff",1);
     setprop("/instrumentation/ecam/flight-mode",1);
   }
@@ -1185,7 +1185,7 @@ setlistener("/controls/engines/engine[0]/master", func(n) {
 # once we have engine bleed, open air valve
 setlistener("/controls/pneumatic/engine[0]/bleed", func(n) {
   bleed = n.getValue();
-  tracer("engine[0] bleed: "~bleed);
+  tracer("[SYS] engine[0] bleed: "~bleed);
   if (bleed == 1) {
     setprop("/controls/pressurization/apu/bleed-on",0);
     setprop("/controls/pressurization/engine[0]/bleed-on",1);
@@ -1201,7 +1201,7 @@ setlistener("/controls/engines/engine[1]/master", func(n) {
   ign = getprop("/controls/engines/ign-start");
   apu = getprop("/engines/engine[4]/off-start-run");  # 2 for run.
   if (master == 1 and ign == 1 and apu == 2) {
-    tracer("start and ignite engine 1");
+    tracer("[SYS] start and ignite engine 1");
     if (getprop("/instrumentation/ecam/flight-mode") == 1) {
       #print("[ECAM] set SD page: engine");
       setprop("/instrumentation/ecam/flight-mode",2);
@@ -1217,7 +1217,7 @@ setlistener("/controls/engines/engine[1]/master", func(n) {
 # once we have engine bleed open air valve
 setlistener("/controls/pneumatic/engine[1]/bleed", func(n) {
   bleed = n.getValue();
-  tracer("engine[1] bleed: "~bleed);
+  tracer("[SYS] engine[1] bleed: "~bleed);
   if (bleed == 1) {
     setprop("/controls/pressurization/apu/bleed-on",0);
     setprop("/controls/pressurization/engine[1]/bleed-on",1);
@@ -1233,7 +1233,7 @@ setlistener("/controls/engines/engine[2]/master", func(n) {
   ign = getprop("/controls/engines/ign-start");
   apu = getprop("/engines/engine[4]/off-start-run");  # 2 for run.
   if (master == 1 and ign == 1 and apu == 2) {
-    tracer("start and ignite engine 2");
+    tracer("[SYS] start and ignite engine 2");
     if (getprop("/instrumentation/ecam/flight-mode") == 1) {
       #print("[ECAM] set SD page: engine");
       setprop("/instrumentation/ecam/flight-mode",2);
@@ -1248,7 +1248,7 @@ setlistener("/controls/engines/engine[2]/master", func(n) {
 # once we have engine bleed open air valve
 setlistener("/controls/pneumatic/engine[2]/bleed", func(n) {
   bleed = n.getValue();
-  tracer("engine[2] bleed: "~bleed);
+  tracer("[SYS] engine[2] bleed: "~bleed);
   if (bleed == 1) {
     setprop("/controls/pressurization/apu/bleed-on",0);
     setprop("/controls/pressurization/engine[2]/bleed-on",1);
@@ -1265,7 +1265,7 @@ setlistener("/controls/engines/engine[3]/master", func(n) {
   apu = getprop("/engines/engine[4]/off-start-run");  # 2 for run.
   flt_mode = getprop("/instrumentation/ecam/flight-mode");
   if (master == 1 and ign == 1 and apu == 2) {
-    tracer("start and ignite engine 3");
+    tracer("[SYS] start and ignite engine 3");
     if (getprop("/instrumentation/ecam/flight-mode") == 1) {
       #print("[ECAM] set SD page: engine");
       setprop("/instrumentation/ecam/flight-mode",2);
@@ -1283,7 +1283,7 @@ setlistener("/controls/engines/engine[3]/master", func(n) {
 # once we have engine bleed open air valve
 setlistener("/controls/pneumatic/engine[3]/bleed", func(n) {
   bleed = n.getValue();
-  tracer("engine[3] bleed: "~bleed);
+  tracer("[SYS] engine[3] bleed: "~bleed);
   if (bleed == 1) {
     setprop("/controls/pressurization/apu/bleed-on",0);
     setprop("/controls/pressurization/engine[3]/bleed-on",1);
@@ -1297,7 +1297,7 @@ setlistener("/controls/pneumatic/engine[3]/bleed", func(n) {
 # control APU bleed air to pressurisation
 setlistener("/controls/pneumatic/APU-bleed", func(n) {
   bleed = n.getValue();
-  tracer("apu[0] bleed: "~bleed);
+  tracer("[SYS] apu[0] bleed: "~bleed);
   if (bleed == 1) {
     setprop("/controls/pressurization/apu/bleed-on",1);
   } else {
@@ -1309,25 +1309,25 @@ setlistener("/controls/pneumatic/APU-bleed", func(n) {
 # control HOT-AIR valves from AIR PACKS
 setlistener("/controls/pressurization/pack[0]/pack-on", func(n) {
    var pack = n.getValue();
-   tracer("pack[0] bleed: "~pack);
+   tracer("[SYS] pack[0] bleed: "~pack);
    if (pack == 1) {
      settimer(open_hotair, 1);
      var currBleed = getprop("fdm/jsbsim/propulsion/engine[0]/bleed-factor");
-     tracer("pack[0] on - currBleed: "~currBleed);
+     tracer("[SYS] pack[0] on - currBleed: "~currBleed);
      setprop("fdm/jsbsim/propulsion/engine[0]/bleed-factor", currBleed+0.1);
      currBleed = getprop("fdm/jsbsim/propulsion/engine[1]/bleed-factor");
-     tracer("pack[0] on - currBleed: "~currBleed);
+     tracer("[SYS] pack[0] on - currBleed: "~currBleed);
      setprop("fdm/jsbsim/propulsion/engine[1]/bleed-factor", currBleed+0.1);
    } else {
      setprop("/controls/pressurization/pack[0]/hotair-on",0);
      var currBleed = getprop("fdm/jsbsim/propulsion/engine[0]/bleed-factor");
      if (currBleed > 0) {
-       tracer("pack[0] off - currBleed: "~currBleed);
+       tracer("[SYS] pack[0] off - currBleed: "~currBleed);
        setprop("fdm/jsbsim/propulsion/engine[0]/bleed-factor", currBleed-0.1);
      }
      currBleed = getprop("fdm/jsbsim/propulsion/engine[1]/bleed-factor");
      if (currBleed > 0) {
-       tracer("pack[0] off - currBleed: "~currBleed);
+       tracer("[SYS] pack[0] off - currBleed: "~currBleed);
        setprop("fdm/jsbsim/propulsion/engine[1]/bleed-factor", currBleed-0.1);
      }
    }
@@ -1336,25 +1336,25 @@ setlistener("/controls/pressurization/pack[0]/pack-on", func(n) {
 
 setlistener("/controls/pressurization/pack[1]/pack-on", func(n) {
    var pack = n.getValue();
-   tracer("pack[1] bleed: "~pack);
+   tracer("[SYS] pack[1] bleed: "~pack);
    if (pack == 1) {
      settimer(open_hotair, 1);
      var currBleed = getprop("fdm/jsbsim/propulsion/engine[2]/bleed-factor");
-     tracer("pack[1] on - currBleed: "~currBleed);
+     tracer("[SYS] pack[1] on - currBleed: "~currBleed);
      setprop("fdm/jsbsim/propulsion/engine[2]/bleed-factor", currBleed+0.1);
      currBleed = getprop("fdm/jsbsim/propulsion/engine[3]/bleed-factor");
-     tracer("pack[1] on - currBleed: "~currBleed);
+     tracer("[SYS] pack[1] on - currBleed: "~currBleed);
      setprop("fdm/jsbsim/propulsion/engine[3]/bleed-factor", currBleed+0.1);
    } else {
      setprop("/controls/pressurization/pack[1]/hotair-on",0);
      var currBleed = getprop("fdm/jsbsim/propulsion/engine[2]/bleed-factor");
      if (currBleed > 0) {
-       tracer("pack[1] off - currBleed: "~currBleed);
+       tracer("[SYS] pack[1] off - currBleed: "~currBleed);
        setprop("fdm/jsbsim/propulsion/engine[2]/bleed-factor", currBleed-0.1);
      }
      currBleed = getprop("fdm/jsbsim/propulsion/engine[3]/bleed-factor");
      if (currBleed > 0) {
-       tracer("pack[1] on - currBleed: "~currBleed);
+       tracer("[SYS] pack[1] on - currBleed: "~currBleed);
        setprop("fdm/jsbsim/propulsion/engine[3]/bleed-factor", currBleed-0.1);
      }
    }
@@ -1371,12 +1371,12 @@ open_hotair = func() {
 
 setlistener("fdm/jsbsim/propulsion/engine[0]/bleed-factor", func(n) {
    var engBleed = n.getValue();
-   tracer("jsbsim engine[0] bleed: "~engBleed);
+   tracer("[SYS] jsbsim engine[0] bleed: "~engBleed);
 });
 
 setlistener("fdm/jsbsim/propulsion/engine[2]/bleed-factor", func(n) {
    var engBleed = n.getValue();
-   tracer("jsbsim engine[2] bleed: "~engBleed);
+   tracer("[SYS] jsbsim engine[2] bleed: "~engBleed);
 });
 
 # monitor main gear wow
@@ -1392,7 +1392,8 @@ setlistener("/instrumentation/gear/wow", func(n) {
     if (flt_mode > 7 and flt_mode < 10) {
       flt_mode = 10;
       setprop("/instrumentation/ecam/flight-mode",flt_mode);
-      tracer("Gear wow: "~touch~", flt_mode: "~flt_mode~", autospd: "~autospd);
+      ##setprop("instrumentation/afs/flight-control-mode", "ground");
+      tracer("[SYS] Gear wow: "~touch~", flt_mode: "~flt_mode~", autospd: "~autospd);
       if (autospd == "true" or autospd == 1) {
         print("Enable auto-speedbrakes");
         setprop("/controls/flight/speedbrake",1);
@@ -1409,6 +1410,7 @@ setlistener("/instrumentation/gear/wow", func(n) {
     if (flt_mode == 5) {
       flt_mode = 6;
       setprop("/instrumentation/ecam/flight-mode",flt_mode);
+      ##setprop("instrumentation/afs/flight-control-mode", "flight");
       settimer(increment_flight_mode1, 15);
       settimer(increment_flight_mode2, 120);
     }
@@ -1434,11 +1436,39 @@ setlistener("controls/gear/autobrakes", func(n) {
 #   position = n.getValue();
 #});
 
+
+###########################
+#  Flight Control modes
+#
+setlistener("instrumentation/afs/flight-control-ground-mode", func(n) {
+  var val = n.getValue();
+  if (val == 1) {
+    setprop("instrumentation/afs/flight-control-mode", "ground");
+  }
+});
+
+setlistener("instrumentation/afs/flight-control-flight-mode", func(n) {
+  var val = n.getValue();
+  if (val == 1) {
+    setprop("instrumentation/afs/flight-control-mode", "flight");
+  }
+});
+
+setlistener("instrumentation/afs/flight-control-flare-mode", func(n) {
+  var val = n.getValue();
+  if (val == 1) {
+    setprop("instrumentation/afs/flight-control-mode", "flare");
+  }
+});
+
+
+##########################
+#
 setlistener("controls/flight/flaps", func(n) {
    var pos = n.getValue();
    var posnorm = int(pos*10);
    var fltMode = getprop("instrumentation/ecam/flight-mode");
-   tracer("flap change - pos: "~pos~", posnorm: "~posnorm~", fltMode: "~fltMode);
+   tracer("[SYS] flap change - pos: "~pos~", posnorm: "~posnorm~", fltMode: "~fltMode);
    if (posnorm == 0 and fltMode > 5) {
      setprop("velocities/vls-factor",1.7);
    }
@@ -1468,7 +1498,7 @@ setlistener("/instrumentation/ecam/page", func(n) {
 ## manage the System Display according to flt phase here.
 setlistener("/instrumentation/ecam/flight-mode", func(n) {
   flt_mode = n.getValue();
-  tracer("Flight phase: "~flt_mode);
+  tracer("[SYS] Flight phase: "~flt_mode);
   if (flt_mode == 1) {
     setprop("/instrumentation/ecam/synoptic","door");
   }
@@ -1519,9 +1549,9 @@ setlistener("/controls/APU/run",func(n) {
   apu_req = n.getValue();
   flt_mode = getprop("/instrumentation/ecam/flight-mode");
   apu_run = getprop("/engines/engine[4]/off-start-run");
-  tracer("APU run state: "~apu_run~" apu req state: "~apu_req);
+  tracer("[SYS] APU run state: "~apu_run~" apu req state: "~apu_req);
   if (apu_req == 1 and apu_run == 0) {
-    tracer("APU start/run:"~apu_run~", flt_mode:"~flt_mode);
+    tracer("[SYS] APU start/run:"~apu_run~", flt_mode:"~flt_mode);
     if(flt_mode == 1 or flt_mode > 10) {
       setprop("/instrumentation/ecam/synoptic","apu");
     }
@@ -1656,6 +1686,17 @@ setlistener("/controls/anti-ice/engine[3]/inlet-heat", func(n) {
    }
    setprop("fdm/jsbsim/propulsion/engine[3]/bleed-factor", currBleed+anti);
 });
+
+setlistener("instrumentation/flightdirector/mode-reversion", func(n) {
+  var reversion = n.getValue();
+  if (reversion == 1) {
+    settimer(clearReversion, 5);
+  }
+});
+
+clearReversion = func() {
+  setprop("instrumentation/flightdirector/mode-reversion", 0);
+}
 
 
 #################################

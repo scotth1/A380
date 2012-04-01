@@ -1,5 +1,16 @@
 <?xml version="1.0"?>
 <PropertyList>
+  <params>
+    <display-mode>instrumentation/efis[0]/mfd/display-mode</display-mode>
+    <nd-mode>instrumentation/efis[0]/nd-mode</nd-mode>
+    <radar-path>Aircraft/A380/Models/Instruments/MFD/od_ndradar_1.png</radar-path>
+    <inputs>
+      <lh-vor-adf>instrumentation/efis[0]/inputs/lh-vor-adf</lh-vor-adf>
+      <rh-vor-adf>instrumentation/efis[0]/inputs/rh-vor-adf</rh-vor-adf>
+      <terr>instrumentation/efis[0]/inputs/TERR</terr>
+      <taxi>instrumentation/efis[0]/inputs/taxi</taxi>
+    </inputs>
+  </params>
 
 <name>MFD Panel</name>
 <background>Aircraft/A380/Models/Instruments/MFD/black.png</background>
@@ -9,6 +20,12 @@
 <instruments> 
 
     <instrument include="ROSE.xml">
+      <params>
+	<inputs>
+	  <lh-vor-adf alias="/params/inputs/lh-vor-adf"/>
+	  <rh-vor-adf alias="/params/inputs/rh-vor-adf"/>
+	</inputs>
+      </params>
         <condition>
             <and>
                 <greater-than>
@@ -16,9 +33,11 @@
                     <value>15</value>
                 </greater-than>
                 <equals>
-                    <property>instrumentation/efis[0]/mfd/display-mode</property>
+                    <!-- property>instrumentation/efis[0]/mfd/display-mode</property -->
+		    <property alias="/params/display-mode"/>
                     <value>ROSE</value>
                 </equals>
+		<not><property alias="/params/inputs/taxi"/></not>
             </and>
         </condition>
         <name>rose</name>
@@ -29,6 +48,12 @@
     </instrument>
     
     <instrument include="ARC.xml">
+      <params>
+	<inputs>
+	  <lh-vor-adf alias="/params/inputs/lh-vor-adf"/>
+	  <rh-vor-adf alias="/params/inputs/rh-vor-adf"/>
+	</inputs>
+      </params>
         <condition>
             <and>
                 <greater-than>
@@ -36,9 +61,11 @@
                     <value>15</value>
                 </greater-than>
                 <equals>
-                    <property>instrumentation/efis[0]/mfd/display-mode</property>
+                    <!-- property>instrumentation/efis[0]/mfd/display-mode</property -->
+		    <property alias="/params/display-mode"/>
                     <value>ARC</value>
                 </equals>
+		<not><property alias="/params/inputs/taxi"/></not>
             </and>
         </condition>
         <name>arc</name>
@@ -57,17 +84,21 @@
                     <value>15</value>
                 </greater-than>
                 <not-equals>
-                    <property>instrumentation/efis/mfd/display-mode</property>
+                    <!-- property>instrumentation/efis/mfd/display-mode</property -->
+		    <property alias="/params/display-mode"/>
                     <value>PLAN</value>
                 </not-equals>
 		<not-equals>
-                    <property>instrumentation/efis/nd-mode</property>
+                    <!-- property>instrumentation/efis/nd-mode</property -->
+		    <property alias="/params/nd-mode"/>
                     <value>LS</value>
                 </not-equals>
 		<not-equals>
-                    <property>instrumentation/efis/nd-mode</property>
+                    <!-- property>instrumentation/efis/nd-mode</property -->
+		    <property alias="/params/nd-mode"/>
                     <value>VOR</value>
                 </not-equals>
+		<not><property alias="/params/inputs/taxi"/></not>
             </and>
         </condition> 
         <name>radar</name>
@@ -75,6 +106,12 @@
         <y>128</y>
         <w>256</w>
         <h>256</h>
+	<params>
+	    <display-mode alias="/params/display-mode"/>
+	    <nd-mode alias="/params/nd-mode"/>
+	    <radar-path alias="/params/radar-path"/>
+	    <terr alias="/params/inputs/terr"/>
+        </params>
     </instrument>
     
      <instrument include="ROSEmask.xml">
@@ -85,9 +122,11 @@
                     <value>15</value>
                 </greater-than>
                 <equals>
-                    <property>instrumentation/efis[0]/mfd/display-mode</property>
+                    <!-- property>instrumentation/efis[0]/mfd/display-mode</property -->
+		    <property alias="/params/display-mode"/>
                     <value>ROSE</value>
                 </equals>
+		<not><property alias="/params/inputs/taxi"/></not>
             </and>
         </condition>
         <name>rose</name>
@@ -105,9 +144,11 @@
                     <value>15</value>
                 </greater-than>
                 <equals>
-                    <property>instrumentation/efis[0]/mfd/display-mode</property>
+                    <!-- property>instrumentation/efis[0]/mfd/display-mode</property -->
+		    <property alias="/params/display-mode"/>
                     <value>ARC</value>
                 </equals>
+		<not><property alias="/params/inputs/taxi"/></not>
             </and>
         </condition>
         <name>arc</name>
@@ -138,6 +179,12 @@
     </instrument -->
     
    <instrument include="VOR.xml">
+     <params>
+	<inputs>
+	  <lh-vor-adf alias="/params/inputs/lh-vor-adf"/>
+	  <rh-vor-adf alias="/params/inputs/rh-vor-adf"/>
+	</inputs>
+      </params>
         <condition>
             <and>
                 <greater-than>
@@ -145,9 +192,11 @@
                     <value>15</value>
                 </greater-than>
                 <equals>
-                    <property>instrumentation/efis[0]/nd-mode</property>
+                    <!-- property>instrumentation/efis[0]/nd-mode</property -->
+		    <property alias="/params/nd-mode"/>
                     <value>VOR</value>
                 </equals>
+		<not><property alias="/params/inputs/taxi"/></not>
             </and>
         </condition>
         <name>vor</name>
@@ -158,6 +207,12 @@
     </instrument>
     
    <instrument include="APP.xml">
+     <params>
+	<inputs>
+	  <lh-vor-adf alias="/params/inputs/lh-vor-adf"/>
+	  <rh-vor-adf alias="/params/inputs/rh-vor-adf"/>
+	</inputs>
+      </params>
         <condition>
             <and>
                 <greater-than>
@@ -165,9 +220,11 @@
                     <value>15</value>
                 </greater-than>
                 <equals>
-                    <property>instrumentation/efis/nd-mode</property>
+                    <!-- property>instrumentation/efis/nd-mode</property -->
+		    <property alias="/params/nd-mode"/>
                     <value>LS</value>
                 </equals>
+		<not><property alias="/params/inputs/taxi"/></not>
             </and>
         </condition>
         <name>app</name>
@@ -185,9 +242,11 @@
                     <value>15</value>
                 </greater-than>
                 <equals>
-                    <property>instrumentation/efis/mfd/display-mode</property>
+                    <!-- property>instrumentation/efis/mfd/display-mode</property -->
+		    <property alias="/params/display-mode"/>
                     <value>PLAN</value>
                 </equals>
+		<not><property alias="/params/inputs/taxi"/></not>
             </and>
         </condition>
         <name>plan</name>
@@ -196,6 +255,23 @@
         <w>256</w>
         <h>256</h>
     </instrument> 
+    
+    <instrument include="TAXI.xml">
+        <condition>
+            <and>
+                <greater-than>
+                    <property>systems/electrical/outputs/efis</property>
+                    <value>15</value>
+                </greater-than>
+                <property alias="/params/inputs/taxi"/>
+            </and>
+        </condition>
+        <name>plan</name>
+        <x>128</x>
+        <y>128</y>
+        <w>256</w>
+        <h>256</h>
+    </instrument>
      
 
 </instruments>

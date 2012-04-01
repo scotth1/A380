@@ -170,8 +170,11 @@ tracer : func(msg) {
      }
       me.tracer("bothSelect: "~bothSelect);
       me.tracer("clbArm: "~clbArm);
+      me.tracer("crzAcquire: "~crzAcquire);
       me.tracer("spdMode: "~spdMode);
       me.tracer("flapPos: "~flapPos);
+      me.tracer("curFlightMode: "~curFlightMode);
+
       if (bothSelect == MANAGED_MODE) {
         setprop("instrumentation/afs/vertical-lvl-managed-mode",-1);
       }
@@ -324,7 +327,7 @@ tracer : func(msg) {
            retSpeed = SPD_CRZ;
          }
        } else {
-         setprop("instrumentation/afs/speed-managed-mode",0);
+         setprop("instrumentation/afs/speed-managed-mode",SELECTED_MODE);
          if (curAlt > changeoverAlt) {
            retSpeed = SPD_MACH;
          } else {
@@ -332,7 +335,7 @@ tracer : func(msg) {
          }
        }
      } else {
-       setprop("instrumentation/afs/speed-managed-mode",0);
+       setprop("instrumentation/afs/speed-managed-mode",SELECTED_MODE);
        retSpeed = SPD_OFF;
      }
      return retSpeed;

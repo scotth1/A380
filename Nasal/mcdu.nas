@@ -33,7 +33,7 @@ inputType  = "";
 trace = 0;         ## Set to 0 to turn off all tracing messages
 depDB = nil;
 arvDB = nil;
-version = "V2.0.10";
+version = "V2.0.11";
 wpMode = "V2";    ## set to "V2" for new mode (airbusFMS) or "V1" for old mode (route-manager)
 
 routeClearArm = 0;
@@ -783,6 +783,11 @@ selectSidAction = func(opt, unit) {
     } else {
       nextPage = "active.departure.arv";
       copyPlanToRoute();
+      if (getprop("autopilot/route-manager/active") == 0) {
+        tracer("@ACTIVATE");
+        setprop("/autopilot/route-manager/input", "@ACTIVATE");
+        ##setprop("/autopilot/route-manager/active",1);
+      }
     }
 
     #
@@ -1135,6 +1140,11 @@ selectSidTransAction = func(val, unit) {
       }
     }
   copyPlanToRoute();
+  if (getprop("autopilot/route-manager/active") == 0) {
+      tracer("@ACTIVATE");
+      setprop("/autopilot/route-manager/input", "@ACTIVATE");
+      ##setprop("/autopilot/route-manager/active",1);
+  }
   changePage(unit, "active.departure.dep");
 }
 
