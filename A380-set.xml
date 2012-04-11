@@ -424,7 +424,14 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
                     <label>Map Lights</label>
                     <binding>
                         <command>property-toggle</command>
-                        <property>controls/lighting/panel-norm[1]</property>
+			<property>controls/switches/storm</property>
+                    </binding>
+                </item>
+		<item>
+                    <label>Panel Lights</label>
+                    <binding>
+                        <command>property-toggle</command>
+			<property>controls/switches/panel-lights</property>
                     </binding>
                 </item>
                 <item>
@@ -829,6 +836,7 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
 
   <switches>
     <panel-lights type="bool">0</panel-lights>
+    <storm type="bool">0</storm>
     <landing-lights type="bool">0</landing-lights> 
     <taxi-lights type="bool">0</taxi-lights>
     <wing-lights type="bool">0</wing-lights>
@@ -839,10 +847,10 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
     <smoking type="double">0.0</smoking>
     <nav-lights type="bool">0</nav-lights>
     <logo-light type="double">0.0</logo-light>
+    <logo-lights type="bool">0</logo-lights>
     <cabin-lights type="double">0.8</cabin-lights>
     <map-lights type="double">0.0</map-lights>
     <master-panel type="bool">1</master-panel>
-    <storm type="bool">1</storm>
   </switches>
   <engines>
     <engine n="0">
@@ -1096,7 +1104,7 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
            <y-center type="float">0.182</y-center>
        </nd>
        
-       <!-- nd n="1">
+       <nd n="1">
 	 <number>1</number>
            <radar-texture-path type="string">Aircraft/A380/Models/Instruments/MFD/od_ndradar_2.png</radar-texture-path>
            <symbol-texture-path type="string">Aircraft/A380/Models/Instruments/MFD/airbus_symbols.png</symbol-texture-path>
@@ -1117,7 +1125,7 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
            <heading-up-deg type="float">0.01</heading-up-deg>
            <x-center type="float">0.499</x-center>
            <y-center type="float">0.182</y-center>
-       </nd -->
+       </nd>
         
         <groundradar>
             <range type="double">0.8</range>

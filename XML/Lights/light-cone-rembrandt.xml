@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+
+  	<path>../../Models/Lights/light-cone02.ac</path>
+	<!-- texture-path>Aircraft/A380/Textures/Common/</texture-path -->
+
+  	<!-- effect>
+	  <condition>
+	    <not>
+	      <property>sim/rendering/rembrandt</property>
+	    </not>
+	  </condition
+    		<inherits-from>Effects/light-cone</inherits-from>
+    		<object-name>Cone</object-name>
+ 	</effect -->
+	
+	
+<animation>
+   <type>light</type>
+   <light-type>spot</light-type>
+   <name>LightCone</name>
+   <object-name>cone</object-name>
+   <position>
+     <x>0.00</x>
+     <y>0.00</y>
+     <z>0.00</z>
+   </position>
+   <direction>
+     <x>-1.0</x>
+     <y>0.0</y>
+     <z>0.00</z>
+   </direction>
+   <ambient>
+     <r>0.1</r>
+     <g>0.1</g>
+     <b>0.1</b>
+     <a>1.0</a>
+   </ambient>
+   <diffuse>
+     <r>0.9</r>
+     <g>0.9</g>
+     <b>0.8</b>
+     <a>1.0</a>
+   </diffuse>
+   <specular>
+     <r>0.7</r>
+     <g>0.7</g>
+     <b>0.7</b>
+     <a>1.0</a>
+   </specular>
+   <attenuation>
+     <c>1.0</c>
+     <l>0.00</l>
+     <q>0.00</q>
+   </attenuation>
+   <exponent>1.0</exponent>
+   <cutoff>10</cutoff>
+   <near-m>0</near-m>
+   <far-m>90</far-m>
+ </animation>
+
+  
+ </PropertyList>

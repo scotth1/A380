@@ -1163,4 +1163,202 @@
          </offsets>
 </model>
 
+<animation>
+   <type>light</type>
+   <light-type>spot</light-type>
+   <name>logo-left</name>
+   <object-name>logo-light-left</object-name>
+   <position>
+     <x>70.3117</x>
+     <z>9.6335</z>
+     <y>0.6883</y>
+   </position>
+   <direction>
+     <x>0.2</x>
+     <y>0</y>
+     <z>1</z>
+   </direction>
+   <ambient>
+      <r>  0.9 </r>
+      <g>  0.804 </g>
+      <b>  0.5 </b>
+      <a>  1.0 </a>
+    </ambient>
+    <diffuse>
+      <r>  0.9 </r>
+      <g>  0.804 </g>
+      <b>  0.5 </b>
+      <a>  1.0 </a>
+    </diffuse>
+    <specular>
+      <r>  0.9 </r>
+      <g>  0.804 </g>
+      <b>  0.5 </b>
+      <a>  1.0 </a>
+    </specular>
+    <attenuation>
+     <c>1.0</c>
+     <l>0.002</l>
+     <q>0.00005</q>
+   </attenuation>
+   <exponent>30.0</exponent>
+   <cutoff>39</cutoff>
+   <near-m>3</near-m>
+   <far-m>30</far-m>
+ </animation>
+
+  <animation>
+   <type>light</type>
+   <light-type>spot</light-type>
+   <name>wing-left</name>
+   <object-name>wing-light-left</object-name>
+   <position>
+     <x>33.7550</x>
+     <z>6.2161</z>
+     <y>3.6866</y>
+   </position>
+   <direction>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </direction>
+   <ambient>
+      <r>  0.9 </r>
+      <g>  0.804 </g>
+      <b>  0.5 </b>
+      <a>  1.0 </a>
+    </ambient>
+    <diffuse>
+      <r>  0.9 </r>
+      <g>  0.804 </g>
+      <b>  0.5 </b>
+      <a>  1.0 </a>
+    </diffuse>
+    <specular>
+      <r>  0.9 </r>
+      <g>  0.804 </g>
+      <b>  0.5 </b>
+      <a>  1.0 </a>
+    </specular>
+    <attenuation>
+      <c>1.0</c>
+     <l>0.002</l>
+     <q>0.00005</q> 
+   </attenuation>
+   <exponent>30.0</exponent>
+   <cutoff>30</cutoff>
+   <near-m>3</near-m>
+   <far-m>50</far-m>
+ </animation>
+ 
+ <animation>
+   <type>light</type>
+   <light-type>spot</light-type>
+   <name>wing-right</name>
+   <object-name>wing-light-right</object-name>
+   <position>
+     <x>33.7550</x>
+     <z>6.2161</z>
+     <y>-3.6866</y>
+   </position>
+   <direction>
+     <x>0</x>
+     <y>-1</y>
+     <z>0</z>
+   </direction>
+   <ambient>
+      <r>  0.9 </r>
+      <g>  0.804 </g>
+      <b>  0.5 </b>
+      <a>  1.0 </a>
+    </ambient>
+    <diffuse>
+      <r>  0.9 </r>
+      <g>  0.804 </g>
+      <b>  0.5 </b>
+      <a>  1.0 </a>
+    </diffuse>
+    <specular>
+      <r>  0.9 </r>
+      <g>  0.804 </g>
+      <b>  0.5 </b>
+      <a>  1.0 </a>
+    </specular>
+     <attenuation>
+     <c>1.0</c>
+     <l>0.002</l>
+     <q>0.00005</q>
+   </attenuation>
+   <exponent>30.0</exponent>
+   <cutoff>30</cutoff>
+   <near-m>3</near-m>
+   <far-m>50</far-m>
+ </animation>
+ 
+ 
+ <model>
+	  <condition>
+	      <property>sim/rendering/rembrandt</property>
+	  </condition>
+		<path>Aircraft/A380/XML/Lights/light-cone-rembrandt.xml</path>
+		<name>Nose.Light</name>
+		<offsets>
+			<x-m>11.9026</x-m>
+			<y-m>0.003</y-m>
+			<z-m>1.8621</z-m>
+			<pitch-deg>0.0</pitch-deg>
+		</offsets>
+	</model>
+ 
+    <!-- attenuation>
+      <c>  0.3 </c>
+      <l>  0.0 </l>
+      <q>  0.2 </q>
+    </attenuation>
+    <exponent>  0.1 </exponent>
+    <cutoff>   80.0   </cutoff>
+    <near-m>    0.0   </near-m>
+    <far-m>     50 </far-m -->
+ 
+ <!-- attenuation>
+      <c>  1.2 </c>
+      <l>  0.0 </l>
+      <q>  0.4 </q>
+    </attenuation>
+    <exponent>  0.1 </exponent>
+    <cutoff>   84.0   </cutoff>
+    <near-m>    0.0   </near-m>
+    <far-m>     1.5 </far-m -->
+ 
+ <animation>
+    <type>select</type>
+    <object-name>logo-left</object-name>
+    <condition>
+      <and>
+        <property>controls/switches/logo-lights</property>
+	<greater-than>
+	  <property>systems/electrical/outputs/logo-lights</property>
+	  <value>0</value>
+	</greater-than>
+    </and>
+    </condition>
+  </animation>
+  
+  <animation>
+    <type>select</type>
+    <object-name>wing-left</object-name>
+    <object-name>wing-right</object-name>
+    <condition>
+      <property>controls/switches/wing-lights</property>
+    </condition>
+  </animation>
+  
+  <animation>
+    <type>select</type>
+    <object-name>Nose.Light</object-name>
+    <condition>
+      <property>controls/switches/taxi-lights</property>
+    </condition>
+  </animation>
+
 </PropertyList>

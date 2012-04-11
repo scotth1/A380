@@ -10,5 +10,7 @@
     		<inherits-from>Effects/light-cone</inherits-from>
     		<object-name>Cone</object-name>
  	</effect>
+	
+
   
  </PropertyList>

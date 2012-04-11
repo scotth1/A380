@@ -9,7 +9,7 @@
 
 <PropertyList>
 
-	<path>../../../Models/FlightDeck/Pedestal/displayFrame.3ds</path> 
+	<path>../../../Models/FlightDeck/Pedestal/displayFrame.ac</path> 
 	<texture-path>Aircraft/A380/Textures/Common</texture-path>
 	
 	<model>

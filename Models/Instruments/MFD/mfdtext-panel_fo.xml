@@ -1,12 +1,13 @@
 <?xml version="1.0"?>
 <PropertyList>
   <params>
-    <display-mode>instrumentation/efis[0]/mfd/display-mode</display-mode>
-    <nd-mode>instrumentation/efis[0]/nd-mode</nd-mode>
+    <display-mode>instrumentation/efis[1]/mfd/display-mode</display-mode>
+    <nd-mode>instrumentation/efis[1]/nd-mode</nd-mode>
+    <radar-path>Aircraft/A380/Models/Instruments/MFD/od_ndradar_2.png</radar-path>
     <inputs>
       <lh-vor-adf>instrumentation/efis[1]/inputs/lh-vor-adf</lh-vor-adf>
       <rh-vor-adf>instrumentation/efis[1]/inputs/rh-vor-adf</rh-vor-adf>
-      <taxi>instrumentation/efis[0]/inputs/taxi</taxi>
+      <taxi>instrumentation/efis[1]/inputs/taxi</taxi>
     </inputs>
   </params>
 

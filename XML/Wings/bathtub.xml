@@ -5,25 +5,70 @@
 	<path>../../Models/Wings/bathtub.3ds</path>
 
 	<model>
+	    <condition>
+	    <not>
+	      <property>sim/rendering/rembrandt</property>
+	    </not>
+	    </condition>
 		<path>Aircraft/A380/XML/Lights/light-cone-left.xml</path>
 		<name>Land.Light.L</name>
 		<offsets>
 			<x-m>-3.72</x-m>
 			<y-m>-5.70</y-m>
 			<z-m>-0.53</z-m>
+			<pitch-deg>-3.0</pitch-deg>
 		</offsets>
 	</model>
 
 	<model>
+	  <condition>
+	    <not>
+	      <property>sim/rendering/rembrandt</property>
+	    </not>
+	  </condition>
 		<path>Aircraft/A380/XML/Lights/light-cone-right.xml</path>
 		<name>Land.Light.R</name>
 		<offsets>
 			<x-m>-3.72</x-m>
 			<y-m> 5.70</y-m>
 			<z-m>-0.53</z-m>
+			<pitch-deg>-3.0</pitch-deg>
+		</offsets>
+	</model>
+	
+	<model>
+	    <condition>
+	      <property>sim/rendering/rembrandt</property>
+	    </condition>
+		<path>Aircraft/A380/XML/Lights/light-cone-rembrandt.xml</path>
+		<name>Land.Light.L</name>
+		<offsets>
+			<x-m>-3.72</x-m>
+			<y-m>-5.70</y-m>
+			<z-m>-0.53</z-m>
+			<pitch-deg>-2.0</pitch-deg>
+			<heading-deg>3.0</heading-deg>
 		</offsets>
 	</model>
 
+	<model>
+	  <condition>
+	      <property>sim/rendering/rembrandt</property>
+	  </condition>
+		<path>Aircraft/A380/XML/Lights/light-cone-rembrandt.xml</path>
+		<name>Land.Light.R</name>
+		<offsets>
+			<x-m>-3.72</x-m>
+			<y-m> 5.70</y-m>
+			<z-m>-0.53</z-m>
+			<pitch-deg>-2.0</pitch-deg>
+			<heading-deg>357.0</heading-deg>
+		</offsets>
+	</model>
+	
+	
+
+ 
 	<animation>
 		<type>select</type>
 		<object-name>Land.Light.L</object-name>

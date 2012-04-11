@@ -2,7 +2,7 @@
 
 <PropertyList>
 
-	<path>../../../Models/FlightDeck/FrontPanel/frontpanel.3ds</path> 
+	<path>../../../Models/FlightDeck/FrontPanel/frontpanel.ac</path> 
 	<!--<offsets>
 		<x-m>0.90597</x-m>
 		<z-m>0.49453</z-m>-->
@@ -48,7 +48,6 @@
 			<y-m>0.3603</y-m>
 			<z-m>-0.013</z-m>
 			<pitch-deg>270.0</pitch-deg>
-			<!-- ends -->
 		</offsets>
 		<overlay>
 		  <params>
@@ -222,6 +221,39 @@
 		    <y-m>0.188</y-m>
 		</offsets>
 	</model>
+	
+	<model>
+	    <path>Aircraft/A380/XML/FlightDeck/FrontPanel/panel-light.xml</path>
+	    <name>panel-light-left</name>
+	    <offsets>
+		    <x-m>0.01</x-m>
+		    <y-m>0.001</y-m>
+		    <z-m>0.0</z-m>
+		    <pitch-deg>0</pitch-deg>
+		</offsets>
+	</model>
+	<model>
+	    <path>Aircraft/A380/XML/FlightDeck/FrontPanel/panel-light.xml</path>
+	    <name>panel-light-right</name>
+	    <offsets>
+		    <x-m>0.01</x-m>
+		    <y-m>0.39</y-m>
+		    <z-m>0.0</z-m>
+		    <pitch-deg>0</pitch-deg>
+		</offsets>
+	</model>
+	
+	
+	
+  <effect>
+    <inherits-from>Effects/model-transparent</inherits-from>
+    <object-name>nd_c</object-name>
+    <object-name>pfd_c</object-name>
+    <object-name>eicas</object-name>
+    <object-name>nd_fo</object-name>
+    <object-name>pfd_fo</object-name>
+  </effect>
+	
 	
 	<!-- Disable shadows -->
 	<animation>

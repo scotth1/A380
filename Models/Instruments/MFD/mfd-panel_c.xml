@@ -33,7 +33,6 @@
                     <value>15</value>
                 </greater-than>
                 <equals>
-                    <!-- property>instrumentation/efis[0]/mfd/display-mode</property -->
 		    <property alias="/params/display-mode"/>
                     <value>ROSE</value>
                 </equals>
@@ -61,7 +60,6 @@
                     <value>15</value>
                 </greater-than>
                 <equals>
-                    <!-- property>instrumentation/efis[0]/mfd/display-mode</property -->
 		    <property alias="/params/display-mode"/>
                     <value>ARC</value>
                 </equals>
@@ -84,17 +82,14 @@
                     <value>15</value>
                 </greater-than>
                 <not-equals>
-                    <!-- property>instrumentation/efis/mfd/display-mode</property -->
 		    <property alias="/params/display-mode"/>
                     <value>PLAN</value>
                 </not-equals>
 		<not-equals>
-                    <!-- property>instrumentation/efis/nd-mode</property -->
 		    <property alias="/params/nd-mode"/>
                     <value>LS</value>
                 </not-equals>
 		<not-equals>
-                    <!-- property>instrumentation/efis/nd-mode</property -->
 		    <property alias="/params/nd-mode"/>
                     <value>VOR</value>
                 </not-equals>
@@ -122,7 +117,6 @@
                     <value>15</value>
                 </greater-than>
                 <equals>
-                    <!-- property>instrumentation/efis[0]/mfd/display-mode</property -->
 		    <property alias="/params/display-mode"/>
                     <value>ROSE</value>
                 </equals>
@@ -144,7 +138,6 @@
                     <value>15</value>
                 </greater-than>
                 <equals>
-                    <!-- property>instrumentation/efis[0]/mfd/display-mode</property -->
 		    <property alias="/params/display-mode"/>
                     <value>ARC</value>
                 </equals>
@@ -192,7 +185,6 @@
                     <value>15</value>
                 </greater-than>
                 <equals>
-                    <!-- property>instrumentation/efis[0]/nd-mode</property -->
 		    <property alias="/params/nd-mode"/>
                     <value>VOR</value>
                 </equals>
@@ -220,7 +212,6 @@
                     <value>15</value>
                 </greater-than>
                 <equals>
-                    <!-- property>instrumentation/efis/nd-mode</property -->
 		    <property alias="/params/nd-mode"/>
                     <value>LS</value>
                 </equals>
@@ -242,7 +233,6 @@
                     <value>15</value>
                 </greater-than>
                 <equals>
-                    <!-- property>instrumentation/efis/mfd/display-mode</property -->
 		    <property alias="/params/display-mode"/>
                     <value>PLAN</value>
                 </equals>
@@ -272,8 +262,7 @@
         <w>256</w>
         <h>256</h>
     </instrument>
-     
+  </instruments>
 
-</instruments>
 
 </PropertyList>

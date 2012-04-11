@@ -1436,6 +1436,15 @@ setlistener("controls/gear/autobrakes", func(n) {
 #   position = n.getValue();
 #});
 
+setlistener("controls/switches/logo-light", func(n) {
+  var val = n.getValue();
+  if (val > 0) {
+    setprop("controls/switches/logo-lights", 1);
+  } else {
+    setprop("controls/switches/logo-lights", 0);
+  }
+});
+
 
 ###########################
 #  Flight Control modes
