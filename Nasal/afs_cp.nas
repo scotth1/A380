@@ -71,7 +71,7 @@ SPD_THRIDL=8;
 
 # working memory
 afs_trace = 0;
-afs_version = "2.0.6";
+afs_version = "2.0.7";
 
 
 
@@ -280,7 +280,9 @@ increment_vs = func() {
     setprop("/instrumentation/afs/vertical-speed-fpm",curr);
     if (getprop("/instrumentation/flightdirector/vnav") == VNAV_VS) {
       setprop("/autopilot/settings/vertical-speed-fpm",curr);
-      setprop("instrumentation/afs/limit-max-vs-fps", (curr/60));
+      var fps = abs(curr/60);
+      setprop("instrumentation/afs/limit-max-vs-fps", (0+fps));
+      setprop("instrumentation/afs/limit-min-vs-fps", (0-fps));
     }
 }
 
@@ -297,7 +299,9 @@ decrement_vs = func() {
     setprop("/instrumentation/afs/vertical-speed-fpm",curr);
     if (getprop("/instrumentation/flightdirector/vnav") == VNAV_VS) {
       setprop("/autopilot/settings/vertical-speed-fpm",curr);
-      setprop("instrumentation/afs/limit-max-vs-fps", (curr/60));
+      var fps = abs(curr/60);
+      setprop("instrumentation/afs/limit-max-vs-fps", (0+fps));
+      setprop("instrumentation/afs/limit-min-vs-fps", (0-fps));
     }
 }
 
@@ -542,7 +546,9 @@ toggle_vs_select = func(n) {
           setprop("/autopilot/settings/vertical-speed-fpm",currVS);
           ##setprop("/instrumentation/flightdirector/alt-acquire-mode",1);
           setprop("/instrumentation/flightdirector/vnav-arm", VNAV_ALTs);
-          setprop("instrumentation/afs/limit-max-vs-fps", (currVS/60));
+          var fps = abs(currVS/60);
+          setprop("instrumentation/afs/limit-max-vs-fps", (0+fps));
+          setprop("instrumentation/afs/limit-min-vs-fps", (0-fps));
         }
       }
       if (finalVNAVMode == VNAV_OPCLB) {
