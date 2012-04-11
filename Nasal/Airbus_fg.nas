@@ -67,7 +67,7 @@ lnavStr = ["off","HDG","TRK","LOC","NAV","RWY"];
 vnavStr = ["off","ALT(s)","V/S","OP CLB","FPA","OP DES","CLB","ALT CRZ","DES","G/S","SRS","LEVEL"];
 spdStr  = ["off","TOGA","FLEX","THR CLB","SPEED","MACH","CRZ","THR DES","THR IDL"];
 
-version="V1.1.10";
+version="V1.1.11";
 trace=0;
 
 #trigonometric values for glideslope calculations

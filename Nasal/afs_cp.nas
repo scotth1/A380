@@ -280,7 +280,7 @@ increment_vs = func() {
     setprop("/instrumentation/afs/vertical-speed-fpm",curr);
     if (getprop("/instrumentation/flightdirector/vnav") == VNAV_VS) {
       setprop("/autopilot/settings/vertical-speed-fpm",curr);
-      var fps = abs(curr/60);
+      var fps = math.abs(curr/60);
       setprop("instrumentation/afs/limit-max-vs-fps", (0+fps));
       setprop("instrumentation/afs/limit-min-vs-fps", (0-fps));
     }
@@ -299,7 +299,7 @@ decrement_vs = func() {
     setprop("/instrumentation/afs/vertical-speed-fpm",curr);
     if (getprop("/instrumentation/flightdirector/vnav") == VNAV_VS) {
       setprop("/autopilot/settings/vertical-speed-fpm",curr);
-      var fps = abs(curr/60);
+      var fps = math.abs(curr/60);
       setprop("instrumentation/afs/limit-max-vs-fps", (0+fps));
       setprop("instrumentation/afs/limit-min-vs-fps", (0-fps));
     }
@@ -546,7 +546,7 @@ toggle_vs_select = func(n) {
           setprop("/autopilot/settings/vertical-speed-fpm",currVS);
           ##setprop("/instrumentation/flightdirector/alt-acquire-mode",1);
           setprop("/instrumentation/flightdirector/vnav-arm", VNAV_ALTs);
-          var fps = abs(currVS/60);
+          var fps = math.abs(currVS/60);
           setprop("instrumentation/afs/limit-max-vs-fps", (0+fps));
           setprop("instrumentation/afs/limit-min-vs-fps", (0-fps));
         }

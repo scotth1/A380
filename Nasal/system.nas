@@ -89,7 +89,7 @@ srsFlapTarget = [263.0, 222.0, 210.0, 196.0, 182.0];   #another copy in system.n
 flapPos       = [0, 0.2424, 0.5151, 0.7878, 1.0];
 
 ##trace = 0;
-version = "1.1.22";
+version = "1.1.23";
 
 strobe_switch = props.globals.getNode("/controls/switches/strobe", 0);
 aircraft.light.new("sim/model/A380/lighting/strobe", [0.05, 1.2], strobe_switch);
@@ -837,13 +837,13 @@ check_acquire_mode = func {
          tracer("[SYS] ACQ - reached selected alt: "~selectAlt);
          setprop("autopilot/settings/target-altitude-ft", getprop("instrumentation/afs/target-altitude-ft"));
          setprop("autopilot/locks/altitude","altitude-hold");
-         ##setprop("/instrumentation/flightdirector/vnav", VNAV_ALT);
+         setprop("/instrumentation/flightdirector/vnav", VNAV_ALT);
          ##setprop("/instrumentation/flightdirector/alt-acquire-mode",0);
          if (getprop("/instrumentation/flightdirector/vnav-arm") == VNAV_OFF and getprop("instrumentation/afs/vertical-alt-mode") == 0) {
            var aFMS = AirbusFMS.new();
            setprop("/instrumentation/flightdirector/vnav-arm", aFMS.evaluateManagedVNAV());
          } else {
-           setprop("/instrumentation/flightdirector/vnav-arm", VNAV_OFF);
+           setprop("/instrumentation/flightdirector/vnav-arm", vnavMode);
          }
        }
      }
