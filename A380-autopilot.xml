@@ -1127,7 +1127,7 @@
   
   <pid-controller>
     <name>rudder turn co-ordinator left</name>
-    <debug>true</debug>
+    <debug>false</debug>
     <enable>
       <condition>
 	  <greater-than>

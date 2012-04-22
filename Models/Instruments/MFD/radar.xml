@@ -11,6 +11,7 @@
       <radar-path>Aircraft/A380/Models/Instruments/MFD/od_ndradar_1.png</radar-path>
       <terr>instrumentation/efis[0]/inputs/terr</terr>
       <taxi>instrumentation/efis[0]/inputs/taxi</taxi>
+      <wx>instrumentation/efis[0]/inputs/wx</wx>
     </params>
 
     <layers>
@@ -66,6 +67,34 @@
           </transformations>
           <emissive>true</emissive>
 	</layer>
-    </layers>
 
+    <layer>
+	  <condition>
+	    <property alias="/params/inputs/wx"/>
+	  </condition>
+	  <name>terrain</name>
+	  <w>256</w>
+	  <h>256</h>
+	  <texture>
+	    <path>Aircraft/A380/Models/Instruments/MFD/od_wxradar.rgb</path>
+	    <x1>0.0</x1>
+	    <y1>0.0</y1>
+	    <x2>1</x2>
+	    <y2>1</y2>
+	  </texture>
+	  <transformations>
+            <transformation>
+              <type>y-shift</type>
+              <offset>1</offset>
+            </transformation>
+            <transformation>
+              <type>x-shift</type>
+              <offset>1</offset>
+            </transformation>
+          </transformations>
+          <emissive>true</emissive>
+	</layer>
+    </layers>
+   
+    
 </PropertyList>

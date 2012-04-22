@@ -83,10 +83,11 @@ This file selects the instrumentation modules that should be available.
         <number>0</number>
     </turn-indicator>
 
-    <!-- radar>
-        <name>radar</name>
+    <radar>
+        <name>wxradar</name>
         <number>0</number>
-    </radar -->
+    </radar>
+    
     <air-ground-radar>
       <name>terrain-radar</name>
       <number>0</number>
@@ -159,5 +160,5 @@ This file selects the instrumentation modules that should be available.
       <static-pressure>instrumentation/pressurisation/cabin-pressure-inhg</static-pressure>
       <serviceable type="bool">true</serviceable>
   </vertical-speed-indicator>
-
+  
 </PropertyList>

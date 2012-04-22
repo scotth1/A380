@@ -1150,7 +1150,7 @@ setlistener("/instrumentation/nav[0]/in-range", func(n) {
        tracer("[NAV0] locMode: "~locMode~", crzAcq: "~crzAcq~", alt: "~alt);
        if (range == 1) {
          if (locMode == 1 and crzAcq == 1 and alt < 15000) {
-           var ilsCat = getILSCategory(getprop("instrumentation/afs/TO"));
+           var ilsCat = getILSCategory(getprop("instrumentation/afs/TO"), getprop("instrumentation/afs/arv-rwy"));
            tracer("ils cat: "~ilsCat);
            setprop("instrumentation/afs/rwy-cat", ilsCat);
            if (lnavMode != LNAV_LOC and alt < 8000 ) {
@@ -1232,13 +1232,13 @@ var getILS = func(apt, rwy) {
 }
 
 ## get ILS category from nav db
-# requires patch to airportinfo() (see merge request #14)
-var getILSCategory = func(id) {
+# 
+var getILSCategory = func(aptId, arvRunway) {
   var retCat = "";
   if (id != nil) {
     var apt = airportinfo(id);
-    var arvRunway = getprop("instrumentation/afs/arv-rwy");
-    var navList = navinfo(apt.lat, apt.lon, "ils", 3.0);
+    ###var arvRunway = getprop("instrumentation/afs/arv-rwy");
+    var navList = navinfo(apt.lat, apt.lon, "ils");
     var navListSize = size(navList);
     print("size navList: "~navListSize);
     foreach(var ils; navList) {
