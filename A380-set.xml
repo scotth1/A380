@@ -971,6 +971,11 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
 	  <flight-control-mode type="string">ground</flight-control-mode>
         </afs>
 	
+	
+	<atn>
+	  <atc-url-base type="string">http://goat.hopto.org/fgatc/atn</atc-url-base>
+	</atn>
+	
 	<flightdirector>
 	  <mode-reversion type="bool">0</mode-reversion>
 	</flightdirector>
@@ -1180,7 +1185,8 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
 	</attitude-indicator -->
 
   <wxradar>
-      <name>radar</name>
+      <name>wxradar</name>
+      <radar-texture-path>Aircraft/A380/Models/Instruments/MFD/od_wxradar.rgb</radar-texture-path>
       <serviceable>true</serviceable>
       <range type="int" archive="y">20</range>
       <minimized type="bool" archive="y">false</minimized>
@@ -1230,27 +1236,43 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
        <volume> 0.9 </volume>            <!-- Volume at reference distance -->
      </speaker>
    </tcas>
-   <mcdu>
+   
+   <!-- menu data -->
+   <mcdu-menus>
+     <!-- dropdown 0 -->
      <dropdown>
-       <active type="bool">false</active>
-       <title type="string">ACTIVE</title>
        <menu>
+	 <title type="string">ACTIVE</title>
          <item type="string">INIT</item>
          <page>active.init</page>
          <item type="string">FLT PLN</item>
          <page>active.flt_pln</page>
        </menu>
-     </dropdown>
-     <dropdown>
-       <active type="bool">false</active>
-       <title type="string">POSITION</title>
        <menu>
+	 <title type="string">CONNECT</title>
+	 <item type="string">LOG ON</item>
+	 <page>atc.connect.logon</page>
+	 <item type="string">LOG OFF</item>
+	 <page>atc.connect.logoff</page>
        </menu>
      </dropdown>
+     <!-- dropdown 1 -->
      <dropdown>
-       <active type="bool">false</active>
-       <title type="string">SEC</title>
        <menu>
+	 <title type="string">POSITION</title>
+       </menu>
+       <menu>
+	 <title type="string">REQUEST</title>
+	 <item type="string">CLEARANCE</item>
+	 <page type="string">atc.request.clearance</page>
+	 <item type="string">ATIS</item>
+	 <page type="string">atc.request.atis</page>
+       </menu>
+     </dropdown>
+     <!-- dropdown 2 -->
+     <dropdown>
+       <menu>
+	 <title type="string">SEC</title>
          <item>INIT</item>
          <page>sec.init</page>
          <item type="string">FLT PLN</item>
@@ -1258,24 +1280,58 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
          <item>COPY</item>
          <page>sec.copy</page>
        </menu>
+       <menu>
+	 <title type="string"></title>
+       </menu>
+     </dropdown>
+     <!-- dropdown 3 -->
+     <dropdown>
+       <menu>
+	 <title type="string">DATA</title>
+       </menu>
+       <menu>
+	 <title type="string"></title>
+       </menu>
+     </dropdown>
+     <!-- system menu only has one menu set -->
+     <dropdown>
+       <menu>
+	 <item type="string">FMS1</item>
+	 <page>active.init</page>
+	 <item type="string">ATC</item>
+	 <page>atc.connect</page>
+       </menu>
+     </dropdown>
+   </mcdu-menus>
+   
+   <!-- these are for the active menu states -->
+   <mcdu>
+     <dropdown>
+       <active type="bool">false</active>
+       <title type="string">ACTIVE</title>
+     </dropdown>
+     <dropdown>
+       <active type="bool">false</active>
+       <title type="string">POSITION</title>
+     </dropdown>
+     <dropdown>
+       <active type="bool">false</active>
+       <title type="string">SEC</title>
      </dropdown>
      <dropdown>
        <active type="bool">false</active>
        <title type="string">DATA</title>
-       <menu>
-       </menu>
+     </dropdown>
+     <!-- system menu -->
+     <dropdown>
+       <active type="bool">false</active>
+       <title type="string">FMS1</title>
      </dropdown>
    </mcdu>
    <mcdu>
      <dropdown>
        <active type="bool">false</active>
        <title type="string">ACTIVE</title>
-       <menu>
-         <item type="string">INIT</item>
-         <page>active.init</page>
-         <item type="string">FLT PLN</item>
-         <page>active.flt_pln</page>
-       </menu>
      </dropdown>
      <dropdown>
        <active type="bool">false</active>
@@ -1284,18 +1340,15 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
      <dropdown>
        <active type="bool">false</active>
        <title type="string">SEC</title>
-       <menu>
-         <item>INIT</item>
-         <page>sec.init</page>
-         <item type="string">FLT PLN</item>
-         <page>sec.flt_pln</page>
-         <item>COPY</item>
-         <page>sec.copy</page>
-       </menu>
      </dropdown>
      <dropdown>
        <active type="bool">false</active>
        <title type="string">DATA</title>
+     </dropdown>
+     <!-- system menu -->
+     <dropdown>
+       <active type="bool">false</active>
+       <title type="string">FMS1</title>
      </dropdown>
    </mcdu>
    <fms>
@@ -1359,6 +1412,7 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
       <file>Aircraft/A380/Nasal/Atmos.nas</file>
       <file>Aircraft/A380/Nasal/TextRegion.nas</file>
       <file>Aircraft/A380/Nasal/AirbusFMS.nas</file>
+      <file>Aircraft/A380/Nasal/atn.nas</file>
       <file>Aircraft/A380/Nasal/system.nas</file>
       <file>Aircraft/A380/Nasal/Airbus_fg.nas</file>
       <file>Aircraft/Generic/limits.nas</file>
@@ -1380,10 +1434,12 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
     <FCU>
       <file>Aircraft/A380/Nasal/afs_cp.nas</file>
       <file>Aircraft/A380/Nasal/AirbusFMS.nas</file>
+      <file>Aircraft/A380/Nasal/atn.nas</file>
     </FCU>
     
     <MCDU1>
       <file>Aircraft/A380/Nasal/Atmos.nas</file>
+      <file>Aircraft/A380/Nasal/atn.nas</file>
       <file>Aircraft/A380/Nasal/mcdu.nas</file>
       <file>Aircraft/A380/Nasal/fmsDB.nas</file>
       <file>Aircraft/A380/Nasal/fmsWP.nas</file>
@@ -1393,6 +1449,7 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
     
     <MCDU2>
       <file>Aircraft/A380/Nasal/Atmos.nas</file>
+      <file>Aircraft/A380/Nasal/atn.nas</file>
       <file>Aircraft/A380/Nasal/mcdu.nas</file>
       <file>Aircraft/A380/Nasal/fmsDB.nas</file>
       <file>Aircraft/A380/Nasal/fmsWP.nas</file>

@@ -30,7 +30,7 @@ currentField = "";
 currentFieldPos = 0;
 inputValue = "";
 inputType  = "";
-trace = 0;         ## Set to 0 to turn off all tracing messages
+trace = 1;         ## Set to 0 to turn off all tracing messages
 depDB = nil;
 arvDB = nil;
 version = "V2.0.11";
@@ -38,6 +38,7 @@ wpMode = "V2";    ## set to "V2" for new mode (airbusFMS) or "V1" for old mode (
 
 routeClearArm = 0;
 airbusFMS = nil;   ###A380.fms;
+atnetwork = nil;   ###A380.atn;
 
 
 #### CONSTANTS ####
@@ -133,7 +134,14 @@ init_mcdu = func() {
       }
     }
     airbusFMS = A380.fms;
+    atnetwork = A380.atnetwork;
     ###foreach(i; keys(globals)) { print("  ", i); }
+    copyMenuNodes(0, 4, 0);
+    copyMenuNodes(1, 4, 0);
+    for(m = 0; m < 4; m=m+1) {
+      copyMenuNodes(0, m, 0);
+      copyMenuNodes(1, m, 0);
+    }
 
 }
 
@@ -262,7 +270,38 @@ keyPress = func(key) {
 
 changeDropdown = func(unit, menu, item) {
   var page = getprop("/instrumentation/mcdu["~unit~"]/dropdown["~menu~"]/menu/page["~item~"]");
+  tracer("unit: "~unit~", menu: "~menu~", item: "~item);
   changePage(unit, page);
+  if (menu == 4) {
+    for(m = 0; m < 4; m=m+1) {
+      var title = getprop("instrumentation/mcdu-menus/dropdown["~m~"]/menu["~item~"]/title");
+      setprop("instrumentation/mcdu["~unit~"]/dropdown["~m~"]/title", title);
+      copyMenuNodes(unit, m, item);
+    }
+    var title = getprop("instrumentation/mcdu-menus/dropdown["~menu~"]/menu/item["~item~"]");
+    setprop("instrumentation/mcdu["~unit~"]/dropdown["~menu~"]/title", title );
+  }
+}
+
+var copyMenuNodes = func(toUnit, toDrop, fromMenuSet) {
+    var srcNode = props.globals.getNode("instrumentation/mcdu-menus/dropdown["~toDrop~"]/menu["~fromMenuSet~"]/");
+      var dstNode = props.globals.getNode("instrumentation/mcdu["~toUnit~"]/dropdown["~toDrop~"]/menu/");
+      var itemSibling = srcNode.getChildren();
+      foreach(var mi; itemSibling ) {
+        ##debug.dump(mi);
+        if (mi.getName() == "item" or mi.getName() == "page") {  
+          var key = mi.getName()~"["~mi.getIndex()~"]";
+          var val = mi.getValue();
+          ##print("fromSet: "~fromMenuSet~", toDrop: "~toDrop~" - key: "~key~", val: "~val);
+          var dest = props.globals.getNode("instrumentation/mcdu["~toUnit~"]/dropdown["~toDrop~"]/menu/"~key, 1);
+          ##print("set dest: "~dest.getPath());
+          var type = mi.getType();
+          if(type == "BOOL") dest.setBoolValue(val);
+          elsif(type == "INT" or type == "LONG") dest.setIntValue(val);
+          elsif(type == "FLOAT" or type == "DOUBLE") dest.setDoubleValue(val);
+          else dest.setValue(val);
+        }
+      }
 }
 
 
@@ -278,6 +317,7 @@ changePage = func(unit,page) {
   setprop("/instrumentation/mcdu["~unit~"]/dropdown[1]/active",0);
   setprop("/instrumentation/mcdu["~unit~"]/dropdown[2]/active",0);
   setprop("/instrumentation/mcdu["~unit~"]/dropdown[3]/active",0);
+  setprop("/instrumentation/mcdu["~unit~"]/dropdown[4]/active",0);
 
   for(r =0; r != 8; r=r+1) {
       var optAttr = sprintf("/instrumentation/mcdu[%i]/opt%02i",unit,r+1);
@@ -601,6 +641,10 @@ changePage = func(unit,page) {
   }
   if (page == "active.appr_perf") {
     calcVapp();
+  }
+  if (page == "atc.connect") {
+  }
+  if (page == "atc.request") {
   }
 
 

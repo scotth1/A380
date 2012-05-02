@@ -98,6 +98,7 @@ aircraft.light.new("sim/model/A380/lighting/beacon", [0.05, 1.25], beacon_switch
 
 ewdChecklist = TextRegion.new(8, 50, "/instrumentation/ewd/checklists");
 fms = AirbusFMS.new();
+atnetwork = atn.new();
 
 
 
@@ -182,7 +183,7 @@ init_controls = func {
   print("Aircraft systems initialised");
   settimer(update_cabin_pressure, 3);
 
-  print("If you receive a Nasal error about missing member tower_lat and tower_lon, you will need to comment out the 'plot nearest airport in PLAN mode on ND.' section in this file");
+  ###print("If you receive a Nasal error about missing member tower_lat and tower_lon, you will need to comment out the 'plot nearest airport in PLAN mode on ND.' section in this file");
 }
 
 
@@ -247,10 +248,14 @@ update_radar = func {
     var id = base.getNode("id",1);
     if (closestApt != nil) {
       if (id.getValue() != closeAirportName) {
-        ##debug.dump(closestApt);
+        debug.dump(closestApt);
       }
       var aptPos = geo.Coord.new();
-      aptPos.set_latlon(closestApt.tower_lat, closestApt.tower_lon, closestApt.elevation);
+      ##debug.dump(closestApt);
+      var tower = closestApt;
+      ##var tower  = airporttower(closestApt);
+      ##debug.dump(tower);
+      aptPos.set_latlon(tower.lat, tower.lon, tower.elevation);
       var aptCourse = currentPos.course_to(aptPos);
       aptDistMetre   = currentPos.distance_to(aptPos);
       aptDist = aptDistMetre*METRE2NM;
@@ -1147,6 +1152,12 @@ setlistener("/sim/signals/fdm-initialized", func {
  #setprop("fdm/jsbsim/propulsion/engine[2]/bleed-factor",0.0);
  #setprop("fdm/jsbsim/propulsion/engine[3]/bleed-factor",0.0);
  print("Aircraft Systems ready.");
+});
+
+
+## we should logoff from ATN if we exit.
+setlistener("/sim/signals/exit", func {
+    atnetwork.doLogoff();
 });
 
 
