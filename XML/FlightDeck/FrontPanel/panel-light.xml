@@ -66,5 +66,13 @@
       <property>controls/switches/panel-lights</property>
     </condition>
   </animation>
+  
+  <animation>
+    <type>select</type>
+    <object-name>panel-light</object-name>
+    <condition>
+        <property>sim/rendering/rembrandt</property>
+    </condition>
+  </animation>
 
 </PropertyList>

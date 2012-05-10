@@ -1295,6 +1295,16 @@
    <far-m>50</far-m>
  </animation>
  
+ <animation>
+    <type>select</type>
+    <object-name>wing-light-left</object-name>
+    <object-name>wing-light-right</object-name>
+    <object-name>logo-light-left</object-name>
+    <condition>
+        <property>sim/rendering/rembrandt</property>
+    </condition>
+  </animation>
+ 
  
  <model>
 	  <condition>
