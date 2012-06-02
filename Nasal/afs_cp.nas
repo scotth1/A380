@@ -797,7 +797,8 @@ toggle_appr = func() {
 ## get ILS frequency from airportinfo.
 var getILS = func(apt, rwy) {
    var mhz = nil;
-   var runways = apt["runways"];
+   ##var runways = apt["runways"];
+   var runways = apt.runways();
    var ks = keys(runways);
    for(var r=0; r != size(runways); r=r+1) {
      var run = runways[ks[r]];

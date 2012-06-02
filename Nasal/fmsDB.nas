@@ -341,7 +341,7 @@ var fmsDB = {
     getApproachList : func(runway, radio) {
       var iapList = [];
       foreach(var s; me.wptps) {
-        if (s.tp_type == "Approach" and s.radio == radio) {
+        if (s.tp_type == "Approach" and (radio == "all" or s.radio == radio)) {
           foreach(var r; s.runways) {
             if (r == runway or r == "All") {
               append(iapList, s);

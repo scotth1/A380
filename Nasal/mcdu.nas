@@ -125,7 +125,8 @@ init_mcdu = func() {
 
     var depapt = airportinfo();
     if (depapt != nil) {
-      setprop("/instrumentation/afs/FROM",depapt["id"]);
+      ##setprop("/instrumentation/afs/FROM",depapt["id"]);
+      setprop("/instrumentation/afs/FROM",depapt.id);
       #setprop("/instrumentation/afs/depart-runway","");
       var multiCall = getprop("/sim/multiplay/callsign");
       if (getprop("/sim/multiplay/rxhost") != "0" and getprop("/sim/multiplay/txhost") != "0" and multiCall != "callsign") {
@@ -356,7 +357,8 @@ changePage = func(unit,page) {
     var depCourse = getprop("/instrumentation/afs/dep-course");
     depCourse = calcOrthHeadingDeg(depApt.lat,depApt.lon,arvApt.lat,arvApt.lon);
     setprop("/instrumentation/afs/dep-course",depCourse);
-    var runWays = depApt["runways"];
+    ##var runWays = depApt["runways"];
+    var runWays = depApt.runways;
     tracer("runways len: "~size(runWays));
     setprop("/instrumentation/mcdu["~unit~"]/opt-size",size(runWays));
     if (rwyScroll > int(size(runWays)/8)) {
@@ -371,15 +373,15 @@ changePage = func(unit,page) {
     for(r = (rwyScroll*8); r != max; r=r+1) {
       var key = ks[r];
       var run = runWays[key];
-      if (run["length"] > 2000) {
+      if (run.length > 2000) {
         pos = pos+1;
         var rwyAttr = sprintf("/instrumentation/mcdu[%i]/opt%02i",unit,pos);
         var rwyLenAttr = sprintf("/instrumentation/mcdu[%i]/col01-opt%02i",unit,pos);
         var rwyHdgAttr = sprintf("/instrumentation/mcdu[%i]/col02-opt%02i",unit,pos);
         tracer("[MCDU] set attr: "~rwyAttr~", run val: "~key);
         setprop(rwyAttr,key);
-        var lenStr = sprintf("%im",run["length"]);
-        var crsStr = sprintf("%03i", run["heading"]);
+        var lenStr = sprintf("%im",run.length);
+        var crsStr = sprintf("%03i", run.heading);
         setprop(rwyLenAttr, lenStr);
         setprop(rwyHdgAttr, crsStr);
       }
@@ -421,7 +423,8 @@ changePage = func(unit,page) {
     setprop("environment/metar[1]/station-id", getprop("/instrumentation/afs/TO"));
     
 
-    var runWays = arvApt["runways"];
+    ##var runWays = arvApt["runways"];
+    var runWays = arvApt.runways;
     tracer("runways len: "~size(runWays));
     setprop("/instrumentation/mcdu["~unit~"]/opt-size",size(runWays));
     var ks = keys(runWays);
@@ -433,16 +436,23 @@ changePage = func(unit,page) {
     var pos = 0;
     for(r = (rwyScroll*8); r != max; r=r+1) {
       var key = ks[r];
-      var run = runWays[key];
-      if (run["length"] > 1900) {
+      ##var run = runWays[key];
+      var run = arvApt.runway(key);
+      ## find all approach procedures for this runway.
+      if (arvDB == nil) { 
+        arvDB = fmsDB.new(getprop("/instrumentation/afs/TO"));
+      }
+      var aprchList = arvDB.getApproachList(run, "all");
+      
+      if (run.length > 1900) {
         pos = pos+1;
         var rwyAttr = sprintf("/instrumentation/mcdu[%i]/opt%02i",unit,pos);
         var rwyLenAttr = sprintf("/instrumentation/mcdu[%i]/col01-opt%02i",unit,pos);
         var rwyHdgAttr = sprintf("/instrumentation/mcdu[%i]/col02-opt%02i",unit,pos);
         tracer("[MCDU] set attr: "~rwyAttr~", run val: "~key);
         setprop(rwyAttr,key);
-        var lenStr = sprintf("%im",run["length"]);
-        var crsStr = sprintf("%03i", run["heading"]);
+        var lenStr = sprintf("%im",run.length);
+        var crsStr = sprintf("%03i", run.heading);
         setprop(rwyLenAttr, lenStr);
         setprop(rwyHdgAttr, crsStr);
       }
@@ -622,10 +632,11 @@ changePage = func(unit,page) {
      calcVapp();
      if (getprop("instrumentation/afs/dep-rwy") != nil) {
        var depApt = airportinfo(getprop("/instrumentation/afs/FROM"));
-       var runWays = depApt["runways"];
+       ##var runWays = depApt["runways"];
        var rwy = getprop("instrumentation/afs/dep-rwy");
-       var run = runWays[rwy];
-       var rwyLen = run["length"];
+       var run = depApt.runway(rwy);
+       #var rwyLen = run["length"];
+       var rwyLen  = run.length;
        var rwyLenHalf = (rwyLen/2);
      }
 
@@ -780,6 +791,7 @@ selectSidAction = func(opt, unit) {
     airbusFMS.clearWPType("SID");
     airbusFMS.clearWPType("T/C");
     var discontIdx = airbusFMS.findWPType("DISC");
+
     for(var w=0; w != size(sid.wpts);w=w+1) {
       var wpIns = "";
       var wp = sid.wpts[w];
@@ -1543,15 +1555,17 @@ var getILS = func(apt, rwy) {
      debug.dump(apt);
    }
    var mhz = nil;
-   var runways = apt["runways"];
-   var ks = keys(runways);
-   for(var r=0; r != size(runways); r=r+1) {
-     var run = runways[ks[r]];
-     if (run.id == rwy and contains(run, "ils_frequency_mhz")) {
-       mhz = sprintf("%3.1f",run.ils_frequency_mhz);
-       return mhz;
-     }
-   }
+   ##var runways = apt["runways"];
+   var runway = apt.runway(rwy);
+   mhz = sprintf("%3.1f",runway.ils_frequency_mhz);
+   ##var ks = keys(runways);
+   ##for(var r=0; r != size(runways); r=r+1) {
+   ##  var run = runways[ks[r]];
+   ##  if (run.id == rwy and contains(run, "ils_frequency_mhz")) {
+   ##    mhz = sprintf("%3.1f",run.ils_frequency_mhz);
+   ##    return mhz;
+   ##  }
+   ##}
    return mhz;
 }
 
@@ -1559,15 +1573,15 @@ var getILS = func(apt, rwy) {
 # create a fmsWP from airport data
 #
 var makeAirportWP = func(apt, rwy) {
-  var runways = apt["runways"];
-  var run = runways[rwy];
+  ##var runways = apt["runways"];
+  var run = apt.runway(rwy);
   var aptWP = fmsWP.new();
-  aptWP.wp_name = apt["id"];
+  aptWP.wp_name = apt.id;
   aptWP.wp_type = "APT";
-  aptWP.wp_lat = run["lat"];
-  aptWP.wp_lon = run["lon"];
-  aptWP.alt_cstr = apt["elevation"];
-  aptWP.hdg_radial = run["heading"];
+  aptWP.wp_lat = run.lat;
+  aptWP.wp_lon = run.lon;
+  aptWP.alt_cstr = apt.elevation;
+  aptWP.hdg_radial = run.heading;
   return aptWP;
 }
 

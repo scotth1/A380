@@ -32,17 +32,17 @@ Syd Adams
     <panel>
       <path alias="/params/text-path"/>
          <bottom-left>
-            <x-m>-0.003</x-m>
+            <x-m>-0.004</x-m>
             <y-m>-0.070</y-m>
             <z-m>-0.078</z-m>
         </bottom-left>
         <bottom-right>
-            <x-m>-0.003</x-m>
+            <x-m>-0.004</x-m>
             <y-m>0.068</y-m>
             <z-m>-0.078</z-m>
         </bottom-right>
         <top-left>
-            <x-m>0.003</x-m>
+            <x-m>0.004</x-m>
             <y-m>-0.070</y-m>
             <z-m>0.078</z-m>
         </top-left>

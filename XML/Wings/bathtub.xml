@@ -7,7 +7,7 @@
 	<model>
 	    <condition>
 	    <not>
-	      <property>sim/rendering/rembrandt</property>
+	      <property>sim/rendering/rembrandt/enabled</property>
 	    </not>
 	    </condition>
 		<path>Aircraft/A380/XML/Lights/light-cone-left.xml</path>
@@ -23,7 +23,7 @@
 	<model>
 	  <condition>
 	    <not>
-	      <property>sim/rendering/rembrandt</property>
+	      <property>sim/rendering/rembrandt/enabled</property>
 	    </not>
 	  </condition>
 		<path>Aircraft/A380/XML/Lights/light-cone-right.xml</path>
@@ -38,7 +38,7 @@
 	
 	<model>
 	    <condition>
-	      <property>sim/rendering/rembrandt</property>
+	      <property>sim/rendering/rembrandt/enabled</property>
 	    </condition>
 		<path>Aircraft/A380/XML/Lights/light-cone-rembrandt.xml</path>
 		<name>Land.Light.L</name>
@@ -53,7 +53,7 @@
 
 	<model>
 	  <condition>
-	      <property>sim/rendering/rembrandt</property>
+	      <property>sim/rendering/rembrandt/enabled</property>
 	  </condition>
 		<path>Aircraft/A380/XML/Lights/light-cone-rembrandt.xml</path>
 		<name>Land.Light.R</name>

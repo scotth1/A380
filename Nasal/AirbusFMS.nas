@@ -423,16 +423,21 @@ tracer : func(msg) {
     #
     updateCurrentWP : func() {
       var rteWP = getprop("autopilot/route-manager/current-wp");
-      var rteWPId = getprop("autopilot/route-manager/route/wp["~rteWP~"]/id");
-      var planIdx = me.findWPName(rteWPId);
-      if (planIdx != nil) {
-        var tmp = int(planIdx/9);
-        var mod = (planIdx-(tmp*9));
-        setprop("instrumentation/fms/plan[0]/display-nodes/current-wp", mod);
-        var currPage = getprop("instrumentation/fms/plan[0]/display-nodes/current-page");
-        if (tmp != currPage) {
-          setprop("instrumentation/fms/plan[0]/display-nodes/current-page", tmp);
-          me.updateDisplay();
+      if (rteWP == nil) {
+        rteWP = -1;
+      }
+      if (rteWP > 0) {
+        var rteWPId = getprop("autopilot/route-manager/route/wp["~rteWP~"]/id");
+        var planIdx = me.findWPName(rteWPId);
+        if (planIdx != nil) {
+          var tmp = int(planIdx/9);
+          var mod = (planIdx-(tmp*9));
+          setprop("instrumentation/fms/plan[0]/display-nodes/current-wp", mod);
+          var currPage = getprop("instrumentation/fms/plan[0]/display-nodes/current-page");
+          if (tmp != currPage) {
+            setprop("instrumentation/fms/plan[0]/display-nodes/current-page", tmp);
+            me.updateDisplay();
+          }
         }
       }
     },
@@ -512,7 +517,8 @@ tracer : func(msg) {
     # insert a WP into FMS plan at positon
     #
     insertWP : func(wp, idx) {
-      me.tracer("insert WP: "~wp.wp_name~" at pos: "~idx);
+      me.tracer("insert WP: "~wp.wp_name);
+      me.tracer("   at pos: "~idx);
       if (idx > size(me.activePlan)-1) {
         append(me.activePlan, wp);
       } else {

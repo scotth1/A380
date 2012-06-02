@@ -565,7 +565,7 @@ setlistener("/autopilot/route-manager/current-wp", func(n) {
   }
   ## check autopilot controls match AP modes.
   var vnav = getprop("instrumentation/flightdirector/vnav");
-  if (vnav != 0) {
+  if (vnav != 0 and vnav != nil) {
     setprop("/instrumentation/flightdirector/vnav", vnav);
   }
 });
@@ -1219,7 +1219,8 @@ var getILS = func(apt, rwy) {
      debug.dump(apt);
    }
    var mhz = nil;
-   var runways = apt["runways"];
+   ##var runways = apt["runways"];
+   var runways = apt.runways();
    var ks = keys(runways);
    for(var r=0; r != size(runways); r=r+1) {
      var run = runways[ks[r]];
@@ -1238,7 +1239,7 @@ var getILSCategory = func(aptId, arvRunway) {
   if (id != nil) {
     var apt = airportinfo(id);
     ###var arvRunway = getprop("instrumentation/afs/arv-rwy");
-    var navList = navinfo(apt.lat, apt.lon, "ils");
+    var navList = navinfo(apt.lat(), apt.lon(), "ils");
     var navListSize = size(navList);
     print("size navList: "~navListSize);
     foreach(var ils; navList) {
@@ -1258,6 +1259,9 @@ var getILSCategory = func(aptId, arvRunway) {
 # if we add/remove waypoints we might need to update stuff?
 setlistener("/autopilot/route-manager/route/num", func(n) {
     var wpLen = n.getValue();
+    if (wpLen == nil) {
+      wpLen = 0;
+    }
     ceilingFt = 0.0;
     descentFt  = 0.0;
     var spdMode = getprop("/instrumentation/flightdirector/spd");
@@ -1268,7 +1272,8 @@ setlistener("/autopilot/route-manager/route/num", func(n) {
     if (vnav == nil) {
       vnav = 0;
     }
-    tracer("change in route manager: "~wpLen~", spdMode: "~spdMode);
+    tracer("change in route manager: "~wpLen);
+    tracer(" spdMode: "~spdMode);
     if (spdMode != SPD_CRZ and vnav != VNAV_DES) {
       for(w=0; w < wpLen; w=w+1) {
         asl = getprop("/autopilot/route-manager/route/wp["~w~"]/altitude-ft");

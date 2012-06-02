@@ -33,7 +33,7 @@
 			<w>20</w>
 			<h>177</h>
 			<texture>
-				<path>Aircraft/A320neo/Models/Instruments/ND/res/A320neo_symbols.png</path>
+				<path>Aircraft/A320neo/Models/Instruments/MFD/Airbus-extra-symbols.png</path>
 
 				<!-- Orign is down left-->
 				<x1>0.162</x1>
