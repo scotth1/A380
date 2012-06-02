@@ -798,14 +798,10 @@ toggle_appr = func() {
 var getILS = func(apt, rwy) {
    var mhz = nil;
    ##var runways = apt["runways"];
-   var runways = apt.runways();
-   var ks = keys(runways);
-   for(var r=0; r != size(runways); r=r+1) {
-     var run = runways[ks[r]];
-     if (run.id == rwy and contains(run, "ils_frequency_mhz")) {
-       mhz = sprintf("%3.1f",run.ils_frequency_mhz);
-       return mhz;
-     }
+   var run = apt.runway(rwy);
+   var freq = run.ils_frequency_mhz;
+   if (freq != nil) {
+     mhz = sprintf("%3.1f", freq);
    }
    return mhz;
 }

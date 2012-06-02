@@ -183,7 +183,6 @@ init_controls = func {
   print("Aircraft systems initialised");
   settimer(update_cabin_pressure, 3);
 
-  ###print("If you receive a Nasal error about missing member tower_lat and tower_lon, you will need to comment out the 'plot nearest airport in PLAN mode on ND.' section in this file");
 }
 
 
@@ -233,11 +232,7 @@ update_radar = func {
 
   ##
   #  plot nearest airport in PLAN mode on ND.
-  #  NOTE: this requires the patch to airportinfo() and navinfo() contained in merge-request #14 in the flightgear repository.
   #
-  #  UNcomment the line below
-  ##var closeAirportName = nil; 
-  #  and then comment the line below
   var closeAirportName = getprop("sim/airport/closest-airport-id");
   if (closeAirportName != nil) {
     var closestApt = airportinfo(closeAirportName);
@@ -251,10 +246,8 @@ update_radar = func {
         debug.dump(closestApt);
       }
       var aptPos = geo.Coord.new();
-      ##debug.dump(closestApt);
-      var tower = closestApt;
-      ##var tower  = airporttower(closestApt);
-      ##debug.dump(tower);
+      var tower  = closestApt.tower();
+      #debug.dump(tower);
       aptPos.set_latlon(tower.lat, tower.lon, tower.elevation);
       var aptCourse = currentPos.course_to(aptPos);
       aptDistMetre   = currentPos.distance_to(aptPos);
