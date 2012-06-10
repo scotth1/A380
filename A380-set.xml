@@ -951,6 +951,7 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
 <instrumentation>
         <annunciator>
           <master-caution type="bool">0</master-caution>
+	  <atc-inbox type="bool">0</atc-inbox>
         </annunciator>
 	
         <afs>
@@ -969,6 +970,7 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
           <limit-bank-angle-min type="double">-30</limit-bank-angle-min>
 	  <flight-control-law type="string">normal</flight-control-law>
 	  <flight-control-mode type="string">ground</flight-control-mode>
+	  <ATC_logon_acft-type type="string">A388</ATC_logon_acft-type>
         </afs>
 	
 	
@@ -981,10 +983,10 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
 	</flightdirector>
 	
 	<efis n="0">
-	  <display-mode type="int">2</display-mode>
-	  <nd-mode>NAV</nd-mode>
+	  <display-mode type="int">4</display-mode>
+	  <nd-mode>ARC</nd-mode>
 	  <mfd>
-	    <display-mode>ROSE</display-mode>
+	    <display-mode>ARC</display-mode>
 	  </mfd>
 	  <inputs>
 	    <lh-vor-adf type="bool">1</lh-vor-adf>
@@ -1267,6 +1269,8 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
 	 <page type="string">atc.request.clearance</page>
 	 <item type="string">ATIS</item>
 	 <page type="string">atc.request.atis</page>
+	 <item type="string">DEPARTURE</item>
+	 <page type="string">atc.request.departure</page>
        </menu>
      </dropdown>
      <!-- dropdown 2 -->

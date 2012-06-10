@@ -96,8 +96,8 @@ tracer : func(msg) {
 
    ### for low prio tasks ###
    slow_update : func() {
-     me.tracer("ATN poll");
-     if (me.sessionId != "0") {
+     if (me.sessionId != "0" and me.sessionId != "") {
+       me.tracer("ATN poll");
        me.tracer("sessionId: "~me.sessionId);
        var cmd = getprop("instrumentation/atn/out-of-band/command");
        if (cmd != nil and cmd != "") {
@@ -116,10 +116,11 @@ tracer : func(msg) {
 
    ### announce ourselves to the local controller system ###
    doLogon : func() {
-     var callSign = getprop("instrumentation/afs/FLT_NBR");
-     var aircraftType = getprop("sim/aircraft");
-     var airport      = getprop("instrumentation/afs/FROM");
-     me.makeRequest("doLogon","callsign="~callSign~"&user="~callSign~"&type="~aircraftType~"&airport="~airport);
+     var airport      = getprop("instrumentation/afs/ATC_logon_icao");
+     var callSign     = getprop("instrumentation/afs/FLT_NBR");
+     var username     = getprop("instrumentation/afs/ATC_logon_username");
+     var aircraftType = getprop("instrumentation/afs/ATC_logon_acft-type");
+     me.makeRequest("doLogon","callsign="~callSign~"&user="~username~"&type="~aircraftType~"&airport="~airport);
    },
 
    doLogonCallback : func() {

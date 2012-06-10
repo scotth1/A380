@@ -30,10 +30,10 @@ currentField = "";
 currentFieldPos = 0;
 inputValue = "";
 inputType  = "";
-trace = 1;         ## Set to 0 to turn off all tracing messages
+trace = 0;         ## Set to 0 to turn off all tracing messages
 depDB = nil;
 arvDB = nil;
-version = "V2.0.11";
+version = "V2.1.4";
 wpMode = "V2";    ## set to "V2" for new mode (airbusFMS) or "V1" for old mode (route-manager)
 
 routeClearArm = 0;
@@ -127,6 +127,7 @@ init_mcdu = func() {
     if (depapt != nil) {
       ##setprop("/instrumentation/afs/FROM",depapt["id"]);
       setprop("/instrumentation/afs/FROM",depapt.id);
+      setprop("instrumentation/afs/ATC_logon_icao", depapt.id);
       #setprop("/instrumentation/afs/depart-runway","");
       var multiCall = getprop("/sim/multiplay/callsign");
       if (getprop("/sim/multiplay/rxhost") != "0" and getprop("/sim/multiplay/txhost") != "0" and multiCall != "callsign") {
@@ -469,9 +470,7 @@ changePage = func(unit,page) {
 
   #### active.departure.sid
   if (page == "active.departure.sid") {
-    if (depDB == nil) {
-      depDB = fmsDB.new(getprop("/instrumentation/afs/FROM"));
-    }
+    depDB = fmsDB.new(getprop("/instrumentation/afs/FROM"));
     ####   setup the array of SID options to be displayed
     if (depDB != nil) {
       var sidList = depDB.getSIDList(getprop("/instrumentation/afs/dep-rwy"));
@@ -518,9 +517,7 @@ changePage = func(unit,page) {
 
   ### active.departure.star
   if (page == "active.departure.star") {
-    if (arvDB == nil) { 
-      arvDB = fmsDB.new(getprop("/instrumentation/afs/TO"));
-    }
+    arvDB = fmsDB.new(getprop("/instrumentation/afs/TO"));
     if (arvDB != nil) {
       var rwyScroll = getprop("/instrumentation/mcdu["~unit~"]/opt-scroll");
       starList = arvDB.getSTARList(getprop("/instrumentation/afs/arv-rwy"));
@@ -1219,6 +1216,19 @@ selectApprConf = func(mode) {
 }
 
 
+
+
+#########################################
+#
+#
+atcSend = func(page) {
+
+  if (page == "logon") {
+    atnetwork.doLogon();
+  }
+}
+
+
 #########################################
 #
 #
@@ -1715,9 +1725,10 @@ insertTopOfDescent = func() {
       } else {
         hdg = hdg+180;
       }
+      
       ## if we need to turn too much, then make new heading along starHdg
       var absHdg = math.abs(difHdg);
-      if (absHdg > 80) {
+      if (absHdg > 80 and absHdg < 180) {
         if (difHdg < 0) {
           hdg = starHdg-80;
         } else {

@@ -71,7 +71,7 @@ SPD_THRIDL=8;
 
 # working memory
 afs_trace = 0;
-afs_version = "2.0.7";
+afs_version = "2.0.8";
 
 
 
@@ -770,7 +770,7 @@ toggle_appr = func() {
       } else {
         var dh = getprop("instrumentation/mk-viii/inputs/arinc429/decision-height");
         var rwyVal = getprop("instrumentation/afs/arv-rwy");
-        var apt = airportinfo(getprop("/instrumentation/afs/FROM"));
+        var apt = airportinfo(getprop("/instrumentation/afs/TO"));
         var mhz = getILS(apt,rwyVal);
         if (mhz != nil) {
           setprop("instrumentation/afs/rwy-cat", "CAT II");
@@ -797,8 +797,15 @@ toggle_appr = func() {
 ## get ILS frequency from airportinfo.
 var getILS = func(apt, rwy) {
    var mhz = nil;
-   ##var runways = apt["runways"];
-   var run = apt.runway(rwy);
+   var runways = apt.runways;
+   ##var run = apt.runway(rwy);
+   if (runways == nil) {
+     tracer("[afs] runways is nil");
+   }
+   var run = runways[rwy];
+   if (run == nil) {
+     tracer("[afs] apt.runway is nil");
+   }
    var freq = run.ils_frequency_mhz;
    if (freq != nil) {
      mhz = sprintf("%3.1f", freq);
