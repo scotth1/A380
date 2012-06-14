@@ -328,7 +328,7 @@
     <pitch-deg>-90</pitch-deg>
     <x-m>-0.1833</x-m>
     <y-m>0.049</y-m>
-    <z-m>0.0015</z-m>
+    <z-m>0.0025</z-m>
   </offsets>
   <type type="string">text-value</type>
   <property>/instrumentation/mcdu[0]/dropdown[1]/menu[0]/item[0]</property>
@@ -356,9 +356,9 @@
   <axis-alignment>yz-plane</axis-alignment>
   <offsets>
     <pitch-deg>-90</pitch-deg>
-    <x-m>-0.1785</x-m>
+    <x-m>-0.1782</x-m>
     <y-m>0.049</y-m>
-    <z-m>0.0015</z-m>
+    <z-m>0.0025</z-m>
   </offsets>
   <type type="string">text-value</type>
   <property>/instrumentation/mcdu[0]/dropdown[1]/menu[0]/item[1]</property>
@@ -385,9 +385,9 @@
   <axis-alignment>yz-plane</axis-alignment>
   <offsets>
     <pitch-deg>-90</pitch-deg>
-    <x-m>-0.1737</x-m>
+    <x-m>-0.1730</x-m>
     <y-m>0.049</y-m>
-    <z-m>0.0015</z-m>
+    <z-m>0.0025</z-m>
   </offsets>
   <type type="string">text-value</type>
   <property>/instrumentation/mcdu[0]/dropdown[1]/menu[0]/item[2]</property>
@@ -3212,12 +3212,111 @@
    <character-size type="double">0.005</character-size>
    <alignment>right-bottom</alignment>
  </text>
+ 
+ <text>
+   <name>label.atc-logon.send</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.019</x-m>
+      <y-m>0.098</y-m>
+      <z-m>0.002</z-m>
+    </offsets>
+    <type type="string">literal</type>
+    <text>SEND</text>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.005</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+
+ <!-- ATC departure request -->
+ 
+ 
+<animation>
+  <type>pick</type>
+  <object-name>field.atc-dep.depart</object-name>
+    <action>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+      <command>nasal</command>
+      <script>MCDU1.selectField("ATC_logon_acft-type")</script>
+   </binding>
+  </action>
+</animation>
+
+
+<animation>
+  <type>pick</type>
+  <object-name>field.atc-dep.arrival</object-name>
+    <action>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+      <command>nasal</command>
+      <script>MCDU1.selectField("ATC_logon_acft-type")</script>
+   </binding>
+  </action>
+</animation>
+
+
+<animation>
+  <type>pick</type>
+  <object-name>field.atc-dep.atis-code</object-name>
+    <action>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+      <command>nasal</command>
+      <script>MCDU1.selectField("ATC_logon_acft-type")</script>
+   </binding>
+  </action>
+</animation>
+
+
+<animation>
+  <type>pick</type>
+  <object-name>field.atc-dep.gate</object-name>
+    <action>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+      <command>nasal</command>
+      <script>MCDU1.selectField("ATC_logon_acft-type")</script>
+   </binding>
+  </action>
+</animation>
 
 
 
-
-
-
+ <animation>
+  <type>pick</type>
+  <object-name>button.atc-depart.send</object-name>
+    <action>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+      <command>nasal</command>
+      <script>MCDU1.atcSend("departClear")</script>
+   </binding>
+  </action>
+ </animation>
+ 
+ <text>
+   <name>label.atc-depart.send</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.019</x-m>
+      <y-m>0.098</y-m>
+      <z-m>0.002</z-m>
+    </offsets>
+    <type type="string">literal</type>
+    <text>SEND</text>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.005</character-size>
+    <alignment>left-bottom</alignment>
+</text>
 
 
   
@@ -3227,6 +3326,10 @@
     <object-name>label.active</object-name>
     <object-name>label.dropdown0.opt1</object-name>
     <object-name>label.dropdown0.opt2</object-name>
+    <object-name>label.dropdown0.opt3</object-name>
+    <object-name>label.dropdown1.opt1</object-name>
+    <object-name>label.dropdown1.opt2</object-name>
+    <object-name>label.dropdown1.opt3</object-name>
     <object-name>label.dropdown2.opt1</object-name>
     <object-name>label.dropdown2.opt2</object-name>
     <object-name>label.dropdown2.opt3</object-name>
@@ -3322,6 +3425,8 @@
     <object-name>label.menu.des</object-name>
     <object-name>label.menu.appr</object-name>
     <object-name>label.menu.ga</object-name>
+    <object-name>label.atc-logon.send</object-name>
+    <object-name>label.atc-depart.send</object-name>
     <emission>
       <red>0.9</red>
       <green>0.9</green>
@@ -3656,6 +3761,7 @@
   <object-name>value.atc-logon.username</object-name>
   <object-name>value.atc-logon.acft-type</object-name>
   <object-name>button.atc-logon.send</object-name>
+  <object-name>label.atc-logon.send</object-name>
   <condition>
     <equals>
       <property>/instrumentation/mcdu[0]/page</property>
@@ -3669,6 +3775,7 @@
   <type>select</type>
   <object-name>page.ATC_REQUEST_DEPART</object-name>
   <object-name>button.atc-depart.send</object-name>
+  <object-name>label.atc-depart.send</object-name>
   <condition>
     <equals>
       <property>/instrumentation/mcdu[0]/page</property>
@@ -6083,6 +6190,10 @@
   <object-name>label.sec</object-name>
   <object-name>label.dropdown0.opt1</object-name>
   <object-name>label.dropdown0.opt2</object-name>
+  <object-name>label.dropdown0.opt3</object-name>
+  <object-name>label.dropdown1.opt1</object-name>
+  <object-name>label.dropdown1.opt2</object-name>
+  <object-name>label.dropdown1.opt3</object-name>
   <object-name>label.dropdown2.opt1</object-name>
   <object-name>label.dropdown2.opt2</object-name>
   <object-name>label.dropdown2.opt3</object-name>

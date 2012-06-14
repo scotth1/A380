@@ -2,7 +2,7 @@
 
 <!--
     MFD Display for A380.
-    This file is for MFD unit 0.
+    This file is for MFD unit 1.
     There are a number of "pages" within the MFD display. A menu bar across the top
     allows us to select various sub-menu options from the main main across.
     The naming of <text> objects is;

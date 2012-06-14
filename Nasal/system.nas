@@ -1700,6 +1700,11 @@ setlistener("/controls/anti-ice/engine[3]/inlet-heat", func(n) {
    setprop("fdm/jsbsim/propulsion/engine[3]/bleed-factor", currBleed+anti);
 });
 
+
+setlistener("/sim/airport/closest-airport-id", func() {
+  atnetwork.doUpdateController();
+});
+
 setlistener("instrumentation/flightdirector/mode-reversion", func(n) {
   var reversion = n.getValue();
   if (reversion == 1) {

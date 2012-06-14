@@ -1249,6 +1249,7 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
          <page>active.init</page>
          <item type="string">FLT PLN</item>
          <page>active.flt_pln</page>
+	 <item></item>
        </menu>
        <menu>
 	 <title type="string">CONNECT</title>
@@ -1256,12 +1257,16 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
 	 <page>atc.connect.logon</page>
 	 <item type="string">LOG OFF</item>
 	 <page>atc.connect.logoff</page>
+	 <item></item>
        </menu>
      </dropdown>
      <!-- dropdown 1 -->
      <dropdown>
        <menu>
 	 <title type="string">POSITION</title>
+	 <item></item>
+	 <item></item>
+	 <item></item>
        </menu>
        <menu>
 	 <title type="string">REQUEST</title>
@@ -1286,6 +1291,9 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
        </menu>
        <menu>
 	 <title type="string"></title>
+	 <item></item>
+	 <item></item>
+	 <item></item>
        </menu>
      </dropdown>
      <!-- dropdown 3 -->
@@ -1438,11 +1446,13 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
     <FCU>
       <file>Aircraft/A380/Nasal/afs_cp.nas</file>
       <file>Aircraft/A380/Nasal/AirbusFMS.nas</file>
+      <file>Aircraft/A380/Nasal/TextRegion.nas</file>
       <file>Aircraft/A380/Nasal/atn.nas</file>
     </FCU>
     
     <MCDU1>
       <file>Aircraft/A380/Nasal/Atmos.nas</file>
+      <file>Aircraft/A380/Nasal/TextRegion.nas</file>
       <file>Aircraft/A380/Nasal/atn.nas</file>
       <file>Aircraft/A380/Nasal/mcdu.nas</file>
       <file>Aircraft/A380/Nasal/fmsDB.nas</file>
@@ -1453,6 +1463,7 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
     
     <MCDU2>
       <file>Aircraft/A380/Nasal/Atmos.nas</file>
+      <file>Aircraft/A380/Nasal/TextRegion.nas</file>
       <file>Aircraft/A380/Nasal/atn.nas</file>
       <file>Aircraft/A380/Nasal/mcdu.nas</file>
       <file>Aircraft/A380/Nasal/fmsDB.nas</file>

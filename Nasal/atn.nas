@@ -16,6 +16,7 @@
 #
 
 atn_trace = 1;
+atcMailbox = TextRegion.new(3, 30, "/instrumentation/atn/mailbox");
 
 
 
@@ -24,7 +25,7 @@ var atn = {
    new : func() {
      var m = {parents : [atn]};
      m.atnNode = props.globals.getNode("/instrumentation/atn",1);
-     m.version = "V1.0.0";
+     m.version = "V1.0.1";
      m.baseURL = "http://example.com/";
      var baseURLNode = m.atnNode.getChild("atc-url-base",0);
      if (baseURLNode == nil) {
@@ -32,10 +33,11 @@ var atn = {
        m.atnNode.getChild("atc-url-base",1).setValue(m.baseURL);
      } else {
        m.baseURL = baseURLNode.getValue();
-       print("baseURL: "~m.baseURL);
+       ##print("baseURL: "~m.baseURL);
      }
      m.sessionId = "";
      m.mseq = 1;
+     m.connectedAirport = "";
 
      setlistener("/sim/signals/fdm-initialized", func m.init());
      setlistener("/instrumentation/atn/http-complete", func m.atnHTTPStateChange());
@@ -125,9 +127,30 @@ tracer : func(msg) {
 
    doLogonCallback : func() {
      xid = getprop("instrumentation/atn/received/session-id");
+     var airport = getprop("instrumentation/atn/received/airport");
+     me.connectedAirport = airport;
      me.tracer("[LOGON] set sessionId: "~xid);
      me.sessionId = xid;
+     var time = getprop("instrumentation/clock/indicated-short-string");
+     atcMailbox.append(time~"Z FROM "~airport);
+     atcMailbox.appendStyle("CONNECTED OK", 0.8, 0.8, 0.8); 
+     atcMailbox.reset();
    },
+
+   doUpdateController : func() {
+     if (me.sessionId != nil and me.sessionId != "") {
+       var airport = getprop("sim/airport/closest-airport-id");
+       me.makeRequest("doUpdateController", "airport="~airport);
+     }
+   },
+
+   doUpdateControllerCallback : func() {
+     xid = getprop("instrumentation/atn/received/session-id");
+     var airport = getprop("instrumentation/atn/received/airport");
+     me.connectedAirport = airport;
+     me.tracer("[UPDATECTLR] new airport for session: "~xid);
+   },
+
 
    ### logoff for completeness ###
    doLogoff : func() {
@@ -135,6 +158,14 @@ tracer : func(msg) {
        var callSign = getprop("instrumentation/afs/FLT_NBR");
        me.makeRequest("doLogoff", "callsign="~callSign);
      }
+   },
+
+   doLogoffCallback : func() {
+     me.sessionId = nil;
+     var airport = getprop("instrumentation/atn/received/airport");
+     atcMailbox.append(time~"Z FROM "~airport, 0.1, 0.8, 0.1);
+     atcMailbox.append("DISCONNECTED", 0.8, 0.8, 0.8); 
+     atcMailbox.reset();
    },
 
 
@@ -188,6 +219,12 @@ tracer : func(msg) {
      var callBack = getprop("instrumentation/atn/req-func");
      if (callBack == "doLogon") {
        me.doLogonCallback();
+     }
+     if (callBack == "doLogoff") {
+       me.doLogoffCallback();
+     }
+     if (callBack == "doUpdateController") {
+       me.doUpdateControllerCallback();
      }
 
    }
