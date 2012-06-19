@@ -152,9 +152,11 @@ toggle_loc = func() {
         tracer("AFS: localizer inrange: "~inRange1);
         var dh = getprop("instrumentation/mk-viii/inputs/arinc429/decision-height");
         var rwyVal = getprop("instrumentation/afs/arv-rwy");
-        var apt = airportinfo(getprop("/instrumentation/afs/FROM"));
+        var apt = airportinfo(getprop("/instrumentation/afs/TO"));
         var mhz = getILS(apt,rwyVal);
-        if (mhz != nil) {
+        var nav0Freq = getprop("instrumentation/nav[0]/frequencies/selected-mhz");
+        if (mhz != nil and mhz == nav0Freq) {
+          print("LOCaliser Mhz: "~mhz);
           setprop("instrumentation/afs/rwy-cat","CAT II");
           if (dh < 100) { 
             setprop("instrumentation/afs/rwy-cat","CAT III");
@@ -797,19 +799,10 @@ toggle_appr = func() {
 ## get ILS frequency from airportinfo.
 var getILS = func(apt, rwy) {
    var mhz = nil;
-   var runways = apt.runways;
-   ##var run = apt.runway(rwy);
-   if (runways == nil) {
-     tracer("[afs] runways is nil");
-   }
-   var run = runways[rwy];
-   if (run == nil) {
-     tracer("[afs] apt.runway is nil");
-   }
-   var freq = run.ils_frequency_mhz;
-   if (freq != nil) {
-     mhz = sprintf("%3.1f", freq);
-   }
+   var runway = apt.runway(rwy);
+   mhz = sprintf("%3.1f",runway.ils_frequency_mhz);
+   var ils = runway.ils;
+   tracer("ils id: "~ils.id~", ils freq: "~ils.frequency~", course: "~ils.course);
    return mhz;
 }
 

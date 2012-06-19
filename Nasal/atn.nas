@@ -147,8 +147,12 @@ tracer : func(msg) {
    doUpdateControllerCallback : func() {
      xid = getprop("instrumentation/atn/received/session-id");
      var airport = getprop("instrumentation/atn/received/airport");
+     var time = getprop("instrumentation/clock/indicated-short-string");
      me.connectedAirport = airport;
      me.tracer("[UPDATECTLR] new airport for session: "~xid);
+     atcMailbox.append(time~"Z FROM "~airport);
+     atcMailbox.appendStyle("CONNECTED OK", 0.8, 0.8, 0.8); 
+     atcMailbox.reset();
    },
 
 
@@ -161,8 +165,9 @@ tracer : func(msg) {
    },
 
    doLogoffCallback : func() {
-     me.sessionId = nil;
+     me.sessionId = "";
      var airport = getprop("instrumentation/atn/received/airport");
+     var time = getprop("instrumentation/clock/indicated-short-string");
      atcMailbox.append(time~"Z FROM "~airport, 0.1, 0.8, 0.1);
      atcMailbox.append("DISCONNECTED", 0.8, 0.8, 0.8); 
      atcMailbox.reset();
@@ -189,12 +194,23 @@ tracer : func(msg) {
 
    ### request ground clearance ###
    doRequestGroundClearance : func() {
-
+     if (me.sessionId != nil and me.sessionId != "") {
+       var depAirport = "";
+       var arvAirport = "";
+       var gate       = "";
+       me.makeRequest("doDepartClearance", "depart="~depAirport~"&arrival="~arvAirport~"&gate="~gate);
+     }
    },
 
 
    ### arrival gate request ###
    doRequestGate : func() {
+
+   },
+
+
+   ### get ATIS ###
+   doRequestATIS : func() {
 
    },
 

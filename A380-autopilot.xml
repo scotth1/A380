@@ -431,8 +431,8 @@
       <prop>/autopilot/internal/target-climb-rate-fps</prop>
     </output>
     <config>
-      <Kp>0.13</Kp>          <!-- proportional gain -->
-      <Ki>0.0</Ki>          <!-- integral gain -->
+      <Kp>0.15</Kp>          <!-- proportional gain -->
+      <Ki>0.01</Ki>          <!-- integral gain -->
       <u_min>
         <!-- -16.67 -->
         <prop>/instrumentation/afs/limit-min-vs-fps</prop>
@@ -447,7 +447,7 @@
   <!-- Stage #2 drives the elevator-trim filter which is then routed via the servo -->
   <pid-controller>
     <name>Altitude Hold (Altimeter based) Stage 2</name>
-    <debug>false</debug>
+    <debug>true</debug>
     <enable>
       <prop>/autopilot/locks/altitude</prop>
       <value>altitude-hold</value>
@@ -462,13 +462,13 @@
       <prop>autopilot/internal/elevator-trim-filter</prop>
     </output>
     <config>
-      <Kp>-0.0025</Kp>      <!-- proportional gain -->
+      <Kp>-0.002</Kp>      <!-- proportional gain  was -0.0025 SAH 2012-06-19 -->
       <beta>1.0</beta>    <!-- input value weighing factor -->
       <alpha>0.1</alpha>  <!-- low pass filter weighing factor -->
       <gamma>0.0</gamma>  <!-- input value weighing factor for -->
                           <!-- unfiltered derivative error -->
-      <Ti>15.0</Ti>       <!-- integrator time -->  <!-- was 10.0 SAH 2010-06-06 -->
-      <Td>0.00001</Td>    <!-- derivator time -->
+      <Ti>20.0</Ti>       <!-- integrator time -->  <!-- was 10.0 SAH 2010-06-06, was 15.0 SAH 2012-06-19 -->
+      <Td>0.00002</Td>    <!-- derivator time -->
       <u_min>-1.0</u_min> <!-- minimum output clamp -->
       <u_max>1.0</u_max>  <!-- maximum output clamp -->
     </config>
@@ -840,7 +840,7 @@
                           <!-- unfiltered derivative error -->
       <Ti>30.0</Ti>        <!-- integrator time -->  <!-- was 40.0 SAH 2010-06-06 --> <!-- was 30 SAH 2010-10-19 -->
       <Td>0.00001</Td>    <!-- derivator time -->
-      <u_min>-0.4</u_min><!-- minimum output clamp -->
+      <u_min>-0.4</u_min> <!-- minimum output clamp -->
       <u_max>0.25</u_max> <!-- maximum output clamp -->
     </config>
   </pid-controller>
