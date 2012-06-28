@@ -41,7 +41,7 @@
 	      <property>sim/rendering/rembrandt/enabled</property>
 	    </condition>
 		<path>Aircraft/A380/XML/Lights/light-cone-rembrandt.xml</path>
-		<name>Land.Light.L</name>
+		<name>Land.Rembrandt.L</name>
 		<offsets>
 			<x-m>-3.72</x-m>
 			<y-m>-5.70</y-m>
@@ -56,7 +56,7 @@
 	      <property>sim/rendering/rembrandt/enabled</property>
 	  </condition>
 		<path>Aircraft/A380/XML/Lights/light-cone-rembrandt.xml</path>
-		<name>Land.Light.R</name>
+		<name>Land.Rembrandt.R</name>
 		<offsets>
 			<x-m>-3.72</x-m>
 			<y-m> 5.70</y-m>
@@ -73,6 +73,8 @@
 		<type>select</type>
 		<object-name>Land.Light.L</object-name>
 		<object-name>Land.Light.R</object-name>
+		<object-name>Land.Rembrandt.L</object-name>
+		<object-name>Land.Rembrandt.R</object-name>
 		<condition>
 		  <and>
 			<property>/controls/switches/landing-lights</property>

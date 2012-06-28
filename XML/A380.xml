@@ -1168,6 +1168,7 @@
    <light-type>spot</light-type>
    <name>logo-left</name>
    <object-name>logo-light-left</object-name>
+   <nopreview/>
    <position>
      <x>70.3117</x>
      <z>9.6335</z>
@@ -1212,6 +1213,7 @@
    <light-type>spot</light-type>
    <name>wing-left</name>
    <object-name>wing-light-left</object-name>
+   <nopreview/>
    <position>
      <x>33.7550</x>
      <z>6.2161</z>
@@ -1256,6 +1258,7 @@
    <light-type>spot</light-type>
    <name>wing-right</name>
    <object-name>wing-light-right</object-name>
+   <nopreview/>
    <position>
      <x>33.7550</x>
      <z>6.2161</z>

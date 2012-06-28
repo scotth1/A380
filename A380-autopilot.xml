@@ -1578,5 +1578,33 @@
    </output>
  </filter>
  
+ <filter>
+   <type>gain</type>
+   <name>metric target altitude</name>
+   <input>
+     <property>instrumentation/afs/target-altitude-ft</property>
+   </input>
+   <gain>
+     <value>0.3048</value>
+   </gain>
+   <output>
+     <property>instrumentation/afs/target-altitude-metre</property>
+   </output>
+ </filter>
+ 
+ <filter>
+   <type>gain</type>
+   <name>metric current altitude</name>
+   <input>
+     <property>position/altitude-ft</property>
+   </input>
+   <gain>
+     <value>0.3048</value>
+   </gain>
+   <output>
+     <property>position/altitude-m</property>
+   </output>
+ </filter>
+ 
 
 </PropertyList>

@@ -3,17 +3,6 @@
 <PropertyList>
 
   	<path>../../Models/Lights/light-cone02.ac</path>
-	<!-- texture-path>Aircraft/A380/Textures/Common/</texture-path -->
-
-  	<!-- effect>
-	  <condition>
-	    <not>
-	      <property>sim/rendering/rembrandt/enabled</property>
-	    </not>
-	  </condition
-    		<inherits-from>Effects/light-cone</inherits-from>
-    		<object-name>Cone</object-name>
- 	</effect -->
 	
 	
 <animation>
@@ -21,6 +10,7 @@
    <light-type>spot</light-type>
    <name>LightCone</name>
    <object-name>cone</object-name>
+   <nopreview/>
    <position>
      <x>0.00</x>
      <y>0.00</y>
@@ -32,9 +22,9 @@
      <z>0.00</z>
    </direction>
    <ambient>
-     <r>0.1</r>
-     <g>0.1</g>
-     <b>0.1</b>
+     <r>0.9</r>
+     <g>0.804</g>
+     <b>0.5</b>
      <a>1.0</a>
    </ambient>
    <diffuse>
@@ -50,12 +40,12 @@
      <a>1.0</a>
    </specular>
    <attenuation>
-     <c>1.0</c>
-     <l>0.00</l>
-     <q>0.00</q>
+     <c>0.1</c>
+     <l>0.001</l>
+     <q>0.0009</q>
    </attenuation>
-   <exponent>1.0</exponent>
-   <cutoff>10</cutoff>
+   <exponent>500.0</exponent>
+   <cutoff>20</cutoff>
    <near-m>0</near-m>
    <far-m>90</far-m>
  </animation>

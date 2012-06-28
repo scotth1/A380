@@ -1035,7 +1035,7 @@ update_systems = func {
 update_metric = func {
   var posAltitudeFt = getprop("/position/altitude-ft");
   var altIndicatedAltFt = getprop("/instrumentation/altimeter/indicated-altitude-ft");
-  setprop("/position/altitude-m",posAltitudeFt*FT2METRE);
+  ##setprop("/position/altitude-m",posAltitudeFt*FT2METRE); ## replaced in autopilot
   setprop("/instrumentation/altimeter/indicated-altitude-m",altIndicatedAltFt*FT2METRE);
 
   var atmos = Atmos.new();

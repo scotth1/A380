@@ -1417,6 +1417,15 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
      <serviceable type="bool">true</serviceable>
      <indicated-speed-fpm type="double">0.0</indicated-speed-fpm>
    </vertical-speed-indicator>
+   <lighting>
+     <landing>
+       <attenuation>
+	 <c>0.5</c>
+         <l>0.002</l>
+         <q>0.00</q>
+       </attenuation>
+     </landing>
+   </lighting>
 </instrumentation>
 
 <nasal>

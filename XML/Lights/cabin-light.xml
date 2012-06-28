@@ -53,6 +53,7 @@
    <light-type>spot</light-type>
    <name>pax-light2</name>
    <object-name>pax.light</object-name>
+   <nopreview/>
    <position>
      <x>2.7102</x>
      <y>1.0067</y>

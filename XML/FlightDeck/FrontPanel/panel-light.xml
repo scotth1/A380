@@ -10,6 +10,7 @@
    <light-type>spot</light-type>
    <name>panelSrc</name>
    <object-name>panel-light</object-name>
+   <nopreview/>
    <position>
      <x>-0.2487</x>
      <y>0.0052</y>
