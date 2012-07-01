@@ -6,7 +6,7 @@ kids 9
 OBJECT poly
 name "screw"
 loc 0.000415223 -0.0818046 7.33928e-05
-texture "metal.png"
+texture "metal_screw.png"
 crease 15.000000
 numvert 33
 0.002137 0.040828 0.041661
@@ -295,7 +295,7 @@ kids 0
 OBJECT poly
 name "screw"
 loc 0.000415228 -0.0819476 -0.0835904
-texture "metal.png"
+texture "metal_screw.png"
 crease 15.000000
 numvert 33
 0.001319 0.039413 0.038245
@@ -584,7 +584,7 @@ kids 0
 OBJECT poly
 name "screw"
 loc 0.000415228 0.000143014 -0.0837334
-texture "metal.png"
+texture "metal_screw.png"
 crease 15.000000
 numvert 33
 0.002137 0.040828 0.041661
@@ -1162,7 +1162,7 @@ kids 0
 OBJECT poly
 name "screw"
 loc 0.000415223 0 -6.96192e-05
-texture "metal.png"
+texture "metal_screw.png"
 crease 15.000000
 numvert 33
 0.001319 0.039413 0.038245
