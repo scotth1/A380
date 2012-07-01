@@ -795,17 +795,17 @@ refs 3
 kids 0
 OBJECT poly
 name "box"
-loc 0.000820994 0.00137801 -0.000624725
+loc 0.0014573 0.00137801 -0.000624725
 crease 45.000000
 numvert 8
--0.0537312 0.000724042 0.0833139
--0.0537312 0.000724042 -0.0833139
-0.0537312 0.000724042 -0.0833139
-0.0537312 0.000724042 0.0833139
-0.0537312 -0.00144808 0.0833139
-0.0537312 -0.00144808 -0.0833139
--0.0537312 -0.00144808 -0.0833139
--0.0537312 -0.00144808 0.0833139
+-0.0581854 0.000724042 0.0833139
+-0.0581854 0.000724042 -0.0833139
+0.0581854 0.000724042 -0.0833139
+0.0581854 0.000724042 0.0833139
+0.0581854 -0.00144808 0.0833139
+0.0581854 -0.00144808 -0.0833139
+-0.0581854 -0.00144808 -0.0833139
+-0.0581854 -0.00144808 0.0833139
 numsurf 6
 SURF 0x30
 mat 4
@@ -857,7 +857,7 @@ kids 3
 OBJECT poly
 name "gear1.unlckd"
 loc -0.0740758 0.00530895 0.055421
-texture "gear01.png"
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/autbrk/gear01.png"
 crease 180.000000
 numvert 4
 0.00204656 9.31323e-10 -0.00760275
@@ -938,7 +938,7 @@ kids 0
 OBJECT poly
 name "gear1.ind"
 loc -0.0666129 0.00531158 0.0554179
-texture "gear01.png"
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/autbrk/gear01.png"
 crease 180.000000
 numvert 4
 -0.00233924 0 0.00578284
@@ -1023,7 +1023,7 @@ kids 0
 OBJECT poly
 name "decel.ind"
 loc 0.0276285 0.00517166 0.0510323
-texture "gear01.png"
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/autbrk/gear01.png"
 crease 180.000000
 numvert 4
 -0.00231069 0 0.00570932
@@ -1051,7 +1051,7 @@ kids 3
 OBJECT poly
 name "gear5.unlckd"
 loc -0.0341074 0.00517166 -0.00370536
-texture "gear01.png"
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/autbrk/gear01.png"
 crease 180.000000
 numvert 4
 -0.00204655 0 0.00760273
@@ -1132,7 +1132,7 @@ kids 0
 OBJECT poly
 name "gear5.ind"
 loc -0.0282673 0.00517166 -0.00413987
-texture "gear01.png"
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/autbrk/gear01.png"
 crease 180.000000
 numvert 4
 0.00233924 0 -0.00578285
@@ -1160,7 +1160,7 @@ kids 3
 OBJECT poly
 name "gear4.unlckd"
 loc -0.034575 0.00517166 0.0350046
-texture "gear01.png"
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/autbrk/gear01.png"
 crease 180.000000
 numvert 4
 0.00204654 9.31323e-10 -0.00760274
@@ -1241,7 +1241,7 @@ kids 0
 OBJECT poly
 name "gear4.ind"
 loc -0.0287349 0.00517166 0.0346727
-texture "gear01.png"
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/autbrk/gear01.png"
 crease 180.000000
 numvert 4
 -0.00233925 0 0.00578285
@@ -1269,7 +1269,7 @@ kids 3
 OBJECT poly
 name "gear2.unlckd"
 loc -0.0345291 0.00517166 0.113435
-texture "gear01.png"
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/autbrk/gear01.png"
 crease 180.000000
 numvert 4
 -0.00204657 0 0.00760276
@@ -1350,7 +1350,7 @@ kids 0
 OBJECT poly
 name "gear2.ind"
 loc -0.028689 0.00517166 0.11345
-texture "gear01.png"
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/autbrk/gear01.png"
 crease 180.000000
 numvert 4
 -0.00233925 0 0.00578284
@@ -1378,7 +1378,7 @@ kids 3
 OBJECT poly
 name "gear3.unlckd"
 loc -0.0343805 0.00517166 0.0743424
-texture "gear01.png"
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/autbrk/gear01.png"
 crease 180.000000
 numvert 4
 0.00204656 9.31323e-10 -0.00760275
@@ -1402,7 +1402,7 @@ kids 0
 OBJECT poly
 name "gear3.ind"
 loc -0.0285404 0.00517166 0.0744062
-texture "gear01.png"
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/autbrk/gear01.png"
 crease 180.000000
 numvert 4
 -0.00233924 0 0.00578281

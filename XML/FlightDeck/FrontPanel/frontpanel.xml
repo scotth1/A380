@@ -223,6 +223,17 @@
 	</model>
 	
 	<model>
+          <name>STDBY AI</name>
+	  <path>Aircraft/A380/Models/Instruments/STBY/stby-ai.xml</path>
+          <offsets>
+            <x-m>-0.193</x-m>
+            <y-m>-0.152</y-m>
+	    <z-m>0.00</z-m>
+	    <pitch-deg>-89</pitch-deg>
+          </offsets>
+         </model>
+	
+<model>
 	    <path>Aircraft/A380/XML/FlightDeck/FrontPanel/panel-light.xml</path>
 	    <name>panel-light-left</name>
 	    <offsets>
