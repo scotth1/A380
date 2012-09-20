@@ -32,5 +32,16 @@
      </axis>
    </transform>
  </animation>
+ 
+ <animation>
+   <type>material</type>
+   <object-name>StbyAIface</object-name>
+   <emission>
+         <red>0.5</red>
+         <green>0.5</green>
+         <blue>0.5</blue>
+	 <factor-prop>/sim/time/sun-angle-rad</factor-prop>
+   </emission>
+ </animation>
 
 </PropertyList>

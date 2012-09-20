@@ -68,7 +68,7 @@ vnavStr = ["off","ALT(s)","V/S","OP CLB","FPA","OP DES","CLB","ALT CRZ","DES","G
 spdStr  = ["off","TOGA","FLEX","THR CLB","SPEED","MACH","CRZ","THR DES","THR IDL"];
 
 version="V1.1.12";
-trace=0;
+trace=1;
 
 #trigonometric values for glideslope calculations
 FD_TAN3DEG = 0.052407779283;
@@ -1237,7 +1237,7 @@ var getILS = func(apt, rwy) {
 var getILSCategory = func(aptId, arvRunway) {
   var retCat = "";
   if (id != nil) {
-    var apt = airportinfo(id);
+    var apt = airportinfo(aptId);
     ###var arvRunway = getprop("instrumentation/afs/arv-rwy");
     var navList = navinfo(apt.lat(), apt.lon(), "ils");
     var navListSize = size(navList);
@@ -1359,6 +1359,8 @@ handle_inputs = func {
     if(maxroll > 45 or maxroll < -45) {
       ap_on = 0;
       setprop("/instrumentation/flightdirector/autopilot-on",ap_on);
+      setprop("/controls/autoflight/autopilot[0]/engage",0);
+      setprop("/controls/autoflight/autopilot[1]/engage",0);
       setprop("instrumentation/afs/flight-control-law", "direct");
       setprop("instrumentation/flightdirector/mode-reversion", 1);
     }
@@ -1366,6 +1368,8 @@ handle_inputs = func {
     if(maxpitch > 45 or maxpitch < -45){
       ap_on = 0;
       setprop("/instrumentation/flightdirector/autopilot-on",ap_on);
+      setprop("/controls/autoflight/autopilot[0]/engage",0);
+      setprop("/controls/autoflight/autopilot[1]/engage",0);
       setprop("instrumentation/afs/flight-control-law", "direct");
       setprop("instrumentation/flightdirector/mode-reversion", 1);
     }

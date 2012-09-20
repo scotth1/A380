@@ -161,4 +161,9 @@ This file selects the instrumentation modules that should be available.
       <serviceable type="bool">true</serviceable>
   </vertical-speed-indicator>
   
+  <radar-altimeter>
+    <name>radar-altimeter</name>
+    <number>0</number>
+  </radar-altimeter>
+  
 </PropertyList>

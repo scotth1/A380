@@ -25,7 +25,7 @@ var atn = {
    new : func() {
      var m = {parents : [atn]};
      m.atnNode = props.globals.getNode("/instrumentation/atn",1);
-     m.version = "V1.0.1";
+     m.version = "V1.0.2";
      m.baseURL = "http://example.com/";
      var baseURLNode = m.atnNode.getChild("atc-url-base",0);
      if (baseURLNode == nil) {
@@ -73,7 +73,11 @@ tracer : func(msg) {
    # init
    ####
    init : func() {
-      me.atnNode.getNode("serviceable", 1).setBoolValue(1);
+      var service = 1;
+      if (me.baseURL == nil or me.baseURL == "") {
+        service = 0;
+      }
+      me.atnNode.getNode("serviceable", 1).setBoolValue(service);
       setlistener("/instrumentation/atn/serviceable", func me.serviceableUpdate());
       ##settimer(func me.update(), 0);
       settimer(func me.slow_update(), 5);
@@ -218,12 +222,14 @@ tracer : func(msg) {
    ### make a request ###
    makeRequest : func(function, params) {
      setprop("instrumentation/atn/req-func", function);
-     var url = me.baseURL~"/"~function~".jsf?"~params~"&xid="~me.sessionId~"&seq="~me.mseq;
-     me.mseq = me.mseq+1;
-     var params = props.Node.new( {"url": url, "targetnode": "/instrumentation/atn/received", "status": "/instrumentation/atn/http-status", "complete": "instrumentation/atn/http-complete", "failure": "/instrumentation/atn/http-failure"} );
-     me.tracer("[REQ] url: "~url);
-     fgcommand("xmlhttprequest", params);
-     me.tracer("[REQ] done");
+     if (me.atnNode.getNode("serviceable").getBoolValue() == 1) {
+       var url = me.baseURL~"/"~function~".jsf?"~params~"&xid="~me.sessionId~"&seq="~me.mseq;
+       me.mseq = me.mseq+1;
+       var params = props.Node.new( {"url": url, "targetnode": "/instrumentation/atn/received", "status": "/instrumentation/atn/http-status", "complete": "instrumentation/atn/http-complete", "failure": "/instrumentation/atn/http-failure"} );
+       me.tracer("[REQ] url: "~url);
+       fgcommand("xmlhttprequest", params);
+       me.tracer("[REQ] done");
+     }
    },
 
 

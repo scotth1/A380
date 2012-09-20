@@ -1111,6 +1111,16 @@
                 </product>
             </function>
         </axis>
+	
+	<alphalimits unit="DEG">
+          <min>-5</min>
+          <max>15.0</max>
+        </alphalimits>
+
+        <hysteresis_limits unit="DEG">
+          <min>8.0</min>
+          <max>16.0</max>
+        </hysteresis_limits>
     </aerodynamics>
     <external_reactions>
  	  <force name="pushback" frame="BODY">

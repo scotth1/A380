@@ -164,6 +164,31 @@
         <w>400</w>
         <h>256</h>
     </instrument>
+    
+    
+    <instrument include="TAXItext.xml">
+       <params>
+	<nd-range alias="/params/nd-range"/>
+	<inputs>
+	  <lh-vor-adf alias="/params/inputs/lh-vor-adf"/>
+	  <rh-vor-adf alias="/params/inputs/rh-vor-adf"/>
+	</inputs>
+      </params>
+        <condition>
+            <and>
+              <greater-than>
+                <property>systems/electrical/outputs/efis</property>
+                <value>15</value>
+              </greater-than>
+              <property alias="/params/inputs/taxi"/>
+            </and>
+        </condition> 
+        <name>MFD</name>
+        <x>200</x>
+        <y>128</y>
+        <w>400</w>
+        <h>256</h>
+    </instrument>
   
 </instruments>
 

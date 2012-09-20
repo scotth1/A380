@@ -825,13 +825,14 @@ update_engines = func {
 
 check_acquire_mode = func {
    var acquireMode = getprop("/instrumentation/flightdirector/alt-acquire-mode");
+   var apMode      = getprop("/instrumentation/flightdirector/autopilot-on");
    var alt = getprop("/position/altitude-ft");
-   if (acquireMode == 1) {
+   if (acquireMode == 1 and apMode == 1) {
      var vnavMode = getprop("instrumentation/flightdirector/vnav");
-     var vsSpeed = (getprop("/velocities/vertical-speed-fps")*60);
+     var vsSpeed = getprop("/instrumentation/afs/vertical-speed-fpm");
      var selectAlt = getprop("/instrumentation/afs/target-altitude-ft");
-     if (vsSpeed > 200 and vnavMode != VNAV_DES and vnavMode != VNAV_OPDES) {
-       if (alt >= (selectAlt-400)) {
+     if (vnavMode == VNAV_CLB or vnavMode == VNAV_OPCLB or (vnavMode == VNAV_VS and vsSpeed > 0)) {
+       if (alt >= (selectAlt-900)) {
          tracer("[SYS] ACQ - reached selected alt: "~selectAlt);
          setprop("autopilot/settings/target-altitude-ft", getprop("instrumentation/afs/target-altitude-ft"));
          setprop("autopilot/locks/altitude","altitude-hold");
@@ -845,8 +846,8 @@ check_acquire_mode = func {
          }
        }
      }
-     if (vsSpeed < 200) {
-       if (alt <= (selectAlt+400) and vnavMode != VNAV_CLB and vnavMode != VNAV_OPCLB) {
+     if (vnavMode == VNAV_DES or vnavMode == VNAV_OPDES or (vnavMode == VNAV_VS and vsSpeed < 0)) {
+       if (alt <= (selectAlt+900)) {
          tracer("[SYS] ACQ - reached selectAlt: "~selectAlt);
          setprop("autopilot/settings/target-altitude-ft", getprop("instrumentation/afs/target-altitude-ft"));
          setprop("autopilot/locks/altitude","altitude-hold");
@@ -1122,7 +1123,6 @@ toggleExternalServices = func() {
 }
 
 testFunction = func() {
-
   var list = [{ id: 'HAM', type: 'VOR', distance: 13102184.19392603, frequency: 11790, bearing: 294.888738064345, elevation: 1754.124, lat: 34.86680599999999, name: 'HAMADAN VOR-DME', lon: 48.550611 }, { id: 'HAM', type: 'NDB', distance: 13102977.61851923, frequency: 31700, bearing: 294.8840878802988, elevation: 1754.124, lat: 34.865889, name: 'HAMADAN NDB', lon: 48.54066699999999 }, { id: 'HAM', type: 'VOR', distance: 16256266.62669764, frequency: 11310, bearing: 317.8553711815206, elevation: 56.99760000000001, lat: 53.68557499999999, name: 'HAMBURG VORTAC', lon: 10.204997 }];
   foreach(nav; list) {
     print("Id: "~nav.id);
