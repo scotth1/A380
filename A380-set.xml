@@ -33,7 +33,7 @@
     </rating>
     <flight-model>jsb</flight-model>
     <livery>Aircraft/A380/Textures/Livery/House</livery>
-    <aero>A380</aero>
+    <aero>A380_RJ</aero>
     
     
     <startup>
@@ -41,9 +41,13 @@
     </startup>
 
     <systems>
-     <autopilot>
+     <!-- autopilot>
        <name>A380 custom</name>
        <path>Aircraft/A380/A380-autopilot.xml</path>
+      </autopilot -->
+      <autopilot>
+       <name>A380 custom V2</name>
+       <path>Aircraft/A380/A380-autopilot_v1.xml</path>
       </autopilot>
       <autopilot>
         <name>ecs</name>
@@ -575,16 +579,19 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
     <roll-engaged type="bool">1</roll-engaged>
   </locks>
   <internal>
-    <stage1-ki type="double">0.0</stage1-ki>
-    <stage1-kp type="double">0.04</stage1-kp>  <!-- 0.01 -->
-    <stage1-td type="double">0.005</stage1-td>
+    <stage1-ki type="double">0.000</stage1-ki>  <!-- 0.001 -->
+    <stage1-kp type="double">0.001</stage1-kp>  <!-- 0.01 -->
+    <stage1-td type="double">0.1</stage1-td>
     <stage1-ti type="double">10</stage1-ti>
     
-    <stage2-ki type="double">0.0</stage2-ki>
-    <stage2-kp type="double">-0.01</stage2-kp>  <!-- -0.0025 -->
-    <stage2-td type="double">0.0000</stage2-td>  <!-- 0.00002 -->
-    <stage2-ti type="double">50</stage2-ti>    <!-- 20.0 -->
+    <stage2-ki type="double">0.0000</stage2-ki>   <!-- 0.000 -->
+    <stage2-kp type="double">0.001</stage2-kp>  <!-- -0.0025 -->
+    <stage2-td type="double">0.1</stage2-td>  <!-- 0.00002 -->
+    <stage2-ti type="double">40</stage2-ti>    <!-- 20.0 -->
   </internal>
+</autopilot>
+<autopilot>
+        <path>Aircraft/Instruments/afdr-a320.xml</path>
 </autopilot>
 
 

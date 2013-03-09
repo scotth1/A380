@@ -337,7 +337,7 @@ update_radar = func {
     setprop("/instrumentation/ewd/flap-overspeed",0);
   }
   var cgX    = getprop("/fdm/jsbsim/inertia/cg-x-in");
-  var gwcg   = (1629.615473-cgX);
+  var gwcg   = (1629.615473-cgX);    ## 1450.7874inches BLG
   setprop("/fdm/jsbsim/inertia/gwcg",gwcg);
 
    var rho = getprop("/environment/density-slugft3");

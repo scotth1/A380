@@ -1,106 +1,112 @@
 <?xml version="1.0"?>
-<?xml-stylesheet href="http://jsbsim.sourceforge.net/JSBSim.xsl" type="text/xsl"?>
-<fdm_config name="a380" version="2.0" release="BETA"
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
+
+
+<?xml-stylesheet type="text/xsl" href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
+<fdm_config name="a380" release="BETA" version="2.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
+
+
 
 <!-- 
-     This is the Airbus A380 double-deck wide body subsonic general passenger transport aircraft.
-     
-     Modification History:
-     When	Who		What
-     2007	ICunningram	Initial
-     2008	KAmpere		update
-     2008	FDalvi		update
-     APR-2009	SHamilton	update
-     Jun-2010	SHamilton	tweak high-lift devices to match CLmax
+   This XML file is incomplete, since DATCOM+ doesn't know 
+   enough to fill in all the values. It has filled in 
+   that it knows, though. You can build this part of the 
+   XML specification once, as it links in the aero part, 
+   which is the stuff that is going to change.
+
+   Search for 'unknown' and replace with real values before loading in JSBSim.
 -->
 
-    <fileheader>
-        <author>Cunningham, Ampere, Hamilton, et al</author>
-        <filecreationdate> Creation Date </filecreationdate>
-        <version>V1.0.3</version>
-        <description>Models an A380</description>
-    </fileheader>
+   <fileheader>
+      <author>DATCOM+</author>
+      <filecreationdate> 01/05/13  14:16 </filecreationdate>
+      <description>DATCOM model for a unknown</description>
+      <version>  </version>
+      <reference refID="None" author="n/a" title="n/a" date="n/a"/>
+      <description>  </description>
+   </fileheader>
 
-    <metrics>
-        <!-- wingarea unit="FT2"> 8934.95 </wingarea>
-        <wingspan unit="FT"> 261.82 </wingspan>
-        <chord unit="FT"> 34.13 </chord>
-        <htailarea unit="FT2"> 2233.74 </htailarea>
-        <htailarm unit="FT"> 102.66 </htailarm>
-        <vtailarea unit="FT2"> 1786.99 </vtailarea>
-        <vtailarm unit="FT"> 0 </vtailarm -->
-	<!-- wingarea  unit="FT2"> 9096.43 </wingarea>
-        <wingspan  unit="FT" >  261.82 </wingspan>
-        <wing_incidence>          2.00 </wing_incidence -->
-        <!-- chord     unit="FT" >   33.5 </chord -->
-        <!-- chord     unit="FT" >   34.88 </chord>
-        <htailarea unit="FT2"> 2274.11 </htailarea>
-        <htailarm  unit="FT" >  107.78 </htailarm>
-        <vtailarea unit="FT2"> 1819.29 </vtailarea>
-        <vtailarm  unit="FT" >  107.78 </vtailarm -->
-	
-	<wingarea unit="FT2">     9095.5000  </wingarea>
+
+
+
+
+
+
+
+<!-- **********************************************************************
+        METRICS
+     **********************************************************************
+-->
+
+
+   <metrics>
+      <wingarea unit="FT2">     9095.5000  </wingarea>
       <wingspan unit="FT">       261.8000  </wingspan>
       <chord unit="FT">           47.9000  </chord>
       <htailarea unit="FT2">    2236.0200  </htailarea>
       <htailarm unit="FT">       106.4339  </htailarm>
       <vtailarea unit="FT2">    1314.4999  </vtailarea>
       <vtailarm unit="FT">       100.2985  </vtailarm>
-	
-
-        <location name="AERORP" unit="M">
-            <!-- x> 1640 </x -->
-	    <x> 41.656 </x>
+      <location name="AERORP" unit="IN">
+         <!-- x> 43.2 </x>   FIX THIS
+         <y>  0.0 </y>   FIX THIS
+	 <z> 59.4 </z>   FIX THIS -->
+	 <x> 1640 </x>
             <y> 0 </y>
             <z> 0 </z>
-        </location>
-        <location name="EYEPOINT" unit="IN">
-            <x> 201.2 </x>
+	 <!-- x> 41.656 </x>
+         <y> 0 </y>
+         <z> 0 </z -->
+      </location>
+      <location name="EYEPOINT" unit="IN">
+         <!-- x> 37.0 </x>   FIX THIS
+         <y>  0.0 </y>   FIX THIS
+	   <z> 48.0 </z>   FIX THIS -->
+	   <x> 201.2 </x>
             <y> -32 </y>
             <z> 80 </z>
-        </location>
-        <location name="VRP" unit="M">
-            <x> 30.0 </x>
+      </location>
+      <location name="VRP" unit="IN">
+         <!-- x> 42.6 </x>   FIX THIS
+         <y>  0.0 </y>   FIX THIS
+	   <z> 38.5 </z>   FIX THIS -->
+	   <x> 30.0 </x>
             <y> 0 </y>
             <z> 0 </z>
-        </location>
-    </metrics>
+      </location>
+   </metrics>
 
-    <mass_balance>
-        <!-- ixx unit="SLUG*FT2"> 9.87831e+07 </ixx>
-        <iyy unit="SLUG*FT2"> 9.33213e+07 </iyy>
-        <izz unit="SLUG*FT2"> 1.95326e+08 </izz>
-        <ixy unit="SLUG*FT2"> 0 </ixy>
-        <ixz unit="SLUG*FT2"> 0 </ixz>
-        <iyz unit="SLUG*FT2"> 0 </iyz>
-        <emptywt unit="LBS"> 725004 </emptywt>
-	        <location name="CG" unit="IN">
-            <x> 1580.8 </x>
-            <y> 0 </y>
-            <z> -71.9 </z>
-        </location -->
-	
-	<!-- ixx unit="SLUG*FT2">  40378502 </ixx>
-        <iyy unit="SLUG*FT2">  38145914 </iyy>
-        <izz unit="SLUG*FT2">  79841172 </izz>
-        <emptywt unit="LBS" >    740880 </emptywt>
-	<location name="CG" unit="IN">
-	  <x> 1580.79 </x>
-          <y>   0.00 </y>
-          <z> -71.85 </z>
-	</location -->
-	<ixx unit="SLUG*FT2">  33222524 </ixx>
+
+
+
+<!-- **********************************************************************
+        MASS_BALANCE
+     **********************************************************************
+-->
+
+
+   <mass_balance>
+      <!-- 
+      <location name="CG" unit="IN">
+            <x>  1200.00  </x>
+            <y>      .00  </y>
+            <z>   124.80  </z>
+      </location -->
+      <ixx unit="SLUG*FT2">  33222524 </ixx>
         <iyy unit="SLUG*FT2">  31184361 </iyy>
         <izz unit="SLUG*FT2">  65490122 </izz>
         <emptywt unit="LBS" >    610344 </emptywt>
-        <location name="CG" unit="M">
-          
-	  <x> 40.152066 </x> <!-- 1 580.79 inches -->
+	<location name="CG" unit="IN">
+            <x>  1200.00  </x>
+            <y>      .00  </y>
+            <z>   124.80  </z>
+      </location>
+        <!-- location name="CG" unit="M">
+	  <x> 40.152066 </x>
 	  <y> 0.0000 </y>
 	  <z> -5.52 </z>
-        </location>
+        </location -->
 	<pointmass name="pilots" >
           <weight unit="KG">160</weight>
           <location name="crew" unit = "M">
@@ -178,10 +184,26 @@
             <length unit="M">  1.0 </length> <!-- wild guess -->
           </form> 
         </pointmass>
-    </mass_balance>
+   </mass_balance>
 
-    <ground_reactions>
-        <contact type="BOGEY" name="Nose Gear">
+
+
+
+<!-- **********************************************************************
+        UNDERCARRIAGE
+     **********************************************************************
+-->
+
+
+<!--
+
+   DATCOM does not calculate ground reactions parameters.
+
+-->
+
+
+   <ground_reactions>
+<contact type="BOGEY" name="Nose Gear">
             <location unit="IN">
                 <x> 488.52 </x>
                 <y> 0 </y>
@@ -227,59 +249,20 @@
             <max_steer unit="DEG"> 0.0 </max_steer>   <!-- was 0.0 -->
             <brake_group> LEFT </brake_group>
             <retractable>1</retractable>
-        </contact>
-<!--
+	</contact>
+   </ground_reactions>
 
-        <contact type="STRUCTURE" name="ELG">
-            <location unit="IN">
-                <x> 488,52 </x>
-                <y> 0 </y>
-                <z> -322.9 </z>
-            </location>
-            <static_friction> 0.8 </static_friction>
-            <dynamic_friction> 0.5 </dynamic_friction>
-            <rolling_friction> 0.02 </rolling_friction>
-            <spring_coeff unit="LBS/FT"> 362502 </spring_coeff>
-            <damping_coeff unit="LBS/FT/SEC"> 120834 </damping_coeff>
-            <max_steer unit="DEG"> 30 </max_steer>
-            <brake_group> NONE </brake_group>
-            <retractable>0</retractable>
-        </contact>
-        <contact type="STRUCTURE" name="EMLG1">
-            <location unit="IN">
-                <x> 1644 </x>
-                <y> -282.8 </y>
-                <z> -322.9 </z>
-            </location>
-            <static_friction> 0.8 </static_friction>
-            <dynamic_friction> 0.5 </dynamic_friction>
-            <rolling_friction> 0.02 </rolling_friction>
-            <spring_coeff unit="LBS/FT"> 1.20834e+06 </spring_coeff>
-            <damping_coeff unit="LBS/FT/SEC"> 241668 </damping_coeff>
-            <max_steer unit="DEG"> 0.0 </max_steer>
-            <brake_group> NONE </brake_group>
-            <retractable>0</retractable>
-        </contact>
-        <contact type="STRUCTURE" name="EMLG2">
-            <location unit="IN">
-                <x> 1644 </x>
-                <y> 282.8 </y>
-                <z> -322.9 </z>
-            </location>
-            <static_friction> 0.8 </static_friction>
-            <dynamic_friction> 0.5 </dynamic_friction>
-            <rolling_friction> 0.02 </rolling_friction>
-            <spring_coeff unit="LBS/FT"> 1.20834e+06 </spring_coeff>
-            <damping_coeff unit="LBS/FT/SEC"> 241668 </damping_coeff>
-            <max_steer unit="DEG"> 0.0 </max_steer>
-            <brake_group> NONE </brake_group>
-            <retractable>0</retractable>
-        </contact>
+
+
+
+<!-- **********************************************************************
+        PROPULSION
+     **********************************************************************
 -->
 
-    </ground_reactions>
-    <propulsion>
-        <engine file="TRENT-900">
+
+   <propulsion>
+<engine file="TRENT-900">
             <location unit="M">
                 <x>  46.9824 </x>
                 <y>  26.2467 </y>
@@ -586,15 +569,31 @@
             <radius unit="M"> 1.77 </radius> 
          </tank>
 
-    </propulsion>
+   </propulsion>
 
-    <system file="pushback"/> 
 
-    <flight_control name="FCS: a380">
-    <!-- property>fcs/slat-cmd-norm</property -->
-    <!-- property>fcs/leading-edge-slat-cmd-norm</property -->
-    
-     <channel name="All">
+
+
+<!-- **********************************************************************
+        AUTOPILOT
+     **********************************************************************
+-->
+
+
+   <!-- Autopilot is not a required section, and DATCOM does not calculate this -->
+
+
+  <system file="pushback"/> 
+
+<!-- **********************************************************************
+        FLIGHT CONTROLS
+     **********************************************************************
+-->
+
+
+   <!-- DATCOM does not calculate the flight control section -->
+   <flight_control name="FCS: a380">
+       <channel name="All">
 
         <summer name="Pitch Trim Sum">
             <input>fcs/elevator-cmd-norm</input>
@@ -870,10 +869,28 @@
             </aerosurface_scale>
 
      </channel>
-    </flight_control>
-    
-    <aerodynamics file="A380-aero.xml"/>
-    
+   </flight_control>
+
+
+
+
+<!-- **********************************************************************
+        AERODYNAMICS
+     **********************************************************************
+-->
+
+
+
+
+   <!-- Link to the aerodynamics file -->
+
+   <aerodynamics file="A380_AT_aero.xml"/>
+
+
+
+<!-- ********************************************************************** -->
+
+
     <external_reactions>
  	  <force name="pushback" frame="BODY">
 	      <location unit="IN">
@@ -890,4 +907,60 @@
     </external_reactions>
 
 
+<!--
+   OUTPUT section definition
+
+   The following specifies the way that JSBSim writes out data
+
+   NAME is the filename you want the output to go to
+
+   TYPE can be:
+
+      CSV       Comma separated data. If a filename is supplied then the data
+                goes to that file. If COUT or cout is specified, the data
+                goes to stdout. If the filename is a null filename
+                the data goes to stdout, as well
+
+      SOCKET    Will eventually send data to a socket output, where NAME
+                would then be the IP address of the machine the data 
+                should be sent to. DON'T USE THIS YET!
+
+      TABULAR   Columnar data. 
+
+      TERMINAL  Output to terminal. NOT IMPLEMENTED YET!
+
+      NONE      Specifies to do nothing. This setting makes it easy to turn 
+                on and off the data output without having to mess with 
+                anything else.
+
+
+   NOTE that Time is always output with the data.
+
+-->
+
+
+
+   <output name="JSBout.rec" type="TABULAR" rate="20">
+      <simulation>       OFF </simulation>
+      <atmosphere>       ON  </atmosphere>
+      <atmosphere>       ON  </atmosphere>
+      <massprops>        ON  </massprops>
+      <aerosurfaces>     ON  </aerosurfaces>
+      <rates>            ON  </rates>
+      <velocities>       ON  </velocities>
+      <forces>           OFF </forces>
+      <moments>          OFF </moments>
+      <position>         ON  </position>
+      <coefficients>     OFF </coefficients>
+      <ground_reactions> OFF </ground_reactions>
+      <fcs>              ON  </fcs>
+      <propulsion>       OFF </propulsion>
+
+      <property>fcs/flap-pos-deg</property>
+
+   </output>
+
+
+
 </fdm_config>
+
