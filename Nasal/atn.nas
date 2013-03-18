@@ -25,7 +25,7 @@ var atn = {
    new : func() {
      var m = {parents : [atn]};
      m.atnNode = props.globals.getNode("/instrumentation/atn",1);
-     m.version = "V1.0.2";
+     m.version = "V1.0.3";
      m.baseURL = "http://example.com/";
      var baseURLNode = m.atnNode.getChild("atc-url-base",0);
      if (baseURLNode == nil) {
@@ -126,7 +126,8 @@ tracer : func(msg) {
      var callSign     = getprop("instrumentation/afs/FLT_NBR");
      var username     = getprop("instrumentation/afs/ATC_logon_username");
      var aircraftType = getprop("instrumentation/afs/ATC_logon_acft-type");
-     me.makeRequest("doLogon","callsign="~callSign~"&user="~username~"&type="~aircraftType~"&airport="~airport);
+     var airline      = getprop("instrumentation/afs/ATC_logon_airline");
+     me.makeRequest("doLogon","callsign="~callSign~"&user="~username~"&type="~aircraftType~"&airport="~airport~"&airline="~airline);
    },
 
    doLogonCallback : func() {
@@ -186,7 +187,26 @@ tracer : func(msg) {
 
    ### send current fuel, weight and odometer to airline ###
    doSendFuelInfo : func() {
-   
+     var fltMode = getprop("instrumentation/ecam/flight-mode");
+     if (me.sessionId != nil and me.sessionId != "" and fltMode < 10) {
+       var alt = getprop("position/altitude-m");
+       var vs  = getprop("velocities/vertical-speed-fps");
+       var kias = getprop("velocities/airspeed-kt");
+       var fob = getprop("consumables/fuel/total-fuel-kg");
+       var fused = getprop("consumables/fuel/total-used-kg");
+       var gw  = getprop("fdm/jsbsim/inertia/weight-kg");
+       var cg  = (getprop("fdm/jsbsim/inertia/cg-x-in")*2.54);
+       var elapsed = getprop("sim/time/elapsed-sec");
+       var odometer = getprop("instrumentation/gps/odometer");
+       me.makeRequest("doReportMaint", "maintType=fuel-report&maintKey=altitude-m&maintValue="~alt);
+       me.makeRequest("doReportMaint", "maintType=fuel-report&maintKey=airspeed-kt&maintValue="~kias);
+       me.makeRequest("doReportMaint", "maintType=fuel-report&maintKey=fob&maintValue="~fob);
+       me.makeRequest("doReportMaint", "maintType=fuel-report&maintKey=fused&maintValue="~fused);
+       me.makeRequest("doReportMaint", "maintType=fuel-report&maintKey=gw&maintValue="~gw);
+       me.makeRequest("doReportMaint", "maintType=fuel-report&maintKey=cg-cm&maintValue="~cg);
+       me.makeRequest("doReportMaint", "maintType=fuel-report&maintKey=elapsed&maintValue="~elapsed);
+       me.makeRequest("doReportMaint", "maintType=fuel-report&maintKey=odometer&maintValue="~odometer);
+     }
    },
 
 
@@ -218,6 +238,61 @@ tracer : func(msg) {
 
    },
 
+   ### report T/O ###
+   doReportTakeoff : func() {
+     if (me.sessionId != nil and me.sessionId != "") {
+       var fob = getprop("consumables/fuel/total-fuel-kg");
+       var fused = getprop("consumables/fuel/total-used-kg");
+       var gw  = getprop("fdm/jsbsim/inertia/weight-kg");
+       var cg  = getprop("fdm/jsbsim/inertia/cg-x-in");
+       var elapsed = getprop("sim/time/elapsed-sec");
+       me.makeRequest("doReportMaint", "maintType=takeoff&maintKey=fob&maintValue="~fob);
+       me.makeRequest("doReportMaint", "maintType=takeoff&maintKey=fused&maintValue="~fused);
+       me.makeRequest("doReportMaint", "maintType=takeoff&maintKey=gw&maintValue="~gw);
+       me.makeRequest("doReportMaint", "maintType=takeoff&maintKey=cg-inch&maintValue="~cg);
+       me.makeRequest("doReportMaint", "maintType=takeoff&maintKey=elapsed&maintValue="~elapsed);
+     }
+   },
+
+   ### report Touchdown ###
+   doReportTouchdown : func() {
+     if (me.sessionId != nil and me.sessionId != "") {
+       var fob = getprop("consumables/fuel/total-fuel-kg");
+       var fused = getprop("consumables/fuel/total-used-kg");
+       var gw  = getprop("fdm/jsbsim/inertia/weight-kg");
+       var cg  = getprop("fdm/jsbsim/inertia/cg-x-in");
+       var elapsed = getprop("sim/time/elapsed-sec");
+       me.makeRequest("doReportMaint", "maintType=touchdown&maintKey=fob&maintValue="~fob);
+       me.makeRequest("doReportMaint", "maintType=touchdown&maintKey=fused&maintValue="~fused);
+       me.makeRequest("doReportMaint", "maintType=touchdown&maintKey=gw&maintValue="~gw);
+       me.makeRequest("doReportMaint", "maintType=touchdown&maintKey=cg-inch&maintValue="~cg);
+       me.makeRequest("doReportMaint", "maintType=touchdown&maintKey=elapsed&maintValue="~elapsed);
+     }
+   },
+
+   ### report All Engine Startup ###
+   doReportEngineStart : func() {
+     if (me.sessionId != nil and me.sessionId != "") {
+       var fob = getprop("consumables/fuel/total-fuel-kg");
+       var fused = getprop("consumables/fuel/total-used-kg");
+       var gw  = getprop("fdm/jsbsim/inertia/weight-kg");
+       var cg  = getprop("fdm/jsbsim/inertia/cg-x-in");
+       var elapsed = getprop("sim/time/elapsed-sec");
+       me.makeRequest("doReportMaint", "maintType=engine-start&maintKey=fob&maintValue="~fob);
+       me.makeRequest("doReportMaint", "maintType=engine-start&maintKey=fused&maintValue="~fused);
+       me.makeRequest("doReportMaint", "maintType=engine-start&maintKey=gw&maintValue="~gw);
+       me.makeRequest("doReportMaint", "maintType=engine-start&maintKey=cg-inch&maintValue="~cg);
+       me.makeRequest("doReportMaint", "maintType=engine-start&maintKey=elapsed&maintValue="~elapsed);
+       settimer(func me.doSendFuelInfo(), 60);
+     }
+   },
+
+   ### general Report Maint callback dispatcher ###
+   doReportMaintCallback : func() {
+     var xid = getprop("instrumentation/atn/received/session-id");
+     var type = getprop("instrumentation/atn/received/report-type");
+
+   },
 
    ### make a request ###
    makeRequest : func(function, params) {
@@ -248,7 +323,9 @@ tracer : func(msg) {
      if (callBack == "doUpdateController") {
        me.doUpdateControllerCallback();
      }
-
+     if (callBack == "doReportMaint") {
+       me.doReportMaintCallback();
+     }
    }
 
 };

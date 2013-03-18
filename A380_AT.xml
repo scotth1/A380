@@ -98,9 +98,11 @@
         <izz unit="SLUG*FT2">  65490122 </izz>
         <emptywt unit="LBS" >    610344 </emptywt>
 	<location name="CG" unit="IN">
-            <x>  1200.00  </x>
-            <y>      .00  </y>
-            <z>   124.80  </z>
+            <!-- x>  1200.00  </x -->
+	    <x>1580.79</x>
+            <y>     0.00  </y>
+            <!-- z>   124.80  </z -->
+	    <z>-71.85</z>
       </location>
         <!-- location name="CG" unit="M">
 	  <x> 40.152066 </x>
@@ -763,7 +765,7 @@
             </traverse>
             <output>gear/gear-pos-norm</output>
         </kinematic -->
-	
+	<property>fcs/slat-cmd-norm</property>
 	
 	<kinematic name="fcs/leading-edge-flap-cmd-norm">
 	  <input>fcs/slat-cmd-norm</input>
@@ -956,7 +958,7 @@
       <fcs>              ON  </fcs>
       <propulsion>       OFF </propulsion>
 
-      <property>fcs/flap-pos-deg</property>
+      <!-- property>fcs/flap-pos-deg</property -->
 
    </output>
 

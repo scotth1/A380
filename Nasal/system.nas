@@ -89,7 +89,7 @@ srsFlapTarget = [263.0, 222.0, 210.0, 196.0, 182.0];   #another copy in system.n
 flapPos       = [0, 0.2424, 0.5151, 0.7878, 1.0];
 
 ##trace = 0;
-version = "1.2.8";
+version = "1.2.9";
 
 strobe_switch = props.globals.getNode("/controls/switches/strobe", 0);
 aircraft.light.new("sim/model/A380/lighting/strobe", [0.05, 1.2], strobe_switch);
@@ -896,6 +896,7 @@ check_all_start = func {
   if (tt == 4) {
     print("Complete engine start OK");
     setprop("/instrumentation/ecam/page","wheel");
+    atnetwork.doReportEngineStart();
   }
 }
 
@@ -1403,6 +1404,7 @@ setlistener("/instrumentation/gear/wow", func(n) {
         setprop("/controls/flight/speedbrake",1);
         
       }
+      atnetwork.doReportTouchdown();
     }
     spd_eng = getprop("/controls/flight/speedbrake");
     if (flt_mode > 10 and spd_eng == 1) {
@@ -1417,6 +1419,7 @@ setlistener("/instrumentation/gear/wow", func(n) {
       ##setprop("instrumentation/afs/flight-control-mode", "flight");
       settimer(increment_flight_mode1, 15);
       settimer(increment_flight_mode2, 120);
+      atnetwork.doReportTakeoff();
     }
   }
 });

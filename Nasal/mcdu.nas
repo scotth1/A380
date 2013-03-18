@@ -38,7 +38,7 @@ wpMode = "V2";    ## set to "V2" for new mode (airbusFMS) or "V1" for old mode (
 
 routeClearArm = 0;
 airbusFMS = nil;   ###A380.fms;
-atnetwork = nil;   ###A380.atn;
+atn = nil;   ###A380.atn;
 
 
 #### CONSTANTS ####
@@ -136,7 +136,7 @@ init_mcdu = func() {
       }
     }
     airbusFMS = A380.fms;
-    atnetwork = A380.atnetwork;
+    atn = A380.atnetwork;
     ###foreach(i; keys(globals)) { print("  ", i); }
     copyMenuNodes(0, 4, 0);
     copyMenuNodes(1, 4, 0);
@@ -1222,9 +1222,11 @@ selectApprConf = func(mode) {
 #
 #
 atcSend = func(page) {
-
+  if (atn == nil) {
+    atn = A380.atnetwork;
+  }
   if (page == "logon") {
-    atnetwork.doLogon();
+    atn.doLogon();
   }
 }
 

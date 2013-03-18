@@ -70,6 +70,8 @@ spdStr  = ["off","TOGA","FLEX","THR CLB","SPEED","MACH","CRZ","THR DES","THR IDL
 version="V1.1.12";
 trace=0;
 
+atn = nil;  ## will get update after FDM init
+
 #trigonometric values for glideslope calculations
 FD_TAN3DEG = 0.052407779283;
 FD_SIN3DEG = 0.052335956243;
@@ -321,6 +323,8 @@ setlistener("/sim/signals/fdm-initialized", func {
     ##setprop("/instrumentation/flightdirector/to-flag",getprop("/instrumentation/nav[0]/to-flag"));
     props.globals.getNode("/instrumentation/flightdirector/to-flag").setBoolValue(getprop("/instrumentation/nav[0]/to-flag"));
     GPS_GO=1;
+
+    atn = A380.atnetwork;
 #route settings
    if(getprop("/autopilot/route-manager/route/wp/id")!=nil) {              #if waypoint present
     if(getprop("/autopilot/route-manager/route/wp/altitude-ft") < 40000) {  #setting target altitude
@@ -793,6 +797,7 @@ setlistener("/instrumentation/flightdirector/vnav", func(n) {
         setprop("/autopilot/locks/altitude","vertical-speed-hold");
       }
       setprop("/instrumentation/flightdirector/alt-acquire-mode",1);
+      atn.doSendFuelInfo();
     }
     if(vnav == VNAV_ALTCRZ) {   # ALT (m)
       curAlt = getprop("/position/altitude-ft");
@@ -806,6 +811,7 @@ setlistener("/instrumentation/flightdirector/vnav", func(n) {
       setprop("/instrumentation/afs/limit-max-vs-fps",13.0);
       setprop("/autopilot/locks/altitude","altitude-hold");
       setprop("/instrumentation/flightdirector/alt-acquire-mode",0);
+      atn.doSendFuelInfo();
       #setprop("/controls/autoflight/vertical-mode",1);
     }
     if (vnav == VNAV_DES) {  # DES
@@ -827,6 +833,7 @@ setlistener("/instrumentation/flightdirector/vnav", func(n) {
         descentAlt = targetAlt;
         tracer("[VNAV_DES] set descent = target");
       }
+      atn.doSendFuelInfo();
       var desMach = getprop("instrumentation/afs/des_mach");
       var desKIAS  = getprop("instrumentation/afs/des_speed");
       var atmos = Atmos.new();
@@ -1239,7 +1246,8 @@ var getILSCategory = func(aptId, arvRunway) {
   if (id != nil) {
     var apt = airportinfo(aptId);
     ###var arvRunway = getprop("instrumentation/afs/arv-rwy");
-    var navList = navinfo(apt.lat(), apt.lon(), "ils");
+    ###var navList = navinfo(apt.lat(), apt.lon(), "ils");
+    var navlist = findNavaidsWithinRange(apt.lat, apt.lon, 1);
     var navListSize = size(navList);
     print("size navList: "~navListSize);
     foreach(var ils; navList) {

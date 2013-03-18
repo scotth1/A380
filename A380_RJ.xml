@@ -728,6 +728,24 @@
               <output>fcs/flap-pos-norm</output>
             </aerosurface_scale>
         </kinematic>
+	
+	<kinematic name="Slats Control">
+            <input>fcs/slat-cmd-norm</input>
+            <traverse>
+                <setting>
+                    <position>0.0000</position>
+                    <time>0.0000</time>
+                </setting>
+                <setting>
+                    <position>30.0000</position>
+                    <time>5.0</time>
+                </setting>
+            </traverse>
+            <output>fcs/leading-edge-slat-pos-deg</output>
+	    <output>fcs/leading-edge-flap-pos-deg</output>
+
+
+        </kinematic>
 
         <!-- kinematic name="Gear Control">
             <input>gear/gear-cmd-norm</input>
@@ -935,8 +953,96 @@
                 </product>
             </function>
         </axis>
+	
+	<function name="aero/function/ground-effect-factor-lift">
+         <description>Change in lift due to ground effect factor</description>
+         <product>
+            <table>
+               <independentVar lookup="row">aero/h_b-mac-ft</independentVar>
+               <tableData>
+                  0.0  1.203
+                  0.1  1.127
+                  0.15 1.090
+                  0.2  1.073
+                  0.3  1.046
+                  0.4  1.055
+                  0.5  1.019
+                  0.6  1.013
+                  0.7  1.008
+                  0.8  1.006
+                  0.9  1.003
+                  1.0  1.002
+                  1.1  1.0
+               </tableData>
+            </table>
+         </product>
+      </function>
+
+      <function name="aero/function/ground-effect-factor-drag">
+         <description>Change in drag due to ground effect</description>
+         <product>
+            <table>
+               <independentVar lookup="row">aero/h_b-mac-ft</independentVar>
+               <tableData>
+                  0.0  0.480
+                  0.1  0.515
+                  0.15 0.629
+                  0.2  0.709
+                  0.3  0.815
+                  0.4  0.882
+                  0.5  0.928
+                  0.6  0.962
+                  0.7  0.988
+                  0.8  1.0
+                  0.9  1.0
+                  1.0  1.0
+                  1.1  1.0
+               </tableData>
+            </table>
+         </product>
+      </function>
+
 
         <axis name="LIFT">
+	  
+	    <!-- function name="aero/coefficient/CLwbh">
+            <description>
+               Lift due to alpha
+               Increase in CL decreases Period and damping,Dutch Roll damping
+               CL is low for landing
+            </description>
+            <product>
+               <property>aero/function/ground-effect-factor-lift</property>
+               <property>aero/qbar-psf</property>
+               <property>metrics/Sw-sqft</property>
+               <table>
+                  <independentVar lookup="row">aero/alpha-deg</independentVar>
+                  <tableData>
+                       -16.00        -1.232    
+                       -8.000        -.8376    
+                       -6.000        -.6888    
+                       -4.000        -.5220    
+                       -2.000        -.3498    
+                         .000        -.1738    
+                        2.000         .4711E-02
+                        4.000         .1837    
+                        8.000         .5331    
+                        9.000         .6191    
+                        10.00         .7032    
+                        12.00         .8573    
+                        14.00         1.011    
+                        16.00         1.138    
+                        18.00         1.240    
+                        19.00         1.282    
+                        20.00         1.315    
+                        21.00         1.341    
+                        22.00         1.375    
+                        24.00         1.421    
+                  </tableData>
+               </table>
+            </product>
+         </function -->
+	  
             <function name="aero/coefficient/CLalpha">
                 <description>Lift_due_to_alpha</description>
                 <product>
@@ -983,6 +1089,50 @@
                     </table>
                 </product>
             </function>
+	    
+	    <function name="aero/coefficient/CLdF6">
+            <description>
+               Lift Coefficient due to Left Leading Edge Flaps Deflection
+               Positive surface deflection is trailing edge down
+               Ultimately, we will feed this both flap pos
+            </description>
+            <product>
+               <property>aero/qbar-psf</property>
+               <property>metrics/Sw-sqft</property>
+               <table>
+                  <independentVar lookup="row">fcs/leading-edge-flap-pos-deg</independentVar>
+                  <tableData>
+                         .000          .000    
+                        10.00         .6681E-03
+                        20.00         .1336E-02
+                        30.00         .2004E-02
+                  </tableData>
+               </table>
+            </product>
+         </function>
+	 
+	 <function name="aero/coefficient/CLdF7">
+            <description>
+               Lift Coefficient due to Left Leading Edge Slats Deflection
+               Positive surface deflection is trailing edge down
+               Ultimately, we will feed this both slat pos
+            </description>
+            <product>
+               <property>aero/qbar-psf</property>
+               <property>metrics/Sw-sqft</property>
+               <table>
+                  <independentVar lookup="row">fcs/leading-edge-slat-pos-deg</independentVar>
+                  <tableData>
+                         .000          .000    
+                        5.000         .1515E-02
+                        10.00         .3155E-02
+                        20.00         .6561E-02
+                  </tableData>
+               </table>
+            </product>
+         </function>
+	    
+	    
             <function name="aero/coefficient/dCLsb">
                 <description>Delta_Lift_due_to_speedbrake</description>
                 <product>
