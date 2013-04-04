@@ -3240,10 +3240,26 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU1.selectField("ATC_logon_acft-type")</script>
+      <script>MCDU1.selectField("FROM")</script>
    </binding>
   </action>
 </animation>
+<text>
+   <name>value.atc-depart.departure</name>
+   <axis-alignment>yz-plane</axis-alignment>
+   <offsets>
+     <pitch-deg>-90</pitch-deg>
+     <x-m>-0.1267</x-m>
+     <y-m>0.08</y-m>
+     <z-m>0.0008</z-m>
+   </offsets>
+   <type type="string">text-value</type>
+   <property>instrumentation/afs/FROM</property>
+   <truncate type="bool">true</truncate>
+   <font>helvetica_medium.txf</font>
+   <character-size type="double">0.005</character-size>
+   <alignment>right-bottom</alignment>
+ </text>
 
 
 <animation>
@@ -3254,10 +3270,26 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU1.selectField("ATC_logon_acft-type")</script>
+      <script>MCDU1.selectField("TO")</script>
    </binding>
   </action>
 </animation>
+<text>
+   <name>value.atc-depart.arrival</name>
+   <axis-alignment>yz-plane</axis-alignment>
+   <offsets>
+     <pitch-deg>-90</pitch-deg>
+     <x-m>-0.111</x-m>
+     <y-m>0.08</y-m>
+     <z-m>0.0008</z-m>
+   </offsets>
+   <type type="string">text-value</type>
+   <property>instrumentation/afs/TO</property>
+   <truncate type="bool">true</truncate>
+   <font>helvetica_medium.txf</font>
+   <character-size type="double">0.005</character-size>
+   <alignment>right-bottom</alignment>
+ </text>
 
 
 <animation>
@@ -3268,10 +3300,26 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU1.selectField("ATC_logon_acft-type")</script>
+      <script>MCDU1.selectField("ATC_depart_atis")</script>
    </binding>
   </action>
 </animation>
+<text>
+   <name>value.atc-depart.gate</name>
+   <axis-alignment>yz-plane</axis-alignment>
+   <offsets>
+     <pitch-deg>-90</pitch-deg>
+     <x-m>-0.099</x-m>
+     <y-m>0.08</y-m>
+     <z-m>0.0008</z-m>
+   </offsets>
+   <type type="string">text-value</type>
+   <property>instrumentation/afs/ATC_depart_atis</property>
+   <truncate type="bool">true</truncate>
+   <font>helvetica_medium.txf</font>
+   <character-size type="double">0.005</character-size>
+   <alignment>right-bottom</alignment>
+ </text>
 
 
 <animation>
@@ -3282,10 +3330,26 @@
    <repeatable>false</repeatable>
    <binding>
       <command>nasal</command>
-      <script>MCDU1.selectField("ATC_logon_acft-type")</script>
+      <script>MCDU1.selectField("ATC_depart_gate")</script>
    </binding>
   </action>
 </animation>
+<text>
+   <name>value.atc-depart.gate</name>
+   <axis-alignment>yz-plane</axis-alignment>
+   <offsets>
+     <pitch-deg>-90</pitch-deg>
+     <x-m>-0.0912</x-m>
+     <y-m>0.08</y-m>
+     <z-m>0.0008</z-m>
+   </offsets>
+   <type type="string">text-value</type>
+   <property>instrumentation/afs/ATC_depart_gate</property>
+   <truncate type="bool">true</truncate>
+   <font>helvetica_medium.txf</font>
+   <character-size type="double">0.005</character-size>
+   <alignment>right-bottom</alignment>
+ </text>
 
 
 
@@ -3460,6 +3524,10 @@
     <object-name>value.atc-logon.airline</object-name>
     <object-name>value.atc-logon.username</object-name>
     <object-name>value.atc-logon.acft-type</object-name>
+    <object-name>value.atc-depart.departure</object-name>
+    <object-name>value.atc-depart.arrival</object-name>
+    <object-name>value.atc-depart.atis</object-name>
+    <object-name>value.atc-depart.gate</object-name>
     <ambient>
       <red>0.0</red>
       <green>0.0</green>
@@ -3776,6 +3844,10 @@
   <object-name>page.ATC_REQUEST_DEPART</object-name>
   <object-name>button.atc-depart.send</object-name>
   <object-name>label.atc-depart.send</object-name>
+  <object-name>value.atc-depart.departure</object-name>
+  <object-name>value.atc-depart.arrival</object-name>
+  <object-name>value.atc-depart.atis</object-name>
+  <object-name>value.atc-depart.gate</object-name>
   <condition>
     <equals>
       <property>/instrumentation/mcdu[0]/page</property>

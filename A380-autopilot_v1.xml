@@ -175,9 +175,9 @@
       <Kp>-1.0</Kp>        <!-- proportional gain --> <!-- was -1.45 SAH 2010-12-13 --> <!-- was -1.0 2011-04-26 --> <!-- was -1.7 2011-04-27 -->
       <beta>0.7</beta>     <!-- input value weighing factor -->
       <alpha>0.2</alpha>   <!-- low pass filter weighing factor -->
-      <gamma>0.1</gamma>   <!-- input value weighing factor for -->
+      <gamma>0.0</gamma>   <!-- input value weighing factor for -->
                            <!-- unfiltered derivative error -->
-      <Ti>30.0</Ti>        <!-- integrator time -->   <!-- was 30 2011-04-26 -->  <!-- was 15 2011-12-23 -->
+      <Ti>50.0</Ti>        <!-- integrator time -->   <!-- was 30 2011-04-26 -->  <!-- was 15 2011-12-23 -->
       <Td>0.00001</Td>     <!-- derivator time -->
       <u_min>
         <prop>/instrumentation/afs/limit-bank-angle-min</prop>
@@ -207,7 +207,7 @@
     </output>
     <config>
       <Kp>0.03</Kp>     <!-- was 0.1 2011-04-26 --> <!-- was 0.03 2011-06-19 -->
-      <beta>1.0</beta>    
+      <beta>0.9</beta>    
       <alpha>0.1</alpha>  
       <gamma>0.0</gamma>  
       <Ti>10.0</Ti>       <!-- was 20 SAH 2010-12-13 -->
@@ -1648,19 +1648,18 @@
    </output>
  </filter>
  
-    <!-- logic>
+  <logic>
     <name>slat control</name>
     <input>
       <greater-than>
 	  <property>/controls/flight/flaps</property>
-	  <value>0.0</value>
+	  <value>0.1</value>
       </greater-than>
     </input>
     <output>
-      <property>/controls/flight/slats</property>
-      <value>1.0</value>
+      <property>/fdm/jsbsim/fcs/slat-cmd-norm</property>
     </output>
-  </logic -->
+  </logic>
  
 
 </PropertyList>

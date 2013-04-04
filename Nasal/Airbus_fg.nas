@@ -67,7 +67,7 @@ lnavStr = ["off","HDG","TRK","LOC","NAV","RWY"];
 vnavStr = ["off","ALT(s)","V/S","OP CLB","FPA","OP DES","CLB","ALT CRZ","DES","G/S","SRS","LEVEL"];
 spdStr  = ["off","TOGA","FLEX","THR CLB","SPEED","MACH","CRZ","THR DES","THR IDL"];
 
-version="V1.1.12";
+version="V1.1.13";
 trace=0;
 
 atn = nil;  ## will get update after FDM init
@@ -1160,6 +1160,7 @@ setlistener("/instrumentation/nav[0]/in-range", func(n) {
            var ilsCat = getILSCategory(getprop("instrumentation/afs/TO"), getprop("instrumentation/afs/arv-rwy"));
            tracer("ils cat: "~ilsCat);
            setprop("instrumentation/afs/rwy-cat", ilsCat);
+           
            if (lnavMode != LNAV_LOC and alt < 8000 ) {
              setprop("/instrumentation/flightdirector/lnav-arm", LNAV_LOC);
            } else {
@@ -1242,8 +1243,8 @@ var getILS = func(apt, rwy) {
 ## get ILS category from nav db
 # 
 var getILSCategory = func(aptId, arvRunway) {
-  var retCat = "";
-  if (id != nil) {
+  var retCat = "CAT-I";
+  if (aptId != nil) {
     var apt = airportinfo(aptId);
     ###var arvRunway = getprop("instrumentation/afs/arv-rwy");
     ###var navList = navinfo(apt.lat(), apt.lon(), "ils");
@@ -1258,6 +1259,19 @@ var getILSCategory = func(aptId, arvRunway) {
         retCat = string.uc(substr(parts[3],4));
       }
     }
+    var dh = 200;
+    if (retCat == "CAT-I") {
+      dh = 200;
+    }
+    if (retCat == "CAT-II") {
+      dh = 100;
+    }
+    if (retCat == "CAT-III") {
+      dh = 50;
+    }
+    dh = dh + apt.elevation;
+    setprop("/instruments/mk-viii/inputs/arinc429/decision-height", dh);
+    
   }
   return retCat;
 }

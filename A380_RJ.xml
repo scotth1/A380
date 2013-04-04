@@ -75,13 +75,13 @@
         <iyy unit="SLUG*FT2">  38145914 </iyy>
         <izz unit="SLUG*FT2">  79841172 </izz>
         <emptywt unit="LBS" >    740880 </emptywt>
-        <location name="CG" unit="M">
-          <!-- x> 1580.79 </x>
+        <location name="CG" unit="IN">
+          <x> 1580.79 </x>
           <y>   0.00 </y>
-          <z> -71.85 </z -->
-	  <x> 40.152066 </x>
+          <z> -71.85 </z>
+	  <!-- x> 40.152066 </x>
 	  <y> 0.0000 </y>
-	  <z> -5.52 </z>
+	  <z> -5.52 </z -->
         </location>
 	<pointmass name="pilots" >
           <weight unit="KG">160</weight>
@@ -117,7 +117,7 @@
             <z>  -8.3097 </z>
           </location>
           <form shape="cylinder">
-            <radius unit="M">  1.0 </radius> <!-- wild guess -->
+            <radius unit="M">  2.0 </radius> <!-- wild guess -->
             <length unit="M"> 30.0 </length> <!-- wild guess -->
           </form> 
         </pointmass>
@@ -738,7 +738,7 @@
                 </setting>
                 <setting>
                     <position>30.0000</position>
-                    <time>5.0</time>
+                    <time>12.0</time>
                 </setting>
             </traverse>
             <output>fcs/leading-edge-slat-pos-deg</output>
@@ -823,6 +823,12 @@
         </kinematic>
      </channel>
     </flight_control>
+    
+    
+    <!--
+    
+        The aerodynamics section
+     -->
     <aerodynamics>
 
         <axis name="DRAG">
@@ -1005,7 +1011,7 @@
 
         <axis name="LIFT">
 	  
-	    <!-- function name="aero/coefficient/CLwbh">
+	    <function name="aero/coefficient/CLwbh">
             <description>
                Lift due to alpha
                Increase in CL decreases Period and damping,Dutch Roll damping
@@ -1041,7 +1047,7 @@
                   </tableData>
                </table>
             </product>
-         </function -->
+         </function>
 	  
             <function name="aero/coefficient/CLalpha">
                 <description>Lift_due_to_alpha</description>
@@ -1082,7 +1088,7 @@
                       <tableData>
                       00.00	0.000
                       07.23	0.290  <!-- 0.25  0.29008 -->
-                      15.46	0.420  <!-- 0.53 0.39467 -->
+                      15.46	0.530  <!-- 0.53 0.39467  0.420 -->
                       23.64	0.030  <!-- 0.79 0.0133 -->
                       30.00	0.013  <!-- 1.00 0.01 -->
                       </tableData>
@@ -1095,6 +1101,9 @@
                Lift Coefficient due to Left Leading Edge Flaps Deflection
                Positive surface deflection is trailing edge down
                Ultimately, we will feed this both flap pos
+	                20.00         .1336E-02
+                        30.00         .2004E-02
+			30.00         .6681E-02
             </description>
             <product>
                <property>aero/qbar-psf</property>
@@ -1102,10 +1111,8 @@
                <table>
                   <independentVar lookup="row">fcs/leading-edge-flap-pos-deg</independentVar>
                   <tableData>
-                         .000          .000    
-                        10.00         .6681E-03
-                        20.00         .1336E-02
-                        30.00         .2004E-02
+                         .000         0.000    
+                        30.00         0.19681
                   </tableData>
                </table>
             </product>
@@ -1116,6 +1123,10 @@
                Lift Coefficient due to Left Leading Edge Slats Deflection
                Positive surface deflection is trailing edge down
                Ultimately, we will feed this both slat pos
+	                5.000         .1515E-02
+                        10.00         .3155E-02
+			30.00         .06561
+			30.00         0.19561
             </description>
             <product>
                <property>aero/qbar-psf</property>
@@ -1123,10 +1134,8 @@
                <table>
                   <independentVar lookup="row">fcs/leading-edge-slat-pos-deg</independentVar>
                   <tableData>
-                         .000          .000    
-                        5.000         .1515E-02
-                        10.00         .3155E-02
-                        20.00         .6561E-02
+                         .000         0.000    
+                        30.00         0.20561
                   </tableData>
                </table>
             </product>

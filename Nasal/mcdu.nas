@@ -33,7 +33,7 @@ inputType  = "";
 trace = 0;         ## Set to 0 to turn off all tracing messages
 depDB = nil;
 arvDB = nil;
-version = "V2.1.4";
+version = "V2.1.5";
 wpMode = "V2";    ## set to "V2" for new mode (airbusFMS) or "V1" for old mode (route-manager)
 
 routeClearArm = 0;
@@ -1227,6 +1227,9 @@ atcSend = func(page) {
   }
   if (page == "logon") {
     atn.doLogon();
+  }
+  if (page == "departClear") {
+    atn.doRequestGroundClearance();
   }
 }
 

@@ -25,7 +25,7 @@ var atn = {
    new : func() {
      var m = {parents : [atn]};
      m.atnNode = props.globals.getNode("/instrumentation/atn",1);
-     m.version = "V1.0.3";
+     m.version = "V1.0.4";
      m.baseURL = "http://example.com/";
      var baseURLNode = m.atnNode.getChild("atc-url-base",0);
      if (baseURLNode == nil) {
@@ -41,6 +41,7 @@ var atn = {
 
      setlistener("/sim/signals/fdm-initialized", func m.init());
      setlistener("/instrumentation/atn/http-complete", func m.atnHTTPStateChange());
+     setlistener("/instrumentation/atn/oob-complete",  func m.outOfBandStateChange());
      return m;
    },
 
@@ -87,7 +88,7 @@ tracer : func(msg) {
 
    ### for high prio tasks ###
    update : func() {
-     settimer(func me.update(), 1);
+     ##settimer(func me.update(), 1);
    }, 
 
 
@@ -111,11 +112,26 @@ tracer : func(msg) {
          setprop("instrumentation/atn/out-of-band/command", "");
        }
        var url = me.baseURL~"/pollCommands.jsf?xid="~me.sessionId;
-       var params = props.Node.new( {"url": url, "targetnode": "/instrumentation/atn/out-of-band"} );
+       var params = props.Node.new( {"url": url, "targetnode": "instrumentation/atn/out-of-band", "status": "/instrumentation/atn/oob-status", "complete": "instrumentation/atn/oob-complete", "failure": "/instrumentation/atn/oob-failure"} );
        fgcommand("xmlhttprequest", params);
      }
      if (me.atnNode.getNode("serviceable").getBoolValue() == 1) {
        settimer(func me.slow_update(), 15);
+     }
+   },
+
+   outOfBandStateChange : func() {
+     var httpState = getprop("instrumentation/atn/oob-complete");
+     var msg = sprintf("HTTP state change: %u\n",httpState);
+     me.tracer(msg);
+     var cmd = getprop("instrumentation/atn/out-of-band/command");
+     var cmdMsg = getprop("instrumentation/atn/out-of-band/message");
+     var airport = getprop("instrumentation/atn/out-of-band/airport");
+     if (cmd == "MAILBOX") {
+       var time = getprop("instrumentation/clock/indicated-short-string");
+       atcMailbox.append(time~"Z FROM "~airport);
+       atcMailbox.appendStyle(cmdMsg, 0.8, 0.2, 0.2);
+       atcMailbox.reset();
      }
    },
 
@@ -174,7 +190,7 @@ tracer : func(msg) {
      var airport = getprop("instrumentation/atn/received/airport");
      var time = getprop("instrumentation/clock/indicated-short-string");
      atcMailbox.append(time~"Z FROM "~airport, 0.1, 0.8, 0.1);
-     atcMailbox.append("DISCONNECTED", 0.8, 0.8, 0.8); 
+     atcMailbox.appendStyle("DISCONNECTED", 0.8, 0.8, 0.8); 
      atcMailbox.reset();
    },
 
@@ -219,9 +235,9 @@ tracer : func(msg) {
    ### request ground clearance ###
    doRequestGroundClearance : func() {
      if (me.sessionId != nil and me.sessionId != "") {
-       var depAirport = "";
-       var arvAirport = "";
-       var gate       = "";
+       var depAirport = getprop("instrumentation/afs/FROM");
+       var arvAirport = getprop("instrumentation/afs/TO");
+       var gate       = getprop("instrumentation/afs/ATC_depart_gate");
        me.makeRequest("doDepartClearance", "depart="~depAirport~"&arrival="~arvAirport~"&gate="~gate);
      }
    },

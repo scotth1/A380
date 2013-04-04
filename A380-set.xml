@@ -850,7 +850,7 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
       <CG-trim-fwd type="double">60000</CG-trim-fwd>
       <CG-trim-aft type="double">0</CG-trim-aft>					
       <autospeedbrakes-armed type="bool">true</autospeedbrakes-armed>
-      <slats type="double" alias="/fdm/jsbsim/fcs/slats-control">0.0</slats>
+      <slats type="double" alias="/fdm/jsbsim/fcs/slat-cmd-norm">0.0</slats>
   </flight>
 
   <switches>
@@ -990,6 +990,10 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
 	  <flight-control-law type="string">normal</flight-control-law>
 	  <flight-control-mode type="string">ground</flight-control-mode>
 	  <ATC_logon_acft-type type="string">A388</ATC_logon_acft-type>
+	  <ATC_depart_departure type="string"></ATC_depart_departure>
+	  <ATC_depart_arrival type="string"></ATC_depart_arrival>
+	  <ATC_depart_atis type="string"></ATC_depart_atis>
+	  <ATC_depart_gate type="string"></ATC_depart_gate>
         </afs>
 	
 	
