@@ -3229,6 +3229,40 @@
     <alignment>left-bottom</alignment>
 </text>
 
+
+ <!--  ATC logoff -->
+ 
+ <animation>
+  <type>pick</type>
+  <object-name>button.atc-logoff.send</object-name>
+    <action>
+   <button>0</button>
+   <repeatable>false</repeatable>
+   <binding>
+      <command>nasal</command>
+      <script>MCDU1.atcSend("logoff")</script>
+   </binding>
+  </action>
+ </animation>
+ 
+  <text>
+   <name>label.atc-logoff.send</name>
+   <axis-alignment>yz-plane</axis-alignment>
+    <offsets>
+      <pitch-deg>-90</pitch-deg>
+      <x-m>-0.019</x-m>
+      <y-m>0.098</y-m>
+      <z-m>0.002</z-m>
+    </offsets>
+    <type type="string">literal</type>
+    <text>SEND</text>
+    <font>helvetica_medium.txf</font>
+    <character-size type="double">0.005</character-size>
+    <alignment>left-bottom</alignment>
+</text>
+ 
+ 
+
  <!-- ATC departure request -->
  
  
@@ -3305,11 +3339,11 @@
   </action>
 </animation>
 <text>
-   <name>value.atc-depart.gate</name>
+   <name>value.atc-depart.atis</name>
    <axis-alignment>yz-plane</axis-alignment>
    <offsets>
      <pitch-deg>-90</pitch-deg>
-     <x-m>-0.099</x-m>
+     <x-m>-0.100</x-m>
      <y-m>0.08</y-m>
      <z-m>0.0008</z-m>
    </offsets>
@@ -3834,6 +3868,19 @@
     <equals>
       <property>/instrumentation/mcdu[0]/page</property>
       <value>atc.connect.logon</value>
+    </equals>
+  </condition>
+</animation>
+
+<animation>
+  <type>select</type>
+  <object-name>page.ATC_CONNECT_LOGOFF</object-name>
+  <object-name>button.atc-logoff.send</object-name>
+  <object-name>label.atc-logoff.send</object-name>
+  <condition>
+    <equals>
+      <property>/instrumentation/mcdu[0]/page</property>
+      <value>atc.connect.logoff</value>
     </equals>
   </condition>
 </animation>

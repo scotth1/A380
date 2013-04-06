@@ -2820,7 +2820,7 @@
     <offsets>
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.048</x-m>
-      <y-m>0.075</y-m>
+      <y-m>0.070</y-m>
       <z-m>0.002</z-m>
     </offsets>
     <type type="string">text-value</type>
@@ -2836,7 +2836,7 @@
     <offsets>
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.042</x-m>
-      <y-m>0.075</y-m>
+      <y-m>0.070</y-m>
       <z-m>0.002</z-m>
     </offsets>
     <type type="string">text-value</type>
@@ -2851,7 +2851,7 @@
     <offsets>
       <pitch-deg>-90</pitch-deg>
       <x-m>-0.036</x-m>
-      <y-m>0.075</y-m>
+      <y-m>0.070</y-m>
       <z-m>0.002</z-m>
     </offsets>
     <type type="string">text-value</type>

@@ -15,7 +15,7 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-atn_trace = 0;
+atn_trace = 1;
 atcMailbox = TextRegion.new(3, 30, "/instrumentation/atn/mailbox");
 
 
@@ -130,7 +130,7 @@ tracer : func(msg) {
      if (cmd == "MAILBOX") {
        var time = getprop("instrumentation/clock/indicated-short-string");
        atcMailbox.append(time~"Z FROM "~airport);
-       atcMailbox.appendStyle(cmdMsg, 0.8, 0.2, 0.2);
+       atcMailbox.appendStyle(cmdMsg, 0.1, 0.2, 0.8);
        atcMailbox.reset();
      }
    },
@@ -214,21 +214,35 @@ tracer : func(msg) {
        var cg  = (getprop("fdm/jsbsim/inertia/cg-x-in")*2.54);
        var elapsed = getprop("sim/time/elapsed-sec");
        var odometer = getprop("instrumentation/gps/odometer");
-       me.makeRequest("doReportMaint", "maintType=fuel-report&maintKey=altitude-m&maintValue="~alt);
-       me.makeRequest("doReportMaint", "maintType=fuel-report&maintKey=airspeed-kt&maintValue="~kias);
-       me.makeRequest("doReportMaint", "maintType=fuel-report&maintKey=fob&maintValue="~fob);
-       me.makeRequest("doReportMaint", "maintType=fuel-report&maintKey=fused&maintValue="~fused);
-       me.makeRequest("doReportMaint", "maintType=fuel-report&maintKey=gw&maintValue="~gw);
-       me.makeRequest("doReportMaint", "maintType=fuel-report&maintKey=cg-cm&maintValue="~cg);
-       me.makeRequest("doReportMaint", "maintType=fuel-report&maintKey=elapsed&maintValue="~elapsed);
-       me.makeRequest("doReportMaint", "maintType=fuel-report&maintKey=odometer&maintValue="~odometer);
+       var report = [];
+       append(report, atnMaintRecord.new("fuel-report","altitude-m", alt));
+       append(report, atnMaintRecord.new("fuel-report","airspeed-kt", kias));
+       append(report, atnMaintRecord.new("fuel-report","vertical-speed", vs));
+       append(report, atnMaintRecord.new("fuel-report","fob", fob));
+       append(report, atnMaintRecord.new("fuel-report","fused",fused));
+       append(report, atnMaintRecord.new("fuel-report","gw",gw));
+       append(report, atnMaintRecord.new("fuel-report","cg-cm",cg));
+       append(report, atnMaintRecord.new("fuel-report","elapsed",elapsed));
+       append(report, atnMaintRecord.new("fuel-report","odometer",odometer));
+       var json = me.urlencode(me.makeJSON("maintRecord",report));
+       me.makeRequest("doReportMaint", "maintRecord="~json);
      }
    },
 
 
+
    ### send a position report to controller ###
    doPositionReport : func() {
-   
+     if (me.sessionId != nil and me.sessionId != "") {
+       var alt = getprop("position/altitude-m");
+       var vs  = getprop("velocities/vertical-speed-fps");
+       var kias = getprop("velocities/airspeed-kt");
+       var lat  = getprop("position/latitude-deg");
+       var lon  = getprop("position/longitude-deg");
+       var report = atnPositionRecord.new(lat,lon,alt,kias);
+       var json = me.urlencode("{\"atnPositionRecord\": "~report.toJSON()~"}");
+       me.makeRequest("doPositionReport", "positionRecord="~json);
+     }
    },
 
 
@@ -242,6 +256,14 @@ tracer : func(msg) {
      }
    },
 
+   ### ground clearance callback ###
+   doDepartClearanceCallback : func() {
+     var status = getprop("instrumentation/atn/received/message-status");
+     var time = getprop("instrumentation/clock/indicated-short-string");
+     atcMailbox.append(time~"Z");
+     atcMailbox.appendStyle("CLEARANCE "~status, 0.8, 0.8, 0.8); 
+     atcMailbox.reset();
+   },
 
    ### arrival gate request ###
    doRequestGate : func() {
@@ -260,13 +282,17 @@ tracer : func(msg) {
        var fob = getprop("consumables/fuel/total-fuel-kg");
        var fused = getprop("consumables/fuel/total-used-kg");
        var gw  = getprop("fdm/jsbsim/inertia/weight-kg");
-       var cg  = getprop("fdm/jsbsim/inertia/cg-x-in");
+       var cg  = (getprop("fdm/jsbsim/inertia/cg-x-in")*2.54);
        var elapsed = getprop("sim/time/elapsed-sec");
-       me.makeRequest("doReportMaint", "maintType=takeoff&maintKey=fob&maintValue="~fob);
-       me.makeRequest("doReportMaint", "maintType=takeoff&maintKey=fused&maintValue="~fused);
-       me.makeRequest("doReportMaint", "maintType=takeoff&maintKey=gw&maintValue="~gw);
-       me.makeRequest("doReportMaint", "maintType=takeoff&maintKey=cg-inch&maintValue="~cg);
-       me.makeRequest("doReportMaint", "maintType=takeoff&maintKey=elapsed&maintValue="~elapsed);
+       var report = [];
+       append(report, atnMaintRecord.new("takeoff","altitude-m", alt));
+       append(report, atnMaintRecord.new("takeoff","fob",fob));
+       append(report, atnMaintRecord.new("takeoff","fused",fused));
+       append(report, atnMaintRecord.new("takeoff","gw",gw));
+       append(report, atnMaintRecord.new("takeoff","cg-cm",cg));
+       append(report, atnMaintRecord.new("takeoff","elapsed",elapsed));
+       var json = me.urlencode(me.makeJSON("maintRecord",report));
+       me.makeRequest("doReportMaint", "maintRecord="~json);
      }
    },
 
@@ -276,13 +302,16 @@ tracer : func(msg) {
        var fob = getprop("consumables/fuel/total-fuel-kg");
        var fused = getprop("consumables/fuel/total-used-kg");
        var gw  = getprop("fdm/jsbsim/inertia/weight-kg");
-       var cg  = getprop("fdm/jsbsim/inertia/cg-x-in");
+       var cg  = (getprop("fdm/jsbsim/inertia/cg-x-in")*2.54);
        var elapsed = getprop("sim/time/elapsed-sec");
-       me.makeRequest("doReportMaint", "maintType=touchdown&maintKey=fob&maintValue="~fob);
-       me.makeRequest("doReportMaint", "maintType=touchdown&maintKey=fused&maintValue="~fused);
-       me.makeRequest("doReportMaint", "maintType=touchdown&maintKey=gw&maintValue="~gw);
-       me.makeRequest("doReportMaint", "maintType=touchdown&maintKey=cg-inch&maintValue="~cg);
-       me.makeRequest("doReportMaint", "maintType=touchdown&maintKey=elapsed&maintValue="~elapsed);
+       var report = [];
+       append(report, atnMaintRecord.new("touchdown","fob",fob));
+       append(report, atnMaintRecord.new("touchdown","fused",fused));
+       append(report, atnMaintRecord.new("touchdown","gw",gw));
+       append(report, atnMaintRecord.new("touchdown","cg-cm",cg));
+       append(report, atnMaintRecord.new("touchdown","elapsed",elapsed));
+       var json = me.urlencode(me.makeJSON("maintRecord",report));
+       me.makeRequest("doReportMaint", "maintRecord="~json);
      }
    },
 
@@ -292,13 +321,17 @@ tracer : func(msg) {
        var fob = getprop("consumables/fuel/total-fuel-kg");
        var fused = getprop("consumables/fuel/total-used-kg");
        var gw  = getprop("fdm/jsbsim/inertia/weight-kg");
-       var cg  = getprop("fdm/jsbsim/inertia/cg-x-in");
+       var cg  = (getprop("fdm/jsbsim/inertia/cg-x-in")*2.54);
        var elapsed = getprop("sim/time/elapsed-sec");
-       me.makeRequest("doReportMaint", "maintType=engine-start&maintKey=fob&maintValue="~fob);
-       me.makeRequest("doReportMaint", "maintType=engine-start&maintKey=fused&maintValue="~fused);
-       me.makeRequest("doReportMaint", "maintType=engine-start&maintKey=gw&maintValue="~gw);
-       me.makeRequest("doReportMaint", "maintType=engine-start&maintKey=cg-inch&maintValue="~cg);
-       me.makeRequest("doReportMaint", "maintType=engine-start&maintKey=elapsed&maintValue="~elapsed);
+       var report = [];
+       append(report, atnMaintRecord.new("engine-start","fob",fob));
+       append(report, atnMaintRecord.new("engine-start","fused",fused));
+       append(report, atnMaintRecord.new("engine-start","gw",gw));
+       append(report, atnMaintRecord.new("engine-start","cg-cm",cg));
+       append(report, atnMaintRecord.new("engine-start","elapsed",elapsed));
+       var json = me.urlencode(me.makeJSON("maintRecord",report));
+       me.makeRequest("doReportMaint", "maintRecord="~json);
+
        settimer(func me.doSendFuelInfo(), 60);
      }
    },
@@ -342,6 +375,64 @@ tracer : func(msg) {
      if (callBack == "doReportMaint") {
        me.doReportMaintCallback();
      }
-   }
+     if (callBack == "doDepartClearance") {
+       me.doDepartClearanceCallback();
+     }
+   },
+
+
+   ### make a JSON object from an array of items that support .toJSON() ###
+   makeJSON : func(root, items) {
+     var str = "{"~root~": [";
+     foreach(item; items) {
+       str = str~item.toJSON();
+     }
+     str = str~"]}";
+     return str;
+   },
+
+   ### urlencode specific characters ###
+   urlencode : func(str) {
+     for(var pos=0; pos < size(str); pos=pos+1) {
+       var char = str[pos];
+       if (char == ` `) {
+         str1 = substr(str,0,pos);
+         str2 = substr(str,pos+1);
+         str = str1~"%20"~str2;
+         pos=pos+2;
+       }
+       if(char == `:`) {
+         str1 = substr(str,0,pos);
+         str2 = substr(str,pos+1);
+         str = str1~"%3A"~str2;
+         pos=pos+2;
+       }
+       if (char == `[`) {
+         str1 = substr(str,0, pos);
+         str2 = substr(str,pos+1);
+         str = str1~"%5B"~str2;
+         pos=pos+2;
+       }
+       if (char == `]`) {
+         str1 = substr(str,0,pos);
+         str2 = substr(str,pos+1);
+         str = str1~"%5C"~str2;
+         pos=pos+2;
+       }
+       if (char == `,`) {
+         str1 = substr(str,0,pos);
+         str2 = substr(str,pos+1);
+         str = str1~"%2C"~str2;
+         pos=pos+2;
+       }
+       if (char == `"`) {
+         str1 = substr(str,0,pos);
+         str2 = substr(str,pos+1);
+         str = str1~"%22"~str2;
+         pos=pos+2;
+       }
+     }
+     return str;
+   },
 
 };

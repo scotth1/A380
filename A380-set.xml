@@ -1462,6 +1462,8 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
       <file>Aircraft/A380/Nasal/TextRegion.nas</file>
       <file>Aircraft/A380/Nasal/AirbusFMS.nas</file>
       <file>Aircraft/A380/Nasal/atn.nas</file>
+      <file>Aircraft/A380/Nasal/atnMaintRecord.nas</file>
+      <file>Aircraft/A380/Nasal/atnPositionRecord.nas</file>
       <file>Aircraft/A380/Nasal/system.nas</file>
       <file>Aircraft/A380/Nasal/Airbus_fg.nas</file>
       <file>Aircraft/Generic/limits.nas</file>
@@ -1485,6 +1487,8 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
       <file>Aircraft/A380/Nasal/AirbusFMS.nas</file>
       <file>Aircraft/A380/Nasal/TextRegion.nas</file>
       <file>Aircraft/A380/Nasal/atn.nas</file>
+      <file>Aircraft/A380/Nasal/atnMaintRecord.nas</file>
+      <file>Aircraft/A380/Nasal/atnPositionRecord.nas</file>
     </FCU>
     
     <MCDU1>
@@ -1496,6 +1500,8 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
       <file>Aircraft/A380/Nasal/fmsWP.nas</file>
       <file>Aircraft/A380/Nasal/fmsTP.nas</file>
       <file>Aircraft/A380/Nasal/fmsTransition.nas</file>
+      <file>Aircraft/A380/Nasal/atnMaintRecord.nas</file>
+      <file>Aircraft/A380/Nasal/atnPositionRecord.nas</file>
     </MCDU1>
     
     <MCDU2>
@@ -1507,6 +1513,8 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
       <file>Aircraft/A380/Nasal/fmsWP.nas</file>
       <file>Aircraft/A380/Nasal/fmsTP.nas</file>
       <file>Aircraft/A380/Nasal/fmsTransition.nas</file>
+      <file>Aircraft/A380/Nasal/atnMaintRecord.nas</file>
+      <file>Aircraft/A380/Nasal/atnPositionRecord.nas</file>
     </MCDU2>
 </nasal>
 

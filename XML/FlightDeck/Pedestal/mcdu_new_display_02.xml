@@ -3513,6 +3513,19 @@
   </condition>
 </animation>
 
+<animation>
+  <type>select</type>
+  <object-name>page.ATC_CONNECT_LOGOFF</object-name>
+  <object-name>button.atc-logoff.send</object-name>
+  <object-name>label.atc-logoff.send</object-name>
+  <condition>
+    <equals>
+      <property>/instrumentation/mcdu[0]/page</property>
+      <value>atc.connect.logoff</value>
+    </equals>
+  </condition>
+</animation>
+
 
 <animation>
   <type>select</type>

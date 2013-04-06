@@ -11,7 +11,29 @@ MATERIAL "1 - Default" rgb 0.439216 0.564706 0.564706  amb 0.313726 0.376471 0.3
 MATERIAL "2 - Default" rgb 0 0 0  amb 0 0 0  emis 0 0 0  spec 0.0627451 0 0.25098  shi 32  trans 0
 MATERIAL "3 - Default" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0.898039 0.898039 0.898039  shi 13  trans 0
 OBJECT world
-kids 24
+kids 25
+OBJECT group
+name "page.ATC_CONNECT_LOGOFF"
+loc -0.0843591 0.000121191 -0.0914471
+kids 1
+OBJECT poly
+name "button.atc-logoff.send"
+loc 0.0636498 0.00168338 -0.0125849
+crease 45.000000
+numvert 4
+-0.00325866 0 -0.00936864
+0.00325866 0 -0.00936864
+0.00325866 0 0.00936864
+-0.00325866 0 0.00936864
+numsurf 1
+SURF 0x30
+mat 0
+refs 4
+3 0 0
+2 1 0
+1 1 1
+0 0 1
+kids 0
 OBJECT group
 name "page.ATC_CONNECT_LOGON"
 loc -0.0843591 0.000121191 -0.0914471

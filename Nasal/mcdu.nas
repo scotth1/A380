@@ -1227,12 +1227,19 @@ atcSend = func(page) {
   }
   if (page == "logon") {
     atn.doLogon();
+    settimer(updatePositionReport, 3);
+  }
+  if (page == "logoff") {
+    atn.doLogoff();
   }
   if (page == "departClear") {
     atn.doRequestGroundClearance();
   }
 }
 
+updatePositionReport = func() {
+  atn.doPositionReport();
+}
 
 #########################################
 #
