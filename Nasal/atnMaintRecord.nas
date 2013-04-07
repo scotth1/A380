@@ -20,7 +20,7 @@ var atnMaintRecord = {
     },
 
     toJSON : func() {
-      var str = "{\"maintType\": "~me.type~", \"maintKey\": "~me.key~", \"maintValue\": "~me.value~"}";
+      var str = "{\"type\": \""~me.type~"\", \"key\": \""~me.key~"\", \"value\": \""~me.value~"\"}";
       return str;
     },
 

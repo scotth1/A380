@@ -67,7 +67,7 @@ lnavStr = ["off","HDG","TRK","LOC","NAV","RWY"];
 vnavStr = ["off","ALT(s)","V/S","OP CLB","FPA","OP DES","CLB","ALT CRZ","DES","G/S","SRS","LEVEL"];
 spdStr  = ["off","TOGA","FLEX","THR CLB","SPEED","MACH","CRZ","THR DES","THR IDL"];
 
-version="V1.1.13";
+version="V1.1.14";
 trace=0;
 
 atn = nil;  ## will get update after FDM init
@@ -1633,6 +1633,9 @@ update_mode = func {
       var desMach = getprop("/instrumentation/afs/des_mach");
       setprop("/instrumentation/flightdirector/vnav-arm", VNAV_DES);
       interpolate("/autopilot/settings/target-speed-mach", desMach, 20);
+      setprop("/autopilot/settings/vertical-speed-fpm",0);
+      setprop("autopilot/locks/altitude","vertical-speed-hold");
+      interpolate("autopilot/settings/vertical-speed-fpm", -500, 10);
     }
 
     if (pastTD == 1 and vnav == VNAV_ALTCRZ and managedVert == 1) {

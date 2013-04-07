@@ -923,11 +923,13 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
       <hotair-on type="bool">0</hotair-on>
       <pack-valve type="float">1.0</pack-valve>
       <hotair-valve type="float">1.0</hotair-valve>
+      <pack-on type="bool">false</pack-on>
     </pack>
     <pack>
       <hotair-on type="bool">0</hotair-on>
       <pack-valve type="float">1.0</pack-valve>
       <hotair-valve type="float">1.0</hotair-valve>
+      <pack-on type="bool">false</pack-on>
     </pack>
     <engine>
       <bleed-on type="bool">0</bleed-on>

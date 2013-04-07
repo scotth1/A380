@@ -25,7 +25,7 @@ var atn = {
    new : func() {
      var m = {parents : [atn]};
      m.atnNode = props.globals.getNode("/instrumentation/atn",1);
-     m.version = "V1.0.4";
+     m.version = "V1.1.0";
      m.baseURL = "http://example.com/";
      var baseURLNode = m.atnNode.getChild("atc-url-base",0);
      if (baseURLNode == nil) {
@@ -206,7 +206,7 @@ tracer : func(msg) {
      var fltMode = getprop("instrumentation/ecam/flight-mode");
      if (me.sessionId != nil and me.sessionId != "" and fltMode < 10) {
        var alt = getprop("position/altitude-m");
-       var vs  = getprop("velocities/vertical-speed-fps");
+       var vs  = (getprop("velocities/vertical-speed-fps")*60);
        var kias = getprop("velocities/airspeed-kt");
        var fob = getprop("consumables/fuel/total-fuel-kg");
        var fused = getprop("consumables/fuel/total-used-kg");
@@ -224,7 +224,7 @@ tracer : func(msg) {
        append(report, atnMaintRecord.new("fuel-report","cg-cm",cg));
        append(report, atnMaintRecord.new("fuel-report","elapsed",elapsed));
        append(report, atnMaintRecord.new("fuel-report","odometer",odometer));
-       var json = me.urlencode(me.makeJSON("maintRecord",report));
+       var json = me.urlencode(me.makeJSON("records",report));
        me.makeRequest("doReportMaint", "maintRecord="~json);
      }
    },
@@ -235,7 +235,7 @@ tracer : func(msg) {
    doPositionReport : func() {
      if (me.sessionId != nil and me.sessionId != "") {
        var alt = getprop("position/altitude-m");
-       var vs  = getprop("velocities/vertical-speed-fps");
+       var vs  = getprop("velocities/vertical-speed-fps")*60;
        var kias = getprop("velocities/airspeed-kt");
        var lat  = getprop("position/latitude-deg");
        var lon  = getprop("position/longitude-deg");
@@ -291,7 +291,7 @@ tracer : func(msg) {
        append(report, atnMaintRecord.new("takeoff","gw",gw));
        append(report, atnMaintRecord.new("takeoff","cg-cm",cg));
        append(report, atnMaintRecord.new("takeoff","elapsed",elapsed));
-       var json = me.urlencode(me.makeJSON("maintRecord",report));
+       var json = me.urlencode(me.makeJSON("records",report));
        me.makeRequest("doReportMaint", "maintRecord="~json);
      }
    },
@@ -310,7 +310,7 @@ tracer : func(msg) {
        append(report, atnMaintRecord.new("touchdown","gw",gw));
        append(report, atnMaintRecord.new("touchdown","cg-cm",cg));
        append(report, atnMaintRecord.new("touchdown","elapsed",elapsed));
-       var json = me.urlencode(me.makeJSON("maintRecord",report));
+       var json = me.urlencode(me.makeJSON("records",report));
        me.makeRequest("doReportMaint", "maintRecord="~json);
      }
    },
@@ -329,7 +329,7 @@ tracer : func(msg) {
        append(report, atnMaintRecord.new("engine-start","gw",gw));
        append(report, atnMaintRecord.new("engine-start","cg-cm",cg));
        append(report, atnMaintRecord.new("engine-start","elapsed",elapsed));
-       var json = me.urlencode(me.makeJSON("maintRecord",report));
+       var json = me.urlencode(me.makeJSON("records",report));
        me.makeRequest("doReportMaint", "maintRecord="~json);
 
        settimer(func me.doSendFuelInfo(), 60);
@@ -383,9 +383,13 @@ tracer : func(msg) {
 
    ### make a JSON object from an array of items that support .toJSON() ###
    makeJSON : func(root, items) {
-     var str = "{"~root~": [";
-     foreach(item; items) {
+     var str = "{\""~root~"\": [";
+     forindex(i; items) {
+       item = items[i];
        str = str~item.toJSON();
+       if (i < size(items)-1) {
+         str = str~",";
+       }
      }
      str = str~"]}";
      return str;
@@ -416,7 +420,7 @@ tracer : func(msg) {
        if (char == `]`) {
          str1 = substr(str,0,pos);
          str2 = substr(str,pos+1);
-         str = str1~"%5C"~str2;
+         str = str1~"%5D"~str2;
          pos=pos+2;
        }
        if (char == `,`) {

@@ -21,7 +21,7 @@ var atnPositionRecord = {
     },
 
     toJSON : func() {
-      var str = "{\"posLat\": "~me.lat~", \"poLon\": "~me.lon~", \"altitudeMetres\": "~me.alt~", \"kias\": "~me.ias~"}";
+      var str = "{\"posLat\": "~me.lat~", \"posLon\": "~me.lon~", \"altitudeMetres\": "~me.alt~", \"kias\": "~me.ias~"}";
       return str;
     },
 
