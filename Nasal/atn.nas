@@ -15,7 +15,7 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-atn_trace = 1;
+atn_trace = 0;
 atcMailbox = TextRegion.new(3, 30, "/instrumentation/atn/mailbox");
 
 

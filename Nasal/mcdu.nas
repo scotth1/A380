@@ -33,7 +33,7 @@ inputType  = "";
 trace = 0;         ## Set to 0 to turn off all tracing messages
 depDB = nil;
 arvDB = nil;
-version = "V2.1.5";
+version = "V2.2.3";
 wpMode = "V2";    ## set to "V2" for new mode (airbusFMS) or "V1" for old mode (route-manager)
 
 routeClearArm = 0;
@@ -166,9 +166,47 @@ selectField = func(field) {
    }
 }
 
+#################
+#  when user clicks on flight plan row
+#
 selectWP = func(idx) {
    var wp = airbusFMS.getWPIdx(idx);
-   ##print("[selectWP] Got back WP: "~wp.wp_name);
+   if (wp != nil) {
+     print("[selectWP] Got back WP: "~wp.wp_name);
+     var menuCanvas = canvas.new({"name": "fltpln-menu",   
+         "size": [256, 256], 
+         "view": [256, 256], 
+         "mipmapping": 0       # Enable mipmapping (optional)
+     });
+     var node = "fltpln.menu"~idx;
+     tracer("attach canvas to node: "~node);
+     menuCanvas.setColorBackground(80,80,80,1);
+     menuCanvas.addPlacement({"node": node});
+     var menuGroup = menuCanvas.createGroup();
+     menuGroup.setCenter(128,128);
+     menuGroup.setRotation(0,5.0);
+     menuGroup.setScale(1);
+     
+     
+     var text1 = menuGroup.createChild("text", "menu0")
+                .setTranslation(10, 20)      # The origin is in the top left corner
+                .setAlignment("left-center") # All values from osgText are supported (see $FG_ROOT/Docs/README.osgtext)
+                .setFont("LiberationFonts/LiberationSans-Regular.ttf") # Fonts are loaded either from $AIRCRAFT_DIR/Fonts or $FG_DATA/Fonts
+                .setFontSize(20, 1.2)        # Set fontsize and optionally character aspect ratio
+                .setColor(255,255,255)             # Text color
+                .setText("This is a text element");
+     ##text1.setCenter(0,0);
+     ##text1.setRotation(0,0);
+     text1.show();
+     var text2 = menuGroup.createChild("text", "menu1")
+                  .setTranslation(10,35)
+                  .setAlignment("left-center")
+                  .setFont("LiberationFonts/LiberationSans-Regular.ttf")
+                  .setFontSize(20,1.2)
+                  .setText("Insert WP");
+     text2.show();
+     menuGroup.show();
+  }
 }
 
 
@@ -838,7 +876,7 @@ selectSidAction = func(opt, unit) {
       copyPlanToRoute();
       if (getprop("autopilot/route-manager/active") == 0) {
         tracer("@ACTIVATE");
-        setprop("/autopilot/route-manager/input", "@ACTIVATE");
+        ##setprop("/autopilot/route-manager/input", "@ACTIVATE");
         ##setprop("/autopilot/route-manager/active",1);
       }
     }
@@ -1126,13 +1164,58 @@ var copyPlanToRoute = func() {
     }
 
     var maxWP = airbusFMS.getPlanSize();
+    var fp = flightplan();
     var idx = 1;
     for(var w = 0; w < maxWP; w=w+1) {
       var wp = airbusFMS.getWP(w);
       if (wp.wp_type == "APT" or wp.wp_type == "DISC" or wp.wp_type == "END") {
         ##
       } else {
-        insertAbsWP(wp.wp_name,idx,wp.wp_lat,wp.wp_lon,wp.alt_cstr);
+        ##insertAbsWP(wp.wp_name,idx,wp.wp_lat,wp.wp_lon,wp.alt_cstr);
+        tracer("FPinsert WP: "~wp.wp_name~", at index: "~idx~", of wp_type: "~wp.wp_type);
+        var role = "";
+        if (wp.wp_type == "SID" or wp.wp_type == "STAR" or wp.wp_type == "IAP") {
+          role = string.lc(wp.wp_type);
+        }
+        if (wp.wp_type == "T/C" or wp.wp_type == "T/D") {
+          role = "pseudo";
+        }
+
+          var wptList = findFixesByID(wp.wp_name);
+          if (size(wptList) == 0) {
+            wptList = findNavaidsByID(wp.wp_name);
+          }
+          var wpG = nil;
+          if (size(wptList) == 0) {
+            tracer("FPinsert, create WP from lat: "~wp.wp_lat~", lon: "~wp.wp_lon~" name: "~wp.wp_name~" role: "~role);
+            var wpt = geo.Coord.new();
+            wpt.set_latlon(wp.wp_lat, wp.wp_lon);
+            wpG = createWP(wpt, wp.wp_name, role);
+          } else {
+              tracer("FPinsert, create WP from wptList[0] role: "~role);
+              wpG = createWPFrom(wptList[0], role);
+          }
+        
+        fp.insertWP(wpG, idx);
+        var leg = fp.getWP(idx);
+        if (wp.alt_cstr > 0) {
+          tracer("FPinsert: set alt_cstr: "~wp.alt_cstr);
+          leg.setAltitude(wp.alt_cstr, "computed");
+          ##leg.setCalculatedAlt(wp.alt_cstr);
+        }
+        if (wp.spd_cstr > 1) {
+          tracer("FPinsert: set spd_cstr: "~wp.spd_cstr);
+          leg.setSpeed(wp.spd_cstr, "at");
+          
+        }
+        if (wp.spd_cstr > 0 and wp.spd_cstr < 1) {
+          tracer("FPinsert: set mach: "~wp.spd_cstr);
+          leg.setSpeed(wp.spd_cstr, "mach");
+        }
+        if (role == "sid" or role == "star") {
+          ##wpG.owner = wp.wp_parent_name;
+        }
+
         if (curWPIdx > 0 and wp.wp_name == curWPId) {
           tracer("[copyPlan] set new index for WP: "~curWPId~", to: "~idx);
           newCurIdx = idx;
@@ -1195,7 +1278,7 @@ selectSidTransAction = func(val, unit) {
   copyPlanToRoute();
   if (getprop("autopilot/route-manager/active") == 0) {
       tracer("@ACTIVATE");
-      setprop("/autopilot/route-manager/input", "@ACTIVATE");
+      ###setprop("/autopilot/route-manager/input", "@ACTIVATE");
       ##setprop("/autopilot/route-manager/active",1);
   }
   changePage(unit, "active.departure.dep");

@@ -258,6 +258,7 @@ decrement_alt = func() {
     if (altSelect == -1 and vsSelect == -1 and apMode == 1) {
       var afms = AirbusFMS.new();
       var newMode = afms.evaluateManagedVNAV();
+      tracer("decrement alt, newMode: "~newMode);
       if (newMode == VNAV_CLB or newMode == VNAV_OPCLB) {
         newMode = VNAV_VS;
         setprop("instrumentation/flightdirector/vnav-arm", VNAV_OFF);

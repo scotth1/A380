@@ -75,7 +75,8 @@ var AirbusFMS = {
      m.arvDB = nil;
      setprop("instrumentation/fms/plan[0]/display-nodes/current-page",0);
      setprop("instrumentation/fms/plan[0]/display-nodes/current-wp",0);
-     m.version = "V1.1.3";
+     setprop("/autopilot/route-manager/disable-fms", 1);
+     m.version = "V1.1.5";
 
      setlistener("/sim/signals/fdm-initialized", func m.init());
      setlistener("/autopilot/route-manager/current-wp", func m.updateCurrentWP());
@@ -219,6 +220,9 @@ tracer : func(msg) {
              me.tracer("retVNAV = VNAV_OPDES");
              setprop("instrumentation/afs/vertical-lvl-managed-mode",0);
            }
+         }
+         if (getprop("instrumentation/afs/target-altitude-ft") < crzAlt and crzAcquire == 1 and bothSelect == MANAGED_MODE) {
+           retVNAV = VNAV_DES;
          }
        }
        if (getprop("/position/altitude-agl-ft") < 400 and vnavMode == VNAV_GS and lnavMode == LNAV_LOC) {
@@ -509,6 +513,7 @@ tracer : func(msg) {
       me.tracer("Append WP: "~wp.wp_name~" at pos: "~me.lastWP);
       append(me.activePlan, wp);
       me.lastWP = me.lastWP+1;
+      ##flightplan().appendWP(wp);
       me.updateDisplay();
       return me.lastWP-1;
     },
@@ -521,6 +526,7 @@ tracer : func(msg) {
       me.tracer("   at pos: "~idx);
       if (idx > size(me.activePlan)-1) {
         append(me.activePlan, wp);
+        ##flightplan().append(wp);
       } else {
         me.activePlan = setsize(me.activePlan, size(me.activePlan)+1);
         # shuffle down all elements
@@ -541,6 +547,7 @@ tracer : func(msg) {
       me.tracer("insert WP: "~wp.wp_name~" at pos: "~idx);
       if (idx > size(me.activePlan)-1) {
         append(me.activePlan, wp);
+        ##flightplan().appendWP(wp);
       } else {
         me.activePlan = setsize(me.activePlan, size(me.activePlan)+1);
         # shuffle down all elements
@@ -600,6 +607,9 @@ tracer : func(msg) {
     getWPIdx : func(idx) {
       var startPage = getprop("instrumentation/fms/plan[0]/display-nodes/current-page");
       var wpIdx = startPage*9+idx;
+      if (wpIdx > size(me.activePlan)) {
+        return nil;
+      }
       return me.activePlan[wpIdx];
     },
 

@@ -67,7 +67,7 @@ lnavStr = ["off","HDG","TRK","LOC","NAV","RWY"];
 vnavStr = ["off","ALT(s)","V/S","OP CLB","FPA","OP DES","CLB","ALT CRZ","DES","G/S","SRS","LEVEL"];
 spdStr  = ["off","TOGA","FLEX","THR CLB","SPEED","MACH","CRZ","THR DES","THR IDL"];
 
-version="V1.1.14";
+version="V1.1.18";
 trace=0;
 
 atn = nil;  ## will get update after FDM init
@@ -564,6 +564,28 @@ setlistener("/autopilot/route-manager/current-wp", func(n) {
       if (id == "(T/D)") {
         setprop("/instrumentation/flightdirector/past-td",1);
         tracer("Gone past T/D");
+      }
+    }
+  }
+  ## 
+  var fp = flightplan();
+  var curWP = fp.getWP();
+  if (curWP != nil) {
+    tracer("set current WP: "~curWP.wp_name);
+    tracer("      alt_cstr: "~curWP.alt_cstr);
+    tracer("      spd_cstr: "~curWP.speed_cstr);
+    if (getprop("/instrumentation/flightdirector/autopilot-on") == 1) {
+      if (getprop("instrumentation/afs/vertical-alt-mode") == -1) {
+        setprop("/autopilot/settings/target-altitude-ft", curWP.alt_cstr);
+      }
+      if (getprop("instrumentation/afs/speed-managed-mode") == -1) {
+        var newSpeed = curWP.speed_cstr;
+        if (newSpeed > 0 and newSpeed < 1) {
+          interpolate("autopilot/settings/target-speed-mach", newSpeed, 10);
+        }
+        if (newSpeed > 30) {
+          interpolate("autopilot/settings/target-speed-kt", newSpeed, 10);
+        }
       }
     }
   }
