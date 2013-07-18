@@ -283,6 +283,7 @@ tracer : func(msg) {
        var fused = getprop("consumables/fuel/total-used-kg");
        var gw  = getprop("fdm/jsbsim/inertia/weight-kg");
        var cg  = (getprop("fdm/jsbsim/inertia/cg-x-in")*2.54);
+       var alt = getprop("/position/altitude-m");
        var elapsed = getprop("sim/time/elapsed-sec");
        var report = [];
        append(report, atnMaintRecord.new("takeoff","altitude-m", alt));

@@ -446,6 +446,9 @@ changePage = func(unit,page) {
     var rwyScroll = getprop("/instrumentation/mcdu["~unit~"]/opt-scroll");
     var depApt = airportinfo(getprop("/instrumentation/afs/FROM"));
     var arvApt = airportinfo(getprop("/instrumentation/afs/TO"));
+    if (arvDB == nil) { 
+        arvDB = fmsDB.new(getprop("/instrumentation/afs/TO"));
+    }
     if (trace > 0) {
       debug.dump(arvApt);
     }
@@ -462,47 +465,49 @@ changePage = func(unit,page) {
     setprop("environment/metar[1]/station-id", getprop("/instrumentation/afs/TO"));
     
 
-    ##var runWays = arvApt["runways"];
-    var runWays = arvApt.runways;
-    tracer("runways len: "~size(runWays));
-    setprop("/instrumentation/mcdu["~unit~"]/opt-size",size(runWays));
-    var ks = keys(runWays);
-    var max = size(ks);
-    if (max > (rwyScroll*8)+8) {
-      max = (rwyScroll*8)+8;
-    }
-    tracer("runways max: "~max~", rwyScroll: "~rwyScroll);
-    var pos = 0;
-    for(r = (rwyScroll*8); r != max; r=r+1) {
-      var key = ks[r];
-      ##var run = runWays[key];
-      var run = arvApt.runway(key);
-      ## find all approach procedures for this runway.
-      if (arvDB == nil) { 
-        arvDB = fmsDB.new(getprop("/instrumentation/afs/TO"));
+    if (arvDB != nil) {
+      ##var runWays = arvApt["runways"];
+      var runWays = arvApt.runways;
+      tracer("runways len: "~size(runWays));
+      setprop("/instrumentation/mcdu["~unit~"]/opt-size",size(runWays));
+      var ks = keys(runWays);
+      var max = size(ks);
+      if (max > (rwyScroll*8)+8) {
+        max = (rwyScroll*8)+8;
       }
-      var aprchList = arvDB.getApproachList(run, "all");
+      tracer("runways max: "~max~", rwyScroll: "~rwyScroll);
+      var pos = 0;
+      for(r = (rwyScroll*8); r != max; r=r+1) {
+        var key = ks[r];
+        ##var run = runWays[key];
+        var run = arvApt.runway(key);
+        ## find all approach procedures for this runway.
+        var aprchList = arvDB.getApproachList(run, "all");
       
-      if (run.length > 1900) {
-        pos = pos+1;
-        var rwyAttr = sprintf("/instrumentation/mcdu[%i]/opt%02i",unit,pos);
-        var rwyLenAttr = sprintf("/instrumentation/mcdu[%i]/col01-opt%02i",unit,pos);
-        var rwyHdgAttr = sprintf("/instrumentation/mcdu[%i]/col02-opt%02i",unit,pos);
-        tracer("[MCDU] set attr: "~rwyAttr~", run val: "~key);
-        setprop(rwyAttr,key);
-        var lenStr = sprintf("%im",run.length);
-        var crsStr = sprintf("%03i", run.heading);
-        setprop(rwyLenAttr, lenStr);
-        setprop(rwyHdgAttr, crsStr);
+        if (run.length > 1900) {
+          pos = pos+1;
+          var rwyAttr = sprintf("/instrumentation/mcdu[%i]/opt%02i",unit,pos);
+          var rwyLenAttr = sprintf("/instrumentation/mcdu[%i]/col01-opt%02i",unit,pos);
+          var rwyHdgAttr = sprintf("/instrumentation/mcdu[%i]/col02-opt%02i",unit,pos);
+          tracer("[MCDU] set attr: "~rwyAttr~", run val: "~key);
+          setprop(rwyAttr,key);
+          var lenStr = sprintf("%im",run.length);
+          var crsStr = sprintf("%03i", run.heading);
+          setprop(rwyLenAttr, lenStr);
+          setprop(rwyHdgAttr, crsStr);
+        }
       }
-    }
-    setprop("/instrumentation/mcdu["~unit~"]/sid-arm",0);
-    setprop("/instrumentation/mcdu["~unit~"]/star-arm",0);
-    var rwy = getprop("/instrumentation/afs/arv-rwy");
-    if (rwy != nil) {
-      if (size(rwy) > 0) {
-        setprop("/instrumentation/mcdu["~unit~"]/star-arm",1);
+      setprop("/instrumentation/mcdu["~unit~"]/sid-arm",0);
+      setprop("/instrumentation/mcdu["~unit~"]/star-arm",0);
+      var rwy = getprop("/instrumentation/afs/arv-rwy");
+      if (rwy != nil) {
+        if (size(rwy) > 0) {
+          setprop("/instrumentation/mcdu["~unit~"]/star-arm",1);
+        }
       }
+    } else {
+      setprop("/instrumentation/mcdu["~unit~"]/opt-error","ARPT NOT IN DB");
+      setprop("/instrumentation/mcdu["~unit~"]/opt-error-display",CODE_WARN);
     }
   }
 
