@@ -33,7 +33,7 @@ inputType  = "";
 trace = 0;         ## Set to 0 to turn off all tracing messages
 depDB = nil;
 arvDB = nil;
-version = "V2.2.3";
+version = "V2.2.4";
 wpMode = "V2";    ## set to "V2" for new mode (airbusFMS) or "V1" for old mode (route-manager)
 
 routeClearArm = 0;
@@ -1868,7 +1868,7 @@ insertTopOfDescent = func() {
       wp.wp_lat =  tdLat;
       wp.wp_lon =  tdLon;
       wp.alt_cstr = crzFt;
-      wp.spd_cstr = getprop("/instrumentation/afs/des_mach");
+      wp.spd_cstr = getprop("/instrumentation/afs/crz_mach");
       ###var disIdx = airbusFMS.findWPType("DISC");
       airbusFMS.clearWPType("T/D");
       var starWPIdx = airbusFMS.findWPType("STAR");
@@ -1895,7 +1895,7 @@ insertTopOfDescent = func() {
       wp.wp_lat =  tdLat;
       wp.wp_lon =  tdLon;
       wp.alt_cstr = crzFt;
-      wp.spd_cstr = getprop("/instrumentation/afs/des_mach");
+      wp.spd_cstr = getprop("/instrumentation/afs/crz_mach");
       ##var disIdx = airbusFMS.findWPType("DISC");
       airbusFMS.clearWPType("T/D");
       var starWPIdx = airbusFMS.findWPType("STAR");
