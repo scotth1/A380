@@ -963,6 +963,9 @@ selectSidAction = func(opt, unit) {
         if (wpt.alt_cstr != nil and wpt.alt_cstr < 11000) {
           appSpd = 250;
         }
+        if (wpt.alt_cstr != nil and wpt.alt_cstr <= 6000) {
+          appSpd = 220;
+        }
         if (wpt.alt_cstr != nil and wpt.alt_cstr <= 3000) {
           appSpd = 210;
         }
