@@ -67,7 +67,7 @@ lnavStr = ["off","HDG","TRK","LOC","NAV","RWY"];
 vnavStr = ["off","ALT(s)","V/S","OP CLB","FPA","OP DES","CLB","ALT CRZ","DES","G/S","SRS","LEVEL"];
 spdStr  = ["off","TOGA","FLEX","THR CLB","SPEED","MACH","CRZ","THR DES","THR IDL"];
 
-version="V1.1.18";
+version="V1.1.20";
 trace=0;
 
 atn = nil;  ## will get update after FDM init
@@ -1270,7 +1270,7 @@ var getILSCategory = func(aptId, arvRunway) {
     var apt = airportinfo(aptId);
     ###var arvRunway = getprop("instrumentation/afs/arv-rwy");
     ###var navList = navinfo(apt.lat(), apt.lon(), "ils");
-    var navlist = findNavaidsWithinRange(apt.lat, apt.lon, 1);
+    var navList = findNavaidsWithinRange(apt.lat, apt.lon, 1);
     var navListSize = size(navList);
     print("size navList: "~navListSize);
     foreach(var ils; navList) {
@@ -1623,8 +1623,11 @@ update_mode = func {
         }
     }
 
+    var fp = flightplan();
+    var curWP = fp.getWP();
+    var nextWpAlt = curWP.alt_cstr;
     ##var nextWpAlt = getprop("/autopilot/route-manager/route/wp[0]/altitude-ft");
-    var nextWpAlt = getprop("/instrumentation/gps/wp/wp[1]/altitude-ft");
+    ##var nextWpAlt = getprop("/instrumentation/gps/wp/wp[1]/altitude-ft");
     var nextAlt = getprop("instrumentation/afs/target-altitude-ft");
     var descentAlt = getprop("/instrumentation/afs/thrust-descent-alt");
     var cruiseAlt  = getprop("/instrumentation/afs/thrust-cruise-alt");
