@@ -33,7 +33,7 @@ inputType  = "";
 trace = 0;         ## Set to 0 to turn off all tracing messages
 depDB = nil;
 arvDB = nil;
-version = "V2.2.4";
+version = "V2.2.6";
 wpMode = "V2";    ## set to "V2" for new mode (airbusFMS) or "V1" for old mode (route-manager)
 
 routeClearArm = 0;
@@ -720,9 +720,23 @@ calcVSpeeds = func() {
      } 
      var Vr  = (Vso*flapFactor);
      var V2  = (Vso*(flapFactor+0.05))+10;
-     var Vf  = (0*0);
      setprop("/instrumentation/afs/Vr", Vr);
      setprop("/instrumentation/afs/V2", V2);
+     var Vf = getprop("instrumentation/afs/to-F");
+     var Vs = getprop("instrumentation/afs/to-S");
+     var Vgreen = getprop("instrumentation/afs/to-greendot");
+     if (Vf < V2) {
+       Vf = (Vso*(flapFactor+0.05))+16;
+       setprop("instrumentation/afs/to-F", Vf);
+     }
+     if (Vs < Vf) {
+       Vs = (Vso*(flapFactor+0.05))+35;
+       setprop("instrumentation/afs/to-S", Vs);
+     }
+     if (Vgreen < Vs) {
+       Vgreen = (Vso*(flapFactor+0.05))+55;
+       setprop("instrumentation/afs/to-greendot", Vgreen);
+     }
      tracer("  Vso: "~Vso~", Vr: "~Vr~", V2: "~V2~", flapFactor: "~flapFactor);
    }
 
@@ -787,6 +801,11 @@ selectRwyAction = func(rwy, unit) {
     if (airbusFMS.findWPType("DISC") == nil) {
       tracer("Append DISC");
       airbusFMS.appendWP(discWP);
+      var eopWP = fmsWP.new();
+    eopWP.wp_name = "end-of-plan";
+    eopWP.wp_type = "END";
+    airbusFMS.clearWPType("END");
+    airbusFMS.appendWP(eopWP);
     }
   } else {
     var apt = airportinfo(getprop("/instrumentation/afs/TO"));
@@ -797,12 +816,13 @@ selectRwyAction = func(rwy, unit) {
       setprop("/instrumentation/nav[0]/frequencies/standby-mhz",mhz);
       ##setprop("/instrumentation/nav[0]/frequencies/standby-mhz-fmt",mhz);
     }
+    endWP = airbusFMS.findWPType("END");
     wp = makeAirportWP(apt, rwyVal);
-    var idx = airbusFMS.getPlanSize()-1;
-    if (airbusFMS.findWPName(wp.wp_name) != nil) {
+    var idx = airbusFMS.findWPName(wp.wp_name);
+    if (idx != nil) {
       airbusFMS.replaceWPAt(wp, idx);
     } else {
-      airbusFMS.appendWP(wp);
+      airbusFMS.insertWP(wp, endWP);
     }
   }
   tracer("[MCDU] set: "~rwyAttr~", runway: "~rwyVal);
@@ -851,8 +871,8 @@ selectSidAction = func(opt, unit) {
       }
       if (wp.wp_type == "Normal") {
         if (wpMode == "V1") {
-	  tracer("/autopilot/route-manager/input, @insert "~wpIns);
-          setprop("/autopilot/route-manager/input", "@insert "~wpIns);
+	  tracer("[V1] /autopilot/route-manager/input, @insert "~wpIns);
+          ##setprop("/autopilot/route-manager/input", "@insert "~wpIns);
         }
         var wpt = wp;
         wpt.wp_parent_name = getprop("instrumentation/afs/sid");
@@ -952,9 +972,9 @@ selectSidAction = func(opt, unit) {
       }
       if (w.wp_type == "Normal") {
         if (wpMode == "V1") {   ##V1
-	  tracer("/autopilot/route-manager/input, @insert "~wpIns);
-          setprop("/autopilot/route-manager/input", "@insert "~wpIns);
-          checkInsert(w, wpLen-1);
+	  tracer("[V1] /autopilot/route-manager/input, @insert "~wpIns);
+          ##setprop("/autopilot/route-manager/input", "@insert "~wpIns);
+          ##checkInsert(w, wpLen-1);
         }
         var wpt = fmsWP.new();
         wpt.copy(w);
@@ -976,8 +996,15 @@ selectSidAction = func(opt, unit) {
           appSpd = wpt.spd_cstr;
           wpt.spd_cstr_ind = 1;
         }
-        var lastPos = airbusFMS.getPlanSize()-1;
-        airbusFMS.insertWP(wpt, lastPos);
+        ##var lastPos = airbusFMS.getPlanSize()-1;
+        var arpIdx = airbusFMS.findWPName(getprop("/instrumentation/afs/TO"));
+        var lastPos = airbusFMS.findWPType("END");
+        if (lastPos == nil) {
+          lastPos = airbusFMS.getPlanSize()-1;
+        } else {
+          lastPos = lastPos;
+        }
+        airbusFMS.insertWP(wpt, arpIdx);
       }
     }
     tracer("insert T/D after STAR");
@@ -1047,17 +1074,17 @@ selectSidAction = func(opt, unit) {
                   }
                   iapWP.wp_name = "O.M";
                   var arpIdx = airbus.findWPName(getprop("/instrumentation/afs/TO"));
-                  airbusFMS.insertWP(iapWP, arpIdx-1);
+                  airbusFMS.insertWP(iapWP, arpIdx);
                 } else {
                  if (wpMode == "V1") {  ## V1
                     wpIns = sprintf("%i:%s@%i",wpLen-1,wpName,wpAlt);
                     tracer("Insert approach transition: "~wpIns~", of type: "~twp.wp_type);
-		    tracer("/autopilot/route-manager/input, @insert "~wpIns);
-                    setprop("/autopilot/route-manager/input", "@insert "~wpIns);
+		    tracer("[V1] /autopilot/route-manager/input, @insert "~wpIns);
+                    ##setprop("/autopilot/route-manager/input", "@insert "~wpIns);
                  }
                  var arpIdx = airbus.findWPName(getprop("/instrumentation/afs/TO"));
                  iapWP.wp_type = "IAP";
-                 airbusFMS.insertWP(iapWP, arpIdx-1);
+                 airbusFMS.insertWP(iapWP, arpIdx);
                 }
               }
             }
@@ -1113,8 +1140,8 @@ selectSidAction = func(opt, unit) {
               if (wpMode == "V1") { ## V1
                 wpIns = sprintf("%i:%s@%i",wpLen-1,wpName,wpAlt);
                 tracer("Insert approach route: "~wpIns~", of type: "~awp.wp_type);
-	        tracer("/autopilot/route-manager/input, @insert "~wpIns);
-                setprop("/autopilot/route-manager/input", "@insert "~wpIns);
+	        tracer("[V1] /autopilot/route-manager/input, @insert "~wpIns);
+                ##setprop("/autopilot/route-manager/input", "@insert "~wpIns);
               }
               var arpIdx = airbusFMS.findWPName(getprop("/instrumentation/afs/TO"));
               iapWP.wp_type = "IAP";
@@ -1179,8 +1206,10 @@ var copyPlanToRoute = func() {
       if (wp.wp_type == "APT" or wp.wp_type == "DISC" or wp.wp_type == "END") {
         ##
       } else {
-        ##insertAbsWP(wp.wp_name,idx,wp.wp_lat,wp.wp_lon,wp.alt_cstr);
         tracer("FPinsert WP: "~wp.wp_name~", at index: "~idx~", of wp_type: "~wp.wp_type);
+        var wpAlt = wp.alt_cstr;
+        var wpSpd = wp.spd_cstr;
+        tracer("FPinsert wp_alt: "~wpAlt~", wp_spd: "~wpSpd);
         var role = "";
         if (wp.wp_type == "SID" or wp.wp_type == "STAR" or wp.wp_type == "IAP") {
           role = string.lc(wp.wp_type);
@@ -1208,26 +1237,39 @@ var copyPlanToRoute = func() {
         var leg = fp.getWP(idx);
         if (wp.alt_cstr > 0) {
           tracer("FPinsert: set alt_cstr: "~wp.alt_cstr);
-          leg.setAltitude(wp.alt_cstr, "computed");
-          ##leg.setCalculatedAlt(wp.alt_cstr);
+          leg.setAltitude(num(wp.alt_cstr), "at");
         }
         if (wp.spd_cstr > 1) {
           tracer("FPinsert: set spd_cstr: "~wp.spd_cstr);
-          leg.setSpeed(wp.spd_cstr, "at");
+          leg.setSpeed(num(wp.spd_cstr), "at");
           
         }
         if (wp.spd_cstr > 0 and wp.spd_cstr < 1) {
           tracer("FPinsert: set mach: "~wp.spd_cstr);
-          leg.setSpeed(wp.spd_cstr, "mach");
-        }
-        if (role == "sid" or role == "star") {
-          ##wpG.owner = wp.wp_parent_name;
+          leg.setSpeed(num(wp.spd_cstr), "mach");
         }
 
         if (curWPIdx > 0 and wp.wp_name == curWPId) {
           tracer("[copyPlan] set new index for WP: "~curWPId~", to: "~idx);
           newCurIdx = idx;
         }
+       
+        var nme = getprop("autopilot/route-manager/route/wp["~idx~"]/id");
+        var legAlt = getprop("autopilot/route-manager/route/wp["~idx~"]/altitude-ft");
+        var mach = getprop("autopilot/route-manager/route/wp["~idx~"]/speed-mach");
+        var kias = getprop("autopilot/route-manager/route/wp["~idx~"]/speed-kts");
+        var spd = "nil";
+        if (legAlt == nil) {
+          legAlt="nil";
+        }
+        if (mach != nil) {
+          spd=mach;
+        }
+        if (kias != nil) {
+          spd=kias
+        }
+        tracer("[route] idx: "~idx~", id: "~nme~", alt: "~legAlt~", speed: "~spd);
+        tracer("-------------------------");
         idx=idx+1;
       }
     }
@@ -1270,8 +1312,8 @@ selectSidTransAction = func(val, unit) {
           tracer("[FMS] Insert route: "~wpIns~", of type: "~wp.wp_type);
           if (wp.wp_type == "Normal") {
             if (wpMode == "V1" ) { ## V1
-	      tracer("/autopilot/route-manager/input, @insert "~wpIns);
-              setprop("/autopilot/route-manager/input", "@insert "~wpIns);
+	      tracer("[V1] /autopilot/route-manager/input, @insert "~wpIns);
+              ##setprop("/autopilot/route-manager/input", "@insert "~wpIns);
             }
             sidTransWP.wp_type = "SID";
             var TCIdx = airbusFMS.findWPType("T/C");
@@ -1754,8 +1796,8 @@ checkInsert = func(wp,r) {
       var difLat = foundWp.wp_lat - wp.wp_lat;
       var difLon = foundWp.wp_lon - wp.wp_lon;
       if (difLat < -0.001 or difLat > 0.001 or difLon < -0.001 or difLon > 0.001) {
-        tracer("update STAR WP, input lat: "~foundWp.wp_lat~", wp lat: "~wp.wp_lat);
-        tracer("update STAR WP, input lon: "~foundWp.wp_lon~", wp lon: "~wp.wp_lon);
+        tracer("[chkInsert] update STAR WP, input lat: "~foundWp.wp_lat~", wp lat: "~wp.wp_lat);
+        tracer("[chkInsert] update STAR WP, input lon: "~foundWp.wp_lon~", wp lon: "~wp.wp_lon);
         setprop("/autopilot/route-manager/input","@delete "~(wt));
         insertAbsWP(wp.wp_name,wt,wp.wp_lat,wp.wp_lon,foundWp.alt_cstr);
       }
@@ -1807,7 +1849,7 @@ insertTopOfDescent = func() {
       var prevWP = nil;
       for (var w = starWPIdx-1; w > 0; w=w-1) {
         prevWP = airbusFMS.getWP(w);
-        if (prevWP.wp_type != "DISC" and prevWP.wp_type != "STAR") {
+        if (prevWP.wp_type != "DISC" and prevWP.wp_type != "STAR" and prevWP.wp_type != "END") {
           break;
         }
       }
@@ -2071,6 +2113,8 @@ var calcOrthHeadingDeg = func(lat1, lon1, lat2, lon2) {
  return (Aorth*RAD2DEG);
 }
 
+####################
+# insertAbsWP
 insertAbsWP = func(id, index, lat, lon, alt) {
   tracer("/instrumentation/gps/scratch/altitude-ft, "~alt);
   setprop("/instrumentation/gps/scratch/altitude-ft",alt);

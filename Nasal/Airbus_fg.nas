@@ -67,10 +67,11 @@ lnavStr = ["off","HDG","TRK","LOC","NAV","RWY"];
 vnavStr = ["off","ALT(s)","V/S","OP CLB","FPA","OP DES","CLB","ALT CRZ","DES","G/S","SRS","LEVEL"];
 spdStr  = ["off","TOGA","FLEX","THR CLB","SPEED","MACH","CRZ","THR DES","THR IDL"];
 
-version="V1.1.20";
+version="V1.1.22";
 trace=0;
 
 atn = nil;  ## will get update after FDM init
+airbusFMS = nil;   ## updated after FDM init
 
 #trigonometric values for glideslope calculations
 FD_TAN3DEG = 0.052407779283;
@@ -269,8 +270,8 @@ setlistener("/sim/signals/fdm-initialized", func {
     setprop("/instrumentation/afs/to-F",180);
     setprop("/instrumentation/afs/to-S",220);
     setprop("/instrumentation/afs/to-greendot",240);
-    setprop("/instrumentation/afs/Vls", 170);
-    setprop("/instrumentation/afs/Vapp", 190);
+    setprop("/instrumentation/afs/Vls", 180);
+    setprop("/instrumentation/afs/Vapp", 195);
     setprop("/instrumentation/afs/lateral-mode",0);
     setprop("/instrumentation/afs/vertical-vs-mode",-1);
     setprop("/instrumentation/afs/vertical-alt-mode",-1);
@@ -325,6 +326,7 @@ setlistener("/sim/signals/fdm-initialized", func {
     GPS_GO=1;
 
     atn = A380.atnetwork;
+    airbusFMS = A380.fms;
 #route settings
    if(getprop("/autopilot/route-manager/route/wp/id")!=nil) {              #if waypoint present
     if(getprop("/autopilot/route-manager/route/wp/altitude-ft") < 40000) {  #setting target altitude
@@ -571,15 +573,27 @@ setlistener("/autopilot/route-manager/current-wp", func(n) {
   var fp = flightplan();
   var curWP = fp.getWP();
   if (curWP != nil) {
+    var altCstr = curWP.alt_cstr;
+    var spdCstr = curWP.speed_cstr;
     tracer("set current WP: "~curWP.wp_name);
-    tracer("      alt_cstr: "~curWP.alt_cstr);
-    tracer("      spd_cstr: "~curWP.speed_cstr);
+    tracer("      alt_cstr: "~altCstr);
+    tracer("      spd_cstr: "~spdCstr);
+    ## work around flightplan bug..
+      if (altCstr < 0) {
+        var curWpIdx = (getprop("/autopilot/route-manager/current-wp"));
+        var wpName = getprop("autopilot/route-manager/route/wp["~curWpIdx~"]/id");
+        var wpIdx = airbusFMS.findWPName(wpName);
+        var wp = airbusFMS.getWPIdx(wpIdx);
+        altCstr = wp.alt_cstr;
+        spdCstr = wp.spd_cstr;
+      }
     if (getprop("/instrumentation/flightdirector/autopilot-on") == 1) {
       if (getprop("instrumentation/afs/vertical-alt-mode") == -1) {
-        setprop("/autopilot/settings/target-altitude-ft", curWP.alt_cstr);
+        setprop("/autopilot/settings/target-altitude-ft", altCstr);
+        setprop("/instrumentation/afs/target-altitude-ft", altCstr);
       }
       if (getprop("instrumentation/afs/speed-managed-mode") == -1) {
-        var newSpeed = curWP.speed_cstr;
+        var newSpeed = spdCstr;
         if (newSpeed > 0 and newSpeed < 1) {
           interpolate("autopilot/settings/target-speed-mach", newSpeed, 10);
         }
@@ -829,8 +843,8 @@ setlistener("/instrumentation/flightdirector/vnav", func(n) {
         setprop("/autopilot/settings/target-altitude-ft", nextWpAlt);
         
       }
-      setprop("/instrumentation/afs/limit-min-vs-fps",-9.0);
-      setprop("/instrumentation/afs/limit-max-vs-fps",13.0);
+      setprop("/instrumentation/afs/limit-min-vs-fps",-12.0);
+      setprop("/instrumentation/afs/limit-max-vs-fps",15.0);
       setprop("/autopilot/locks/altitude","altitude-hold");
       setprop("/instrumentation/flightdirector/alt-acquire-mode",0);
       atn.doSendFuelInfo();
@@ -839,9 +853,16 @@ setlistener("/instrumentation/flightdirector/vnav", func(n) {
     if (vnav == VNAV_DES) {  # DES
       curAlt = getprop("/position/altitude-ft");
       ##descentAlt = getprop("/autopilot/route-manager/route/wp[0]/altitude-ft");
-      #var curWPIdx = (getprop("/autopilot/route-manager/current-wp"))-1;
-      #descentAlt = getprop("/autopilot/route-manager/route/wp["~curWpIdx~"]/altitude-ft");
-      var descentAlt = getprop("/instrumentation/gps/wp/wp[1]/altitude-ft");
+      var curWpIdx = (getprop("/autopilot/route-manager/current-wp"));
+      descentAlt = getprop("/autopilot/route-manager/route/wp["~curWpIdx~"]/altitude-ft");
+      ## work around flightplan bug..
+      if (descentAlt < 0) {
+        var wpName = getprop("autopilot/route-manager/route/wp["~curWpIdx~"]/id");
+        var wpIdx = airbusFMS.findWPName(wpName);
+        var wp = airbusFMS.getWPIdx(wpIdx);
+        descentAlt = wp.alt_cstr;
+      }
+      ##var descentAlt = getprop("/instrumentation/gps/wp/wp[1]/altitude-ft");
       var targetAlt = getprop("instrumentation/afs/target-altitude-ft");
       tracer("disable ALT ACQ mode");
       setprop("/instrumentation/flightdirector/alt-acquire-mode",0);
@@ -1274,6 +1295,7 @@ var getILSCategory = func(aptId, arvRunway) {
     var navListSize = size(navList);
     print("size navList: "~navListSize);
     foreach(var ils; navList) {
+      debug.dump(ils);
       if (ils.runway == arvRunway) {
         var nmeStr = ils.name;
         var parts = split(" ", nmeStr);
@@ -1625,7 +1647,10 @@ update_mode = func {
 
     var fp = flightplan();
     var curWP = fp.getWP();
-    var nextWpAlt = curWP.alt_cstr;
+    var nextWpAlt = 0;
+    if (curWP != nil) {
+      nextWpAlt = curWP.alt_cstr;
+    } 
     ##var nextWpAlt = getprop("/autopilot/route-manager/route/wp[0]/altitude-ft");
     ##var nextWpAlt = getprop("/instrumentation/gps/wp/wp[1]/altitude-ft");
     var nextAlt = getprop("instrumentation/afs/target-altitude-ft");

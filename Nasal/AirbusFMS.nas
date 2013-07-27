@@ -62,8 +62,8 @@ SELECTED_MODE = 0;
 
 
 var AirbusFMS = {
+   new: func() {
    
-   new : func() {
      var m = {parents : [AirbusFMS]};
      m.FMSnode = props.globals.getNode("/instrumentation/fms",1);
      m.activeFpln = m.FMSnode.getNode("plan[0]",1);
@@ -73,14 +73,22 @@ var AirbusFMS = {
      m.secondPlan = [];
      m.depDB = nil;
      m.arvDB = nil;
+     m.flightplan = nil;
      setprop("instrumentation/fms/plan[0]/display-nodes/current-page",0);
      setprop("instrumentation/fms/plan[0]/display-nodes/current-wp",0);
      setprop("/autopilot/route-manager/disable-fms", 1);
-     m.version = "V1.1.5";
+     m.version = "V1.1.7";
 
      setlistener("/sim/signals/fdm-initialized", func m.init());
      setlistener("/autopilot/route-manager/current-wp", func m.updateCurrentWP());
+
      return m;
+   },
+
+   delegate: func(fp) {
+     print("initiate FMS delegate");
+     me.flightplan = fp;
+     return me;
    },
 
 #############################################################################
@@ -650,7 +658,18 @@ tracer : func(msg) {
       }
       me.activePlan = tmpPlan;
       me.lastPost = tmpPos;
+    },
+
+    waypointsChanged: func {
+      print("Waypoints changed, update FMS");
+
+    },
+
+    currentWaypointChanged: func {
+      print("currentWaypointChanged, update FMS");
     }
+
+
 
 };
 
