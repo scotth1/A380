@@ -588,7 +588,7 @@ setlistener("/autopilot/route-manager/current-wp", func(n) {
         spdCstr = wp.spd_cstr;
       }
     if (getprop("/instrumentation/flightdirector/autopilot-on") == 1) {
-      if (getprop("instrumentation/afs/vertical-alt-mode") == -1) {
+      if (getprop("instrumentation/afs/vertical-alt-mode") == -1 and altCstr != 0) {
         setprop("/autopilot/settings/target-altitude-ft", altCstr);
         setprop("/instrumentation/afs/target-altitude-ft", altCstr);
       }
