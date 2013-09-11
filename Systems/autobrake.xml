@@ -253,9 +253,9 @@
                     <property>autopilot/autobrake/step</property> 
                     <entry><ind>0</ind><dep>0</dep></entry>
                     <entry><ind>1</ind><dep>4</dep></entry>
-                    <entry><ind>2</ind><dep>5</dep></entry>
-                    <entry><ind>3</ind><dep>6</dep></entry>
-                    <entry><ind>4</ind><dep>7</dep></entry>
+                    <entry><ind>2</ind><dep>7</dep></entry>
+                    <entry><ind>3</ind><dep>9</dep></entry>
+                    <entry><ind>4</ind><dep>11</dep></entry>
                 </table>
             </expression>
         </input>
@@ -309,7 +309,7 @@
         
         <config>
             <Kp>1.0</Kp>
-            <Ki>0.0</Ki>
+            <Ki>0.5</Ki>
         </config>
     </pi-simple-controller>
     

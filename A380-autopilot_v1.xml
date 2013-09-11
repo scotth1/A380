@@ -173,6 +173,7 @@
     </output>
     <config>
       <Kp>-1.0</Kp>        <!-- proportional gain --> <!-- was -1.45 SAH 2010-12-13 --> <!-- was -1.0 2011-04-26 --> <!-- was -1.7 2011-04-27 -->
+      <Ki>0.3</Ki>
       <beta>0.6</beta>     <!-- input value weighing factor -->
       <alpha>0.25</alpha>   <!-- low pass filter weighing factor -->
       <gamma>0.0</gamma>   <!-- input value weighing factor for -->

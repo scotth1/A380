@@ -30,15 +30,21 @@ currentField = "";
 currentFieldPos = 0;
 inputValue = "";
 inputType  = "";
-trace = 0;         ## Set to 0 to turn off all tracing messages
+trace = 1;         ## Set to 0 to turn off all tracing messages
 depDB = nil;
 arvDB = nil;
-version = "V2.2.6";
+version = "V2.2.9";
 wpMode = "V2";    ## set to "V2" for new mode (airbusFMS) or "V1" for old mode (route-manager)
 
 routeClearArm = 0;
 airbusFMS = nil;   ###A380.fms;
 atn = nil;   ###A380.atn;
+
+menuCanvas = nil;
+menuLink   = nil;
+menuGroup  = nil;
+menuLinkGrp = nil;
+menuDisplay = -1;
 
 
 #### CONSTANTS ####
@@ -166,48 +172,154 @@ selectField = func(field) {
    }
 }
 
+
+eventDeleteWp = func(idx) {
+  var wp = airbusFMS.getWPIdx(idx);
+  tracer("eventDeleteWP("~idx~")");
+}
+
+eventInsertWp = func(idx) {
+  var wp = airbusFMS.getWPIdx(idx);
+  tracer("eventInsertWP("~idx~")");
+}
+
+eventAirways = func(idx) {
+  var wp = airbusFMS.getWPIdx(idx);
+  tracer("eventAirways("~idx~")");
+}
+
 #################
 #  when user clicks on flight plan row
 #
 selectWP = func(idx) {
    var wp = airbusFMS.getWPIdx(idx);
-   if (wp != nil) {
-     print("[selectWP] Got back WP: "~wp.wp_name);
-     var menuCanvas = canvas.new({"name": "fltpln-menu",   
-         "size": [256, 256], 
-         "view": [256, 256], 
-         "mipmapping": 0       # Enable mipmapping (optional)
-     });
-     var node = "fltpln.menu"~idx;
-     tracer("attach canvas to node: "~node);
-     menuCanvas.setColorBackground(80,80,80,1);
-     menuCanvas.addPlacement({"node": node});
-     var menuGroup = menuCanvas.createGroup();
-     menuGroup.setCenter(128,128);
-     menuGroup.setRotation(0,5.0);
-     menuGroup.setScale(1);
-     
-     
-     var text1 = menuGroup.createChild("text", "menu0")
-                .setTranslation(10, 20)      # The origin is in the top left corner
+   if (idx == menuDisplay) {
+     menuGroup.setVisible(0);
+     menuLinkGrp.setVisible(0);
+     menuDisplay = -1;
+   } else {
+     if (wp != nil) {
+       print("[selectWP] Got back WP: "~wp.wp_name);
+       var node1 = "fltpln.field"~idx~".menu";
+       var node2 = "fltpln.menu"~idx;
+       tracer("attach canvas to node: "~node1);
+       if (menuCanvas == nil) {
+         menuCanvas = canvas.new({"name": "fltpln-menu",   
+           "size": [256, 256], 
+           "view": [256, 256], 
+           "mipmapping": 0       # Enable mipmapping (optional)
+         });
+         menuLink = canvas.new({"name": "fltpln-link",   
+           "size": [256, 256], 
+           "view": [256, 256], 
+           "mipmapping": 0       # Enable mipmapping (optional)
+         });
+         menuCanvas.setColorBackground(0,0,0,0);
+         menuLink.setColorBackground(0,0,0);
+         menuCanvas.addPlacement({"node": node1, "capture-events": 1});
+         menuLink.addPlacement({"node": node2});
+         menuGroup = menuCanvas.createGroup("menu-group");
+         menuLinkGrp = menuLink.createGroup("link-group");
+         #menuGroup.setCenter(128,128);
+         #menuGroup.setRotation(0,5.0);
+         #menuGroup.setScale(1);
+         var x1 = 0;
+         var y1 = 0;
+         var w1 = 180;
+         var h1 = 256;
+         var box = menuGroup.createChild("path", "box1")
+           .moveTo(x1 + w1, y1)
+           .vertTo(y1 + h1)
+           .horizTo(x1)
+           .vertTo(y1)
+           .close()
+           .setColorFill(0.31,0.31,0.31)
+           .setStrokeLineWidth(0);
+         var x2 = 0;
+         var y2 = 0;
+         var w2 = 256;
+         var h2 = 256;
+         var box2 = menuLinkGrp.createChild("path", "box2")
+           .moveTo(x2 + w2, y2)
+           .vertTo(y2 + h2)
+           .horizTo(x2)
+           .vertTo(y2)
+           .close()
+           .setColorFill(0.31,0.31,0.31)
+           .setStrokeLineWidth(0);
+
+         var y3 = 10;
+         var h3 = 20;
+         var text1 = menuGroup.createChild("text", "menu1")
+                .setTranslation(10, y3)      # The origin is in the top left corner
                 .setAlignment("left-center") # All values from osgText are supported (see $FG_ROOT/Docs/README.osgtext)
                 .setFont("LiberationFonts/LiberationSans-Regular.ttf") # Fonts are loaded either from $AIRCRAFT_DIR/Fonts or $FG_DATA/Fonts
-                .setFontSize(20, 1.2)        # Set fontsize and optionally character aspect ratio
-                .setColor(255,255,255)             # Text color
-                .setText("This is a text element");
-     ##text1.setCenter(0,0);
-     ##text1.setRotation(0,0);
-     text1.show();
-     var text2 = menuGroup.createChild("text", "menu1")
-                  .setTranslation(10,35)
+                .setFontSize(20, 1.4)        # Set fontsize and optionally character aspect ratio
+                .setColor(1,1,1)             # Text color
+                .setText("INSERT NEXT WPT");
+         ##text1.setCenter(0,0);
+         ##text1.setRotation(0,0);
+         text1.show();
+         y3 = y3 + h3;
+         var text2 = menuGroup.createChild("text", "menu2")
+                  .setTranslation(10,y3)
                   .setAlignment("left-center")
                   .setFont("LiberationFonts/LiberationSans-Regular.ttf")
-                  .setFontSize(20,1.2)
-                  .setText("Insert WP");
-     text2.show();
-     menuGroup.show();
+                  .setFontSize(20,1.4)
+                  .setColor(1,1,1)
+                  .setText("DELETE");
+         text2.show(); 
+         y3 = y3 + h3;
+         var text3 = menuGroup.createChild("text", "menu3")
+                  .setTranslation(10,y3)
+                  .setAlignment("left-center")
+                  .setFont("LiberationFonts/LiberationSans-Regular.ttf")
+                  .setFontSize(20,1.4)
+                  .setColor(1,1,1)
+                  .setText("OFFSET");
+         y3 = y3 + h3;
+         var text4 = menuGroup.createChild("text", "menu4")
+                  .setTranslation(10,y3)
+                  .setAlignment("left-center")
+                  .setFont("LiberationFonts/LiberationSans-Regular.ttf")
+                  .setFontSize(20,1.4)
+                  .setColor(1,1,1)
+                  .setText("HOLD");
+         y3 = y3 + h3;
+         var text5 = menuGroup.createChild("text", "menu5")
+                  .setTranslation(10,y3)
+                  .setAlignment("left-center")
+                  .setFont("LiberationFonts/LiberationSans-Regular.ttf")
+                  .setFontSize(20,1.4)
+                  .setColor(1,1,1)
+                  .setText("AIRWAYS");
+
+         text1.addEventListener("click", func eventInsertWp(idx));
+         text2.addEventListener("click", func eventDeleteWp(idx));
+         text5.addEventListener("click", func eventAirways(idx));
+       } else {
+         setprop("canvas/by-index/texture[1]/placement/node", node1);
+         setprop("canvas/by-index/texture[2]/placement/node", node2);
+         var text1 = menuGroup.getElementById("menu1");
+         var text2 = menuGroup.getElementById("menu2");
+         var text3 = menuGroup.getElementById("menu3");
+         var text4 = menuGroup.getElementById("menu4");
+         var text5 = menuGroup.getElementById("menu5");
+         #text1.removeEventListener("click");
+         #text2.removeEventListener("click");
+         #text5.removeEventListener("click");
+         text1.addEventListener("click", func eventInsertWp(idx));
+         text2.addEventListener("click", func eventDeleteWp(idx));
+         text5.addEventListener("click", func eventAirways(idx));
+       }
+
+       menuGroup.show();
+       menuDisplay = idx;
+     }
   }
 }
+
+
 
 
 keyPress = func(key) {
@@ -1211,8 +1323,11 @@ var copyPlanToRoute = func() {
         var wpSpd = wp.spd_cstr;
         tracer("FPinsert wp_alt: "~wpAlt~", wp_spd: "~wpSpd);
         var role = "";
-        if (wp.wp_type == "SID" or wp.wp_type == "STAR" or wp.wp_type == "IAP") {
+        if (wp.wp_type == "SID" or wp.wp_type == "STAR") {
           role = string.lc(wp.wp_type);
+        }
+        if (wp.wp_type == "IAP") {
+          role = "approach";
         }
         if (wp.wp_type == "T/C" or wp.wp_type == "T/D") {
           role = "pseudo";

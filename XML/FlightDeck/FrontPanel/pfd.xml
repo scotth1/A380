@@ -705,30 +705,60 @@
    <type>rotate</type>
    <object-name>VSIneedle</object-name>
    <!-- property>/autopilot/internal/vert-speed-fpm</property -->
-   <property>/instrumentation/vertical-speed-indicator/indicated-speed-fpm</property>
+   <!-- property>/instrumentation/vertical-speed-indicator/indicated-speed-fpm</property -->
+   <property>/instrumentation/afs/test-indicated-speed-fpm</property>
    <interpolation>
      <entry>
        <ind>-6000.0</ind>
-       <dep>-25.0</dep>
+       <dep>-15.0</dep>
+     </entry>
+     <entry>
+       <ind>-2000.0</ind>
+       <dep>-12.0</dep>
      </entry>
      <entry>
        <ind>-1000.0</ind>
-       <dep>-20.0</dep>
+       <dep>-6.8</dep>
+     </entry>
+     <entry>
+       <ind>-500.0</ind>
+       <dep>-4</dep>
      </entry>
      <entry>
        <ind>0.0</ind>
        <dep>0.0</dep>
      </entry>
      <entry>
+       <ind>500.0</ind>
+       <dep>4</dep>
+     </entry>
+     <entry>
        <ind>1000.0</ind>
-       <dep>20.0</dep>
+       <dep>6.8</dep>
+     </entry>
+     <entry>
+       <ind>2000.0</ind>
+       <dep>12.0</dep>
      </entry>
      <entry>
        <ind>6000.0</ind>
-       <dep>25.0</dep>
+       <dep>15.0</dep>
      </entry>
    </interpolation>
+
+   <center>
+     <x-m>-0.130200</x-m>
+     <y-m>0.003600</y-m>
+     <z-m>-0.155300</z-m>
+   </center>
+
    <axis>
+     <x>0.000000</x>
+     <y>-1.000000</y>
+     <z>-0.000000</z>
+   </axis>
+
+   <!-- axis>
      <x>-1.0</x>
      <y>0.0</y>
      <z>0.0</z>
@@ -737,7 +767,7 @@
      <x-m>0.00</x-m>
      <y-m>0.084</y-m>
      <z-m>0.004</z-m>
-   </center>
+   </center -->
  </animation>
  
  
