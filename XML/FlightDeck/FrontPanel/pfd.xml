@@ -705,8 +705,8 @@
    <type>rotate</type>
    <object-name>VSIneedle</object-name>
    <!-- property>/autopilot/internal/vert-speed-fpm</property -->
-   <!-- property>/instrumentation/vertical-speed-indicator/indicated-speed-fpm</property -->
-   <property>/instrumentation/afs/test-indicated-speed-fpm</property>
+   <property>/instrumentation/vertical-speed-indicator/indicated-speed-fpm</property>
+   <!-- property>/instrumentation/afs/test-indicated-speed-fpm</property -->
    <interpolation>
      <entry>
        <ind>-6000.0</ind>
@@ -745,18 +745,17 @@
        <dep>15.0</dep>
      </entry>
    </interpolation>
-
    <center>
-     <x-m>-0.130200</x-m>
-     <y-m>0.003600</y-m>
-     <z-m>-0.155300</z-m>
-   </center>
+ <x-m>-0.130200</x-m>
+ <y-m>0.003450</y-m>
+ <z-m>-0.155100</z-m>
+</center>
 
-   <axis>
-     <x>0.000000</x>
-     <y>-1.000000</y>
-     <z>-0.000000</z>
-   </axis>
+<axis>
+ <x>0.000000</x>
+ <y>-1.000000</y>
+ <z>0.000000</z>
+</axis>
 
    <!-- axis>
      <x>-1.0</x>
@@ -2040,6 +2039,265 @@
       </condition>
  </animation>
  
+<text>
+  <name>APspd.brklo.arm</name>
+  <axis-alignment>yz-plane</axis-alignment>
+  <offsets>
+    <pitch-deg>-90</pitch-deg>
+    <x-m>-0.189</x-m>
+    <y-m>0.026</y-m>
+    <z-m>0.005</z-m>
+  </offsets>
+  <type>literal</type>
+  <text>BRK LO</text>
+  <font>helvetica_bold.txf</font>
+  <character-size type="double">0.007</character-size>
+  <alignment>center-bottom</alignment> 
+</text>
+
+  <animation>
+   <type>select</type>
+     <object-name>APspd.brklo.arm</object-name>
+       <condition>
+       <and>
+         <equals>
+	   <property>controls/gear/autobrakes</property>
+           <value>1</value>
+         </equals>
+	 <equal>
+	   <property>autopilot/autobrake/engaged</property>
+	   <value>0</value>
+	 </equal>
+	 <equal>
+	   <property>autopilot/autobrake/selected</property>
+	   <value>1</value>
+	 </equal>
+         <greater-than>
+           <property>systems/electrical/outputs/efis</property>
+           <value>15</value>
+         </greater-than>
+       </and>
+      </condition>
+ </animation>
+ 
+ <text>
+  <name>APspd.brkmed.arm</name>
+  <axis-alignment>yz-plane</axis-alignment>
+  <offsets>
+    <pitch-deg>-90</pitch-deg>
+    <x-m>-0.189</x-m>
+    <y-m>0.026</y-m>
+    <z-m>0.005</z-m>
+  </offsets>
+  <type>literal</type>
+  <text>BRK MED</text>
+  <font>helvetica_bold.txf</font>
+  <character-size type="double">0.007</character-size>
+  <alignment>center-bottom</alignment> 
+</text>
+
+  <animation>
+   <type>select</type>
+     <object-name>APspd.brkmed.arm</object-name>
+       <condition>
+       <and>
+         <equals>
+	   <property>controls/gear/autobrakes</property>
+           <value>2</value>
+         </equals>
+	 <equal>
+	   <property>autopilot/autobrake/engaged</property>
+	   <value>0</value>
+	 </equal>
+	 <equal>
+	   <property>autopilot/autobrake/selected</property>
+	   <value>1</value>
+	 </equal>
+         <greater-than>
+           <property>systems/electrical/outputs/efis</property>
+           <value>15</value>
+         </greater-than>
+       </and>
+      </condition>
+ </animation>
+ 
+ <text>
+  <name>APspd.brkhi.arm</name>
+  <axis-alignment>yz-plane</axis-alignment>
+  <offsets>
+    <pitch-deg>-90</pitch-deg>
+    <x-m>-0.189</x-m>
+    <y-m>0.026</y-m>
+    <z-m>0.005</z-m>
+  </offsets>
+  <type>literal</type>
+  <text>BRK HI</text>
+  <font>helvetica_bold.txf</font>
+  <character-size type="double">0.007</character-size>
+  <alignment>center-bottom</alignment> 
+</text>
+
+  <animation>
+   <type>select</type>
+     <object-name>APspd.brkhi.arm</object-name>
+       <condition>
+       <and>
+         <equals>
+	   <property>controls/gear/autobrakes</property>
+           <value>3</value>
+         </equals>
+	 <equal>
+	   <property>autopilot/autobrake/engaged</property>
+	   <value>0</value>
+	 </equal>
+	 <equal>
+	   <property>autopilot/autobrake/selected</property>
+	   <value>1</value>
+	 </equal>
+         <greater-than>
+           <property>systems/electrical/outputs/efis</property>
+           <value>15</value>
+         </greater-than>
+       </and>
+      </condition>
+ </animation>
+ 
+  <text>
+  <name>APspd.brkmax.arm</name>
+  <axis-alignment>yz-plane</axis-alignment>
+  <offsets>
+    <pitch-deg>-90</pitch-deg>
+    <x-m>-0.189</x-m>
+    <y-m>0.026</y-m>
+    <z-m>0.005</z-m>
+  </offsets>
+  <type>literal</type>
+  <text>BRK MAX</text>
+  <font>helvetica_bold.txf</font>
+  <character-size type="double">0.007</character-size>
+  <alignment>center-bottom</alignment> 
+</text>
+
+  <animation>
+   <type>select</type>
+     <object-name>APspd.brkmax.arm</object-name>
+       <condition>
+       <and>
+         <equals>
+	   <property>controls/gear/autobrakes</property>
+           <value>4</value>
+         </equals>
+	 <equal>
+	   <property>autopilot/autobrake/engaged</property>
+	   <value>0</value>
+	 </equal>
+	 <equal>
+	   <property>autopilot/autobrake/selected</property>
+	   <value>1</value>
+	 </equal>
+         <greater-than>
+           <property>systems/electrical/outputs/efis</property>
+           <value>15</value>
+         </greater-than>
+       </and>
+      </condition>
+ </animation>
+ 
+<text>
+  <name>APspd.brkrto.arm</name>
+  <axis-alignment>yz-plane</axis-alignment>
+  <offsets>
+    <pitch-deg>-90</pitch-deg>
+    <x-m>-0.189</x-m>
+    <y-m>0.026</y-m>
+    <z-m>0.005</z-m>
+  </offsets>
+  <type>literal</type>
+  <text>BRK RTO</text>
+  <font>helvetica_bold.txf</font>
+  <character-size type="double">0.007</character-size>
+  <alignment>center-bottom</alignment> 
+</text>
+
+  <animation>
+   <type>select</type>
+     <object-name>APspd.brkrto.arm</object-name>
+       <condition>
+       <and>
+         <equals>
+	   <property>autopilot/autobrake/rto-selected</property>
+	   <value>1</value>
+         </equals>
+	 <equal>
+	   <property>autopilot/autobrake/engaged</property>
+	   <value>0</value>
+	 </equal>
+         <greater-than>
+           <property>systems/electrical/outputs/efis</property>
+           <value>15</value>
+         </greater-than>
+       </and>
+      </condition>
+ </animation>
+ 
+   <animation>
+   <type>select</type>
+   <object-name>spd-trend-up</object-name>
+   <condition>
+      <and>
+        <greater-than>
+           <property>/autopilot/internal/speed-trend-kt</property>
+           <value>0.5</value>
+        </greater-than>
+        <greater-than>
+         <property>systems/electrical/outputs/efis</property>
+         <value>15</value>
+       </greater-than>
+      </and>
+   </condition>
+ </animation>
+ 
+  <animation>
+   <type>translate</type>
+   <object-name>spd-trend-up</object-name>
+   <property>/autopilot/internal/speed-trend-kt</property>
+   <factor>0.8</factor>
+   <axis>
+     <x>-1</x>
+     <y>0</y>
+     <z>0</z>
+   </axis>
+ </animation>
+ 
+ <animation>
+   <type>select</type>
+   <object-name>spd-trend-down</object-name>
+   <condition>
+      <and>
+        <less-than>
+           <property>/autopilot/internal/speed-trend-kt</property>
+           <value>-0.5</value>
+        </less-than>
+        <greater-than>
+         <property>systems/electrical/outputs/efis</property>
+         <value>15</value>
+       </greater-than>
+      </and>
+   </condition>
+ </animation>
+ 
+ <animation>
+   <type>translate</type>
+   <object-name>spd-trend-down</object-name>
+   <property>/autopilot/internal/speed-trend-kt</property>
+   <factor>0.8</factor>
+   <axis>
+     <x>-1</x>
+     <y>0</y>
+     <z>0</z>
+   </axis>
+ </animation>
+ 
  
 
 <animation>
@@ -2102,6 +2360,11 @@
    <object-name>APvnav.clb.arm</object-name>
    <object-name>APvnav.des.arm</object-name>
    <object-name>APvnav.gs.arm</object-name>
+   <object-name>APspd.brklo.arm</object-name>
+   <object-name>APspd.brkmed.arm</object-name>
+   <object-name>APspd.brkhi.arm</object-name>
+   <object-name>APspd.brkmax.arm</object-name>
+   <object-name>APspd.brkrto.arm</object-name>
    <emission>
      <red>0.12</red>
      <green>0.63</green>

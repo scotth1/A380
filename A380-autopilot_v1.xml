@@ -1325,7 +1325,17 @@
     </output>
   </filter>
   
-    <filter>
+  
+  <filter>
+    <name>speed trend rate computer</name>
+    <debug>false</debug>
+    <type>derivative</type>
+    <input>/velocities/airspeed-kt</input>
+    <output>/autopilot/internal/speed-trend-kt</output>
+    <filter-time>2.0</filter-time>
+  </filter>
+  
+  <!-- filter>
     <name>Speed Trend computer</name>
     <debug>false</debug>>
     <type>gain</type>
@@ -1333,7 +1343,7 @@
     <input>
       <expression>
 	<dif>
-	  <property>/autopilot/internal/lookahead-10-sec-airspeed-kt</property>
+	  <property>/autopilot/internal/lookahead-5-sec-airspeed-kt</property>
 	  <property>/velocities/airspeed-kt</property>
 	</dif>
       </expression>
@@ -1341,7 +1351,7 @@
     <output>
       <property>/autopilot/internal/speed-trend-kt</property>
     </output>
-  </filter>
+  </filter -->
   
   <filter>
     <name>Speed Trend Norm</name>

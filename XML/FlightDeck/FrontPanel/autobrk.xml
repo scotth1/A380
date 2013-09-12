@@ -170,7 +170,7 @@
                 <property>/controls/gear/autobrakes</property>
                 <step>1</step>
                 <min>0</min>
-                <max>5</max>
+                <max>4</max>
                 <wrap>false</wrap>
             </binding>
             <binding>
@@ -186,7 +186,7 @@
                   <property>/controls/gear/autobrakes</property>
                   <step>-1</step>
                   <min>0</min>
-                  <max>5</max>
+                  <max>4</max>
                   <wrap>false</wrap>
             </binding>
             <binding>
@@ -194,6 +194,22 @@
                 <property>/sim/sound/switch</property>
             </binding>
           </action>
+     </animation>
+     
+     
+     <animation>
+       <type>pick</type>
+       <object-name>decel.box</object-name>
+       <action>
+	 <button>0</button>
+	 <repeatable>false</repeatable>
+	 <binding>
+	   <command>property-cycle</command>
+	   <property>autopilot/autobrake/step</property>
+	   <value>-1</value>
+	   <value>-2</value>
+	 </binding>
+       </action>
      </animation>
   
   <!-- unit [0] -->

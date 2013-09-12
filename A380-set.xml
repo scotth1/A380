@@ -843,7 +843,7 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
 
 <controls>
   <gear>
-    <autobrakes type="int">5</autobrakes>
+    <autobrakes type="int">0</autobrakes>
     <!-- 0=off, 1=1, 2=2, 3=3, 4=MAX, 5=RTO -->
   </gear>
   <flight>

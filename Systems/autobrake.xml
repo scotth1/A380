@@ -81,7 +81,8 @@
         <name>High-speed</name>
         <input>
             <greater-than>
-                <property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+                <!-- property>instrumentation/airspeed-indicator/indicated-speed-kt</property -->
+		<property>velocities/airspeed-kt</property>
                 <value>85</value>
             </greater-than>
         </input>
@@ -252,10 +253,10 @@
                 <table>
                     <property>autopilot/autobrake/step</property> 
                     <entry><ind>0</ind><dep>0</dep></entry>
-                    <entry><ind>1</ind><dep>4</dep></entry>
-                    <entry><ind>2</ind><dep>7</dep></entry>
-                    <entry><ind>3</ind><dep>9</dep></entry>
-                    <entry><ind>4</ind><dep>11</dep></entry>
+                    <entry><ind>1</ind><dep>5</dep></entry>
+                    <entry><ind>2</ind><dep>8</dep></entry>
+                    <entry><ind>3</ind><dep>10</dep></entry>
+                    <entry><ind>4</ind><dep>14</dep></entry>
                 </table>
             </expression>
         </input>
@@ -281,7 +282,7 @@
                       <value>5</value>
                   </equals>
               </condition>
-              <value>11</value> <!-- the real MAX value -->
+              <value>15</value> <!-- the real MAX value -->
           </input>
         
         <input>
@@ -290,7 +291,7 @@
             </condition>
             <!-- RTO setting applies max hydraulic pressure, simulate this
               with a huge value here, to ensure the PI drives to 1.0 output -->
-            <value>50</value>
+            <value>100</value>
         </input>
     </filter>
     
