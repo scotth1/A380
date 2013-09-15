@@ -588,6 +588,9 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
     <stage2-kp type="double">0.001</stage2-kp>  <!-- -0.0025 -->
     <stage2-td type="double">0.1</stage2-td>  <!-- 0.00002 -->
     <stage2-ti type="double">40</stage2-ti>    <!-- 20.0 -->
+    
+    <test-speed-trend-kt type="double">0.0</test-speed-trend-kt>
+    <test-speed-trend-norm type="double">0.0</test-speed-trend-norm>
   </internal>
 </autopilot>
 <autopilot>

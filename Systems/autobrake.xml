@@ -100,8 +100,8 @@
                     <max>
                         <property>controls/gear/brake-left</property>
                         <property>controls/gear/brake-right</property>
-                        <property>controls/gear/copilot-brake-left</property>
-                        <property>controls/gear/copilot-brake-right</property>
+                        <!--property>controls/gear/copilot-brake-left</property>
+                        <property>controls/gear/copilot-brake-right</property -->
                     </max>
                 </expression>          
             </less-than>
@@ -253,10 +253,10 @@
                 <table>
                     <property>autopilot/autobrake/step</property> 
                     <entry><ind>0</ind><dep>0</dep></entry>
-                    <entry><ind>1</ind><dep>5</dep></entry>
-                    <entry><ind>2</ind><dep>8</dep></entry>
-                    <entry><ind>3</ind><dep>10</dep></entry>
-                    <entry><ind>4</ind><dep>14</dep></entry>
+                    <entry><ind>1</ind><dep>12</dep></entry>
+                    <entry><ind>2</ind><dep>20</dep></entry>
+                    <entry><ind>3</ind><dep>28</dep></entry>
+                    <entry><ind>4</ind><dep>35</dep></entry>
                 </table>
             </expression>
         </input>
@@ -282,7 +282,7 @@
                       <value>5</value>
                   </equals>
               </condition>
-              <value>15</value> <!-- the real MAX value -->
+              <value>30</value> <!-- the real MAX value -->
           </input>
         
         <input>
@@ -291,7 +291,7 @@
             </condition>
             <!-- RTO setting applies max hydraulic pressure, simulate this
               with a huge value here, to ensure the PI drives to 1.0 output -->
-            <value>100</value>
+            <value>200</value>
         </input>
     </filter>
     

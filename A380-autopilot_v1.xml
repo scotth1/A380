@@ -1332,7 +1332,7 @@
     <type>derivative</type>
     <input>/velocities/airspeed-kt</input>
     <output>/autopilot/internal/speed-trend-kt</output>
-    <filter-time>2.0</filter-time>
+    <filter-time>1.0</filter-time>
   </filter>
   
   <!-- filter>
@@ -1362,7 +1362,7 @@
       <expression>
 	<product>
 	  <property>/autopilot/internal/speed-trend-kt</property>
-	  <value>0.01</value>
+	  <value>0.1</value>
 	</product>
       </expression>
     </input>

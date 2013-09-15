@@ -62,7 +62,10 @@
    <type>select</type>
    <object-name>flare-post</object-name>
    <condition>
+     <equals>
      <property>instrumentation/afs/flight-control-flare-mode</property>
+     <value><false/></value>
+   </equals>
    </condition>
  </animation>
 
@@ -2240,14 +2243,14 @@
       </condition>
  </animation>
  
-   <animation>
+  <animation>
    <type>select</type>
-   <object-name>spd-trend-up</object-name>
+   <object-name>spd-grp-up</object-name>
    <condition>
       <and>
         <greater-than>
-           <property>/autopilot/internal/speed-trend-kt</property>
-           <value>0.5</value>
+           <property>/autopilot/internal/speed-trend-norm</property>
+           <value>0.01</value>
         </greater-than>
         <greater-than>
          <property>systems/electrical/outputs/efis</property>
@@ -2256,27 +2259,28 @@
       </and>
    </condition>
  </animation>
- 
   <animation>
-   <type>translate</type>
+   <type>textranslate</type>
    <object-name>spd-trend-up</object-name>
-   <property>/autopilot/internal/speed-trend-kt</property>
-   <factor>0.8</factor>
+   <property>/autopilot/internal/speed-trend-norm</property>
+   <factor>0.21</factor>
    <axis>
-     <x>-1</x>
-     <y>0</y>
+     <x>0</x>
+     <y>1</y>
      <z>0</z>
    </axis>
  </animation>
  
+
+ 
  <animation>
    <type>select</type>
-   <object-name>spd-trend-down</object-name>
+   <object-name>spd-grp-down</object-name>
    <condition>
       <and>
         <less-than>
-           <property>/autopilot/internal/speed-trend-kt</property>
-           <value>-0.5</value>
+           <property>/autopilot/internal/speed-trend-norm</property>
+           <value>-0.01</value>
         </less-than>
         <greater-than>
          <property>systems/electrical/outputs/efis</property>
@@ -2285,18 +2289,18 @@
       </and>
    </condition>
  </animation>
- 
  <animation>
-   <type>translate</type>
+   <type>textranslate</type>
    <object-name>spd-trend-down</object-name>
-   <property>/autopilot/internal/speed-trend-kt</property>
-   <factor>0.8</factor>
+   <property>/autopilot/internal/speed-trend-norm</property>
+   <factor>0.21</factor>
    <axis>
-     <x>-1</x>
-     <y>0</y>
+     <x>0</x>
+     <y>-1</y>
      <z>0</z>
    </axis>
  </animation>
+
  
  
 
