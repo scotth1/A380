@@ -201,13 +201,23 @@ toggle_alt_inc = func() {
 increment_alt = func() {
     time_reset_alt("vertical-alt-display");
     incAmt = getprop("/controls/afs/alt-inc-select");
-    curAlt = getprop("/instrumentation/afs/target-altitude-ft");
-    curAlt = curAlt+incAmt;
-    if (curAlt > 49000) {
-      curAlt = 49000;
+    curAltFt = getprop("/instrumentation/afs/target-altitude-ft");
+    curAltMetre = getprop("/instrumentation/afs/target-altitude-metre");
+    var metric = getprop("instrumentation/efis[0]/metric");
+    var incAmtMetric = 300;
+    if (incAmt == 1000) {
+      incAmtMetric = 500;
     }
-    setprop("/instrumentation/afs/target-altitude-ft",curAlt);
-    setprop("/autopilot/settings/target-altitude-ft", curAlt);
+    if (metric == 1) {
+      curAltFt = curAltFt+(incAmtMetric/0.3048);
+    } else {
+      curAltFt = curAltFt+incAmt;
+    }
+    if (curAltFt > 49000) {
+      curAltFt = 49000;
+    }
+    setprop("/instrumentation/afs/target-altitude-ft",curAltFt);
+    setprop("/autopilot/settings/target-altitude-ft", curAltFt);
 
     var altSelect = getprop("/instrumentation/afs/vertical-alt-mode");
     var vsSelect  = getprop("/instrumentation/afs/vertical-vs-mode");
@@ -234,7 +244,16 @@ decrement_alt = func() {
     time_reset_alt("vertical-alt-display");
     incAmt = getprop("/controls/afs/alt-inc-select");
     curAlt = getprop("/instrumentation/afs/target-altitude-ft");
-    curAlt = curAlt+-incAmt;
+    var metric = getprop("instrumentation/efis[0]/metric");
+    var incAmtMetric = 300;
+    if (incAmt == 1000) {
+      incAmtMetric = 500;
+    }
+    if (metric == 1) {
+      curAlt = curAlt+(-incAmtMetric/0.3048);
+    } else {
+      curAlt = curAlt+-incAmt;
+    }
     if (curAlt < 0) {
       curAlt = 0;
     }
@@ -435,6 +454,21 @@ setlistener("/autopilot/settings/vertical-speed-fpm", func(n) {
    var mode = getprop("/instrumentation/afs/vertical-vs-mode");
    if (mode == 0) {
      setprop("/instrumentation/afs/vertical-speed-fpm",val);
+   }
+});
+
+setlistener("/instrumentation/efis[0]/metric", func(n) {
+   var val = n.getValue();
+   if (val == 1) {
+     var curAltMetre = getprop("/instrumentation/afs/target-altitude-metre");
+     var newAlt = int(curAltMetre/10)*10;
+     var newAltFt = newAlt/0.3048;
+     setprop("/instrumentation/afs/target-altitude-ft",newAltFt);
+   }
+   if (val == 0) {
+     var curAltFt = getprop("/instrumentation/afs/target-altitude-ft");
+     var newAlt = int(curAltFt/100)*100;
+     setprop("/instrumentation/afs/target-altitude-ft",newAlt);
    }
 });
 

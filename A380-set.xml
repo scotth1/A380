@@ -1011,6 +1011,7 @@ The A380 Aircraft is released under GPL as part of the FlightGear.org project.
 	</flightdirector>
 	
 	<efis n="0">
+	  <metric type="bool">0</metric>
 	  <display-mode type="int">3</display-mode>
 	  <nd-mode>ARC</nd-mode>
 	  <mfd>

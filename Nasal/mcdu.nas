@@ -1333,18 +1333,23 @@ var copyPlanToRoute = func() {
           role = "pseudo";
         }
 
-          var wptList = findFixesByID(wp.wp_name);
-          if (size(wptList) == 0) {
-            wptList = findNavaidsByID(wp.wp_name);
-          }
+          ##var fixList = findFixesByID(wp.wp_name);
+          ##var vorList = findNavaidsByID(wp.wp_name);
+          var wpGeo = geo.Coord.new();
+          wpGeo.set_latlon(wp.wp_lat, wp.wp_lon);
+          var wptList = findNavaidsWithinRange(wpGeo, 1);
+          
           var wpG = nil;
-          if (size(wptList) == 0) {
+          tracer("FPinsert, WPlist size: "~size(wptList));
+          if (size(wptList) == 0 or wptList[0].id != wp.wp_name) {
             tracer("FPinsert, create WP from lat: "~wp.wp_lat~", lon: "~wp.wp_lon~" name: "~wp.wp_name~" role: "~role);
             var wpt = geo.Coord.new();
             wpt.set_latlon(wp.wp_lat, wp.wp_lon);
             wpG = createWP(wpt, wp.wp_name, role);
           } else {
               tracer("FPinsert, create WP from wptList[0] role: "~role);
+              if (size(wptList) > 1) {
+              }
               wpG = createWPFrom(wptList[0], role);
           }
         

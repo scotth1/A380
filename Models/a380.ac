@@ -70,7 +70,7 @@ OBJECT poly
 name "Fuselage"
 data 8
 Mesh.079
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Livery/CSN/A380.png"
+texture "A380.png"
 crease 61.000000
 numvert 944
 9.7291 6.64598 -1.13642
@@ -10035,7 +10035,7 @@ OBJECT poly
 name "apu"
 data 8
 Mesh.073
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Livery/CSN/A380.png"
+texture "A380.png"
 crease 61.000000
 numvert 80
 76.1846 9.05724 0.13497
@@ -12048,7 +12048,7 @@ OBJECT poly
 name "btyrela"
 data 8
 Mesh.100
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Livery/CSN/Tyre.png"
+texture "Tyre.png"
 crease 45.000000
 numvert 163
 45.6076 1.25296 3.18127
@@ -13356,7 +13356,7 @@ OBJECT poly
 name "btyrelf"
 data 8
 Mesh.096
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Livery/CSN/Tyre.png"
+texture "Tyre.png"
 crease 45.000000
 numvert 163
 42.1229 1.25296 3.18127
@@ -14664,7 +14664,7 @@ OBJECT poly
 name "btyrelm"
 data 8
 Mesh.101
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Livery/CSN/Tyre.png"
+texture "Tyre.png"
 crease 45.000000
 numvert 163
 43.8599 1.25296 3.18127
@@ -15972,7 +15972,7 @@ OBJECT poly
 name "btyrera"
 data 8
 Mesh.099
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Livery/CSN/Tyre.png"
+texture "Tyre.png"
 crease 45.000000
 numvert 163
 45.6076 1.25296 2.0295
@@ -17280,7 +17280,7 @@ OBJECT poly
 name "btyrerf"
 data 8
 Mesh.097
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Livery/CSN/Tyre.png"
+texture "Tyre.png"
 crease 45.000000
 numvert 163
 42.1208 1.25296 2.0295
@@ -18588,7 +18588,7 @@ OBJECT poly
 name "btyrerm"
 data 8
 Mesh.098
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Livery/CSN/Tyre.png"
+texture "Tyre.png"
 crease 45.000000
 numvert 163
 43.8578 1.25296 2.0295
@@ -20256,7 +20256,7 @@ OBJECT poly
 name "innerbgdoor"
 data 8
 Mesh.058
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Livery/CSN/A380.png"
+texture "A380.png"
 crease 61.000000
 numvert 8
 46.7409 1.88727 1.73166
@@ -20287,7 +20287,7 @@ OBJECT poly
 name "lhbodyfairing"
 data 8
 Mesh.066
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Livery/CSN/A380.png"
+texture "A380.png"
 crease 61.000000
 numvert 203
 42.0789 1.9628 3.21777
@@ -21514,7 +21514,7 @@ OBJECT poly
 name "lhwgdoor"
 data 8
 Mesh.061
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Livery/CSN/A380.png"
+texture "A380.png"
 crease 61.000000
 numvert 41
 42.1767 1.82939 2.93477
@@ -22162,7 +22162,7 @@ OBJECT poly
 name "lowerrudder"
 data 8
 Mesh.071
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Livery/CSN/A380.png"
+texture "A380.png"
 crease 61.000000
 numvert 14
 69.9324 9.93699 -0.157919
@@ -22264,7 +22264,7 @@ OBJECT poly
 name "midbgdoor"
 data 8
 Mesh.059
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Livery/CSN/A380.png"
+texture "A380.png"
 crease 61.000000
 numvert 6
 46.7403 2.26724 3.57576
@@ -22305,7 +22305,7 @@ OBJECT poly
 name "nglhaftdoor"
 data 8
 Mesh.056
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Livery/CSN/A380.png"
+texture "A380.png"
 crease 61.000000
 numvert 8
 10.4081 2.81257 -0.000563
@@ -22348,7 +22348,7 @@ OBJECT poly
 name "nglhfwddoor"
 data 8
 Mesh.074
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Livery/CSN/A380.png"
+texture "A380.png"
 crease 61.000000
 numvert 18
 8.79195 3.22407 -0.000734
@@ -22445,7 +22445,7 @@ OBJECT poly
 name "nglhfwddoor.001"
 data 8
 Mesh.076
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Livery/CSN/A380.png"
+texture "A380.png"
 crease 61.000000
 numvert 6
 8.79301 3.32107 0.683617
@@ -22474,7 +22474,7 @@ OBJECT poly
 name "ngrhaftdoor"
 data 8
 Mesh.055
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Livery/CSN/A380.png"
+texture "A380.png"
 crease 61.000000
 numvert 8
 10.4082 2.83774 -0.445175
@@ -22517,7 +22517,7 @@ OBJECT poly
 name "ngrhfwddoor"
 data 8
 Mesh.057
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Livery/CSN/A380.png"
+texture "A380.png"
 crease 61.000000
 numvert 22
 10.4082 2.83775 -0.445175
@@ -22618,7 +22618,7 @@ OBJECT poly
 name "ngrhfwddoor.001"
 data 8
 Mesh.077
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Livery/CSN/A380.png"
+texture "A380.png"
 crease 61.000000
 numvert 6
 8.79194 3.22406 -0.000734
@@ -24028,7 +24028,7 @@ OBJECT poly
 name "outerbgdoor"
 data 8
 Mesh.060
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Livery/CSN/A380.png"
+texture "A380.png"
 crease 61.000000
 numvert 8
 48.1083 2.54397 3.46562
@@ -25372,7 +25372,7 @@ OBJECT poly
 name "rbtyrela"
 data 8
 Mesh.091
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Livery/CSN/Tyre.png"
+texture "Tyre.png"
 crease 45.000000
 numvert 163
 45.6076 1.25296 -2.03721
@@ -26680,7 +26680,7 @@ OBJECT poly
 name "rbtyrelf"
 data 8
 Mesh.095
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Livery/CSN/Tyre.png"
+texture "Tyre.png"
 crease 45.000000
 numvert 163
 42.1229 1.25296 -2.03721
@@ -27988,7 +27988,7 @@ OBJECT poly
 name "rbtyrelm"
 data 8
 Mesh.090
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Livery/CSN/Tyre.png"
+texture "Tyre.png"
 crease 45.000000
 numvert 163
 43.8599 1.25296 -2.03721
@@ -29296,7 +29296,7 @@ OBJECT poly
 name "rbtyrera"
 data 8
 Mesh.092
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Livery/CSN/Tyre.png"
+texture "Tyre.png"
 crease 45.000000
 numvert 163
 45.6076 1.25296 -3.18899
@@ -30604,7 +30604,7 @@ OBJECT poly
 name "rbtyrerf"
 data 8
 Mesh.094
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Livery/CSN/Tyre.png"
+texture "Tyre.png"
 crease 45.000000
 numvert 163
 42.1208 1.25296 -3.18899
@@ -31912,7 +31912,7 @@ OBJECT poly
 name "rbtyrerm"
 data 8
 Mesh.093
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Livery/CSN/Tyre.png"
+texture "Tyre.png"
 crease 45.000000
 numvert 163
 43.8578 1.25296 -3.18899
@@ -33220,7 +33220,7 @@ OBJECT poly
 name "rhbodyfairing"
 data 8
 Mesh.067
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Livery/CSN/A380.png"
+texture "A380.png"
 crease 61.000000
 numvert 207
 42.0806 1.96501 -3.21543
@@ -34295,7 +34295,7 @@ OBJECT poly
 name "rhinnerbgdoor"
 data 8
 Mesh.063
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Livery/CSN/A380.png"
+texture "A380.png"
 crease 61.000000
 numvert 7
 46.7654 1.88716 -1.74078
@@ -34325,7 +34325,7 @@ OBJECT poly
 name "rhmidbgdoor"
 data 8
 Mesh.064
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Livery/CSN/A380.png"
+texture "A380.png"
 crease 61.000000
 numvert 6
 46.7572 2.26723 -3.57884
@@ -34366,7 +34366,7 @@ OBJECT poly
 name "rhouterbgdoor"
 data 8
 Mesh.065
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Livery/CSN/A380.png"
+texture "A380.png"
 crease 61.000000
 numvert 8
 48.1083 2.54397 -3.4709
@@ -34560,7 +34560,7 @@ OBJECT poly
 name "rhwgdoor"
 data 8
 Mesh.062
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Livery/CSN/A380.png"
+texture "A380.png"
 crease 61.000000
 numvert 41
 42.1784 1.8316 -2.93244
@@ -36230,7 +36230,7 @@ OBJECT poly
 name "tyreln"
 data 8
 Mesh.081
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Livery/CSN/Tyre.png"
+texture "Tyre.png"
 crease 45.000000
 numvert 163
 11.8673 1.23549 0.459281
@@ -37538,7 +37538,7 @@ OBJECT poly
 name "tyrern"
 data 8
 Mesh.080
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Livery/CSN/Tyre.png"
+texture "Tyre.png"
 crease 45.000000
 numvert 163
 11.8673 1.23549 -0.446199
@@ -38846,7 +38846,7 @@ OBJECT poly
 name "tyrerwla"
 data 8
 Mesh.088
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Livery/CSN/Tyre.png"
+texture "Tyre.png"
 crease 45.000000
 numvert 163
 41.4858 1.25296 -5.69112
@@ -40154,7 +40154,7 @@ OBJECT poly
 name "tyrerwlf"
 data 8
 Mesh.089
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Livery/CSN/Tyre.png"
+texture "Tyre.png"
 crease 45.000000
 numvert 163
 39.653 1.25296 -5.69112
@@ -41462,7 +41462,7 @@ OBJECT poly
 name "tyrerwra"
 data 8
 Mesh.087
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Livery/CSN/Tyre.png"
+texture "Tyre.png"
 crease 45.000000
 numvert 163
 41.4858 1.25296 -6.8429
@@ -42770,7 +42770,7 @@ OBJECT poly
 name "tyrerwrf"
 data 8
 Mesh.086
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Livery/CSN/Tyre.png"
+texture "Tyre.png"
 crease 45.000000
 numvert 163
 39.6509 1.25296 -6.8429
@@ -44078,7 +44078,7 @@ OBJECT poly
 name "tyrewla"
 data 8
 Mesh.083
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Livery/CSN/Tyre.png"
+texture "Tyre.png"
 crease 45.000000
 numvert 163
 41.4858 1.25296 6.85537
@@ -45386,7 +45386,7 @@ OBJECT poly
 name "tyrewlf"
 data 8
 Mesh.082
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Livery/CSN/Tyre.png"
+texture "Tyre.png"
 crease 45.000000
 numvert 163
 39.653 1.25296 6.85537
@@ -46694,7 +46694,7 @@ OBJECT poly
 name "tyrewra"
 data 8
 Mesh.084
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Livery/CSN/Tyre.png"
+texture "Tyre.png"
 crease 45.000000
 numvert 163
 41.4858 1.25296 5.7036
@@ -48002,7 +48002,7 @@ OBJECT poly
 name "tyrewrf"
 data 8
 Mesh.085
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Livery/CSN/Tyre.png"
+texture "Tyre.png"
 crease 45.000000
 numvert 163
 39.6509 1.25296 5.7036
@@ -49310,7 +49310,7 @@ OBJECT poly
 name "upperrudder"
 data 8
 Mesh.070
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Livery/CSN/A380.png"
+texture "A380.png"
 crease 61.000000
 numvert 27
 75.8558 14.4846 -0.017427
@@ -49557,7 +49557,7 @@ OBJECT poly
 name "vertstab"
 data 8
 Mesh.072
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Livery/CSN/A380.png"
+texture "A380.png"
 crease 61.000000
 numvert 74
 63.252 10.4923 -0.589117

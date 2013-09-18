@@ -6,7 +6,7 @@ kids 22
 OBJECT poly
 name "AOAribbon"
 loc -0.177425 0.00170013 -0.00745747
-texture "pfd2.png"
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/pfd2.png"
 crease 180.000000
 numvert 4
 -0.0450356 0 -0.00247899
@@ -32,7 +32,7 @@ name "AltTape6"
 loc -0.130237 0.00370297 -0.07154
 data 9
 Plane.281
-texture "alt-tape.png"
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/alt-tape.png"
 crease 30.000000
 numvert 4
 -0.0454135 0.000236475 -0.0479413
@@ -53,7 +53,7 @@ name "AltTape5"
 loc -0.130237 0.00370297 -0.07154
 data 9
 Plane.280
-texture "alt-tape.png"
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/alt-tape.png"
 crease 30.000000
 numvert 4
 -0.0454135 0.000236475 -0.0478786
@@ -74,7 +74,7 @@ name "AltTape4"
 loc -0.130237 0.00370297 -0.07154
 data 9
 Plane.025
-texture "alt-tape.png"
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/alt-tape.png"
 crease 30.000000
 numvert 4
 -0.0454135 0.000236475 -0.0478786
@@ -95,7 +95,7 @@ name "AltTape3"
 loc -0.130237 0.00370297 -0.07154
 data 9
 Plane.024
-texture "alt-tape.png"
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/alt-tape.png"
 crease 30.000000
 numvert 4
 -0.0454135 0.000236475 -0.0478786
@@ -116,7 +116,7 @@ name "AltTape2"
 loc -0.130237 0.00370297 -0.07154
 data 9
 Plane.020
-texture "alt-tape.png"
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/alt-tape.png"
 crease 30.000000
 numvert 4
 -0.0454135 0.000236475 -0.0478786
@@ -137,7 +137,7 @@ name "AltTape1"
 loc -0.130237 0.00370297 -0.07154
 data 9
 Plane.019
-texture "alt-tape.png"
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/alt-tape.png"
 crease 30.000000
 numvert 4
 -0.0454135 0.000236475 -0.0478786
@@ -158,7 +158,7 @@ name "ASIribbon"
 loc -0.191808 0 0.0206197
 data 21
 glass_2 - Default.001
-texture "spd-tape.png"
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/spd-tape.png"
 crease 30.000000
 numvert 4
 0.107298 0.003013 -0.0220331
@@ -184,7 +184,7 @@ name "ALTribbon"
 loc -0.206152 0.000213222 -0.0528714
 data 21
 glass_2 - Default.001
-texture "alt-tape.png"
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/alt-tape.png"
 crease 30.000000
 numvert 4
 0.15508 0 -0.100636
@@ -210,7 +210,7 @@ name "horizon"
 loc -0.193403 0.003013 0.0206197
 data 21
 glass_2 - Default.002
-texture "ati.png"
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/ati.png"
 crease 30.000000
 numvert 4
 0.0176601 0 -0.13245
@@ -238,7 +238,7 @@ kids 5
 OBJECT poly
 name "alt_digit1"
 loc -0.0120964 0 -0.00287429
-texture "pfd2.png"
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/pfd2.png"
 crease 45.000000
 numvert 4
 -0.0721942 0 -0.0108609
@@ -257,7 +257,7 @@ kids 0
 OBJECT poly
 name "alt_digit2"
 loc -0.0068251 0 -0.00287429
-texture "pfd2.png"
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/pfd2.png"
 crease 45.000000
 numvert 4
 -0.0674785 0 -0.0161323
@@ -276,7 +276,7 @@ kids 0
 OBJECT poly
 name "alt_digit3"
 loc -0.00176491 0 -0.00287429
-texture "pfd2.png"
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/pfd2.png"
 crease 45.000000
 numvert 4
 -0.0725387 0 -0.0211925
@@ -295,7 +295,7 @@ kids 0
 OBJECT poly
 name "alt_digit4"
 loc 0.00298009 0 -0.0027689
-texture "pfd2.png"
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/pfd2.png"
 crease 45.000000
 numvert 4
 -0.0900118 0 -0.0269917
@@ -314,7 +314,7 @@ kids 0
 OBJECT poly
 name "alt_digit5"
 loc 0.00656409 0 -0.0027689
-texture "pfd2.png"
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/pfd2.png"
 crease 45.000000
 numvert 4
 -0.0779157 0 -0.0305757
@@ -333,7 +333,7 @@ kids 0
 OBJECT poly
 name "VS_scale"
 loc -0.0360263 0.0017868 -0.106598
-texture "pfd2.png"
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/pfd2.png"
 crease 45.000000
 numvert 4
 -0.0376881 0 -0.0361992
@@ -354,7 +354,7 @@ name "GSscale"
 loc -0.114599 0.00626495 -0.19068
 data 21
 glass_2 - Default.004
-texture "ati.png"
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/ati.png"
 crease 30.000000
 numvert 4
 -0.0542126 0 0.078594
@@ -380,7 +380,7 @@ name "LOCscale"
 loc -0.180828 0.00590829 0.0355847
 data 21
 glass_2 - Default.004
-texture "ati.png"
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/ati.png"
 crease 30.000000
 numvert 4
 0.0992312 0 -0.143349
@@ -406,7 +406,7 @@ name "PFD_Mask"
 loc -0.18384 0.00464636 0.020102
 data 17
 glass_2 - Default
-texture "pfd1_2.png"
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/pfd1_2.png"
 crease 30.000000
 numvert 4
 -0.0290214 0 -0.181368
@@ -430,7 +430,7 @@ kids 0
 OBJECT poly
 name "LOCneedle"
 loc -0.108501 0.00646657 -0.0529556
-texture "ati.png"
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/ati.png"
 crease 180.000000
 numvert 4
 0.0373806 0 -0.0281698
@@ -454,7 +454,7 @@ kids 0
 OBJECT poly
 name "GSneedle"
 loc -0.0691103 0.00788147 -0.105693
-texture "ati.png"
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/ati.png"
 crease 180.000000
 numvert 4
 -0.056353 0 -0.0137533
@@ -478,7 +478,7 @@ kids 0
 OBJECT poly
 name "VLSribbon"
 loc -0.000204399 0.00170013 -0.00448982
-texture "pfd2.png"
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/pfd2.png"
 crease 180.000000
 numvert 4
 0.00460576 0 -0.0237034
@@ -502,7 +502,7 @@ kids 0
 OBJECT poly
 name "flare-post"
 loc -0.200564 0.00635521 -0.0853395
-texture "pfd1.png"
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/pfd1.png"
 crease 45.000000
 numvert 4
 -0.0124236 0 -0.00366598
@@ -786,7 +786,7 @@ kids 1
 OBJECT poly
 name "spd-trend-down"
 loc 0.0224032 -0.002 1.86265e-09
-texture "pfd2.png"
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/pfd2.png"
 crease 180.000000
 numvert 4
 -0.0224032 0 -0.00325865
@@ -814,7 +814,7 @@ kids 1
 OBJECT poly
 name "spd-trend-up"
 loc -0.0193358 -0.0029026 4.65047e-05
-texture "pfd2.png"
+texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Panels/pfd/pfd2.png"
 crease 180.000000
 numvert 4
 -0.0219959 0 -0.00325865
