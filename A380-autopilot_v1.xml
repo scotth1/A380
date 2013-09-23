@@ -1335,23 +1335,6 @@
     <filter-time>1.0</filter-time>
   </filter>
   
-  <!-- filter>
-    <name>Speed Trend computer</name>
-    <debug>false</debug>>
-    <type>gain</type>
-    <gain>1.0</gain>
-    <input>
-      <expression>
-	<dif>
-	  <property>/autopilot/internal/lookahead-5-sec-airspeed-kt</property>
-	  <property>/velocities/airspeed-kt</property>
-	</dif>
-      </expression>
-    </input>
-    <output>
-      <property>/autopilot/internal/speed-trend-kt</property>
-    </output>
-  </filter -->
   
   <filter>
     <name>Speed Trend Norm</name>

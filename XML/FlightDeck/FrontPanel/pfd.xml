@@ -2600,6 +2600,47 @@
      <z>0</z>
    </axis>
  </animation>
+ 
+ 
+  <text>
+  <name>aice.eng</name>
+  <axis-alignment>yz-plane</axis-alignment>
+  <offsets>
+    <pitch-deg>-90</pitch-deg>
+    <x-m>-0.05</x-m>
+    <y-m>0.026</y-m>
+    <z-m>0.005</z-m>
+  </offsets>
+  <type>literal</type>
+  <text>ENG A.ICE</text>
+  <font>helvetica_bold.txf</font>
+  <character-size type="double">0.0065</character-size>
+  <alignment>center-bottom</alignment> 
+</text>
+<animation>
+   <type>select</type>
+   <object-name>aice.eng</object-name>
+   <condition>
+     <or>
+       <equals>
+         <property>/controls/anti-ice/engine[0]/inlet-heat</property>
+         <value>1</value>
+       </equals>
+       <equals>
+         <property>/controls/anti-ice/engine[1]/inlet-heat</property>
+         <value>1</value>
+       </equals>
+       <equals>
+         <property>/controls/anti-ice/engine[2]/inlet-heat</property>
+         <value>1</value>
+       </equals>
+       <equals>
+         <property>/controls/anti-ice/engine[4]/inlet-heat</property>
+         <value>1</value>
+       </equals>
+    </or>
+   </condition>
+ </animation>
 
  
  
@@ -2631,6 +2672,7 @@
    <object-name>APvnav.srs</object-name>
    <object-name>ias.kt</object-name>
    <object-name>ias.mach</object-name>
+   <object-name>aice.eng</object-name>
    <emission>
      <red>0.2</red>
      <green>0.6</green>
