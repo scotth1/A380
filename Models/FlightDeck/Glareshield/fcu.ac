@@ -16,7 +16,7 @@ OBJECT poly
 name "A/THR"
 data 8
 Cube.003
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/glareshield.png"
+texture "glareshield.png"
 texrep 1 1
 crease 30.000000
 numvert 10
@@ -78,7 +78,7 @@ OBJECT poly
 name "A/THR.toggle"
 data 8
 Cube.002
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttonlight.png"
+texture "buttonlight.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -517,7 +517,7 @@ OBJECT poly
 name "ALT.001"
 data 8
 Cube.008
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/glareshield.png"
+texture "glareshield.png"
 texrep 1 1
 crease 30.000000
 numvert 10
@@ -579,7 +579,7 @@ OBJECT poly
 name "ALT.toggle"
 data 8
 Cube.009
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttonlight.png"
+texture "buttonlight.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -600,7 +600,7 @@ OBJECT poly
 name "AP1"
 data 8
 Cube.007
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/glareshield.png"
+texture "glareshield.png"
 texrep 1 1
 crease 30.000000
 numvert 10
@@ -662,7 +662,7 @@ OBJECT poly
 name "AP1.toggle"
 data 8
 Cube.006
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttonlight.png"
+texture "buttonlight.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -683,7 +683,7 @@ OBJECT poly
 name "AP2"
 data 8
 Cube.004
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/glareshield.png"
+texture "glareshield.png"
 texrep 1 1
 crease 30.000000
 numvert 10
@@ -745,7 +745,7 @@ OBJECT poly
 name "AP2.toggle"
 data 8
 Cube.005
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttonlight.png"
+texture "buttonlight.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -766,7 +766,7 @@ OBJECT poly
 name "APPR"
 data 8
 Cube.011
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/glareshield.png"
+texture "glareshield.png"
 texrep 1 1
 crease 30.000000
 numvert 10
@@ -828,7 +828,7 @@ OBJECT poly
 name "APPR.toggle"
 data 8
 Cube.010
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttonlight.png"
+texture "buttonlight.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -944,7 +944,7 @@ OBJECT poly
 name "FD"
 data 4
 Cube
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/glareshield.png"
+texture "glareshield.png"
 texrep 1 1
 crease 30.000000
 numvert 10
@@ -1006,7 +1006,7 @@ OBJECT poly
 name "FD.toggle"
 data 8
 Cube.001
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttonlight.png"
+texture "buttonlight.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -1215,7 +1215,7 @@ OBJECT poly
 name "LOC"
 data 8
 Cube.013
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/glareshield.png"
+texture "glareshield.png"
 texrep 1 1
 crease 30.000000
 numvert 10
@@ -1277,7 +1277,7 @@ OBJECT poly
 name "LOC.toggle"
 data 8
 Cube.012
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/buttonlight.png"
+texture "buttonlight.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -1454,7 +1454,7 @@ OBJECT poly
 name "Object03"
 data 8
 Object03
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/glareshield.png"
+texture "glareshield.png"
 texrep 1 1
 crease 30.000000
 numvert 24
@@ -3646,7 +3646,7 @@ OBJECT poly
 name "Rectangle0"
 data 6
 Purple
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/glareshield.png"
+texture "glareshield.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -3667,7 +3667,7 @@ OBJECT poly
 name "Rectangle1"
 data 10
 Purple.001
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/glareshield.png"
+texture "glareshield.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -4064,7 +4064,7 @@ OBJECT poly
 name "alt.01"
 data 9
 Plane.022
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/pfd2.png"
+texture "pfd2.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -4085,7 +4085,7 @@ OBJECT poly
 name "alt.02"
 data 9
 Plane.020
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/pfd2.png"
+texture "pfd2.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -4106,7 +4106,7 @@ OBJECT poly
 name "alt.03"
 data 9
 Plane.019
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/pfd2.png"
+texture "pfd2.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -4127,7 +4127,7 @@ OBJECT poly
 name "alt.04"
 data 9
 Plane.017
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/pfd2.png"
+texture "pfd2.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -4148,7 +4148,7 @@ OBJECT poly
 name "alt.05"
 data 9
 Plane.018
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/pfd2.png"
+texture "pfd2.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -4169,7 +4169,7 @@ OBJECT poly
 name "hdg.01"
 data 9
 Plane.023
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/pfd2.png"
+texture "pfd2.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -4190,7 +4190,7 @@ OBJECT poly
 name "hdg.02"
 data 9
 Plane.025
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/pfd2.png"
+texture "pfd2.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -4211,7 +4211,7 @@ OBJECT poly
 name "hdg.03"
 data 9
 Plane.024
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/pfd2.png"
+texture "pfd2.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -4232,7 +4232,7 @@ OBJECT poly
 name "spd.01"
 data 9
 Plane.028
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/pfd2.png"
+texture "pfd2.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -4253,7 +4253,7 @@ OBJECT poly
 name "spd.02"
 data 9
 Plane.026
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/pfd2.png"
+texture "pfd2.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -4274,7 +4274,7 @@ OBJECT poly
 name "spd.03"
 data 9
 Plane.027
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/pfd2.png"
+texture "pfd2.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -4295,7 +4295,7 @@ OBJECT poly
 name "vs.01"
 data 5
 Plane
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/pfd2.png"
+texture "pfd2.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -4316,7 +4316,7 @@ OBJECT poly
 name "vs.02"
 data 9
 Plane.001
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/pfd2.png"
+texture "pfd2.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -4337,7 +4337,7 @@ OBJECT poly
 name "vs.03"
 data 9
 Plane.016
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/pfd2.png"
+texture "pfd2.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -4358,7 +4358,7 @@ OBJECT poly
 name "vs.04"
 data 9
 Plane.015
-texture "/home/scotth/Download/Flightgear/data/Aircraft/A380/Textures/Instruments/pfd2.png"
+texture "pfd2.png"
 texrep 1 1
 crease 30.000000
 numvert 4
