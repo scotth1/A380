@@ -2,14 +2,19 @@
 
 	<PropertyList>
 
-	<path>../Models/a380.ac</path> 
+	<!-- path>../Models/a380.ac</path> 
 	<texture-path>../Textures/Livery/House/</texture-path>
 	<offsets>
   		<z-m>-8.7</z-m>
    		<y-m>0</y-m>
    		<x-m>-30</x-m>  
    		<pitch-deg>0.0</pitch-deg>
-	</offsets>   
+	</offsets -->   
+	
+	<model>
+	  <name>Fuselage</name>
+	  <path>Aircraft/A380/Models/fuselageV2.xml</path>
+	</model>
  
 
 	<!-- Pushback -->
@@ -109,14 +114,14 @@
    		<path>Aircraft/A380/XML/Wings/wings.xml</path>
   	</model>
 
-       <model>
+       <!-- model>
            <path>Aircraft/A380/XML/cabin.xml</path>
            <offsets>
                <x-m>11.6</x-m>
                <y-m>0.0</y-m>
                <z-m>4.9</z-m>
            </offsets>
-       </model>
+       </model -->
 
   	<model>
    		<path>Aircraft/A380/XML/htp.xml</path>
@@ -127,13 +132,17 @@
    		</offsets>
   	</model>
   
-  	<model>
+  	<!-- model>
    		<path>Aircraft/A380/XML/FlightDeck/flightdeck.xml</path>
    		<offsets>
     			<x-m>8.792</x-m>
     			<z-m>5.919</z-m>
    		</offsets>
-  	</model>
+  	</model -->
+  	<model>
+	  <name>Interior</name>
+	  <path>Aircraft/A380/Models/FlightDeck/flightdeckV2.xml</path>
+	</model>
   
   	<!-- Temorary hack 
   	<model>

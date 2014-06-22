@@ -118,9 +118,12 @@
       <type>lookfrom</type>
       <internal type="bool">true</internal>
       <config>
-        <x-offset-m type="double">-0.558</x-offset-m>
+        <!-- x-offset-m type="double">-0.558</x-offset-m>
         <y-offset-m type="double">-1.66</y-offset-m> 
-        <z-offset-m type="double">-19.43</z-offset-m>
+        <z-offset-m type="double">-19.43</z-offset-m -->
+	<x-offset-m type="double">-3.2</x-offset-m>
+        <y-offset-m type="double">4.29</y-offset-m> 
+        <z-offset-m type="double">-1.77</z-offset-m>
         <pitch-offset-deg>-5.73</pitch-offset-deg>
         <default-field-of-view-deg type="double">82.0</default-field-of-view-deg>
       </config>
