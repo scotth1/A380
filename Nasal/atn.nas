@@ -214,6 +214,8 @@ tracer : func(msg) {
        var cg  = (getprop("fdm/jsbsim/inertia/cg-x-in")*2.54);
        var elapsed = getprop("sim/time/elapsed-sec");
        var odometer = getprop("instrumentation/gps/odometer");
+       var lat  = getprop("position/latitude-deg");
+       var lon  = getprop("position/longitude-deg");
        var report = [];
        append(report, atnMaintRecord.new("fuel-report","altitude-m", alt));
        append(report, atnMaintRecord.new("fuel-report","airspeed-kt", kias));
@@ -224,6 +226,8 @@ tracer : func(msg) {
        append(report, atnMaintRecord.new("fuel-report","cg-cm",cg));
        append(report, atnMaintRecord.new("fuel-report","elapsed",elapsed));
        append(report, atnMaintRecord.new("fuel-report","odometer",odometer));
+       append(report, atnMaintRecord.new("fuel-report","lat", lat));
+       append(report, atnMaintRecord.new("fuel-report","lon", lon));
        var json = me.urlencode(me.makeJSON("records",report));
        me.makeRequest("doReportMaint", "maintRecord="~json);
      }
@@ -302,15 +306,19 @@ tracer : func(msg) {
      if (me.sessionId != nil and me.sessionId != "") {
        var fob = getprop("consumables/fuel/total-fuel-kg");
        var fused = getprop("consumables/fuel/total-used-kg");
+       var kias = getprop("velocities/airspeed-kt");
        var gw  = getprop("fdm/jsbsim/inertia/weight-kg");
        var cg  = (getprop("fdm/jsbsim/inertia/cg-x-in")*2.54);
        var elapsed = getprop("sim/time/elapsed-sec");
+       var g = getprop("accelerations/pilot-gdamped");
        var report = [];
        append(report, atnMaintRecord.new("touchdown","fob",fob));
        append(report, atnMaintRecord.new("touchdown","fused",fused));
        append(report, atnMaintRecord.new("touchdown","gw",gw));
        append(report, atnMaintRecord.new("touchdown","cg-cm",cg));
+       append(report, atnMaintRecord.new("touchdown","airspeed-kt", kias));
        append(report, atnMaintRecord.new("touchdown","elapsed",elapsed));
+       append(report, atnMaintRecord.new("touchdown","g",g));
        var json = me.urlencode(me.makeJSON("records",report));
        me.makeRequest("doReportMaint", "maintRecord="~json);
      }

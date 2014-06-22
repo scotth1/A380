@@ -384,8 +384,8 @@
     <name>cabin pressure rate computer</name>
     <debug>false</debug>
     <type>derivative</type>
-    <input>/instrumentation/pressurisation/cabin-altitude-ft</input>
-    <output>/instrumentation/pressurisation/cabin-altitude-ft-sec</output>
+    <input>instrumentation/pressurisation/cabin-altitude-ft</input>
+    <output>instrumentation/pressurisation/cabin-altitude-ft-sec</output>
     <filter-time>1.0</filter-time>
   </filter>
   

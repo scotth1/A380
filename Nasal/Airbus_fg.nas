@@ -682,7 +682,16 @@ setlistener("/instrumentation/flightdirector/at-on", func(n) {
   spdMode = getprop("/instrumentation/flightdirector/spd");
   if(at_on == 1) {
       if (spdMode == SPD_TOGA) {   #TOGA
-        
+        if (getprop("instrumentation/ecam/flight-mode") > 7) {
+          ## we need to take evasive TOGA action.
+          curAlt = getprop("/position/altitude-ft");
+          targetAlt = getprop("/autopilot/settings/target-altitude-ft");
+          
+          if (targetAlt > curAlt) {
+            setprop("instrumentation/flightdirector/vnav", VNAV_ALTs);
+          }
+          setprop("/instrumentation/ecam/flight-mode",8);
+        }
       }
       if (spdMode == SPD_FLEX) {   #FLEX
       }
@@ -2027,6 +2036,7 @@ update_nav = func () {
 #  W_kt += (wind_speed_kt*math.cos(wind_angle));#true ground speed from navigation speed-triangle
 
   W_kt = getprop("/velocities/groundspeed-kt");
+  if (W_kt == nil) W_kt = 0.0;
   setprop("/instrumentation/flightdirector/ground-speed-kt", W_kt);
 
   We = getprop("/velocities/speed-east-fps");

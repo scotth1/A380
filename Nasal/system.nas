@@ -533,6 +533,7 @@ var convertKtMach = func(kts) {
 update_ewd = func {
   var flt_mode = getprop("/instrumentation/ecam/flight-mode");
   var acqClm = getprop("instrumentation/afs/acquire_cl");
+  var g = getprop("accelerations/pilot-gdamped");
   if (getprop("/controls/switches/seat-belt") == 0 and  flt_mode < 10) {
     ewdChecklist.append("SEAT BELTS");
   }
@@ -629,11 +630,16 @@ update_ewd = func {
   if (flt_mode == 8 and getprop("controls/gear/autobrakes") != 0) {
     ewdChecklist.append("AUTOBRK CHECK");
   }
-  if (flt_mode > 8 and flt_mode < 12 and getprop("controls/gear/autobrakes") == 0) {
+  if (flt_mode > 8 and flt_mode < 11 and getprop("controls/gear/autobrakes") == 0) {
     ewdChecklist.append("AUTOBRK CHECK");
   }
   if (flt_mode > 8  and flt_mode < 10 and getprop("fdm/jsbsim/inertia/weight-kg") > 396000) {
     ewdChecklist.append("CHK LAND GW", 0.8, 0.1, 0.1);
+    ## atnetwork.doReportOverstress();
+  }
+  if (flt_mode > 3 and g > 2.0) {
+    ewdChecklist.append("OVERSTRESS",0.8, 0.1, 0.1);
+    ## atnetwork.doReportOverstress();
   }
 
   ewdChecklist.reset();
@@ -819,7 +825,7 @@ update_engines = func {
   #if (flt_mode > 4 and flt_mode < 10 and flt_mode != 8) {
   #tracer("flt_mode: "~flt_mode~", alt: "~alt~", gear: "~gear_pos~", fpm: "~fpm); 
   #}
-  if (flt_mode == 8 and (alt < 1000 and gear_pos == 1)) {
+  if (flt_mode == 8 and (alt < 2000 and gear_pos == 1)) {
     flt_mode = 9;
     setprop("/instrumentation/ecam/flight-mode",flt_mode);
   }
@@ -1098,7 +1104,7 @@ update_sd = func {
 
 var stepSpeedbrake = func(step) {
     if(props.globals.getNode("/sim/spoilers") != nil) {
-        stepProps("/controls/flight/speedbrake", "/sim/spoilers", step);
+        controls.stepProps("/controls/flight/speedbrake", "/sim/spoilers", step);
         return;
     }
     # Hard-coded spoilers movement in 4 equal steps:

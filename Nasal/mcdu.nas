@@ -1516,7 +1516,7 @@ calcVapp = func() {
       speedDif = (470000-estGW)/3333;
     } else {
       var wpNum = getprop("autopilot/route-manager/route/num");
-      if (wpNum != nil and wpNum > 0) {
+      if (wpNum != nil and wpNum > 1) {
         var totalDist = 0;
         for(var p = 0; p < (wpNum-1); p = p+1) {
           var nextNM =getprop("autopilot/route-manager/route/wp["~p~"]/leg-distance-nm");
