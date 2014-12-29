@@ -1661,6 +1661,12 @@ C = 180-(90+A)
 c = gs*101.268591  #fpm
 a = (c * sin(A))/sin(C)
 alpha-error = VS-a
+
+ Adj = (TAS*6061)/60
+ Opp = fpm
+ ang1 = tan(Opp/Adj)
+ alphaError = pitch-ang1
+
   -->
     <filter>
       <type>gain</type>
